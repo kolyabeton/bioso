@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Local generated previews, captures, and verification output
+/output/
+/outputs/
+/proof/
+/temp/
+
+# Local secrets (safe templates may be committed)
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key

@@ -1,0 +1,437 @@
+[
+  {
+    "id": "player-core",
+    "file": "player-core.glb",
+    "bytes": 1663704
+  },
+  {
+    "id": "anatomy-biped",
+    "file": "anatomy-biped.glb",
+    "bytes": 1620712
+  },
+  {
+    "id": "anatomy-quadruped",
+    "file": "anatomy-quadruped.glb",
+    "bytes": 1716236
+  },
+  {
+    "id": "anatomy-crawler",
+    "file": "anatomy-crawler.glb",
+    "bytes": 1764968
+  },
+  {
+    "id": "anatomy-flyer",
+    "file": "anatomy-flyer.glb",
+    "bytes": 1681252
+  },
+  {
+    "id": "anatomy-serpent",
+    "file": "anatomy-serpent.glb",
+    "bytes": 1604972
+  },
+  {
+    "id": "anatomy-plant",
+    "file": "anatomy-plant.glb",
+    "bytes": 1690756
+  },
+  {
+    "id": "arm-claw",
+    "file": "arm-claw.glb",
+    "bytes": 1357672
+  },
+  {
+    "id": "arm-seed",
+    "file": "arm-seed.glb",
+    "bytes": 1469316
+  },
+  {
+    "id": "arm-drill",
+    "file": "arm-drill.glb",
+    "bytes": 1347492
+  },
+  {
+    "id": "arm-arc",
+    "file": "arm-arc.glb",
+    "bytes": 1399280
+  },
+  {
+    "id": "arm-shield",
+    "file": "arm-shield.glb",
+    "bytes": 1489216
+  },
+  {
+    "id": "arm-siphon",
+    "file": "arm-siphon.glb",
+    "bytes": 1448496
+  },
+  {
+    "id": "head-optic",
+    "file": "head-optic.glb",
+    "bytes": 1306248
+  },
+  {
+    "id": "head-mandible",
+    "file": "head-mandible.glb",
+    "bytes": 1469220
+  },
+  {
+    "id": "head-crown",
+    "file": "head-crown.glb",
+    "bytes": 1615032
+  },
+  {
+    "id": "sensor-eye",
+    "file": "sensor-eye.glb",
+    "bytes": 1579464
+  },
+  {
+    "id": "sensor-antenna",
+    "file": "sensor-antenna.glb",
+    "bytes": 1387208
+  },
+  {
+    "id": "sensor-dish",
+    "file": "sensor-dish.glb",
+    "bytes": 1452748
+  },
+  {
+    "id": "leg-walker",
+    "file": "leg-walker.glb",
+    "bytes": 1283868
+  },
+  {
+    "id": "leg-jumper",
+    "file": "leg-jumper.glb",
+    "bytes": 1570540
+  },
+  {
+    "id": "leg-climber",
+    "file": "leg-climber.glb",
+    "bytes": 1659568
+  },
+  {
+    "id": "leg-root",
+    "file": "leg-root.glb",
+    "bytes": 1310820
+  },
+  {
+    "id": "shell-elytra",
+    "file": "shell-elytra.glb",
+    "bytes": 1398640
+  },
+  {
+    "id": "shell-dome",
+    "file": "shell-dome.glb",
+    "bytes": 1594956
+  },
+  {
+    "id": "shell-spine",
+    "file": "shell-spine.glb",
+    "bytes": 1359936
+  },
+  {
+    "id": "tail-counterweight",
+    "file": "tail-counterweight.glb",
+    "bytes": 1263740
+  },
+  {
+    "id": "tail-stinger",
+    "file": "tail-stinger.glb",
+    "bytes": 1418448
+  },
+  {
+    "id": "organ-reactor",
+    "file": "organ-reactor.glb",
+    "bytes": 1655512
+  },
+  {
+    "id": "organ-digester",
+    "file": "organ-digester.glb",
+    "bytes": 2080976
+  },
+  {
+    "id": "organ-capacitor",
+    "file": "organ-capacitor.glb",
+    "bytes": 1519744
+  },
+  {
+    "id": "arch-wall-straight",
+    "file": "arch-wall-straight.glb",
+    "bytes": 1693596
+  },
+  {
+    "id": "arch-wall-corner",
+    "file": "arch-wall-corner.glb",
+    "bytes": 1682736
+  },
+  {
+    "id": "arch-arch",
+    "file": "arch-arch.glb",
+    "bytes": 1745744
+  },
+  {
+    "id": "arch-pillar",
+    "file": "arch-pillar.glb",
+    "bytes": 1755820
+  },
+  {
+    "id": "arch-stairs",
+    "file": "arch-stairs.glb",
+    "bytes": 1521340
+  },
+  {
+    "id": "arch-terrace",
+    "file": "arch-terrace.glb",
+    "bytes": 1666792
+  },
+  {
+    "id": "arch-bridge",
+    "file": "arch-bridge.glb",
+    "bytes": 1608972
+  },
+  {
+    "id": "arch-planter",
+    "file": "arch-planter.glb",
+    "bytes": 1788396
+  },
+  {
+    "id": "arch-turbine",
+    "file": "arch-turbine.glb",
+    "bytes": 1678864
+  },
+  {
+    "id": "arch-solar-panel",
+    "file": "arch-solar-panel.glb",
+    "bytes": 1591780
+  },
+  {
+    "id": "arch-cistern",
+    "file": "arch-cistern.glb",
+    "bytes": 1838952
+  },
+  {
+    "id": "arch-gate",
+    "file": "arch-gate.glb",
+    "bytes": 1719012
+  },
+  {
+    "id": "veg-grass",
+    "file": "veg-grass.glb",
+    "bytes": 1590668
+  },
+  {
+    "id": "veg-fern",
+    "file": "veg-fern.glb",
+    "bytes": 1751040
+  },
+  {
+    "id": "veg-shrub",
+    "file": "veg-shrub.glb",
+    "bytes": 1918204
+  },
+  {
+    "id": "veg-vine",
+    "file": "veg-vine.glb",
+    "bytes": 1379664
+  },
+  {
+    "id": "veg-moss",
+    "file": "veg-moss.glb",
+    "bytes": 1518332
+  },
+  {
+    "id": "veg-seedpod",
+    "file": "veg-seedpod.glb",
+    "bytes": 1431440
+  },
+  {
+    "id": "boss-warden",
+    "file": "boss-warden.glb",
+    "bytes": 2075488
+  },
+  {
+    "id": "boss-orchid",
+    "file": "boss-orchid.glb",
+    "bytes": 1899412
+  },
+  {
+    "id": "boss-leviathan",
+    "file": "boss-leviathan.glb",
+    "bytes": 1932912
+  },
+  {
+    "id": "body-worker",
+    "file": "body-worker.glb",
+    "bytes": 1447988
+  },
+  {
+    "id": "body-scout",
+    "file": "body-scout.glb",
+    "bytes": 1449920
+  },
+  {
+    "id": "body-heavy",
+    "file": "body-heavy.glb",
+    "bytes": 1358500
+  },
+  {
+    "id": "body-guard",
+    "file": "body-guard.glb",
+    "bytes": 1517708
+  },
+  {
+    "id": "body-jade",
+    "file": "body-jade.glb",
+    "bytes": 1292756
+  },
+  {
+    "id": "body-carapace",
+    "file": "body-carapace.glb",
+    "bytes": 1454392
+  },
+  {
+    "id": "body-pod",
+    "file": "body-pod.glb",
+    "bytes": 1502688
+  },
+  {
+    "id": "body-seed",
+    "file": "body-seed.glb",
+    "bytes": 1650472
+  },
+  {
+    "id": "head-worker",
+    "file": "head-worker.glb",
+    "bytes": 1423556
+  },
+  {
+    "id": "head-driller",
+    "file": "head-driller.glb",
+    "bytes": 1319608
+  },
+  {
+    "id": "head-sentinel",
+    "file": "head-sentinel.glb",
+    "bytes": 1471216
+  },
+  {
+    "id": "head-knight",
+    "file": "head-knight.glb",
+    "bytes": 1365372
+  },
+  {
+    "id": "shoulder-jade",
+    "file": "shoulder-jade.glb",
+    "bytes": 1252140
+  },
+  {
+    "id": "shoulder-ivory",
+    "file": "shoulder-ivory.glb",
+    "bytes": 1429676
+  },
+  {
+    "id": "leg-worker",
+    "file": "leg-worker.glb",
+    "bytes": 1433104
+  },
+  {
+    "id": "leg-guard",
+    "file": "leg-guard.glb",
+    "bytes": 1465320
+  },
+  {
+    "id": "arm-whip",
+    "file": "arm-whip.glb",
+    "bytes": 459428
+  },
+  {
+    "id": "arm-needle",
+    "file": "arm-needle.glb",
+    "bytes": 257876
+  },
+  {
+    "id": "arm-harpoon",
+    "file": "arm-harpoon.glb",
+    "bytes": 313944
+  },
+  {
+    "id": "arm-rocket",
+    "file": "arm-rocket.glb",
+    "bytes": 230252
+  },
+  {
+    "id": "arm-fangs",
+    "file": "arm-fangs.glb",
+    "bytes": 252292
+  },
+  {
+    "id": "leg-spring",
+    "file": "leg-spring.glb",
+    "bytes": 337004
+  },
+  {
+    "id": "organ-mirrorGland",
+    "file": "organ-mirrorGland.glb",
+    "bytes": 211364
+  },
+  {
+    "id": "organ-returnNerve",
+    "file": "organ-returnNerve.glb",
+    "bytes": 241100
+  },
+  {
+    "id": "organ-slime",
+    "file": "organ-slime.glb",
+    "bytes": 183496
+  },
+  {
+    "id": "organ-parasite",
+    "file": "organ-parasite.glb",
+    "bytes": 206120
+  },
+  {
+    "id": "organ-commonNerve",
+    "file": "organ-commonNerve.glb",
+    "bytes": 282460
+  },
+  {
+    "id": "organ-outerStomach",
+    "file": "organ-outerStomach.glb",
+    "bytes": 229688
+  },
+  {
+    "id": "organ-reverseHeart",
+    "file": "organ-reverseHeart.glb",
+    "bytes": 194816
+  },
+  {
+    "id": "organ-regen",
+    "file": "organ-regen.glb",
+    "bytes": 239948
+  },
+  {
+    "id": "organ-shield",
+    "file": "organ-shield.glb",
+    "bytes": 350072
+  },
+  {
+    "id": "organ-armor",
+    "file": "organ-armor.glb",
+    "bytes": 178392
+  },
+  {
+    "id": "organ-stabilizer",
+    "file": "organ-stabilizer.glb",
+    "bytes": 349128
+  },
+  {
+    "id": "organ-digestion",
+    "file": "organ-digestion.glb",
+    "bytes": 197280
+  },
+  {
+    "id": "organ-accelerator",
+    "file": "organ-accelerator.glb",
+    "bytes": 320136
+  }
+]

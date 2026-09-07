@@ -1,0 +1,18 @@
+/* Composition only: shared stage bounds, typography and DS components remain owners. */
+.ui-dialog[data-screen="profile"] #panel-content,.ui-dialog[data-screen="loadout"] #panel-content,.ui-dialog[data-screen="meta-achievement"] #panel-content,.ui-dialog[data-screen="overrun"] #panel-content{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.ui-dialog .meta-screen{min-height:0;overflow-y:auto;overflow-x:visible;display:flex;flex-direction:column;gap:12px;flex:1;padding:12px}
+.meta-screen h3,.meta-screen p{margin:0}.meta-screen p{line-height:1.45}.meta-screen small{display:block}
+.meta-identity{display:flex;align-items:center;gap:12px;padding:12px}.meta-avatar{width:64px;flex:none}.meta-avatar .ui-part-art{width:64px;height:64px}
+.meta-stats{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.meta-stats .ui-resource{min-width:0}
+.meta-achievements{display:flex;flex-direction:column;gap:10px}.meta-achievement{display:grid;grid-template-columns:48px minmax(0,1fr) 44px;gap:10px;align-items:center;padding:10px}
+.meta-achievement h3{font-size:16px}.meta-achievement p,.meta-achievement small{font-size:13px}.meta-achievement-art .ui-part-art{width:48px;height:48px}.meta-achievement-art>span:not(.ui-part-art){display:grid;place-items:center;width:48px;height:48px;font-size:30px;opacity:.65}
+.meta-loadout-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.meta-loadout-options>div{min-width:0;text-align:center}.meta-loadout-options .ui-part-card{width:100%;aspect-ratio:1;height:auto;min-height:44px}.meta-loadout-options>div>span{display:block;font-size:13px;line-height:20px;margin-top:4px}
+.meta-selection-detail{padding:10px}.meta-selection-detail p{font-size:14px;margin-top:4px}.meta-starter-organ{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:10px;align-items:center}.meta-starter-organ .ui-part-art{width:44px;height:44px}.meta-starter-organ .ui-button{grid-column:1/-1}.meta-starter-organ p{font-size:13px}.meta-large-art{width:150px;height:150px;align-self:center}.meta-mystery{font-size:64px;text-align:center}
+.ui-dialog .meta-screen+.ui-screen-footer{flex:none;position:static;display:flex;gap:8px}.ui-dialog .meta-screen+.ui-screen-footer .ui-button{white-space:nowrap;min-height:44px}
+
+.meta-reroll{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}.meta-reroll .ui-button{white-space:nowrap}
+
+#objective.meta-overrun-status{top:84px;left:16px;right:16px;max-width:none;font-size:13px;line-height:20px;padding:8px;background:var(--ui-surface,#192721);border:1px solid var(--ui-border,#7e8a76);border-radius:8px;display:block}
+
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-screen-footer .ui-reroll-button{flex:0 0 auto;gap:6px;white-space:nowrap}
+.ui-reroll-button>.ui-icon{width:18px;height:18px;flex:none}

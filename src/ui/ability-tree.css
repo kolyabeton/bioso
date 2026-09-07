@@ -1,0 +1,49 @@
+/* All dimensions belong to the portrait stage; shared dialog bounds remain authoritative. */
+.ui-ability-art{display:block;object-fit:contain;flex:none;width:64px;height:64px;filter:drop-shadow(0 3px 4px #0008)}
+.ui-dialog[data-screen=ability-detail]{background:radial-gradient(ellipse at 10% 0,#45433633,transparent 60%),#191c19}
+.ui-dialog .ui-ability-browser{display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;gap:10px;padding:10px 12px;min-height:0;scrollbar-width:thin}
+.ui-ability-browser .ui-ability-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;flex:none}
+.ui-ability-options>.ui-button{min-width:0;min-height:48px;padding:3px;justify-content:center}
+.ui-ability-options .ui-ability-art{width:38px;height:38px}
+.ui-ability-options>.ui-button>span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.ui-dialog .ui-ability-reading{overflow:visible;flex:none;min-width:0}
+.ui-skill-layout{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ui-skill-tree>h3{color:#dfd7bf;font-size:18px;margin:0 0 8px;line-height:24px}
+.ui-tree-single{display:flex;justify-content:center}
+.ui-tree-single>.ui-skill-node{width:100%;grid-template-columns:40px minmax(0,1fr) auto;text-align:left;min-height:62px;gap:8px;padding:8px}
+.ui-tree-single .ui-skill-state{grid-column:auto;border:0;margin:0;padding:0;flex-direction:column;gap:4px}
+.ui-tree-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ui-skill-node{position:relative;display:grid;grid-template-columns:1fr;justify-items:center;align-items:center;gap:5px;min-width:0;width:100%;padding:8px 6px 0;border:1px solid #8a8062;background:linear-gradient(130deg,#30302855,#171a17);color:#ded8c9;border-radius:4px;box-shadow:inset 0 0 0 3px #181b18,0 3px 8px #0005;cursor:pointer;text-align:center;font:inherit;min-height:112px}
+.ui-skill-node:before{content:'';position:absolute;inset:4px;border:1px solid #736c5033;pointer-events:none}
+.ui-skill-node .ui-ability-art{width:40px;height:40px}
+.ui-skill-copy{min-width:0;justify-self:stretch}.ui-skill-copy strong{display:block;font-size:13px;font-weight:550;line-height:1.35;overflow-wrap:anywhere}
+.ui-skill-state{grid-column:1/-1;width:100%;border-top:1px solid #776d4b66;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;line-height:15px;padding:5px 0;margin-top:2px}.ui-skill-state .ui-icon{width:13px;height:13px}
+.ui-skill-node.is-learned .ui-skill-state{color:#a7d5b5}.ui-skill-node.is-selected{border-color:#ade0cc;box-shadow:inset 0 0 0 3px #688f7d66,0 0 10px #a4dbc329}.ui-skill-node.is-locked .ui-ability-art{filter:grayscale(.85) brightness(.7)}.ui-skill-node.is-locked{border-color:#625f51}.ui-skill-node:focus-visible{outline:2px solid #c1f4d6;outline-offset:2px}.ui-skill-node:hover{background-color:#3c4437}
+.ui-tree-split{height:22px;position:relative;background:linear-gradient(#9b9173,#9b9173) center top/2px 11px no-repeat}.ui-tree-split:after{content:'';position:absolute;left:25%;right:25%;top:10px;height:12px;border:2px solid #9b9173;border-bottom:0}
+.ui-tree-join{height:32px;position:relative;display:grid;place-items:center;background:linear-gradient(#9b9173,#9b9173) center bottom/2px 14px no-repeat}.ui-tree-join:before{content:'';position:absolute;left:25%;right:25%;top:0;height:16px;border:2px solid #9b9173;border-top:0}.ui-tree-join span{position:relative;z-index:1;background:#24271f;border:1px solid #9b9173;padding:2px 10px;color:#d9caa5;font-size:11px;line-height:16px}
+.ui-skill-tree .ui-tree-rule{text-align:center;color:#d0c3a6;font-size:12px;line-height:1.45;margin:8px 0 0}.ui-tree-rule span{font-size:11px;color:#aaa99b}
+.ui-skill-inspector{border-top:1px solid #796f4c66;padding:0;text-align:left;min-width:0}
+.ui-skill-inspector>h4{font-size:13px;font-weight:400;line-height:20px;color:var(--ui-text);margin:0;padding:12px 0}.ui-skill-inspector>p{color:#d6d0bc;font-size:13px;line-height:1.6;margin:0 0 10px}.ui-skill-inspector .ui-note{color:#9ca898;font-size:12px}
+.ui-choice:has(:is(.ui-ability-art,.ui-part-art)){display:grid;grid-template-columns:48px 1fr;column-gap:12px;align-content:center}.ui-choice>:is(.ui-ability-art,.ui-part-art){width:48px;height:48px;grid-row:1/3}.ui-choice>small{grid-column:2}.ui-learned>.ui-ability-art{width:48px;height:48px}
+
+/* Level choices grow with their copy; only the list scrolls, never the footer. */
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-level-body{overflow-y:auto;flex:1;min-height:0}
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-compact-choices{flex:none;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:auto;min-height:auto}
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-choice:has(:is(.ui-ability-art,.ui-part-art)){grid-template-columns:48px minmax(0,1fr);padding:12px;min-height:80px;align-content:center}
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-choice>span,.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-choice>small{min-width:0}
+/* Keep the text pair together when the icon makes the grid rows taller. */
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-choice:has(:is(.ui-ability-art,.ui-part-art)){row-gap:4px}
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-choice>span:not(.ui-part-art){align-self:end}
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-choice>small{align-self:start}
+
+/* These three generated medallions include an opaque exterior; crop that exterior in the UI. */
+.ui-ability-art[src$='/melee.2.png'],.ui-ability-art[src$='/ranged.1.png'],.ui-ability-art[src$='/ranged.3.png']{clip-path:circle(44% at 50% 50%)}
+
+.ui-ability-level{display:inline-block;white-space:nowrap;color:var(--ui-muted);font-size:12px;font-weight:400;margin-left:6px}
+
+.ui-branch-options>.ui-button{position:relative}
+.ui-branch-selected{position:absolute;right:3px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--ink,#263b34);color:var(--paper,#eee4ca);font-size:12px;font-style:normal;line-height:16px;text-align:center}
+
+/* Learned progress stays visible independently of the current branch selection. */
+.ui-branch-options .ui-branch-selected{left:3px;right:auto}
+.ui-branch-count{position:absolute;right:2px;top:2px;z-index:1;display:grid;place-items:center;min-width:20px;height:20px;padding:0 4px;box-sizing:border-box;border:1px solid #b9d7ad;border-radius:6px;background:linear-gradient(#496652,#294636);color:#f4f1d9;box-shadow:0 1px 3px #101c16aa,inset 0 1px #ffffff20;font-size:12px;font-weight:700;font-style:normal;line-height:18px;font-variant-numeric:tabular-nums;pointer-events:none}

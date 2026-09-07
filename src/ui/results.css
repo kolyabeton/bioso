@@ -1,0 +1,54 @@
+/* The shared portrait stage owns bounds; this route only arranges its report. */
+body .ui-dialog[data-screen=end]{--report-edge:#82907866;--report-sage:var(--ui-mint);border-radius:16px;background:var(--ui-panel-face),var(--ui-surface);color:var(--ui-text);border-color:#394034}
+body .ui-dialog[data-screen=end]>.panel-head{position:relative;display:block;flex:none;min-height:0;padding:14px 12px 12px;background:transparent;border:0;box-shadow:none}
+body .ui-dialog[data-screen=end]>.panel-head:after{content:'';display:block;height:clamp(90px,16dvh,140px);margin-top:14px;border:1px solid var(--report-edge);border-radius:8px;background:url('/assets/art/results-gardens-v1.png') center 43%/cover}
+body .ui-dialog[data-screen=end] .panel-head>div{width:100%}
+body .ui-dialog[data-screen=end] .ui-eyebrow{color:var(--ui-muted);letter-spacing:.15em;font-size:11px;margin-bottom:9px}
+body .ui-dialog[data-screen=end] .panel-head h2{font-size:26px;font-weight:650;line-height:1.15;letter-spacing:.02em;text-transform:uppercase;margin:0;border:0;padding-bottom:0;color:var(--ui-text);text-shadow:none}
+body .ui-dialog[data-screen=end] .ui-results{display:block;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#858675 #19201a;padding:0 12px 8px;min-height:0}
+.result-report,.result-notice,.result-discoveries{border:1px solid var(--report-edge);border-radius:8px;box-shadow:none;background:transparent}
+.result-outcome{display:flex;align-items:center;gap:10px;padding:12px 10px;background:transparent;color:var(--ui-text);border-bottom:1px solid var(--report-edge)}
+.result-outcome>div{min-width:0}
+.result-outcome h3{font-size:19px;line-height:1.2;font-weight:650;margin:0;overflow-wrap:anywhere}
+.result-outcome p{font-size:13px;line-height:1.4;margin:4px 0 0}
+.result-core{width:42px;height:42px;flex:none;display:grid;place-items:center;border:3px double #656a53;border-radius:50%;background:radial-gradient(circle,#b5f1d9 0,#75ae9977 23%,#293e32 28%,#4f5843 44%,#b2b09a 46%,#303a2f 53%,#626a54 60%);box-shadow:0 0 0 3px #6b725438}
+.result-core .ui-icon{width:19px;height:19px;color:#ddf4df}
+.result-metrics{padding:12px 13px}
+.result-metrics span{display:block;color:var(--ui-muted);font-size:11px;line-height:16px;letter-spacing:.06em;text-transform:uppercase}
+.result-time{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:8px;border-bottom:1px solid #85867577}
+.result-time strong{display:block;font-size:54px;line-height:1.12;font-weight:800;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.result-time>.ui-icon{width:58px;height:58px;stroke-width:.65;color:#a1a38188;flex:none}
+.result-secondary{display:grid;grid-template-columns:1fr 1fr;padding-top:9px}
+.result-secondary>div+div{border-left:1px solid #85867577;padding-left:14px}
+.result-secondary strong{display:flex;align-items:center;gap:7px;font-size:29px;line-height:1.3;font-weight:600;font-variant-numeric:tabular-nums}
+.result-secondary .ui-icon{color:var(--report-sage);width:23px;height:23px;flex:none}
+.result-notice{display:flex;align-items:center;gap:10px;padding:12px;margin-top:8px}
+.result-notice>.ui-icon{color:var(--report-sage);width:27px;height:27px;flex:none}
+.result-notice strong,.result-notice span{display:block;font-size:13px;line-height:1.5;font-weight:400}
+.result-notice.is-defeat strong,.result-notice.is-defeat>.ui-icon{color:var(--ui-danger)}
+.result-discoveries{margin-top:8px;padding:11px}
+.result-discoveries>h3{font-size:11px;line-height:16px;text-transform:uppercase;letter-spacing:.12em;color:var(--ui-muted);font-weight:500;margin:0;padding-bottom:8px;border-bottom:1px solid #85867566}
+.result-empty{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;color:var(--ui-muted)}
+.result-empty>.ui-icon{width:28px;height:28px;color:var(--report-sage)}
+.result-empty p{font-size:13px;margin:0}
+body .ui-dialog[data-screen=end] .ui-result-rewards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0 0}
+.result-save{font-size:11px;line-height:1.5;color:var(--ui-muted);margin:9px 2px 0}
+.result-save span{display:block}.result-save.is-error{color:var(--ui-danger)}
+body .ui-dialog[data-screen=end] .ui-screen-footer{background:transparent;border:0;padding:9px 12px max(10px,env(safe-area-inset-bottom));display:grid;grid-template-columns:1.2fr 1fr;gap:8px}
+body .ui-dialog[data-screen=end] .ui-screen-footer>.ui-button{font-size:13px;min-height:48px;padding:8px 6px;white-space:nowrap;overflow-wrap:normal;gap:6px}
+body .ui-dialog[data-screen=end] .ui-screen-footer .ui-icon{width:20px;height:20px;flex:none}
+@media(max-height:700px){body .ui-dialog[data-screen=end]>.panel-head{min-height:0}.result-metrics{padding:9px 12px}.result-time strong{font-size:48px}.result-notice{padding:9px 10px}.result-outcome{padding:10px}.result-empty{min-height:48px}}
+
+/* Compact, equally weighted statistics on the shared ceramic surface. */
+.result-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px}
+.result-secondary{display:contents}
+.result-time,.result-secondary>div{display:block;padding:0;min-width:0;border:0}
+.result-secondary>div+div{padding-left:0;border:0}
+.result-time strong,.result-secondary strong{font-size:27px;line-height:1.4;font-weight:600;letter-spacing:-.03em}
+.result-time>.ui-icon{display:none}
+.result-secondary .ui-icon{display:none}
+.result-metrics span{font-size:10px;letter-spacing:.02em}
+.result-report{border:0}
+.result-outcome{padding:6px 0 14px}
+.result-discoveries{margin-top:12px}
+.result-core{width:36px;height:36px}

@@ -1,0 +1,30 @@
+/* Gold selection is an outline/halo only; each component keeps its own surface and text. */
+.ui-dialog :is(.ui-button--selected,.ui-frame.is-selected,button[aria-pressed=true],button[aria-selected=true],.ui-skill-node.is-inspected,.ui-mission:has(>.ui-mission-trigger[aria-expanded=true])){
+  --frame-border:var(--ui-selection-edge);
+  outline:2px solid var(--ui-selection-bright);
+  outline-offset:-2px;
+  box-shadow:var(--ui-selection-halo),inset 0 0 0 3px var(--ui-selection-ink);
+}
+.ui-dialog .ui-button:is(.ui-button--selected,[aria-pressed=true],[aria-selected=true]):before{
+  border-color:var(--ui-selection-edge);
+  box-shadow:inset 0 0 0 1px var(--ui-selection-ink),inset 0 0 0 2px var(--ui-selection-bright);
+}
+.ui-dialog .ui-frame.is-selected:not(.ui-button):before{
+  border-color:var(--ui-selection-edge);
+}
+.ui-dialog .ui-skill-node:is(.is-selected,.is-inspected){border-color:var(--ui-selection-edge)}
+.ui-dialog[data-screen=map] .atlas-toolbar .ui-button[aria-pressed=true]{
+  border-color:var(--ui-selection-edge);
+  box-shadow:var(--ui-selection-halo),inset 0 0 0 1px var(--ui-selection-ink);
+}
+.ui-dialog .ui-branch-selected{background:var(--ui-selection-edge);color:var(--ui-selection-ink)}
+.ui-dialog .ui-branch-nodes [aria-current=step]{border-color:var(--ui-selection-edge)}
+.ui-dialog input:checked+.ui-checkbox{
+  color:var(--ui-selection-ink);border-color:var(--ui-selection-edge);
+  box-shadow:var(--ui-selection-halo);
+}
+.ui-dialog input:checked+.ui-switch:before{
+  background:var(--ui-selection-edge);border-color:var(--ui-selection-bright);box-shadow:var(--ui-selection-halo),inset 0 0 2px #fff;
+}
+/* Focus remains distinct from the persistent selection ring. */
+.ui-dialog :is(.ui-button--selected,.ui-frame.is-selected,button[aria-pressed=true],button[aria-selected=true],.ui-skill-node.is-inspected):focus-visible{outline:var(--ui-focus);outline-offset:3px}

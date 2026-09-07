@@ -1,0 +1,33 @@
+/* The approved preview skin is loaded unchanged via reference-hud.css.
+   Only layout/data adapters for the mechanics build belong here. */
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+.hud-location.location{left:max(3.5%,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));width:31%;max-width:176px;padding-bottom:8px;border-color:#bcaf8b85}
+.hud-location .eyebrow{font:400 8px/12px Onest,sans-serif;letter-spacing:.7px}
+.hud-location .hud-brand{font:500 24px/32px Onest,sans-serif;letter-spacing:.5px}
+.hud #location{font:500 10px/16px Onest,sans-serif;letter-spacing:.3px;margin:0}
+.timer-plate{top:-4px;width:84px;height:30px;padding:0;isolation:isolate}
+.timer-plate:before,.timer-plate:after{display:none}
+.timer-plate #timer{font:400 15px/28px Onest,sans-serif;margin:0}
+.hud-actions{right:max(2%,env(safe-area-inset-right));top:max(8px,env(safe-area-inset-top));gap:4px}
+.hud-actions .icon-button{position:relative;inset:auto;width:44px;height:44px;padding:0;border:0;background:none;box-shadow:none;clip-path:none;font:400 22px/40px Onest,sans-serif}
+.hud-actions .icon-button svg{width:18px;height:18px;vertical-align:middle}
+.hud-actions .icon-button:focus-visible{outline-offset:-2px}
+.vitals{left:max(3.5%,env(safe-area-inset-left));top:max(88px,calc(env(safe-area-inset-top) + 76px));width:31%;max-width:176px}
+.meter.health{height:7px;border-color:#938362;border-radius:4px;background:#292a21bd;box-shadow:0 0 0 1px #bca77930,0 1px 3px #22261c80}
+.meter.health i{background:repeating-linear-gradient(90deg,#9edcbc 0,#9edcbc calc(14.285% - 1px),#537460 calc(14.285% - 1px),#537460 14.285%)}
+.resource{margin-top:8px;gap:8px}.resource svg{width:18px;height:22px;filter:drop-shadow(0 0 3px #83d4b433)}.resource span{font:400 17px/24px Onest,sans-serif}
+#objective{left:max(3.5%,env(safe-area-inset-left));top:192px}
+.dock{left:8px;right:8px;bottom:max(12px,env(safe-area-inset-bottom));gap:0}
+.dock-controls:has(#nearby[hidden]){display:none}.dock-controls{margin-bottom:8px}
+#hands.module-dock{width:min(calc(var(--hand-count,2)*74px + 8px),100%);max-width:380px;margin:0 auto;border-color:#87734e91;background:linear-gradient(130deg,#6d5f414d,#201e19a8 30%,#39352899);box-shadow:inset 0 0 0 2px #141b1455;clip-path:var(--hud-cut);isolation:isolate}
+#hands .hand-slot{aspect-ratio:.97;background:none;box-shadow:none}
+#hands .hand-slot>.module-art{height:auto;margin:0}
+#hands .hand-slot>.hand-charge{height:4px;margin:0}
+#hands .hand-slot:hover{filter:brightness(1.22)}#hands .hand-slot:hover .rim{fill:var(--hud-glass);stroke:var(--hud-bronze)}
+#hands .hand-slot:active{transform:translateY(1px);filter:brightness(.94)}
+#hands .hand-slot:focus-visible{outline:2px solid var(--hud-mint);outline-offset:-3px}
+.hand-charge{bottom:1px;height:4px;border-color:#917f5b;background:#263c32;z-index:2}.hand-charge i{background:repeating-linear-gradient(90deg,#94dfbc 0,#94dfbc calc(33.333% - 1px),#374a3c calc(33.333% - 1px),#374a3c 33.333%)}
+.dock .gesture-hint{margin:8px 0 0;font:400 10px/16px Onest,sans-serif;letter-spacing:.5px}
+#toast{top:auto;bottom:180px;background:var(--hud-glass);border-color:var(--hud-bronze)}
+@media(max-width:350px){.hud-location .hud-brand{font-size:22px;line-height:28px}.hud-location .eyebrow{font-size:7px}.hud #location{font-size:9px}.hud-location.location,.vitals{width:34%}.timer-plate{width:72px}.vitals{top:max(84px,calc(env(safe-area-inset-top) + 72px))}.dock .gesture-hint{font-size:9px}}
+@media(max-height:500px){.dock{left:auto;right:8px;width:calc(100% - 200px)}#hands.module-dock{max-width:100%;overflow-x:auto;clip-path:none}.hud-actions{grid-auto-flow:column}.hud-location.location{max-width:144px}}

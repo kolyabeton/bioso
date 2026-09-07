@@ -1,0 +1,462 @@
+[
+  {
+    "id": "might.0",
+    "source": "might.0.png",
+    "alphaBounds": [
+      82,
+      68,
+      1168,
+      1168
+    ]
+  },
+  {
+    "id": "might.1",
+    "source": "might.1.png",
+    "alphaBounds": [
+      93,
+      87,
+      1153,
+      1151
+    ]
+  },
+  {
+    "id": "might.2",
+    "source": "might.2.png",
+    "alphaBounds": [
+      97,
+      78,
+      1157,
+      1139
+    ]
+  },
+  {
+    "id": "might.3",
+    "source": "might.3.png",
+    "alphaBounds": [
+      72,
+      58,
+      1178,
+      1163
+    ]
+  },
+  {
+    "id": "tempo.0",
+    "source": "tempo.0.png",
+    "alphaBounds": [
+      85,
+      70,
+      1164,
+      1160
+    ]
+  },
+  {
+    "id": "tempo.1",
+    "source": "tempo.1.png",
+    "alphaBounds": [
+      78,
+      51,
+      1176,
+      1165
+    ]
+  },
+  {
+    "id": "tempo.2",
+    "source": "tempo.2.png",
+    "alphaBounds": [
+      138,
+      87,
+      1114,
+      1095
+    ]
+  },
+  {
+    "id": "tempo.3",
+    "source": "tempo.3.png",
+    "alphaBounds": [
+      0,
+      30,
+      1208,
+      1254
+    ]
+  },
+  {
+    "id": "projectiles.0",
+    "source": "projectiles.0.png",
+    "alphaBounds": [
+      0,
+      46,
+      1190,
+      1254
+    ]
+  },
+  {
+    "id": "projectiles.1",
+    "source": "projectiles.1.png",
+    "alphaBounds": [
+      0,
+      17,
+      1240,
+      1254
+    ]
+  },
+  {
+    "id": "projectiles.2",
+    "source": "projectiles.2.png",
+    "alphaBounds": [
+      106,
+      88,
+      1154,
+      1158
+    ]
+  },
+  {
+    "id": "projectiles.3",
+    "source": "projectiles.3.png",
+    "alphaBounds": [
+      114,
+      96,
+      1138,
+      1126
+    ]
+  },
+  {
+    "id": "fire.0",
+    "source": "fire.0.png",
+    "alphaBounds": [
+      0,
+      21,
+      1223,
+      1254
+    ]
+  },
+  {
+    "id": "fire.1",
+    "source": "fire.1.png",
+    "alphaBounds": [
+      87,
+      71,
+      1164,
+      1159
+    ]
+  },
+  {
+    "id": "fire.2",
+    "source": "fire.2.png",
+    "alphaBounds": [
+      138,
+      117,
+      1116,
+      1098
+    ]
+  },
+  {
+    "id": "fire.3",
+    "source": "fire.3.png",
+    "alphaBounds": [
+      74,
+      56,
+      1180,
+      1170
+    ]
+  },
+  {
+    "id": "cold.0",
+    "source": "cold.0.png",
+    "alphaBounds": [
+      0,
+      28,
+      1208,
+      1254
+    ]
+  },
+  {
+    "id": "cold.1",
+    "source": "cold.1.png",
+    "alphaBounds": [
+      0,
+      20,
+      1236,
+      1238
+    ]
+  },
+  {
+    "id": "cold.2",
+    "source": "cold.2.png",
+    "alphaBounds": [
+      116,
+      92,
+      1139,
+      1132
+    ]
+  },
+  {
+    "id": "cold.3",
+    "source": "cold.3.png",
+    "alphaBounds": [
+      93,
+      75,
+      1161,
+      1164
+    ]
+  },
+  {
+    "id": "electric.0",
+    "source": "electric.0.png",
+    "alphaBounds": [
+      27,
+      16,
+      1102,
+      1098
+    ]
+  },
+  {
+    "id": "electric.1",
+    "source": "electric.1.png",
+    "alphaBounds": [
+      64,
+      45,
+      1189,
+      1194
+    ]
+  },
+  {
+    "id": "electric.2",
+    "source": "electric.2.png",
+    "alphaBounds": [
+      112,
+      95,
+      1141,
+      1135
+    ]
+  },
+  {
+    "id": "electric.3",
+    "source": "electric.3.png",
+    "alphaBounds": [
+      96,
+      67,
+      1157,
+      1141
+    ]
+  },
+  {
+    "id": "vitality.0",
+    "source": "vitality.0.png",
+    "alphaBounds": [
+      0,
+      45,
+      1176,
+      1254
+    ]
+  },
+  {
+    "id": "vitality.1",
+    "source": "vitality.1.png",
+    "alphaBounds": [
+      35,
+      22,
+      1220,
+      1214
+    ]
+  },
+  {
+    "id": "vitality.2",
+    "source": "vitality.2.png",
+    "alphaBounds": [
+      72,
+      52,
+      1174,
+      1164
+    ]
+  },
+  {
+    "id": "vitality.3",
+    "source": "vitality.3.png",
+    "alphaBounds": [
+      111,
+      91,
+      1141,
+      1125
+    ]
+  },
+  {
+    "id": "motion.0",
+    "source": "motion.0.png",
+    "alphaBounds": [
+      84,
+      78,
+      1158,
+      1154
+    ]
+  },
+  {
+    "id": "motion.1",
+    "source": "motion.1.png",
+    "alphaBounds": [
+      114,
+      103,
+      1137,
+      1131
+    ]
+  },
+  {
+    "id": "motion.2",
+    "source": "motion.2.png",
+    "alphaBounds": [
+      80,
+      64,
+      1173,
+      1162
+    ]
+  },
+  {
+    "id": "motion.3",
+    "source": "motion.3.png",
+    "alphaBounds": [
+      110,
+      88,
+      1139,
+      1126
+    ]
+  },
+  {
+    "id": "summons.0",
+    "source": "summons.0.png",
+    "alphaBounds": [
+      107,
+      87,
+      1146,
+      1140
+    ]
+  },
+  {
+    "id": "summons.1",
+    "source": "summons.1.png",
+    "alphaBounds": [
+      131,
+      115,
+      1114,
+      1111
+    ]
+  },
+  {
+    "id": "summons.2",
+    "source": "summons.2.png",
+    "alphaBounds": [
+      83,
+      64,
+      1173,
+      1161
+    ]
+  },
+  {
+    "id": "summons.3",
+    "source": "summons.3.png",
+    "alphaBounds": [
+      92,
+      69,
+      1163,
+      1160
+    ]
+  },
+  {
+    "id": "thermal",
+    "source": "thermal.png",
+    "alphaBounds": [
+      71,
+      57,
+      1173,
+      1176
+    ]
+  },
+  {
+    "id": "plasma",
+    "source": "plasma.png",
+    "alphaBounds": [
+      77,
+      60,
+      1180,
+      1178
+    ]
+  },
+  {
+    "id": "swarm",
+    "source": "swarm.png",
+    "alphaBounds": [
+      91,
+      75,
+      1161,
+      1151
+    ]
+  },
+  {
+    "id": "minor.damage",
+    "source": "minor.damage.png",
+    "alphaBounds": [
+      102,
+      82,
+      1149,
+      1139
+    ]
+  },
+  {
+    "id": "minor.rate",
+    "source": "minor.rate.png",
+    "alphaBounds": [
+      70,
+      50,
+      1184,
+      1159
+    ]
+  },
+  {
+    "id": "minor.pickup",
+    "source": "minor.pickup.png",
+    "alphaBounds": [
+      72,
+      52,
+      1177,
+      1169
+    ]
+  },
+  {
+    "id": "minor.speed",
+    "source": "minor.speed.png",
+    "alphaBounds": [
+      71,
+      71,
+      1183,
+      1175
+    ]
+  },
+  {
+    "id": "minor.critPower",
+    "source": "minor.critPower.png",
+    "alphaBounds": [
+      11,
+      33,
+      1115,
+      1113
+    ]
+  },
+  {
+    "id": "metabolism.0",
+    "source": "minor.pickup.png",
+    "reuse": "Existing shipped ability artwork, copied without edits"
+  },
+  {
+    "id": "metabolism.1",
+    "source": "vitality.2.png",
+    "reuse": "Existing shipped ability artwork, copied without edits"
+  },
+  {
+    "id": "metabolism.2",
+    "source": "projectiles.0.png",
+    "reuse": "Existing shipped ability artwork, copied without edits"
+  },
+  {
+    "id": "metabolism.3",
+    "source": "vitality.3.png",
+    "reuse": "Existing shipped ability artwork, copied without edits"
+  }
+]

@@ -1,0 +1,38 @@
+/* HUD reference 03: smoked glass, cut corners, restrained brass. World unchanged. */
+#game{container-type:inline-size;--hud-text:#e9e0ca;--hud-muted:#bcb29a;--hud-bronze:#968461;--hud-border-light:#c3b391;--hud-glass:#211f19c9;--hud-mint:#91ddbb;--hud-cut:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)}
+.hud-symbols{position:absolute;width:0;height:0;pointer-events:none}
+.hud{inset:0;display:block;pointer-events:none;text-shadow:0 1px 5px #1a201bc9}
+.location{position:absolute;left:3.5%;top:max(12px,env(safe-area-inset-top));padding-bottom:8px;width:31%;border-bottom:1px solid #bcaf8b85}
+.location .eyebrow{display:block;font:400 8px/12px Onest,sans-serif;letter-spacing:.7px;color:var(--hud-muted);white-space:nowrap}
+.hud-brand{display:block;font:500 24px/32px Onest,sans-serif;letter-spacing:.5px;color:var(--hud-text)}
+.location strong{font:500 10px/16px Onest,sans-serif;margin:0;white-space:nowrap;color:var(--hud-text);letter-spacing:.3px}
+.timer-plate{position:absolute;left:50%;top:-4px;transform:translateX(-50%);width:84px;height:30px;text-align:center}
+.timer-plate .slot-frame .rim{fill:#28261dad;stroke:#7c7156;stroke-width:1}.timer-plate .slot-frame .inner-rim,.timer-plate .slot-frame .edge-light{display:none}
+#timer{position:relative;font:400 15px/28px Onest,sans-serif;color:var(--hud-text);font-variant-numeric:tabular-nums}
+.icon-button{position:absolute;right:2%;top:max(8px,env(safe-area-inset-top));width:44px;height:44px;border:0;border-radius:0;background:transparent;box-shadow:none;font:400 22px/40px Onest,sans-serif;isolation:isolate;color:var(--hud-text)}
+.icon-button:before,.icon-button:after{content:'';position:absolute;inset:5px;clip-path:var(--hud-cut);z-index:-2;background:var(--hud-bronze)}.icon-button:after{inset:6px;background:#24231cc4;z-index:-1}.icon-button:focus-visible{outline-offset:-2px}
+.vitals{top:max(88px,calc(env(safe-area-inset-top) + 76px));left:3.5%}
+.health-shell{display:block;width:31cqw;max-width:176px;min-width:105px;height:7px;padding:1px;border:1px solid #938362;border-radius:4px;background:#292a21bd;box-shadow:0 0 0 1px #bca77930,0 1px 3px #22261c80}
+.health{width:100%;height:3px;border:0;background:#2c4438a8;border-radius:2px}.health i{background:repeating-linear-gradient(90deg,#9edcbc 0,#9edcbc calc(14.285% - 1px),#537460 calc(14.285% - 1px),#537460 14.285%)}
+.resource{gap:8px;margin-top:8px}.resource-crystal{width:18px;height:22px;filter:drop-shadow(0 0 3px #83d4b433)}.resource b{font:400 17px/24px Onest,sans-serif;color:var(--hud-text)}.resource-label{display:none}
+.bottom-hud{padding:0 0 max(12px,env(safe-area-inset-bottom));left:0;right:0}
+.equipment{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;margin:0;pointer-events:none}
+.module-dock{width:74%;max-width:380px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px;border:1px solid #87734e91;border-radius:0;clip-path:var(--hud-cut);background:linear-gradient(130deg,#6d5f414d,#201e19a8 30%,#39352899);box-shadow:inset 0 0 0 2px #141b1455;isolation:isolate}
+.parts{display:contents}
+.parts button,.core-status{min-width:44px;min-height:44px;width:100%;aspect-ratio:.97;position:relative;display:block;flex:initial;padding:0;border:0;border-radius:0;background:none;box-shadow:none;opacity:1;isolation:isolate;overflow:visible;color:var(--hud-text)}
+.parts button{pointer-events:auto}.core-status{pointer-events:none}
+.slot-frame{position:absolute;inset:0;width:100%;height:100%;z-index:-1;overflow:visible;pointer-events:none}.rim{fill:var(--hud-glass);stroke:var(--hud-bronze);stroke-width:1.25}.inner-rim{fill:none;stroke:#837653;stroke-width:.7;opacity:.68}.edge-light{fill:none;stroke:var(--hud-border-light);stroke-width:.65;opacity:.65}
+.parts button.selected{padding:0;border:0;box-shadow:none;background:none}.parts button.selected:before{display:none}.parts button.selected .rim{stroke:#c4b38a;fill:#302d23d9;stroke-width:1.8}.parts button.selected .inner-rim{stroke:#c0a670;opacity:.85}
+.parts button:hover{filter:brightness(1.22)}.parts button:active{transform:translateY(1px);filter:brightness(.94)}.parts button:focus-visible{outline:2px solid var(--hud-mint);outline-offset:-3px}.parts button:disabled{opacity:.4;cursor:not-allowed}
+.module-art{position:absolute;inset:2%;background-image:url('/assets/art/hud-module-atlas.png');background-size:200% 200%;background-repeat:no-repeat;mix-blend-mode:lighten;pointer-events:none}
+[data-art=arc]{background-position:0 0}[data-art=seed]{background-position:100% 0}[data-art=pulse]{background-position:0 100%}[data-art=core]{background-position:100% 100%}
+.parts button>.module-tier,.core-status>.module-tier{position:absolute;top:8%;left:8%;font:400 10px/12px Georgia,serif;color:#d8c9a2;width:13px;height:14px;border:1px solid #8a79594f;border-radius:3px;z-index:2;background:#24231bbb;text-align:center}
+.module-name{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+.charge,#core-charge{bottom:1px;height:4px;left:30%;right:30%;background:#263c32;border:1px solid #917f5b;border-radius:3px;overflow:hidden;z-index:2}
+.charge:after,#core-charge:after{background:repeating-linear-gradient(90deg,#94dfbc 0,#94dfbc calc(33.333% - 1px),#374a3c calc(33.333% - 1px),#374a3c 33.333%)}.parts button:not(.selected) .charge{opacity:.7}.parts button:not(.selected) .charge:after{width:100%}#core-charge:after{background-color:var(--hud-mint)}
+.gesture-hint{margin:8px 0 0;font:400 10px/16px Onest,sans-serif;letter-spacing:.5px;color:var(--hud-text);text-shadow:0 1px 3px #101c12}
+#toast{top:150px;font-size:10px;background:none;color:var(--hud-text)}
+.pause-card{border:1px solid var(--hud-bronze);border-radius:0;clip-path:var(--hud-cut);background:linear-gradient(135deg,#363328f5,#1f241eeb);box-shadow:inset 0 0 0 4px #302f2599,inset 0 0 0 5px #8b795a66;color:var(--hud-text)}.pause-card button{border-radius:0;border-color:#978460;background:#62563b88;color:var(--hud-text)}.pause-card .secondary{color:var(--hud-text);border-color:#897454}.core-emblem{color:var(--hud-mint)}
+@media(min-width:600px){.location{top:16px}.vitals{top:92px}}
+@media(max-width:350px){.hud-brand{font-size:22px;line-height:28px}.location strong{font-size:9px}.location .eyebrow{font-size:7px}.location{width:34%}.timer-plate{width:72px}.vitals{top:84px}.gesture-hint{font-size:9px}.module-dock{width:78%}}
+@media(prefers-reduced-motion:reduce){.parts button,.charge:after{transition:none!important}}

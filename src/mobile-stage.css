@@ -1,0 +1,16 @@
+/* The same untouched painted environment as hud-review.html. */
+body{display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 20% 0%,#66604855,transparent 60%),linear-gradient(125deg,#353b2e,#20291f 65%,#34382a)}
+#game{width:min(100vw,56.25dvh);height:100dvh;background:#4e5746;box-shadow:0 0 100px #151d1580;flex:none}
+.landscape{position:absolute;inset:0;background:url('/assets/art/upper-gardens-v2.jpg') center/cover no-repeat;pointer-events:none;z-index:-1}
+#world{z-index:0}#game:after{background:linear-gradient(#182b2855,transparent 22%,transparent 74%,#18291fa8);z-index:1}
+.hud,.vitals,.dock,#objective,#toast,#overload,#diagnostics{z-index:2}
+#joystick{z-index:3}
+.hud-location.location{width:31%;left:3.5%;top:max(12px,env(safe-area-inset-top))}
+.hud-location .hud-brand{font:500 24px/32px Onest,sans-serif}
+.hud #location{font:500 10px/16px Onest,sans-serif}
+.vitals{left:3.5%;top:max(88px,calc(env(safe-area-inset-top) + 76px));width:31%}
+.resource span{font:400 17px/24px Onest,sans-serif}
+#objective{left:3.5%;top:192px;max-width:55%;font-size:9px}
+dialog{width:min(560px,94vw)}.intro,.assembly-layout{grid-template-columns:1fr;gap:16px}.specimen-panel{position:static}.intro-art{min-height:180px}.slots,.choices{grid-template-columns:1fr}.catalog-grid{grid-template-columns:1fr 1fr}.panel-head,#panel-content{padding:16px}.panel-head h2{font-size:22px}.stat-grid{grid-template-columns:1fr 1fr}
+@media(max-width:600px) and (orientation:portrait){#game{width:100vw}}
+@media(orientation:landscape) and (max-height:500px){#game{width:56.25dvh}.dock{left:8px;right:8px;width:auto}.hud-actions{grid-auto-flow:row}.hud-location .hud-brand{font-size:20px;line-height:28px}.hud #location{font-size:8px}.hud-location .eyebrow{font-size:6px}.vitals{top:80px}.progression,.meter.xp,#objective{display:none}}

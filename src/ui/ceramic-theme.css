@@ -1,0 +1,83 @@
+/* BIOSO material theme. Shared geometry and portrait bounds belong to biotech.css. */
+body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191f1a}
+.hud,.vitals,.dock,.ui-home,#objective,.ui-notification,.event-nearby{
+  --ui-text:#eee8d6;--ui-muted:#c1c6b4;--ui-mint:#a6d9bc;
+  --ui-bronze-light:#c4d0b7;--ui-warning:#e2c086;--ui-danger:#edbaa7;
+  color:var(--ui-text);
+}
+.ui-dialog:not([data-screen=home]){
+  background:var(--ui-panel-face),var(--ui-surface);border:5px solid #394034;
+  border-radius:16px;box-shadow:inset 0 0 0 1px #8f8d75,0 0 0 1px #aaa38c,0 0 0 3px #171e18,var(--ui-shadow);
+}
+.ui-dialog:not([data-screen=home]):before,.ui-dialog:not([data-screen=home]):after{display:none}
+.ui-screen-header{
+  color:var(--ui-text);background:var(--ui-panel-face),var(--ui-surface);
+  border-color:#788b7266;box-shadow:inset 0 1px #fff8;
+}
+.ui-screen-header h2{font-weight:650}
+.ui-screen-header .ui-eyebrow{color:var(--ui-muted)}
+.ui-screen-header .ui-eyebrow:before{box-shadow:0 0 0 2px #326d5b20}
+.ui-screen-footer,body .ui-dialog .event-footer,.ui-fusion-footer{
+  background:transparent;
+  border-top:1px solid #788b7240;color:var(--ui-text);
+}
+.ui-screen-footer .ui-button{color:var(--ui-ivory)}
+.ui-screen-footer .ui-button--primary{color:var(--ui-ceramic-ink)}
+.ui-screen-footer .ui-button--danger{color:#edbaa7}
+.ui-tier{background:var(--ui-surface-raised);color:var(--ui-text)}
+.ui-lock{background:transparent;color:var(--ui-text);filter:drop-shadow(0 1px 1px #fff8)}
+.ui-part-card{background:transparent;color:var(--ui-text)}
+.ui-part-card:before{background:none;border:1px solid #788b7250}
+.ui-part-card:after{display:none}
+.ui-part-card.is-selected:before{background:none;border-color:var(--ui-mint)}
+.ui-part-art--atlas{mix-blend-mode:normal}
+.ui-dialog[data-screen=settings] #panel-content{overflow-y:auto;overscroll-behavior:contain}
+.ui-dialog .ui-component-library{overflow-y:auto;overscroll-behavior:contain}
+.ui-badge--mint{border-color:#326d5b80}
+.ui-frame.is-selected:not(.ui-button){box-shadow:0 0 0 1px var(--ui-mint)}
+.ui-branch-nodes .is-locked{color:var(--ui-muted)}
+.ui-choice small{white-space:normal}
+.ui-choice small,.ui-button:not(.ui-button--primary):not(.ui-button--quiet) .ui-note{color:#c1c6b4}
+.ui-page-nav .ui-button{color:var(--ui-text);text-shadow:none}
+.ui-rarity{color:var(--ui-text)}.ui-rarity--uncommon{color:#32613c}.ui-rarity--rare{color:#78488b}.ui-rarity--relic{color:#805819}
+.ui-dialog[data-screen=ability-detail]{background:var(--ui-panel-face),var(--ui-surface)}
+.ui-skill-tree>h3,.ui-skill-inspector>summary,.ui-skill-inspector>p{color:var(--ui-text)}
+.ui-skill-tree .ui-tree-rule,.ui-tree-rule span,.ui-skill-inspector .ui-note{color:var(--ui-muted)}
+.ui-skill-node{color:var(--ui-text);background:var(--ui-panel-face);border-color:#84917b;box-shadow:inset 0 0 0 3px #c1baa080,0 2px 4px #222c2320}
+.ui-skill-node.is-selected,.ui-skill-node.is-inspected{border-color:var(--ui-mint);box-shadow:inset 0 0 0 2px #326d5b70}
+.ui-skill-node.is-learned .ui-skill-state{color:#295f4c}
+.ui-skill-node:focus-visible,.ui-skill-inspector>summary:focus-visible{outline-color:var(--ui-mint)}
+.ui-tree-join span{color:var(--ui-text);background:var(--ui-surface-raised)}
+.event-heading .ui-eyebrow,.event-hand-picker>summary{color:var(--ui-text)}
+.ui-event-detail .ui-note{color:var(--ui-muted)}
+.event-model-image{background:radial-gradient(ellipse,#a7b5a266,#d5cfbb);border-color:#82907866}
+.ui-fusion-footer p{color:var(--ui-muted)}
+.ui-dialog[data-screen=map]{--ui-text:#29332b;--ui-muted:#5b6559;--ui-mint:#326d5b;background:var(--ui-panel-face),var(--ui-surface)}
+.ui-dialog[data-screen=map] .ui-screen-header h2,.atlas-survey{color:var(--ui-text)}
+.ui-dialog[data-screen=map] .ui-screen-header .ui-eyebrow,.atlas-survey small{color:var(--ui-muted)}
+.ui-dialog[data-screen=map] .atlas-toolbar .ui-button{background:var(--ui-panel-face);color:var(--ui-text);border-color:#829078}
+.ui-dialog[data-screen=map] .atlas-readout{background:#d8d2bf;color:var(--ui-text);border-color:#82907866}
+.ui-dialog[data-screen=map] .atlas-readout small,.ui-dialog[data-screen=map] .atlas-legend{color:var(--ui-muted)}
+.ui-dialog[data-screen=map] .atlas-readout>span,.atlas-legend>span{color:var(--ui-muted)}
+.atlas-key-player{color:#326d5b}.atlas-key-boss{color:#994d3b}.atlas-key-elite{color:#805819}.atlas-key-event{color:#78488b}
+.ui-dialog[data-screen=map] .atlas-body{padding:12px}
+.atlas-toolbar{gap:8px}.atlas-toolbar .ui-segmented{gap:5px}
+.ui-dialog[data-screen=map] .atlas-toolbar .ui-button{padding:8px}
+.atlas-toolbar .ui-button>span:before{margin-right:5px}
+.ui-dialog[data-screen=map] .atlas-controls .ui-button,.ui-dialog[data-screen=map] .atlas-readout>.ui-icon-button{min-height:44px;min-width:44px}
+
+/* Shared discreet scrollbar: no opaque gutter on ceramic surfaces. */
+#panel.ui-dialog,#panel.ui-dialog *{
+  scrollbar-width:thin;
+  scrollbar-color:#717c63 transparent;
+}
+@supports selector(::-webkit-scrollbar){
+  #panel.ui-dialog,#panel.ui-dialog *{scrollbar-width:auto;scrollbar-color:auto}
+  .ui-dialog::-webkit-scrollbar,.ui-dialog *::-webkit-scrollbar{width:4px;height:4px}
+  .ui-dialog::-webkit-scrollbar-track,.ui-dialog *::-webkit-scrollbar-track{background:transparent}
+  .ui-dialog::-webkit-scrollbar-thumb,.ui-dialog *::-webkit-scrollbar-thumb{
+    background:#717c6380;border-radius:3px;
+  }
+  .ui-dialog::-webkit-scrollbar-thumb:hover,.ui-dialog *::-webkit-scrollbar-thumb:hover{background:#53644db3}
+  .ui-dialog::-webkit-scrollbar-corner,.ui-dialog *::-webkit-scrollbar-corner{background:transparent}
+}

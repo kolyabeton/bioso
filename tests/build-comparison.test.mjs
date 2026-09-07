@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {fixture,compare,BUILDS} from '../scripts/build-comparison.mjs';
+import {installed,stats} from '../src/assembly.js';
+import {hurtEnemy} from '../src/game.js';
+test('controlled build fixtures match cost, chassis, defence, weapons and improvement count',()=>{for(const catalog of ['starter','full']){const rows=Object.keys(BUILDS).map(style=>{const s=fixture(style,catalog,123,'elite');return{body:s.body.key,arms:s.arms.map(p=>p.key),legs:s.legs.map(p=>p.key),hp:s.hp,weight:stats(s).weight,defense:s.abilities.learned.filter(id=>id.startsWith('vitality')),choices:s.abilities.learned.length,cost:installed(s).reduce((n,p)=>n+p.spent,0),ranks:installed(s).reduce((n,p)=>n+Object.values(p.upgrades).reduce((a,b)=>a+b,0),0),enemies:s.enemies.map(e=>({x:e.x,z:e.z,hp:e.hp}))};});for(const row of rows)assert.deepEqual(row,rows[0]);assert.equal(rows[0].cost,24);assert.equal(rows[0].ranks,2);}});
+test('damage diagnostics count applied damage without overkill or double-counting dead enemies',()=>{const s=fixture('elements','starter',4,'single'),e=s.enemies[0],hp=e.hp;hurtEnemy(s,e,5,0,'burn');hurtEnemy(s,e,10000,0,'electric');hurtEnemy(s,e,10000,0,'summon');assert.equal(s.metrics.damage.burn,5);assert.equal(s.metrics.damage.electric,hp-5);assert.equal(s.metrics.damage.summon,0);assert.equal(Object.values(s.metrics.damage).reduce((a,b)=>a+b),hp);});
+test('same seed and style reproduce all comparison metrics',()=>{assert.deepEqual(compare('elements','starter',20260907,'crowd'),compare('elements','starter',20260907,'crowd'));});

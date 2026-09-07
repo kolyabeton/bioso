@@ -1,0 +1,30 @@
+/* Fusion reuses the portrait assembly, with a fixed confirmation area. */
+.ui-dialog.is-fusion .ui-fusion-instruction{margin:4px 0;font-size:13px;line-height:20px;color:var(--ui-muted)}
+.ui-dialog.is-fusion .ui-assembly{flex:1;min-height:0}
+.ui-dialog.is-fusion .ui-assembly button:disabled{opacity:.38}
+.ui-dialog[data-screen=assembly] .ui-mount-scroll{padding:8px 10px 10px}
+.ui-dialog :is(.is-fusion-eligible,.is-compatible>button,.is-drop-installed){position:relative;outline:1px solid var(--ui-selection-edge);outline-offset:1px;box-shadow:0 0 10px #e8bd6555,inset 0 0 8px #e8bd6520;animation:fusion-glow 2.4s ease-in-out infinite}
+.ui-dialog :is(.is-fusion-eligible[aria-pressed=true],.is-drop-hover>button,.is-drop-installed){outline:2px solid var(--ui-selection-bright);box-shadow:var(--ui-selection-halo)}
+.ui-dialog.is-fusion .ui-fusion-mark{position:absolute;bottom:3px;right:4px;color:var(--ui-selection-bright);font-size:16px;line-height:18px}
+.ui-fusion-footer{flex:none;padding:10px 12px;background:#19221f;border-top:1px solid #b7a47a66}
+.ui-fusion-footer strong{display:block;font-size:14px;line-height:20px;overflow-wrap:anywhere}
+.ui-fusion-footer p{margin:4px 0 10px;color:#d5c9ac;font-size:12px;line-height:18px}
+.ui-fusion-footer>div{display:flex;gap:8px}
+.ui-fusion-footer .ui-button{flex:1;min-width:0;min-height:44px;white-space:nowrap}
+.ui-fusion-footer [data-action=fuse-accept]{color:#26312a;text-shadow:none}
+.ui-fusion-footer [data-action=fuse-accept]>span{color:#26312a;text-shadow:none}
+@keyframes fusion-glow{50%{box-shadow:0 0 15px var(--ui-selection-glow),inset 0 0 8px var(--ui-selection-tint)}}
+@media(prefers-reduced-motion:reduce){.ui-dialog :is(.is-fusion-eligible,.is-compatible>button,.is-drop-installed){animation:none}}
+body[data-reduced-motion=true] .ui-dialog :is(.is-fusion-eligible,.is-compatible>button,.is-drop-installed){animation:none}
+
+.ui-dialog[data-screen=assembly] .ui-loadout{grid-template-columns:minmax(0,1fr) calc(var(--assembly-item-size) + 32px)}
+
+/* Inner equipment columns must not clip the slot outline or its halo. */
+.ui-dialog[data-screen=assembly] .ui-loadout-side,.ui-dialog[data-screen=assembly] .ui-slot{overflow:visible}
+
+.ui-dialog[data-screen=assembly] .ui-slot.is-compatible{outline:none;background:none}
+.ui-dialog[data-screen=assembly] .ui-organ-slots{padding:10px}
+.ui-dialog[data-screen=assembly] .ui-body-slot{margin-left:8px;margin-bottom:8px}
+
+/* Fill only the specimen section, leaving its neighbouring equipment column intact. */
+.ui-dialog[data-screen=assembly] .ui-specimen #preview-mount{left:8px;right:8px}

@@ -1,0 +1,9 @@
+# BIOSO: ceramic interface materials
+
+The shared UI uses warm worn ceramic, dark olive metal and restrained green ink, following the supplied run-results style reference. Existing `public/assets/ui/materials/ceramic-worn-v1.jpg` and `metal-olive-v1.jpg` are reused; no new images were generated.
+
+`src/ui/tokens.css` owns the light surface palette and material tokens. `src/ui/components.css` owns shared frames and button variants. `src/ui/ceramic-theme.css`, imported after screen styles, applies materials to legacy consumers and keeps light text on dark controls and world overlays. Item cards have transparent surfaces and retain only their selection outline. The common atlas uses `parts-atlas-transparent-v1.png`; the root leg uses `items/root-leg-transparent-v1.png`. These are alpha-only local rembg derivatives: original RGB pixels and source files are preserved. The 25 atlas masks were inspected together on a ceramic-colored background; both files have verified real alpha. Selected, disabled, danger and focus states remain distinct.
+
+Screen layout for run results belongs to the other active task. This update adds no results-specific styling or markup. Portrait stage and shared dialog width tokens are unchanged. The map's separate desktop width was removed so the shared bounds apply. Settings content can scroll at 360×640 while its header stays accessible.
+
+Validation: settings, assembly, level choice and map at 360×640, 390×844 and 1280×720; all measured dialogs fit the portrait stage and checked action labels fit on one line. Settings scrolling and toggles, DS button variants, ability selection and a locked branch detail were inspected. Settings were also opened from the normal game home route. Evidence: `proof/ceramic-ds-20260907/`, including responsive measurements, mobile screenshots, build and six focused passing tests.

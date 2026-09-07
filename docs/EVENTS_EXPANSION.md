@@ -1,0 +1,13 @@
+# Expanded survival events
+
+Survival placement requests 19 objects: five surgical altars (one fixed offer each), three sealed nurseries, three infected circles, three carrier hunts, and five secrets. Secret types remain membrane, slab and nursery; two seeded types receive a second location. Existing legacy worlds retain seven objects. Placement keeps at most two objects per tile, 32 m between objects, collision/approach/path checks. The bounded placement loop can skip an object if no valid position exists; seeds 1–30 all produced 19 reachable objects.
+
+Every surgery costs one maximum HP for the rest of the run and preserves missing health. Both current and maximum HP must exceed one. Offers cannot be mixed across altar types; each object is consumed once. Fusion doubles the selected equipped arm's damage and binds it until the next boss. Other bonuses: one organ slot, 15% running speed, half an armor plate, or 20 carrying capacity. Armor and organ offers reject when their caps prevent the gain. Bonuses persist across body swaps.
+
+Recommended surgical levels: fusion 4; organs and speed 5; armor and capacity 6. Each challenge type has level 5 / 15 / 25 variants, gated by player level (elapsed time cannot bypass this), with tier I / II / III item rewards. Health scaling per challenge tier is 1 / 2.5 / 4; sealed enemy counts 8 / 10 / 12, infection pursuers 3 / 4 / 5; hunt retains one elite. Labels above world objects, map selection and event details show recommendations.
+
+Infected circle: 7 m radius, 30 seconds inside, three to five elite pursuers with 8× health on top of tier scaling and speed capped to 70% of the starting player's speed (minimum cap 1 m/s). Regeneration and vampirism suppressed; exiting pauses progress. Killing the pursuers is optional. Remaining challenge pursuers are removed at completion.
+
+Verification: 45 encounter/module/placement/arm-slot tests passed; 7 new surgery/infection tests passed; all secret tool/reward paths passed; 13 display/health/armor tests passed. Browser verified surgery acceptance, fusion price, infection start, level labels, 360×640 and 390×844, and portrait stage at 1280×720. Evidence: outputs/events-expanded-20260907. Static screenshots do not attest continuous dodge gameplay; pursuer tuning is an initial balance pass.
+
+Secrets are never marked on any map. Mere proximity does not discover them, expose a hint or show an idle signal. Their physical objects remain visible. Opening with a matching tool enables only the local reward interaction. Stage/placement/secret/map regression suite: 46 passed. Browser evidence: outputs/secret-trial-stages-20260907.

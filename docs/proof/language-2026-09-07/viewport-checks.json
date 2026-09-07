@@ -1,0 +1,74 @@
+[
+  {
+    "badLabels": [],
+    "dialog": 344,
+    "lang": "ru",
+    "overflows": [],
+    "selected": "RU",
+    "size": [
+      360,
+      640
+    ],
+    "stage": 360
+  },
+  {
+    "badLabels": [],
+    "dialog": 344,
+    "lang": "en",
+    "overflows": [],
+    "selected": "EN",
+    "size": [
+      360,
+      640
+    ],
+    "stage": 360
+  },
+  {
+    "badLabels": [],
+    "dialog": 366,
+    "lang": "ru",
+    "overflows": [],
+    "selected": "RU",
+    "size": [
+      390,
+      844
+    ],
+    "stage": 390
+  },
+  {
+    "badLabels": [],
+    "dialog": 366,
+    "lang": "en",
+    "overflows": [],
+    "selected": "EN",
+    "size": [
+      390,
+      844
+    ],
+    "stage": 390
+  },
+  {
+    "badLabels": [],
+    "dialog": 389,
+    "lang": "ru",
+    "overflows": [],
+    "selected": "RU",
+    "size": [
+      1280,
+      720
+    ],
+    "stage": 405
+  },
+  {
+    "badLabels": [],
+    "dialog": 389,
+    "lang": "en",
+    "overflows": [],
+    "selected": "EN",
+    "size": [
+      1280,
+      720
+    ],
+    "stage": 405
+  }
+]

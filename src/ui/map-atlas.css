@@ -1,0 +1,73 @@
+/* Field scanner: approved layout, a brighter survey of the actual world. */
+.ui-dialog[data-screen=map]{--ui-text:#ecefe1;--ui-muted:#b6c6b4;--ui-mint:#c0dec4;--frame-surface:#263d32;--frame-border:#809380;border:1px solid #718871;border-radius:16px;background:#263d32;color:var(--ui-text);box-shadow:0 24px 80px #10261c55}
+.ui-dialog[data-screen=map]:before,.ui-dialog[data-screen=map]:after{display:none}
+.ui-dialog[data-screen=map] .ui-screen-header{position:relative;background:transparent;border-bottom:1px solid #adc1a52b;padding:22px 24px 18px;gap:16px;flex:none}
+.ui-dialog[data-screen=map] .ui-screen-header>[data-action=back]:first-child{display:none}
+.ui-dialog[data-screen=map] .ui-screen-header>div{display:flex;flex-direction:column;gap:7px}
+.ui-dialog[data-screen=map] .ui-screen-header .ui-eyebrow{font-size:9px;letter-spacing:.2em;color:#b7cbb5}
+.ui-dialog[data-screen=map] .ui-screen-header .ui-eyebrow:before{display:none}
+.ui-dialog[data-screen=map] .ui-screen-header h2{font-size:32px;line-height:1.05;letter-spacing:.055em;font-weight:450;color:#eff0e3}
+/* Header actions retain the shared DS button material and frame. */
+.ui-dialog[data-screen=map] .atlas-body .ui-icon-button{border:1px solid #91a48866;border-radius:8px;color:#e7ead9;background:#22392f;min-width:44px;min-height:44px;box-shadow:none}
+.ui-dialog[data-screen=map] .atlas-body .ui-button:before,.ui-dialog[data-screen=map] .atlas-body .ui-button:after{display:none}
+.ui-dialog[data-screen=map] #panel-content{display:flex;flex:1;flex-direction:column;min-height:0;overflow:hidden}
+.ui-dialog[data-screen=map] .atlas-body{display:flex;flex:1;min-height:0;overflow:hidden;gap:0;padding:16px 20px 18px}
+.atlas-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px;flex:none}
+.atlas-toolbar .ui-segmented{display:flex;flex:1;max-width:390px;gap:8px;padding:0;background:transparent;border:0}
+.ui-dialog[data-screen=map] .atlas-toolbar .ui-button{position:relative;flex:1;min-width:0;min-height:44px;padding:10px 12px;border:1px solid #91a48866;border-radius:7px;background:#294035;color:#d9e2d1;font-size:12px;box-shadow:none}
+.atlas-toolbar .ui-button>span:before{content:'';display:inline-block;width:5px;height:5px;margin-right:8px;border-radius:50%;background:currentColor;vertical-align:middle}
+.atlas-toolbar .ui-button[data-value=threats]>span:before{background:#e5a891}
+.atlas-toolbar .ui-button[data-value=events]>span:before{background:#c1acd4}
+.atlas-survey{font-size:13px;line-height:1.5;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:#e1e8d7}
+.atlas-survey small{display:block;font-size:9px;letter-spacing:.02em;color:#b0c1ac}
+.ui-dialog[data-screen=map] .atlas-illustration{position:relative;flex:1;min-height:100px;overflow:hidden;background:#e5e4d9;border:1px solid #a7b19a;border-radius:5px;box-shadow:inset 0 0 0 4px #e9e8dc}
+.ui-dialog[data-screen=map] .atlas-illustration canvas{width:100%;height:100%;display:block;object-fit:fill}
+.atlas-targets{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.atlas-target{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border:0;border-radius:50%;background:transparent;padding:0;pointer-events:auto;cursor:pointer;touch-action:manipulation}
+.atlas-target:hover{background:#ffffff30;box-shadow:0 0 0 1px #47664f80}
+.atlas-target:focus-visible{outline:2px solid #254f3e;outline-offset:0;background:#ffffff30}
+.atlas-controls{position:absolute;right:12px;bottom:10px;display:flex;align-items:center;gap:6px}
+.ui-dialog[data-screen=map] .atlas-controls .ui-button{min-height:38px;min-width:38px;padding:8px 12px;border:1px solid #657c6388;background:#f2f2e9ec;color:#395442;border-radius:7px;font-size:11px;box-shadow:0 2px 8px #3c4d3020}
+.ui-dialog[data-screen=map] .atlas-controls .ui-icon-button{padding:8px}
+.atlas-controls .ui-icon{width:19px;height:19px}
+.atlas-readout{min-height:58px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 2px;color:#e7ecdc;border-bottom:1px solid #95a48c40}
+.atlas-readout>div{display:grid;gap:3px;min-width:0}
+.atlas-readout strong{font-size:12px;font-weight:550;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.atlas-readout small{font-size:10px;color:#b3c3ad}
+.atlas-readout>span{color:#c4debd;font-size:11px;white-space:nowrap}
+.atlas-legend{display:flex;flex:none;justify-content:space-between;align-items:center;gap:8px;padding:13px 4px 0}
+.atlas-legend>span{display:flex;align-items:center;gap:8px;font-size:11px;color:#dce4d2}
+.atlas-key{display:inline-grid;place-items:center;width:23px;height:23px;border:1px solid currentColor;border-radius:50%;font:500 16px/1 'Onest',sans-serif;font-style:normal}
+.atlas-key-player{border:0;color:#b9e5cc;font-size:21px}.atlas-key-boss{color:#e8a28d}.atlas-key-elite{border:0;color:#dfbe7e;font-size:26px}.atlas-key-event{color:#cbb5dc}
+@media(max-width:480px){
+ .ui-dialog[data-screen=map] .ui-screen-header{padding:16px 16px 14px}
+ .ui-dialog[data-screen=map] .ui-screen-header h2{font-size:27px}
+ .ui-dialog[data-screen=map] .atlas-body{padding:12px 12px 14px}
+ .atlas-toolbar{gap:8px;margin-bottom:10px}.atlas-toolbar .ui-segmented{gap:5px}
+ .ui-dialog[data-screen=map] .atlas-toolbar .ui-button{padding:8px;font-size:11px}
+ .atlas-toolbar .ui-button>span:before{margin-right:5px}
+ .atlas-survey{font-size:11px}.atlas-survey small{font-size:8px}
+ .atlas-legend{gap:4px;padding-top:10px}.atlas-legend>span{gap:5px;font-size:10px}
+ .atlas-readout{min-height:54px}
+}
+@media(max-height:540px){
+ .ui-dialog[data-screen=map] .ui-screen-header{padding:10px 18px}.ui-dialog[data-screen=map] .ui-screen-header>div{flex-direction:row;align-items:center;gap:16px}.ui-dialog[data-screen=map] .ui-screen-header h2{font-size:23px}
+ .ui-dialog[data-screen=map] .atlas-body{padding-top:8px;padding-bottom:8px}.atlas-toolbar{margin-bottom:7px}.atlas-readout{min-height:42px;padding:6px 2px}.atlas-legend{padding-top:7px}
+}
+/* The actual world is square: size the mobile panel to its map, without letterboxing. */
+.ui-dialog[data-screen=map][open]{height:min(calc(100dvh - 16px),calc(100vw + 214px));max-height:calc(100dvh - 16px)}
+.ui-dialog[data-screen=map] .atlas-readout>div{flex:1}
+.ui-dialog[data-screen=map] .atlas-readout>.ui-icon-button{width:32px;min-width:32px;height:32px;min-height:32px;padding:6px}
+.atlas-illustration canvas{cursor:crosshair}
+
+/* Keep event access readable within the portrait stage. */
+.atlas-access{flex:none;margin:0 0 10px;color:#604f71;font-size:12px;line-height:1.4}
+.atlas-target{width:44px;height:44px}
+.ui-dialog[data-screen=map] .atlas-readout{flex-wrap:wrap;gap:8px}
+.ui-dialog[data-screen=map] .atlas-readout>div{flex:1 1 100%}
+.ui-dialog[data-screen=map] .atlas-readout strong{white-space:normal;overflow:visible;text-overflow:clip}
+.ui-dialog[data-screen=map] .atlas-readout>.ui-icon-button{width:44px;min-width:44px;height:44px;min-height:44px}
+.ui-dialog[data-screen=map] .atlas-controls .ui-button{min-height:44px;min-width:44px}
+
+.ui-dialog[data-screen=map][open]{height:calc(100dvh - 16px)}
+.ui-dialog[data-screen=map] .atlas-controls{position:static;flex:none;justify-content:flex-end;margin-top:8px}

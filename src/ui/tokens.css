@@ -1,0 +1,49 @@
+@import '../fonts.css';
+
+:root {
+  color-scheme: light;
+  --ui-bg: #252c25;
+  --ui-surface: #e5dfcf;
+  --ui-surface-raised: #d8d2bf;
+  --ui-text: #29332b;
+  --ui-muted: #5b6559;
+  --ui-bronze: #657d6b;
+  --ui-bronze-light: #476552;
+  --ui-bronze-dim: #8c9b86;
+  --ui-mint: #326d5b;
+  --ui-mint-dark: #c1d2bf;
+  /* Shared gold selection, inherited from the equipment/fusion highlight. */
+  --ui-selection-edge: #e6c577;
+  --ui-selection-bright: #ffe3a0;
+  --ui-selection-ink: #684619;
+  --ui-selection-glow: #e8bd6590;
+  --ui-selection-halo: 0 0 14px var(--ui-selection-glow);
+  --ui-selection-tint: #e8bd6530;
+  --ui-warning: #805819;
+  --ui-danger: #994d3b;
+  --ui-space-1: 4px;
+  --ui-space-2: 8px;
+  --ui-space-3: 16px;
+  --ui-space-4: 24px;
+  --ui-space-5: 32px;
+  --ui-space-6: 48px;
+  --ui-font: Onest, sans-serif;
+  --ui-text-xs: 12px;
+  --ui-text-sm: 14px;
+  --ui-text-md: 16px;
+  --ui-text-lg: 20px;
+  --ui-text-xl: 28px;
+  --ui-cut-size: 8px;
+  --ui-cut: polygon(var(--ui-cut-size) 0,calc(100% - var(--ui-cut-size)) 0,100% var(--ui-cut-size),100% calc(100% - var(--ui-cut-size)),calc(100% - var(--ui-cut-size)) 100%,var(--ui-cut-size) 100%,0 calc(100% - var(--ui-cut-size)),0 var(--ui-cut-size));
+  --ui-focus: 2px solid var(--ui-mint);
+  --ui-duration: 160ms;
+  --ui-radius: 10px;
+  --ui-ivory: #e5dfc9;
+  --ui-ceramic-ink: #24332b;
+  --ui-metal-face: #303930;
+  --ui-metal-edge: #959783;
+  --ui-texture-ceramic: url('/assets/ui/materials/ceramic-worn-v1.jpg');
+  --ui-texture-metal: url('/assets/ui/materials/metal-olive-v1.jpg');
+  --ui-panel-face: linear-gradient(#f9f4e42b,#e2d8bd20), var(--ui-texture-ceramic) center/512px repeat;
+  --ui-shadow: 0 24px 80px #0b100dc9;
+}

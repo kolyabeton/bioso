@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#211f19"><title>BIOSO — Верхние сады</title>
+<link rel="icon" href="/icons/bioso-v1/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/bioso-v1/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/bioso-v1/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/bioso-v1/apple-touch-icon.png">
+</head>
+<body>
+<main id="game">
+  <div class="landscape" aria-hidden="true"></div>
+  <canvas id="world" tabindex="0" aria-label="Игровой мир. WASD, стрелки или перетаскивание для движения."></canvas>
+  <header class="hud">
+    <div class="hud-location"><span class="hud-brand">BIOSO</span><h1 id="location">Верхние сады</h1><small id="run-mode">Выживание</small></div>
+    <div class="ui-frame timer-plate"><span id="timer" aria-label="Время забега">00:00</span></div>
+    <div class="hud-actions">
+      <button type="button" id="pause-button" class="ui-frame ui-button ui-icon-button" aria-label="Пауза" title="Пауза · Escape"></button>
+    </div>
+  </header>
+  <section class="vitals" aria-label="Состояние существа">
+    <div class="health" role="progressbar" aria-label="Здоровье" aria-valuemin="0" aria-valuemax="3" aria-valuenow="3"><i id="health-fill"></i></div>
+    <div class="vital-line"><b id="health-text">3 / 3</b><span id="shield-text"></span></div>
+    <div class="hud-defense"><span id="armor-text"></span></div><div class="resource"><span id="resource-icon" aria-hidden="true"></span><span id="biomass-text" aria-label="Биомасса">0</span></div>
+    <div class="vital-line progression"><span id="level-text">УРОВЕНЬ 1</span><span id="xp-text">0 / 18</span></div>
+    <div class="ui-meter xp" role="progressbar" aria-label="Опыт" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0"><i id="xp-fill"></i></div>
+    <div id="weight-text" class="hud-weight"></div>
+  </section>
+  <div id="objective"></div><button type="button" id="encounter-button" class="ui-frame ui-button" hidden>Встречи рядом</button>
+  <footer class="dock"><div class="dock-controls"><div class="dock-map-controls"><button type="button" id="map-button" class="ui-frame ui-button" aria-label="Открыть карту" title="Карта · M">Карта</button></div><button type="button" id="assembly-button" class="ui-frame ui-button" aria-label="Открыть сборку" title="Сборка · I">Сборка</button><button type="button" id="nearby" class="ui-frame ui-button" hidden>Детали рядом</button></div><div id="hands" class="ui-frame module-dock" role="group" aria-label="Оружие — нажмите, чтобы включить или выключить"></div><p class="gesture-hint">ДВИЖЕНИЕ ОДНИМ ПАЛЬЦЕМ<span class="visually-hidden">НАЖМИТЕ НА ОРУЖИЕ, ЧТОБЫ ВКЛЮЧИТЬ ИЛИ ВЫКЛЮЧИТЬ</span></p></footer>
+  <div id="joystick" hidden><i></i></div><output id="diagnostics" hidden></output>
+</main>
+<dialog id="panel" class="ui-frame ui-dialog" aria-labelledby="panel-title"><div class="panel-head ui-screen-header"><div><span class="ui-eyebrow" id="panel-kicker">Верхние сады</span><h2 id="panel-title" tabindex="-1">BIOSO</h2></div><button id="close-panel" aria-label="Закрыть">×</button></div><div id="panel-content"></div></dialog>
+<div id="preview-holder" hidden><canvas id="preview" aria-label="Текущая сборка существа в 3D"></canvas></div>
+<div id="notifications">
+  <div id="overload" class="ui-notification visible" role="status" hidden>Перегруз<small>Откройте сборку и удалите лишние детали</small></div>
+  <div id="toast" class="ui-notification" role="status" aria-live="polite"></div>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body></html>

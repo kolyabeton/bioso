@@ -1,0 +1,5 @@
+#hands .hand-slot>.ammo-label{position:absolute;bottom:10%;right:8%;height:auto;margin:0;padding:1px 3px;font:500 9px/12px Onest,sans-serif;color:var(--hud-text);background:#211f19d9;border-radius:2px;z-index:2}
+#hands .hand-slot>.ammo-label:empty{display:none}
+#hands .is-reloading .hand-charge i{background:#d7b879}
+#hands .is-reloading .ammo-label{color:#f0cd90}
+#hands .is-reloading .inner-rim{stroke:#d7b879;opacity:1}
