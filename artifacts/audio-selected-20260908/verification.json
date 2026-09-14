@@ -1,0 +1,12 @@
+{
+  "date": "2026-09-08",
+  "browser": "Codex in-app browser",
+  "route": "http://127.0.0.1:5173/artifacts/audio-selected-20260908/browser-check.html",
+  "status": "PASS",
+  "decodedEffects": 6,
+  "productionVoicesStarted": 6,
+  "electricSeconds": 0.32,
+  "combatAudioTests": "6/6 PASS",
+  "productionBuild": "PASS",
+  "scope": "Browser decoded shipped WAV files and ran the production loader and six effect events with output muted. Full gameplay mix was not auditioned."
+}

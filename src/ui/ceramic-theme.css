@@ -1,6 +1,6 @@
 /* BIOSO material theme. Shared geometry and portrait bounds belong to biotech.css. */
 body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191f1a}
-.hud,.vitals,.dock,.ui-home,#objective,.ui-notification,.event-nearby{
+.hud,.vitals,.dock,.ui-home,#objective,.ui-notification{
   --ui-text:#eee8d6;--ui-muted:#c1c6b4;--ui-mint:#a6d9bc;
   --ui-bronze-light:#c4d0b7;--ui-warning:#e2c086;--ui-danger:#edbaa7;
   color:var(--ui-text);
@@ -22,12 +22,12 @@ body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191
   border-top:1px solid #788b7240;color:var(--ui-text);
 }
 .ui-screen-footer .ui-button{color:var(--ui-ivory)}
-.ui-screen-footer .ui-button--primary{color:var(--ui-ceramic-ink)}
+.ui-screen-footer .ui-button--primary{color:var(--ui-ivory)}
 .ui-screen-footer .ui-button--danger{color:#edbaa7}
 .ui-tier{background:var(--ui-surface-raised);color:var(--ui-text)}
 .ui-lock{background:transparent;color:var(--ui-text);filter:drop-shadow(0 1px 1px #fff8)}
 .ui-part-card{background:transparent;color:var(--ui-text)}
-.ui-part-card:before{background:none;border:1px solid #788b7250}
+.ui-part-card:before{background:none;border:var(--ui-item-outline)}
 .ui-part-card:after{display:none}
 .ui-part-card.is-selected:before{background:none;border-color:var(--ui-mint)}
 .ui-part-art--atlas{mix-blend-mode:normal}
@@ -48,23 +48,89 @@ body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191
 .ui-skill-node.is-learned .ui-skill-state{color:#295f4c}
 .ui-skill-node:focus-visible,.ui-skill-inspector>summary:focus-visible{outline-color:var(--ui-mint)}
 .ui-tree-join span{color:var(--ui-text);background:var(--ui-surface-raised)}
+.event-nearby{
+  --ui-text:var(--ui-ceramic-ink);--ui-muted:#5b6559;--ui-mint:#326d5b;
+  color:var(--ui-text);text-shadow:0 1px #fff8;
+  background:linear-gradient(115deg,#fffbed70,transparent 38%,#aaa28a1f),var(--ui-texture-ceramic) center/256px repeat;
+  border:1px solid #aaa68f;border-radius:11px;
+  box-shadow:inset 0 1px #fffdf2,inset 0 -2px #8d8c765c,0 0 0 2px #30382f,0 0 0 3px #8e927f,0 6px 16px #07110c60;
+}
+.event-nearby small{
+  color:var(--ui-mint);font-weight:650;line-height:16px;
+  padding-bottom:5px;border-bottom:1px solid #788b7238;
+}
+.event-nearby strong{color:var(--ui-text);font-weight:650}
+.event-nearby>span{color:var(--ui-muted);text-shadow:none}
 .event-heading .ui-eyebrow,.event-hand-picker>summary{color:var(--ui-text)}
 .ui-event-detail .ui-note{color:var(--ui-muted)}
-.event-model-image{background:radial-gradient(ellipse,#a7b5a266,#d5cfbb);border-color:#82907866}
+.event-illustration{background:#d5cfbb;border-color:#82907866}
 .ui-fusion-footer p{color:var(--ui-muted)}
 .ui-dialog[data-screen=map]{--ui-text:#29332b;--ui-muted:#5b6559;--ui-mint:#326d5b;background:var(--ui-panel-face),var(--ui-surface)}
 .ui-dialog[data-screen=map] .ui-screen-header h2,.atlas-survey{color:var(--ui-text)}
 .ui-dialog[data-screen=map] .ui-screen-header .ui-eyebrow,.atlas-survey small{color:var(--ui-muted)}
 .ui-dialog[data-screen=map] .atlas-toolbar .ui-button{background:var(--ui-panel-face);color:var(--ui-text);border-color:#829078}
-.ui-dialog[data-screen=map] .atlas-readout{background:#d8d2bf;color:var(--ui-text);border-color:#82907866}
+.ui-dialog[data-screen=map] .atlas-readout{background:transparent;color:var(--ui-text);border-color:#82907866}
 .ui-dialog[data-screen=map] .atlas-readout small,.ui-dialog[data-screen=map] .atlas-legend{color:var(--ui-muted)}
 .ui-dialog[data-screen=map] .atlas-readout>span,.atlas-legend>span{color:var(--ui-muted)}
-.atlas-key-player{color:#326d5b}.atlas-key-boss{color:#994d3b}.atlas-key-elite{color:#805819}.atlas-key-event{color:#78488b}
+.atlas-key-player{color:#326d5b}.atlas-key-boss{color:#994d3b}.atlas-key-elite{color:#805819}.atlas-key-event{color:#78488b}.atlas-key-loot{color:#805819}
 .ui-dialog[data-screen=map] .atlas-body{padding:12px}
 .atlas-toolbar{gap:8px}.atlas-toolbar .ui-segmented{gap:5px}
 .ui-dialog[data-screen=map] .atlas-toolbar .ui-button{padding:8px}
 .atlas-toolbar .ui-button>span:before{margin-right:5px}
 .ui-dialog[data-screen=map] .atlas-controls .ui-button,.ui-dialog[data-screen=map] .atlas-readout>.ui-icon-button{min-height:44px;min-width:44px}
+
+/* Mission readout uses the same ceramic and inset indicator as HUD notices. */
+#objective:not(.meta-overrun-status){
+  box-sizing:border-box;width:fit-content;max-width:min(260px,calc(100% - 32px));
+  padding:1px 6px 1px 17px;
+  color:var(--ui-ceramic-ink);font-size:12px;font-weight:600;line-height:16px;
+  font-variant-numeric:tabular-nums;text-shadow:0 1px #fff9;
+  background:linear-gradient(115deg,#fffbed70,transparent 38%,#aaa28a1f),var(--ui-texture-ceramic) center/256px repeat;
+  border:1px solid #aaa68f;border-radius:5px;
+  box-shadow:inset 0 1px #fffdf2,inset 0 -1px #8d8c765c,0 0 0 1px #30382f,0 0 0 2px #8e927f,0 2px 5px #07110c50;
+}
+#objective:not(.meta-overrun-status):before{
+  content:'';position:absolute;left:5px;top:6px;width:5px;height:5px;
+  border:1px solid #244f40;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#c8f1d8 0 16%,#6ca88c 34%,#326d5b 70%);
+  box-shadow:inset 0 0 0 1px #fff7,0 0 0 1px #d1cbb8,0 1px 2px #1b2b22aa;
+}
+/* Top-of-game notices are compact ceramic status plaques, not biotech glass. */
+.ui-notification{
+  position:relative;box-sizing:border-box;
+  max-width:calc(var(--game-stage-width) - 32px);
+  padding:10px 16px 10px 38px;
+  color:var(--ui-ceramic-ink);font-size:12px;font-weight:650;line-height:17px;
+  text-align:left;text-shadow:0 1px #fff9;
+  background:linear-gradient(115deg,#fffbed70,transparent 38%,#aaa28a1f),var(--ui-texture-ceramic) center/256px repeat;
+  border:1px solid #aaa68f;border-radius:11px;
+  box-shadow:inset 0 1px #fffdf2,inset 0 -2px #8d8c765c,0 0 0 3px #30382f,0 0 0 4px #8e927f,0 9px 24px #07110c70;
+}
+.ui-notification:before{
+  content:'';position:absolute;left:15px;top:50%;width:9px;height:9px;
+  border:1px solid #244f40;border-radius:50%;transform:translateY(-50%);
+  background:radial-gradient(circle at 35% 30%,#c8f1d8 0 16%,#6ca88c 34%,#326d5b 70%);
+  box-shadow:inset 0 0 0 1px #fff7,0 0 0 2px #d1cbb8,0 1px 3px #1b2b22aa;
+}
+.ui-notification small{margin-top:2px;color:#5b6559;font-weight:450;line-height:15px;text-shadow:none}
+/* Pickups need a small status chip; keep full copy readable without clipping. */
+#toast.ui-notification{
+  inset:auto;width:fit-content;max-width:min(280px,calc(var(--game-stage-width) - 48px));
+  margin:0;padding:6px 10px 6px 27px;font-size:12px;line-height:16px;
+  border-radius:7px;overflow-wrap:break-word;
+  box-shadow:inset 0 1px #fffdf2,inset 0 -1px #8d8c765c,0 0 0 2px #30382f,0 4px 12px #07110c55;
+}
+#toast.ui-notification:before{left:10px;width:7px;height:7px}
+#overload.ui-notification:before{
+  border-color:#6c4b1c;
+  background:radial-gradient(circle at 35% 30%,#fff1b8 0 16%,#d1a252 34%,#805819 70%);
+}
+.ui-notification.visible:not([hidden]){animation:ceramic-notice-enter 260ms cubic-bezier(.2,.8,.2,1)}
+#panel[open]>#notifications{top:max(88px,calc(env(safe-area-inset-top) + 76px))}
+@keyframes ceramic-notice-enter{
+  from{opacity:0;transform:translateY(-10px) scale(.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
 
 /* Shared discreet scrollbar: no opaque gutter on ceramic surfaces. */
 #panel.ui-dialog,#panel.ui-dialog *{

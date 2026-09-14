@@ -1,0 +1,24 @@
+[
+  {
+    "case": "inside",
+    "inside": true,
+    "mapHidden": true,
+    "panelOpen": false,
+    "reviewMap": false
+  },
+  {
+    "case": "outside",
+    "mapHidden": false,
+    "panelOpen": true,
+    "title": "Карта"
+  },
+  {
+    "case": "mobile-390",
+    "inside": true,
+    "mapHidden": true,
+    "viewport": [
+      390,
+      844
+    ]
+  }
+]

@@ -3,7 +3,7 @@ import {CATALOG} from '../../catalog.js';
 export const partAffixes=p=>p.affixes?.length?p.affixes:(p.affix?[p.affix]:[]);
 export const affixBonus=(p,stat)=>partAffixes(p).reduce((sum,a)=>sum+(a.stat===stat?a.value:0),0);
 export function rollAffixes(p,rng){
- const count=({common:0,uncommon:1,rare:1,relic:2})[p.rarity]||0;
+ const count=({common:0,uncommon:1,rare:2,relic:3})[p.rarity]||0;
  const d=CATALOG[p.key],pool=['rate','armor','movement','pickup','weight'];
  if(d.kind==='arm'){pool.push('damage');if(d.magazine)pool.push('reload');}
  if(d.kind==='body')pool.push('capacity');

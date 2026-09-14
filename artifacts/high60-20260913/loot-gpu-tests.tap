@@ -1,0 +1,13 @@
+✔ sums every pass and upload once and waits for the complete frame (2.028125ms)
+✔ disjoint and query overflow frames cannot report partial GPU times (0.163084ms)
+✔ missing extension stays unavailable and dispose restores methods (0.188458ms)
+✔ counts preparation submitted between animation callbacks (0.096084ms)
+✔ unregistered loot cannot interrupt frames or hide other pickups (31.759958ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 244.005875

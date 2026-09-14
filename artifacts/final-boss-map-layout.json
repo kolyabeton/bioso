@@ -1,0 +1,200 @@
+[
+  {
+    "buttons": [
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 57,
+        "text": "Все",
+        "width": 57
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 57,
+        "text": "Угрозы",
+        "width": 57
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 57,
+        "text": "События",
+        "width": 57
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 57,
+        "text": "Добыча",
+        "width": 57
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 60,
+        "text": "Рядом",
+        "width": 60
+      }
+    ],
+    "contentBottom": 627,
+    "dialog": {
+      "bottom": 632,
+      "height": 624,
+      "left": 8,
+      "right": 352,
+      "top": 8,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "legendBottom": 615,
+    "overflow": false,
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "Все",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "Угрозы",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "События",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "Добыча",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 60,
+        "text": "Рядом",
+        "width": 60
+      }
+    ],
+    "contentBottom": 767,
+    "dialog": {
+      "bottom": 772,
+      "height": 700,
+      "left": 8,
+      "right": 382,
+      "top": 72,
+      "width": 374,
+      "x": 8,
+      "y": 72
+    },
+    "legendBottom": 755,
+    "overflow": false,
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "Все",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "Угрозы",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "События",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 64,
+        "text": "Добыча",
+        "width": 64
+      },
+      {
+        "height": 44,
+        "lines": 1,
+        "scroll": 60,
+        "text": "Рядом",
+        "width": 60
+      }
+    ],
+    "contentBottom": 703,
+    "dialog": {
+      "bottom": 712,
+      "height": 704,
+      "left": 445.5,
+      "right": 834.5,
+      "top": 8,
+      "width": 389,
+      "x": 445.5,
+      "y": 8
+    },
+    "legendBottom": 691,
+    "overflow": false,
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 437.5,
+      "right": 842.5,
+      "top": 0,
+      "width": 405,
+      "x": 437.5,
+      "y": 0
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

@@ -6,13 +6,28 @@
 .meta-stats{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.meta-stats .ui-resource{min-width:0}
 .meta-achievements{display:flex;flex-direction:column;gap:10px}.meta-achievement{display:grid;grid-template-columns:48px minmax(0,1fr) 44px;gap:10px;align-items:center;padding:10px}
 .meta-achievement h3{font-size:16px}.meta-achievement p,.meta-achievement small{font-size:13px}.meta-achievement-art .ui-part-art{width:48px;height:48px}.meta-achievement-art>span:not(.ui-part-art){display:grid;place-items:center;width:48px;height:48px;font-size:30px;opacity:.65}
-.meta-loadout-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.meta-loadout-options>div{min-width:0;text-align:center}.meta-loadout-options .ui-part-card{width:100%;aspect-ratio:1;height:auto;min-height:44px}.meta-loadout-options>div>span{display:block;font-size:13px;line-height:20px;margin-top:4px}
-.meta-selection-detail{padding:10px}.meta-selection-detail p{font-size:14px;margin-top:4px}.meta-starter-organ{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:10px;align-items:center}.meta-starter-organ .ui-part-art{width:44px;height:44px}.meta-starter-organ .ui-button{grid-column:1/-1}.meta-starter-organ p{font-size:13px}.meta-large-art{width:150px;height:150px;align-self:center}.meta-mystery{font-size:64px;text-align:center}
+.meta-loadout-lock{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;gap:10px;padding:12px;color:var(--ui-muted)}.meta-loadout-lock .ui-button{width:44px;height:44px;min-width:44px;padding:10px}.meta-loadout-lock strong{display:block;color:var(--ui-text);font-size:13px}.meta-loadout-lock p{font-size:12px;margin-top:2px}.meta-loadout-empty{align-self:flex-start;min-height:40px;margin-bottom:8px;font-size:12px}.meta-loadout-progress{font-size:12px;color:var(--ui-muted);margin-top:-4px!important}
+.meta-selection-detail{padding:10px}.meta-selection-detail p{font-size:14px;margin-top:4px}.meta-large-art{width:150px;height:150px;align-self:center}.meta-mystery{font-size:64px;text-align:center}
 .ui-dialog .meta-screen+.ui-screen-footer{flex:none;position:static;display:flex;gap:8px}.ui-dialog .meta-screen+.ui-screen-footer .ui-button{white-space:nowrap;min-height:44px}
 
 .meta-reroll{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}.meta-reroll .ui-button{white-space:nowrap}
 
-#objective.meta-overrun-status{top:84px;left:16px;right:16px;max-width:none;font-size:13px;line-height:20px;padding:8px;background:var(--ui-surface,#192721);border:1px solid var(--ui-border,#7e8a76);border-radius:8px;display:block}
+#objective.meta-overrun-status{top:84px;left:16px;right:16px;max-width:none;font-size:13px;line-height:20px;padding:8px;color:var(--ui-ceramic-ink);background:var(--ui-surface,#192721);border:1px solid var(--ui-border,#7e8a76);border-radius:8px;display:block}
 
 .ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-screen-footer .ui-reroll-button{flex:0 0 auto;gap:6px;white-space:nowrap}
+.ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-screen-footer .ui-reroll-button:only-child{margin-inline:auto}
 .ui-reroll-button>.ui-icon{width:18px;height:18px;flex:none}
+
+.ui-reroll-balance{display:flex;align-items:center;gap:6px;flex:none;color:var(--ui-text);font-size:12px;line-height:18px;white-space:nowrap}
+.ui-reroll-balance>.ui-icon{width:18px;height:18px;flex:none}
+.ui-reroll-balance strong{font-size:14px;line-height:18px;font-variant-numeric:tabular-nums}
+.ui-overrun-art{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:8px;border:1px solid var(--ui-bronze-dim)}
+.ui-overrun-body{display:flex;flex-direction:column;gap:12px}
+.ui-overrun-body>h3,.ui-overrun-body>p{margin:0}
+.ui-overrun-outcomes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--ui-bronze-dim);border-radius:8px;padding:10px 0;text-align:center}
+.ui-overrun-outcomes>div+div{border-left:1px solid var(--ui-bronze-dim)}
+.ui-overrun-outcomes span{display:block;font-size:12px;line-height:18px}
+.ui-overrun-outcomes strong{display:block;font-size:24px;line-height:30px;font-variant-numeric:tabular-nums}
+.ui-overrun-caption{font-size:12px;text-align:center;color:var(--ui-muted);margin-top:-8px}
+.ui-overrun-unlocks summary{min-height:44px;align-content:center;cursor:pointer;font-size:13px}
+.ui-overrun-unlocks p{font-size:13px;line-height:20px}

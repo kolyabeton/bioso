@@ -1,0 +1,21 @@
+✔ incremental light preparation preserves one clear, all depth draws and renderer state (5.7975ms)
+✔ the synchronous compatibility entrypoint keeps a single depth scene draw (2.843333ms)
+✔ cancelled light preparation releases its render target and owned depth materials (1.705041ms)
+✔ volatile variants are limited to every seventh automatic mass spawn after twelve seconds (7.036084ms)
+✔ boomer gives a full warning, damages the hero once, and never harms other enemies (1.334166ms)
+✔ walking out avoids blast; freeze pauses fuse and killing disarms it (1.092583ms)
+✔ crowds separate deterministically without moving the player, armed enemies or objects (2.524458ms)
+✔ three damaging shards retain source, exclude the corpse and cannot split again (0.505083ms)
+✔ learned Splinter is connected to real projectile kills without spending extra ammo (9.386583ms)
+✔ pending level pauses fuses, and explosion respects ordinary player invulnerability (0.797417ms)
+✔ indexed biome collisions match exhaustive hulls across tiles, seams, heights and radii (92.914208ms)
+✔ rotated offset multi-boxes and circle footprints remain conservative at cell boundaries (44.459583ms)
+✔ clearing a world decoration snapshot invalidates the index, and new items rebuild it (0.674709ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 217.729958

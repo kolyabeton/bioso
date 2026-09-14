@@ -1,0 +1,21 @@
+{
+  "before": {
+    "active": true,
+    "blend": 1,
+    "height": 30,
+    "depth": 42,
+    "lookAhead": 3.2,
+    "lookHeight": 0.6
+  },
+  "after": {
+    "active": true,
+    "blend": 1,
+    "height": 30,
+    "depth": 42,
+    "lookAhead": 3.2,
+    "lookHeight": 0.6
+  },
+  "beforeTime": 3.4166999999999934,
+  "afterTime": 3.4166999999999934,
+  "unchanged": true
+}

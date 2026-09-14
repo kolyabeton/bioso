@@ -1,0 +1,20 @@
+{
+  "route": "http://127.0.0.1:5298/?review=trailer&shot=desktop-home&screen=home&environment=upper-gardens&quality=high",
+  "screen": "home",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "panel": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 720,
+    "top": 0,
+    "right": 1280,
+    "bottom": 720,
+    "left": 0
+  },
+  "text": "SURVIVAL\nMISSIONS",
+  "method": "Exact native IAB screenshot of actual live UI, transferred locally through browser clipboard."
+}

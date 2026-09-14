@@ -1,0 +1,12 @@
+---
+description: Treat the current game tree as the approved backup snapshot and keep stable-port requests lightweight
+alwaysApply: true
+---
+
+# Game backup and stable port
+
+- Treat all current files and changes inside this repository as approved game state for backup.
+- When the user asks to update Git for backup, stage and commit the complete current repository state unless the user names an exclusion.
+- When the user asks for a stable build or an up-to-date game port, do not run tests, asset verification, acceptance suites, or unrelated checks unless explicitly requested.
+- For that request, only build/export the current game if needed, create an immutable release copy, and expose it on a dedicated local port.
+- Preserve older frozen releases and their files unless the user explicitly asks to replace or remove them.

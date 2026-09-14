@@ -44,7 +44,7 @@ sphere('Ankle',(.08,0,-.85),(.15,.14,.12),metal)
 box('Split ceramic foot',(.08,-.1,-.98),(.34,.5,.14),ceramic)
 collections.append(export('leg-spring'));objects=[]
 # Internal organs have distinct portable meshes; they remain inside the chassis when equipped.
-organ_shapes={'mirrorGland':'mirror','returnNerve':'nerve','slime':'sack','parasite':'eggs','commonNerve':'hub','outerStomach':'mouth','reverseHeart':'heart','regen':'vials','shield':'coil','armor':'plates','stabilizer':'gyro','digestion':'stomach','accelerator':'turbine'}
+organ_shapes={'mirrorGland':'mirror','returnNerve':'nerve','slime':'sack','parasite':'eggs','commonNerve':'hub','reverseHeart':'heart','regen':'vials','shield':'coil','armor':'plates','stabilizer':'gyro','digestion':'stomach','accelerator':'turbine'}
 for key,shape in organ_shapes.items():
  collar(0,.14);sphere('Sealed organ cartridge',(0,0,-.3),(.24,.18,.27),metal)
  if shape in ['sack','stomach','heart','eggs','mouth']:

@@ -1,0 +1,30 @@
+{
+  "production": {
+    "bytes": 113605075,
+    "limitBytes": null,
+    "remainingBytes": null,
+    "files": 584,
+    "categories": {
+      "ui": 9576007,
+      "models": 65799177,
+      "environment": 10265690,
+      "audio": 23883545,
+      "application": 4080656
+    },
+    "sizePolicy": "User removed the download-size cap for the Forest fidelity pass on 2026-09-09"
+  },
+  "acceptance": {
+    "bytes": 113700260,
+    "limitBytes": null,
+    "remainingBytes": null,
+    "files": 623,
+    "categories": {
+      "ui": 9576007,
+      "models": 65799177,
+      "environment": 10265690,
+      "audio": 23883545,
+      "application": 4175841
+    },
+    "sizePolicy": "User removed the download-size cap for the Forest fidelity pass on 2026-09-09"
+  }
+}

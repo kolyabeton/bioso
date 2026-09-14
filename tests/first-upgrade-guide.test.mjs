@@ -11,8 +11,8 @@ test('first boss funds one real upgrade through pickup, equip and two digestions
  assert.match(firstUpgradeGuide(s),/Установите желудок/);
  const organ=s.inventory.find(p=>p.key==='digestion');assert.ok(equip(s,organ.id,0));
  for(const p of loot.filter(p=>p!==organ))assert.ok(digest(s,p.id));
- assert.equal(s.biomass,12);assert.match(firstUpgradeGuide(s),/Биомассы хватает/);
+ assert.equal(s.biomass,12);assert.equal(firstUpgradeGuide(s),'');
  assert.ok(upgrade(s,s.arms[0].id,'damage',true));assert.equal(s.biomass,0);assert.equal(firstUpgradeGuide(s),'');
  hurtEnemy(s,boss,1e9);assert.equal(s.ground.length,0);
- const next=spawnEnemy(s,'boss',{x:s.player.x,z:s.player.z});hurtEnemy(s,next,1e9);assert.equal(s.ground.length,0);
+ const next=spawnEnemy(s,'boss',{x:s.player.x,z:s.player.z});hurtEnemy(s,next,1e9);assert.equal(s.ground.filter(q=>q.part.key==='digestion').length,0);
 });

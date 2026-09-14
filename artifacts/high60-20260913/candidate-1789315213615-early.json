@@ -1,0 +1,4182 @@
+{
+  "fixtureVersion": "high60-v3-fixed-profile",
+  "scenario": "early",
+  "duration": 180,
+  "finished": true,
+  "seconds": 180.013,
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "dpr": 2
+  },
+  "frames": {
+    "count": 10746,
+    "mean": 16.752233389167714,
+    "p95": 17.400000000023283,
+    "p99": 17.70000000001164,
+    "max": 74.89999999999418,
+    "over50": 1,
+    "fps": 59.69353320057118
+  },
+  "cpu": {
+    "count": 10746,
+    "mean": 5.75363856153561,
+    "p95": 10.400000095367432,
+    "p99": 12.800000190734863,
+    "max": 32.5,
+    "over50": 0
+  },
+  "gpu": {
+    "count": 10746,
+    "mean": 8.214608344221107,
+    "p95": 12.83904,
+    "p99": 18.875374,
+    "max": 42.313707,
+    "over50": 0
+  },
+  "checkpoints": [
+    {
+      "seconds": 0.0040999999046325685,
+      "enemies": 5,
+      "visible": 0,
+      "shapes": 35,
+      "pools": 55,
+      "geometries": 263,
+      "textures": 150,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 0,
+        "z": 22,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      }
+    },
+    {
+      "seconds": 1.0197999999523162,
+      "enemies": 5,
+      "visible": 0,
+      "shapes": 35,
+      "pools": 55,
+      "geometries": 264,
+      "textures": 150,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 7.843813763406088,
+        "z": 23.018866039235714,
+        "y": 0.09622414673975498,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.3166213268425722
+      }
+    },
+    {
+      "seconds": 2.0280999999046325,
+      "enemies": 5,
+      "visible": 0,
+      "shapes": 35,
+      "pools": 55,
+      "geometries": 264,
+      "textures": 150,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 15.122065625933635,
+        "z": 25.945715586839988,
+        "y": 0.47742163907956464,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.0645213268187292
+      }
+    },
+    {
+      "seconds": 3.0447999999523163,
+      "enemies": 5,
+      "visible": 0,
+      "shapes": 35,
+      "pools": 55,
+      "geometries": 264,
+      "textures": 150,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 21.486566502300487,
+        "z": 30.639554972018917,
+        "y": 0.03675560460642402,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.8103713268425637
+      }
+    },
+    {
+      "seconds": 4.061799999952316,
+      "enemies": 5,
+      "visible": 0,
+      "shapes": 35,
+      "pools": 55,
+      "geometries": 264,
+      "textures": 150,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 26.466926246916415,
+        "z": 36.78343356993612,
+        "y": 0.42969857643457576,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.5561963268306517
+      }
+    },
+    {
+      "seconds": 5.062,
+      "enemies": 6,
+      "visible": 1,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 266,
+      "textures": 150,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 29.703683840788294,
+        "z": 43.85784247889958,
+        "y": 0.11583130006564313,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.3061963268306563
+      }
+    },
+    {
+      "seconds": 6.0783999998569485,
+      "enemies": 12,
+      "visible": 7,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 281,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 31.096290115185774,
+        "z": 51.64242128276026,
+        "y": 0.012646392883529641,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.052021326818733865
+      }
+    },
+    {
+      "seconds": 7.0785999999046325,
+      "enemies": 18,
+      "visible": 13,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 285,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 30.512844179004944,
+        "z": 59.40022404203307,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.1979786731812538
+      }
+    },
+    {
+      "seconds": 8.078699999809265,
+      "enemies": 23,
+      "visible": 18,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 28.027956031909216,
+        "z": 66.77322976877421,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.1725818229024694
+      }
+    },
+    {
+      "seconds": 9.095699999809264,
+      "enemies": 28,
+      "visible": 23,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.611266895393364,
+        "z": 70.81832781050764,
+        "y": 0.002006534472104831,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9805174430626761
+      }
+    },
+    {
+      "seconds": 10.112299999952317,
+      "enemies": 33,
+      "visible": 28,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.611266895393364,
+        "z": 70.81832781050764,
+        "y": 0.002006534472104831,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.26469398423304913
+      }
+    },
+    {
+      "seconds": 11.128199999809265,
+      "enemies": 38,
+      "visible": 33,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.611266895393364,
+        "z": 70.87321349649238,
+        "y": 0.0022433439907124193,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.21603557520631297
+      }
+    },
+    {
+      "seconds": 12.128899999856948,
+      "enemies": 44,
+      "visible": 39,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.611266895393364,
+        "z": 70.87321349649238,
+        "y": 0.0022433439907124193,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.21603557520631297
+      }
+    },
+    {
+      "seconds": 13.128899999856948,
+      "enemies": 50,
+      "visible": 45,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.35911200395826,
+        "z": 70.56221397171339,
+        "y": 0.0011175352053682602,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.141592653589793
+      }
+    },
+    {
+      "seconds": 14.1295,
+      "enemies": 55,
+      "visible": 50,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 19.761226310157376,
+        "z": 68.51133643662851,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.2737789831378765
+      }
+    },
+    {
+      "seconds": 15.1455,
+      "enemies": 59,
+      "visible": 54,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 12.896899631177003,
+        "z": 64.59229481287367,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.3543318978275333
+      }
+    },
+    {
+      "seconds": 16.162099999904633,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 7.232900683664462,
+        "z": 60.747582617105245,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.4906050373049716
+      }
+    },
+    {
+      "seconds": 17.16289999985695,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 3.1945781640619373,
+        "z": 58.89070596353051,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.5707963267948966
+      }
+    },
+    {
+      "seconds": 18.16339999985695,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 0.9274022924173595,
+        "z": 53.13107530079202,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.553032570399625
+      }
+    },
+    {
+      "seconds": 19.180799999952317,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 0.5825119635510292,
+        "z": 45.229664200510506,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.060206633998327
+      }
+    },
+    {
+      "seconds": 20.195799999952317,
+      "enemies": 60,
+      "visible": 51,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 290,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 2.235181005470393,
+        "z": 37.49611818338759,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.8060566340221595
+      }
+    },
+    {
+      "seconds": 21.212699999809264,
+      "enemies": 60,
+      "visible": 44,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 279,
+      "textures": 153,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 5.7796045707919985,
+        "z": 30.42587682974492,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.5519066339864063
+      }
+    },
+    {
+      "seconds": 22.228799999952315,
+      "enemies": 60,
+      "visible": 29,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 279,
+      "textures": 153,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 10.98791557592961,
+        "z": 24.47400680800545,
+        "y": 0.4200373071171644,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.297731633974475
+      }
+    },
+    {
+      "seconds": 23.23639999985695,
+      "enemies": 60,
+      "visible": 14,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 279,
+      "textures": 153,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 17.46232512007058,
+        "z": 20.055400568275427,
+        "y": 1.1891623170387817,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.0458066340221763
+      }
+    },
+    {
+      "seconds": 24.253299999952315,
+      "enemies": 60,
+      "visible": 13,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 279,
+      "textures": 153,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 24.907534670417878,
+        "z": 17.373317578739336,
+        "y": 1.5965396517642398,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.791506634010256
+      }
+    },
+    {
+      "seconds": 25.2545,
+      "enemies": 58,
+      "visible": 24,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 279,
+      "textures": 153,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 32.653179521846035,
+        "z": 16.6461091643598,
+        "y": 0.0228183390239246,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5414816339744877
+      }
+    },
+    {
+      "seconds": 26.26209999990463,
+      "enemies": 59,
+      "visible": 31,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 279,
+      "textures": 153,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 40.394865568678526,
+        "z": 17.874541863270093,
+        "y": 1.3743471344089506,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.2896066339744692
+      }
+    },
+    {
+      "seconds": 27.26289999985695,
+      "enemies": 56,
+      "visible": 30,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 280,
+      "textures": 154,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 47.53979159393979,
+        "z": 20.966180006222228,
+        "y": 0.7899180188546208,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.0394066339864123
+      }
+    },
+    {
+      "seconds": 28.26289999985695,
+      "enemies": 57,
+      "visible": 36,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 289,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.69302338845052,
+        "z": 25.72660398864386,
+        "y": 0.27874954322402457,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.7894316340221764
+      }
+    },
+    {
+      "seconds": 29.279199999809265,
+      "enemies": 57,
+      "visible": 37,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 289,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 58.54367026258449,
+        "z": 31.973399925909735,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.5352316339745008
+      }
+    },
+    {
+      "seconds": 30.295399999856947,
+      "enemies": 58,
+      "visible": 33,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 292,
+      "textures": 155,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 61.66772194257008,
+        "z": 39.23917918805179,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.5960845320685322
+      }
+    },
+    {
+      "seconds": 31.296099999904634,
+      "enemies": 59,
+      "visible": 32,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 293,
+      "textures": 156,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 62.86092163227392,
+        "z": 46.92605669115985,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.031081633998351472
+      }
+    },
+    {
+      "seconds": 32.29689999985695,
+      "enemies": 60,
+      "visible": 37,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 307,
+      "textures": 157,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 62.11531214840884,
+        "z": 54.66995372941537,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.21891836600165834
+      }
+    },
+    {
+      "seconds": 33.31269999980927,
+      "enemies": 57,
+      "visible": 39,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 307,
+      "textures": 157,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 59.41761993596396,
+        "z": 61.213896530879374,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.4730933660135784
+      }
+    },
+    {
+      "seconds": 34.31359999990463,
+      "enemies": 59,
+      "visible": 45,
+      "shapes": 35,
+      "pools": 60,
+      "geometries": 313,
+      "textures": 158,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 55.024328754163236,
+        "z": 67.63346417045958,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.7230683659778641
+      }
+    },
+    {
+      "seconds": 35.32919999980926,
+      "enemies": 59,
+      "visible": 48,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 49.07086708009012,
+        "z": 72.83995477300166,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.9772433659897848
+      }
+    },
+    {
+      "seconds": 36.34579999995232,
+      "enemies": 60,
+      "visible": 50,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 44.53293066078892,
+        "z": 76.38224657550053,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      }
+    },
+    {
+      "seconds": 37.363099999904634,
+      "enemies": 60,
+      "visible": 49,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 44.53293066078892,
+        "z": 78.03260777635997,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      }
+    },
+    {
+      "seconds": 38.37819999980927,
+      "enemies": 60,
+      "visible": 50,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 44.53293066078892,
+        "z": 77.68626689033728,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.141592653589793
+      }
+    },
+    {
+      "seconds": 39.379899999856946,
+      "enemies": 60,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 44.53293066078892,
+        "z": 75.41570710839756,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.0563152008896495
+      }
+    },
+    {
+      "seconds": 40.3965,
+      "enemies": 60,
+      "visible": 54,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 40.78523774553812,
+        "z": 71.29408135586611,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5623828904911758
+      }
+    },
+    {
+      "seconds": 41.41229999995232,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 35.28910339697482,
+        "z": 65.60908097702264,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.6499832483132089
+      }
+    },
+    {
+      "seconds": 42.43059999990463,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 31.398120821141728,
+        "z": 58.72347811674235,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.1345375461198022
+      }
+    },
+    {
+      "seconds": 43.446299999952316,
+      "enemies": 59,
+      "visible": 54,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 29.36361297160839,
+        "z": 51.081502858913865,
+        "y": 0.14537782720874048,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.6956234174935741
+      }
+    },
+    {
+      "seconds": 44.46179999995232,
+      "enemies": 60,
+      "visible": 54,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 29.315126599690586,
+        "z": 43.17890485046867,
+        "y": 0.1611782167968009,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.02281694118984
+      }
+    },
+    {
+      "seconds": 45.46339999985695,
+      "enemies": 60,
+      "visible": 53,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 31.210866840524044,
+        "z": 35.62731799463507,
+        "y": 0.006146282725278459,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.2614167716646616
+      }
+    },
+    {
+      "seconds": 46.478799999952315,
+      "enemies": 60,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 34.98741120885014,
+        "z": 28.682695216199832,
+        "y": 0.1560946427310477,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.5185919411659796
+      }
+    },
+    {
+      "seconds": 47.47939999985695,
+      "enemies": 60,
+      "visible": 48,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 40.29394471841442,
+        "z": 22.988415312774396,
+        "y": 0.6716619977773901,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.2684669411659892
+      }
+    },
+    {
+      "seconds": 48.4795,
+      "enemies": 60,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 304,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 46.84129531863305,
+        "z": 18.78650247940723,
+        "y": 1.2078146864899242,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.0184669411660034
+      }
+    },
+    {
+      "seconds": 49.49539999985695,
+      "enemies": 60,
+      "visible": 48,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.21195103909113,
+        "z": 16.310153090499508,
+        "y": 1.2699493118604186,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.8651669411660032
+      }
+    },
+    {
+      "seconds": 50.495599999904634,
+      "enemies": 60,
+      "visible": 48,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.465246733662426,
+        "z": 15.793753612764643,
+        "y": 1.268074986036552,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.4087926535898034
+      }
+    },
+    {
+      "seconds": 51.512099999904635,
+      "enemies": 60,
+      "visible": 48,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.465246733662426,
+        "z": 15.938272567418139,
+        "y": 1.2439894333005583,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      }
+    },
+    {
+      "seconds": 52.52889999985695,
+      "enemies": 60,
+      "visible": 49,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.465246733662426,
+        "z": 15.938272567418139,
+        "y": 1.2439894333005583,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      }
+    },
+    {
+      "seconds": 53.54529999995231,
+      "enemies": 60,
+      "visible": 50,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.465246733662426,
+        "z": 15.938272567418139,
+        "y": 1.2439894333005583,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      }
+    },
+    {
+      "seconds": 54.5455,
+      "enemies": 60,
+      "visible": 51,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.465246733662426,
+        "z": 15.938272567418139,
+        "y": 1.2439894333005583,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      }
+    },
+    {
+      "seconds": 55.561699999809264,
+      "enemies": 60,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.465246733662426,
+        "z": 15.938272567418139,
+        "y": 1.2439894333005583,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.0112879302223932
+      }
+    },
+    {
+      "seconds": 56.565199999809266,
+      "enemies": 60,
+      "visible": 53,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 53.46742255738682,
+        "z": 15.938272567418139,
+        "y": 1.2431581862824643,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.7499561464291802
+      }
+    },
+    {
+      "seconds": 57.579,
+      "enemies": 59,
+      "visible": 53,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 52.43042481380406,
+        "z": 18.22012305939593,
+        "y": 1.0679164165864756,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.8442822291764793
+      }
+    },
+    {
+      "seconds": 58.57959999990463,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 49.51849271746857,
+        "z": 25.435145523984815,
+        "y": 0.529302763428945,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.4057642714090822
+      }
+    },
+    {
+      "seconds": 59.596,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 44.82317503542103,
+        "z": 31.79855674462867,
+        "y": 0.000919506992862428,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.9618260046239322
+      }
+    },
+    {
+      "seconds": 60.61179999995232,
+      "enemies": 55,
+      "visible": 50,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 38.682101099398764,
+        "z": 36.77501051820475,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.663017843295465
+      }
+    },
+    {
+      "seconds": 61.61229999995231,
+      "enemies": 54,
+      "visible": 49,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 296,
+      "textures": 170,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 31.60293178390725,
+        "z": 40.012524748553545,
+        "y": 0.0022173083800461897,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9034898783401438
+      }
+    },
+    {
+      "seconds": 62.613,
+      "enemies": 56,
+      "visible": 51,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 23.947328794035464,
+        "z": 41.396579403241006,
+        "y": 1.6584946226475368,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.7311198576949787
+      }
+    },
+    {
+      "seconds": 63.629199999809266,
+      "enemies": 59,
+      "visible": 54,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 22.276734685672412,
+        "z": 40.81793051487099,
+        "y": 2.0157614025655493,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -3.0071926535898865
+      }
+    },
+    {
+      "seconds": 64.62979999995231,
+      "enemies": 59,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 16.668090367531683,
+        "z": 38.33184494288923,
+        "y": 1.5820798126459887,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5140696248373287
+      }
+    },
+    {
+      "seconds": 65.64729999995231,
+      "enemies": 60,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 10.041791944808352,
+        "z": 34.015456551912074,
+        "y": 0.059337185215007075,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.273158058834008
+      }
+    },
+    {
+      "seconds": 66.64729999995231,
+      "enemies": 60,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 4.788227615716256,
+        "z": 28.277517947796568,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.339452248333739
+      }
+    },
+    {
+      "seconds": 67.6475,
+      "enemies": 60,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 1.1185846681046256,
+        "z": 21.41688439616068,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.7732330588220893
+      }
+    },
+    {
+      "seconds": 68.64809999990463,
+      "enemies": 60,
+      "visible": 52,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": -0.7390054134541643,
+        "z": 13.865381384191199,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -3.0231330587982455
+      }
+    },
+    {
+      "seconds": 69.66629999995232,
+      "enemies": 59,
+      "visible": 49,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": -0.6529372854256669,
+        "z": 5.954596205187964,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.7895472176940155
+      }
+    },
+    {
+      "seconds": 70.67859999990463,
+      "enemies": 58,
+      "visible": 44,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 1.4170358862408825,
+        "z": -1.6730307330124674,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.7517772483455785
+      }
+    },
+    {
+      "seconds": 71.68059999990463,
+      "enemies": 58,
+      "visible": 27,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 4.508232118736639,
+        "z": -7.167660939268336,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.285202248333634
+      }
+    },
+    {
+      "seconds": 72.68069999980926,
+      "enemies": 58,
+      "visible": 38,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 4.508232118736639,
+        "z": -7.167660939268336,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.285202248333634
+      }
+    },
+    {
+      "seconds": 73.6865,
+      "enemies": 57,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 4.508232118736639,
+        "z": -7.167660939268336,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.285202248333634
+      }
+    },
+    {
+      "seconds": 74.68729999995232,
+      "enemies": 57,
+      "visible": 46,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 4.508232118736639,
+        "z": -7.167660939268336,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.285202248333634
+      }
+    },
+    {
+      "seconds": 75.69739999985696,
+      "enemies": 57,
+      "visible": 46,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 4.508232118736639,
+        "z": -7.095596963711409,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.1508022483337271
+      }
+    },
+    {
+      "seconds": 76.71459999990464,
+      "enemies": 56,
+      "visible": 48,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 7.520164760433875,
+        "z": -5.504299869465039,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.243227248333656
+      }
+    },
+    {
+      "seconds": 77.73059999990463,
+      "enemies": 56,
+      "visible": 51,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 14.618322290797925,
+        "z": -2.0161143261770493,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9891022483336567
+      }
+    },
+    {
+      "seconds": 78.74509999990464,
+      "enemies": 56,
+      "visible": 51,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 20.608627512260504,
+        "z": 3.142026336709909,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.8661636644562333
+      }
+    },
+    {
+      "seconds": 79.74559999990463,
+      "enemies": 54,
+      "visible": 49,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.053342871696017,
+        "z": 6.104101638137901,
+        "y": 0.0010176622558364808,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.550770095529569
+      }
+    },
+    {
+      "seconds": 80.75189999985695,
+      "enemies": 53,
+      "visible": 48,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 27.775342100097053,
+        "z": 13.161529169355504,
+        "y": 0.9693870122031684,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.33577724833358863
+      }
+    },
+    {
+      "seconds": 81.76279999995232,
+      "enemies": 52,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 28.61054673858672,
+        "z": 21.0255267092406,
+        "y": 0.25630579867660974,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.3102477516187165
+      }
+    },
+    {
+      "seconds": 82.77819999980926,
+      "enemies": 52,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 27.443149822111845,
+        "z": 28.84392066496887,
+        "y": 0.17177212481354848,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.053510124432508
+      }
+    },
+    {
+      "seconds": 83.77839999985694,
+      "enemies": 52,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 24.41023650185392,
+        "z": 36.01145193879187,
+        "y": 0.3915097853743794,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.5232977516425265
+      }
+    },
+    {
+      "seconds": 84.79529999995232,
+      "enemies": 52,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 21.3568948371137,
+        "z": 40.27281456621873,
+        "y": 2.0062868354965797,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.8235727516544191
+      }
+    },
+    {
+      "seconds": 85.80359999990463,
+      "enemies": 52,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 304,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 21.3568948371137,
+        "z": 40.27281456621873,
+        "y": 2.0062868354965797,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.8235727516544191
+      }
+    },
+    {
+      "seconds": 86.80359999990463,
+      "enemies": 52,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 21.3568948371137,
+        "z": 40.27281456621873,
+        "y": 2.0062868354965797,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.8235727516544191
+      }
+    },
+    {
+      "seconds": 87.80439999985695,
+      "enemies": 52,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 21.3568948371137,
+        "z": 40.285339268355614,
+        "y": 2.0103457285390065,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.5635727516544193
+      }
+    },
+    {
+      "seconds": 88.82189999985695,
+      "enemies": 50,
+      "visible": 45,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 19.83510239700629,
+        "z": 39.78264228624705,
+        "y": 2.0273457454247397,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.055004401892786
+      }
+    },
+    {
+      "seconds": 89.83619999980927,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 12.65725816344324,
+        "z": 37.19532808685407,
+        "y": 0.9292697313077827,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.0376227516305563
+      }
+    },
+    {
+      "seconds": 90.83719999980927,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 6.204458487327831,
+        "z": 32.83715030234825,
+        "y": 0.00002364160480481658,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.2878477516544318
+      }
+    },
+    {
+      "seconds": 91.85529999995232,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 0.9622625969700422,
+        "z": 26.915100809102007,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.542022751666346
+      }
+    },
+    {
+      "seconds": 92.85569999980926,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": -2.5780670359070235,
+        "z": 19.988493056907956,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.7919977516305767
+      }
+    },
+    {
+      "seconds": 93.87189999985695,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": -4.307410398827007,
+        "z": 12.270936918433367,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -3.0461477516663424
+      }
+    },
+    {
+      "seconds": 94.88659999990463,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": -4.0401214245230275,
+        "z": 10.32927953907951,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5707963267948966
+      }
+    },
+    {
+      "seconds": 95.90329999995231,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": -1.7930467367432943,
+        "z": 3.900055096822803,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.7286125555609253
+      }
+    },
+    {
+      "seconds": 96.90339999985694,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 2.208356172714983,
+        "z": -2.7726227280335385,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.478612555560925
+      }
+    },
+    {
+      "seconds": 97.90339999985694,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 5.451598782613093,
+        "z": -6.2247976157308615,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.2022125555610175
+      }
+    },
+    {
+      "seconds": 98.90339999985694,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 5.451598782613093,
+        "z": -6.2247976157308615,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.2022125555610175
+      }
+    },
+    {
+      "seconds": 99.91919999980927,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 5.451598782613093,
+        "z": -6.2247976157308615,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.2022125555610175
+      }
+    },
+    {
+      "seconds": 100.92,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 5.715118185307985,
+        "z": -6.091027967037038,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.004799999999930138
+      }
+    },
+    {
+      "seconds": 101.93659999990463,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 13.42386696258592,
+        "z": -4.322635926129002,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.2203625555609272
+      }
+    },
+    {
+      "seconds": 102.93659999990463,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 20.333358065419002,
+        "z": -0.7473357326033627,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9703375555251604
+      }
+    },
+    {
+      "seconds": 103.93659999990463,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 26.14352585210459,
+        "z": 4.4262298336150705,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.7203875555370841
+      }
+    },
+    {
+      "seconds": 104.93679999995231,
+      "enemies": 48,
+      "visible": 43,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 30.493075563078044,
+        "z": 10.876444950444752,
+        "y": 0.10542915328271787,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.4703625555609163
+      }
+    },
+    {
+      "seconds": 105.93719999980927,
+      "enemies": 60,
+      "visible": 55,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 33.11157046493534,
+        "z": 18.202242650799413,
+        "y": 0.047222515859901934,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.2203625555609533
+      }
+    },
+    {
+      "seconds": 106.93719999980927,
+      "enemies": 73,
+      "visible": 68,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 33.836271177539494,
+        "z": 25.948122686786256,
+        "y": 0.06462699118078338,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.02963744443906892
+      }
+    },
+    {
+      "seconds": 107.93779999995232,
+      "enemies": 84,
+      "visible": 79,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 297,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 32.62208042182893,
+        "z": 33.632495106385015,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.27963744443907895
+      }
+    },
+    {
+      "seconds": 108.95459999990463,
+      "enemies": 96,
+      "visible": 90,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 29.47769873892624,
+        "z": 40.88873700436835,
+        "y": 0.124511518084962,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.4700365570034437
+      }
+    },
+    {
+      "seconds": 109.95489999985695,
+      "enemies": 108,
+      "visible": 97,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 24.7052675907839,
+        "z": 47.02775730523935,
+        "y": 1.6230317010024131,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.1224780584859961
+      }
+    },
+    {
+      "seconds": 110.95579999995232,
+      "enemies": 120,
+      "visible": 92,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 18.560228855697307,
+        "z": 51.797485562019425,
+        "y": 2.4797793507177266,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.10767571905740744
+      }
+    },
+    {
+      "seconds": 111.97039999985695,
+      "enemies": 125,
+      "visible": 83,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 12.16678675954627,
+        "z": 54.71131460718127,
+        "y": 0.7122685986020565,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.495806312790282
+      }
+    },
+    {
+      "seconds": 112.97089999985695,
+      "enemies": 126,
+      "visible": 87,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 12.16678675954627,
+        "z": 54.721726895402306,
+        "y": 0.708030756623095,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.007681379458215
+      }
+    },
+    {
+      "seconds": 113.972,
+      "enemies": 126,
+      "visible": 90,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 10.504041964919535,
+        "z": 53.975436925296144,
+        "y": 0.6351523346374017,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -3.010392653589723
+      }
+    },
+    {
+      "seconds": 114.9895,
+      "enemies": 125,
+      "visible": 89,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 8.149583294104374,
+        "z": 52.847384220261006,
+        "y": 0.23156724079757654,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.2079619481489448
+      }
+    },
+    {
+      "seconds": 115.9895,
+      "enemies": 126,
+      "visible": 95,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 8.149583294104374,
+        "z": 52.847384220261006,
+        "y": 0.23156724079757654,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9411907342091393
+      }
+    },
+    {
+      "seconds": 116.99439999985695,
+      "enemies": 126,
+      "visible": 96,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 8.149583294104374,
+        "z": 52.847384220261006,
+        "y": 0.23156724079757654,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.817361640290981
+      }
+    },
+    {
+      "seconds": 118.00439999985694,
+      "enemies": 126,
+      "visible": 98,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 8.149583294104374,
+        "z": 52.847384220261006,
+        "y": 0.23156724079757654,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.1909680288235216
+      }
+    },
+    {
+      "seconds": 119.00439999985694,
+      "enemies": 126,
+      "visible": 104,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 8.129235373925331,
+        "z": 52.847384220261006,
+        "y": 0.22716808953383394,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.844167388936735
+      }
+    },
+    {
+      "seconds": 120.00479999995231,
+      "enemies": 125,
+      "visible": 103,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 8.511799381052223,
+        "z": 52.58756934354331,
+        "y": 0.34114314126742,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.029175037039278
+      }
+    },
+    {
+      "seconds": 121.00489999985695,
+      "enemies": 126,
+      "visible": 117,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 10.6750006507539,
+        "z": 48.87596433119968,
+        "y": 1.6898930446180653,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.0058400026879504
+      }
+    },
+    {
+      "seconds": 122.01009999990464,
+      "enemies": 126,
+      "visible": 119,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 14.61930671985282,
+        "z": 43.00180685310256,
+        "y": 3.0470171668903374,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.3431016866118088
+      }
+    },
+    {
+      "seconds": 123.0235,
+      "enemies": 123,
+      "visible": 115,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 20.20302412567623,
+        "z": 37.40061539366337,
+        "y": 1.0369220805374086,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.666426760072114
+      }
+    },
+    {
+      "seconds": 124.03879999995232,
+      "enemies": 124,
+      "visible": 114,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 27.01502581889643,
+        "z": 33.38369775844021,
+        "y": 0.029206230589070504,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.7379315080077076
+      }
+    },
+    {
+      "seconds": 125.03939999985695,
+      "enemies": 126,
+      "visible": 113,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 34.49097462665643,
+        "z": 31.228208953485165,
+        "y": 0.012458472570495281,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.6722270199802043
+      }
+    },
+    {
+      "seconds": 126.03989999985694,
+      "enemies": 126,
+      "visible": 114,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 295,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 42.2662404522613,
+        "z": 30.989349324341976,
+        "y": 0.020848858658208777,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.7472475401780385
+      }
+    },
+    {
+      "seconds": 127.05669999980927,
+      "enemies": 123,
+      "visible": 111,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 296,
+      "textures": 170,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 49.982181741855136,
+        "z": 32.72587471910261,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.317112297967971
+      }
+    },
+    {
+      "seconds": 128.064,
+      "enemies": 125,
+      "visible": 111,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 1,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 56.906116188770326,
+        "z": 36.27312687713288,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9744478627166667
+      }
+    },
+    {
+      "seconds": 129.0727999999523,
+      "enemies": 126,
+      "visible": 105,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 62.82263189050853,
+        "z": 41.520400948466595,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.8075854280099959
+      }
+    },
+    {
+      "seconds": 130.0897999999523,
+      "enemies": 126,
+      "visible": 94,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 312,
+      "textures": 172,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 67.23014412327645,
+        "z": 48.087370751714836,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.4809203170855916
+      }
+    },
+    {
+      "seconds": 131.0897999999523,
+      "enemies": 124,
+      "visible": 84,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 313,
+      "textures": 173,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 69.81701553847557,
+        "z": 51.35506675852372,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.8894077385967387
+      }
+    },
+    {
+      "seconds": 132.105,
+      "enemies": 124,
+      "visible": 80,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 313,
+      "textures": 173,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 70.50377131991159,
+        "z": 59.234129751046105,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.131391304726603
+      }
+    },
+    {
+      "seconds": 133.1052999999523,
+      "enemies": 125,
+      "visible": 88,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 320,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 69.22500632833116,
+        "z": 66.90723681756808,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.9336271372953775
+      }
+    },
+    {
+      "seconds": 134.12089999985696,
+      "enemies": 122,
+      "visible": 71,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 322,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.02018100891358,
+        "z": 74.1377515620342,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.9178607872444206
+      }
+    },
+    {
+      "seconds": 135.12159999990465,
+      "enemies": 121,
+      "visible": 40,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 61.19335538601261,
+        "z": 80.0562414750145,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -3.1299206412775087
+      }
+    },
+    {
+      "seconds": 136.13739999985694,
+      "enemies": 124,
+      "visible": 39,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 54.89437920665404,
+        "z": 83.77437594302819,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.0463771372713597
+      }
+    },
+    {
+      "seconds": 137.13829999995232,
+      "enemies": 126,
+      "visible": 41,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 47.72070771168308,
+        "z": 86.35018145684724,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.5390848549902754
+      }
+    },
+    {
+      "seconds": 138.15509999990462,
+      "enemies": 126,
+      "visible": 36,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 42.6197190475934,
+        "z": 87.49479283657185,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.06640000000014
+      }
+    },
+    {
+      "seconds": 139.15529999995232,
+      "enemies": 126,
+      "visible": 40,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 42.4924050013885,
+        "z": 86.6653137107529,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.141592653589793
+      }
+    },
+    {
+      "seconds": 140.172,
+      "enemies": 125,
+      "visible": 47,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 35.96927552655421,
+        "z": 83.88760715641465,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.4491521372594898
+      }
+    },
+    {
+      "seconds": 141.1725,
+      "enemies": 126,
+      "visible": 77,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 29.601626189701168,
+        "z": 79.42883481053546,
+        "y": 0.0006283285183925891,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.9968926292000146
+      }
+    },
+    {
+      "seconds": 142.18729999995233,
+      "enemies": 126,
+      "visible": 107,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.575694183712795,
+        "z": 75.21827910751746,
+        "y": 0.015568249450522586,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.222427137307327
+      }
+    },
+    {
+      "seconds": 143.18819999980926,
+      "enemies": 126,
+      "visible": 106,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.575694183712795,
+        "z": 75.21827910751746,
+        "y": 0.015568249450522586,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.222427137307327
+      }
+    },
+    {
+      "seconds": 144.18869999980927,
+      "enemies": 126,
+      "visible": 108,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 25.5640212260254,
+        "z": 75.21827910751746,
+        "y": 0.01562783566790129,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.4808271373074662
+      }
+    },
+    {
+      "seconds": 145.18889999985694,
+      "enemies": 126,
+      "visible": 108,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 26.00990747161836,
+        "z": 74.82916563777152,
+        "y": 0.013567507592424331,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.350709248780262
+      }
+    },
+    {
+      "seconds": 146.208,
+      "enemies": 126,
+      "visible": 116,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 28.320006729589068,
+        "z": 67.52177528400625,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.43504332958086556
+      }
+    },
+    {
+      "seconds": 147.208,
+      "enemies": 126,
+      "visible": 120,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 32.3765161861562,
+        "z": 60.8833570898808,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.4886448349172108
+      }
+    },
+    {
+      "seconds": 148.208,
+      "enemies": 126,
+      "visible": 119,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 37.949895933788405,
+        "z": 55.454423747002394,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.540234163948226
+      }
+    },
+    {
+      "seconds": 149.224,
+      "enemies": 123,
+      "visible": 115,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 307,
+      "textures": 172,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 43.04713950673704,
+        "z": 51.523755107434646,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.2109347668103019
+      }
+    },
+    {
+      "seconds": 150.23959999990464,
+      "enemies": 122,
+      "visible": 113,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 316,
+      "textures": 173,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 50.4375365440377,
+        "z": 49.44453382125487,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.7298078862328359
+      }
+    },
+    {
+      "seconds": 151.25669999980926,
+      "enemies": 125,
+      "visible": 117,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 316,
+      "textures": 173,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 58.34359442552098,
+        "z": 49.350675353677076,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.567678289827394
+      }
+    },
+    {
+      "seconds": 152.257,
+      "enemies": 126,
+      "visible": 117,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 319,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 65.90147579077946,
+        "z": 51.20173833772509,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5560115923214242
+      }
+    },
+    {
+      "seconds": 153.2722999999523,
+      "enemies": 126,
+      "visible": 118,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.62359586639374,
+        "z": 51.90083847789395,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.21623581093780675
+      }
+    },
+    {
+      "seconds": 154.27319999980926,
+      "enemies": 126,
+      "visible": 118,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.62359586639374,
+        "z": 51.90083847789395,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.4873482947934993
+      }
+    },
+    {
+      "seconds": 155.27339999985696,
+      "enemies": 126,
+      "visible": 120,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.62359586639374,
+        "z": 51.90083847789395,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.9747825536263215
+      }
+    },
+    {
+      "seconds": 156.28029999995232,
+      "enemies": 118,
+      "visible": 112,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.62359586639374,
+        "z": 51.90083847789395,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.145256771030294
+      }
+    },
+    {
+      "seconds": 157.282,
+      "enemies": 124,
+      "visible": 118,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.60004975920768,
+        "z": 52.08303558054092,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.6475276068668574
+      }
+    },
+    {
+      "seconds": 158.28259999990462,
+      "enemies": 124,
+      "visible": 118,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.16562908537773,
+        "z": 54.72337298846532,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.9197496222954262
+      }
+    },
+    {
+      "seconds": 159.29859999990464,
+      "enemies": 122,
+      "visible": 117,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.16562908537773,
+        "z": 54.72337298846532,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.8167045009849865
+      }
+    },
+    {
+      "seconds": 160.30409999990462,
+      "enemies": 124,
+      "visible": 119,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.16562908537773,
+        "z": 54.72337298846532,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.531371263478098
+      }
+    },
+    {
+      "seconds": 161.31479999995233,
+      "enemies": 126,
+      "visible": 121,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.16562908537773,
+        "z": 54.72337298846532,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.9177810787538214
+      }
+    },
+    {
+      "seconds": 162.3295,
+      "enemies": 126,
+      "visible": 121,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.16562908537773,
+        "z": 54.72337298846532,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.106125624609819
+      }
+    },
+    {
+      "seconds": 163.34779999995231,
+      "enemies": 122,
+      "visible": 117,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 66.16562908537773,
+        "z": 54.72853154392564,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.4039028746423572
+      }
+    },
+    {
+      "seconds": 164.36329999995232,
+      "enemies": 124,
+      "visible": 119,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 65.53950087394662,
+        "z": 54.051491797980816,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.8372628149860475
+      }
+    },
+    {
+      "seconds": 165.37269999980927,
+      "enemies": 123,
+      "visible": 118,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 60.3495107781692,
+        "z": 51.40330103466141,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.626690505830109
+      }
+    },
+    {
+      "seconds": 166.37539999985694,
+      "enemies": 125,
+      "visible": 120,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 54.0470439551102,
+        "z": 48.488220459655125,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.5788905040888125
+      }
+    },
+    {
+      "seconds": 167.38819999980927,
+      "enemies": 125,
+      "visible": 120,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 49.0072061829768,
+        "z": 44.103549900176226,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.6596642224060577
+      }
+    },
+    {
+      "seconds": 168.40509999990462,
+      "enemies": 125,
+      "visible": 119,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 323,
+      "textures": 174,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 45.66328121424887,
+        "z": 36.936331131145614,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.243517356691095
+      }
+    },
+    {
+      "seconds": 169.41559999990463,
+      "enemies": 126,
+      "visible": 120,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 44.23084501297907,
+        "z": 29.22434793744235,
+        "y": 0.13712515369725817,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.5890288931332434
+      }
+    },
+    {
+      "seconds": 170.42739999985696,
+      "enemies": 126,
+      "visible": 115,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 44.76638036784956,
+        "z": 21.399446030641165,
+        "y": 0.7544994468993539,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.9502184770520263
+      }
+    },
+    {
+      "seconds": 171.4295,
+      "enemies": 125,
+      "visible": 66,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 47.18360865680369,
+        "z": 14.140614518874655,
+        "y": 2.470266873018187,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.697918477099689
+      }
+    },
+    {
+      "seconds": 172.44659999990463,
+      "enemies": 125,
+      "visible": 54,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 51.4712551226421,
+        "z": 7.494719239092024,
+        "y": 0.21715342948518684,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.443968477052
+      }
+    },
+    {
+      "seconds": 173.45419999980928,
+      "enemies": 124,
+      "visible": 26,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 57.237355920603825,
+        "z": 2.1768216447096327,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.191918477099693
+      }
+    },
+    {
+      "seconds": 174.45719999980926,
+      "enemies": 119,
+      "visible": 18,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 305,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 64.08684035853739,
+        "z": -1.5121372755861844,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.9419184770996822
+      }
+    },
+    {
+      "seconds": 175.46979999995233,
+      "enemies": 107,
+      "visible": 17,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 71.76464857640822,
+        "z": -3.4069450374821737,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.6877684770639236
+      }
+    },
+    {
+      "seconds": 176.487,
+      "enemies": 85,
+      "visible": 17,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 79.67299513074362,
+        "z": -3.3104278326309835,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.4335934770520011
+      }
+    },
+    {
+      "seconds": 177.50039999985694,
+      "enemies": 72,
+      "visible": 20,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 87.30298809407486,
+        "z": -1.2284885781788983,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.1794434770758448
+      }
+    },
+    {
+      "seconds": 178.50279999995232,
+      "enemies": 69,
+      "visible": 28,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 306,
+      "textures": 171,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 94.05966762362098,
+        "z": 2.6262590623341833,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9294184770996721
+      }
+    },
+    {
+      "seconds": 179.512,
+      "enemies": 62,
+      "visible": 30,
+      "shapes": 41,
+      "pools": 66,
+      "geometries": 285,
+      "textures": 169,
+      "preparation": 0,
+      "maxJob": 123.60000014305115,
+      "ambientTier": "high",
+      "player": {
+        "x": 99.65326928088936,
+        "z": 8.033241931779463,
+        "y": 0.12674461845336835,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.6794434770758703
+      }
+    }
+  ],
+  "errors": [],
+  "outliers": [
+    {
+      "seconds": 6.477299999952316,
+      "cpuMs": 18.90000009536743,
+      "intervalMs": 16.69999999999709,
+      "preparation": 0.09999990463256836,
+      "job": "texture-upload:",
+      "gpu": 6.889249,
+      "screen": ""
+    },
+    {
+      "seconds": 108.18179999995232,
+      "cpuMs": 32.5,
+      "intervalMs": 16.69999999999709,
+      "preparation": 26.899999856948853,
+      "job": "texture-upload:",
+      "gpu": 7.567124,
+      "screen": ""
+    },
+    {
+      "seconds": 150.4827999999523,
+      "cpuMs": 17.100000143051147,
+      "intervalMs": 16.60000000000582,
+      "preparation": 8.299999952316284,
+      "job": "texture-upload:",
+      "gpu": 17.171916,
+      "screen": ""
+    },
+    {
+      "seconds": 170.8825,
+      "cpuMs": 23.100000143051147,
+      "intervalMs": 74.89999999999418,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 6.765708,
+      "screen": ""
+    },
+    {
+      "seconds": 170.98509999990463,
+      "cpuMs": 23.59999990463257,
+      "intervalMs": 16.60000000000582,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 6.789166,
+      "screen": ""
+    },
+    {
+      "seconds": 171.09359999990463,
+      "cpuMs": 23.799999952316284,
+      "intervalMs": 17.5,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 7.62225,
+      "screen": ""
+    },
+    {
+      "seconds": 171.20789999985695,
+      "cpuMs": 24.299999952316284,
+      "intervalMs": 16.60000000000582,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 6.287708,
+      "screen": ""
+    },
+    {
+      "seconds": 171.3097999999523,
+      "cpuMs": 23.5,
+      "intervalMs": 16.70000000001164,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 6.644499,
+      "screen": ""
+    },
+    {
+      "seconds": 171.41919999980925,
+      "cpuMs": 24.09999990463257,
+      "intervalMs": 16.699999999982538,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 8.672333,
+      "screen": ""
+    },
+    {
+      "seconds": 171.52869999980928,
+      "cpuMs": 24,
+      "intervalMs": 16.70000000001164,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 6.844833,
+      "screen": ""
+    },
+    {
+      "seconds": 171.645,
+      "cpuMs": 25.800000190734863,
+      "intervalMs": 24.39999999999418,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 8.722499,
+      "screen": ""
+    },
+    {
+      "seconds": 171.75609999990462,
+      "cpuMs": 26.299999952316284,
+      "intervalMs": 17.70000000001164,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 6.764291,
+      "screen": ""
+    },
+    {
+      "seconds": 171.86139999985696,
+      "cpuMs": 25.09999990463257,
+      "intervalMs": 16.60000000000582,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 7.428541,
+      "screen": ""
+    },
+    {
+      "seconds": 171.97069999980926,
+      "cpuMs": 26,
+      "intervalMs": 17.199999999982538,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 8.935166,
+      "screen": ""
+    },
+    {
+      "seconds": 172.07919999980928,
+      "cpuMs": 26.299999952316284,
+      "intervalMs": 17.39999999999418,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.370666,
+      "screen": ""
+    },
+    {
+      "seconds": 172.186,
+      "cpuMs": 25.40000009536743,
+      "intervalMs": 16,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.736374,
+      "screen": ""
+    },
+    {
+      "seconds": 172.29209999990462,
+      "cpuMs": 22.40000009536743,
+      "intervalMs": 17.599999999976717,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.275083,
+      "screen": ""
+    },
+    {
+      "seconds": 172.39259999990463,
+      "cpuMs": 22.90000009536743,
+      "intervalMs": 16.699999999982538,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 8.072791,
+      "screen": ""
+    },
+    {
+      "seconds": 172.49169999980927,
+      "cpuMs": 21.899999856948853,
+      "intervalMs": 16.79999999998836,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 8.212583,
+      "screen": ""
+    },
+    {
+      "seconds": 172.59739999985695,
+      "cpuMs": 20.299999952316284,
+      "intervalMs": 15.800000000017464,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.040249,
+      "screen": ""
+    },
+    {
+      "seconds": 172.69639999985694,
+      "cpuMs": 18.399999856948853,
+      "intervalMs": 16.70000000001164,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 7.609708,
+      "screen": ""
+    },
+    {
+      "seconds": 172.79669999980928,
+      "cpuMs": 18.59999990463257,
+      "intervalMs": 17.5,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.409625,
+      "screen": ""
+    },
+    {
+      "seconds": 172.89529999995233,
+      "cpuMs": 17.299999952316284,
+      "intervalMs": 16.60000000000582,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.404249,
+      "screen": ""
+    },
+    {
+      "seconds": 172.9957999999523,
+      "cpuMs": 17.799999952316284,
+      "intervalMs": 16.60000000000582,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.517499,
+      "screen": ""
+    },
+    {
+      "seconds": 173.095,
+      "cpuMs": 16.90000009536743,
+      "intervalMs": 16.60000000000582,
+      "preparation": 0,
+      "job": "texture-upload:",
+      "gpu": 9.287874,
+      "screen": ""
+    },
+    {
+      "seconds": 179.512,
+      "cpuMs": 17.40000009536743,
+      "intervalMs": 16.5,
+      "preparation": 10.399999856948853,
+      "job": "texture-upload:",
+      "gpu": 7.669124,
+      "screen": ""
+    },
+    {
+      "seconds": 179.5545,
+      "cpuMs": 26.5,
+      "intervalMs": 17.10000000000582,
+      "preparation": 20.200000047683716,
+      "job": "texture-upload:",
+      "gpu": 6.064374,
+      "screen": ""
+    }
+  ],
+  "snapshot": {
+    "mode": "survival",
+    "time": 294.99459999998004,
+    "level": 4,
+    "hp": 2,
+    "kills": 164,
+    "biomass": 5,
+    "consumableDrops": [
+      {
+        "id": 354,
+        "kind": "impulse",
+        "x": 9.841726318526659,
+        "y": 1.1694382159784313,
+        "z": 49.610623992796214
+      }
+    ],
+    "consumables": {
+      "shieldUntil": 0,
+      "shieldCharges": 0,
+      "phaseUntil": 0,
+      "revivalCharges": 0,
+      "parasitesUntil": 0,
+      "parasiteAt": 0,
+      "beacon": null
+    },
+    "revivalCharges": 0,
+    "firstPaidUpgrade": false,
+    "organs": [
+      null,
+      null
+    ],
+    "lastHit": null,
+    "stats": {
+      "hp": 2,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 8,
+      "capacity": 90,
+      "weight": 24,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.800000000000001,
+      "shieldMax": 0,
+      "setRegen": false,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 0,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1,
+      "revive": 0,
+      "pickup": 10.5
+    },
+    "player": {
+      "x": 101.93549832988701,
+      "z": 11.272964877927395,
+      "y": 1.2127654566110309,
+      "vy": 0,
+      "vertical": "grounded",
+      "facing": 0.5523684770877749
+    },
+    "mission": null,
+    "dungeon": null,
+    "companions": [],
+    "nextCompanionSummons": {},
+    "swarmInterceptions": 0,
+    "damage": {
+      "direct": 4005.3971014492768,
+      "burn": 0,
+      "electric": 0,
+      "summon": 0,
+      "acid": 0,
+      "thermal": 0,
+      "environment": 64.6
+    },
+    "paused": false,
+    "screen": "",
+    "storyRadio": {
+      "visible": false,
+      "cue": "",
+      "queued": [],
+      "voiced": false,
+      "seen": []
+    },
+    "storyEvidence": [],
+    "dead": false,
+    "won": false,
+    "body": "wanderer",
+    "arms": [
+      "claws",
+      null
+    ],
+    "legs": [
+      "universal",
+      "universal"
+    ],
+    "inventory": 0,
+    "ground": 24,
+    "xpDrops": 5,
+    "shots": 0,
+    "puddles": 0,
+    "hostileShots": 0,
+    "events": 0,
+    "unlocked": [
+      "drone",
+      "wanderer",
+      "universal",
+      "runner",
+      "pistol",
+      "claws",
+      "stabilizer",
+      "broodmother",
+      "swarmLeg",
+      "broodNode"
+    ],
+    "learned": [
+      "melee.0",
+      "melee.2",
+      "melee.3"
+    ],
+    "abilityLevels": {
+      "melee.0": 1,
+      "melee.2": 1,
+      "melee.3": 1
+    },
+    "pending": 0,
+    "choices": [],
+    "settings": {
+      "language": "ru",
+      "soundEnabled": true,
+      "effects": 30,
+      "music": 30,
+      "quality": "high",
+      "fps": 60,
+      "vibration": true,
+      "reducedMotion": false
+    },
+    "enemies": 62,
+    "fps": 60,
+    "subsystemMs": {
+      "simulation": {
+        "mean": 3.538333319293128,
+        "p95": 5.599999904632568,
+        "max": 6
+      },
+      "render": {
+        "mean": 3.7650000055631003,
+        "p95": 4.200000047683716,
+        "max": 24.700000047683716
+      },
+      "ui": {
+        "mean": 0.07222222884496053,
+        "p95": 0.3000001907348633,
+        "max": 0.5
+      }
+    },
+    "stepSubsystemMs": {
+      "count": 10746,
+      "prelude": {
+        "mean": 0.1961567069085064,
+        "max": 0.5999999046325684
+      },
+      "separation": {
+        "mean": 0.35897078277588657,
+        "max": 2.200000047683716
+      },
+      "enemies": {
+        "mean": 1.3272287337313604,
+        "max": 18.5
+      },
+      "combat": {
+        "mean": 0.15110739078819943,
+        "max": 1.2000000476837158
+      },
+      "post": {
+        "mean": 0.08766982847366724,
+        "max": 0.5
+      }
+    },
+    "renderCadence": 60,
+    "ambientTier": "high",
+    "ambientActive": false,
+    "ambientCombat": false,
+    "birds": 0,
+    "particles": 0,
+    "contactShadows": 0,
+    "windStrength": 0.24,
+    "ambientTime": 179.99460000001577,
+    "weather": "sunny-pollen",
+    "weatherEnvironment": "upper-gardens",
+    "weatherBlend": {
+      "upper-gardens": 0.9721395798256959,
+      "quiet-scrapyard": 0.0009687818453417523,
+      "root-forest": 0.02689163832896203,
+      "overgrown-city": 0,
+      "brood-nursery": 0
+    },
+    "weatherParticles": 35,
+    "ambientP95Ms": 0,
+    "ambientCeiling": "high",
+    "forestCameraDegrees": 35.92850242282283,
+    "missionGates": 0,
+    "missionGateModels": [],
+    "missionGateLoading": false,
+    "missionGateErrors": [],
+    "dungeonTheme": null,
+    "dungeonMeshes": 0,
+    "dungeonSky": false,
+    "dungeonDressing": 0,
+    "dungeonBranches": 0,
+    "dungeonLoops": 0,
+    "dungeonDeadEnds": 0,
+    "missionBossCamera": {
+      "active": false,
+      "blend": 0,
+      "height": 30,
+      "depth": 40,
+      "lookAhead": 1.4,
+      "lookHeight": 0
+    },
+    "consumableOrbs": 0,
+    "consumableDrawBatches": 5,
+    "death": {
+      "active": false,
+      "elapsed": 0,
+      "complete": false,
+      "parts": 0
+    },
+    "enemyDeaths": 0,
+    "enemyDebris": 0,
+    "enemyContactShadows": 24,
+    "enemyShadowsEnabled": true,
+    "soulEffects": 0,
+    "dodgeAfterimages": 0,
+    "springLeapVfx": {
+      "active": false,
+      "airborne": false,
+      "progress": 1
+    },
+    "harpoons": 0,
+    "rocketBees": 0,
+    "ricochetBees": 0,
+    "rocketExhaust": {
+      "flames": 0,
+      "smoke": 0
+    },
+    "rocketExplosion": {
+      "active": 0,
+      "flash": 0,
+      "fireballs": 0,
+      "pressure": 0,
+      "rings": 0,
+      "sparks": 0,
+      "debris": 0,
+      "smoke": 0,
+      "dust": 0,
+      "reducedMotion": false,
+      "radius": 1.5
+    },
+    "drawCalls": 136,
+    "bioParticles": 0,
+    "shotgunParticles": 0,
+    "reducedMotion": false,
+    "shadows": true,
+    "gpuMs": 5.732833,
+    "gpuSampleId": 11364,
+    "gpuTimerAvailable": true,
+    "gpuDroppedFrames": 0,
+    "gpuTiming": "summed-main-context-passes",
+    "preparationQueued": 0,
+    "preparationMs": 0.20000004768371582,
+    "preparationMaxJobMs": 123.60000014305115,
+    "preparationMaxJobName": "texture-upload:",
+    "visibleEnemies": 24,
+    "triangles": 965399,
+    "textures": 169,
+    "geometries": 285,
+    "visibleGroundItems": 2,
+    "missingGroundItemModels": [],
+    "groundItemDrawBatches": 9,
+    "environmentShadowMode": "static-depth",
+    "staticShadowCells": 4,
+    "environmentId": "upper-gardens",
+    "environmentRelief": "terraces",
+    "visualModuleId": "upper-gardens-clearing",
+    "environmentFamilies": 5,
+    "environmentMaterialAtlas": true,
+    "residentTiles": 4,
+    "loadingTiles": 2,
+    "assetErrors": 0,
+    "forestBakedLightmaps": 3,
+    "assetEnemies": 24,
+    "modularEnemies": 24,
+    "enemyParts": 142,
+    "enemyFallbackParts": 0,
+    "enemyDrawBatches": 14,
+    "enemyVisualArchetypes": 5,
+    "enemyMeshPools": 66,
+    "enemyFittedShapes": 41,
+    "bossModels": 0,
+    "bossModelIds": [],
+    "bossModelFailures": [],
+    "bossAnimations": [],
+    "bossModelObjects": 0,
+    "loadedModels": 79,
+    "failedModels": [],
+    "gpuSamples": [
+      {
+        "id": 11364,
+        "ms": 5.732833
+      }
+    ]
+  }
+}

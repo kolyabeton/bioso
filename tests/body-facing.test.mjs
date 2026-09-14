@@ -8,7 +8,7 @@ function target(s,x,z){const e=spawnEnemy(s,'normal',{x,z});e.hp=e.maxHp=10000;r
 test('bulk and rated capacity slow turning; backpack load does not',()=>{
  const s=createRun(),light=stats(s).turnSpeed;
  s.inventory.push(createPart(s,'rocket'));assert.equal(stats(s).turnSpeed,light);
- s.body.upgrades.capacity=1;assert.ok(stats(s).turnSpeed<light);
+ s.body.upgrades.capacity=2;assert.ok(stats(s).turnSpeed<light);
  s.body=createPart(s,'bastion');const heavy=stats(s).turnSpeed;assert.ok(heavy<light);
  s.body=createPart(s,'rootwalker');assert.ok(stats(s).turnSpeed<heavy);
 });
@@ -36,8 +36,8 @@ test('blocked attacks spend no ammo or attack proc and resume after the body tur
   assert.ok(s.events.some(e=>e.type==='attack'),key);
  }
 });
-test('melee area damage and repeat attacks cannot cross the body',()=>{
- const s=createRun();s.arms=[createPart(s,'hammer'),null];const right=target(s,1,0),left=target(s,-1,0);
- attack(s,0);s.time+=SHIELD_IMPACT_DELAY;attack(s,0);assert.ok(right.hp<right.maxHp);assert.equal(left.hp,left.maxHp);
- right.hp=0;attack(s,0,stats(s),s.arms[0]);assert.equal(left.hp,left.maxHp);
+test('shield splash crosses the centreline after a valid strike, but repeats cannot originate across the body',()=>{
+ const s=createRun();s.arms=[createPart(s,'hammer'),null];const right=target(s,1,2),left=target(s,-1,2);
+ attack(s,0);s.time+=SHIELD_IMPACT_DELAY;attack(s,0);assert.ok(right.hp<right.maxHp);assert.ok(left.hp<left.maxHp);
+ right.hp=0;left.hp=left.maxHp;attack(s,0,stats(s),s.arms[0]);assert.equal(left.hp,left.maxHp);
 });

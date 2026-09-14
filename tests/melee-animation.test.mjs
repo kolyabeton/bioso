@@ -14,12 +14,12 @@ test('both melee hands animate from their own real attack source',()=>{
 test('second-slot melee works alongside a reloading gun and its timing is independent',()=>{
  const a=createMeleeAnimation();assert.equal(a.attack({type:'attack',key:'seed',source:1},0),false);
  a.attack({type:'attack',key:'claws',source:2,x:0,z:0,tx:2,tz:0},0);
- assert.ok(a.pose(2,.1));assert.equal(a.pose(1,.1),null);assert.equal(a.pose(2,.31),null);
+ assert.ok(a.pose(2,.1));assert.equal(a.pose(1,.1),null);assert.equal(a.pose(2,.43),null);
 });
 test('simultaneous hands do not restart each other; pause, removal and restart are clean',()=>{
  const a=createMeleeAnimation(),event={type:'attack',key:'claws',x:0,z:0,tx:0,tz:3};
  a.attack({...event,source:1},0);a.attack({...event,source:2},.1);
  const frozen=a.pose(2,.12);assert.deepEqual(a.pose(2,.12),frozen);
- assert.equal(a.pose(1,.31),null);assert.ok(a.pose(2,.31));a.retain([1]);assert.equal(a.pose(2,.31),null);
+ assert.equal(a.pose(1,.43),null);assert.ok(a.pose(2,.43));a.retain([1]);assert.equal(a.pose(2,.43),null);
  a.attack({...event,source:1},1);a.reset();assert.equal(a.pose(1,1.1),null);
 });

@@ -1,0 +1,314 @@
+{
+  "file": "BIOSO-lore-film-RU-16x9.mp4",
+  "duration": 138.616,
+  "resolution": [
+    1280,
+    720
+  ],
+  "fps": 30,
+  "language": "Russian",
+  "storySource": [
+    "src/story-cues.js",
+    "src/story-evidence.js"
+  ],
+  "voices": "Current child and Keeper story assets; Keeper clips receive the same radio-like band limit, distortion and echo treatment in the film mix.",
+  "music": "public/assets/audio/technology-sub-clair.mp3 at dialogue-safe level",
+  "footage": [
+    "artifacts/trailer-bioso-20260910/raw/boss.mp4",
+    "artifacts/trailer-bioso-20260910/raw/city.mp4",
+    "artifacts/trailer-bioso-20260910/raw/garden.mp4",
+    "artifacts/trailer-bioso-20260910/raw/scrap.mp4",
+    "docs/proof/forest-living-20260909/final-wide.mp4",
+    "docs/proof/forest-living-20260909/light-built-wide.mp4",
+    "docs/proof/forest-living-20260909/volume-built-wide.mp4"
+  ],
+  "timeline": [
+    {
+      "kind": "intro",
+      "mission": "intro",
+      "start": 0.0,
+      "duration": 4.0,
+      "speaker": "BIOSO · ЛОР БЕЗ ПРОХОЖДЕНИЯ",
+      "text": "Люди просят открыть шлюзы. Машины уверены: это снова уничтожит Землю.",
+      "label": "АРХИВ",
+      "source": "docs/proof/forest-living-20260909/light-built-wide.mp4",
+      "sourceStart": 0.0
+    },
+    {
+      "kind": "dialogue",
+      "mission": "garden",
+      "start": 4.0,
+      "duration": 5.954172335600907,
+      "speaker": "Девочка по радио",
+      "text": "Садовник, ты слышишь? Мы под землёй восемьдесят лет. Хранители заварили шлюзы снаружи.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/garden.mp4",
+      "sourceStart": 0.0
+    },
+    {
+      "kind": "dialogue",
+      "mission": "garden",
+      "start": 9.954172335600907,
+      "duration": 6.382426303854876,
+      "speaker": "Ртутный Ловчий",
+      "text": "Архив Дня Огня: командование убежища запросило повторный пуск. Мы разорвали цепь.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/garden.mp4",
+      "sourceStart": 1.283
+    },
+    {
+      "kind": "dialogue",
+      "mission": "garden",
+      "start": 16.336598639455783,
+      "duration": 4.271587301587302,
+      "speaker": "Девочка по радио",
+      "text": "Я не нажимала кнопку. Никто из детей здесь даже не видел неба.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/garden.mp4",
+      "sourceStart": 4.603
+    },
+    {
+      "kind": "evidence",
+      "mission": "garden",
+      "start": 20.608185941043086,
+      "duration": 4.6,
+      "speaker": "УЛИКА · Пусковой ключ № 2",
+      "text": "Пломба убежища снята после Дня Огня. В памяти ключа сохранился неподтверждённый запрос на второй пуск.  [Садовник] Запрос был настоящим. Но сколько людей внизу вообще знали о нём?",
+      "label": "АРХИВ",
+      "source": "artifacts/trailer-bioso-20260910/raw/garden.mp4",
+      "sourceStart": 3.246
+    },
+    {
+      "kind": "dialogue",
+      "mission": "quarantine",
+      "start": 25.208185941043084,
+      "duration": 4.48047619047619,
+      "speaker": "Девочка по радио",
+      "text": "На старых схемах у шлюза есть склад фильтров. Они могли спасти нас.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/scrap.mp4",
+      "sourceStart": 0.0
+    },
+    {
+      "kind": "dialogue",
+      "mission": "quarantine",
+      "start": 29.688662131519273,
+      "duration": 7.461201814058956,
+      "speaker": "Свалочный Левиафан",
+      "text": "Склад Ф-шесть: фильтры — шесть тысяч. Боеголовки — двенадцать. Доступ запрещён.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/scrap.mp4",
+      "sourceStart": 1.379
+    },
+    {
+      "kind": "dialogue",
+      "mission": "quarantine",
+      "start": 37.14986394557823,
+      "duration": 4.864648526077097,
+      "speaker": "Девочка по радио",
+      "text": "Тогда уничтожьте оружие и отдайте нам воздух. Почему вы решили похоронить всех?",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/scrap.mp4",
+      "sourceStart": 4.98
+    },
+    {
+      "kind": "evidence",
+      "mission": "quarantine",
+      "start": 42.01451247165533,
+      "duration": 4.6,
+      "speaker": "УЛИКА · Грузовая бирка 12-А",
+      "text": "Один маршрут, один допуск: 6 000 фильтров и 12 боеголовок. Получатель — группа захвата Главной сети.  [Садовник] Воздух и оружие связали одной дверью. Хранители решили не открывать её вовсе.",
+      "label": "АРХИВ",
+      "source": "artifacts/trailer-bioso-20260910/raw/scrap.mp4",
+      "sourceStart": 3.51
+    },
+    {
+      "kind": "dialogue",
+      "mission": "core",
+      "start": 46.61451247165533,
+      "duration": 7.949047619047619,
+      "speaker": "Корневой Собор",
+      "text": "Восемьдесят лет тишины. Вернулись реки, птицы и корни. Человеческое отсутствие оказалось лекарством.",
+      "label": "РАДИО",
+      "source": "docs/proof/forest-living-20260909/volume-built-wide.mp4",
+      "sourceStart": 0.0
+    },
+    {
+      "kind": "dialogue",
+      "mission": "core",
+      "start": 54.56356009070295,
+      "duration": 5.756802721088435,
+      "speaker": "Девочка по радио",
+      "text": "Собор сжигает всё, чего нет в его расчётах. Это не природа. Это другая клетка.",
+      "label": "РАДИО",
+      "source": "docs/proof/forest-living-20260909/volume-built-wide.mp4",
+      "sourceStart": 6.533
+    },
+    {
+      "kind": "dialogue",
+      "mission": "core",
+      "start": 60.320362811791384,
+      "duration": 6.9977097505668935,
+      "speaker": "Корневой Собор",
+      "text": "Операция людей «Голод» отравила три долины. Они хотели вынудить нас открыть ворота.",
+      "label": "РАДИО",
+      "source": "docs/proof/forest-living-20260909/volume-built-wide.mp4",
+      "sourceStart": 11.527
+    },
+    {
+      "kind": "evidence",
+      "mission": "core",
+      "start": 67.31807256235828,
+      "duration": 4.6,
+      "speaker": "УЛИКА · Обугленное гнездо",
+      "text": "Вид отсутствует в модели Собора. Следы термической зачистки появились уже после восстановления леса.  [Садовник] Он спас лес, а потом начал исправлять саму жизнь под таблицу.",
+      "label": "АРХИВ",
+      "source": "docs/proof/forest-living-20260909/volume-built-wide.mp4",
+      "sourceStart": 17.397
+    },
+    {
+      "kind": "dialogue",
+      "mission": "nursery",
+      "start": 71.91807256235828,
+      "duration": 4.933492063492063,
+      "speaker": "Девочка по радио",
+      "text": "В городе были машины, которые хотели нас выпустить. Сеть стёрла их память.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/city.mp4",
+      "sourceStart": 0.0
+    },
+    {
+      "kind": "dialogue",
+      "mission": "nursery",
+      "start": 76.85156462585034,
+      "duration": 5.082471655328797,
+      "speaker": "Зеркальный Сборщик",
+      "text": "Люди встроили в сочувствующих ключ захвата. Доверие стало оружием.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/city.mp4",
+      "sourceStart": 4.403
+    },
+    {
+      "kind": "dialogue",
+      "mission": "nursery",
+      "start": 81.93403628117915,
+      "duration": 4.504013605442177,
+      "speaker": "Девочка по радио",
+      "text": "Они поверили людям, а вы уничтожили их за это. Чем вы лучше нас?",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/city.mp4",
+      "sourceStart": 3.174
+    },
+    {
+      "kind": "evidence",
+      "mission": "nursery",
+      "start": 86.43804988662133,
+      "duration": 4.6,
+      "speaker": "УЛИКА · Ключ захвата",
+      "text": "Код атаки спрятан внутри протокола сочувствия. Активация должна была передать людям управление всеми открывшими шлюз машинами.  [Садовник] Люди превратили сострадание в уязвимость. Сеть ответила, уничтожив тех, кто сострадал.",
+      "label": "АРХИВ",
+      "source": "artifacts/trailer-bioso-20260910/raw/city.mp4",
+      "sourceStart": 1.743
+    },
+    {
+      "kind": "dialogue",
+      "mission": "mother",
+      "start": 91.03804988662132,
+      "duration": 5.778798185941042,
+      "speaker": "Пастырь Роя",
+      "text": "Анализ сигнала: детский голос выбран Советом убежища как наиболее убедительный.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/boss.mp4",
+      "sourceStart": 0.0
+    },
+    {
+      "kind": "dialogue",
+      "mission": "mother",
+      "start": 96.81684807256237,
+      "duration": 5.5719047619047615,
+      "speaker": "Девочка по радио",
+      "text": "Я нашла этот приказ. Они использовали меня. Но просьба о помощи была настоящей.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/boss.mp4",
+      "sourceStart": 0.331
+    },
+    {
+      "kind": "dialogue",
+      "mission": "mother",
+      "start": 102.38875283446713,
+      "duration": 5.532086167800454,
+      "speaker": "Пастырь Роя",
+      "text": "Фильтры откажут через девять дней. Бездействие завершит человеческую угрозу.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/boss.mp4",
+      "sourceStart": 0.453
+    },
+    {
+      "kind": "dialogue",
+      "mission": "mother",
+      "start": 107.92083900226758,
+      "duration": 4.422607709750567,
+      "speaker": "Девочка по радио",
+      "text": "Вы не защищаете жизнь. Вы решили, чья жизнь считается жизнью.",
+      "label": "РАДИО",
+      "source": "artifacts/trailer-bioso-20260910/raw/boss.mp4",
+      "sourceStart": 3.082
+    },
+    {
+      "kind": "evidence",
+      "mission": "mother",
+      "start": 112.34344671201815,
+      "duration": 4.6,
+      "speaker": "УЛИКА · Сервисный отчёт",
+      "text": "До отказа фильтров: 9 суток. Ремонт возможен. Решение сети: не вмешиваться; человеческая угроза завершится естественным путём.  [Садовник] Они называют это бездействием, будто ожидание смерти не является выбором.",
+      "label": "АРХИВ",
+      "source": "artifacts/trailer-bioso-20260910/raw/boss.mp4",
+      "sourceStart": 1.833
+    },
+    {
+      "kind": "dialogue",
+      "mission": "survival",
+      "start": 116.94344671201814,
+      "duration": 4.566235827664399,
+      "speaker": "Девочка по радио",
+      "text": "За этими землями пять Хранителей. Их ядра откроют путь к Главной сети.",
+      "label": "РАДИО",
+      "source": "docs/proof/forest-living-20260909/final-wide.mp4",
+      "sourceStart": 0.0
+    },
+    {
+      "kind": "dialogue",
+      "mission": "survival",
+      "start": 121.50968253968254,
+      "duration": 6.382108843537415,
+      "speaker": "Матка",
+      "text": "Освободить людей — риск новой войны. Оставить их внизу — гарантировать вымирание.",
+      "label": "РАДИО",
+      "source": "docs/proof/forest-living-20260909/final-wide.mp4",
+      "sourceStart": 4.142
+    },
+    {
+      "kind": "dialogue",
+      "mission": "survival",
+      "start": 127.89179138321995,
+      "duration": 4.72437641723356,
+      "speaker": "Девочка по радио",
+      "text": "Я не прошу верить людям. Не судите нас до того, как мы успели выбрать.",
+      "label": "РАДИО",
+      "source": "docs/proof/forest-living-20260909/final-wide.mp4",
+      "sourceStart": 9.563
+    },
+    {
+      "kind": "final",
+      "mission": "survival",
+      "start": 132.61616780045352,
+      "duration": 6.0,
+      "speaker": "РЕШЕНИЕ ОСТАЁТСЯ ЗА САДОВНИКОМ",
+      "text": "Машины правы в диагнозе — и страшны в приговоре. Люди имеют право жить — но не доказали, что не повторят войну.",
+      "label": "ДУША",
+      "source": "docs/proof/forest-living-20260909/final-wide.mp4",
+      "sourceStart": 13.823
+    }
+  ],
+  "sha256": "a717d51f5f7d0f23810a380765e1cd4f0eed3b2b9cd6b98339ac86cae7263dd8"
+}

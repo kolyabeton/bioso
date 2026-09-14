@@ -11,10 +11,10 @@ export function installBrowserQA({getRun,start,ui,setInput,snapshot}){
  });
  function tick(){if(!active)return;const s=getRun();if(s.dead||s.won&&!s.continued){active=false;setInput({x:0,z:0});report.end={...snapshot(),wallSeconds:(performance.now()-started)/1000,cleared:[...s.exploration.cleared],stage:s.mission?.stage,extraction:s.mission?.extraction};publish();status.textContent=(s.dead?'Поражение':'Завершено')+' · '+Math.floor(s.time)+'с';return;}
   if(ui.screen==='level'||ui.screen==='ability-detail'){
-   const index=bot.choice(s),select=document.querySelector(`[data-action="select-ability"][data-index="${index}"]`);if(select){select.click();const confirm=document.querySelector('[data-action="confirm-ability"], [data-action="choose"]');if(confirm&&!confirm.disabled){report.selections.push({at:s.time,id:s.choices[index].id});confirm.click();}}return;
+   const index=bot.choice(s),choose=document.querySelector(`[data-action="choose"][data-index="${index}"]`);if(choose&&!choose.disabled){report.selections.push({at:s.time,id:s.choices[index].id});choose.click();}return;
   }
   if(ui.screen==='boss-reward'){
-   const reward=document.querySelector('[data-action="boss-choose"][data-id="0"]');
+   const reward=document.querySelector('[data-action="boss-choose"][data-index="0"]');
    if(reward&&!reward.disabled){report.selections.push({at:s.time,reward:s.bossRewards?.[0]?.options?.[0]});reward.click();document.querySelector('[data-action="item-tip-action"]')?.click();publish();}return;
   }
   if(ui.screen)return;

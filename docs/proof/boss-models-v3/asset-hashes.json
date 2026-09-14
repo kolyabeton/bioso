@@ -1,0 +1,10 @@
+{
+  "src/boss-model-view.js": "460e69fe7c5b0df17dbb80546418ad73cbbcb155ca1ec3b1e5a24ba5a8386087",
+  "src/boss-runtime-review.js": "a7659bbeb6b70d4853bfa2d8fa882f30420c3d0d7ee4e455a0d7734d7852bb0d",
+  "scripts/asset-kit/bosses_runtime_v3.py": "b5e728655aeeb3fe090c4eed6fde2fbddac12871ebbeb000a28f8a626b89df0d",
+  "public/assets/kit/boss-mercury-hunter.glb": "00dce9569b3ad08ae547da57b34bda51da48414139fb0161bbe5e44b6c61048f",
+  "public/assets/kit/boss-scrap-leviathan.glb": "13503d5c6a050aba5cb5dcc2b62fb9477758c0c25d3163bb25d6e44cb72b477a",
+  "public/assets/kit/boss-root-cathedral.glb": "fee36594cab50d93fe22fe0ede394af12c751e67a54718d6f7e192652133eb58",
+  "public/assets/kit/boss-mirror-collector.glb": "17239dc5b72d253f29616e21c59b72b1093128df2e7e2c5dcae7ef09fe70240b",
+  "public/assets/kit/boss-swarm-shepherd.glb": "b1504c8f6ab98a02bfce6448dd1dbb879540d2b00708b62c08a94ea1169a46bf"
+}

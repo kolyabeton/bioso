@@ -1,0 +1,154 @@
+TAP version 13
+# Subtest: five authored acts expose exact flow, caps, signatures and a hard cap of 88
+ok 1 - five authored acts expose exact flow, caps, signatures and a hard cap of 88
+  ---
+  duration_ms: 1.14875
+  type: 'test'
+  ...
+# Subtest: minute cadence spends exactly 10, 65, 23 and 2 percent without changing its total
+ok 2 - minute cadence spends exactly 10, 65, 23 and 2 percent without changing its total
+  ---
+  duration_ms: 0.162875
+  type: 'test'
+  ...
+# Subtest: soft and hard caps discard spawn credit instead of banking debt
+ok 3 - soft and hard caps discard spawn credit instead of banking debt
+  ---
+  duration_ms: 1.290833
+  type: 'test'
+  ...
+# Subtest: minute accents own 45 percent and unavailable early roles fall back to mass
+ok 4 - minute accents own 45 percent and unavailable early roles fall back to mass
+  ---
+  duration_ms: 0.636041
+  type: 'test'
+  ...
+# Subtest: scheduled and promoted wave elites share cap six, pursuer cap three and skip full-cap promotion
+ok 5 - scheduled and promoted wave elites share cap six, pursuer cap three and skip full-cap promotion
+  ---
+  duration_ms: 0.6555
+  type: 'test'
+  ...
+# Subtest: the first three survival wave elites have 70 percent less health across promoted and scheduled spawns
+ok 6 - the first three survival wave elites have 70 percent less health across promoted and scheduled spawns
+  ---
+  duration_ms: 0.346625
+  type: 'test'
+  ...
+# Subtest: five offers contain build, defense and synergy progress and remain seeded
+ok 7 - five offers contain build, defense and synergy progress and remain seeded
+  ---
+  duration_ms: 6.399792
+  type: 'test'
+  ...
+# Subtest: a build ability missing from four offer rounds is forced on the fifth
+ok 8 - a build ability missing from four offer rounds is forced on the fifth
+  ---
+  duration_ms: 0.225958
+  type: 'test'
+  ...
+# Subtest: last level choice grants protection and pushes only ordinary nearby enemies
+ok 9 - last level choice grants protection and pushes only ordinary nearby enemies
+  ---
+  duration_ms: 0.789791
+  type: 'test'
+  ...
+# Subtest: superboss pressure and reward relief use quarter flow, half cap and bounded credit
+ok 10 - superboss pressure and reward relief use quarter flow, half cap and bounded credit
+  ---
+  duration_ms: 1.091167
+  type: 'test'
+  ...
+# Subtest: old profiles need no migration for transient director and offer state
+ok 11 - old profiles need no migration for transient director and offer state
+  ---
+  duration_ms: 0.207125
+  type: 'test'
+  ...
+# Subtest: third minute starts the assault; every rest lasts exactly 35 seconds
+ok 12 - third minute starts the assault; every rest lasts exactly 35 seconds
+  ---
+  duration_ms: 0.612333
+  type: 'test'
+  ...
+# Subtest: opening horde plus stream fills 120 slots from all quadrants without exceeding cap
+ok 13 - opening horde plus stream fills 120 slots from all quadrants without exceeding cap
+  ---
+  duration_ms: 8.570875
+  type: 'test'
+  ...
+# Subtest: both spawners and scheduled elites stop for the entire rest and discard debt
+ok 14 - both spawners and scheduled elites stop for the entire rest and discard debt
+  ---
+  duration_ms: 1.492792
+  type: 'test'
+  ...
+# Subtest: boss relief cancels an opening instead of releasing its remainder afterwards
+ok 15 - boss relief cancels an opening instead of releasing its remainder afterwards
+  ---
+  duration_ms: 0.254417
+  type: 'test'
+  ...
+# Subtest: superboss quarter flow also applies to opening hordes and the shared half cap
+ok 16 - superboss quarter flow also applies to opening hordes and the shared half cap
+  ---
+  duration_ms: 0.6395
+  type: 'test'
+  ...
+# Subtest: blocked placement, full slots, dungeons and last stands cannot bank a late horde
+ok 17 - blocked placement, full slots, dungeons and last stands cannot bank a late horde
+  ---
+  duration_ms: 1.712833
+  type: 'test'
+  ...
+# Subtest: exploration recycles only distant ordinary wave enemies without rewards
+ok 18 - exploration recycles only distant ordinary wave enemies without rewards
+  ---
+  duration_ms: 0.361791
+  type: 'test'
+  ...
+# Subtest: moving fronts favor the route ahead while preserving safe distance and collision checks
+ok 19 - moving fronts favor the route ahead while preserving safe distance and collision checks
+  ---
+  duration_ms: 0.395375
+  type: 'test'
+  ...
+# Subtest: late combined wave spawners stop at 180 and cannot add an extra scheduled elite
+ok 20 - late combined wave spawners stop at 180 and cannot add an extra scheduled elite
+  ---
+  duration_ms: 6.776833
+  type: 'test'
+  ...
+# Subtest: production simulation keeps a moving player surrounded by a bounded crowd
+ok 21 - production simulation keeps a moving player surrounded by a bounded crowd
+  ---
+  duration_ms: 160.322375
+  type: 'test'
+  ...
+# Subtest: all achievements, weapons and missions survive reload without touching normal saves
+ok 22 - all achievements, weapons and missions survive reload without touching normal saves
+  ---
+  duration_ms: 1.823541
+  type: 'test'
+  ...
+# Subtest: unlocked profile preserves ordinary initial resources, equipment, abilities and combat stats
+ok 23 - unlocked profile preserves ordinary initial resources, equipment, abilities and combat stats
+  ---
+  duration_ms: 626.687083
+  type: 'test'
+  ...
+# Subtest: every unlocked mission uses its ordinary starting state and simulation
+ok 24 - every unlocked mission uses its ordinary starting state and simulation
+  ---
+  duration_ms: 1205.785208
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1964.584833

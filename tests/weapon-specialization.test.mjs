@@ -8,12 +8,12 @@ import {eligible,rollChoices} from '../src/systems/progression.js';
 import {startReload,tickWeapons} from '../src/combat-feel.js';
 import {specializationHit,specializationKill,prepareSpecializationAttack,isMelee} from '../src/systems/weapon-specialization.js';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
-test('all eleven weapons obey damage and specialized critical chance without extra range',()=>{
- for(const [key,d] of Object.entries(WEAPONS)){
+test('all weapons obey damage and melee critical chance without extra range',()=>{
+ for(const [key,d] of Object.entries(WEAPONS).filter(([key])=>key!=='drone')){
   const s=createRun(),p=createPart(s,key),base=weaponStats(s,p);s.arms=[p];learn(s,'might.0');near(weaponStats(s,p).damage/base.damage,1.1);
   learn(s,'melee.0');learn(s,'ranged.0');near(weaponStats(s,p).damage/base.damage,isMelee(d)?1.3:1.25);
   learn(s,'melee.1');near(weaponStats(s,p).crit,base.crit+(isMelee(d)?.1:0));
-  learn(s,'ranged.2');near(weaponStats(s,p).crit,base.crit+.1);near(weaponStats(s,p).range,base.range);
+  learn(s,'ranged.2');near(weaponStats(s,p).crit,base.crit+(isMelee(d)?.1:0));near(weaponStats(s,p).range,base.range);
  }
 });
 test('combo fourth hit only; target, time, weapon and secondary boundaries',()=>{
@@ -27,11 +27,16 @@ test('frenzy accelerates only melee for four seconds and does not stack',()=>{
  specializationKill(s,m);near(weaponStats(s,melee).interval,m.interval/1.25);near(weaponStats(s,ranged).interval,r.interval);
  specializationKill(s,m);near(weaponStats(s,melee).interval,m.interval/1.25);s.time=4;near(weaponStats(s,melee).interval,m.interval);
 });
-test('reload speed and full salvo apply to every ranged weapon only after completed reload',()=>{
- for(const [key,d] of Object.entries(WEAPONS).filter(([,d])=>!isMelee(d))){
+test('reload speed applies to every charged weapon; full salvo remains ranged-only',()=>{
+ for(const [key,d] of Object.entries(WEAPONS).filter(([key,d])=>key!=='drone'&&!isMelee(d)&&d.magazine)){
   const s=createRun(),p=createPart(s,key);s.arms=[p];learn(s,'ranged.1');learn(s,'ranged.3');const w=weaponStats(s,p);
   near(prepareSpecializationAttack(s,p,w).damage,w.damage);p.ammo=0;assert.ok(startReload(s,p));near(p.reloadDuration,d.reload*.8);tickWeapons(s,p.reloadDuration);
   near(prepareSpecializationAttack(s,p,w,true).damage,w.damage);near(prepareSpecializationAttack(s,p,w).damage,w.damage*1.3);near(prepareSpecializationAttack(s,p,w).damage,w.damage);
+ }
+ for(const [key,d] of Object.entries(WEAPONS).filter(([,d])=>isMelee(d)&&d.magazine)){
+  const s=createRun(),p=createPart(s,key);s.arms=[p];learn(s,'ranged.1');learn(s,'ranged.3');const w=weaponStats(s,p);
+  p.ammo=0;assert.ok(startReload(s,p));near(p.reloadDuration,d.reload*.8);tickWeapons(s,p.reloadDuration);
+  near(prepareSpecializationAttack(s,p,w).damage,w.damage);
  }
 });
 test('actual attack consumes charged salvo once and direct melee kills trigger frenzy',()=>{
@@ -44,23 +49,23 @@ test('equipment controls specialization offers without permanently locking a bra
  learn(s,'ranged.0');learn(s,'ranged.2');assert.ok(eligible(s,ABILITIES['ranged.3']));s.arms.push(createPart(s,'claws'));assert.ok(eligible(s,ABILITIES['melee.0']));
 });
 
-test('former range skills retain IDs, stack critical damage and preserve projectile effects',()=>{
+test('reworked skills retain IDs and preserve projectile effects',()=>{
  const s=createRun(),p=createPart(s,'seed'),base=weaponStats(s,p);
  // Saved runs store these IDs; resolving them must now grant the new bonuses.
  s.abilities.learned=['melee.1','ranged.2','tempo.2','projectiles.2'];
  const b=modifiers(s),w=weaponStats(s,p);
- near(w.range,base.range);near(w.crit,base.crit+.1);near(w.critPower,base.critPower+.5);near(w.speed,base.speed*1.45);assert.equal(b.splinter,true);
+ near(w.range,base.range);near(w.crit,base.crit);near(w.critPower,base.critPower);near(w.speed,base.speed*1.2);assert.equal(b.criticalTempo,true);near(b.criticalTempoReduction,.15);assert.equal(b.splinter,true);assert.equal(b.ballisticGrowth,true);
  for(const a of Object.values(ABILITIES))for(const key of ['range','reach','meleeReach','rangedReach'])assert.equal(a.bonus[key],undefined,a.id+': '+key);
- learn(s,'might.1');learn(s,'might.2');near(weaponStats(s,p).crit,base.crit+.2);near(weaponStats(s,p).critPower,base.critPower+1);
- p.upgrades.crit=100;assert.equal(weaponStats(s,p).crit,.6);
+ learn(s,'might.1');learn(s,'might.2');near(weaponStats(s,p).crit,base.crit+.1);near(weaponStats(s,p).critPower,base.critPower);assert.equal(modifiers(s).rupture,true);
+ p.upgrades.crit=100;assert.equal(weaponStats(s,p).crit,.75);
 });
-test('new critical chance and multiplier affect actual melee and arc damage',()=>{
+test('remaining critical chance and multiplier affect actual melee and arc damage',()=>{
  for(const key of ['claws','arc']){
   function hit(learned){const s=createRun();s.world={walkable:()=>true,lineClear:()=>true};s.rng=()=>.12;s.arms=[createPart(s,key)];for(const id of learned)learn(s,id);
    const enemy=spawnEnemy(s,'normal',{x:0,z:1});enemy.hp=enemy.maxHp=10000;enemy.armor=0;attack(s,0);
    return s.events.find(e=>e.type==='enemy-damage'&&e.target===enemy.id);
   }
-  const base=hit([]),critical=hit([key==='claws'?'melee.1':'ranged.2','tempo.2','projectiles.2']);
-  assert.equal(base.critical,false);assert.equal(critical.critical,true);near(critical.amount,base.amount*2);
+   const base=hit([]),critical=hit([key==='claws'?'melee.1':'might.1','tempo.2','projectiles.2']);
+  assert.equal(base.critical,false);assert.equal(critical.critical,true);near(critical.amount,base.amount*1.5);
  }
 });

@@ -22,7 +22,7 @@ export function createInteractionHighlight(parent,{radius=2.4,height=3,color=0xf
  const pointer=new T.Mesh(markerGeometry,markerMaterial);pointer.name='interaction-pointer';pointer.position.y=height+1;pointer.visible=marker;root.add(pointer);
  function restore(){for(const b of bindings)b.mesh.material=b.original;for(const m of owned)m.dispose();owned.length=0;bindings=[];}
  function setModel(model){if(disposed)return;restore();model.traverse(mesh=>{if(!mesh.isMesh)return;const original=mesh.material;
-  const copy=m=>{const c=m.clone();owned.push(c);if(c.emissive)c.userData.highlightBase=c.emissive.clone();return c;};
+  const copy=m=>{const c=m.clone();c.onBeforeCompile=m.onBeforeCompile;c.customProgramCacheKey=m.customProgramCacheKey;owned.push(c);if(c.emissive)c.userData.highlightBase=c.emissive.clone();return c;};
   mesh.material=Array.isArray(original)?original.map(copy):copy(original);bindings.push({mesh,original});
  });}
  function update({visible=true,time=0,intensity=1,reducedMotion=false}={}){

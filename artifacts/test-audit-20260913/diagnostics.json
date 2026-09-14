@@ -1,0 +1,77 @@
+{
+  "method": "Headless diagnosis of failing test assumptions, no source changes. Instantly kills test enemies; not a human or browser playthrough.",
+  "missions": [
+    {
+      "id": "garden",
+      "won": true,
+      "rewarded": true,
+      "descendantsMissedByOldHelper": 0,
+      "achievement": true
+    },
+    {
+      "id": "quarantine",
+      "won": true,
+      "rewarded": true,
+      "descendantsMissedByOldHelper": 0,
+      "achievement": true
+    },
+    {
+      "id": "core",
+      "won": true,
+      "rewarded": true,
+      "descendantsMissedByOldHelper": 164,
+      "achievement": true
+    },
+    {
+      "id": "nursery",
+      "won": true,
+      "rewarded": true,
+      "descendantsMissedByOldHelper": 14,
+      "achievement": true
+    },
+    {
+      "id": "mother",
+      "won": true,
+      "rewarded": true,
+      "descendantsMissedByOldHelper": 6,
+      "achievement": true
+    }
+  ],
+  "pickup": [
+    {
+      "id": "garden",
+      "key": "digestion",
+      "inInventory": false,
+      "installed": true,
+      "stillOnGround": false
+    },
+    {
+      "id": "quarantine",
+      "key": "digestion",
+      "inInventory": false,
+      "installed": true,
+      "stillOnGround": false
+    },
+    {
+      "id": "core",
+      "key": "digestion",
+      "inInventory": false,
+      "installed": true,
+      "stillOnGround": false
+    },
+    {
+      "id": "nursery",
+      "key": "digestion",
+      "inInventory": false,
+      "installed": true,
+      "stillOnGround": false
+    },
+    {
+      "id": "mother",
+      "key": "digestion",
+      "inInventory": false,
+      "installed": true,
+      "stillOnGround": false
+    }
+  ]
+}

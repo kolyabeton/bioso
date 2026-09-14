@@ -1,0 +1,15 @@
+.ui-settings-credits{padding-top:16px;border-top:1px solid var(--ui-border)}
+.ui-settings-credits>.ui-button{width:100%;white-space:nowrap;box-sizing:border-box;text-decoration:none}
+.ui-dialog[data-screen=credits] #panel-content{overflow-y:auto;overscroll-behavior:contain}
+.ui-credits{padding:20px 16px 24px;display:flex;flex-direction:column;gap:24px;min-width:0}
+.ui-credits .ui-section-label{margin:0 0 10px}
+.ui-credits h3:not(.ui-section-label){margin:0;font-size:16px;line-height:24px;font-weight:650;overflow-wrap:anywhere}
+.ui-credits-creator h3:not(.ui-section-label){font-size:22px;line-height:30px}
+.ui-credits-creator .ui-note{margin:8px 0 0;letter-spacing:.16em}
+.ui-credit{padding-top:18px;border-top:1px solid var(--ui-border);min-width:0}
+.ui-credit-author{margin:4px 0 6px;font-size:14px;line-height:21px;color:var(--ui-muted)}
+.ui-credit-links{display:flex;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px;line-height:20px}
+.ui-credit-links a{display:inline-flex;align-items:center;min-height:44px;color:var(--ui-mint);text-underline-offset:4px;white-space:nowrap}
+.ui-credit-license summary{padding:12px 0;min-height:44px;box-sizing:border-box;cursor:pointer;font-size:13px;line-height:20px;color:var(--ui-mint)}
+.ui-credit-license pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px/21px var(--ui-font);margin:0;padding:12px;background:var(--ui-surface-raised);border-radius:6px}
+.ui-credit-links a:focus-visible,.ui-credit-license summary:focus-visible{outline:2px solid var(--ui-mint);outline-offset:2px}

@@ -1,0 +1,145 @@
+{
+  "qualityPersistence": "Low remained selected after reload; restored Medium",
+  "checks": [
+    {
+      "buttons": [
+        {
+          "label": "",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 48
+        },
+        {
+          "label": "EN",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 143
+        },
+        {
+          "label": "RU",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 143
+        },
+        {
+          "label": "Включить звук",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 290
+        },
+        {
+          "label": "Низкое",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 94
+        },
+        {
+          "label": "Среднее",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 94
+        },
+        {
+          "label": "Высокое",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 94
+        },
+        {
+          "label": "30",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 143
+        },
+        {
+          "label": "60",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 143
+        },
+        {
+          "label": "Создатели",
+          "overflow": false,
+          "whiteSpace": "nowrap",
+          "width": 290
+        }
+      ],
+      "dialog": {
+        "height": 624,
+        "width": 344,
+        "x": 8,
+        "y": 8
+      },
+      "overflow": false,
+      "viewport": [
+        360,
+        640
+      ]
+    },
+    {
+      "buttons": [
+        {
+          "label": "",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "EN",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "RU",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "Включить звук",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "Низкое",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "Среднее",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "Высокое",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "30",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "60",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        },
+        {
+          "label": "Создатели",
+          "overflow": false,
+          "whiteSpace": "nowrap"
+        }
+      ],
+      "dialog": {
+        "height": 828,
+        "width": 366,
+        "x": 12,
+        "y": 8
+      },
+      "overflow": false,
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  ]
+}

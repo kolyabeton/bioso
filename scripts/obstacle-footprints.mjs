@@ -8,7 +8,7 @@ export function hull(points){
  const half=list=>{const out=[];for(const p of list){while(out.length>=2&&cross(out.at(-2),out.at(-1),p)<=0)out.pop();out.push(p);}return out;};
  return [...half(sorted).slice(0,-1),...half(sorted.toReversed()).slice(0,-1)];
 }
-export function modelPoints(id){
+export function modelPoints(id,{normalize=true}={}){
  const b=fs.readFileSync(new URL(`../public/assets/kit/${id}.glb`,import.meta.url)),jsonLength=b.readUInt32LE(12);
  const g=JSON.parse(b.subarray(20,20+jsonLength).toString()),bin=b.subarray(28+jsonLength),points=[];
  function visit(i,parent){
@@ -20,6 +20,7 @@ export function modelPoints(id){
   for(const child of n.children||[])visit(child,m);
  }
  for(const i of g.scenes[g.scene||0].nodes)visit(i,new T.Matrix4());
+ if(!normalize)return points;
  const box=new T.Box3().setFromPoints(points),d=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3()),scale=1/Math.max(d.x,d.y,d.z);center.y=box.min.y;
  return points.map(p=>p.sub(center).multiplyScalar(scale));
 }

@@ -4,6 +4,8 @@ const rarityBonus={common:0,uncommon:1,rare:2,relic:3};
 export function organCapacity(body){
  const d=CATALOG[body.key]||body;
  const rank=Math.max(0,Math.min(4,Math.floor((body.tier??1)-1)));
+ if(body.key==='hecaton')return Math.min(2,d.organs+rank+(rarityBonus[body.rarity]||0));
+ if(body.key==='broodmother')return 3;
  return Math.min(d.arms>=3?3:MAX_ORGANS,d.organs+rank+(rarityBonus[body.rarity]||0));
 }
 export function slotCount(s,body,group){

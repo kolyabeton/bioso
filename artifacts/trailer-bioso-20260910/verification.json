@@ -1,0 +1,8 @@
+{
+  "fullDecode": "PASS",
+  "audioPeak": 0.9152467846870422,
+  "audioRms": 0.14588665962219238,
+  "decodedAudioSeconds": 30.144,
+  "sha256": "7caf473d3ea2f8cbbc04ccd793423dd477bc1e6453af81c745078a5740be4c14",
+  "streams": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'artifacts/trailer-bioso-20260910/BIOSO-trailer-30s-16x9.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    title           : BIOSO \u2014 Gameplay Trailer\n    encoder         : Lavf61.7.100\n    comment         : Staged in-engine gameplay. Boss music: 105 \u041a\u0430\u0441\u0430\u043d\u0438\u0435 by \u0412\u043b\u0430\u0434\u0438\u0441\u043b\u0430\u0432 \u0417\u0430\u0432\u043e\u0440\u0438\u043d. Existing game sound effects.\n  Duration: 00:00:30.01, start: 0.000000, bitrate: 4636 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, smpte170m/smpte170m/bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], 4369 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n      Metadata:\n        handler_name    : VideoHandler\n        vendor_id       : [0][0][0][0]\n        encoder         : Lavc61.19.100 libx264\n  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 268 kb/s (default)\n      Metadata:\n        handler_name    : SoundHandler\n        vendor_id       : [0][0][0][0]\nAt least one output file must be specified\n"
+}

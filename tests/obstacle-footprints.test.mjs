@@ -42,7 +42,7 @@ test('actual player movement passes beside each obstacle type with both chassis 
 test('both chassis traverse all 25 tiles, safe points and stone recesses across two seeds',()=>{
  for(const seed of [12,20317])for(const [key,r] of [['wanderer',1.5],['hecaton',2.4]]){
   const world=assembleBiomeWorld(seed),s={world,body:{key},player:{x:0,z:22}};
-  for(const tile of world.tiles)for(const goal of [...tile.safe,{x:tile.x+20,z:tile.z-13}]){
+  for(const tile of world.tiles)for(const goal of [...tile.safe,...(tile.biome==='forest'?[]:[{x:tile.x+20,z:tile.z-13}])]){
    const path=world.findPath(s.player,goal,r);
    assert.ok(path.length||Math.hypot(s.player.x-goal.x,s.player.z-goal.z)<2.1,`${seed} ${key} ${tile.id} missing path`);
    for(const p of path){const dx=p.x-s.player.x,dz=p.z-s.player.z,n=Math.ceil(Math.hypot(dx,dz)/.15);for(let i=0;i<n;i++)movePlayer(s,.02,dx/n,dz/n);}

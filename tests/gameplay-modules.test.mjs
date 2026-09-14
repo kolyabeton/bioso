@@ -10,19 +10,27 @@ import {isaacHit} from '../src/systems/isaac-combat.js';
 import {isaacHit as organHit} from '../src/systems/organs/index.js';
 import {SETS as legacySets} from '../src/systems/sets-loot.js';
 import {SETS} from '../src/systems/sets/index.js';
+import {EVENT_PRESENTATION,eventImage} from '../src/gameplay-modules/event-presentation.js';
 
 test('domain entry points preserve simulation API identity',()=>{
  assert.equal(facade.openSecret,secrets.openSecret);assert.equal(facade.takeDeal,events.takeDeal);
  assert.equal(facade.tickChallenge,events.tickChallenge);assert.equal(isaacHit,organHit);assert.equal(SETS,legacySets);
  assert.deepEqual(Object.keys(GAMEPLAY_MODULES).sort(),Object.keys(facade.ENCOUNTERS).sort());
 });
+test('event detail illustrations reuse matching achievement scenes',()=>{
+ assert.equal(eventImage('infection'),'/assets/ui/achievements/feat-infection-v1.jpg');
+ assert.equal(eventImage('sealed'),'/assets/ui/achievements/feat-sealed-v1.jpg');
+ assert.equal(eventImage('hunt'),'/assets/ui/achievements/feat-hunt-v1.jpg');
+ assert.equal(eventImage('race'),'/assets/ui/achievements/meta-spring-v1.jpg');
+ for(const type of Object.keys(EVENT_PRESENTATION))assert.ok(eventImage(type)?.startsWith('/assets/ui/achievements/'),type);
+});
 test('world modules retain opened shells and distinguish active, reward and exhausted states',()=>{
  const scene=new T.Scene(),view=createGameplayModulesView(scene);
  const nodes=Object.keys(GAMEPLAY_MODULES).map((type,i)=>({type,x:i*4,y:6,z:0,radius:7,state:'ready'}));
  const s={time:0,level:1,world:{flat:false},encounters:{nodes}};view.update(s);
- assert.equal(view.root.children.length,11);
+ assert.equal(view.root.children.length,Object.keys(GAMEPLAY_MODULES).length);
  assert.equal(view.root.children.filter(n=>n.visible).length,3);
- s.time=300;view.update(s);assert.equal(view.root.children.filter(n=>n.visible).length,11);
+ s.time=300;view.update(s);assert.equal(view.root.children.filter(n=>n.visible).length,10);
  const before=JSON.stringify(nodes);view.update(s);assert.equal(JSON.stringify(nodes),before);
  nodes[0].state='reward';nodes[1].state='complete';nodes[4].state='active';nodes[6].state='failed';view.update(s);
  assert.equal(modulePresentation(nodes[0]).signal,'reward');assert.equal(modulePresentation(nodes[1]).opened,true);
@@ -35,19 +43,18 @@ test('world modules retain opened shells and distinguish active, reward and exha
 });
 
 
-test('nursery, slab and organic cache render as image sprites and keep reward states',()=>{
+test('nursery, slab and organic cache use volumetric modules and keep reward states',()=>{
  const view=createGameplayModulesView(new T.Scene());
  const nodes=['nursery','slab','membrane'].map((type,i)=>({type,x:i*4,y:0,z:0,state:'ready'}));
  const run={time:0,encounters:{nodes}};view.update(run);
  for(const group of view.root.children){
   const sprites=[];group.traverse(o=>{if(o.isSprite)sprites.push(o);});
-  assert.equal(sprites.length,1);assert.ok(sprites[0].material.map);
-  assert.equal(group.children.filter(o=>o.isMesh&&o.visible).length,0);
+  assert.equal(sprites.length,0);
+  assert.ok(group.children.some(o=>o.isMesh&&o.visible));
  }
  nodes[0].state='reward';nodes[1].state='complete';view.update(run);
- const sprites=[];view.root.traverse(o=>{if(o.isSprite)sprites.push(o);});
- assert.equal(sprites[1].material.opacity,.65);
- assert.notEqual(sprites[0].material.color.getHex(),0xffffff);
+ assert.equal(view.root.children[0].children[0].position.y,.32);
+ assert.equal(view.root.children[1].children[0].position.y,.32);
  view.dispose();
 });
 
@@ -55,7 +62,7 @@ test('existing event models replace placeholders, and late loads cannot revive r
  const pending=[],view=createGameplayModulesView(new T.Scene(),{load:id=>new Promise(resolve=>pending.push({id,resolve}))});
  const nodes=['altar','sealed','infection','hunt'].map(type=>({type,state:'ready',x:0,y:0,z:0,radius:5}));
  const s={time:300,encounters:{nodes}};view.update(s);
- assert.deepEqual(pending.map(p=>p.id),['arch-stairs','arch-gate','arch-planter','arch-arch']);
+ assert.deepEqual(pending.map(p=>p.id),['arch-stairs','arch-pillar','arch-planter','arch-arch']);
  const template=new T.Group();template.add(new T.Mesh(new T.BoxGeometry(),new T.MeshBasicMaterial()));
  pending[0].resolve(template);await Promise.resolve();
  assert.equal(view.root.children[0].userData.eventModel,'arch-stairs');
@@ -69,7 +76,7 @@ test('existing event models replace placeholders, and late loads cannot revive r
 
 test('simultaneous event discoveries announce together once instead of overwriting notices',()=>{
  const nodes=['altar','sealed','infection','hunt'].map(type=>({type,x:100,y:0,z:100,state:'ready'}));
- const s={time:300,level:1,player:{x:0,y:0,z:0},world:{flat:true},encounters:{nodes},events:[]};
+ const s={time:300,level:30,player:{x:0,y:0,z:0},world:{flat:true},encounters:{nodes},events:[]};
  facade.discoverEncounters(s);
  assert.equal(s.events.length,1);assert.match(s.events[0].text,/4/);
  assert.ok(nodes.every(n=>n.discovered&&n.announced));

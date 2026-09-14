@@ -1,0 +1,20 @@
+{
+  "route": "http://127.0.0.1:5298/?review=trailer&shot=home&screen=home&environment=upper-gardens&quality=high",
+  "screen": "missions",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "panel": {
+    "x": 445.5,
+    "y": 8,
+    "width": 389,
+    "height": 704,
+    "top": 8,
+    "right": 834.5,
+    "bottom": 712,
+    "left": 445.5
+  },
+  "text": "MISSIONS\nMISSION 01\nHunter's Trail\nMercury Hunter\n25 rooms\n2 parts · 1 elite / room\nMISSION 02\nLOCKED\nHeart of the Scrapyard\nScrap Leviathan\nComplete the mission: Hunter's Trail\nMISSION 03\nLOCKED\nRoot Cathedral\nRoot Cathedral\nComplete the mission: Heart of the Scrapyard\nMISSION 04\nLOCKED\nMirror Harvest\nMirror Collector\nComplete the mission: Root Cathedral\nMISSION 05\nLOCKED\nSwarm Shepherd\nSwarm Shepherd\nComplete the mission: Mirror Harvest",
+  "method": "Exact native IAB screenshot of actual live UI, transferred locally through browser clipboard."
+}

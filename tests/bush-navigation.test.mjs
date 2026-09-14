@@ -21,3 +21,21 @@ test('incremental routes still let enemies pass a bush without crossing it',()=>
  }
  assert.ok(Math.hypot(e.x-8,e.z)<1);
 });
+test('flying enemies cross thickets directly while ground navigation remains solid',()=>{
+ const world={tiles:[],flat:true,walkable:(x,z,r)=>Math.abs(x)<40&&Math.abs(z)<40&&Math.hypot(x,z)>3+r,flyable:(x,z,r)=>Math.abs(x)<40-r&&Math.abs(z)<40-r};
+ world.canFly=(a,b,r)=>world.flyable(b.x,b.z,r);
+ const s={world,time:0},e={id:1,x:-8,z:0,radius:.4,hp:10,flying:true};let crossed=false;
+ for(let i=0;i<180;i++){
+  s.time=i/60;navigateEnemy(s,e,{x:8,z:0},4,1/60);crossed||=!world.walkable(e.x,e.z,e.radius);
+ }
+ assert.ok(crossed);assert.ok(Math.hypot(e.x-4,e.z)<.1);
+});
+test('enemy path searches continue on challenge combat time while survival time is paused',()=>{
+ const world={tiles:[],flat:true,walkable:(x,z,r)=>Math.abs(x)<40&&Math.abs(z)<40&&Math.hypot(x,z)>3+r};
+ const s={world,time:480,isaac:{extraTime:0}},e={id:1,x:-8,z:0,radius:.7,hp:10};
+ for(let i=0;i<600;i++){
+  s.isaac.extraTime=i/60;navigateEnemy(s,e,{x:8,z:0},3,1/60);
+  assert.ok(world.walkable(e.x,e.z,e.radius));
+ }
+ assert.equal(s.time,480);assert.ok(Math.hypot(e.x-8,e.z)<1);
+});

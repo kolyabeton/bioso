@@ -1,0 +1,210 @@
+
+> bioso-visual-prototype@0.2.0 build
+> node scripts/build-game.mjs
+
+Assets 25/411
+Assets 50/411
+Assets 75/411
+Assets 100/411
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+Assets 125/411
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (20)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (52)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (80)
+prune: Removed types... Accessor (40)
+Assets 150/411
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (16)
+reorder: No qualifying primitives found; may need to weld first.
+reorder: No qualifying primitives found; may need to weld first.
+prune: Removed types... Accessor (4)
+reorder: No qualifying primitives found; may need to weld first.
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+reorder: No qualifying primitives found; may need to weld first.
+reorder: No qualifying primitives found; may need to weld first.
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+reorder: No qualifying primitives found; may need to weld first.
+reorder: No qualifying primitives found; may need to weld first.
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+reorder: No qualifying primitives found; may need to weld first.
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (402)
+prune: Removed types... Accessor (278)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (452)
+prune: Removed types... Accessor (405)
+prune: Removed types... Accessor (360)
+Assets 175/411
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (14)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (13)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (14)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (4)
+Assets 200/411
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (4)
+Assets 225/411
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (36)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (51)
+prune: Removed types... Accessor (8)
+prune: Removed types... Accessor (39)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+Assets 250/411
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (8)
+reorder: No qualifying primitives found; may need to weld first.
+prune: Removed types... Accessor (8)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (8)
+reorder: No qualifying primitives found; may need to weld first.
+reorder: No qualifying primitives found; may need to weld first.
+Assets 275/411
+Assets 300/411
+Assets 325/411
+Assets 350/411
+Assets 375/411
+Assets 400/411
+Assets 411/411
+vite v7.3.6 building client environment for production...
+transforming...
+
+/assets/ui/materials/ceramic-worn-v1.jpg referenced in /assets/ui/materials/ceramic-worn-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/materials/metal-olive-v1.jpg referenced in /assets/ui/materials/metal-olive-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/materials/ceramic-green-v1.jpg referenced in /assets/ui/materials/ceramic-green-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/parts-atlas-transparent-v1.png referenced in /assets/ui/parts-atlas-transparent-v1.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/art/upper-gardens-v2.jpg referenced in /assets/art/upper-gardens-v2.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 282 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                            4.75 kB │ gzip:   1.83 kB
+dist/assets/onest-cyrillic-wght-normal-DayYxulF.woff2     15.86 kB
+dist/assets/onest-latin-wght-normal-Dun_Rd-l.woff2        33.76 kB
+dist/assets/index-BeVYOXoj.css                           167.77 kB │ gzip:  31.72 kB
+dist/assets/index-DLMEipCe.js                          1,694.41 kB │ gzip: 516.46 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.53s
+{
+  "mode": "production",
+  "bytes": 134431466,
+  "limitBytes": 500000000,
+  "remainingBytes": 365568534,
+  "files": 641,
+  "categories": {
+    "ui": 9092239,
+    "models": 82558187,
+    "environment": 8901260,
+    "audio": 29544882,
+    "application": 4334898
+  }
+}

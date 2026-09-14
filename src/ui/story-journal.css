@@ -1,0 +1,92 @@
+.ui-journal{
+  display:flex;flex-direction:column;gap:16px;
+}
+/* Keep scrolling inside the dialog's available body, above the shared body reset. */
+.ui-dialog[data-screen=journal] .ui-journal,
+.ui-dialog[data-screen=journal-entry] .ui-journal-entry{
+  min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;
+}
+.ui-journal>*,.ui-journal-entry>*{flex:none}
+
+.ui-chronology{display:flex;flex-direction:column;gap:8px}
+.ui-chronology-chapter{padding:16px;--frame-surface:var(--ui-surface-raised)}
+.ui-chronology-chapter>header{
+  display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:12px;
+}
+.ui-journal-chapter-index{
+  display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--ui-bronze-dim);
+  border-radius:7px 2px 7px 2px;color:var(--ui-mint);font-size:12px;font-variant-numeric:tabular-nums;
+}
+.ui-chronology-chapter h3{margin:2px 0 0;font-size:17px;line-height:22px}
+.ui-chronology-chapter header small{
+  color:var(--ui-muted);font-size:10px;line-height:15px;text-transform:uppercase;letter-spacing:.06em;
+}
+.ui-chronology-chapter>.ui-journal-records{margin-top:16px}
+.ui-chronology-empty{
+  display:flex;align-items:center;gap:8px;margin:12px 0 0;padding-top:12px;
+  border-top:1px solid var(--ui-bronze-dim);color:var(--ui-muted);font-size:12px;line-height:18px;
+}
+.ui-chronology-empty>.ui-icon{width:16px;height:16px}
+
+.ui-journal-records{display:flex;flex-direction:column;gap:8px}
+.ui-journal-record{
+  position:relative;display:block;width:100%;min-height:60px;padding:12px 56px 12px 12px;color:var(--ui-text);font:inherit;
+  text-align:left;--frame-surface:var(--ui-surface);
+}
+.ui-journal-record>small,.ui-journal-record>strong{display:block}
+.ui-journal-record>small{
+  color:var(--ui-muted);font-size:10px;line-height:15px;text-transform:uppercase;letter-spacing:.05em;
+}
+.ui-journal-record>strong{margin-top:2px;font-size:14px;line-height:19px}
+.ui-journal-record>p{
+  margin:3px 0 0;color:var(--ui-muted);font-size:11px;line-height:17px;overflow-wrap:anywhere;
+}
+.ui-journal-record-thought{margin-top:10px;padding-top:8px;border-top:1px solid var(--ui-bronze-dim)}
+.ui-journal-record-thought small{
+  display:block;color:var(--ui-mint);font-size:10px;line-height:15px;text-transform:uppercase;letter-spacing:.05em;
+}
+.ui-journal-record-thought p{margin:3px 0 0;font-size:11px;line-height:17px}
+.ui-journal-audio{
+  display:grid;place-items:center;width:44px;height:44px;min-width:44px;min-height:44px;padding:0;
+  border:1px solid var(--ui-bronze-dim);border-radius:7px 2px 7px 2px;background:var(--ui-surface-raised);
+  color:var(--ui-mint);cursor:pointer;touch-action:manipulation;
+}
+.ui-journal-record>.ui-journal-audio{position:absolute;top:8px;right:8px}
+.ui-journal-audio .ui-icon{width:21px;height:21px;pointer-events:none}
+.ui-journal-audio:hover{background:color-mix(in srgb,var(--ui-mint) 10%,var(--ui-surface-raised))}
+.ui-journal-audio:active{transform:translateY(1px)}
+.ui-journal-audio:focus-visible{outline:2px solid var(--ui-mint);outline-offset:2px}
+
+.ui-journal-progress{display:grid;gap:8px;padding:16px;--frame-surface:var(--ui-surface-raised)}
+.ui-journal-progress>div{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}
+.ui-journal-progress p{margin:0;color:var(--ui-muted);font-size:11px;line-height:18px}
+
+.ui-journal-entry{display:flex;flex-direction:column;gap:16px}
+.ui-journal-entry-mark{
+  display:grid;place-items:center;width:64px;height:64px;margin:8px auto 0;
+  color:var(--ui-mint);--frame-surface:var(--ui-surface-raised);
+}
+.ui-journal-entry-mark .ui-icon{width:30px;height:30px}
+.ui-journal-entry header{text-align:center}
+.ui-journal-entry header small{color:var(--ui-muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.ui-journal-entry h3{margin:4px 0 0;font-size:24px;line-height:32px}
+.ui-journal-quote{
+  position:relative;margin:0;padding:16px;color:var(--ui-text);font-size:15px;line-height:24px;
+  --frame-border:var(--ui-mint);--frame-surface:var(--ui-surface-raised);
+}
+.ui-journal-quote:has(.ui-journal-audio){padding-right:68px;min-height:44px}
+.ui-journal-quote>p{margin:0}
+.ui-journal-quote>.ui-journal-audio{position:absolute;top:10px;right:10px}
+.ui-journal-thought{padding:16px;--frame-surface:var(--ui-surface-raised)}
+.ui-journal-thought small{color:var(--ui-mint);font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+.ui-journal-thought p{margin:8px 0 0;font-size:13px;line-height:21px}
+
+@media(max-width:370px){
+  .ui-journal{gap:12px}
+  .ui-chronology-chapter,.ui-journal-progress{padding:12px}
+  .ui-chronology-chapter>header{grid-template-columns:36px minmax(0,1fr) auto;gap:8px}
+  .ui-journal-chapter-index{width:36px;height:36px}
+  .ui-chronology-chapter h3{font-size:15px}
+  .ui-journal-record{padding:8px 52px 8px 8px}
+  .ui-journal-record>.ui-journal-audio{top:6px;right:6px}
+}

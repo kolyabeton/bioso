@@ -1,0 +1,16 @@
+{
+  "dialog": [
+    {
+      "clientWidth": 356,
+      "height": 828,
+      "scrollWidth": 356,
+      "width": 366,
+      "x": 12,
+      "y": 8
+    }
+  ],
+  "height": 844,
+  "route": "http://127.0.0.1:5291/?review=level&variant=tree&quality=high",
+  "text": "00:00\n128\nLEVEL 2\nKILLS 0\nKill First Boss\nMap\nBuild\n1/1\nLEVEL UP\nReroll\n0\n\nLevel 2 · Choose one ability\n\nSearing Blood\nLv. 1 · Damage of each burn stack +50%.\nSlow Burn\nLv. 1 · Each new burn stack lasts 5 s.\nCold Blood\nLv. 1 · Hit with any weapon: +20% chance to slow by 30%. Cold lasts 2 s.\nLightning\nLv. 1 · Every fifth attack of each arm: lightning for 50% of attack damage.\nVitality\nLv. 1 · Maximum health +1 segment; keeps wounds.\nRefresh · 1",
+  "width": 390
+}

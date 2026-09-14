@@ -1,0 +1,35 @@
+[
+  {
+    "source": "public/assets/encounters/nursery-v1.png",
+    "target": "public/assets/encounters/nursery-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentPixels": 1139317,
+    "opaquePixels": 419659,
+    "partialPixels": 13540
+  },
+  {
+    "source": "public/assets/encounters/slab-v1.png",
+    "target": "public/assets/encounters/slab-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentPixels": 813575,
+    "opaquePixels": 746243,
+    "partialPixels": 12698
+  },
+  {
+    "source": "public/assets/encounters/membrane-v1.png",
+    "target": "public/assets/encounters/membrane-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentPixels": 981808,
+    "opaquePixels": 568420,
+    "partialPixels": 22288
+  }
+]

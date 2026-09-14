@@ -1,0 +1,587 @@
+TAP version 13
+# Subtest: bosses telegraph their authored moves while an ordinary shooter still fires immediately
+ok 1 - bosses telegraph their authored moves while an ordinary shooter still fires immediately
+  ---
+  duration_ms: 3.41325
+  type: 'test'
+  ...
+# Subtest: bee crosses ground crowd and damages the player only by touching
+ok 2 - bee crosses ground crowd and damages the player only by touching
+  ---
+  duration_ms: 4.977208
+  type: 'test'
+  ...
+# Subtest: minute signatures enter actual spawn requests
+ok 3 - minute signatures enter actual spawn requests
+  ---
+  duration_ms: 0.747375
+  type: 'test'
+  ...
+# Subtest: volatile stat adjustment happens once
+ok 4 - volatile stat adjustment happens once
+  ---
+  duration_ms: 0.120292
+  type: 'test'
+  ...
+# Subtest: authored burst budget emits the same wave count in survival and missions
+ok 5 - authored burst budget emits the same wave count in survival and missions
+  ---
+  duration_ms: 0.655041
+  type: 'test'
+  ...
+# Subtest: ordinary shooter fires immediately once and recovery blocks a repeat
+ok 6 - ordinary shooter fires immediately once and recovery blocks a repeat
+  ---
+  duration_ms: 0.227625
+  type: 'test'
+  ...
+# Subtest: fourth generated habitat shows level 24 and keeps its fixed budget across seeds
+ok 7 - fourth generated habitat shows level 24 and keeps its fixed budget across seeds
+  ---
+  duration_ms: 874.00575
+  type: 'test'
+  ...
+# Subtest: level-24 player can beat the fourth habitat with tier-one melee or ranged gear, including a mistake
+ok 8 - level-24 player can beat the fourth habitat with tier-one melee or ranged gear, including a mistake
+  ---
+  duration_ms: 3742.156875
+  type: 'test'
+  ...
+# Subtest: standing still remains dangerous for level-24 melee and ranged players
+ok 9 - standing still remains dangerous for level-24 melee and ranged players
+  ---
+  duration_ms: 548.772584
+  type: 'test'
+  ...
+# Subtest: generated level-four boss uses its own phase-two ring and bounded damage
+ok 10 - generated level-four boss uses its own phase-two ring and bounded damage
+  ---
+  duration_ms: 251.85375
+  type: 'test'
+  ...
+# Subtest: mission and roaming Collector setup keeps its separate damage and timing
+ok 11 - mission and roaming Collector setup keeps its separate damage and timing
+  ---
+  duration_ms: 0.824958
+  type: 'test'
+  ...
+# Subtest: rank-I sustained weapon DPS matches the stabilization table
+ok 12 - rank-I sustained weapon DPS matches the stabilization table
+  ---
+  duration_ms: 3.864125
+  type: 'test'
+  ...
+# Subtest: Broodmother full build combines five chassis helpers with three from Colony
+not ok 13 - Broodmother full build combines five chassis helpers with three from Colony
+  ---
+  duration_ms: 1.750917
+  type: 'test'
+  location: '/Users/serg/Documents/ChatGPT/Biomecha/tests/stabilization-plan.test.mjs:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== 6
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 6
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/stabilization-plan.test.mjs:41:196)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1201:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+    Test.postRun (node:internal/test_runner/test:1330:19)
+    Test.run (node:internal/test_runner/test:1258:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+  ...
+# Subtest: permanent helpers neither take contact damage nor consume enemy attacks
+ok 14 - permanent helpers neither take contact damage nor consume enemy attacks
+  ---
+  duration_ms: 19.423584
+  type: 'test'
+  ...
+# Subtest: damage contract uses half armor and HP-only invulnerability
+ok 15 - damage contract uses half armor and HP-only invulnerability
+  ---
+  duration_ms: 0.565583
+  type: 'test'
+  ...
+# Subtest: dungeon and horde schedules are level- and time-gated as specified
+ok 16 - dungeon and horde schedules are level- and time-gated as specified
+  ---
+  duration_ms: 0.272917
+  type: 'test'
+  ...
+# Subtest: dungeon presentation is a connected corridor graph with a distinct theme and no rooms
+ok 17 - dungeon presentation is a connected corridor graph with a distinct theme and no rooms
+  ---
+  duration_ms: 2.54625
+  type: 'test'
+  ...
+# Subtest: both survival dungeons spawn all elites immediately, pause time and keep one best-of-two item per elite
+ok 18 - both survival dungeons spawn all elites immediately, pause time and keep one best-of-two item per elite
+  ---
+  duration_ms: 735.674292
+  type: 'test'
+  ...
+# Subtest: new settings default to High/60 and enabled 30 percent audio while preserving old values
+ok 19 - new settings default to High/60 and enabled 30 percent audio while preserving old values
+  ---
+  duration_ms: 0.185459
+  type: 'test'
+  ...
+# Subtest: five authored acts expose exact flow, caps, signatures and a hard cap of 88
+ok 20 - five authored acts expose exact flow, caps, signatures and a hard cap of 88
+  ---
+  duration_ms: 1.384708
+  type: 'test'
+  ...
+# Subtest: minute cadence spends exactly 10, 65, 23 and 2 percent without changing its total
+ok 21 - minute cadence spends exactly 10, 65, 23 and 2 percent without changing its total
+  ---
+  duration_ms: 0.191709
+  type: 'test'
+  ...
+# Subtest: soft and hard caps discard spawn credit instead of banking debt
+ok 22 - soft and hard caps discard spawn credit instead of banking debt
+  ---
+  duration_ms: 1.399083
+  type: 'test'
+  ...
+# Subtest: minute accents own 45 percent and unavailable early roles fall back to mass
+ok 23 - minute accents own 45 percent and unavailable early roles fall back to mass
+  ---
+  duration_ms: 0.64175
+  type: 'test'
+  ...
+# Subtest: scheduled and promoted wave elites share growing quotas and do not refill killed elites
+ok 24 - scheduled and promoted wave elites share growing quotas and do not refill killed elites
+  ---
+  duration_ms: 0.708667
+  type: 'test'
+  ...
+# Subtest: the first three wave elites retain reduced health and the first assault elite deals half damage
+ok 25 - the first three wave elites retain reduced health and the first assault elite deals half damage
+  ---
+  duration_ms: 0.326917
+  type: 'test'
+  ...
+# Subtest: five offers contain build, defense and synergy progress and remain seeded
+ok 26 - five offers contain build, defense and synergy progress and remain seeded
+  ---
+  duration_ms: 14.17725
+  type: 'test'
+  ...
+# Subtest: a build ability missing from four offer rounds is forced on the fifth
+ok 27 - a build ability missing from four offer rounds is forced on the fifth
+  ---
+  duration_ms: 0.292959
+  type: 'test'
+  ...
+# Subtest: last level choice grants protection and pushes only ordinary nearby enemies
+ok 28 - last level choice grants protection and pushes only ordinary nearby enemies
+  ---
+  duration_ms: 0.831
+  type: 'test'
+  ...
+# Subtest: superboss pressure and reward relief use quarter flow, half cap and bounded credit
+ok 29 - superboss pressure and reward relief use quarter flow, half cap and bounded credit
+  ---
+  duration_ms: 1.182166
+  type: 'test'
+  ...
+# Subtest: old profiles need no migration for transient director and offer state
+ok 30 - old profiles need no migration for transient director and offer state
+  ---
+  duration_ms: 0.225209
+  type: 'test'
+  ...
+# Subtest: roaming bosses start at minute seven and never overlap a living invader
+ok 31 - roaming bosses start at minute seven and never overlap a living invader
+  ---
+  duration_ms: 3.46725
+  type: 'test'
+  ...
+# Subtest: roaming boss schedule ends after the fifth boss at minute thirty-five
+ok 32 - roaming boss schedule ends after the fifth boss at minute thirty-five
+  ---
+  duration_ms: 0.392625
+  type: 'test'
+  ...
+# Subtest: event, overrun and mission modes defer the boss; failed placement never consumes an interval
+ok 33 - event, overrun and mission modes defer the boss; failed placement never consumes an interval
+  ---
+  duration_ms: 0.242583
+  type: 'test'
+  ...
+# Subtest: all boss footprints fit real survival terrain and fixed habitats remain intact
+ok 34 - all boss footprints fit real survival terrain and fixed habitats remain intact
+  ---
+  duration_ms: 1046.629917
+  type: 'test'
+  ...
+# Subtest: real event entry pauses waves, elite schedule and survival clock; success and failure resume spawning
+ok 35 - real event entry pauses waves, elite schedule and survival clock; success and failure resume spawning
+  ---
+  duration_ms: 8.761042
+  type: 'test'
+  ...
+# Subtest: third minute starts the assault; every rest lasts exactly 35 seconds
+ok 36 - third minute starts the assault; every rest lasts exactly 35 seconds
+  ---
+  duration_ms: 1.512167
+  type: 'test'
+  ...
+# Subtest: first opening horde and stream are halved and fill at most 60 slots from all quadrants
+ok 37 - first opening horde and stream are halved and fill at most 60 slots from all quadrants
+  ---
+  duration_ms: 6.696917
+  type: 'test'
+  ...
+# Subtest: both spawners and scheduled elites stop for the entire rest and discard debt
+ok 38 - both spawners and scheduled elites stop for the entire rest and discard debt
+  ---
+  duration_ms: 1.825625
+  type: 'test'
+  ...
+# Subtest: boss relief cancels an opening instead of releasing its remainder afterwards
+ok 39 - boss relief cancels an opening instead of releasing its remainder afterwards
+  ---
+  duration_ms: 0.325167
+  type: 'test'
+  ...
+# Subtest: superboss quarter flow also applies to opening hordes and the shared half cap
+ok 40 - superboss quarter flow also applies to opening hordes and the shared half cap
+  ---
+  duration_ms: 0.578959
+  type: 'test'
+  ...
+# Subtest: blocked placement, full slots, dungeons and last stands cannot bank a late horde
+ok 41 - blocked placement, full slots, dungeons and last stands cannot bank a late horde
+  ---
+  duration_ms: 1.201416
+  type: 'test'
+  ...
+# Subtest: exploration recycles only distant ordinary wave enemies without rewards
+ok 42 - exploration recycles only distant ordinary wave enemies without rewards
+  ---
+  duration_ms: 0.241208
+  type: 'test'
+  ...
+# Subtest: moving fronts favor the route ahead while preserving safe distance and collision checks
+ok 43 - moving fronts favor the route ahead while preserving safe distance and collision checks
+  ---
+  duration_ms: 0.396333
+  type: 'test'
+  ...
+# Subtest: late combined wave spawners stop at 180 and cannot add an extra scheduled elite
+ok 44 - late combined wave spawners stop at 180 and cannot add an extra scheduled elite
+  ---
+  duration_ms: 8.043125
+  type: 'test'
+  ...
+# Subtest: production simulation keeps a moving player surrounded by a bounded crowd
+ok 45 - production simulation keeps a moving player surrounded by a bounded crowd
+  ---
+  duration_ms: 192.588625
+  type: 'test'
+  ...
+# Subtest: two whole lives; simultaneous contacts and protected hits do not charge armor
+ok 46 - two whole lives; simultaneous contacts and protected hits do not charge armor
+  ---
+  duration_ms: 5.553041
+  type: 'test'
+  ...
+# Subtest: armor plates are spent before health and never recharge from hits
+ok 47 - armor plates are spent before health and never recharge from hits
+  ---
+  duration_ms: 0.930291
+  type: 'test'
+  ...
+# Subtest: shield transfer retains recharge and cannot be refilled by swapping
+ok 48 - shield transfer retains recharge and cannot be refilled by swapping
+  ---
+  duration_ms: 1.886042
+  type: 'test'
+  ...
+# Subtest: capacity upgrades and body changes preserve wounds including clipped overflow
+ok 49 - capacity upgrades and body changes preserve wounds including clipped overflow
+  ---
+  duration_ms: 1.088
+  type: 'test'
+  ...
+# Subtest: regen heals one segment each 15 seconds; fatal hit is never healed in the same tick
+ok 50 - regen heals one segment each 15 seconds; fatal hit is never healed in the same tick
+  ---
+  duration_ms: 0.877
+  type: 'test'
+  ...
+# Subtest: fangs heal after their rank-based hit count without a separate cooldown
+ok 51 - fangs heal after their rank-based hit count without a separate cooldown
+  ---
+  duration_ms: 0.669666
+  type: 'test'
+  ...
+# Subtest: revival is once per run, not once per equipment instance
+ok 52 - revival is once per run, not once per equipment instance
+  ---
+  duration_ms: 0.258084
+  type: 'test'
+  ...
+# Subtest: five vitality ranks grant five plates plus natural armor and five-segment regeneration while revival stays one-use
+ok 53 - five vitality ranks grant five plates plus natural armor and five-segment regeneration while revival stays one-use
+  ---
+  duration_ms: 0.399167
+  type: 'test'
+  ...
+# Subtest: 60 unique nodes, finals unlock through either path, siblings stay available
+ok 54 - 60 unique nodes, finals unlock through either path, siblings stay available
+  ---
+  duration_ms: 0.500125
+  type: 'test'
+  ...
+# Subtest: five unique offers across seeds and depleted catalogue include valid fallback skills
+ok 55 - five unique offers across seeds and depleted catalogue include valid fallback skills
+  ---
+  duration_ms: 19.173875
+  type: 'test'
+  ...
+# Subtest: every unique ability stores five ranks and fires five extra bullets while legacy arrays remain compatible
+ok 56 - every unique ability stores five ranks and fires five extra bullets while legacy arrays remain compatible
+  ---
+  duration_ms: 2.619084
+  type: 'test'
+  ...
+# Subtest: projectile ranks add projectiles while combined penalties keep every shot above the twenty-percent floor
+ok 57 - projectile ranks add projectiles while combined penalties keep every shot above the twenty-percent floor
+  ---
+  duration_ms: 1.250041
+  type: 'test'
+  ...
+# Subtest: hypertrophy follows the half-step rank curve for damage and attack speed
+ok 58 - hypertrophy follows the half-step rank curve for damage and attack speed
+  ---
+  duration_ms: 0.17475
+  type: 'test'
+  ...
+# Subtest: projectile requirements depend on installed weapons, learned powers persist
+ok 59 - projectile requirements depend on installed weapons, learned powers persist
+  ---
+  duration_ms: 0.219084
+  type: 'test'
+  ...
+# Subtest: elemental skills support both melee and ranged weapons
+ok 60 - elemental skills support both melee and ranged weapons
+  ---
+  duration_ms: 1.567292
+  type: 'test'
+  ...
+# Subtest: claw lightning reaches an enemy surface and emits visible electric damage
+ok 61 - claw lightning reaches an enemy surface and emits visible electric damage
+  ---
+  duration_ms: 1.078875
+  type: 'test'
+  ...
+# Subtest: XP queue pauses simulation and card API remains valid across consecutive selections
+ok 62 - XP queue pauses simulation and card API remains valid across consecutive selections
+  ---
+  duration_ms: 1.276709
+  type: 'test'
+  ...
+# Subtest: ignite chance grows from fifteen to forty-five percent and burn stacks expire independently
+ok 63 - ignite chance grows from fifteen to forty-five percent and burn stacks expire independently
+  ---
+  duration_ms: 0.643625
+  type: 'test'
+  ...
+# Subtest: wildfire copies every active burn stack and adds it to existing fire
+ok 64 - wildfire copies every active burn stack and adds it to existing fire
+  ---
+  duration_ms: 0.195625
+  type: 'test'
+  ...
+# Subtest: cold caps bosses and secondary damage cannot recurse
+ok 65 - cold caps bosses and secondary damage cannot recurse
+  ---
+  duration_ms: 0.184417
+  type: 'test'
+  ...
+# Subtest: crystallization reaches two seconds at its third and final rank
+ok 66 - crystallization reaches two seconds at its third and final rank
+  ---
+  duration_ms: 0.153083
+  type: 'test'
+  ...
+# Subtest: extra projectiles use current weapon and repeats do not consume ammo or count attacks
+ok 67 - extra projectiles use current weapon and repeats do not consume ammo or count attacks
+  ---
+  duration_ms: 0.30425
+  type: 'test'
+  ...
+# Subtest: attacking symbiont gains damage without inventing a guardian and obeys pause
+ok 68 - attacking symbiont gains damage without inventing a guardian and obeys pause
+  ---
+  duration_ms: 0.568334
+  type: 'test'
+  ...
+# Subtest: symbiont bite damage stays fixed while colony rank changes companion count
+ok 69 - symbiont bite damage stays fixed while colony rank changes companion count
+  ---
+  duration_ms: 0.279542
+  type: 'test'
+  ...
+# Subtest: waves use time only and capped spawn credit never accumulates a debt
+ok 70 - waves use time only and capped spawn credit never accumulates a debt
+  ---
+  duration_ms: 0.3235
+  type: 'test'
+  ...
+# Subtest: same seeds yield identical choices and waves independent of learned power
+ok 71 - same seeds yield identical choices and waves independent of learned power
+  ---
+  duration_ms: 0.32625
+  type: 'test'
+  ...
+# Subtest: restart clears learned powers, shield and armor counters without changing permanent profile
+ok 72 - restart clears learned powers, shield and armor counters without changing permanent profile
+  ---
+  duration_ms: 0.129833
+  type: 'test'
+  ...
+# Subtest: new rank bonuses cannot be farmed by repeatedly installing a low-health body
+ok 73 - new rank bonuses cannot be farmed by repeatedly installing a low-health body
+  ---
+  duration_ms: 0.271625
+  type: 'test'
+  ...
+# Subtest: fallback selection still spends exactly one pending level
+ok 74 - fallback selection still spends exactly one pending level
+  ---
+  duration_ms: 0.436542
+  type: 'test'
+  ...
+# Subtest: short melee hands can hit the surface of large bosses without entering their body
+ok 75 - short melee hands can hit the surface of large bosses without entering their body
+  ---
+  duration_ms: 0.266875
+  type: 'test'
+  ...
+# Subtest: stale incompatible offer rejects atomically without consuming an earned choice
+ok 76 - stale incompatible offer rejects atomically without consuming an earned choice
+  ---
+  duration_ms: 0.309542
+  type: 'test'
+  ...
+# Subtest: final boss is scheduled at forty minutes even when an earlier boss survives
+ok 77 - final boss is scheduled at forty minutes even when an earlier boss survives
+  ---
+  duration_ms: 0.199958
+  type: 'test'
+  ...
+# Subtest: late XP pacing keeps thresholds increasing and preserves overflow across the curve joins
+ok 78 - late XP pacing keeps thresholds increasing and preserves overflow across the curve joins
+  ---
+  duration_ms: 0.688541
+  type: 'test'
+  ...
+# Subtest: five fixed reachable bosses are visible immediately and do not hunt from across map
+ok 79 - five fixed reachable bosses are visible immediately and do not hunt from across map
+  ---
+  duration_ms: 350.32075
+  type: 'test'
+  ...
+# Subtest: all five habitats occupy separated map areas across world seeds
+ok 80 - all five habitats occupy separated map areas across world seeds
+  ---
+  duration_ms: 1900.360708
+  type: 'test'
+  ...
+# Subtest: production boss AI stays home, fights locally and cancels attacks to return without healing
+ok 81 - production boss AI stays home, fights locally and cancels attacks to return without healing
+  ---
+  duration_ms: 248.953125
+  type: 'test'
+  ...
+# Subtest: a minute of the real survival simulation leaves distant habitat bosses in their own areas
+ok 82 - a minute of the real survival simulation leaves distant habitat bosses in their own areas
+  ---
+  duration_ms: 364.852958
+  type: 'test'
+  ...
+# Subtest: elite engages, disengages, returns and can be fought again without healing
+ok 83 - elite engages, disengages, returns and can be fought again without healing
+  ---
+  duration_ms: 273.744
+  type: 'test'
+  ...
+# Subtest: simulation actually returns an elite across flat tile boundaries
+ok 84 - simulation actually returns an elite across flat tile boundaries
+  ---
+  duration_ms: 359.145708
+  type: 'test'
+  ...
+# Subtest: public encounters are visible from level one but entry requires their level
+ok 85 - public encounters are visible from level one but entry requires their level
+  ---
+  duration_ms: 270.461125
+  type: 'test'
+  ...
+# Subtest: elite schedule depends only on time and habitat bosses do not duplicate
+ok 86 - elite schedule depends only on time and habitat bosses do not duplicate
+  ---
+  duration_ms: 270.175917
+  type: 'test'
+  ...
+# Subtest: half of live wave elites leave their map territory to hunt the player
+ok 87 - half of live wave elites leave their map territory to hunt the player
+  ---
+  duration_ms: 0.834959
+  type: 'test'
+  ...
+# Subtest: an allowed automatic elite joins the wave pursuit split
+ok 88 - an allowed automatic elite joins the wave pursuit split
+  ---
+  duration_ms: 0.263917
+  type: 'test'
+  ...
+# Subtest: warmup never promotes wave mobs, so the first assault starts with one weak elite
+ok 89 - warmup never promotes wave mobs, so the first assault starts with one weak elite
+  ---
+  duration_ms: 2.764125
+  type: 'test'
+  ...
+# Subtest: successive waves issue exactly 1, 2, 3, 4, 5, 6 elites even when every enemy dies immediately
+ok 90 - successive waves issue exactly 1, 2, 3, 4, 5, 6 elites even when every enemy dies immediately
+  ---
+  duration_ms: 24.600583
+  type: 'test'
+  ...
+# Subtest: surviving elites occupy next-wave slots and cannot stack beyond its quota
+ok 91 - surviving elites occupy next-wave slots and cannot stack beyond its quota
+  ---
+  duration_ms: 19.275458
+  type: 'test'
+  ...
+# Subtest: direct wave promotions and scheduled requests cannot bypass the quota after a kill
+ok 92 - direct wave promotions and scheduled requests cannot bypass the quota after a kill
+  ---
+  duration_ms: 0.844459
+  type: 'test'
+  ...
+# Subtest: blocked placement does not spend the first elite and no wave elite appears during relief
+ok 93 - blocked placement does not spend the first elite and no wave elite appears during relief
+  ---
+  duration_ms: 0.273292
+  type: 'test'
+  ...
+1..93
+# tests 93
+# suites 0
+# pass 92
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7297.020083

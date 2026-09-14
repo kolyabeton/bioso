@@ -1,10 +1,12 @@
 import {writeFile,mkdir,readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createPaintedRun,stepPaintedRun} from '../src/painterly-stage.js';
-import {chooseUpgrade} from '../src/game.js';
+import {chooseUpgrade,applyStartingLoadout} from '../src/game.js';
+import {chooseBossReward} from '../src/systems/sets/loot.js';
 import {newProfile,stats,weaponStats,equip,swapBody,pickup,drop,digest,upgrade,upgradeOptions,ranks,def} from '../src/assembly.js';
 import {movementFactor} from '../src/combat-feel.js';
-import {CATALOG} from '../src/catalog.js';
+import {CATALOG,MISSIONS} from '../src/catalog.js';
+import {meta} from '../src/systems/meta-progression.js';
 import {upgradeCost,xpRequired} from '../src/systems/balance.js';
 export const STYLES={melee:['might','tempo','vitality','motion','cold'],ranged:['projectiles','tempo','might','vitality','motion'],elements:['fire','cold','electric','vitality','tempo'],summons:['summons','tempo','vitality','fire','cold'],mixed:['might','electric','projectiles','vitality','tempo']};
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
@@ -36,16 +38,17 @@ function steering(s,style){
  if(score>bestScore){bestScore=score;best={x,z};}}
  s.botHeading=best;return best;
 }
-export function probe(style,seed,{seconds=2490,dt=.1}={}){
- const profile=newProfile();profile.unlocked=Object.keys(CATALOG);const s=createPaintedRun(profile,'survival',seed);s.discarded=new Set();const checkpoints=[],started=performance.now();let firstChoice=null,nextAssembly=0;
+export function probe(style,seed,{seconds=2490,dt=.1,catalog=true}={}){
+ const profile=newProfile();if(catalog){profile.unlocked=Object.keys(CATALOG);profile.achievements=MISSIONS.slice(0,3).map(m=>'mission:'+m.id);meta(profile).overruns=3;}const s=createPaintedRun(profile,'survival',seed),loadouts={melee:{body:'bastion',arm:'claws',organ:'regen'},ranged:{body:'hunter',arm:'seed',organ:'stabilizer'},elements:{body:'hunter',arm:'seed',organ:'stabilizer'},summons:{body:'bastion',arm:'seed',organ:'shield'},mixed:{body:'wanderer',arm:'seed',organ:'regen'}},loadout=catalog?(loadouts[style]||loadouts.ranged):{body:'bastion',arm:'seed',organ:null};applyStartingLoadout(s,loadout);s.discarded=new Set();const checkpoints=[],started=performance.now();let firstChoice=null,nextAssembly=0;
  while(s.time<seconds&&!s.dead&&!s.finalDefeated){
+  while(s.bossRewards?.length)chooseBossReward(s,0);
   while(s.pending){firstChoice??=s.time;const priority=STYLES[style];const choices=s.choices.map((c,i)=>{const branch=c.id.split('.')[0],rank=priority.indexOf(branch);return{i,score:(rank<0?0:20-rank*2)+(c.id.endsWith('.3')?5:0)+(c.id==='vitality.0'?24:c.id==='vitality.2'?22:0)};}).sort((a,b)=>b.score-a.score);chooseUpgrade(s,choices[0].i);}
   if(s.time>=nextAssembly){const before=new Set(s.inventory.map(p=>p.id));assemble(s,style);for(const q of s.ground)if(before.has(q.part.id))s.discarded.add(q.part.id);nextAssembly=s.time+1;}
   stepPaintedRun(s,dt,steering(s,style));s.events.length=0;
   for(const minute of [2,8,16,24,32,40])if(s.time>=minute*60&&!checkpoints.some(c=>c.minute===minute))checkpoints.push({minute,choices:s.level-1,xp:s.xp,nextXP:xpRequired(s.level),hp:s.hp,kills:s.kills,biomass:s.biomass,arms:s.arms.filter(Boolean).map(p=>`${p.key}:${p.tier}`)});
  }
  const times={};for(const kind of ['normal','elite','boss','final']){const xs=s.metrics.killed.filter(k=>k.kind===kind).map(k=>k.combatSeconds).sort((a,b)=>a-b);times[kind]={n:xs.length,median:xs[Math.floor(xs.length/2)]??null,p90:xs[Math.floor(xs.length*.9)]??null};}
- return{style,seed,distantEnemies:s.enemies.filter(e=>distance(e,s.player)>15).length,nearEnemies:s.enemies.filter(e=>distance(e,s.player)<7).length,seconds:+s.time.toFixed(1),alive:!s.dead,won:s.finalDefeated,firstChoice,choices:s.level-1,hits:s.health.hits,cause:s.dead?s.health.lastCause:null,kills:s.kills,maxEnemies:s.metrics.maxEnemies,checkpoints,times,wallSeconds:(performance.now()-started)/1000};
+ return{profile:catalog?'mature':'fresh',style,seed,distantEnemies:s.enemies.filter(e=>distance(e,s.player)>15).length,nearEnemies:s.enemies.filter(e=>distance(e,s.player)<7).length,seconds:+s.time.toFixed(1),alive:!s.dead,won:s.finalDefeated,firstChoice,choices:s.level-1,hits:s.health.hits,cause:s.dead?s.health.lastCause:null,kills:s.kills,maxEnemies:s.metrics.maxEnemies,checkpoints,times,wallSeconds:(performance.now()-started)/1000};
 }
 export async function runProbes(){const count=Number(process.env.PROBE_SEEDS||20),seconds=Number(process.env.PROBE_SECONDS||2490),styles=process.env.PROBE_STYLE?[process.env.PROBE_STYLE]:Object.keys(STYLES),rows=[];const sourceHashes={};for(const path of ['src/game.js','src/assembly.js','src/catalog.js','src/combat-feel.js','src/living-combat.js','src/painterly-stage.js','src/terrain.js','src/simulation.js','src/systems/balance.js','src/systems/abilities.js','src/systems/health.js','src/systems/progression.js','src/systems/waves.js','src/systems/effects.js'])sourceHashes[path]=createHash('sha256').update(await readFile(path)).digest('hex');for(const style of styles)for(let i=0;i<count;i++){const row=probe(style,20260907+i,{seconds});rows.push(row);console.log(JSON.stringify(row));}await mkdir('proof',{recursive:true});await writeFile(process.env.PROBE_OUTPUT||'proof/progression-probe.json',JSON.stringify({sourceHashes,method:'Production painted-stage runs from time zero. Persistent catalogue unlocked; all actual equipment, XP and biomass earned during run. 24-direction avoidance controller. No invulnerability or HP grants. Automated evidence, not human difficulty acceptance.',rows},null,2));}
 

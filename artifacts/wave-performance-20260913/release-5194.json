@@ -1,0 +1,21 @@
+{
+  "url": "http://127.0.0.1:5194/",
+  "previousRelease": "/Users/serg/Library/Application Support/bioso-play/releases/20260913T133351Z-unlocked",
+  "previousService": "/Users/serg/Library/LaunchAgents/local.bioso.frozen.20260913T133351Z-unlocked.plist",
+  "release": "/Users/serg/Library/Application Support/bioso-play/releases/20260913T135317Z-unlocked",
+  "service": "/Users/serg/Library/LaunchAgents/local.bioso.frozen.20260913T135317Z-unlocked.plist",
+  "bundle": "./assets/index-K69uCyC4.js",
+  "bundleSha256": "8d008f4ebda6570530cfbce51eb12fb3e6a315089cc3184970273ed24078a914",
+  "export": {
+    "archive": "/Users/serg/Documents/ChatGPT/Biomecha/outputs/itch/bioso-20260913T135317Z/bioso-unlocked-20260913T135317Z.zip",
+    "outDir": "/Users/serg/Documents/ChatGPT/Biomecha/outputs/itch/bioso-20260913T135317Z/game",
+    "fileCount": 746,
+    "extractedBytes": 147388374,
+    "archiveBytes": 125779553,
+    "sha256": "ecf9272e25362d1f912f62dab5a90a6cf1ef10afedbe6647f4f97da94f6db43b"
+  },
+  "httpVerified": true,
+  "servedBundleSha256": "8d008f4ebda6570530cfbce51eb12fb3e6a315089cc3184970273ed24078a914",
+  "browserMenuVerified": true,
+  "browserConsoleErrors": []
+}

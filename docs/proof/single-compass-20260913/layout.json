@@ -1,0 +1,281 @@
+[
+  {
+    "arrow": {
+      "bottom": 522,
+      "height": 44,
+      "left": 87.8046875,
+      "right": 131.8046875,
+      "top": 478,
+      "width": 44,
+      "x": 87.8046875,
+      "y": 478
+    },
+    "arrowCount": 1,
+    "dialog": {
+      "bottom": 632,
+      "height": 624,
+      "left": 8,
+      "right": 352,
+      "top": 8,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "labels": [
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Map"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Build0"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Soul"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "All"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Threats"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Events"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Loot"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Nearby"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": ""
+      }
+    ],
+    "overflow": [
+      334,
+      334
+    ],
+    "viewport": [
+      360,
+      640
+    ],
+    "world": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "arrow": {
+      "bottom": 726,
+      "height": 44,
+      "left": 87.8046875,
+      "right": 131.8046875,
+      "top": 682,
+      "width": 44,
+      "x": 87.8046875,
+      "y": 682
+    },
+    "arrowCount": 1,
+    "dialog": {
+      "bottom": 772,
+      "height": 700,
+      "left": 8,
+      "right": 382,
+      "top": 72,
+      "width": 374,
+      "x": 8,
+      "y": 72
+    },
+    "labels": [
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Map"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Build0"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Soul"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "All"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Threats"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Events"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Loot"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Nearby"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": ""
+      }
+    ],
+    "overflow": [
+      364,
+      364
+    ],
+    "viewport": [
+      390,
+      844
+    ],
+    "world": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "arrow": {
+      "bottom": 602,
+      "height": 44,
+      "left": 99.8046875,
+      "right": 143.8046875,
+      "top": 558,
+      "width": 44,
+      "x": 99.8046875,
+      "y": 558
+    },
+    "arrowCount": 1,
+    "dialog": {
+      "bottom": 712,
+      "height": 704,
+      "left": 445.5,
+      "right": 834.5,
+      "top": 8,
+      "width": 389,
+      "x": 445.5,
+      "y": 8
+    },
+    "labels": [
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Map"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Build0"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Soul"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "All"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Threats"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Events"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Loot"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Nearby"
+      },
+      {
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": ""
+      }
+    ],
+    "overflow": [
+      379,
+      379
+    ],
+    "viewport": [
+      1280,
+      720
+    ],
+    "world": {
+      "bottom": 720,
+      "height": 720,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    }
+  }
+]

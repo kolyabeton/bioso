@@ -1,0 +1,170 @@
+✖ survival has nine secrets and all three trials at levels 5, 15 and 25 (2.027916ms)
+✔ time cannot unlock late trials before their level (0.120708ms)
+✔ approaching a secret gives no map marker, prompt, discovery or signal; opening enables local reward (0.830167ms)
+✔ higher-tier trials scale enemy health, pursuer count and granted item tier (1.226542ms)
+✔ altar charges one max HP once and applies only its bonus (2.399916ms)
+✔ altar_organs charges one max HP once and applies only its bonus (0.48225ms)
+✔ altar_speed charges one max HP once and applies only its bonus (0.326084ms)
+✔ altar_armor charges one max HP once and applies only its bonus (0.278542ms)
+✔ altar_capacity charges one max HP once and applies only its bonus (0.283916ms)
+✖ fusion rejects last HP and cross-operation offers atomically (0.759667ms)
+✔ infection counts time in the expanded area, pauses outside, and rewards survival with pursuers alive (0.431167ms)
+✔ catalog contains all current bodies, weapons and organs (0.618292ms)
+✔ baseline is one melee arm, vacant second mount, two legs and active Wanderer speed (2.052792ms)
+✔ four arms fire in one tick and retain independent timers (2.669917ms)
+✔ body shrink preserves selected limbs, old body, soul, enhancements and missing health segments (0.980042ms)
+✔ invalid duplicate body selections are atomic (0.29175ms)
+✔ overload prevents movement but allows attack; thrown item persists and can return (5.93475ms)
+✔ body weight is spare-only and Hecaton no longer discounts individual arms (0.262583ms)
+✔ missing legs scale mobility and Rootwalker trades its health bonus at four installed legs (0.344417ms)
+✔ shield cannot be refilled by un/re-equipping or swapping bodies (1.635583ms)
+✔ each item rank adds 15 percent weight while power and capacity retain their own scaling (0.386583ms)
+✔ individual upgrades follow item; learned abilities affect replacement arms (0.467959ms)
+✔ biomass cost, limits and actual-spend refund; no self digestion or distant digestion (0.553958ms)
+✔ rank ten enforced and insufficient biomass is atomic (0.474666ms)
+✔ loot tier boundaries redistribute mass without out-of-range levels (0.079417ms)
+✔ multiple earned levels resolve one choice each and block combat until selected (0.796834ms)
+✔ all twelve attacks cause damage with distinct projectile handling (86.212125ms)
+✔ pistol arm has five rounds, a slower cadence and a 30 percent double-damage critical (2.410666ms)
+✔ needle pierces three enemies, rocket assigns distinct available targets, chain drops off (2.941833ms)
+✔ living ricochet redirects a real shot and launches a melee fragment (5.208375ms)
+✔ rocket bees fly slowly, show their damage and strongly scatter a small area (6.97025ms)
+✔ rocket hive is intentionally the heaviest weapon (0.112833ms)
+✔ acid pools from same arm do not stack, other arms do (0.437583ms)
+✔ fangs do not heal on every hit, drill ignores half armor, projectile stabilizer does not affect ray intervals (0.387167ms)
+✔ enemy scaling is time driven and spawns outside hero footprint (0.131625ms)
+✔ elite loot chance, boss reward, unlock award and persistence stay coherent (1.0315ms)
+✔ final boss on minute forty yields decision and continuation (1.490292ms)
+✔ all five missions clear 25 escalating rooms, end with boss plus elite and award their catalogue (498.79675ms)
+✔ mission events block every third-room gate and alternate sacrifices with combat trials (99.1635ms)
+✔ mission altar costs health and circle reward appears only after holding it (22.813458ms)
+✔ missions have no timeout and do not alter the survival world contract (352.573458ms)
+✔ procedural chunks deterministic and connected corridors fit largest creature (37.379625ms)
+✔ death and fresh runs reset soul, inventory and biomass while keeping catalog (0.219458ms)
+✔ a fatal instant strike cannot be undone by the thirtieth fang hit in the same frame (7.388666ms)
+✔ corrupt profile keys cannot enter the loot pool through inherited object properties (1.024584ms)
+✔ failed profile writes retain session unlocks and report failure until a successful retry (0.215125ms)
+✔ screen culling keeps the index-zero enemy and friendly projectile (0.478708ms)
+✔ swarm equipment integrates rank, paid upgrades and strongest duplicate caps (8.631667ms)
+✔ old swarm-leg movement upgrades retain their investment as summon rate (0.353916ms)
+✔ drone arm attacks autonomously through the shared swarm, with no hero shots (5.540667ms)
+✔ arm drones are additional to the five body and skill companions (1.028708ms)
+✔ unmodified rank-I arm drone sustains fifteen DPS after reaching its target (5.339875ms)
+✔ drone arm acquires targets within ten metres without range bonuses from swarm legs (0.49875ms)
+✔ womb produces two larvae every two seconds without attacks or deaths (1.057083ms)
+✔ summon rate accelerates womb production and swarm damage affects the larva hit (0.461ms)
+✔ womb ranks, independent timers and old infection removal (4.448ms)
+✔ Hive uses the same timed production and no longer responds to deaths (1.751291ms)
+✔ mission world is a 25-room northbound corridor with its own environment (5.440125ms)
+✔ mission corridor has fixed screen-width sides and cannot scroll into lateral space (3.993584ms)
+✔ a floor gate opens only after every enemy in that room is defeated (14.625083ms)
+✔ entering the next mission room closes the previous gate and prevents return (16.194041ms)
+✔ the first mission room uses its configured defender multiplier, keeps one elite and no room reward while survival keeps continuous waves (665.965083ms)
+✔ mission defenders enter in formation from the far north edge and run into the room (74.794459ms)
+✔ far-edge mission entry lanes stay walkable in every room and environment (88.415417ms)
+✔ every next mission room compounds enemy health and attack by seven percent (11.743875ms)
+✔ mission attack scaling travels with ranged projectiles (0.742209ms)
+✔ A star and enemy movement go around an obstacle using the same footprint (1.342959ms)
+✔ quick equip prefers empty compatible socket and rejects duplicate actions atomically (0.638459ms)
+✔ legacy ranged enemy fires immediately and recovery blocks a repeat (0.760125ms)
+✔ mission gates are simulation barriers, not destructible objective enemies (5.276792ms)
+✔ new survival run keeps only melee and does not auto-grant spawn loot (855.021833ms)
+✔ every mission and survival start without a digestion organ (262.861583ms)
+✔ each mission starts at the south edge of its first themed room (1.20175ms)
+✖ ranged enemy below its stopping distance navigates around blocked firing lane (15.365083ms)
+✔ failed path search observes its retry interval instead of searching every frame (0.121042ms)
+✔ mission room enemies spawn on real walkable ground across seeds (1415.684667ms)
+ℹ tests 76
+ℹ suites 0
+ℹ pass 73
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3590.248166
+
+✖ failing tests:
+
+test at tests/event-stages.test.mjs:9:1
+✖ survival has nine secrets and all three trials at levels 5, 15 and 25 (2.027916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      [
+  +     3,
+  +     3,
+  -     5,
+  -     5,
+        1
+      ],
+      [
+  +     5,
+  +     5,
+  -     15,
+  -     15,
+        2
+      ],
+      [
+  +     7,
+  +     7,
+  -     25,
+  -     25,
+        3
+      ]
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/event-stages.test.mjs:11:57)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ [ 3, 3, 1 ], [ 5, 5, 2 ], [ 7, 7, 3 ] ],
+    expected: [ [ 5, 5, 1 ], [ 15, 15, 2 ], [ 25, 25, 3 ] ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/event-surgeries.test.mjs:19:1
+✖ fusion rejects last HP and cross-operation offers atomically (0.759667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/event-surgeries.test.mjs:19:147)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/world-expedition.test.mjs:34:1
+✖ ranged enemy below its stopping distance navigates around blocked firing lane (15.365083ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(clearSegment(s.world,enemy,s.player,.05))
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/world-expedition.test.mjs:34:532)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,7 +1,7 @@
 import {BODIES,CATALOG} from '../catalog.js';
 import {seededRandom} from '../simulation.js';
 
-const recipe=(id,name,role,body,weapon,leg,organ=null)=>Object.freeze({id,name,role,body,weapons:[weapon],leg,organs:organ?[organ]:[],from:({mass:0,ranged:30,fast:90,armored:180})[role]??480});
+const recipe=(id,name,role,body,weapon,leg,organ=null,extra={})=>Object.freeze({id,name,role,body,weapons:[weapon],leg,organs:organ?[organ]:[],from:({mass:0,ranged:30,fast:90,armored:180})[role]??480,...extra});
 export const ENEMY_RECIPES=Object.freeze([
  recipe('worker','Рабочий','mass','wanderer','claws','universal'),
  recipe('gatherer','Собиратель','mass','wanderer','fangs','universal'),
@@ -19,6 +19,10 @@ export const ENEMY_RECIPES=Object.freeze([
  recipe('sower','Сеятель','ranged','wanderer','seed','universal'),
  recipe('needler','Игольщик','ranged','hunter','needle','universal'),
  recipe('acid-spitter','Кислотник','ranged','chimera','acid','universal'),
+ recipe('shield-bearer','Щитоносец','armored','bastion','hammer','plated','armor',{missionOnly:true,specialty:'shield-bearer'}),
+ recipe('divider','Делитель','fast','chimera','claws','runner',null,{missionOnly:true,specialty:'divider'}),
+ recipe('mirrorling','Зеркальник','ranged','bastion','needle','root','mirrorGland',{missionOnly:true,specialty:'mirrorling'}),
+ Object.freeze({...recipe('puppeteer','Кукольник','ranged','hecaton','seed','root','parasite',{missionOnly:true,specialty:'puppeteer'}),weapons:['seed','seed']}),
 ]);
 export const BOSS_RECIPES=Object.freeze([
  {id:'warden',name:'Страж',body:'bastion',weapons:['hammer','claws'],leg:'plated',organs:['armor']},
@@ -27,11 +31,22 @@ export const BOSS_RECIPES=Object.freeze([
  {id:'root-warden',name:'Корневой страж',body:'rootwalker',weapons:['hammer','drill'],leg:'plated',organs:['armor']},
  {id:'mother',name:'Матка',body:'hecaton',weapons:['seed','needle','claws'],leg:'universal',organs:['armor']},
 ]);
+export const ELITE_SECONDARY_WEAPONS=Object.freeze({
+ claws:'hammer',fangs:'whip',drill:'hammer',whip:'claws',hammer:'drill',seed:'acid',needle:'acid',acid:'needle',
+});
 export const enemyTier=time=>Math.min(5,1+Math.floor(Math.max(0,time)/480));
-export const eligibleRecipes=(time,role)=>ENEMY_RECIPES.filter(r=>r.from<=time&&(!role||r.role===role));
+const survivalSpecialAt=Object.freeze({'shield-bearer':600,divider:900,mirrorling:1200,puppeteer:1500});
+export const eligibleRecipes=(time,role)=>ENEMY_RECIPES.filter(r=>(!r.missionOnly||time>=(survivalSpecialAt[r.id]??Infinity))&&r.from<=time&&(!role||r.role===role));
 export function assembleEnemy(recipe,tier=1,kind='normal'){
  const body=BODIES[recipe.body],weapons=[...recipe.weapons],organs=[...recipe.organs];
- if(kind==='elite'){if(weapons.length<body.arms)weapons.push('claws');if(!organs.includes('armor'))organs.push('armor');}
+ if(kind==='elite'){
+  const secondary=ELITE_SECONDARY_WEAPONS[weapons[0]]??'claws';
+  // An elite always exposes two different answers. Ranged elites keep a
+  // second ranged/ground attack instead of silently skipping backup claws.
+  if(weapons.length===1&&weapons.length<body.arms)weapons.push(secondary);
+  else if(weapons.length>1&&weapons[1]===weapons[0])weapons[1]=secondary;
+  if(!organs.includes('armor'))organs.push('armor');
+ }
  const part=(key,i)=>({key,id:`enemy:${recipe.id}:${i}`,tier});
  return {body:part(recipe.body,'body'),arms:Array.from({length:body.arms},(_,i)=>weapons[i]?part(weapons[i],`arm:${i}`):null),legs:Array.from({length:body.legs},(_,i)=>part(recipe.leg,`leg:${i}`)),organs:Array.from({length:body.organs},(_,i)=>organs[i]?part(organs[i],`organ:${i}`):null)};
 }
@@ -40,14 +55,21 @@ export function validateEnemyRecipe(recipe,kind='normal'){
  return !!BODIES[recipe.body]&&parts.every(p=>CATALOG[p.key])&&parts.reduce((n,p)=>n+CATALOG[p.key].weight,0)<=BODIES[recipe.body].capacity&&recipe.weapons.length<=a.arms.length&&recipe.organs.length<=a.organs.length;
 }
 /** Separate stream: selecting equipment never consumes combat/loot RNG or item IDs. */
-export function assignEnemyAssembly(s,e,threat=s.time){
- if(s.mode!=='survival')return e;
+export function assignEnemyAssembly(s,e,threat=s.time,{missionRole=null,missionRecipeId=null}={}){
+ if(s.mode!=='survival'&&!(s.mission&&missionRole))return e;
  let r;
  if(e.kind==='boss'||e.kind==='final')r=BOSS_RECIPES[e.kind==='final'?4:Math.min(3,Math.max(0,Math.floor(threat/480)-1))];
  else{
-  const pool=eligibleRecipes(threat,e.kind==='elite'?null:e.role),available=pool.length?pool:eligibleRecipes(threat,'mass');
+  // Authored mission rooms own their composition, including early flying rooms.
+  // Survival keeps its timed unlocks and independent elite rotation.
+  const pool=missionRecipeId?ENEMY_RECIPES.filter(r=>r.id===missionRecipeId):missionRole?ENEMY_RECIPES.filter(r=>r.role===missionRole&&!r.missionOnly):eligibleRecipes(threat,e.kind==='elite'?null:e.role);let available=pool.length?pool:eligibleRecipes(threat,'mass');
+  // Equal turns for shooters, acid casters and fighters; recipe count must not bias elites toward melee.
+  if(e.kind==='elite'&&!missionRole){
+   const groups=[available.filter(r=>r.weapons.some(w=>['seed','needle'].includes(w))),available.filter(r=>r.weapons.includes('acid')),available.filter(r=>!r.weapons.some(w=>['seed','needle','acid'].includes(w)))].filter(g=>g.length);
+   s.eliteAssemblySerial??=0;available=groups[s.eliteAssemblySerial++%groups.length];
+  }
   s.enemyAssemblyRng??=seededRandom((s.seed^0x6e624d31)>>>0);r=available[Math.floor(s.enemyAssemblyRng()*available.length)];
  }
- e.flying=r.role==='flying';e.recipeId=r.id;e.enemyLevel=e.tier=enemyTier(threat);e.threat=threat;e.assemblyRole=r.role||'boss';e.assembly=assembleEnemy(r,e.tier,e.kind);
+ e.flying=r.role==='flying';e.recipeId=r.id;e.specialty=r.specialty??null;e.enemyLevel=e.tier=enemyTier(threat);e.threat=threat;e.assemblyRole=r.role||'boss';e.assembly=assembleEnemy(r,e.tier,e.kind);
  e.enemyAttack={index:0,readyAt:e.born+1,warning:null};return e;
 }

@@ -1,0 +1,113 @@
+[
+  {
+    "buttons": [
+      {
+        "label": "Map",
+        "overflow": false,
+        "wrap": "nowrap"
+      },
+      {
+        "label": "Build0",
+        "overflow": false,
+        "wrap": "nowrap"
+      },
+      {
+        "label": "Soul",
+        "overflow": false,
+        "wrap": "nowrap"
+      }
+    ],
+    "centerOffset": -0.00390625,
+    "count": 1,
+    "gap": 4,
+    "overflow": false,
+    "viewport": [
+      360,
+      640
+    ],
+    "world": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "buttons": [
+      {
+        "label": "Map",
+        "overflow": false,
+        "wrap": "nowrap"
+      },
+      {
+        "label": "Build0",
+        "overflow": false,
+        "wrap": "nowrap"
+      },
+      {
+        "label": "Soul",
+        "overflow": false,
+        "wrap": "nowrap"
+      }
+    ],
+    "centerOffset": -0.00390625,
+    "count": 1,
+    "gap": 4,
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ],
+    "world": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    }
+  },
+  {
+    "buttons": [
+      {
+        "label": "Map",
+        "overflow": false,
+        "wrap": "nowrap"
+      },
+      {
+        "label": "Build0",
+        "overflow": false,
+        "wrap": "nowrap"
+      },
+      {
+        "label": "Soul",
+        "overflow": false,
+        "wrap": "nowrap"
+      }
+    ],
+    "centerOffset": -0.00390625,
+    "count": 1,
+    "gap": 4,
+    "overflow": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "world": {
+      "bottom": 720,
+      "height": 720,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    }
+  }
+]

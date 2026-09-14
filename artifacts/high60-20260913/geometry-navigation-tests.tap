@@ -1,0 +1,46 @@
+✔ asset URLs preserve query strings, fragments, surrounding HTML and unknown resources (0.665875ms)
+✔ build transform resolves dynamic templates, concatenations, nested HTML and static values (1.970458ms)
+✔ size gate allows over 100 MB and enforces the itch.io extracted limit (0.199167ms)
+✔ Vite rewrites URLs inside nested CSS imports, including custom properties (67.215625ms)
+✔ atlas coordinates and logos retain original dimensions; icons fit the mobile budget (14.142083ms)
+✔ desktop menu build retains the source resolution and decoded pixels (880.629166ms)
+prune: Removed types... Accessor (2)
+prune: Removed types... Accessor (7)
+✔ Meshopt retains vertex attributes, winding and node transforms; data maps are untouched (13.02325ms)
+✔ asset template wrapping preserves compact keyword boundaries in ability art (0.373542ms)
+✔ unindexed triangles share only identical complete vertices, preserving UV and morph seams (1.907875ms)
+✔ 20 unique recipes and five bosses fit shared catalog slots and capacity, including elite upgrades (0.911209ms)
+✔ all 20 recipes keep distinct visible assemblies while bosses stay distinct (2.905208ms)
+✔ each enemy type owns one fixed body silhouette (3.218083ms)
+✔ enemy part recipes preserve equipment while the renderer supplies chassis connections (0.785375ms)
+✔ every thirtieth survival spawn is promoted to an elite (0.367792ms)
+✔ only time unlocks recipes and tiers, at exact boundaries (0.406958ms)
+✔ assembly uses its own deterministic stream without consuming RNG, item or entity IDs (0.615083ms)
+✔ opening assemblies require two ordinary starter claw hits but a critical hit can kill (4.066208ms)
+✔ actual early spawns keep whole HP and survive one noncritical hit (0.565375ms)
+✔ phase budgets are applied once and explicit mission spawning stays legacy (1.714333ms)
+✔ ordinary direct melee has no separate attack and body contact deals half damage (3.975042ms)
+✔ ordinary melee damage begins only when silhouettes touch (0.813792ms)
+✔ ordinary enemies keep their direct attacks while survival bosses teach two moves, then unlock a third (0.903334ms)
+✔ freeze cancels warning, pause preserves it, death prevents a strike, return cancels attacks (0.10975ms)
+✔ sector sides, fixed acid circle and vertical separation match warning geometry (0.045125ms)
+✔ needle uses its speed and swept collision without hitting twice (0.078667ms)
+✔ 100 creatures remain modular even with no GLB loader; pools reset cleanly (8.285792ms)
+✔ cold-loaded enemy weapons use a narrow drive instead of a large spherical placeholder (0.601041ms)
+✔ loaded detail geometry is shared by instances, not cloned per enemy (14.48725ms)
+✔ a warned strike and body contact share invulnerability (6.398833ms)
+✔ loaded wing animation stays faithful with a bounded cache over twenty minutes (184.9195ms)
+✔ body contact deals half damage and sustained overlap respects the one-second cooldown (5.57925ms)
+✔ animated puppet and repeated assembly scale reuse a finite set of fitted shapes (48.78625ms)
+✔ mesh frustum culling retains visible assemblies and skips wholly offscreen geometry (1.858666ms)
+✔ exact indexing preserves full vertex bytes, order, groups and draw ranges (1.67575ms)
+✔ UV and morph seams and signed zero remain distinct (0.310375ms)
+✔ shared grid edges preserve routes and invalidate when collision snapshots or APIs change (18.331209ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1251.596583

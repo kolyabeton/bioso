@@ -1,0 +1,1010 @@
+[
+  {
+    "mission": "garden",
+    "height": 640,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "dash",
+          "clock": 2.766799999999995,
+          "id": "boss-mercury-hunter",
+          "legs": 6,
+          "phase": 27.778362027859583,
+          "state": "dash",
+          "travel": 6.207173333333003,
+          "walkWeight": 1
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "dash": 1
+          },
+          "contact": -2.766799999999995,
+          "hover": 0,
+          "hp": 16800,
+          "id": "boss-mercury-hunter",
+          "phase": 1,
+          "radius": 1.8,
+          "speed": 3.8,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1537.792826666667
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 46,
+      "loading": 0,
+      "model": [
+        "boss-mercury-hunter"
+      ],
+      "parts": 0,
+      "shots": 0,
+      "tiles": 2,
+      "time": 2.766799999999995
+    },
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "width": 360
+  },
+  {
+    "mission": "quarantine",
+    "height": 640,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "crush",
+          "clock": 3.4248666666666594,
+          "id": "boss-scrap-leviathan",
+          "legs": 6,
+          "phase": 2.8105940776057867,
+          "state": "release",
+          "travel": 1.0019966666657183,
+          "walkWeight": 1
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "crush": 1
+          },
+          "contact": -3.4248666666666594,
+          "hover": 0,
+          "hp": 23200,
+          "id": "boss-scrap-leviathan",
+          "phase": 1,
+          "radius": 7,
+          "speed": 0.65,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1542.9980033333345
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 47,
+      "loading": 0,
+      "model": [
+        "boss-scrap-leviathan"
+      ],
+      "parts": 4,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.4248666666666594
+    },
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "width": 360
+  },
+  {
+    "mission": "core",
+    "height": 640,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "roots",
+          "clock": 3.183299999999994,
+          "id": "boss-root-cathedral",
+          "legs": 7,
+          "phase": 0,
+          "state": "release",
+          "travel": 0,
+          "walkWeight": 0
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "roots": 1
+          },
+          "contact": -3.183299999999994,
+          "hover": 0,
+          "hp": 30400,
+          "id": "boss-root-cathedral",
+          "phase": 1,
+          "radius": 4.5,
+          "speed": 0,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1544
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 47,
+      "loading": 0,
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "parts": 3,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.183299999999994
+    },
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "width": 360
+  },
+  {
+    "mission": "nursery",
+    "height": 640,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "copy",
+          "clock": 2.9173333333333273,
+          "id": "boss-mirror-collector",
+          "legs": 4,
+          "phase": 11.185278151651747,
+          "state": "release",
+          "travel": 2.036540000000969,
+          "walkWeight": 1.0608874889683761e-13
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "copy": 1
+          },
+          "contact": -2.9173333333333273,
+          "hover": 0,
+          "hp": 30400,
+          "id": "boss-mirror-collector",
+          "phase": 1,
+          "radius": 2.2,
+          "speed": 2.2,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1541.963459999999
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 46,
+      "loading": 0,
+      "model": [
+        "boss-mirror-collector"
+      ],
+      "parts": 0,
+      "shots": 3,
+      "tiles": 2,
+      "time": 2.9173333333333273
+    },
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "width": 360
+  },
+  {
+    "mission": "mother",
+    "height": 640,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "swarm",
+          "clock": 3.1245999999999934,
+          "id": "boss-swarm-shepherd",
+          "legs": 4,
+          "phase": 0,
+          "state": "release",
+          "travel": 0,
+          "walkWeight": 0
+        }
+      ],
+      "bees": 4,
+      "boss": [
+        {
+          "actions": {
+            "bees": 1,
+            "swarm": 1
+          },
+          "contact": -3.1245999999999934,
+          "hover": 1.1,
+          "hp": 30400,
+          "id": "boss-swarm-shepherd",
+          "phase": 1,
+          "radius": 3,
+          "speed": 1.7,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1544
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 59,
+      "loading": 0,
+      "model": [
+        "boss-swarm-shepherd"
+      ],
+      "parts": 3,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.1245999999999934
+    },
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "width": 360
+  },
+  {
+    "mission": "garden",
+    "height": 844,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "dash",
+          "clock": 2.767466666666661,
+          "id": "boss-mercury-hunter",
+          "legs": 6,
+          "phase": 27.789699209324382,
+          "state": "dash",
+          "travel": 6.209706666666079,
+          "walkWeight": 1
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "dash": 1
+          },
+          "contact": -2.767466666666661,
+          "hover": 0,
+          "hp": 16800,
+          "id": "boss-mercury-hunter",
+          "phase": 1,
+          "radius": 1.8,
+          "speed": 3.8,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1537.790293333334
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 48,
+      "loading": 0,
+      "model": [
+        "boss-mercury-hunter"
+      ],
+      "parts": 0,
+      "shots": 0,
+      "tiles": 2,
+      "time": 2.767466666666661
+    },
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "width": 390
+  },
+  {
+    "mission": "quarantine",
+    "height": 844,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "crush",
+          "clock": 3.4167999999999923,
+          "id": "boss-scrap-leviathan",
+          "legs": 6,
+          "phase": 2.826273990939283,
+          "state": "release",
+          "travel": 1.007586666665702,
+          "walkWeight": 1
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "crush": 1
+          },
+          "contact": -3.4167999999999927,
+          "hover": 0,
+          "hp": 23200,
+          "id": "boss-scrap-leviathan",
+          "phase": 1,
+          "radius": 7,
+          "speed": 0.65,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1542.9924133333343
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 47,
+      "loading": 0,
+      "model": [
+        "boss-scrap-leviathan"
+      ],
+      "parts": 4,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.4167999999999927
+    },
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "width": 390
+  },
+  {
+    "mission": "core",
+    "height": 844,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "roots",
+          "clock": 3.18266666666666,
+          "id": "boss-root-cathedral",
+          "legs": 7,
+          "phase": 0,
+          "state": "release",
+          "travel": 0,
+          "walkWeight": 0
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "roots": 1
+          },
+          "contact": -3.18266666666666,
+          "hover": 0,
+          "hp": 30400,
+          "id": "boss-root-cathedral",
+          "phase": 1,
+          "radius": 4.5,
+          "speed": 0,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1544
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 47,
+      "loading": 0,
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "parts": 3,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.18266666666666
+    },
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "width": 390
+  },
+  {
+    "mission": "nursery",
+    "height": 844,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "copy",
+          "clock": 2.924966666666661,
+          "id": "boss-mirror-collector",
+          "legs": 4,
+          "phase": 11.076530713643942,
+          "state": "release",
+          "travel": 2.016740000001164,
+          "walkWeight": 8.26634767581158e-14
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "copy": 1
+          },
+          "contact": -2.924966666666661,
+          "hover": 0,
+          "hp": 30400,
+          "id": "boss-mirror-collector",
+          "phase": 1,
+          "radius": 2.2,
+          "speed": 2.2,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1541.9832599999988
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 44,
+      "loading": 0,
+      "model": [
+        "boss-mirror-collector"
+      ],
+      "parts": 0,
+      "shots": 3,
+      "tiles": 2,
+      "time": 2.924966666666661
+    },
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "width": 390
+  },
+  {
+    "mission": "mother",
+    "height": 844,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "swarm",
+          "clock": 3.13316666666666,
+          "id": "boss-swarm-shepherd",
+          "legs": 4,
+          "phase": 0,
+          "state": "release",
+          "travel": 0,
+          "walkWeight": 0
+        }
+      ],
+      "bees": 4,
+      "boss": [
+        {
+          "actions": {
+            "bees": 1,
+            "swarm": 1
+          },
+          "contact": -3.13316666666666,
+          "hover": 1.1,
+          "hp": 30400,
+          "id": "boss-swarm-shepherd",
+          "phase": 1,
+          "radius": 3,
+          "speed": 1.7,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1544
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 43,
+      "loading": 0,
+      "model": [
+        "boss-swarm-shepherd"
+      ],
+      "parts": 3,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.13316666666666
+    },
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "width": 390
+  },
+  {
+    "mission": "garden",
+    "height": 720,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "dash",
+          "clock": 2.774799999999995,
+          "id": "boss-mercury-hunter",
+          "legs": 6,
+          "phase": 27.914408205448332,
+          "state": "dash",
+          "travel": 6.237573333332421,
+          "walkWeight": 1
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "dash": 1
+          },
+          "contact": -2.774799999999995,
+          "hover": 0,
+          "hp": 16800,
+          "id": "boss-mercury-hunter",
+          "phase": 1,
+          "radius": 1.8,
+          "speed": 3.8,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1537.7624266666676
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 47,
+      "loading": 0,
+      "model": [
+        "boss-mercury-hunter"
+      ],
+      "parts": 0,
+      "shots": 0,
+      "tiles": 2,
+      "time": 2.774799999999995
+    },
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 437.5,
+      "right": 842.5,
+      "top": 0,
+      "width": 405,
+      "x": 437.5,
+      "y": 0
+    },
+    "width": 1280
+  },
+  {
+    "mission": "quarantine",
+    "height": 720,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "crush",
+          "clock": 3.433166666666659,
+          "id": "boss-scrap-leviathan",
+          "legs": 6,
+          "phase": 2.8257270172168565,
+          "state": "release",
+          "travel": 1.0073916666651712,
+          "walkWeight": 1
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "crush": 1
+          },
+          "contact": -3.433166666666659,
+          "hover": 0,
+          "hp": 23200,
+          "id": "boss-scrap-leviathan",
+          "phase": 1,
+          "radius": 7,
+          "speed": 0.65,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1542.9926083333348
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 48,
+      "loading": 0,
+      "model": [
+        "boss-scrap-leviathan"
+      ],
+      "parts": 4,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.433166666666659
+    },
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 437.5,
+      "right": 842.5,
+      "top": 0,
+      "width": 405,
+      "x": 437.5,
+      "y": 0
+    },
+    "width": 1280
+  },
+  {
+    "mission": "core",
+    "height": 720,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "roots",
+          "clock": 3.1757999999999935,
+          "id": "boss-root-cathedral",
+          "legs": 7,
+          "phase": 0,
+          "state": "release",
+          "travel": 0,
+          "walkWeight": 0
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "roots": 1
+          },
+          "contact": -3.1757999999999935,
+          "hover": 0,
+          "hp": 30400,
+          "id": "boss-root-cathedral",
+          "phase": 1,
+          "radius": 4.5,
+          "speed": 0,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1544
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 48,
+      "loading": 0,
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "parts": 3,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.1757999999999935
+    },
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 437.5,
+      "right": 842.5,
+      "top": 0,
+      "width": 405,
+      "x": 437.5,
+      "y": 0
+    },
+    "width": 1280
+  },
+  {
+    "mission": "nursery",
+    "height": 720,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "copy",
+          "clock": 2.932766666666661,
+          "id": "boss-mirror-collector",
+          "legs": 4,
+          "phase": 11.176820017584514,
+          "state": "release",
+          "travel": 2.0350000000009913,
+          "walkWeight": 8.32858088051225e-14
+        }
+      ],
+      "bees": 0,
+      "boss": [
+        {
+          "actions": {
+            "copy": 1
+          },
+          "contact": -2.932766666666661,
+          "hover": 0,
+          "hp": 30400,
+          "id": "boss-mirror-collector",
+          "phase": 1,
+          "radius": 2.2,
+          "speed": 2.2,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1541.964999999999
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 47,
+      "loading": 0,
+      "model": [
+        "boss-mirror-collector"
+      ],
+      "parts": 0,
+      "shots": 3,
+      "tiles": 2,
+      "time": 2.932766666666661
+    },
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 437.5,
+      "right": 842.5,
+      "top": 0,
+      "width": 405,
+      "x": 437.5,
+      "y": 0
+    },
+    "width": 1280
+  },
+  {
+    "mission": "mother",
+    "height": 720,
+    "overflow": false,
+    "proof": {
+      "animation": [
+        {
+          "action": "swarm",
+          "clock": 3.12496666666666,
+          "id": "boss-swarm-shepherd",
+          "legs": 4,
+          "phase": 0,
+          "state": "release",
+          "travel": 0,
+          "walkWeight": 0
+        }
+      ],
+      "bees": 4,
+      "boss": [
+        {
+          "actions": {
+            "bees": 1,
+            "swarm": 1
+          },
+          "contact": -3.12496666666666,
+          "hover": 1.1,
+          "hp": 30400,
+          "id": "boss-swarm-shepherd",
+          "phase": 1,
+          "radius": 3,
+          "speed": 1.7,
+          "warning": null,
+          "x": 0,
+          "y": 0,
+          "z": -1544
+        }
+      ],
+      "camera": {
+        "active": true,
+        "blend": 1,
+        "depth": 42,
+        "height": 30,
+        "lookAhead": 3.2,
+        "lookHeight": 0.6
+      },
+      "errors": 0,
+      "fps": 60,
+      "loading": 0,
+      "model": [
+        "boss-swarm-shepherd"
+      ],
+      "parts": 3,
+      "shots": 0,
+      "tiles": 2,
+      "time": 3.12496666666666
+    },
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 437.5,
+      "right": 842.5,
+      "top": 0,
+      "width": 405,
+      "x": 437.5,
+      "y": 0
+    },
+    "width": 1280
+  }
+]

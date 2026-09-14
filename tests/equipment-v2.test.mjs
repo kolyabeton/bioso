@@ -9,16 +9,16 @@ import {createMeleeAnimation} from '../src/melee-animation.js';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
 test('mixed root and normal legs average speed, swapping and removing immediately recompute',()=>{
  const s=createRun();s.inventory=[];s.arms=[null,null];const root=createPart(s,'root');s.inventory.push(root);
- near(stats(s).speed,6.6);assert(equip(s,root.id,0));near(stats(s).speed,4.4);
- const other=createPart(s,'root');s.inventory.push(other);assert(equip(s,other.id,1));near(stats(s).speed,2.2);
- assert(unequip(s,'legs',0));near(stats(s).speed,1.1);
- const normal=s.inventory.find(p=>p.key==='universal');assert(equip(s,normal.id,0));near(stats(s).speed,4.4);
+ near(stats(s).speed,7.8);assert(equip(s,root.id,0));near(stats(s).speed,5.2);
+ const other=createPart(s,'root');s.inventory.push(other);assert(equip(s,other.id,1));near(stats(s).speed,2.4);
+ assert(unequip(s,'legs',0));near(stats(s).speed,1);
+ const normal=s.inventory.find(p=>p.key==='universal');assert(equip(s,normal.id,0));near(stats(s).speed,5.2);
 });
 test('every chassis supports independently typed legs and sparse slots preserve physical identity',()=>{
  for(const body of Object.keys(BODIES)){
   const s=createRun();s.arms=[null,null];s.legs=[createPart(s,'root'),createPart(s,'universal')];const rootId=s.legs[0].id;
   const next=createPart(s,body);s.inventory.push(next);assert(swapBody(s,next.id));s.inventory=[];
-  assert.equal(s.legs[0].id,rootId);near(stats(s).speed,8/BODIES[body].legs*(body==='wanderer'?1.1:1)*(BODIES[body].legs>=4?1.15:1));
+  assert.equal(s.legs[0].id,rootId);near(stats(s).speed,8/BODIES[body].legs*(body==='wanderer'?1.3:1));
   s.legs[0]=null;const m=creatureModel(s);assert.equal(m.userData.legs.length,1);assert.equal(m.userData.legs[0].userData.slot,1);assert.equal(m.userData.legs[0].userData.partId,s.legs[1].id);
  }
  for(const key of Object.keys(LEGS))for(const setId of Object.keys(BODIES))assert.equal(legModelId({key,setId}),legModelId({key}));
@@ -28,8 +28,8 @@ test('internal organs retain mechanical effects without exterior model placehold
  const s=createRun();s.organs=Object.keys(ORGANS).map(key=>createPart(s,key));const m=creatureModel(s);let exterior=[];m.traverse(o=>{if(o.name.startsWith('organ-'))exterior.push(o);});assert.equal(exterior.length,0);assert(stats(s).regen);assert.equal(stats(s).shieldMax,1);assert(stats(s).rate>0);
 });
 test('new weapon models are distinct; legacy hammer remains a functional shield bash',()=>{
- assert.equal(ARM_MODELS.whip[0],'arm-whip');assert.equal(ARM_MODELS.needle[0],'arm-needle');
- const s=createRun(),p=createPart(s,'hammer');assert.equal(weaponStats(s,p).name,'Таранный щит');assert.equal(weaponStats(s,p).mode,'area');
+ assert.equal(ARM_MODELS.whip[0],'arm-whip-icon-v1');assert.equal(ARM_MODELS.needle[0],'arm-needle-icon-v1');
+ const s=createRun(),p=createPart(s,'hammer');assert.equal(weaponStats(s,p).name,'Трамбовка');assert.equal(weaponStats(s,p).mode,'area');
  const a=createMeleeAnimation();a.attack({type:'attack',key:'hammer',source:p.id,x:0,z:0,tx:0,tz:2},0);const pose=a.pose(p.id,.2);assert(pose.extension>.6);assert.equal(pose.trail,false);assert(Math.abs(pose.yaw)<.15);
 });
 test('root unlock remains available to profiles that already earned the old five minute reward',()=>{

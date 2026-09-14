@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>BIOSO — проба камеры из кабины</title></head>
+<body>
+<main id="cockpit-test">
+  <canvas id="world" tabindex="0" aria-label="Тест камеры. WASD — движение, перетаскивание мышью — обзор, Q и E — поворот."></canvas>
+  <div class="canopy" aria-hidden="true"><i></i><i></i><span></span></div>
+  <header><div class="title"><strong>BIOSO</strong><span>ПРОБА КАМЕРЫ</span></div><button id="reset" type="button">Сброс</button>
+    <nav aria-label="Ракурс камеры"><button id="cockpit" type="button" aria-pressed="true">Из кабины</button><button id="overhead" type="button" aria-pressed="false">Сверху</button></nav>
+  </header>
+  <div class="reticle" aria-hidden="true">＋</div>
+  <div id="stick" hidden aria-hidden="true"><i></i></div>
+  <footer><p id="status" role="status">Загрузка окружения…</p><p id="controls" class="desktop-hints">WASD — ходьба · мышь с зажатием / Q E — обзор</p><small>Тест для десктопа · без боя и сохранений</small></footer>
+</main>
+<script type="module" src="/src/cockpit-test.js"></script>
+</body></html>

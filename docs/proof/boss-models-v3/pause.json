@@ -1,0 +1,40 @@
+{
+  "first": {
+    "model": [
+      "boss-mercury-hunter"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-mercury-hunter",
+        "x": 0,
+        "y": 0,
+        "z": -1537.288675250002,
+        "contact": 0.9158000000000031
+      }
+    ],
+    "time": 76.91680000000312,
+    "fps": 60
+  },
+  "later": {
+    "model": [
+      "boss-mercury-hunter"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-mercury-hunter",
+        "x": 0,
+        "y": 0,
+        "z": -1537.288675250002,
+        "contact": 0.9158000000000031
+      }
+    ],
+    "time": 76.91680000000312,
+    "fps": 60
+  }
+}

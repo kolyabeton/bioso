@@ -5,16 +5,26 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "build": "node scripts/build-game.mjs",
+    "build:acceptance": "node scripts/build-game.mjs --acceptance",
+    "export:itch": "node scripts/export-itch.mjs",
+    "export:unlocked": "node scripts/export-itch.mjs --unlocked",
+    "verify:assets": "node scripts/verify-assets.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "assets": "node scripts/export-assets.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --import ./scripts/register-test-loader.mjs --test tests/*.test.mjs"
   },
   "dependencies": {
     "@fontsource-variable/onest": "^5.3.1",
     "three": "^0.180.0"
   },
   "devDependencies": {
+    "@gltf-transform/core": "4.5.0",
+    "@gltf-transform/extensions": "4.5.0",
+    "@gltf-transform/functions": "4.5.0",
+    "magic-string": "1.2.3",
+    "meshoptimizer": "1.2.0",
+    "sharp": "0.35.4",
     "vite": "^7.1.0"
   }
 }

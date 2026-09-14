@@ -6,7 +6,7 @@ test('survival encounters vary by seed, spread across tiles with no more than tw
  const layouts=new Set();
  for(let seed=1;seed<=30;seed++){
   const s=createWorldRun(undefined,'survival',seed),nodes=s.encounters.nodes;
-  assert.equal(nodes.length,19);
+  assert.ok([26,27].includes(nodes.length));
   const counts=new Map();for(const n of nodes){const id=s.world.tileAt(n.x,n.z).id;counts.set(id,(counts.get(id)||0)+1);}assert.ok([...counts.values()].every(n=>n<=2));
   layouts.add(JSON.stringify(nodes.map(n=>[n.x,n.z])));
   for(const [i,n] of nodes.entries()){

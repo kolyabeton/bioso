@@ -1,0 +1,60 @@
+/* One canonical item-icon component across gameplay, assembly and every UI route. */
+:root{--ui-part-icon-size:48px;--ui-item-art-inset:4px;--ui-item-outline:1px solid #788b7250}
+
+/* Standalone art uses the atlas rim too. Draw over the existing box so SVG
+   crops, background images and mobile layout keep their exact dimensions. */
+.ui-part-art{position:relative}
+.ui-part-art:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:var(--ui-item-outline);
+  border-radius:var(--ui-radius);
+  pointer-events:none;
+}
+
+/* Cards and weapon slots already own a frame; never draw a second rim. */
+:is(.ui-part-card,.ui-hand-slot)>.ui-part-art:before,
+.ui-soul-panel .ui-learned>.ui-part-art:before{display:none}
+.ui-hand-slot{border-radius:var(--ui-radius)}
+.ui-hand-slot:before{background:none;border:var(--ui-item-outline)}
+.ui-hand-slot.is-reloading:before{border-color:var(--ui-warning)}
+
+:is(#game,#panel) .ui-part-art{
+  width:var(--ui-part-icon-size);
+  height:var(--ui-part-icon-size);
+  min-width:var(--ui-part-icon-size);
+  min-height:var(--ui-part-icon-size);
+  max-width:var(--ui-part-icon-size);
+  max-height:var(--ui-part-icon-size);
+  flex:0 0 var(--ui-part-icon-size);
+  aspect-ratio:1;
+}
+
+:is(#game,#panel) :is(.ui-part-card,.ui-hand-slot)>.ui-part-art{margin-inline:auto}
+
+/* The atlas layout is shared by previews, rewards and starting loadouts. */
+.ui-item-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-content:start;flex:none}
+.ui-item-grid[hidden]{display:none}
+/* Card art fills its existing frame, from compact slots to the atlas grid.
+   The fixed icon size above remains for standalone inspector/HUD thumbnails. */
+:is(#game,#panel) .ui-part-card[data-item-icon]{padding:var(--ui-item-art-inset)}
+:is(#game,#panel) .ui-part-card[data-item-icon]>.ui-part-art{
+  position:absolute;
+  inset:var(--ui-item-art-inset);
+  width:auto;
+  height:auto;
+  min-width:0;
+  min-height:0;
+  max-width:none;
+  max-height:none;
+  margin:0;
+  flex:none;
+}
+.ui-item-selected{position:absolute;top:5px;right:5px;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--ui-surface);color:var(--ui-text)}
+.ui-item-selected .ui-icon{width:16px;height:16px}
+
+/* Assembly keeps its existing 64px touch slots; art scales inside them. */
+#panel[data-screen=assembly] .ui-assembly{--assembly-item-size:64px}
+#panel .meta-starter-organ{grid-template-columns:var(--ui-part-icon-size) minmax(0,1fr)}
+#panel .ui-keep-list .ui-check-row{grid-template-columns:var(--ui-part-icon-size) minmax(0,1fr) 20px}

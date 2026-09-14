@@ -1,0 +1,93 @@
+{
+  "before": {
+    "model": [
+      "boss-swarm-shepherd"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-swarm-shepherd",
+        "x": 0,
+        "y": 0,
+        "z": -1538.9853445333342,
+        "contact": -8.050400000000025,
+        "radius": 3,
+        "speed": 2.074,
+        "hp": 30400,
+        "phase": 2,
+        "actions": {
+          "node-destroyed": 3,
+          "phase-2": 1,
+          "ground-claws": 2
+        },
+        "warning": null,
+        "hover": 0
+      }
+    ],
+    "parts": 0,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-swarm-shepherd",
+        "state": "release",
+        "action": "ground-claws",
+        "walkWeight": 1.2478007338471442e-28,
+        "legs": 4,
+        "phase": 21.880562186612618,
+        "clock": 8.050400000000025,
+        "travel": 5.014655466665772
+      }
+    ],
+    "time": 8.050400000000025,
+    "fps": 60
+  },
+  "after": {
+    "model": [
+      "boss-swarm-shepherd"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-swarm-shepherd",
+        "x": 0,
+        "y": 0,
+        "z": -1538.9853445333342,
+        "contact": -8.050400000000025,
+        "radius": 3,
+        "speed": 2.074,
+        "hp": 30400,
+        "phase": 2,
+        "actions": {
+          "node-destroyed": 3,
+          "phase-2": 1,
+          "ground-claws": 2
+        },
+        "warning": null,
+        "hover": 0
+      }
+    ],
+    "parts": 0,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-swarm-shepherd",
+        "state": "release",
+        "action": "ground-claws",
+        "walkWeight": 1.2478007338471442e-28,
+        "legs": 4,
+        "phase": 21.880562186612618,
+        "clock": 8.050400000000025,
+        "travel": 5.014655466665772
+      }
+    ],
+    "time": 8.050400000000025,
+    "fps": 60
+  },
+  "unchanged": true
+}

@@ -1,0 +1,233 @@
+{
+  "hitProof": [
+    {
+      "name": "Страж",
+      "recipe": "warden",
+      "mode": "sector",
+      "angle": 1.0471975511965976,
+      "radius": 5.5,
+      "result": "Спереди: 1 попаданий",
+      "player": {
+        "x": 46,
+        "z": 131,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded"
+      },
+      "boss": {
+        "x": 46,
+        "z": 128
+      },
+      "time": 22.05
+    },
+    {
+      "name": "Страж",
+      "recipe": "warden",
+      "mode": "sector",
+      "angle": 1.0471975511965976,
+      "radius": 5.5,
+      "result": "Сбоку: 0 попаданий",
+      "player": {
+        "x": 49,
+        "z": 128,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded"
+      },
+      "boss": {
+        "x": 46,
+        "z": 128
+      },
+      "time": 33.3
+    },
+    {
+      "name": "Страж",
+      "recipe": "warden",
+      "mode": "sector",
+      "angle": 1.0471975511965976,
+      "radius": 5.5,
+      "result": "Сзади: 0 попаданий",
+      "player": {
+        "x": 46,
+        "z": 125,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded"
+      },
+      "boss": {
+        "x": 46,
+        "z": 128
+      },
+      "time": 44.55
+    }
+  ],
+  "viewports": [
+    {
+      "gameWidth": 360,
+      "overflow": false,
+      "panel": {
+        "bottom": 632,
+        "height": 624,
+        "left": 8,
+        "right": 352,
+        "top": 8,
+        "width": 344,
+        "x": 8,
+        "y": 8
+      },
+      "screen": "Садовник I",
+      "viewport": [
+        360,
+        640
+      ]
+    },
+    {
+      "gameWidth": 390,
+      "overflow": false,
+      "panel": {
+        "bottom": 836,
+        "height": 828,
+        "left": 8,
+        "right": 382,
+        "top": 8,
+        "width": 374,
+        "x": 8,
+        "y": 8
+      },
+      "screen": "Садовник I",
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "gameWidth": 1280,
+      "overflow": false,
+      "panel": {
+        "bottom": 712,
+        "height": 704,
+        "left": 445.5,
+        "right": 834.5,
+        "top": 8,
+        "width": 389,
+        "x": 445.5,
+        "y": 8
+      },
+      "screen": "Садовник I",
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "gameWidth": 1280,
+      "overflow": false,
+      "panel": {
+        "bottom": 712,
+        "height": 704,
+        "left": 445.5,
+        "right": 834.5,
+        "top": 8,
+        "width": 389,
+        "x": 445.5,
+        "y": 8
+      },
+      "screen": "Карта",
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "gameWidth": 360,
+      "overflow": false,
+      "panel": {
+        "bottom": 632,
+        "height": 624,
+        "left": 8,
+        "right": 352,
+        "top": 8,
+        "width": 344,
+        "x": 8,
+        "y": 8
+      },
+      "screen": "Карта",
+      "viewport": [
+        360,
+        640
+      ]
+    },
+    {
+      "gameWidth": 390,
+      "overflow": false,
+      "panel": {
+        "bottom": 772,
+        "height": 700,
+        "left": 8,
+        "right": 382,
+        "top": 72,
+        "width": 374,
+        "x": 8,
+        "y": 72
+      },
+      "screen": "Карта",
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  ],
+  "home": [
+    {
+      "menu": {
+        "bottom": 720,
+        "height": 720,
+        "left": 0,
+        "right": 1280,
+        "top": 0,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": false,
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    {
+      "menu": {
+        "bottom": 640,
+        "height": 640,
+        "left": 0,
+        "right": 360,
+        "top": 0,
+        "width": 360,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": false,
+      "viewport": [
+        360,
+        640
+      ]
+    },
+    {
+      "menu": {
+        "bottom": 844,
+        "height": 844,
+        "left": 0,
+        "right": 390,
+        "top": 0,
+        "width": 390,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": false,
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  ]
+}

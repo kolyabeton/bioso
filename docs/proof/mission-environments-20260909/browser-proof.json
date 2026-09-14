@@ -1,0 +1,29 @@
+{
+  "route": "actual mission-environment and mission-boss review checkpoints",
+  "seed": 20260908,
+  "groundRevision": {
+    "garden": "garden stone with moss and grass",
+    "quarantine": "rusted scrap gravel with rare grass and no green edge row",
+    "core": "dark forest soil with branches, fern and vine",
+    "nursery": "city slabs with sparse vine",
+    "mother": "organic garden-stone and forest-soil patch mix with seedpod, vine and moss"
+  },
+  "entries": [
+    {"mission": "garden", "environment": "Верхние сады", "viewport": [390, 844], "stageWidth": 390, "ready": true, "assetErrors": 0, "modelFailures": 0},
+    {"mission": "quarantine", "environment": "Тихая свалка", "viewport": [390, 844], "stageWidth": 390, "ready": true, "assetErrors": 0, "modelFailures": 0},
+    {"mission": "core", "environment": "Корневой лес", "viewport": [390, 844], "stageWidth": 390, "ready": true, "assetErrors": 0, "modelFailures": 0},
+    {"mission": "nursery", "environment": "Заросший город", "viewport": [390, 844], "stageWidth": 390, "ready": true, "assetErrors": 0, "modelFailures": 0},
+    {"mission": "mother", "environment": "Роевой питомник", "viewport": [390, 844], "stageWidth": 390, "ready": true, "assetErrors": 0, "modelFailures": 0}
+  ],
+  "bossRooms": [
+    {"mission": "garden", "boss": "boss-mercury-hunter", "ready": true, "assetErrors": 0},
+    {"mission": "quarantine", "boss": "boss-scrap-leviathan", "ready": true, "assetErrors": 0},
+    {"mission": "core", "boss": "boss-root-cathedral", "ready": true, "assetErrors": 0},
+    {"mission": "nursery", "boss": "boss-mirror-collector", "ready": true, "assetErrors": 0},
+    {"mission": "mother", "boss": "boss-swarm-shepherd", "ready": true, "assetErrors": 0}
+  ],
+  "responsive": [
+    {"viewport": [360, 640], "stageWidth": 360, "environment": "Роевой питомник", "ready": true, "assetErrors": 0},
+    {"viewport": [1280, 720], "stageWidth": 405, "environment": "Роевой питомник", "ready": true, "assetErrors": 0}
+  ]
+}

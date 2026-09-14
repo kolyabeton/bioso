@@ -1,0 +1,20 @@
+{
+  "route": "http://127.0.0.1:5298/?review=trailer&shot=level&screen=level&environment=upper-gardens&quality=high",
+  "screen": "level",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "panel": {
+    "x": 445.5,
+    "y": 8,
+    "width": 389,
+    "height": 704,
+    "top": 8,
+    "right": 834.5,
+    "bottom": 712,
+    "left": 445.5
+  },
+  "text": "LEVEL UP\nReroll\n1\n\nLevel 18 · Choose one ability\n\nKeen Senses\nLv. 1 · Crit chance +10%\nShard Acceleration\nLv. 1 · A direct bullet kill releases 3 splinters; splinters do not split again.\nCarapace\nLv. 1 · +1 steel plate over health; spent before health. Total armor cannot exceed maximum health.\nPulse\nLv. 1 · Projectile speed +20%. The first critical hit of the original attack reduces this arm's remaining attack cooldown by 15%.\nPowerful Fibers\nLv. 3 · All weapon damage +14% → +18%.\nRefresh · 1",
+  "method": "Exact native IAB screenshot of actual live UI, transferred locally through browser clipboard."
+}

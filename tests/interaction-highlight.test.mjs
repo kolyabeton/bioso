@@ -19,7 +19,7 @@ test('highlight animates deterministically, respects reduced motion, restores sh
 });
 
 test('event highlight follows availability, distance and outcome without changing simulation state',()=>{
- const view=createGameplayModulesView(new T.Scene(),{load:()=>Promise.resolve(null)}),n={type:'altar',state:'ready',x:0,y:0,z:0};
+ const view=createGameplayModulesView(new T.Scene(),{load:()=>Promise.resolve(null)}),n={type:'altar_speed',state:'ready',x:0,y:0,z:0};
  const s={time:0,world:{flat:false},player:{x:0,z:0},encounters:{nodes:[n]}};view.update(s);const fx=view.root.children[0].getObjectByName('interaction-highlight');assert.equal(fx.visible,false);
  s.time=180;view.update(s);assert.equal(fx.visible,true);
  for(const state of ['active','complete','failed']){n.state=state;view.update(s);assert.equal(fx.visible,false);}

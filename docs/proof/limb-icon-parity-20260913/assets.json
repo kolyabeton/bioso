@@ -1,0 +1,288 @@
+[
+  {
+    "id": "arm-claws-icon-v1",
+    "equipmentKey": "claws",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "paired curved working jaws",
+      "jaw actuators"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1653124,
+    "primitives": 3
+  },
+  {
+    "id": "arm-fangs-icon-v1",
+    "equipmentKey": "fangs",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "paired curved working jaws",
+      "jaw actuators",
+      "feeding tubes"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1654948,
+    "primitives": 3
+  },
+  {
+    "id": "arm-hammer-icon-v1",
+    "equipmentKey": "hammer",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "heavy rectangular ceramic striking head"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1631080,
+    "primitives": 3
+  },
+  {
+    "id": "arm-drill-icon-v1",
+    "equipmentKey": "drill",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "conical helical drill bit"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1737484,
+    "primitives": 3
+  },
+  {
+    "id": "arm-seed-icon-v1",
+    "equipmentKey": "seed",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "six exposed gatling barrels"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1680468,
+    "primitives": 3
+  },
+  {
+    "id": "arm-rocket-icon-v1",
+    "equipmentKey": "rocket",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "four large launch tubes"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1662708,
+    "primitives": 3
+  },
+  {
+    "id": "arm-needle-icon-v1",
+    "equipmentKey": "needle",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "long exposed linear shaft",
+      "single fine dart"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1626840,
+    "primitives": 3
+  },
+  {
+    "id": "arm-harpoon-icon-v1",
+    "equipmentKey": "harpoon",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "long exposed linear shaft",
+      "backward harpoon barbs"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1632800,
+    "primitives": 3
+  },
+  {
+    "id": "arm-acid-icon-v1",
+    "equipmentKey": "acid",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "olive translucent reservoir",
+      "six retaining ribs",
+      "outlet nozzle"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1647832,
+    "primitives": 4
+  },
+  {
+    "id": "arm-arc-icon-v1",
+    "equipmentKey": "arc",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "paired curved working jaws",
+      "jaw actuators",
+      "central mint induction coil"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1685020,
+    "primitives": 5
+  },
+  {
+    "id": "arm-whip-icon-v1",
+    "equipmentKey": "whip",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "curled articulated vertebral cable"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1692356,
+    "primitives": 3
+  },
+  {
+    "id": "arm-drone-icon-v1",
+    "equipmentKey": "drone",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "oval open service housing",
+      "vented central channel",
+      "mint cell"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1668560,
+    "primitives": 4
+  },
+  {
+    "id": "leg-runner-icon-v1",
+    "equipmentKey": "runner",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "articulated knee",
+      "exposed shin pistons",
+      "three segmented toes",
+      "rear toe",
+      "slender digitigrade shin"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1691092,
+    "primitives": 3
+  },
+  {
+    "id": "leg-universal-icon-v1",
+    "equipmentKey": "universal",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "articulated knee",
+      "exposed shin pistons",
+      "three segmented toes",
+      "rear toe",
+      "ceramic shin guard"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1703512,
+    "primitives": 3
+  },
+  {
+    "id": "leg-plated-icon-v1",
+    "equipmentKey": "plated",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "articulated knee",
+      "exposed shin pistons",
+      "three segmented toes",
+      "rear toe",
+      "overlapping shin armour"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1698652,
+    "primitives": 3
+  },
+  {
+    "id": "leg-spring-icon-v1",
+    "equipmentKey": "spring",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "articulated knee",
+      "exposed shin pistons",
+      "three segmented toes",
+      "rear toe",
+      "shin spring"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1779100,
+    "primitives": 3
+  },
+  {
+    "id": "leg-swarmLeg-icon-v1",
+    "equipmentKey": "swarmLeg",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "articulated knee",
+      "exposed shin pistons",
+      "three segmented toes",
+      "rear toe",
+      "three recessed brood cells"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1724360,
+    "primitives": 4
+  }
+]

@@ -1,0 +1,148 @@
+✔ pillar blocks its visible base but permits the formerly invisible perimeter (0.842333ms)
+✔ biome movement and visibility share the fitted architecture footprint (2.289417ms)
+✔ legacy obstacles without model metadata retain circular collisions (0.830875ms)
+✔ player can walk beside current architecture while walking through its base stays blocked (4.714166ms)
+✔ rounding along a tangent does not create a barrier absent from pathfinding (0.134709ms)
+✔ runtime library contains valid GLBs and equipment references resolve (202.19475ms)
+✔ fitting leaves cached geometry unchanged and places a limb under its socket (2.052958ms)
+✔ starter pistol resolves to a dedicated articulated arm model (1.374791ms)
+✔ thickets block movement and fire, while narrow passages fit both body sizes (1202.03025ms)
+✔ stone recess remains enterable and all surrounding safe points have a route (818.547125ms)
+✔ structural size follows mounts and carrying capacity without changing with backpack contents (1.643584ms)
+✔ current world retains passages that admit the starter and block a large frame (44.002334ms)
+✔ a larger body cannot be equipped into a gap it cannot occupy; smaller bodies remain swappable (45.239708ms)
+✔ a lethal hit delays results, separates actual equipped parts and freezes gameplay (22.532875ms)
+✔ pause preserves the death pose and reduced motion still reaches a readable fallen state (2.879833ms)
+✔ nonlethal hits, revival and mission failure do not disassemble a living creature (3.105208ms)
+✔ loaded body/head and varied limb assemblies keep shared materials and late loads out of debris (9.251458ms)
+✔ survival encounters vary by seed, spread across tiles with no more than two objects each, and remain reachable (13855.207834ms)
+✔ body identity follows its inventory icon even with a saved legacy visual or another set (0.562542ms)
+✔ every catalog item has a nonempty real GLB, distinct weapons, legs and organs (1203.327042ms)
+✔ real attachments fit every chassis, weapon, leg and additional six-leg configuration (3472.738542ms)
+✔ removing slots does not recenter remaining limbs, delayed loads cannot revive retired models (1.307334ms)
+✔ every chassis visual variant remains connected through turns, recoil and melee extension (82.851583ms)
+✔ the authored body silhouettes retain horizontal, broad and upright proportions (0.730167ms)
+✔ new nursery items cannot shift the existing icon atlas coordinates (2.445458ms)
+✔ body wear reuses joint textures without enabling missing vertex colors on bearings (0.075667ms)
+✔ every socket belongs to one equipment slot, empty sockets are closed and occupied drives start there (16.606125ms)
+✔ final challenge never scales down for an early arrival and leaves mission tuning alone (2.681709ms)
+✔ Mother remains identifiable from spawn, focuses a live waypoint, and clears on victory (595.657667ms)
+✔ Mother teaches two telegraphed patterns, then unlocks a third attack below sixty percent (1.545708ms)
+✖ prepared level 30 builds can win a sustained duel with spacing; standing still loses (81.956333ms)
+✖ playable survival has continuous sculpted ground, filled gaps and no jump links (466.41125ms)
+✔ continuous survival boundary stops the hero without falling or damage (313.961166ms)
+✔ sculpted landscape fills all cells and former cutouts with connected ground (269.211459ms)
+✔ all biome entry points ignore the retired terrain option and generate continuous sculpted ground (279.936791ms)
+✔ every map edge blocks both body sizes without terrain damage (275.409625ms)
+✔ stale vertical state is grounded without applying damage or a jump (262.278542ms)
+✔ plated ranks I through V grant half a segment per rank without percent bonuses (4.898708ms)
+✔ natural and plated half segments each absorb one hit (0.589417ms)
+✔ a half segment is visible in HUD and removing a leg does not refill spent armor (0.98175ms)
+✔ paid plated upgrades add half a segment, retain speed and stop at ten (1.87075ms)
+✔ roots heal after fifteen seconds, retain HP bonus and offer regeneration upgrades (4.404583ms)
+✔ ten root upgrades each remove one second, keep speed and HP, and do not heal immediately (1.567667ms)
+✔ old root upgrades accelerate regenerator organs; installed roots stack down to half a second (0.481917ms)
+✔ a root upgrade adjusts a pending heal and a new hit restarts the timer (0.169125ms)
+✔ canvas map translates rendered labels and preserves Russian when switched back (525.721666ms)
+✔ atlas player arrow stays screen-up regardless of body facing (347.1795ms)
+✔ atlas fits the real world at mobile and desktop sizes without stretching distances (302.345792ms)
+✔ desktop map keeps portrait dialog bounds and never stretches atlas geometry (294.516542ms)
+✔ terrain footprint data retains collision geometry and its world position (293.880291ms)
+✔ map filters retain locked and available public events and never mark secrets (289.403625ms)
+✔ selected enemy reflects live aggro state and distance without modifying the run (288.196167ms)
+✔ map exposes lying health and armor pickups as a dedicated recovery filter (287.164292ms)
+✔ map exposes every lying equipment part from the start as selectable loot (288.85375ms)
+✔ both melee hands animate from their own real attack source (6.052875ms)
+✔ second-slot melee works alongside a reloading gun and its timing is independent (0.082167ms)
+✔ simultaneous hands do not restart each other; pause, removal and restart are clean (0.680084ms)
+✔ real final-room spawns own distinct metre scales and speeds; survival stays generic (20.53675ms)
+✔ hunter locks a telegraphed direction, dashes with swept collision and opens a punish window (12.86275ms)
+✔ leviathan support destruction slows locomotion and exposes its core without farming loot (2.48675ms)
+✔ cathedral stays anchored, drops defence with three roots, aims avoidable ground attacks and fires seeds (166.896ms)
+✔ collector copies ranged and melee loadouts; reflection emits dodgeable capped projectiles (2.044ms)
+✔ shepherd releases real targetable bees, caps the swarm, loses flight and switches to ground claws (89.838375ms)
+✔ warnings deal damage only at resolution and can be dodged; freeze cancels release (1.2335ms)
+✔ boss death removes children, pending attacks and projectiles; no posthumous damage (13.321667ms)
+✔ boss combat keeps spawning bounded monster waves until the boss dies (39.396042ms)
+✔ all five bosses execute three distinct attacks in bounded loops and keep fighting in phase two (1525.977542ms)
+✔ melee and projectile broad phase hit the surface of a giant boss, not only its centre (2.920458ms)
+✔ production hit path applies final-room attack scaling to root strikes and attacking bees (26.02025ms)
+✔ destroying the last command node cancels an already prepared swarm before phase two (11.4815ms)
+✔ all collision outlines match the actual GLB vertices and shared rock geometry (133.879875ms)
+✔ every outline edge permits clear space and blocks overlap for both body sizes at four rotations (9.327334ms)
+✔ actual player movement passes beside each obstacle type with both chassis sizes (19.48225ms)
+✔ both chassis traverse all 25 tiles, safe points and stone recesses across two seeds (6347.114209ms)
+✔ painted stage keeps new assembly and real combat on the restored terrace (12.749167ms)
+✔ movement stays on painted ground at all edges, including large bodies (11.780666ms)
+✔ retired painted adapter can still open every mission without inventing old objective nodes (2.397625ms)
+✔ enemies can spawn on actual painted ground from center and either end (1.334084ms)
+✔ main game activates large world while retaining the legacy presentation adapter (5.372333ms)
+✔ loot scattered beyond a painted edge stays reachable without losing its item (3.570125ms)
+✔ one race on survival map, complete obstacle route to far side, identical budget across builds (5658.668125ms)
+✔ fast build with an improved carrying body survives and finishes; slow build times out (43759.891125ms)
+✔ race keeps survival clock and normal waves paused; its packs spawn once and navigation cannot replace finish (510.497875ms)
+✔ arrival requires live creature, reachability and deadline; reward is claimed once at finish (1486.190542ms)
+✔ incomplete routes are unavailable, and race defers gear pickup without removing drops (505.058375ms)
+✔ five authored acts expose exact flow, caps, signatures and a hard cap of 88 (1.309625ms)
+✔ minute cadence spends exactly 10, 65, 23 and 2 percent without changing its total (0.189ms)
+✔ soft and hard caps discard spawn credit instead of banking debt (1.663167ms)
+✔ minute accents own 45 percent and unavailable early roles fall back to mass (0.683125ms)
+✔ scheduled and promoted wave elites share cap six, pursuer cap three and skip full-cap promotion (0.6405ms)
+✔ the first three survival wave elites have 70 percent less health across promoted and scheduled spawns (0.365542ms)
+✔ five offers contain build, defense and synergy progress and remain seeded (7.371041ms)
+✔ a build ability missing from four offer rounds is forced on the fifth (0.383875ms)
+✔ last level choice grants protection and pushes only ordinary nearby enemies (0.90525ms)
+✔ superboss pressure and reward relief use quarter flow, half cap and bounded credit (1.245292ms)
+✔ old profiles need no migration for transient director and offer state (0.241458ms)
+✔ survival landmarks use exported collision hulls and do not leak into missions (65.608583ms)
+✔ survival terrain reveals broad relief, uses physics heights and keeps cross routes level (61.654709ms)
+ℹ tests 98
+ℹ suites 0
+ℹ pass 96
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52514.095083
+
+✖ failing tests:
+
+test at tests/final-survival-boss.test.mjs:37:1
+✖ prepared level 30 builds can win a sustained duel with spacing; standing still loses (81.956333ms)
+  AssertionError [ERR_ASSERTION]: {"weapon":"claws","level":30,"dodge":true,"seed":321,"seconds":5,"won":false,"dead":true,"hp":0,"bossLeft":105754,"hits":3,"blocked":2,"learned":29,"unique":8,"speed":11.426252661290325}
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/final-survival-boss.test.mjs:40:42)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/flat-survival.test.mjs:7:1
+✖ playable survival has continuous sculpted ground, filled gaps and no jump links (466.41125ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(mesh.ground.positions.some((v,i)=>i%3===1&&Math.abs(v)>.001))
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/flat-survival.test.mjs:16:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

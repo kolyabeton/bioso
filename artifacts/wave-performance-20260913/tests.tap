@@ -1,0 +1,466 @@
+TAP version 13
+# Subtest: pillar blocks its visible base but permits the formerly invisible perimeter
+ok 1 - pillar blocks its visible base but permits the formerly invisible perimeter
+  ---
+  duration_ms: 11.476375
+  type: 'test'
+  ...
+# Subtest: biome movement and visibility share the fitted architecture footprint
+ok 2 - biome movement and visibility share the fitted architecture footprint
+  ---
+  duration_ms: 16.317917
+  type: 'test'
+  ...
+# Subtest: legacy obstacles without model metadata retain circular collisions
+ok 3 - legacy obstacles without model metadata retain circular collisions
+  ---
+  duration_ms: 0.161833
+  type: 'test'
+  ...
+# Subtest: player can walk beside current architecture while walking through its base stays blocked
+ok 4 - player can walk beside current architecture while walking through its base stays blocked
+  ---
+  duration_ms: 105.8395
+  type: 'test'
+  ...
+# Subtest: rounding along a tangent does not create a barrier absent from pathfinding
+ok 5 - rounding along a tangent does not create a barrier absent from pathfinding
+  ---
+  duration_ms: 0.244875
+  type: 'test'
+  ...
+# Subtest: thickets block movement and fire, while narrow passages fit both body sizes
+ok 6 - thickets block movement and fire, while narrow passages fit both body sizes
+  ---
+  duration_ms: 2360.528042
+  type: 'test'
+  ...
+# Subtest: stone recess remains enterable and all surrounding safe points have a route
+ok 7 - stone recess remains enterable and all surrounding safe points have a route
+  ---
+  duration_ms: 1731.18675
+  type: 'test'
+  ...
+# Subtest: many enemies share bounded path work when a bush hides an unreachable goal
+ok 8 - many enemies share bounded path work when a bush hides an unreachable goal
+  ---
+  duration_ms: 19.083875
+  type: 'test'
+  ...
+# Subtest: incremental routes still let enemies pass a bush without crossing it
+ok 9 - incremental routes still let enemies pass a bush without crossing it
+  ---
+  duration_ms: 3.347208
+  type: 'test'
+  ...
+# Subtest: flying enemies cross thickets directly while ground navigation remains solid
+ok 10 - flying enemies cross thickets directly while ground navigation remains solid
+  ---
+  duration_ms: 0.842417
+  type: 'test'
+  ...
+# Subtest: enemy path searches continue on challenge combat time while survival time is paused
+ok 11 - enemy path searches continue on challenge combat time while survival time is paused
+  ---
+  duration_ms: 2.233916
+  type: 'test'
+  ...
+# Subtest: playable survival has continuous sculpted ground, filled gaps and no jump links
+ok 12 - playable survival has continuous sculpted ground, filled gaps and no jump links
+  ---
+  duration_ms: 949.106041
+  type: 'test'
+  ...
+# Subtest: continuous survival boundary stops the hero without falling or damage
+ok 13 - continuous survival boundary stops the hero without falling or damage
+  ---
+  duration_ms: 665.982834
+  type: 'test'
+  ...
+# Subtest: sculpted landscape fills all cells and former cutouts with connected ground
+ok 14 - sculpted landscape fills all cells and former cutouts with connected ground
+  ---
+  duration_ms: 622.344125
+  type: 'test'
+  ...
+# Subtest: all biome entry points ignore the retired terrain option and generate continuous sculpted ground
+ok 15 - all biome entry points ignore the retired terrain option and generate continuous sculpted ground
+  ---
+  duration_ms: 739.264916
+  type: 'test'
+  ...
+# Subtest: every map edge blocks both body sizes without terrain damage
+ok 16 - every map edge blocks both body sizes without terrain damage
+  ---
+  duration_ms: 693.873
+  type: 'test'
+  ...
+# Subtest: stale vertical state is grounded without applying damage or a jump
+ok 17 - stale vertical state is grounded without applying damage or a jump
+  ---
+  duration_ms: 583.1675
+  type: 'test'
+  ...
+# Subtest: indexed biome collisions match exhaustive hulls across tiles, seams, heights and radii
+ok 18 - indexed biome collisions match exhaustive hulls across tiles, seams, heights and radii
+  ---
+  duration_ms: 402.605375
+  type: 'test'
+  ...
+# Subtest: rotated offset multi-boxes and circle footprints remain conservative at cell boundaries
+ok 19 - rotated offset multi-boxes and circle footprints remain conservative at cell boundaries
+  ---
+  duration_ms: 189.846959
+  type: 'test'
+  ...
+# Subtest: clearing a world decoration snapshot invalidates the index, and new items rebuild it
+ok 20 - clearing a world decoration snapshot invalidates the index, and new items rebuild it
+  ---
+  duration_ms: 4.49125
+  type: 'test'
+  ...
+# Subtest: five authored acts expose exact flow, caps, signatures and a hard cap of 88
+ok 21 - five authored acts expose exact flow, caps, signatures and a hard cap of 88
+  ---
+  duration_ms: 3.388708
+  type: 'test'
+  ...
+# Subtest: minute cadence spends exactly 10, 65, 23 and 2 percent without changing its total
+ok 22 - minute cadence spends exactly 10, 65, 23 and 2 percent without changing its total
+  ---
+  duration_ms: 1.255959
+  type: 'test'
+  ...
+# Subtest: soft and hard caps discard spawn credit instead of banking debt
+ok 23 - soft and hard caps discard spawn credit instead of banking debt
+  ---
+  duration_ms: 5.752916
+  type: 'test'
+  ...
+# Subtest: minute accents own 45 percent and unavailable early roles fall back to mass
+ok 24 - minute accents own 45 percent and unavailable early roles fall back to mass
+  ---
+  duration_ms: 1.541292
+  type: 'test'
+  ...
+# Subtest: scheduled and promoted wave elites share growing quotas and do not refill killed elites
+ok 25 - scheduled and promoted wave elites share growing quotas and do not refill killed elites
+  ---
+  duration_ms: 3.052375
+  type: 'test'
+  ...
+# Subtest: the first three wave elites retain reduced health and the first assault elite deals half damage
+ok 26 - the first three wave elites retain reduced health and the first assault elite deals half damage
+  ---
+  duration_ms: 1.405917
+  type: 'test'
+  ...
+# Subtest: five offers contain build, defense and synergy progress and remain seeded
+ok 27 - five offers contain build, defense and synergy progress and remain seeded
+  ---
+  duration_ms: 15.907416
+  type: 'test'
+  ...
+# Subtest: a build ability missing from four offer rounds is forced on the fifth
+ok 28 - a build ability missing from four offer rounds is forced on the fifth
+  ---
+  duration_ms: 0.546041
+  type: 'test'
+  ...
+# Subtest: last level choice grants protection and pushes only ordinary nearby enemies
+ok 29 - last level choice grants protection and pushes only ordinary nearby enemies
+  ---
+  duration_ms: 1.663291
+  type: 'test'
+  ...
+# Subtest: superboss pressure and reward relief use quarter flow, half cap and bounded credit
+ok 30 - superboss pressure and reward relief use quarter flow, half cap and bounded credit
+  ---
+  duration_ms: 4.099542
+  type: 'test'
+  ...
+# Subtest: old profiles need no migration for transient director and offer state
+ok 31 - old profiles need no migration for transient director and offer state
+  ---
+  duration_ms: 0.581167
+  type: 'test'
+  ...
+# Subtest: third minute starts the assault; every rest lasts exactly 35 seconds
+ok 32 - third minute starts the assault; every rest lasts exactly 35 seconds
+  ---
+  duration_ms: 5.789333
+  type: 'test'
+  ...
+# Subtest: first opening horde and stream are halved and fill at most 60 slots from all quadrants
+ok 33 - first opening horde and stream are halved and fill at most 60 slots from all quadrants
+  ---
+  duration_ms: 22.245583
+  type: 'test'
+  ...
+# Subtest: both spawners and scheduled elites stop for the entire rest and discard debt
+ok 34 - both spawners and scheduled elites stop for the entire rest and discard debt
+  ---
+  duration_ms: 3.769792
+  type: 'test'
+  ...
+# Subtest: boss relief cancels an opening instead of releasing its remainder afterwards
+ok 35 - boss relief cancels an opening instead of releasing its remainder afterwards
+  ---
+  duration_ms: 1.073292
+  type: 'test'
+  ...
+# Subtest: superboss quarter flow also applies to opening hordes and the shared half cap
+ok 36 - superboss quarter flow also applies to opening hordes and the shared half cap
+  ---
+  duration_ms: 1.1755
+  type: 'test'
+  ...
+# Subtest: blocked placement, full slots, dungeons and last stands cannot bank a late horde
+ok 37 - blocked placement, full slots, dungeons and last stands cannot bank a late horde
+  ---
+  duration_ms: 2.90625
+  type: 'test'
+  ...
+# Subtest: exploration recycles only distant ordinary wave enemies without rewards
+ok 38 - exploration recycles only distant ordinary wave enemies without rewards
+  ---
+  duration_ms: 0.987208
+  type: 'test'
+  ...
+# Subtest: moving fronts favor the route ahead while preserving safe distance and collision checks
+ok 39 - moving fronts favor the route ahead while preserving safe distance and collision checks
+  ---
+  duration_ms: 1.100042
+  type: 'test'
+  ...
+# Subtest: late combined wave spawners stop at 180 and cannot add an extra scheduled elite
+ok 40 - late combined wave spawners stop at 180 and cannot add an extra scheduled elite
+  ---
+  duration_ms: 20.507375
+  type: 'test'
+  ...
+# Subtest: production simulation keeps a moving player surrounded by a bounded crowd
+ok 41 - production simulation keeps a moving player surrounded by a bounded crowd
+  ---
+  duration_ms: 825.2205
+  type: 'test'
+  ...
+# Subtest: five fixed reachable bosses are visible immediately and do not hunt from across map
+ok 42 - five fixed reachable bosses are visible immediately and do not hunt from across map
+  ---
+  duration_ms: 927.69175
+  type: 'test'
+  ...
+# Subtest: all five habitats occupy separated map areas across world seeds
+ok 43 - all five habitats occupy separated map areas across world seeds
+  ---
+  duration_ms: 1998.451042
+  type: 'test'
+  ...
+# Subtest: production boss AI stays home, fights locally and cancels attacks to return without healing
+ok 44 - production boss AI stays home, fights locally and cancels attacks to return without healing
+  ---
+  duration_ms: 566.560125
+  type: 'test'
+  ...
+# Subtest: a minute of the real survival simulation leaves distant habitat bosses in their own areas
+ok 45 - a minute of the real survival simulation leaves distant habitat bosses in their own areas
+  ---
+  duration_ms: 455.407166
+  type: 'test'
+  ...
+# Subtest: elite engages, disengages, returns and can be fought again without healing
+ok 46 - elite engages, disengages, returns and can be fought again without healing
+  ---
+  duration_ms: 301.481416
+  type: 'test'
+  ...
+# Subtest: simulation actually returns an elite across flat tile boundaries
+ok 47 - simulation actually returns an elite across flat tile boundaries
+  ---
+  duration_ms: 595.707541
+  type: 'test'
+  ...
+# Subtest: public encounters are visible from level one but entry requires their level
+ok 48 - public encounters are visible from level one but entry requires their level
+  ---
+  duration_ms: 318.933375
+  type: 'test'
+  ...
+# Subtest: elite schedule depends only on time and habitat bosses do not duplicate
+ok 49 - elite schedule depends only on time and habitat bosses do not duplicate
+  ---
+  duration_ms: 316.648667
+  type: 'test'
+  ...
+# Subtest: half of live wave elites leave their map territory to hunt the player
+ok 50 - half of live wave elites leave their map territory to hunt the player
+  ---
+  duration_ms: 1.611584
+  type: 'test'
+  ...
+# Subtest: an allowed automatic elite joins the wave pursuit split
+ok 51 - an allowed automatic elite joins the wave pursuit split
+  ---
+  duration_ms: 0.604125
+  type: 'test'
+  ...
+# Subtest: map elites remain independent during warmup, exhausted wave quota, rest and relief
+ok 52 - map elites remain independent during warmup, exhausted wave quota, rest and relief
+  ---
+  duration_ms: 4.722958
+  type: 'test'
+  ...
+# Subtest: warmup never promotes wave mobs, so the first assault starts with one weak elite
+ok 53 - warmup never promotes wave mobs, so the first assault starts with one weak elite
+  ---
+  duration_ms: 0.631708
+  type: 'test'
+  ...
+# Subtest: successive waves issue exactly 1, 2, 3, 4, 5, 6 elites even when every enemy dies immediately
+ok 54 - successive waves issue exactly 1, 2, 3, 4, 5, 6 elites even when every enemy dies immediately
+  ---
+  duration_ms: 74.784708
+  type: 'test'
+  ...
+# Subtest: surviving elites occupy next-wave slots and cannot stack beyond its quota
+ok 55 - surviving elites occupy next-wave slots and cannot stack beyond its quota
+  ---
+  duration_ms: 61.406834
+  type: 'test'
+  ...
+# Subtest: direct wave promotions and scheduled requests cannot bypass the quota after a kill
+ok 56 - direct wave promotions and scheduled requests cannot bypass the quota after a kill
+  ---
+  duration_ms: 2.122334
+  type: 'test'
+  ...
+# Subtest: blocked placement does not spend the first elite and no wave elite appears during relief
+ok 57 - blocked placement does not spend the first elite and no wave elite appears during relief
+  ---
+  duration_ms: 1.231042
+  type: 'test'
+  ...
+# Subtest: mission world is a 25-room northbound corridor with its own environment
+ok 58 - mission world is a 25-room northbound corridor with its own environment
+  ---
+  duration_ms: 7.827084
+  type: 'test'
+  ...
+# Subtest: mission corridor has fixed screen-width sides and cannot scroll into lateral space
+ok 59 - mission corridor has fixed screen-width sides and cannot scroll into lateral space
+  ---
+  duration_ms: 8.293375
+  type: 'test'
+  ...
+# Subtest: a floor gate opens only after every enemy in that room is defeated
+ok 60 - a floor gate opens only after every enemy in that room is defeated
+  ---
+  duration_ms: 31.035
+  type: 'test'
+  ...
+# Subtest: entering the next mission room closes the previous gate and prevents return
+ok 61 - entering the next mission room closes the previous gate and prevents return
+  ---
+  duration_ms: 33.962292
+  type: 'test'
+  ...
+# Subtest: the first mission room uses its configured defender multiplier, keeps one elite and no room reward while survival keeps continuous waves
+ok 62 - the first mission room uses its configured defender multiplier, keeps one elite and no room reward while survival keeps continuous waves
+  ---
+  duration_ms: 523.489417
+  type: 'test'
+  ...
+# Subtest: mission defenders enter in formation from the far north edge and run into the room
+ok 63 - mission defenders enter in formation from the far north edge and run into the room
+  ---
+  duration_ms: 203.719292
+  type: 'test'
+  ...
+# Subtest: far-edge mission entry lanes stay walkable in every room and environment
+ok 64 - far-edge mission entry lanes stay walkable in every room and environment
+  ---
+  duration_ms: 183.4995
+  type: 'test'
+  ...
+# Subtest: every next mission room compounds enemy health by seven percent while attack stays fixed
+ok 65 - every next mission room compounds enemy health by seven percent while attack stays fixed
+  ---
+  duration_ms: 21.696708
+  type: 'test'
+  ...
+# Subtest: mission ranged projectiles keep base damage and their room tag
+ok 66 - mission ranged projectiles keep base damage and their room tag
+  ---
+  duration_ms: 1.926166
+  type: 'test'
+  ...
+# Subtest: A star and enemy movement go around an obstacle using the same footprint
+ok 67 - A star and enemy movement go around an obstacle using the same footprint
+  ---
+  duration_ms: 3.30325
+  type: 'test'
+  ...
+# Subtest: quick equip prefers empty compatible socket and rejects duplicate actions atomically
+ok 68 - quick equip prefers empty compatible socket and rejects duplicate actions atomically
+  ---
+  duration_ms: 1.268542
+  type: 'test'
+  ...
+# Subtest: legacy ranged enemy fires immediately and recovery blocks a repeat
+ok 69 - legacy ranged enemy fires immediately and recovery blocks a repeat
+  ---
+  duration_ms: 1.291125
+  type: 'test'
+  ...
+# Subtest: mission gates are simulation barriers, not destructible objective enemies
+ok 70 - mission gates are simulation barriers, not destructible objective enemies
+  ---
+  duration_ms: 8.821584
+  type: 'test'
+  ...
+# Subtest: new survival run keeps only melee and does not auto-grant spawn loot
+ok 71 - new survival run keeps only melee and does not auto-grant spawn loot
+  ---
+  duration_ms: 724.254417
+  type: 'test'
+  ...
+# Subtest: every mission and survival start without a digestion organ
+ok 72 - every mission and survival start without a digestion organ
+  ---
+  duration_ms: 227.559875
+  type: 'test'
+  ...
+# Subtest: each mission starts at the south edge of its first themed room
+ok 73 - each mission starts at the south edge of its first themed room
+  ---
+  duration_ms: 2.794625
+  type: 'test'
+  ...
+# Subtest: ranged enemy below its stopping distance navigates around an obstacle without entering it
+ok 74 - ranged enemy below its stopping distance navigates around an obstacle without entering it
+  ---
+  duration_ms: 31.053042
+  type: 'test'
+  ...
+# Subtest: failed path search observes its retry interval instead of searching every frame
+ok 75 - failed path search observes its retry interval instead of searching every frame
+  ---
+  duration_ms: 0.61325
+  type: 'test'
+  ...
+# Subtest: mission room enemies spawn on real walkable ground across seeds
+ok 76 - mission room enemies spawn on real walkable ground across seeds
+  ---
+  duration_ms: 3425.114875
+  type: 'test'
+  ...
+1..76
+# tests 76
+# suites 0
+# pass 76
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15274.090542

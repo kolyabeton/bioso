@@ -1,0 +1,580 @@
+[
+  {
+    "id": "elite1",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "First Elite",
+    "overflow": false
+  },
+  {
+    "id": "elite3",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Three elites",
+    "overflow": false
+  },
+  {
+    "id": "time5",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Five Minutes",
+    "overflow": false
+  },
+  {
+    "id": "rootLeg5",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Root Support",
+    "overflow": false
+  },
+  {
+    "id": "level5",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Level 5",
+    "overflow": false
+  },
+  {
+    "id": "boss1",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "First Boss",
+    "overflow": false
+  },
+  {
+    "id": "boss2",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Two bosses",
+    "overflow": false
+  },
+  {
+    "id": "elite5",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Five Elites",
+    "overflow": false
+  },
+  {
+    "id": "elite10",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Ten elites",
+    "overflow": false
+  },
+  {
+    "id": "level10",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Level 10",
+    "overflow": false
+  },
+  {
+    "id": "time10",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Ten minutes",
+    "overflow": false
+  },
+  {
+    "id": "level15",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Level 15",
+    "overflow": false
+  },
+  {
+    "id": "level20",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Level 20",
+    "overflow": false
+  },
+  {
+    "id": "final",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Broodmother defeated",
+    "overflow": false
+  },
+  {
+    "id": "mission:garden",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Hunter's Trail",
+    "overflow": false
+  },
+  {
+    "id": "mission:quarantine",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Heart of the Scrapyard",
+    "overflow": false
+  },
+  {
+    "id": "mission:core",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Root Cathedral",
+    "overflow": false
+  },
+  {
+    "id": "mission:nursery",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Mirror Harvest",
+    "overflow": false
+  },
+  {
+    "id": "mission:mother",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Swarm Shepherd",
+    "overflow": false
+  },
+  {
+    "id": "meta:harpoon",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Beyond the Limit",
+    "overflow": false
+  },
+  {
+    "id": "meta:reactor",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Another Breakthrough",
+    "overflow": false
+  },
+  {
+    "id": "meta:spring",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Part"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Pioneer",
+    "overflow": false
+  },
+  {
+    "id": "feat:contract",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "First Pact",
+    "overflow": false
+  },
+  {
+    "id": "feat:infection",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Closed Circle",
+    "overflow": false
+  },
+  {
+    "id": "feat:sealed",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "No Way Out",
+    "overflow": false
+  },
+  {
+    "id": "feat:hunt",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "On the Carrier's Trail",
+    "overflow": false
+  },
+  {
+    "id": "feat:secrets",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Every Lock Has a Key",
+    "overflow": false
+  },
+  {
+    "id": "feat:recycle",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Nothing Wasted",
+    "overflow": false
+  },
+  {
+    "id": "feat:upgrade",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Fine Tuning",
+    "overflow": false
+  },
+  {
+    "id": "feat:set",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "One Organism",
+    "overflow": false
+  },
+  {
+    "id": "feat:mutation",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "A New Form",
+    "overflow": false
+  },
+  {
+    "id": "feat:natures",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Three Natures",
+    "overflow": false
+  },
+  {
+    "id": "feat:evolution",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Evolution Complete",
+    "overflow": false
+  },
+  {
+    "id": "feat:synergy",
+    "buttons": [
+      {
+        "fits": true,
+        "text": "Back"
+      },
+      {
+        "fits": true,
+        "text": "Loadout"
+      }
+    ],
+    "cyrillic": false,
+    "image": true,
+    "name": "Elemental Convergence",
+    "overflow": false
+  }
+]

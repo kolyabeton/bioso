@@ -1,0 +1,21 @@
+- main:
+  - generic "Game world. WASD, arrow keys or drag to move." [active]
+  - text: 00:11
+  - generic "Biomass": "0"
+  - button "Pause":
+  - region "Creature status":
+    - progressbar "Health 2 of 2. Armor 0 of 0. No shield"
+    - generic: LEVEL 1
+    - generic: KILLS 0
+    - progressbar "Experience"
+  - generic: Kill First Boss
+  - button "Open map":
+    - generic: Map
+  - button "First Boss · direction to target · open map":
+  - button "Open build":
+    - generic: Build
+  - group "Weapons — tap to enable or disable":
+    - button "Reaper Claws · I · disable weapon" [pressed]:
+      - generic: I
+    - button "Empty slot 2 · — · open build":
+      - generic: —

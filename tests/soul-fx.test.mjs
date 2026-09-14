@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from 'three';
 import {createRun,spawnEnemy,receiveDamage,attack} from '../src/game.js';
-import {createPart} from '../src/assembly.js';
+import {createPart,stats} from '../src/assembly.js';
 import {learn,updateMotion} from '../src/systems/abilities.js';
 import {onHit,lightning} from '../src/systems/effects.js';
-import {createSoulFxView} from '../src/systems/soul-fx-view.js';
+import {createSoulFxView,SOUL_FX_LIMITS} from '../src/systems/soul-fx-view.js';
 const procs=s=>s.events.filter(e=>e.type==='soul-proc').map(e=>e.kind);
 test('element visuals follow successful rolls and preserve elevation',()=>{
  const s=createRun(undefined,'survival',8),e=spawnEnemy(s,'normal',{x:2,z:0});e.y=6;
@@ -14,7 +14,7 @@ test('element visuals follow successful rolls and preserve elevation',()=>{
  assert.ok(procs(s).includes('freeze'));assert.equal(s.events.find(e=>e.type==='soul-proc').y,6);
 });
 test('revive and movement trigger once; no lightning visual without a target',()=>{
- const s=createRun(undefined,'survival',8);learn(s,'vitality.3');s.hp=1;receiveDamage(s,1);assert.deepEqual(procs(s),['revive']);
+ const s=createRun(undefined,'survival',8);learn(s,'vitality.3');s.hp=1;s.health.armorSpent=stats(s).armor;receiveDamage(s,1);assert.deepEqual(procs(s),['revive']);
  learn(s,'motion.3');updateMotion(s,2,true);updateMotion(s,2,true);assert.equal(procs(s).filter(k=>k==='running').length,1);
  s.events=[];lightning(s,{damage:10,range:10},()=>{});assert.deepEqual(procs(s),[]);
 });
@@ -33,6 +33,24 @@ test('persistent status follows current targets, stops spawning on expiry and st
  e.x=5;for(let i=0;i<20;i++)view.update(.1,false,s);assert.ok(view.info().particles<=1536);
  s.time=3;view.update(3,false,s);assert.equal(view.info().particles,0);
  assert.equal(scene.getObjectByName('soul-activation-effects').children.filter(o=>o.isMesh).length,2);view.dispose();
+});
+
+test('persistent fire becomes denser with accumulated burn stacks',()=>{
+ const scene=new T.Scene(),view=createSoulFxView(scene),s=createRun(undefined,'survival',8),e=spawnEnemy(s,'normal',{x:2,z:0});
+ const flames=()=>scene.getObjectByName('soul-activation-effects').children.filter(o=>o.isMesh).reduce((sum,o)=>sum+Array.from({length:o.geometry.instanceCount},(_,i)=>o.geometry.attributes.data.getX(i)).filter(type=>type===9).length,0);
+ e.burn={until:4,dps:2,count:1,stacks:[{until:4,dps:2}]};view.update(.1,false,s);const single=flames();
+ view.reset();e.burn={until:4,dps:10,count:5,stacks:Array.from({length:5},()=>({until:4,dps:2}))};view.update(.1,false,s);assert.ok(flames()>single);view.dispose();
+});
+
+test('body fire follows a moving elevated target between emissions and clears on death',()=>{
+ const scene=new T.Scene(),view=createSoulFxView(scene),s=createRun(undefined,'survival',8),e=spawnEnemy(s,'normal',{x:2,z:0});
+ e.y=6;e.burn={until:4,dps:2,count:1};view.update(.01,false,s);
+ const batch=scene.getObjectByName('soul-activation-effects').children.find(o=>o.isMesh&&o.geometry.attributes.data.getX(0)===9);
+ assert.ok(batch);assert.equal(batch.material.depthTest,true);
+ const a=batch.geometry.attributes,old={x:a.center.getX(0),y:a.center.getY(0),z:a.center.getZ(0)};
+ assert.ok(old.y>6);e.x+=3;e.y+=2;e.z-=1;view.update(.01,false,s);
+ assert.ok(Math.abs(a.center.getX(0)-old.x-3)<.001);assert.ok(Math.abs(a.center.getZ(0)-old.z+1)<.001);
+ assert.ok(a.center.getY(0)>old.y+2);e.hp=0;view.update(.01,false,s);assert.equal(batch.geometry.instanceCount,0);view.dispose();
 });
 
 test('real extra shots and echo report actual direction without extra gameplay RNG',()=>{
@@ -70,4 +88,12 @@ test('volatile pressure pop covers the damage radius within .12 seconds and rema
   if(a.data.getX(i)===1&&Math.hypot(a.center.getX(i),a.center.getZ(i))>2)outerDust++;
  }}
  assert.equal(footprint,1);assert.ok(outerDust>=8);view.update(.7);assert.equal(view.info().particles,0);view.dispose();
+});
+
+test('all new ability VFX use bounded pools, merge bursts, and retain reduced-motion cues',()=>{
+ const scene=new T.Scene(),view=createSoulFxView(scene),kinds=['focus','rupture','guardian','neuralweb','countershell-charge','countershell','sporeplant','sporebrood','overgrowth','cryotrail'];
+ assert.deepEqual(SOUL_FX_LIMITS,{highParticles:1536,lowParticles:512,abilitySources:24,groundTrails:64,mergeSeconds:.12});view.configure('low');
+ for(const [i,kind] of kinds.entries()){const e={type:'soul-proc',kind,x:i,y:2,z:0,tx:i+2,ty:2,tz:1,radius:2.5,level:5};view.event(e);view.event(e);}
+ assert.equal(view.count(),kinds.length);view.update(.05,true);assert.ok(view.info().particles>0);assert.ok(view.info().particles<=SOUL_FX_LIMITS.lowParticles);
+ assert.equal(scene.getObjectByName('soul-activation-effects').children.filter(o=>o.isMesh).length,2);view.dispose();
 });

@@ -1,0 +1,1102 @@
+{
+  "method": "Accelerated production world simulation from 0:00; protected player, normal spawn/AI/combat, automatic earned choices, circular movement. Density proof, not a difficulty playtest.",
+  "finished": true,
+  "time": 180.00000000000668,
+  "frames": 600,
+  "peakNear": 50,
+  "near": 43,
+  "checkpoints": [
+    {
+      "time": 5.09999999999999,
+      "enemies": 6,
+      "near": 0,
+      "kills": 0,
+      "spawned": 6,
+      "player": {
+        "x": -6.043741026645827,
+        "z": 13.363949923810623,
+        "y": 0.00022815839149157175,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.1955742875642765
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 10.20000000000001,
+      "enemies": 7,
+      "near": 1,
+      "kills": 0,
+      "spawned": 7,
+      "player": {
+        "x": -5.764663169019023,
+        "z": 13.363949923810623,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5707963267948966
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 15.300000000000082,
+      "enemies": 10,
+      "near": 0,
+      "kills": 0,
+      "spawned": 10,
+      "player": {
+        "x": 3.7258904391380234,
+        "z": -11.760493908460797,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.6983253053295897
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 20.400000000000155,
+      "enemies": 13,
+      "near": 1,
+      "kills": 0,
+      "spawned": 13,
+      "player": {
+        "x": 25.069004358280488,
+        "z": -31.10598400725669,
+        "y": 0.05862695071270723,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5707963267948966
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 25.500000000000227,
+      "enemies": 16,
+      "near": 1,
+      "kills": 0,
+      "spawned": 16,
+      "player": {
+        "x": 55.62808496524897,
+        "z": -31.199907688813227,
+        "y": 0.010001548914326983,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5707963267948966
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 30.6000000000003,
+      "enemies": 18,
+      "near": 2,
+      "kills": 0,
+      "spawned": 18,
+      "player": {
+        "x": 91.30441752699846,
+        "z": -31.199907688813227,
+        "y": 0.047268199359535655,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5707963267948966
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 35.70000000000011,
+      "enemies": 21,
+      "near": 1,
+      "kills": 0,
+      "spawned": 21,
+      "player": {
+        "x": 127.4157321749918,
+        "z": -25.715191805411443,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.2411824481867468
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 40.79999999999982,
+      "enemies": 24,
+      "near": 0,
+      "kills": 0,
+      "spawned": 24,
+      "player": {
+        "x": 156.80546603748448,
+        "z": -7.775480884291831,
+        "y": 0.022084850211300144,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.876896733901066
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 45.89999999999953,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 180.1335895095132,
+        "z": 19.75679764389344,
+        "y": 1.0487699685858436,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.5126110196152945
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 50.99999999999924,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 191.92124442071665,
+        "z": 54.319288242492924,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.14832530532965008
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 56.09999999999895,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 190.62138326233296,
+        "z": 90.81346484168226,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.21596040895599744
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 61.19999999999866,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 184.90814736377664,
+        "z": 108.44643333663105,
+        "y": 0.039710261242975727,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.7042254078738867
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 66.29999999999838,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 184.90814736377664,
+        "z": 108.44643333663105,
+        "y": 0.039710261242975727,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.7042254078738867
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 71.39999999999809,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 184.90814736377664,
+        "z": 108.44643333663105,
+        "y": 0.039710261242975727,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.7042254078738867
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 76.4999999999978,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 184.36978035408092,
+        "z": 107.94395178848676,
+        "y": 0.09044225915665183,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.141592653589793
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 81.59999999999751,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 153.26555345305422,
+        "z": 97.63354581113735,
+        "y": 0.11515104512212142,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.037388980384547
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 86.69999999999722,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 124.4596638582485,
+        "z": 77.61559850625024,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.4016746946702043
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 91.79999999999693,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 124.21789309804014,
+        "z": 77.21506698201492,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.805246123241645
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 96.89999999999664,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 124.20237002865417,
+        "z": 77.21506698201492,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.405246123241645
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 101.99999999999635,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 126.60989780441375,
+        "z": 58.4822867068945,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.527939183937996
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 107.09999999999606,
+      "enemies": 24,
+      "near": 0,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 126.60989780441375,
+        "z": 58.4822867068945,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.527939183937996
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 112.19999999999577,
+      "enemies": 24,
+      "near": 2,
+      "kills": 1,
+      "spawned": 25,
+      "player": {
+        "x": 126.60989780441375,
+        "z": 58.4822867068945,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.527939183937996
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 117.29999999999548,
+      "enemies": 22,
+      "near": 3,
+      "kills": 3,
+      "spawned": 25,
+      "player": {
+        "x": 126.60989780441375,
+        "z": 58.4822867068945,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -3.0068200266539162
+      },
+      "pressure": null,
+      "eliteBudget": null,
+      "elites": []
+    },
+    {
+      "time": 122.39999999999519,
+      "enemies": 33,
+      "near": 12,
+      "kills": 4,
+      "spawned": 40,
+      "player": {
+        "x": 139.37973247606803,
+        "z": 61.046661902102585,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.3048452510257183
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 127.4999999999949,
+      "enemies": 57,
+      "near": 20,
+      "kills": 7,
+      "spawned": 70,
+      "player": {
+        "x": 164.45980229896682,
+        "z": 72.4994283732491,
+        "y": 0.07346461297112891,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.8525532110484715
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 132.5999999999959,
+      "enemies": 60,
+      "near": 5,
+      "kills": 11,
+      "spawned": 80,
+      "player": {
+        "x": 181.7579747672635,
+        "z": 91.83989925870367,
+        "y": 0.20411650699216724,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.2340712116664719
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 137.69999999999706,
+      "enemies": 42,
+      "near": 8,
+      "kills": 13,
+      "spawned": 92,
+      "player": {
+        "x": 194.11626031438456,
+        "z": 119.64833289697816,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.5234396338562095
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 142.79999999999822,
+      "enemies": 47,
+      "near": 13,
+      "kills": 18,
+      "spawned": 108,
+      "player": {
+        "x": 195.41948681172605,
+        "z": 138.75310352295745,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.6784131971500247
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 147.89999999999938,
+      "enemies": 41,
+      "near": 13,
+      "kills": 21,
+      "spawned": 123,
+      "player": {
+        "x": 187.14512416005573,
+        "z": 165.2453628102276,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.316931825703181
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 153.00000000000054,
+      "enemies": 47,
+      "near": 18,
+      "kills": 26,
+      "spawned": 138,
+      "player": {
+        "x": 170.9675266867699,
+        "z": 180.41309796269385,
+        "y": 1.1547628625055366,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.5876724188169447
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 158.1000000000017,
+      "enemies": 57,
+      "near": 35,
+      "kills": 32,
+      "spawned": 154,
+      "player": {
+        "x": 170.9675266867699,
+        "z": 180.41309796269385,
+        "y": 1.1547628625055366,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.123557132372681
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 163.20000000000286,
+      "enemies": 59,
+      "near": 41,
+      "kills": 44,
+      "spawned": 168,
+      "player": {
+        "x": 170.9675266867699,
+        "z": 180.44952395174465,
+        "y": 1.1417980086241826,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.5631426783334113
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 168.30000000000402,
+      "enemies": 58,
+      "near": 49,
+      "kills": 57,
+      "spawned": 180,
+      "player": {
+        "x": 156.3684105454133,
+        "z": 175.6630746485735,
+        "y": 0.5257042262688504,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.0409012765370558
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 173.40000000000518,
+      "enemies": 58,
+      "near": 45,
+      "kills": 67,
+      "spawned": 190,
+      "player": {
+        "x": 151.578845373034,
+        "z": 173.45668052815228,
+        "y": 1.2812999868055384,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9836641420015082
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    },
+    {
+      "time": 178.50000000000634,
+      "enemies": 51,
+      "near": 39,
+      "kills": 89,
+      "spawned": 205,
+      "player": {
+        "x": 151.578845373034,
+        "z": 173.45668052815228,
+        "y": 1.2812999868055384,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 2.0784887463175563
+      },
+      "pressure": {
+        "index": 0,
+        "rest": false,
+        "until": 185
+      },
+      "eliteBudget": {
+        "index": 0,
+        "issued": 1
+      },
+      "elites": [
+        {
+          "id": 66,
+          "hp": 225,
+          "maxHp": 225,
+          "damage": 0.5,
+          "wave": 0
+        }
+      ]
+    }
+  ],
+  "snapshot": {
+    "mode": "survival",
+    "time": 180.00000000000668,
+    "level": 2,
+    "hp": 2,
+    "kills": 90,
+    "biomass": 0,
+    "consumableDrops": [
+      {
+        "id": 366,
+        "kind": "hunter",
+        "x": 169.00747671767766,
+        "y": 1.5930339490576728,
+        "z": 178.27119345290313
+      },
+      {
+        "id": 584,
+        "kind": "impulse",
+        "x": 154.09954821784876,
+        "y": 1.0430353328475448,
+        "z": 174.70687026629267
+      }
+    ],
+    "consumables": {
+      "shieldUntil": 0,
+      "shieldCharges": 0,
+      "phaseUntil": 0,
+      "revivalCharges": 0,
+      "parasitesUntil": 0,
+      "parasiteAt": 0,
+      "beacon": null
+    },
+    "revivalCharges": 0,
+    "firstPaidUpgrade": false,
+    "organs": [
+      null,
+      null
+    ],
+    "lastHit": null,
+    "stats": {
+      "hp": 2,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 8,
+      "capacity": 90,
+      "weight": 34,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 0,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    "player": {
+      "x": 151.578845373034,
+      "z": 173.45668052815228,
+      "y": 1.2812999868055384,
+      "vy": 0,
+      "vertical": "grounded",
+      "facing": 0.6193710667032851
+    },
+    "mission": null,
+    "dungeon": null,
+    "companions": [],
+    "nextCompanionSummons": {},
+    "swarmInterceptions": 0,
+    "damage": {
+      "direct": 2008.8000000000006,
+      "burn": 0,
+      "electric": 0,
+      "summon": 0,
+      "acid": 0,
+      "thermal": 0,
+      "environment": 17
+    },
+    "paused": false,
+    "screen": "",
+    "storyRadio": {
+      "visible": false,
+      "cue": "",
+      "queued": [],
+      "voiced": false,
+      "seen": []
+    },
+    "storyEvidence": [],
+    "dead": false,
+    "won": false,
+    "body": "wanderer",
+    "arms": [
+      "claws",
+      "seed"
+    ],
+    "legs": [
+      "universal",
+      "universal"
+    ],
+    "inventory": 0,
+    "ground": 21,
+    "xpDrops": 7,
+    "shots": 0,
+    "puddles": 0,
+    "hostileShots": 4,
+    "events": 0,
+    "unlocked": [
+      "drone",
+      "wanderer",
+      "universal",
+      "runner",
+      "pistol",
+      "claws",
+      "stabilizer",
+      "broodmother",
+      "swarmLeg",
+      "broodNode",
+      "seed"
+    ],
+    "learned": [
+      "melee.0"
+    ],
+    "abilityLevels": {
+      "melee.0": 1
+    },
+    "pending": 0,
+    "choices": [],
+    "settings": {
+      "language": "ru",
+      "soundEnabled": true,
+      "effects": 30,
+      "music": 30,
+      "quality": "medium",
+      "fps": 60,
+      "vibration": true,
+      "reducedMotion": false
+    },
+    "enemies": 54,
+    "fps": 38,
+    "subsystemMs": {
+      "simulation": {
+        "mean": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "render": {
+        "mean": 8.306666661633386,
+        "p95": 26,
+        "max": 107.39999985694885
+      },
+      "ui": {
+        "mean": 0.45499999788072376,
+        "p95": 2.700000047683716,
+        "max": 7.799999952316284
+      }
+    },
+    "renderCadence": 60,
+    "ambientTier": "medium",
+    "ambientActive": false,
+    "ambientCombat": false,
+    "birds": 0,
+    "particles": 0,
+    "contactShadows": 0,
+    "windStrength": 0.24,
+    "ambientTime": 0,
+    "weather": "sunny-pollen",
+    "weatherEnvironment": "upper-gardens",
+    "weatherBlend": {
+      "upper-gardens": 0.84375,
+      "quiet-scrapyard": 0.15625,
+      "root-forest": 0,
+      "overgrown-city": 0,
+      "brood-nursery": 0
+    },
+    "weatherParticles": 31,
+    "ambientP95Ms": 0,
+    "ambientCeiling": "high",
+    "forestCameraDegrees": 35.92850242282283,
+    "missionGates": 0,
+    "missionGateModels": [],
+    "missionGateLoading": false,
+    "missionGateErrors": [],
+    "dungeonTheme": null,
+    "dungeonMeshes": 0,
+    "dungeonSky": false,
+    "dungeonDressing": 0,
+    "dungeonBranches": 0,
+    "dungeonLoops": 0,
+    "dungeonDeadEnds": 0,
+    "missionBossCamera": {
+      "active": false,
+      "blend": 0,
+      "height": 30,
+      "depth": 40,
+      "lookAhead": 1.4,
+      "lookHeight": 0
+    },
+    "consumableOrbs": 2,
+    "consumableDrawBatches": 5,
+    "death": {
+      "active": false,
+      "elapsed": 0,
+      "complete": false,
+      "parts": 0
+    },
+    "enemyDeaths": 0,
+    "enemyDebris": 0,
+    "enemyContactShadows": 0,
+    "enemyShadowsEnabled": false,
+    "soulEffects": 0,
+    "dodgeAfterimages": 0,
+    "springLeapVfx": {
+      "active": false,
+      "airborne": false,
+      "progress": 1
+    },
+    "harpoons": 0,
+    "rocketBees": 0,
+    "ricochetBees": 0,
+    "rocketExhaust": {
+      "flames": 0,
+      "smoke": 0
+    },
+    "rocketExplosion": {
+      "active": 0,
+      "flash": 0,
+      "fireballs": 0,
+      "pressure": 0,
+      "rings": 0,
+      "sparks": 0,
+      "debris": 0,
+      "smoke": 0,
+      "dust": 0,
+      "reducedMotion": false,
+      "radius": 1.5
+    },
+    "drawCalls": 198,
+    "bioParticles": 112,
+    "shotgunParticles": 0,
+    "reducedMotion": false,
+    "shadows": false,
+    "gpuMs": 7.619875,
+    "visibleEnemies": 50,
+    "triangles": 2420842,
+    "textures": 163,
+    "geometries": 334,
+    "visibleGroundItems": 0,
+    "groundItemDrawBatches": 0,
+    "environmentShadowMode": "static-depth",
+    "staticShadowCells": 9,
+    "environmentId": "overgrown-city",
+    "environmentRelief": "foundations",
+    "visualModuleId": "overgrown-city-clearing",
+    "environmentFamilies": 5,
+    "environmentMaterialAtlas": true,
+    "residentTiles": 9,
+    "loadingTiles": 0,
+    "assetErrors": 0,
+    "forestBakedLightmaps": 7,
+    "assetEnemies": 50,
+    "modularEnemies": 50,
+    "enemyParts": 306,
+    "enemyFallbackParts": 0,
+    "enemyDrawBatches": 49,
+    "enemyVisualArchetypes": 9,
+    "enemyMeshPools": 85,
+    "enemyFittedShapes": 46,
+    "bossModels": 0,
+    "bossModelIds": [],
+    "bossModelFailures": [],
+    "bossAnimations": [],
+    "bossModelObjects": 0,
+    "loadedModels": 73,
+    "failedModels": []
+  }
+}

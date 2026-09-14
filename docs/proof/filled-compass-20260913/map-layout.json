@@ -1,0 +1,29 @@
+[
+  {
+    "allowed": 344,
+    "overflow": false,
+    "viewport": [
+      360,
+      640
+    ],
+    "width": 344
+  },
+  {
+    "allowed": 374,
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ],
+    "width": 374
+  },
+  {
+    "allowed": 389,
+    "overflow": false,
+    "viewport": [
+      1280,
+      720
+    ],
+    "width": 389
+  }
+]

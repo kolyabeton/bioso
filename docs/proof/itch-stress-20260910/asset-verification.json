@@ -1,0 +1,20 @@
+{
+  "bytes": 111448569,
+  "limitBytes": 500000000,
+  "remainingBytes": 388551431,
+  "files": 558,
+  "categories": {
+    "ui": 8797179,
+    "models": 65799177,
+    "environment": 8901260,
+    "audio": 23883545,
+    "application": 4067408
+  },
+  "verified": {
+    "resources": 333,
+    "models": 133,
+    "images": 171,
+    "audio": 19,
+    "originalsUnchanged": true
+  }
+}

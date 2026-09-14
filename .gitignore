@@ -8,6 +8,13 @@ dist/
 /outputs/
 /proof/
 /temp/
+/tmp/
+
+# Reproducible Python caches and Blender automatic backups
+__pycache__/
+*.py[cod]
+*.blend1
+*.blend2
 
 # Local secrets (safe templates may be committed)
 .env

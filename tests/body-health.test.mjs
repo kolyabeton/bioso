@@ -14,7 +14,7 @@ test('body health grows independently with rank and rarity for every chassis',()
  }
 });
 test('swapping high quality bodies preserves wounds through repeated swaps',()=>{
- const s=createRun();receiveDamage(s,1);const original=s.body,p=createPart(s,'wanderer',3);p.rarity='rare';s.inventory.push(p);
+ const s=createRun();s.health.armorSpent=stats(s).armor;receiveDamage(s,1);const original=s.body,p=createPart(s,'wanderer',3);p.rarity='rare';s.inventory.push(p);
  assert.ok(swapBody(s,p.id));assert.equal(stats(s).hp,6);assert.equal(s.hp,5);
  assert.ok(swapBody(s,original.id));assert.equal(s.hp,1);
  assert.ok(swapBody(s,p.id));assert.equal(s.hp,5);

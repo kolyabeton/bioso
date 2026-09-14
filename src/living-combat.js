@@ -18,7 +18,7 @@ export function decorateLivingEnemy(s,e,automatic){
 export function tickVolatile(s,e,dt,hurtEnemy,hitPlayer){
  if(!e.volatile||e.hp<=0)return false;
  if(e.fuseRemaining==null){
-  if(!visibleBetween(s,e,s.player)||distance(e,s.player)>VOLATILE.trigger||e.frozenUntil>combatTime(s))return false;
+  if(distance(e,s.player)>VOLATILE.trigger||!visibleBetween(s,e,s.player)||e.frozenUntil>combatTime(s))return false;
   e.fuseRemaining=VOLATILE.fuse;
   e.fuseAnchor={x:e.x,z:e.z};e.kickX=e.kickZ=0;
   s.events.push({type:'fuse-start',x:e.x,y:e.y??0,z:e.z,radius:VOLATILE.radius});
@@ -29,11 +29,8 @@ export function tickVolatile(s,e,dt,hurtEnemy,hitPlayer){
  e.fuseRemaining=Math.max(0,e.fuseRemaining-dt);
  if(e.fuseRemaining>1e-8)return true;
  e.detonated=true;
- const damage=e.maxHp*4;
  s.events.push({type:'volatile-blast',x:e.x,y:e.y??0,z:e.z,radius:VOLATILE.radius});
- // Damage is immediate and non-recursive; nearby volatile enemies die without detonating.
- if(visibleBetween(s,e,s.player)&&distance(e,s.player)<=VOLATILE.radius)hitPlayer();
- for(const q of s.enemies)if(q!==e&&q.hp>0&&visibleBetween(s,e,q)&&distance(e,q)<=VOLATILE.radius+q.radius)hurtEnemy(q,damage);
+ if(distance(e,s.player)<=VOLATILE.radius&&visibleBetween(s,e,s.player))hitPlayer();
  hurtEnemy(e,Number.MAX_SAFE_INTEGER);
  return true;
 }
@@ -42,17 +39,17 @@ export function tickVolatile(s,e,dt,hurtEnemy,hitPlayer){
 export function separateEnemies(s,dt){
  const cell=4,bins=new Map(),active=s.enemies.filter(e=>e.hp>0&&e.kind!=='objective'&&!e.flying);
  let checks=0;
- for(const e of active){const key=`${Math.floor(e.x/cell)},${Math.floor(e.z/cell)}`;if(!bins.has(key))bins.set(key,[]);bins.get(key).push(e);}
+ const now=combatTime(s),mobility=v=>v.bossOwner||v.bossCombat?0:v.fuseRemaining!=null||v.frozenUntil>now?0:v.kind==='normal'?1:.15;
+ for(const e of active){const x=Math.floor(e.x/cell),z=Math.floor(e.z/cell);let row=bins.get(x);if(!row)bins.set(x,row=new Map());let bin=row.get(z);if(!bin)row.set(z,bin=[]);bin.push(e);}
  for(const e of active){
   const cx=Math.floor(e.x/cell),cz=Math.floor(e.z/cell);
-  for(let x=cx-1;x<=cx+1;x++)for(let z=cz-1;z<=cz+1;z++)for(const q of bins.get(`${x},${z}`)||[]){
+  for(let x=cx-1;x<=cx+1;x++)for(let z=cz-1;z<=cz+1;z++)for(const q of bins.get(x)?.get(z)||[]){
    if(q.id<=e.id||Math.abs((q.y??0)-(e.y??0))>1)continue;checks++;
    const dx=q.x-e.x,dz=q.z-e.z,d=Math.hypot(dx,dz),gap=(e.radius+q.radius)*1.15;
    if(d>=gap)continue;
    const a=((e.id*31+q.id*17)%360)*Math.PI/180,nx=d>1e-6?dx/d:Math.cos(a),nz=d>1e-6?dz/d:Math.sin(a);
    const shift=Math.min((gap-d)*.5,dt*2);
    // Armed/frozen units hold their telegraphed position; bosses are much heavier.
-   const mobility=v=>v.fuseRemaining!=null||v.frozenUntil>combatTime(s)?0:v.kind==='normal'?1:.15;
    move(s.world,e,-nx*shift*mobility(e),-nz*shift*mobility(e),e.radius);
    move(s.world,q,nx*shift*mobility(q),nz*shift*mobility(q),q.radius);
   }
@@ -62,7 +59,7 @@ export function separateEnemies(s,dt){
 
 /** One generation only: direct projectile kills may produce three real damaging shards. */
 export function splinterShots(s,shot,enemy,enabled=modifiers(s).splinter){
- if(shot.isSplinter||!enabled||enemy.hp>0)return[];
+ if(shot.isSplinter||shot.w?.secondary||!enabled||enemy.hp>0)return[];
  soulProc(s,'splinter',enemy,{dx:shot.dx,dz:shot.dz});
  const start=Math.atan2(shot.dz,shot.dx),w={...shot.w,damage:shot.w.damage*.35,crit:0,critPower:1,knockback:1,pierce:1,mode:'projectile'};
  return Array.from({length:3},(_,i)=>{

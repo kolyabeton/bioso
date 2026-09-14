@@ -1,0 +1,125 @@
+{
+  "method": "Headless current world from initial state, 30 simulation steps/sec. Existing pilot, earned equipment and choices. No HP grants or invulnerability. Max 600 simulation seconds / 20 wall seconds per run. Not a human difficulty verdict.",
+  "rows": [
+    {
+      "unlocked": false,
+      "seed": 20317,
+      "steps": 4560,
+      "seconds": 151.99999999999395,
+      "wallMs": 15204.990708,
+      "dead": true,
+      "won": false,
+      "hp": 0,
+      "kills": 58,
+      "level": 4,
+      "body": "wanderer",
+      "arms": [
+        "claws",
+        "seed"
+      ],
+      "enemies": 15,
+      "overloaded": false,
+      "reason": "death"
+    },
+    {
+      "unlocked": false,
+      "seed": 20260912,
+      "steps": 4257,
+      "seconds": 141.89999999999452,
+      "wallMs": 18313.022208000002,
+      "dead": true,
+      "won": false,
+      "hp": 0,
+      "kills": 49,
+      "level": 3,
+      "body": "wanderer",
+      "arms": [
+        "seed",
+        "seed"
+      ],
+      "enemies": 18,
+      "overloaded": false,
+      "reason": "death"
+    },
+    {
+      "unlocked": false,
+      "seed": 147,
+      "steps": 5844,
+      "seconds": 194.7999999999915,
+      "wallMs": 20000.26375,
+      "dead": false,
+      "won": false,
+      "hp": 0.5,
+      "kills": 79,
+      "level": 4,
+      "body": "wanderer",
+      "arms": [
+        "seed",
+        "seed"
+      ],
+      "enemies": 16,
+      "overloaded": false,
+      "reason": "wall-budget"
+    },
+    {
+      "unlocked": true,
+      "seed": 20317,
+      "steps": 4560,
+      "seconds": 151.99999999999395,
+      "wallMs": 15276.230792000002,
+      "dead": true,
+      "won": false,
+      "hp": 0,
+      "kills": 58,
+      "level": 4,
+      "body": "wanderer",
+      "arms": [
+        "claws",
+        "seed"
+      ],
+      "enemies": 15,
+      "overloaded": false,
+      "reason": "death"
+    },
+    {
+      "unlocked": true,
+      "seed": 20260912,
+      "steps": 4111,
+      "seconds": 137.03333333332813,
+      "wallMs": 20003.863499999992,
+      "dead": false,
+      "won": false,
+      "hp": 0.5,
+      "kills": 49,
+      "level": 3,
+      "body": "wanderer",
+      "arms": [
+        "seed",
+        "seed"
+      ],
+      "enemies": 15,
+      "overloaded": false,
+      "reason": "wall-budget"
+    },
+    {
+      "unlocked": true,
+      "seed": 147,
+      "steps": 2156,
+      "seconds": 71.86666666666515,
+      "wallMs": 20010.145000000004,
+      "dead": false,
+      "won": false,
+      "hp": 3,
+      "kills": 19,
+      "level": 2,
+      "body": "wanderer",
+      "arms": [
+        "claws",
+        "seed"
+      ],
+      "enemies": 13,
+      "overloaded": false,
+      "reason": "wall-budget"
+    }
+  ]
+}

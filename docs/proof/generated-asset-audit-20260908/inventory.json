@@ -1,0 +1,519 @@
+[
+  {
+    "path": "public/assets/biomes/cliff-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/decor-atlas-v2.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.49273045857747394,
+    "partialFraction": 0.507269541422526,
+    "opaqueFraction": 0.0,
+    "lightPartial": 19618
+  },
+  {
+    "path": "public/assets/biomes/decor-atlas-v3.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.5261669158935547,
+    "partialFraction": 0.03652826944986979,
+    "opaqueFraction": 0.4373048146565755,
+    "lightPartial": 8402
+  },
+  {
+    "path": "public/assets/biomes/ground-atlas-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/decor-atlas-v4.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.5332412719726562,
+    "partialFraction": 0.05407079060872396,
+    "opaqueFraction": 0.4126879374186198,
+    "lightPartial": 2705
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/west-1.png",
+    "size": [
+      235,
+      494
+    ],
+    "transparentFraction": 0.00425531914893617,
+    "partialFraction": 0.09787234042553192,
+    "opaqueFraction": 0.8978723404255319,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/west-0.png",
+    "size": [
+      235,
+      493
+    ],
+    "transparentFraction": 0.00425531914893617,
+    "partialFraction": 0.09787234042553192,
+    "opaqueFraction": 0.8978723404255319,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/north.png",
+    "size": [
+      480,
+      351
+    ],
+    "transparentFraction": 0.002849002849002849,
+    "partialFraction": 0.06552706552706553,
+    "opaqueFraction": 0.9316239316239316,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/sw.png",
+    "size": [
+      235,
+      334
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/south.png",
+    "size": [
+      480,
+      334
+    ],
+    "transparentFraction": 0.0029940119760479044,
+    "partialFraction": 0.0688622754491018,
+    "opaqueFraction": 0.9281437125748503,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/se.png",
+    "size": [
+      226,
+      334
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/east-1.png",
+    "size": [
+      226,
+      494
+    ],
+    "transparentFraction": 0.004424778761061947,
+    "partialFraction": 0.10176991150442478,
+    "opaqueFraction": 0.8938053097345132,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/canopy.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/continuous.png",
+    "size": [
+      941,
+      1672
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/east-0.png",
+    "size": [
+      226,
+      493
+    ],
+    "transparentFraction": 0.004424778761061947,
+    "partialFraction": 0.10176991150442478,
+    "opaqueFraction": 0.8938053097345132,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/nw.png",
+    "size": [
+      235,
+      351
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/biomes/forest-perimeter-v1/ne.png",
+    "size": [
+      226,
+      351
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/encounters/membrane-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/encounters/arch-arch.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.7169456481933594,
+    "partialFraction": 0.011592864990234375,
+    "opaqueFraction": 0.27146148681640625,
+    "lightPartial": 107
+  },
+  {
+    "path": "public/assets/encounters/slab-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/encounters/nursery-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/encounters/arch-stairs.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.6448593139648438,
+    "partialFraction": 0.005779266357421875,
+    "opaqueFraction": 0.3493614196777344,
+    "lightPartial": 116
+  },
+  {
+    "path": "public/assets/encounters/arch-gate.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.6041145324707031,
+    "partialFraction": 0.008052825927734375,
+    "opaqueFraction": 0.3878326416015625,
+    "lightPartial": 126
+  },
+  {
+    "path": "public/assets/encounters/arch-planter.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.7208709716796875,
+    "partialFraction": 0.010028839111328125,
+    "opaqueFraction": 0.2691001892089844,
+    "lightPartial": 170
+  },
+  {
+    "path": "public/assets/ui/bosses/boss-root-cathedral-cutout.png",
+    "size": [
+      320,
+      320
+    ],
+    "transparentFraction": 0.730869140625,
+    "partialFraction": 0.181064453125,
+    "opaqueFraction": 0.08806640625,
+    "lightPartial": 245
+  },
+  {
+    "path": "public/assets/ui/bosses/boss-swarm-shepherd-cutout.png",
+    "size": [
+      320,
+      320
+    ],
+    "transparentFraction": 0.8034375,
+    "partialFraction": 0.116669921875,
+    "opaqueFraction": 0.079892578125,
+    "lightPartial": 895
+  },
+  {
+    "path": "public/assets/ui/bosses/boss-mercury-hunter-cutout.png",
+    "size": [
+      320,
+      320
+    ],
+    "transparentFraction": 0.76912109375,
+    "partialFraction": 0.12751953125,
+    "opaqueFraction": 0.103359375,
+    "lightPartial": 410
+  },
+  {
+    "path": "public/assets/ui/bosses/boss-mirror-collector-cutout.png",
+    "size": [
+      320,
+      320
+    ],
+    "transparentFraction": 0.68353515625,
+    "partialFraction": 0.1359765625,
+    "opaqueFraction": 0.18048828125,
+    "lightPartial": 277
+  },
+  {
+    "path": "public/assets/ui/bosses/boss-scrap-leviathan-cutout.png",
+    "size": [
+      320,
+      320
+    ],
+    "transparentFraction": 0.78859375,
+    "partialFraction": 0.103193359375,
+    "opaqueFraction": 0.108212890625,
+    "lightPartial": 265
+  },
+  {
+    "path": "public/assets/ui/organs/slime-sac-v2.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.7199859619140625,
+    "partialFraction": 0.0149383544921875,
+    "opaqueFraction": 0.26507568359375,
+    "lightPartial": 1206
+  },
+  {
+    "path": "public/assets/ui/organs/reverse-heart-v2.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.6778182983398438,
+    "partialFraction": 0.02046966552734375,
+    "opaqueFraction": 0.3017120361328125,
+    "lightPartial": 1588
+  },
+  {
+    "path": "public/assets/ui/organs/common-nerve-v2.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.6484222412109375,
+    "partialFraction": 0.3458099365234375,
+    "opaqueFraction": 0.005767822265625,
+    "lightPartial": 5801
+  },
+  {
+    "path": "public/assets/ui/organs/return-nerve-v2.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.7104339599609375,
+    "partialFraction": 0.020915985107421875,
+    "opaqueFraction": 0.2686500549316406,
+    "lightPartial": 1295
+  },
+  {
+    "path": "public/assets/ui/organs/parasite-womb-v2.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.7855415344238281,
+    "partialFraction": 0.018619537353515625,
+    "opaqueFraction": 0.19583892822265625,
+    "lightPartial": 1455
+  },
+  {
+    "path": "public/assets/ui/items/root-leg-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.0,
+    "partialFraction": 0.0,
+    "opaqueFraction": 1.0,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/ui/items/root-leg-transparent-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.8471316031124644,
+    "partialFraction": 0.0,
+    "opaqueFraction": 0.15286839688753565,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/ui/items/reactor-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.5452771227764932,
+    "partialFraction": 0.4545448186218773,
+    "opaqueFraction": 0.00017805860162949057,
+    "lightPartial": 48400
+  },
+  {
+    "path": "public/assets/ui/items/spring-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.8501026380653679,
+    "partialFraction": 0.14972820626308414,
+    "opaqueFraction": 0.00016915567154801605,
+    "lightPartial": 25678
+  },
+  {
+    "path": "public/assets/ui/items/mirrorGland-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.6727721689318265,
+    "partialFraction": 0.3269963548860552,
+    "opaqueFraction": 0.00023147618211833774,
+    "lightPartial": 35782
+  },
+  {
+    "path": "public/assets/ui/items/harpoon-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "transparentFraction": 0.8022869083684999,
+    "partialFraction": 0.19751023201035792,
+    "opaqueFraction": 0.00020285962114216963,
+    "lightPartial": 28578
+  },
+  {
+    "path": "public/assets/ui/equipment/leg-guard.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.8349571228027344,
+    "partialFraction": 0.00681304931640625,
+    "opaqueFraction": 0.15822982788085938,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/ui/equipment/leg-worker.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.7921180725097656,
+    "partialFraction": 0.008052825927734375,
+    "opaqueFraction": 0.1998291015625,
+    "lightPartial": 1
+  },
+  {
+    "path": "public/assets/ui/equipment/arm-shield.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.6422119140625,
+    "partialFraction": 0.00695037841796875,
+    "opaqueFraction": 0.35083770751953125,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/ui/equipment/arm-needle.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.9099960327148438,
+    "partialFraction": 0.006862640380859375,
+    "opaqueFraction": 0.08314132690429688,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/ui/equipment/leg-root.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.927001953125,
+    "partialFraction": 0.0135345458984375,
+    "opaqueFraction": 0.0594635009765625,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/ui/equipment/leg-jumper.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.8373756408691406,
+    "partialFraction": 0.0113983154296875,
+    "opaqueFraction": 0.15122604370117188,
+    "lightPartial": 0
+  },
+  {
+    "path": "public/assets/ui/equipment/arm-whip.png",
+    "size": [
+      512,
+      512
+    ],
+    "transparentFraction": 0.9601707458496094,
+    "partialFraction": 0.00603485107421875,
+    "opaqueFraction": 0.033794403076171875,
+    "lightPartial": 0
+  }
+]

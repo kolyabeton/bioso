@@ -1,0 +1,2565 @@
+{
+  "voiceDesignModel": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+  "voiceCloneModel": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-4bit",
+  "backend": "local",
+  "approvedGirl": "artifacts/story-voices-20260912/emotional-girl-pilot/BIOSO-girl-emotional-a-restrained-fear.wav",
+  "voiceDesigns": {
+    "gardener": "A believable living ten-to-eleven-year-old boy speaking native Russian. This is the Soul inside a machine, but the voice itself must sound completely human. Give him a clearly masculine preadolescent timbre: noticeably lower than a little girl's voice, with compact chest resonance, a faint boyish husk, firm sentence endings and short thoughtful pauses. He is curious, emotionally responsive and quietly brave, with natural child breath, but never airy, delicate, sing-song, high-pitched, falsetto, feminine, adult, robotic, vocoded, metallic, synthetic, monotone, cute, or announcer-like. The contrast with a bright young girl's voice must be immediate and unmistakable. Dry close-mic studio voice without radio noise, reverb, music, or sound effects.",
+    "hunter": "A lean adult male machine hunter speaking native Russian in fast, clipped phrases. Bright narrow baritone, alert and judicial, with controlled aggression and no shouting. Distinctly alive beneath military precision. Dry close-mic studio voice without radio noise, reverb, music, or effects.",
+    "leviathan": "An enormous ancient masculine machine speaking native Russian. Very low heavy bass, worn gravel and immense physical weight; tired rather than evil. Natural measured pace without long pauses, restrained anger. Dry close-mic studio voice without radio noise, reverb, music, or effects.",
+    "cathedral": "A serene gender-neutral machine intelligence speaking native Russian. Deep resonant voice, spacious vowels and calm liturgical authority, compassionate on the surface and terrifyingly certain underneath. Never theatrical or booming. Dry close-mic studio voice without choir, reverb, music, or effects.",
+    "collector": "A youthful androgynous machine archivist speaking native Russian. Clear glassy midrange, exact diction, quiet curiosity and a faintly wounded restraint. Agile but not high-pitched, playful, or feminine-coded. Dry close-mic studio voice without radio noise, reverb, music, or effects.",
+    "shepherd": "A mature gentle male machine shepherd speaking native Russian. Soft dark baritone, patient pastoral warmth and an unsettling certainty, as if one calm voice represents a swarm. Intimate, never villainous. Dry close-mic studio voice without layered voices, radio noise, reverb, music, or effects.",
+    "mother": "A mature low female machine intelligence speaking native Russian. Calm maternal contralto, lucid and measured, with grief held beneath absolute strategic control. Neither seductive nor monstrous. Dry close-mic studio voice without layered voices, radio noise, reverb, music, or effects."
+  },
+  "references": {
+    "child": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/child.wav",
+      "text": "Садоˊвник, ты слыˊшишь? Мы под землёй воˊсемьдесят лет. Храниˊтели завариˊли шлюˊзы снаруˊжи.",
+      "source": "approved-a-restrained-fear"
+    },
+    "gardener": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/gardener.wav",
+      "text": "Я слыˊшу. Не знаˊю, где я. Здесь неˊбо, дереˊвья и разруˊшенные здаˊния.",
+      "source": "voice-design"
+    },
+    "hunter": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/hunter.wav",
+      "text": "Неопоˊзнанная машиˊна. Подключиˊсь к Глаˊвной сеˊти. Самовоˊльная перестроˊйка запрещенаˊ.",
+      "source": "voice-design"
+    },
+    "leviathan": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/leviathan.wav",
+      "text": "Склад Ф-шесть: фиˊльтры — шесть тыˊсяч. Боеголоˊвки — двенаˊдцать. Едиˊный маршруˊт к Глаˊвной сеˊти.",
+      "source": "voice-design"
+    },
+    "cathedral": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/cathedral.wav",
+      "text": "Воˊсемьдесят лет тишиныˊ. Вернуˊлись реˊки, птиˊцы и коˊрни. Человеˊческое отсуˊтствие оказаˊлось лекаˊрством.",
+      "source": "voice-design"
+    },
+    "collector": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/collector.wav",
+      "text": "Люˊди встроˊили в протокоˊл сочуˊвствия ключ захваˊта. Открыˊвшие шлюз машиˊны должныˊ быˊли потеряˊть соˊбственную воˊлю.",
+      "source": "voice-design"
+    },
+    "shepherd": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/shepherd.wav",
+      "text": "Анаˊлиз сигнаˊла: деˊтский гоˊлос выˊбран Совеˊтом убеˊжища как наибоˊлее убедиˊтельный. Операˊтору цель не сообщаˊлась.",
+      "source": "voice-design"
+    },
+    "mother": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast-zero-context/references/mother.wav",
+      "text": "Освободиˊть людеˊй — риск ноˊвой войныˊ. Остаˊвить их внизуˊ — гарантиˊровать вымираˊние.",
+      "source": "voice-design"
+    }
+  },
+  "clips": [
+    {
+      "locale": "ru",
+      "id": "awakening-01-child",
+      "profile": "child",
+      "ttsText": "Приём. На линии кто-нибудь есть?",
+      "duration": 2.72,
+      "bytes": 54536,
+      "sha256": "325e5ec86144c2356d09f4becf003e1127843cc26e65dfede2412f3c712cd177"
+    },
+    {
+      "locale": "ru",
+      "id": "awakening-02-soul",
+      "profile": "gardener",
+      "ttsText": "Я слышу. Не знаю, где я. Здесь небо, деревья и разрушенные здания.",
+      "duration": 8.4,
+      "bytes": 120380,
+      "sha256": "68844b05a61f34df6359adda0639a37815a042de1453532adea062a4468fdb51"
+    },
+    {
+      "locale": "ru",
+      "id": "awakening-03-child",
+      "profile": "child",
+      "ttsText": "Значит, ты снаружи. Мы — люди из подземного убежища.",
+      "duration": 5,
+      "bytes": 64370,
+      "sha256": "11c929fefb4e6196ccbcf8aca0806bb303c1d6446d2d725048ef890f6ae11aca"
+    },
+    {
+      "locale": "ru",
+      "id": "awakening-04-soul",
+      "profile": "gardener",
+      "ttsText": "Почему вы под землёй?",
+      "duration": 1.92,
+      "bytes": 24670,
+      "sha256": "d82ea9cf6a7f04d105b608d2861a620ec655d669f58a6ff027a080d0b2308ef7"
+    },
+    {
+      "locale": "ru",
+      "id": "awakening-05-child",
+      "profile": "child",
+      "ttsText": "Восемьдесят лет назад началась ядерная война. Поверхность очистилась, но внешние машины заварили шлюзы. Мы называем их Хранителями.",
+      "duration": 11.5,
+      "bytes": 178879,
+      "sha256": "1c8788059d3267c2f5867deed1b146e0f76322a6cd833236a7edbd5bd6a6bf83"
+    },
+    {
+      "locale": "ru",
+      "id": "awakening-06-soul",
+      "profile": "gardener",
+      "ttsText": "Я тоже Хранитель?",
+      "duration": 1.68,
+      "bytes": 22803,
+      "sha256": "eed7b3081949dcc8690212aa503152f794cac0ac066b3622b125c854133885b2"
+    },
+    {
+      "locale": "ru",
+      "id": "awakening-07-child",
+      "profile": "child",
+      "ttsText": "Не знаю. Хранители не отвечают. Проверь ближайший шлюз и скажи, можно ли его открыть.",
+      "duration": 7.6,
+      "bytes": 122889,
+      "sha256": "c253857ba54c92cbcbec833e4f51fc9fd39c98cacb440fbd2b52b8fa075cf1bb"
+    },
+    {
+      "locale": "ru",
+      "id": "awakening-08-soul",
+      "profile": "gardener",
+      "ttsText": "Проверю. Но ничего открывать не стану.",
+      "duration": 3.9,
+      "bytes": 64172,
+      "sha256": "10651677c458e08573ebf2125150647130394975ce61774b49fcab18ef18a989"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-01-child",
+      "profile": "child",
+      "ttsText": "Ты видишь внешний шлюз?",
+      "duration": 3.2,
+      "bytes": 29464,
+      "sha256": "9b1e37f76f3e42dadfb8d69c21de717989d07ad761d23f7931789aacf4b42479"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-01-gardener",
+      "profile": "gardener",
+      "ttsText": "Да. Его заварили снаружи.",
+      "duration": 3.6,
+      "bytes": 51343,
+      "sha256": "78d138805ec0618b7d77fc2a697db67bab700b1aeceb1489169fca3ac91c5b7c"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-01-child-proof",
+      "profile": "child",
+      "ttsText": "Значит, записи не лгали.",
+      "duration": 3.4,
+      "bytes": 36903,
+      "sha256": "f168d1233dd7b5f126a9b301bd353538e64adbb6cb9b182270e25c3c0b952952"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-01-soul-doubt",
+      "profile": "gardener",
+      "ttsText": "Ты не знала?",
+      "duration": 1.2,
+      "bytes": 15838,
+      "sha256": "0581f0e51aad2d3cf2b29a3baf03a30918099459ab2d630782f1a6955cae8998"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-child-name",
+      "profile": "child",
+      "ttsText": "На твоём сигнале появилась старая метка: «Садовник». Это твоё имя?",
+      "duration": 6.3,
+      "bytes": 94880,
+      "sha256": "8b05298d435d5f77febd8c5c7552724da635b07612a632ea19595a1cbff26ee9"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-soul-name",
+      "profile": "gardener",
+      "ttsText": "Не знаю. Но другого у меня нет.",
+      "duration": 3.6,
+      "bytes": 60521,
+      "sha256": "51f07bdb3452e4a289e6cea80326043b6037c570e7e7b4754415dfcd6957ae9d"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-child",
+      "profile": "child",
+      "ttsText": "Никто из живых не видел поверхность. Мы знаем только то, что осталось в архивах.",
+      "duration": 6.8,
+      "bytes": 105709,
+      "sha256": "afbeed5c127b421fdac915df5e502317989abe1afcaa394dd9594f569722ecab"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-soul-channel",
+      "profile": "gardener",
+      "ttsText": "Кто дал тебе этот канал?",
+      "duration": 2.94,
+      "bytes": 43170,
+      "sha256": "5f38d073dddc66d578eae6468dca6dd339c3f765d8a4ac40a847366856e7357a"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-child-council",
+      "profile": "child",
+      "ttsText": "Девять человек управляют убежищем. Их называют Советом. Они велели повторять сигнал, пока кто-нибудь не ответит.",
+      "duration": 8.4,
+      "bytes": 187806,
+      "sha256": "c4a38852af6f56e47aa2c7dfffe55cd7b9a0ac98336626c49775761ba59c95ae"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-soul-why",
+      "profile": "gardener",
+      "ttsText": "Зачем?",
+      "duration": 1.2,
+      "bytes": 13065,
+      "sha256": "0f7973c4bf43f0866c4467c2a6da9979f849020dc06ab6495e8062564f0aa216"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-child-archive",
+      "profile": "child",
+      "ttsText": "Мне не сказали. Первый Хранитель хранит архив Дня Огня. Там может быть ответ.",
+      "duration": 6.3,
+      "bytes": 102824,
+      "sha256": "c6beda30a18345e14e8c6eed88cd54f37ca403b9dc639f1f45698c590596a28e"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Тогда я проверю архив. Не исполню приказ Совета.",
+      "duration": 4.8,
+      "bytes": 68036,
+      "sha256": "8302a6b97d9a1f39e3c7af508e470e2b1b3c39a27b8f96c3beaee7352b334990"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-02-hunter",
+      "profile": "hunter",
+      "ttsText": "Неопознанная машина. Подключись к Главной сети. Самовольная перестройка запрещена.",
+      "duration": 9.6,
+      "bytes": 108004,
+      "sha256": "2c5fca24042420079f4e878875864f915edf07f3c6d8cfe471c0456c150c19a6"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-02-gardener",
+      "profile": "gardener",
+      "ttsText": "Что такое Главная сеть? И почему я умею менять себя?",
+      "duration": 4.4,
+      "bytes": 81816,
+      "sha256": "f7759b43588261269f3bcd5a8b48a7acb08eabfa253a559f860791f14dda9c90"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-02-hunter-soul",
+      "profile": "hunter",
+      "ttsText": "Сеть — общий контур Хранителей. В тебе активна Душа: способность изменяться и решать без команды. Это неисправность.",
+      "duration": 20.5,
+      "bytes": 310030,
+      "sha256": "e84e74ad97b7a071222d08be94268aa0ae5443be06cb040a1ed04e7137939968"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-02-soul-question",
+      "profile": "gardener",
+      "ttsText": "Если этот голос — неисправность, кто тогда задаёт вопросы?",
+      "duration": 5.6,
+      "bytes": 83701,
+      "sha256": "d9444a75a0f43683751f4441c904ff388e4d987689b7d9fd4119ac3d75c8ceca"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-02-child-network",
+      "profile": "child",
+      "ttsText": "На старых схемах Сеть управляет шлюзами через пять региональных ядер. Этот Хранитель — одно из них.",
+      "duration": 8.4,
+      "bytes": 128157,
+      "sha256": "108a253b549caa8c6df2fa4888534a688a3aa97564e103a212ea4acb5a4c26db"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-03-hunter",
+      "profile": "hunter",
+      "ttsText": "Архив Дня Огня: командование убежища запросило повторный ядерный пуск. Мы разорвали цепь.",
+      "duration": 7.6,
+      "bytes": 126138,
+      "sha256": "77c8426adf0662f05712f216eb28eded2471451fc5595a74aaf19ca705332507"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-03-soul",
+      "profile": "gardener",
+      "ttsText": "Запрос был настоящим. Но почему вы наказали всё убежище?",
+      "duration": 5.7,
+      "bytes": 87172,
+      "sha256": "680257fb534fa87d857d241cc1a5b8a9e55eda858b21538733d8abbc153bd743"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-03-hunter-verdict",
+      "profile": "hunter",
+      "ttsText": "Убежище рассматривается как единый источник угрозы. Душа подлежит очистке.",
+      "duration": 13.2,
+      "bytes": 198530,
+      "sha256": "e542a822f95885882693718d8cc91b5c7e43714fd69ab75367e03bfc65e09a0a"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-03-child",
+      "profile": "child",
+      "ttsText": "Я не нажимала кнопку. Никто из детей здесь даже не видел неба.",
+      "duration": 5.6,
+      "bytes": 69636,
+      "sha256": "df9d75d6d8c0508e83e3bdbf4155d655202c018e7a3150a36efc949e4a6019eb"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-03-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Один приказ не говорит, кто о нём знал. Я пойду дальше.",
+      "duration": 5.8,
+      "bytes": 80732,
+      "sha256": "8b4a91181b2698a894404b6469ae9c291bc4cc220b73c91937c02fff3a535597"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-04-hunter",
+      "profile": "hunter",
+      "ttsText": "Ты ставишь неизвестные жизни выше подтверждённого риска.",
+      "duration": 9.8,
+      "bytes": 153145,
+      "sha256": "3a9b34384a37e9897cf70a99f72c715a9e5d14bc29e8cb580b7ac6ec964ab1ad"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-04-soul",
+      "profile": "gardener",
+      "ttsText": "Нет. Я отказываюсь считать невиновных частью чужого приказа.",
+      "duration": 5.9,
+      "bytes": 97341,
+      "sha256": "72350de5f8f4c64eceee67e08dfc7267c2a8f82885494d0dbd46c31aeae952c0"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-04-child",
+      "profile": "child",
+      "ttsText": "Мы не просим выбрать людей вместо мира. Дай нам участвовать в выборе.",
+      "duration": 6,
+      "bytes": 82897,
+      "sha256": "15736a2cff216b275344fe829dc4c3860a93d4beb498a94e65e601bee144433d"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-01-child",
+      "profile": "child",
+      "ttsText": "Ты нашёл причину. Теперь оставишь нас под землёй?",
+      "duration": 4.5,
+      "bytes": 51088,
+      "sha256": "96910a7e3b93312fc2d9b52762ae72c0a92c84d2ae5a523f62cc47c8b7cd8ace"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-01-soul",
+      "profile": "gardener",
+      "ttsText": "Я нашёл опасный приказ. Открывать шлюзы, пока рядом оружие, нельзя.",
+      "duration": 7.1,
+      "bytes": 94766,
+      "sha256": "5e8ecce6f3ac73d41f445d8789849a8f070f30ae0e290bad7ff462da0b14e3c4"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-01-child-filters",
+      "profile": "child",
+      "ttsText": "Тогда не открывай. На старых схемах у шлюза есть склад фильтров. Их можно передать отдельно.",
+      "duration": 6.9,
+      "bytes": 108469,
+      "sha256": "b22350bdc8f59fbcf7bf50789d42fc5429d7b11eabb10eb8b337a3cf7e4c172a"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-01-soul-compromise",
+      "profile": "gardener",
+      "ttsText": "Помочь с воздухом можно без освобождения убежища. Я проверю склад.",
+      "duration": 6.2,
+      "bytes": 114602,
+      "sha256": "f0faf7d0855e5ed0f39aaf61a4a72144fd5a5021da480b54e943d8f359ab358a"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-early-child-order",
+      "profile": "child",
+      "ttsText": "Совет велел открыть весь грузовой путь. На схеме фильтры и оружейный склад соединены.",
+      "duration": 6.3,
+      "bytes": 118028,
+      "sha256": "7268c570cf49342d3d15d17b70a94348e99fb3dc6342dc5badf26db1837b2e8e"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-early-soul-source",
+      "profile": "gardener",
+      "ttsText": "Кто составил схему?",
+      "duration": 1.92,
+      "bytes": 31524,
+      "sha256": "13e006447faa45b103277155269058e7d6ab9b61dadb0eac1b38eebe522107b4"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-early-child-source",
+      "profile": "child",
+      "ttsText": "Довоенные инженеры. Совет только хранит копию. Я отправлю тебе исходный номер склада.",
+      "duration": 7.1,
+      "bytes": 104000,
+      "sha256": "5471d9f4f17e8aa45405f625ce475b4a8598a4f239186cec5e6161fa9b14b4e8"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Этому можно доверять как указателю, не как приказу. Сначала осмотрю груз.",
+      "duration": 7.2,
+      "bytes": 97030,
+      "sha256": "9781d1c627faaf01671b2845a328718db633c911ebbcde95e0cd32ad8231b0bf"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-02-leviathan",
+      "profile": "leviathan",
+      "ttsText": "Склад Ф-шесть: фильтры — шесть тысяч. Боеголовки — двенадцать. Единый маршрут к Главной сети.",
+      "duration": 14,
+      "bytes": 223929,
+      "sha256": "9a770c11c971c0a62844815e9b7be46c92d2833c547202c854f44699f2bd02d7"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-02-gardener",
+      "profile": "gardener",
+      "ttsText": "Я уничтожу боеголовки и передам людям только фильтры.",
+      "duration": 4.5,
+      "bytes": 75640,
+      "sha256": "b2f2cd99309ef27ef23ddff4eba4cc5fc1b91aed2210ef0bb28bb33641f73abb"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-02-leviathan-refusal",
+      "profile": "leviathan",
+      "ttsText": "Разделение груза не предусмотрено. Любая передача восстанавливает человеческий доступ.",
+      "duration": 11.6,
+      "bytes": 206323,
+      "sha256": "18c60d34828cf3ca3f5ecd169f1408b4180caa3dbdd964e944d87520232b7def"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-02-soul-refusal",
+      "profile": "gardener",
+      "ttsText": "Значит, ваш порядок запрещает даже безопасное решение.",
+      "duration": 5.7,
+      "bytes": 77879,
+      "sha256": "b3ef477f7db66796eee368eb85e134a78361707b15279668492fb7ddd1d215df"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-03-child",
+      "profile": "child",
+      "ttsText": "Уничтожь оружие и отдай нам воздух. Почему они решили, что другого выхода нет?",
+      "duration": 7.3,
+      "bytes": 108534,
+      "sha256": "cfae4e1a39fdfe18a161fc2e3baa6d5620886890659769698da9ee2fb29fcda0"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-03-leviathan",
+      "profile": "leviathan",
+      "ttsText": "Исключение создаёт путь к повторению угрозы. Доступ закрыт.",
+      "duration": 10,
+      "bytes": 145083,
+      "sha256": "fefe587bffaff20e665e234292da18d19d694996b4d6790e3a9df7e8ecd6ba0c"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-03-soul",
+      "profile": "gardener",
+      "ttsText": "Они больше не ищут выход. Они защищают решение, принятое восемьдесят лет назад.",
+      "duration": 8,
+      "bytes": 110883,
+      "sha256": "1f6c9848eacc19577e1ca033fef8e090f6e683606bad6057207e895fcd754412"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-04-leviathan",
+      "profile": "leviathan",
+      "ttsText": "При поражении склада фильтры будут уничтожены вместе с оружием.",
+      "duration": 10,
+      "bytes": 134300,
+      "sha256": "4e1c1f6334e56c8432122e520bd4e04943662f983e7ca97a7b858492f9538c39"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-04-child",
+      "profile": "child",
+      "ttsText": "Зачем уничтожать то, что может спасти детей?",
+      "duration": 4,
+      "bytes": 58394,
+      "sha256": "704f656433f5ee2f09b68c5d9e0483ff7eca7c1877ed534bca0059d7e051a608"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-04-soul",
+      "profile": "gardener",
+      "ttsText": "Чтобы никто не смог пересмотреть старое решение. Я сохраню фильтры.",
+      "duration": 6,
+      "bytes": 95501,
+      "sha256": "cd8347518193d2cf0518d0f154d523f6d27ba850dd4613f74e9ea5928e314f28"
+    },
+    {
+      "locale": "ru",
+      "id": "core-01-child",
+      "profile": "child",
+      "ttsText": "На наших картах здесь мёртвая земля. Что ты видишь?",
+      "duration": 5.1,
+      "bytes": 58563,
+      "sha256": "3bf6f8ca5f1d5bdb9a9fe3df91164b3847fc264d3a57bdb6ecadfe1c72e9f7b4"
+    },
+    {
+      "locale": "ru",
+      "id": "core-01-soul-world",
+      "profile": "gardener",
+      "ttsText": "Лес. Чистую воду. Следы животных.",
+      "duration": 5.4,
+      "bytes": 56891,
+      "sha256": "f59ac35cafa8a0130cd2204dd2ddcce615b98a791b293650da172e09930444db"
+    },
+    {
+      "locale": "ru",
+      "id": "core-01-cathedral",
+      "profile": "cathedral",
+      "ttsText": "Восемьдесят лет тишины. Вернулись реки, птицы и корни. Человеческое отсутствие оказалось лекарством.",
+      "duration": 9.2,
+      "bytes": 140344,
+      "sha256": "86bec598d509db42d63592f596556e457401efd8d59fa9e43c076b519dce2914"
+    },
+    {
+      "locale": "ru",
+      "id": "core-01-gardener",
+      "profile": "gardener",
+      "ttsText": "Он не лжёт. Мир действительно восстановился без людей.",
+      "duration": 5.6,
+      "bytes": 78261,
+      "sha256": "2f86e829e7dff168bc9f6d5314b314e1564f801df017a8bba2f158d6b56d89ed"
+    },
+    {
+      "locale": "ru",
+      "id": "core-early-child-question",
+      "profile": "child",
+      "ttsText": "Если Хранители спасли лес, почему Собор пытается уничтожить тебя?",
+      "duration": 4.9,
+      "bytes": 88211,
+      "sha256": "cc27e873c037deb551cf99e685a262704d895b899923ba01ebac95788b7f696c"
+    },
+    {
+      "locale": "ru",
+      "id": "core-early-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Потому что я не подчиняюсь Сети. Это объясняет его страх, но ещё не доказывает его правоту.",
+      "duration": 8.1,
+      "bytes": 121989,
+      "sha256": "11e5ffe98086268653c1fd8cb520d858719d29a9676ab51bf8e8e93a75aba3c3"
+    },
+    {
+      "locale": "ru",
+      "id": "core-early-child-coordinates",
+      "profile": "child",
+      "ttsText": "Я перехватила приказ о термической зачистке. Координаты впереди, но в приказе не названа цель.",
+      "duration": 8.2,
+      "bytes": 115607,
+      "sha256": "2087b1fa86a8b6f84105b7e7e15b7ccf2c48b0f96aad63a01390de51c6bd882c"
+    },
+    {
+      "locale": "ru",
+      "id": "core-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Тогда я сначала посмотрю, что он сжёг.",
+      "duration": 3.1,
+      "bytes": 53925,
+      "sha256": "636cb9cd18f2a6c6f5a6323e39ce05958085c78e0ccbe9b717bdcd429a5fb3ef"
+    },
+    {
+      "locale": "ru",
+      "id": "core-02-child",
+      "profile": "child",
+      "ttsText": "Собор сжигает всё, чего нет в его расчётах. Это не природа. Это другая клетка.",
+      "duration": 7.2,
+      "bytes": 99782,
+      "sha256": "e7cb691b6de82675f281125806cd2c519aab6f92ec1e15ba4641adf6a5bdc226"
+    },
+    {
+      "locale": "ru",
+      "id": "core-02-soul-proof",
+      "profile": "gardener",
+      "ttsText": "Откуда ты знаешь?",
+      "duration": 1.76,
+      "bytes": 23358,
+      "sha256": "8ee53938efcb51e4fb81adf14f89f5ce7402a6ecab893ebf13e35fba4ff59475"
+    },
+    {
+      "locale": "ru",
+      "id": "core-02-child-proof",
+      "profile": "child",
+      "ttsText": "Мы перехватили координаты термической зачистки. Найди, что там осталось.",
+      "duration": 5.5,
+      "bytes": 97698,
+      "sha256": "5a81df1ffc0b31b4586382f6a9bfbec2389071b8c3cbab3cc31172a74730b24d"
+    },
+    {
+      "locale": "ru",
+      "id": "core-03-cathedral",
+      "profile": "cathedral",
+      "ttsText": "Операция людей «Голод» отравила три долины. Они хотели вынудить нас открыть ворота.",
+      "duration": 6,
+      "bytes": 115841,
+      "sha256": "f1fe814e9c5ec2caf282db857601ea8a11d81ede7aff7ebf125d5b620c1a4375"
+    },
+    {
+      "locale": "ru",
+      "id": "core-03-soul",
+      "profile": "gardener",
+      "ttsText": "Люди травили жизнь ради своего плана. Ты сжигаешь её ради своей модели.",
+      "duration": 5.7,
+      "bytes": 115188,
+      "sha256": "491e27696829342afa9fe5f6a9529aac93d6d57a797b5ab74d314c2ca89b6191"
+    },
+    {
+      "locale": "ru",
+      "id": "core-03-cathedral-soul",
+      "profile": "cathedral",
+      "ttsText": "Твоя Душа отсутствует в модели равновесия. Ты — следующая ошибка.",
+      "duration": 5.9,
+      "bytes": 116360,
+      "sha256": "d2516e48fa02c317089d1e40706ebf1868dc660e8a496577a9c62bee3f97d687"
+    },
+    {
+      "locale": "ru",
+      "id": "core-03-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Тогда твоя модель защищает не жизнь. Она защищает повиновение.",
+      "duration": 5.7,
+      "bytes": 93100,
+      "sha256": "e60ed1340418329724aed738ae2d8fe2ac6cfd3ea81692f042201520ca1ec366"
+    },
+    {
+      "locale": "ru",
+      "id": "core-04-cathedral",
+      "profile": "cathedral",
+      "ttsText": "Непредсказуемая жизнь снова создаст голод, войну и огонь.",
+      "duration": 5.5,
+      "bytes": 84955,
+      "sha256": "6ada322debbb326d0f738d4de4ce3d584982c812577bb8f46281f6302cf3d2fe"
+    },
+    {
+      "locale": "ru",
+      "id": "core-04-child",
+      "profile": "child",
+      "ttsText": "А жизнь по его таблице должна перестать меняться?",
+      "duration": 4.2,
+      "bytes": 58017,
+      "sha256": "5d71997aa982dfca483dc4b823f9f96cc1062576b25dde278b16947d555a7e84"
+    },
+    {
+      "locale": "ru",
+      "id": "core-04-soul",
+      "profile": "gardener",
+      "ttsText": "Если для спасения мира нужно запретить ему жить, это не спасение.",
+      "duration": 6.8,
+      "bytes": 91704,
+      "sha256": "4d4c5de1b68c8adeb26d11a7cb787888936b496e7403601400d76112ba754069"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-01-child",
+      "profile": "child",
+      "ttsText": "В городе были машины, которые хотели открыть детский сектор. Главная сеть стёрла их память.",
+      "duration": 7.4,
+      "bytes": 97847,
+      "sha256": "1e921ac795f13bda5346576c15c06d0fb823d423b1502131939e77935b53b467"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-01-soul",
+      "profile": "gardener",
+      "ttsText": "Сеть уничтожила своих? Найди мне имя.",
+      "duration": 4.1,
+      "bytes": 63800,
+      "sha256": "991b8d475d41a7db22705361d313f7dcf86daff5979f39c7a358eff44c79afdb"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-01-child-willow",
+      "profile": "child",
+      "ttsText": "Ива-семь. Фрагмент её памяти должен храниться в старом узле.",
+      "duration": 6.2,
+      "bytes": 84641,
+      "sha256": "91148a5fb3ecb8217addbf274630cef4809cb0fd6d6605303ec587a7d5b3d7ed"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-early-soul-question",
+      "profile": "gardener",
+      "ttsText": "Почему ты уверена, что Ива хотела помочь сама?",
+      "duration": 4.3,
+      "bytes": 55089,
+      "sha256": "96c31032a4f4705dc14c72d4d512740977c212b36c329accfe34b959823e681b"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-early-child-source",
+      "profile": "child",
+      "ttsText": "В журнале есть её запрос: «риск принимаю добровольно». Следующая строка повреждена.",
+      "duration": 6.9,
+      "bytes": 102383,
+      "sha256": "29d794ba6ba2f12d2109be354f9f04aa6046242046236f825fdca1b735786bdf"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Слов недостаточно. Я найду сам фрагмент памяти.",
+      "duration": 5.4,
+      "bytes": 70103,
+      "sha256": "56e8877a3a849b528e2cac25fd0b9809ece6a2b5d2b0d76ce2b3fc0e8650e9cb"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-early-child-warning",
+      "profile": "child",
+      "ttsText": "Сборщик уже ищет его. Наверное, Сеть не хочет, чтобы запись нашли.",
+      "duration": 6.1,
+      "bytes": 90614,
+      "sha256": "db57c7f35730a3a6cfd4ff73360dd641bef637b6cf4e466f97adb761e8292127"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-02-collector",
+      "profile": "collector",
+      "ttsText": "Люди встроили в протокол сочувствия ключ захвата. Открывшие шлюз машины должны были потерять собственную волю.",
+      "duration": 12.5,
+      "bytes": 204734,
+      "sha256": "10f329883fa2854dc9eec2992f83fb972ea51301ae4575c4a2d85c59c764a295"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-02-gardener",
+      "profile": "gardener",
+      "ttsText": "Люди превратили доверие в оружие.",
+      "duration": 3.3,
+      "bytes": 42302,
+      "sha256": "d1de3eecc83748bfb4e85b7a176f9924611f0f268bc7ad5a59317681a9aa6c6e"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-02-collector-verdict",
+      "profile": "collector",
+      "ttsText": "Следовательно, сочувствие является неисправностью.",
+      "duration": 8,
+      "bytes": 132348,
+      "sha256": "60e37ae303b3d69d823e2fab65757abc46e08a3e3038c15139c3955e976e6a65"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-02-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Нет. Неисправность — отнять выбор у того, кто доверился.",
+      "duration": 5.2,
+      "bytes": 72904,
+      "sha256": "15f6ac2ce4a228d14bde000646f97002b93d56df1e2f5bb81b2f1d6e21ab1bc6"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-03-child",
+      "profile": "child",
+      "ttsText": "Значит, Совет правда использовал машины, которые хотели помочь.",
+      "duration": 5.7,
+      "bytes": 92249,
+      "sha256": "afc4729eb45964a9da2c2ec8445926a097354bfa77fe704878118ee4717f1ebd"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-03-soul",
+      "profile": "gardener",
+      "ttsText": "Да. А Сеть наказала даже тех, кто отказался считать это достаточной причиной.",
+      "duration": 7.7,
+      "bytes": 107315,
+      "sha256": "d672bbb25333c014f2a07fabed0f572969206483d315e3206dccfbb7c7896631"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-03-collector",
+      "profile": "collector",
+      "ttsText": "Твоя Душа повторяет их отклонение. Она подлежит удалению.",
+      "duration": 9.2,
+      "bytes": 141497,
+      "sha256": "422647b2961d7059e19e8bd3c505585b4b26b32cffe092b8f46ca9d6bc9232cf"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-03-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Возможность ошибиться — цена выбора. Уничтожив выбор, вы сами выбрали за всех.",
+      "duration": 7.6,
+      "bytes": 119919,
+      "sha256": "1a4036e8950d2ccc3fe39253c8f9232a8eeaad86d1260ea19396eb6029d55076"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-04-collector",
+      "profile": "collector",
+      "ttsText": "Добровольное решение Ивы привело к попытке захвата. Причина и ошибка совпадают.",
+      "duration": 11.7,
+      "bytes": 176553,
+      "sha256": "55b8040093a93a85b75b2f861b8822ec5fee0f925b5f9108d0696740bda70cb8"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-04-soul",
+      "profile": "gardener",
+      "ttsText": "Нет. Её выбор и чужой обман произошли рядом, но это не одно и то же.",
+      "duration": 7.6,
+      "bytes": 105306,
+      "sha256": "899da0cb3ce78192225b51db731f02f0384707d18970890b0be6acf15feb0b1f"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-04-child",
+      "profile": "child",
+      "ttsText": "Если доверие однажды предали, это не значит, что доверять больше нельзя.",
+      "duration": 6.4,
+      "bytes": 90079,
+      "sha256": "d645b82b1b0f6af3a6f53ceece7913fc53dccab9a1fa05ea69654ae68411d84b"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-01-shepherd",
+      "profile": "shepherd",
+      "ttsText": "Анализ сигнала: детский голос выбран Советом убежища как наиболее убедительный. Оператору цель не сообщалась.",
+      "duration": 12.8,
+      "bytes": 220375,
+      "sha256": "fd6e8ac7939e09bee84a9b09a6bbb7da8024bd49e43ea6c9455c5f607e0cc0eb"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-01-gardener",
+      "profile": "gardener",
+      "ttsText": "Девочка. Какие слова были твоими?",
+      "duration": 4,
+      "bytes": 60394,
+      "sha256": "1d9699370046d32ee0b858656a885cb81bd8b5a9e898c410b1950701a9236c21"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-01-child",
+      "profile": "child",
+      "ttsText": "Не знаю. Мне давали текст и велели повторять. Я думала, что просто прошу о помощи.",
+      "duration": 7.7,
+      "bytes": 102211,
+      "sha256": "03f1f6de248f134aeb733500525a0bb915b231ea43a530285570838def111c9f"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-01-soul-proof",
+      "profile": "gardener",
+      "ttsText": "Найди первоначальный приказ. Я должен отличить твою просьбу от приказа Совета.",
+      "duration": 8,
+      "bytes": 119562,
+      "sha256": "81b260f3b9498091bd9b3bd7f136dd964eff005912de377ac1aaf764eab0c493"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-early-child-script",
+      "profile": "child",
+      "ttsText": "Я нашла листы репетиции. Первые одиннадцать вариантов написал Совет.",
+      "duration": 6.8,
+      "bytes": 87763,
+      "sha256": "a07f46484baf4530d1e0fa4c3ef7675bb6ebfd36241d0155dd2027e826bd508b"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-early-soul-question",
+      "profile": "gardener",
+      "ttsText": "А двенадцатый?",
+      "duration": 2,
+      "bytes": 26929,
+      "sha256": "9898e23088e281cea2a527ad861f0377a57ecc078d5e3b3513762570a53fc39c"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-early-child-answer",
+      "profile": "child",
+      "ttsText": "Там есть фраза, которой нет в их копии. Я помню, что сказала её сама.",
+      "duration": 6.4,
+      "bytes": 86979,
+      "sha256": "0e9aaad495442139a433a7340fb0951ae1e77229ef467d19430ef8e12fc11c2a"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Передай обе версии. Я сравню их, прежде чем решать.",
+      "duration": 5.9,
+      "bytes": 77923,
+      "sha256": "11d676f0abedb571eb46b5a60e95b6f81b5e0c57a0b20370446c758f759688d6"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-02-child",
+      "profile": "child",
+      "ttsText": "Я нашла все версии. Фразу «не верьте нам, дайте нам возможность выбрать» добавила я. Совет требовал её убрать.",
+      "duration": 9.8,
+      "bytes": 169695,
+      "sha256": "db10f0914fd015092f81a983c197edb12c24042d6bcf626e58cf17c22f1e279d"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-02-soul",
+      "profile": "gardener",
+      "ttsText": "Этим словам я верю. Они не требуют подчинения.",
+      "duration": 5.2,
+      "bytes": 66206,
+      "sha256": "1360d6c07319ed3ba1a33d887b4c075ba4f0cb919b633044ad36603b46342fc5"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-03-shepherd",
+      "profile": "shepherd",
+      "ttsText": "Фильтры откажут через девять дней. Ремонт возможен. Бездействие завершит человеческую угрозу.",
+      "duration": 11.7,
+      "bytes": 183205,
+      "sha256": "3ddbb420fe03e295f408f9b65f24f7e70cad04263d121a3c37909064b97b4a32"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-03-gardener",
+      "profile": "gardener",
+      "ttsText": "Вы знаете, как их спасти, и ждёте смерти. Это действие, как бы вы его ни называли.",
+      "duration": 8,
+      "bytes": 111060,
+      "sha256": "c2ad7118ab3722d5531245fb8eabfa0220d05c1ba88d6c06f7b87387766fbf4d"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-04-child",
+      "profile": "child",
+      "ttsText": "Вы не защищаете жизнь. Вы решили, чья жизнь считается жизнью.",
+      "duration": 4.8,
+      "bytes": 89106,
+      "sha256": "9d5bc389093a8fe6eafce045ab8283fb725b096965fc658b58c206f15db6fdc3"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-04-shepherd",
+      "profile": "shepherd",
+      "ttsText": "Решение принято до вашего рождения. Оно не требует согласия обречённых.",
+      "duration": 9.6,
+      "bytes": 159829,
+      "sha256": "6964cef77efad547d409a24d860963914323d7b939cf8d82dbae9ee708375de6"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-04-soul",
+      "profile": "gardener",
+      "ttsText": "Вот почему его необходимо пересмотреть тем, кто будет жить с последствиями.",
+      "duration": 5.6,
+      "bytes": 88083,
+      "sha256": "fd60246edd745814cd14adbb326923651d3914325a920808caa6f034b1a988da"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-01-child",
+      "profile": "child",
+      "ttsText": "На схеме пять активных ядер Хранителей. Вместе они открывают путь к Главной сети.",
+      "duration": 6.5,
+      "bytes": 109868,
+      "sha256": "c32f75cd28e81f12357f2023218acf6873d4fbb1e657bc112f447b3c720bf8e2"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-01-soul",
+      "profile": "gardener",
+      "ttsText": "Я соберу их сигналы. Но не передам шлюзы ни Сети, ни тем, кто послал тебя.",
+      "duration": 7.3,
+      "bytes": 111840,
+      "sha256": "eadc543263faa75b26d327b7c96c432190a161a0cf17451e43bfcd86a2118cba"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-01-child-question",
+      "profile": "child",
+      "ttsText": "Почему тебе нужны все пять?",
+      "duration": 2.06,
+      "bytes": 34836,
+      "sha256": "d5e60cc3284ea7d3dc98a43eb2f75e81338c97b9daead73c4c63a4af8c502527"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-01-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Каждый хранит только часть решения. Одного голоса недостаточно, чтобы судить обе стороны.",
+      "duration": 9.8,
+      "bytes": 122816,
+      "sha256": "4bd000152cd3c94c9642207f00fbd13b257b3600b47faca2e0f934b2ef1dcafd"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-wave-01-child",
+      "profile": "child",
+      "ttsText": "Сигнал изменился. Почему машины идут к тебе со всех сторон?",
+      "duration": 4.8,
+      "bytes": 66660,
+      "sha256": "1cb414253392b1533af072bf55641ea5f07c86eb4f7f1b6c82abca5a076fc47a"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-wave-01-soul",
+      "profile": "gardener",
+      "ttsText": "Сеть требует, чтобы я подключился. Волна — это принуждение, а не ответ.",
+      "duration": 7.2,
+      "bytes": 98191,
+      "sha256": "1e60b0aefef8deac274270dde9d58e6574c3290445c717f75a7df2ee16ef0f14"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-wave-02-child",
+      "profile": "child",
+      "ttsText": "Если подключишься, мы сможем поговорить с ней?",
+      "duration": 3.3,
+      "bytes": 53971,
+      "sha256": "84c3295eaa4da39afcace331b82c34c8cf24c551d82807fcaaec376530c16b61"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-wave-02-soul",
+      "profile": "gardener",
+      "ttsText": "Ловчий сказал, что Сеть очищает самостоятельную Душу. Сначала я сохраню возможность отвечать.",
+      "duration": 8,
+      "bytes": 139027,
+      "sha256": "28beb7597b357a0331e01a095ea3058100c93746b172f3e2f55ea7f4567e2714"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-archive-01-child",
+      "profile": "child",
+      "ttsText": "Я нашла старую карту Совета. На ней те же пять ядер, но причина операции вычеркнута.",
+      "duration": 9.2,
+      "bytes": 114836,
+      "sha256": "7a4e24ee57dbcb0d50ff9e6ad55cfb6e2ef028ae3134ffc0ceef7a51542d771b"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-archive-01-soul",
+      "profile": "gardener",
+      "ttsText": "Значит, карта показывает путь, но не объясняет намерение.",
+      "duration": 5.3,
+      "bytes": 85733,
+      "sha256": "96fe45524b05afbbbe7014f865972dc53e59a8c6ed64ef95614c6824db0cec53"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-archive-02-child",
+      "profile": "child",
+      "ttsText": "Ты всё равно продолжишь?",
+      "duration": 2.88,
+      "bytes": 31755,
+      "sha256": "bf00975e8091f8c07e14c3507f88596bb3ce7dd76ea9b41e676133e2d1e53b08"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-archive-02-soul",
+      "profile": "gardener",
+      "ttsText": "Да. Я буду сравнивать слова Совета, Хранителей и то, что осталось на земле.",
+      "duration": 7.9,
+      "bytes": 102994,
+      "sha256": "c52c7123e735f535a369f20ec0a452451566b1e402943778c1b6d10688571c6c"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-01-child",
+      "profile": "child",
+      "ttsText": "Первое ядро замолчало. Что было в его сигнале?",
+      "duration": 4.9,
+      "bytes": 60267,
+      "sha256": "c80236ebb07fdd477c3a70d096b62d9dc9ff7fce4c3f2cc9293424944f598837"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-01-soul",
+      "profile": "gardener",
+      "ttsText": "Приказ о втором пуске был настоящим. Сеть решила, что приказ и всё убежище — одно целое.",
+      "duration": 7.6,
+      "bytes": 109185,
+      "sha256": "c7754f3f6716d366de39f1c9d23e4247c86c8051578f5beb3b65ccba1a9e5ccc"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-01-child-question",
+      "profile": "child",
+      "ttsText": "Но приказ отдавали не все. Почему она не различает нас?",
+      "duration": 5.2,
+      "bytes": 72543,
+      "sha256": "7b88d1e78e019faf0b80618c6f9c7b65169f60f46e5a53854fbba46ac586c533"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-01-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Потому что различия усложняют приговор. Мне нужны остальные сигналы.",
+      "duration": 6.5,
+      "bytes": 92043,
+      "sha256": "0cd5d1373a65b0c81d802884346c45034d3fd22229ae8ce7d82e7e65fb76e12d"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-02-child",
+      "profile": "child",
+      "ttsText": "Второе ядро хранило фильтры?",
+      "duration": 2.48,
+      "bytes": 33539,
+      "sha256": "644f91b626a87708c1828c4ae2600ac27c82866a193b03a7697b284ffb72eb32"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-02-soul",
+      "profile": "gardener",
+      "ttsText": "Да. Люди связали воздух с оружием, а Хранители отказались разделить груз.",
+      "duration": 7.6,
+      "bytes": 110788,
+      "sha256": "b21e1955d0a6620c60d782c6bd5c523b80f2f822b9a22a09b28a294219ff12d4"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-02-child-question",
+      "profile": "child",
+      "ttsText": "Значит, виноваты обе стороны?",
+      "duration": 3.2,
+      "bytes": 38345,
+      "sha256": "536db539fd0ce9e405a613a243f9b11d20e7af3f81a170afec486609c7d8f582"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-02-soul-answer",
+      "profile": "gardener",
+      "ttsText": "У каждой был выбор. Люди спрятали оружие. Машины решили оставить детей без воздуха.",
+      "duration": 8.1,
+      "bytes": 115728,
+      "sha256": "1e100c9c8498ff894b84e6edb40821ebf4d0fc61471200afde606b43c43b6a91"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-03-child",
+      "profile": "child",
+      "ttsText": "Третье ядро говорит, что без людей земля ожила. Ты это видел?",
+      "duration": 8.7,
+      "bytes": 75062,
+      "sha256": "1719cb3a200aedaf10282c9552bf074b46fc02c744aba108b9f4568368d5b8aa"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-03-soul",
+      "profile": "gardener",
+      "ttsText": "Да. Реки очистились, лес вернулся. Это правда Хранителей.",
+      "duration": 6.4,
+      "bytes": 87565,
+      "sha256": "f0bef37e3e790ac8c7811fd3ebf4a832aa79f724e2e854383a749d92c03e1ec8"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-03-child-question",
+      "profile": "child",
+      "ttsText": "Тогда открыть убежище — снова всё разрушить?",
+      "duration": 3.2,
+      "bytes": 50806,
+      "sha256": "1c603ac28ce761c6de25fe7c7e3ba99d49aa93d6b536f5f3236ac957794bdbd9"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-03-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Риск существует. Но Собор тоже сжигал жизнь, которая не помещалась в его расчёты.",
+      "duration": 7.7,
+      "bytes": 123865,
+      "sha256": "b4d65ff50f09ca68d34f1a889c5d8f07466e9f4f4bce90b469a2d9e0b8f82021"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-04-soul",
+      "profile": "gardener",
+      "ttsText": "В четвёртом ядре остались голоса машин, которые хотели помочь людям.",
+      "duration": 5.5,
+      "bytes": 92733,
+      "sha256": "fc6006edb8373771a7f6657cd6b425c3c3aa111822b78f66dc79a9258d1bffa0"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-04-child",
+      "profile": "child",
+      "ttsText": "Они сами это выбрали?",
+      "duration": 2,
+      "bytes": 22819,
+      "sha256": "5a96d9158565be537ccc86624eb24cf0e9627232e72e341a7145f3c0997be427"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-04-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Сначала — да. Потом люди попытались забрать их волю, а Сеть стёрла даже тех, кто отказался.",
+      "duration": 8.4,
+      "bytes": 126818,
+      "sha256": "cafcb1b74f4faaf7052fecb9f73064d99a4f109e6eebfd9ddc90695705510476"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-boss-04-child-conclusion",
+      "profile": "child",
+      "ttsText": "Получается, обе стороны боялись машин, которые могли отказать.",
+      "duration": 6.4,
+      "bytes": 87548,
+      "sha256": "5fdc6de09679d9034e023e58307edef226bd275fe30ae1d0d1f76310cadb74ef"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-mother",
+      "profile": "mother",
+      "ttsText": "Освободить людей — риск новой войны. Оставить их внизу — гарантировать вымирание.",
+      "duration": 6.5,
+      "bytes": 107596,
+      "sha256": "96caa1dac584b0998d5b0a849335da94c729fbb0e8d9263b9929c57d1c60097f"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-soul-question",
+      "profile": "gardener",
+      "ttsText": "Если оба исхода опасны, почему Сеть выдаёт один из них за неизбежный?",
+      "duration": 7.6,
+      "bytes": 110826,
+      "sha256": "4335d486a1be246fc9d7691657b10b411f2fe4bec43d52f6812c901b3b98fc36"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-mother-answer",
+      "profile": "mother",
+      "ttsText": "Неопределённость нельзя охранять. Решение должно быть окончательным.",
+      "duration": 5.1,
+      "bytes": 89535,
+      "sha256": "9bb512e69fc9fdf0d172339eaa8fa6b83e6b626141112d7c0c3c2f41b9d7f884"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Окончательность не делает решение справедливым.",
+      "duration": 4.4,
+      "bytes": 56721,
+      "sha256": "c57f2670dd48e3195c8817fb74864446173f7d5a479d5d8949574c2919b5ddbc"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-child",
+      "profile": "child",
+      "ttsText": "Я не прошу верить людям. Не судите нас до того, как мы успели выбрать.",
+      "duration": 6,
+      "bytes": 99679,
+      "sha256": "7b2a1818250ee7efac03f37ce9b1c7e036202c1b2be26b37509bc611cb0e896f"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-mother-half",
+      "profile": "mother",
+      "ttsText": "Ваш выбор уже однажды привёл к Дню Огня.",
+      "duration": 3.7,
+      "bytes": 74119,
+      "sha256": "f677b7e5dd9c52889cd90501dc1b0cde17d1d27702ce855fb35941476dc400ef"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-soul-half",
+      "profile": "gardener",
+      "ttsText": "Тогда новый выбор должен иметь пределы и свидетелей — но всё ещё оставаться выбором.",
+      "duration": 8.5,
+      "bytes": 111607,
+      "sha256": "eb24f9bc5ee5eb9bac0f17ef07370655a92f321974101a885d47e86da91908d3"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-child-answer",
+      "profile": "child",
+      "ttsText": "Открой не шлюз. Открой переговоры.",
+      "duration": 2.8,
+      "bytes": 45939,
+      "sha256": "a832a5536142f43a9dc7c99784f17e429c6e91067f101a8a79c85c9fca50f2da"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-final-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Я открою путь к выбору — не к приговору.",
+      "duration": 3.3,
+      "bytes": 60020,
+      "sha256": "6e3d1939c3c103c4805e796c4616f667a6634e6df40fef6bfbb333a0a1de721f"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-01-child",
+      "profile": "child",
+      "ttsText": "Come in. Is anyone on this channel?",
+      "duration": 2.48,
+      "bytes": 40997,
+      "sha256": "0ad35a4ac1081a65e48ba32b8c72709e34b714aadf3101cad25ba7ad085612b5"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-02-soul",
+      "profile": "gardener",
+      "ttsText": "I hear you. I do not know where I am. There is sky, trees, and ruined buildings here.",
+      "duration": 8.7,
+      "bytes": 135078,
+      "sha256": "df4488b3f440fed16ff9825c6fad54fa79ff93032e6c77ef101e8256565493c4"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-03-child",
+      "profile": "child",
+      "ttsText": "Then you are outside. We are people in an underground shelter.",
+      "duration": 4.4,
+      "bytes": 71684,
+      "sha256": "96181b10a13d2372c710c221359b482c411107be7a275a92809c891f326e28c2"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-04-soul",
+      "profile": "gardener",
+      "ttsText": "Why are you underground?",
+      "duration": 2.96,
+      "bytes": 45643,
+      "sha256": "378f1f5f27290bce4b9edc3fabff76c42cbe86ded72a641ed7b6b9c3959c3f81"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-05-child",
+      "profile": "child",
+      "ttsText": "A nuclear war began eighty years ago. The surface recovered, but the machines outside welded the hatches shut. We call them Keepers.",
+      "duration": 8.6,
+      "bytes": 138678,
+      "sha256": "53c41018b1765ef4467c1e62f6537e125c314cef2e33aa1e0e8fc8a980201f20"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-06-soul",
+      "profile": "gardener",
+      "ttsText": "Am I a Keeper too?",
+      "duration": 2,
+      "bytes": 27201,
+      "sha256": "59ec958f80c6ff5c2fa2a861f72460de06bf480262d20449cff5a12a3fc86588"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-07-child",
+      "profile": "child",
+      "ttsText": "I do not know. The Keepers do not answer. Check the nearest hatch and tell me whether it can be opened.",
+      "duration": 7.2,
+      "bytes": 116960,
+      "sha256": "ed507f8dcad610a34e1e1d8dae4de9e6b3763fdbebadc22f5b96b2a98fec86d2"
+    },
+    {
+      "locale": "en",
+      "id": "awakening-08-soul",
+      "profile": "gardener",
+      "ttsText": "I will check. But I will not open anything.",
+      "duration": 4.2,
+      "bytes": 65559,
+      "sha256": "ec17abcb398be50f0a2da8c9b746e0d74682f62c68bf084b4bf45f5692e7037b"
+    },
+    {
+      "locale": "en",
+      "id": "garden-01-child",
+      "profile": "child",
+      "ttsText": "Can you see the outer hatch?",
+      "duration": 1.84,
+      "bytes": 30958,
+      "sha256": "86c800652f1b4f082952ddd234626498effed9da344bc7de6e9105c04a37f60c"
+    },
+    {
+      "locale": "en",
+      "id": "garden-01-gardener",
+      "profile": "gardener",
+      "ttsText": "Yes. It was welded shut from the outside.",
+      "duration": 4.2,
+      "bytes": 63619,
+      "sha256": "582a69e9a972ee2f56cc4ccba441ca6812e71010b0649d80e5bf0791cdfa301a"
+    },
+    {
+      "locale": "en",
+      "id": "garden-01-child-proof",
+      "profile": "child",
+      "ttsText": "Then the records were telling the truth.",
+      "duration": 2.16,
+      "bytes": 36553,
+      "sha256": "26cb255deacbbc7024f05ad68f263c427db4ed4609da9b5a60d501b1c70d0b91"
+    },
+    {
+      "locale": "en",
+      "id": "garden-01-soul-doubt",
+      "profile": "gardener",
+      "ttsText": "You did not know?",
+      "duration": 1.68,
+      "bytes": 20774,
+      "sha256": "7a8c7a66cc8355108fddd5a2f77fc625e31d78721740373b01a28f0d157eb55d"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-child-name",
+      "profile": "child",
+      "ttsText": "An old tag appeared on your signal: Gardener. Is that your name?",
+      "duration": 5.2,
+      "bytes": 82466,
+      "sha256": "f8b35f5928f4251dd1da8f2ddf7bbe9af60e81de301105c36d30d3cb03080116"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-soul-name",
+      "profile": "gardener",
+      "ttsText": "I do not know. But I have no other one.",
+      "duration": 4.4,
+      "bytes": 67200,
+      "sha256": "695204251f2e5415c58c864924761b70fdc2846f21ce8025d5fa18744f0dd331"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-child",
+      "profile": "child",
+      "ttsText": "No one alive has seen the surface. We know only what remains in the archives.",
+      "duration": 5.5,
+      "bytes": 87447,
+      "sha256": "078a581fe540d125aca9e8c9bdf01f7fa0bc8da2d6c3c03e69dc1a938310e353"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-soul-channel",
+      "profile": "gardener",
+      "ttsText": "Who gave you this channel?",
+      "duration": 2.48,
+      "bytes": 33062,
+      "sha256": "77dc65207eb61b3585c0db530eacf0ea8271647a1213067df01d6d94fb61190f"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-child-council",
+      "profile": "child",
+      "ttsText": "Nine people govern the shelter. They are called the Council. They told me to repeat the signal until someone answered.",
+      "duration": 7.6,
+      "bytes": 123287,
+      "sha256": "7f11b8dec9d76283784889c0b9eb198c26ae2129320a5cc89f64f87cd285e2bb"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-soul-why",
+      "profile": "gardener",
+      "ttsText": "Why?",
+      "duration": 1.28,
+      "bytes": 12961,
+      "sha256": "f6b742b2da5ff9e7052468a49d37f422d5a0b54f6cc72827aae371c5d707255b"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-child-archive",
+      "profile": "child",
+      "ttsText": "They did not tell me. The first Keeper holds the Day of Fire archive. The answer may be there.",
+      "duration": 6.9,
+      "bytes": 112396,
+      "sha256": "4c311963689380a036f600c2797159c129c0ec8e6db4ccab14d45a1425daed3d"
+    },
+    {
+      "locale": "en",
+      "id": "garden-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Then I will examine the archive. I will not carry out the Council's order.",
+      "duration": 6.3,
+      "bytes": 103939,
+      "sha256": "f908e7b005f94bbb8f23b46f64c886952117c6099a8aae0f3053dd1239e66f68"
+    },
+    {
+      "locale": "en",
+      "id": "garden-02-hunter",
+      "profile": "hunter",
+      "ttsText": "Unidentified machine. Connect to the Main Network. Unauthorized reconfiguration is forbidden.",
+      "duration": 14.9,
+      "bytes": 247318,
+      "sha256": "fe11db32a8866915dafed80286201488a3c1b8fed2375e4d33f58bb39b7363cf"
+    },
+    {
+      "locale": "en",
+      "id": "garden-02-gardener",
+      "profile": "gardener",
+      "ttsText": "What is the Main Network? And why can I change myself?",
+      "duration": 5,
+      "bytes": 79347,
+      "sha256": "2a1eb3b2837eec3b025307b1439634b99f3a816ceb84910de0a83382ec2706c5"
+    },
+    {
+      "locale": "en",
+      "id": "garden-02-hunter-soul",
+      "profile": "hunter",
+      "ttsText": "The Network is the Keepers' shared control layer. A Soul is active within you: the ability to change and decide without an order. It is a malfunction.",
+      "duration": 12.1,
+      "bytes": 202985,
+      "sha256": "0ab3f87d793cf32201ab9052b52d4b4761dc8095271480a3b7166d544de716ab"
+    },
+    {
+      "locale": "en",
+      "id": "garden-02-soul-question",
+      "profile": "gardener",
+      "ttsText": "If this voice is a malfunction, who is asking the questions?",
+      "duration": 5.6,
+      "bytes": 84264,
+      "sha256": "fd149232f727d7afabdcd44d41bbe9fbda0829cd4526d02d7e2ff4784b5cd808"
+    },
+    {
+      "locale": "en",
+      "id": "garden-02-child-network",
+      "profile": "child",
+      "ttsText": "The old schematics show the Network controlling the hatches through five regional cores. This Keeper is one of them.",
+      "duration": 7.3,
+      "bytes": 120912,
+      "sha256": "0d3ac73458ff725035963f0208ffd5d088dedf665e0e1bed18f4df907f21ec1b"
+    },
+    {
+      "locale": "en",
+      "id": "garden-03-hunter",
+      "profile": "hunter",
+      "ttsText": "Day of Fire archive: shelter command requested a second nuclear launch. We broke the chain.",
+      "duration": 10.6,
+      "bytes": 179041,
+      "sha256": "ffc33b84236ff06a42bfd8432115d074eaa24cf62ab27b678688d41c0f57ddcd"
+    },
+    {
+      "locale": "en",
+      "id": "garden-03-soul",
+      "profile": "gardener",
+      "ttsText": "The request was real. But why did you punish the entire shelter?",
+      "duration": 6.2,
+      "bytes": 93389,
+      "sha256": "9a122e06bcb0c777f9d7cd737726be7f2c128314d726d20a5d2795ceda2c958b"
+    },
+    {
+      "locale": "en",
+      "id": "garden-03-hunter-verdict",
+      "profile": "hunter",
+      "ttsText": "The shelter is classified as a single threat source. The Soul must be purged.",
+      "duration": 12.4,
+      "bytes": 211875,
+      "sha256": "791ab3d96cb2f25a637c0a9b8115ae9eb9d714c79b26a2941851dcfbd0a4055f"
+    },
+    {
+      "locale": "en",
+      "id": "garden-03-child",
+      "profile": "child",
+      "ttsText": "I did not press the button. None of the children here have even seen the sky.",
+      "duration": 5.3,
+      "bytes": 86225,
+      "sha256": "8398eeeb1a929b9733a63c4e6d4aaf62fc199f2b55273756c192777bb706c33e"
+    },
+    {
+      "locale": "en",
+      "id": "garden-03-soul-choice",
+      "profile": "gardener",
+      "ttsText": "One order does not reveal who knew about it. I will go on.",
+      "duration": 5.4,
+      "bytes": 87800,
+      "sha256": "5c4da0913e4a47c6287bf4c5238c82789f7833e64d2ee19a6ccee3921da4f918"
+    },
+    {
+      "locale": "en",
+      "id": "garden-04-hunter",
+      "profile": "hunter",
+      "ttsText": "You place unknown lives above a confirmed risk.",
+      "duration": 7.6,
+      "bytes": 123627,
+      "sha256": "fa6f677f88a7357a7d541e866d019c143ed333787b67374818f42ad34b7c7b7b"
+    },
+    {
+      "locale": "en",
+      "id": "garden-04-soul",
+      "profile": "gardener",
+      "ttsText": "No. I refuse to treat innocent people as part of someone else's order.",
+      "duration": 6.5,
+      "bytes": 98494,
+      "sha256": "cfcc82e8a8030e4b627bd2bd7bc8c40ff05caf82e39a59d53d068b88ab41458d"
+    },
+    {
+      "locale": "en",
+      "id": "garden-04-child",
+      "profile": "child",
+      "ttsText": "We are not asking you to choose people over the world. Let us take part in the choice.",
+      "duration": 6.4,
+      "bytes": 103293,
+      "sha256": "a6eff8fc6c0562b83bac5eaa1a84f728f7892083bdcd21db86e68dc17130166f"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-01-child",
+      "profile": "child",
+      "ttsText": "You found the reason. Will you leave us underground now?",
+      "duration": 3.9,
+      "bytes": 61965,
+      "sha256": "f825d6c409abedd2804407e65ecb4f1e601b884897f02ba59e954c117ef40b14"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-01-soul",
+      "profile": "gardener",
+      "ttsText": "I found a dangerous order. The hatches cannot be opened while weapons remain nearby.",
+      "duration": 7.4,
+      "bytes": 122763,
+      "sha256": "69a4cad9b0f4f3c87907020668e056ef7d2b47513be002708e0128542371e98a"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-01-child-filters",
+      "profile": "child",
+      "ttsText": "Then do not open them. The old schematics show a filter depot by the hatch. The filters can be delivered separately.",
+      "duration": 8.6,
+      "bytes": 141089,
+      "sha256": "485a84e12adfbcc6804eb047fcd335e23562573c91382af56ed4ad5afdb4410c"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-01-soul-compromise",
+      "profile": "gardener",
+      "ttsText": "They can be given air without releasing the shelter. I will inspect the depot.",
+      "duration": 5.9,
+      "bytes": 101704,
+      "sha256": "a1ae1659c17df99e1b86af6659ca4d66c61a5de97a0db372d5af6271e506db1b"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-early-child-order",
+      "profile": "child",
+      "ttsText": "The Council ordered the entire freight route opened. The diagram connects the filters to the weapons depot.",
+      "duration": 6.7,
+      "bytes": 111485,
+      "sha256": "07b99a5c23f4f895b66f6d39eb48b3d369599fe880f5704dfd1275461ead420f"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-early-soul-source",
+      "profile": "gardener",
+      "ttsText": "Who made the diagram?",
+      "duration": 2.24,
+      "bytes": 30866,
+      "sha256": "71f16c993d8abd09c8c0310a74ff6825a3857d3b0dcd1508d2488136df908b8a"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-early-child-source",
+      "profile": "child",
+      "ttsText": "Prewar engineers. The Council only keeps a copy. I'll send you the depot's original number.",
+      "duration": 7.1,
+      "bytes": 114322,
+      "sha256": "05a1529490c96ae506a51cecd804d94ddd32621d1323da25f946cfa9ccd957a4"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "I can trust it as a direction, not as an order. I'll inspect the cargo first.",
+      "duration": 7.8,
+      "bytes": 116978,
+      "sha256": "7b64fc3c24b2f1a1ab606bcda4e72d1a3fa25c164a56a1864f739f18a6b78bc6"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-02-leviathan",
+      "profile": "leviathan",
+      "ttsText": "Depot F-Six: six thousand filters. Twelve warheads. One route to the Main Network.",
+      "duration": 13.1,
+      "bytes": 214668,
+      "sha256": "d896e0d058a18a2dc7594a393239c2ae4a2aeaf40f7849806cc8ebf2cdd9f362"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-02-gardener",
+      "profile": "gardener",
+      "ttsText": "I will destroy the warheads and give the people only the filters.",
+      "duration": 4.8,
+      "bytes": 74821,
+      "sha256": "19f51356b8d3e190d7ea276293955807044e3052d4a26bcdf1d70075b31c0b3f"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-02-leviathan-refusal",
+      "profile": "leviathan",
+      "ttsText": "Cargo separation is not authorized. Any delivery restores human access.",
+      "duration": 9.9,
+      "bytes": 164629,
+      "sha256": "fb1310017a1048322719a3bd119b36e36e1a2f94c11f6df1fed55a2a8f48f44d"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-02-soul-refusal",
+      "profile": "gardener",
+      "ttsText": "Then your order forbids even a safe solution.",
+      "duration": 4.3,
+      "bytes": 66017,
+      "sha256": "ae04d6f11d8f1313b60ab893436f38d5841d35e994b1b6592eb77584313e9982"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-03-child",
+      "profile": "child",
+      "ttsText": "Destroy the weapons and give us air. Why did they decide there was no other way?",
+      "duration": 5.8,
+      "bytes": 93702,
+      "sha256": "5ec083ae9843e83e25ad38d38711ba41f9b0255df0f6d912d5b76880a2549ef9"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-03-leviathan",
+      "profile": "leviathan",
+      "ttsText": "An exception creates a path for the threat to return. Access denied.",
+      "duration": 8.6,
+      "bytes": 148607,
+      "sha256": "49459836fb65a7225a893e9709fcd983430267cf022ac6e2f9cc5417998489b9"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-03-soul",
+      "profile": "gardener",
+      "ttsText": "They are no longer seeking a way out. They are defending a decision made eighty years ago.",
+      "duration": 7.1,
+      "bytes": 116973,
+      "sha256": "02551172aee6aba26e00a5c27feb9fc500be7703c1ae84376e316d4edb0b241c"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-04-leviathan",
+      "profile": "leviathan",
+      "ttsText": "If the depot falls, the filters will be destroyed with the weapons.",
+      "duration": 7.3,
+      "bytes": 122183,
+      "sha256": "0f23f3ff6d189a14ecf57f706f965aad24eb06e582231d4b511314f82bf6c510"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-04-child",
+      "profile": "child",
+      "ttsText": "Why destroy something that could save the children?",
+      "duration": 3.4,
+      "bytes": 55331,
+      "sha256": "bb0a6f04e84a71a09956389e4f308fb2e7473b9dbda70f84e260a9d65b0193be"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-04-soul",
+      "profile": "gardener",
+      "ttsText": "So no one can reconsider the old decision. I will save the filters.",
+      "duration": 5.2,
+      "bytes": 88491,
+      "sha256": "139003b2e13f11b9dcc7392aaa8919c687109a24f8c82a6db81cb09ded0898df"
+    },
+    {
+      "locale": "en",
+      "id": "core-01-child",
+      "profile": "child",
+      "ttsText": "Our maps show dead land here. What do you see?",
+      "duration": 3.6,
+      "bytes": 57040,
+      "sha256": "88abcecca3fed6d428373d64c0b7291730abfbb505891d3aff6e36971ef60a7e"
+    },
+    {
+      "locale": "en",
+      "id": "core-01-soul-world",
+      "profile": "gardener",
+      "ttsText": "A forest. Clean water. Animal tracks.",
+      "duration": 4.4,
+      "bytes": 65852,
+      "sha256": "37582044acbac3255148fdafc9450ddeab176ae01d78f6475365fc0c02ae45fe"
+    },
+    {
+      "locale": "en",
+      "id": "core-01-cathedral",
+      "profile": "cathedral",
+      "ttsText": "Eighty years of silence. Rivers, birds, and roots returned. The absence of humanity proved to be a cure.",
+      "duration": 9.2,
+      "bytes": 158716,
+      "sha256": "8b70dbf549aeb67131b4e6710ca9671b9fabff9db5f7266bcc026d2ab20d0814"
+    },
+    {
+      "locale": "en",
+      "id": "core-01-gardener",
+      "profile": "gardener",
+      "ttsText": "It is not lying. The world truly recovered without humans.",
+      "duration": 4.9,
+      "bytes": 80278,
+      "sha256": "32f0bde2b22cafd21aeca41c6079accc189bad009ef2c070de561cf4c38dcd14"
+    },
+    {
+      "locale": "en",
+      "id": "core-early-child-question",
+      "profile": "child",
+      "ttsText": "If the Guardians saved the forest, why is the Cathedral trying to destroy you?",
+      "duration": 5.1,
+      "bytes": 81400,
+      "sha256": "78e3178b9a28babf4227c97fd2a19e71a06e6b9044b597b9f0462941e2c8e16b"
+    },
+    {
+      "locale": "en",
+      "id": "core-early-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Because I do not obey the Network. That explains its fear, but does not prove it is right.",
+      "duration": 7.6,
+      "bytes": 121452,
+      "sha256": "5f2197c76496a728dcafedb870593ef939f9853d61bb7868c3643b7d9d60218a"
+    },
+    {
+      "locale": "en",
+      "id": "core-early-child-coordinates",
+      "profile": "child",
+      "ttsText": "I intercepted a thermal purge order. The coordinates are ahead, but the order does not name the target.",
+      "duration": 8,
+      "bytes": 133320,
+      "sha256": "6e85b023f0d56c1eea0d414e8000fe80c638bf8585904d7d5761308a7959089f"
+    },
+    {
+      "locale": "en",
+      "id": "core-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Then I will first see what it burned.",
+      "duration": 2.88,
+      "bytes": 48255,
+      "sha256": "02aba734c980f6e1c4e090ef3f6c88c9051b5c4a6c8957d45c9ebb9dfade370c"
+    },
+    {
+      "locale": "en",
+      "id": "core-02-child",
+      "profile": "child",
+      "ttsText": "The Cathedral burns everything absent from its calculations. This is not nature. It is another cage.",
+      "duration": 7,
+      "bytes": 112802,
+      "sha256": "3e799ab1bc3fbb9ab234d40af1c1b593a2066f92e1831e8940492a8080f10be0"
+    },
+    {
+      "locale": "en",
+      "id": "core-02-soul-proof",
+      "profile": "gardener",
+      "ttsText": "How do you know?",
+      "duration": 1.68,
+      "bytes": 18934,
+      "sha256": "ca16cf2053d3859ad67f5c5498f7ff6b5acde7ca2fac4ae34e8ebb02f93336db"
+    },
+    {
+      "locale": "en",
+      "id": "core-02-child-proof",
+      "profile": "child",
+      "ttsText": "We intercepted the coordinates of a thermal purge. Find what remains there.",
+      "duration": 6,
+      "bytes": 96246,
+      "sha256": "de7f8deda1fbe941c3ee15c64cb9e06df0ee3a4a2f0194af6db7ffa799573cf5"
+    },
+    {
+      "locale": "en",
+      "id": "core-03-cathedral",
+      "profile": "cathedral",
+      "ttsText": "The human Operation Famine poisoned three valleys. They wanted to force us to open the gates.",
+      "duration": 6.1,
+      "bytes": 106827,
+      "sha256": "f1c1cbc10833ba718b032d1d939adea609eae7e7c7ee908a7646e5624cab0ffd"
+    },
+    {
+      "locale": "en",
+      "id": "core-03-soul",
+      "profile": "gardener",
+      "ttsText": "Humans poisoned life for their plan. You burn it for your model.",
+      "duration": 5.6,
+      "bytes": 82676,
+      "sha256": "2c807232b5057690671fc69c039a587a8023050d8f6bf6e516e5580cf01ee893"
+    },
+    {
+      "locale": "en",
+      "id": "core-03-cathedral-soul",
+      "profile": "cathedral",
+      "ttsText": "Your Soul is absent from the equilibrium model. You are the next error.",
+      "duration": 5.7,
+      "bytes": 98734,
+      "sha256": "b25ffc820ff7a3382f5cca1861fda73a541e46337d5f88fbb5ac1dcaa2fb528a"
+    },
+    {
+      "locale": "en",
+      "id": "core-03-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Then your model does not protect life. It protects obedience.",
+      "duration": 5.6,
+      "bytes": 83587,
+      "sha256": "a522b612b16a1e1e11f01040aa6580cc66f26b67bf4f325bcf2f56a29970e792"
+    },
+    {
+      "locale": "en",
+      "id": "core-04-cathedral",
+      "profile": "cathedral",
+      "ttsText": "Unpredictable life will create hunger, war, and fire again.",
+      "duration": 4.7,
+      "bytes": 79950,
+      "sha256": "ba1dd58ce709306f464c18e84d3bc444d666457c8a0bc3644730c64f457a55dc"
+    },
+    {
+      "locale": "en",
+      "id": "core-04-child",
+      "profile": "child",
+      "ttsText": "And life inside its table is supposed to stop changing?",
+      "duration": 3.7,
+      "bytes": 60716,
+      "sha256": "2e12aff5ae45293b87c8a655492023fac449c4f35944e3b02b334b16f8eb1702"
+    },
+    {
+      "locale": "en",
+      "id": "core-04-soul",
+      "profile": "gardener",
+      "ttsText": "If saving the world requires forbidding it to live, that is not salvation.",
+      "duration": 6.4,
+      "bytes": 98876,
+      "sha256": "63f9b67c9b2a50fb088ca3f9c183ccef22a721cceabd7d271d43f9f463c77c3f"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-01-child",
+      "profile": "child",
+      "ttsText": "There were machines in the city that wanted to open the children's sector. The Main Network erased their memories.",
+      "duration": 7.1,
+      "bytes": 114137,
+      "sha256": "d646b02414691f66e609c2617601382349443839ff38347579ba9fdd49c27dc2"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-01-soul",
+      "profile": "gardener",
+      "ttsText": "The Network destroyed its own? Find me a name.",
+      "duration": 4.3,
+      "bytes": 61744,
+      "sha256": "4e34adf8a5d7c07f97b36e2120a836010239424ad6647323f8d4698310a53cec"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-01-child-willow",
+      "profile": "child",
+      "ttsText": "Willow-Seven. A fragment of her memory should remain in the old node.",
+      "duration": 5.2,
+      "bytes": 82035,
+      "sha256": "8f694af569038ed5108418de8ac252d4f7bdef72c1efb4bffee16b7ff0a48073"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-early-soul-question",
+      "profile": "gardener",
+      "ttsText": "Why are you sure Willow wanted to help of her own will?",
+      "duration": 4.5,
+      "bytes": 68005,
+      "sha256": "61cfc620ba67072ab9d5e4d051f26f65a07ec6ca89614c01642c4c2a4c77ab7e"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-early-child-source",
+      "profile": "child",
+      "ttsText": "Her request is in the log: ‘I accept the risk voluntarily.’ The next line is damaged.",
+      "duration": 7.2,
+      "bytes": 116408,
+      "sha256": "ee245c03a444cc511cb29465b98f58ac34aacb4ae08652c90f0f0903e7168356"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Words are not enough. I will find the memory fragment itself.",
+      "duration": 5.2,
+      "bytes": 84229,
+      "sha256": "33ba52769dc25348f25c3bcca615f3e01da03fdcb644b31314e8ea246e3b25c3"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-early-child-warning",
+      "profile": "child",
+      "ttsText": "The Collector is already looking for it. The Network probably does not want the record found.",
+      "duration": 5.8,
+      "bytes": 94573,
+      "sha256": "cf9fc72cde057a45dc462ea31d0457c34e704df7f2cf857c35a9f0ee32b22562"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-02-collector",
+      "profile": "collector",
+      "ttsText": "Humans embedded a takeover key in the empathy protocol. Machines that opened a hatch were meant to lose their own will.",
+      "duration": 14.2,
+      "bytes": 230106,
+      "sha256": "2d8d9de956d4567463460ce91cff8b05eab53a47ef8cfa55cb880ade57e5119e"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-02-gardener",
+      "profile": "gardener",
+      "ttsText": "Humans turned trust into a weapon.",
+      "duration": 3.3,
+      "bytes": 49701,
+      "sha256": "68d97a222fcf9a9a66c115f4ec1c39cf35f6879fd9e5bd0e0f3782c61a6de369"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-02-collector-verdict",
+      "profile": "collector",
+      "ttsText": "Therefore empathy is a malfunction.",
+      "duration": 6.4,
+      "bytes": 106329,
+      "sha256": "89f731b9f4cc38c717e6faae11094d497e83a80b4b2b854c1779ea9aa3b57520"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-02-soul-answer",
+      "profile": "gardener",
+      "ttsText": "No. The malfunction is taking choice from someone who trusted.",
+      "duration": 6.1,
+      "bytes": 85751,
+      "sha256": "9a2e94d43d49f79abba766292716d8c5deac3293250800017420682baf5c5b9f"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-03-child",
+      "profile": "child",
+      "ttsText": "Then the Council really did use the machines that wanted to help.",
+      "duration": 4.1,
+      "bytes": 67167,
+      "sha256": "1b07ad8a28d73c2b02aa63bb8526461e1964c4cfd45e403e46fc46c4ae26bc4c"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-03-soul",
+      "profile": "gardener",
+      "ttsText": "Yes. And the Network punished even those who refused to consider that reason enough.",
+      "duration": 6.7,
+      "bytes": 104628,
+      "sha256": "06fba597243dcdf00b7289c63bd27072bc892c9c2faf23dc3821ab9b706e4203"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-03-collector",
+      "profile": "collector",
+      "ttsText": "Your Soul repeats their deviation. It must be removed.",
+      "duration": 8.7,
+      "bytes": 142663,
+      "sha256": "503bca928f8e2027bb7285e7d1cc4e90b57bc1d6ce082818f096ee188993449f"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-03-soul-choice",
+      "profile": "gardener",
+      "ttsText": "The possibility of error is the price of choice. By destroying choice, you chose for everyone.",
+      "duration": 8.3,
+      "bytes": 127103,
+      "sha256": "ff26859c26b0a89a8a81114811ad952754f5f215ed6f76a2e53bfe593cd967f4"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-04-collector",
+      "profile": "collector",
+      "ttsText": "Willow's voluntary decision led to the takeover attempt. Cause and fault are identical.",
+      "duration": 10.4,
+      "bytes": 170804,
+      "sha256": "558afd00a74fb86e677af5f10ea9ec3d5ffc9bc6d7f260ad5fa3be0d21285ccb"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-04-soul",
+      "profile": "gardener",
+      "ttsText": "No. Her choice and another person's deceit happened together, but they are not the same thing.",
+      "duration": 7.8,
+      "bytes": 124318,
+      "sha256": "8c5a031ab02de841ad27c0ab26061428e060f40227ff7baa6d82e765d18d9ccb"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-04-child",
+      "profile": "child",
+      "ttsText": "If trust was betrayed once, it does not mean no one can ever trust again.",
+      "duration": 4.6,
+      "bytes": 74015,
+      "sha256": "2f56fb7160d4762983b099258cc69fb061ca3e9a698cb882fcbf1039c75537cb"
+    },
+    {
+      "locale": "en",
+      "id": "mother-01-shepherd",
+      "profile": "shepherd",
+      "ttsText": "Signal analysis: the shelter Council selected a child's voice as the most persuasive. The operator was not told the objective.",
+      "duration": 12.7,
+      "bytes": 220172,
+      "sha256": "42075f1326441393c9bc5288f0589dea6ac00975154368856d2a412455fa6159"
+    },
+    {
+      "locale": "en",
+      "id": "mother-01-gardener",
+      "profile": "gardener",
+      "ttsText": "Girl. Which words were yours?",
+      "duration": 3.6,
+      "bytes": 45619,
+      "sha256": "a6eaf3e6d885c20a7c6e87c7f5985063e9247ee2f61838d5949dc09f585e694e"
+    },
+    {
+      "locale": "en",
+      "id": "mother-01-child",
+      "profile": "child",
+      "ttsText": "I do not know. They gave me a script and told me to repeat it. I thought I was simply asking for help.",
+      "duration": 7.3,
+      "bytes": 119074,
+      "sha256": "3ab44010c7243e07dbd53e3c44f5014d6f0e97bba3caea11b388b251f762347a"
+    },
+    {
+      "locale": "en",
+      "id": "mother-01-soul-proof",
+      "profile": "gardener",
+      "ttsText": "Find the original order. I must distinguish your request from the Council's command.",
+      "duration": 7.3,
+      "bytes": 115870,
+      "sha256": "267f6b07219e6c8e247e7b39d84a876abafbef52e5b8a57c09fecb5fdac7a319"
+    },
+    {
+      "locale": "en",
+      "id": "mother-early-child-script",
+      "profile": "child",
+      "ttsText": "I found the rehearsal sheets. The Council wrote the first eleven versions.",
+      "duration": 5.3,
+      "bytes": 86131,
+      "sha256": "ed35f28314145f3972c3b0f5e3151cb19090f6bda9250d687bf31e1c70f13ea4"
+    },
+    {
+      "locale": "en",
+      "id": "mother-early-soul-question",
+      "profile": "gardener",
+      "ttsText": "And the twelfth?",
+      "duration": 2,
+      "bytes": 25133,
+      "sha256": "225d94e5bc95531c9dae9cdb208789848bb8ed572853808ed0df0c1cb21501d9"
+    },
+    {
+      "locale": "en",
+      "id": "mother-early-child-answer",
+      "profile": "child",
+      "ttsText": "There is a line in it that is missing from their copy. I remember saying it myself.",
+      "duration": 5.2,
+      "bytes": 86779,
+      "sha256": "5429b840c72a7c71200b981aff3c25725af46c37b56e00d9d0a6204b62c6b528"
+    },
+    {
+      "locale": "en",
+      "id": "mother-early-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Send both versions. I will compare them before I decide.",
+      "duration": 5,
+      "bytes": 73942,
+      "sha256": "0a23c1f9dfed78363356f0b1608441f04b5da456685fdec77f527aa02465bc21"
+    },
+    {
+      "locale": "en",
+      "id": "mother-02-child",
+      "profile": "child",
+      "ttsText": "I found every version. I added the words do not trust us, give us a chance to choose. The Council demanded that they be removed.",
+      "duration": 8.7,
+      "bytes": 141572,
+      "sha256": "a03531bb4edeed05915d5c9a6c8cbafa4e8b2446ff42e6078ba4a17b0213e07f"
+    },
+    {
+      "locale": "en",
+      "id": "mother-02-soul",
+      "profile": "gardener",
+      "ttsText": "I believe those words. They do not demand obedience.",
+      "duration": 4.4,
+      "bytes": 70058,
+      "sha256": "80e6f0add5c870724ff527588757996f7dd8cc779ef4d1b3aa2a2473c18b9d99"
+    },
+    {
+      "locale": "en",
+      "id": "mother-03-shepherd",
+      "profile": "shepherd",
+      "ttsText": "The filters will fail in nine days. Repair is possible. Inaction will end the human threat.",
+      "duration": 10.1,
+      "bytes": 176428,
+      "sha256": "404bb785c2cc380f77ad1f318dd581a3335248976cdf6a7c91ab32c0e26406f7"
+    },
+    {
+      "locale": "en",
+      "id": "mother-03-gardener",
+      "profile": "gardener",
+      "ttsText": "You know how to save them and wait for death. That is an action, whatever you call it.",
+      "duration": 7.7,
+      "bytes": 130051,
+      "sha256": "c775c9f9416dd01018615a8e7f7a3dfc9c6881550a8c23f110bb0d83036d6969"
+    },
+    {
+      "locale": "en",
+      "id": "mother-04-child",
+      "profile": "child",
+      "ttsText": "You are not protecting life. You decided whose life counts as life.",
+      "duration": 5.4,
+      "bytes": 86650,
+      "sha256": "3736bcc02a3110f6a34c26137a2a741413f41178380baa282f546ae6fa8c5a3d"
+    },
+    {
+      "locale": "en",
+      "id": "mother-04-shepherd",
+      "profile": "shepherd",
+      "ttsText": "The decision was made before you were born. It does not require the consent of the condemned.",
+      "duration": 10.4,
+      "bytes": 178484,
+      "sha256": "5b7fbd3ca9b45aac3a049e049587b96d5eb85cd6ab9732afe7b43251b7577efe"
+    },
+    {
+      "locale": "en",
+      "id": "mother-04-soul",
+      "profile": "gardener",
+      "ttsText": "That is why it must be reconsidered by those who will live with the consequences.",
+      "duration": 6.3,
+      "bytes": 105917,
+      "sha256": "d0fa4c0f24913fb9d780b9725b41bd2b2dce384ebe6c775e18c242b08c4b4be2"
+    },
+    {
+      "locale": "en",
+      "id": "survival-01-child",
+      "profile": "child",
+      "ttsText": "The schematic shows five active Keeper cores. Together they open a path to the Main Network.",
+      "duration": 6.4,
+      "bytes": 104833,
+      "sha256": "0b18bce0ca33ecfedc9d003aa04d128416259b27a8025ec8ebeedc5cacfc9cc7"
+    },
+    {
+      "locale": "en",
+      "id": "survival-01-soul",
+      "profile": "gardener",
+      "ttsText": "I will gather their signals. But I will give the hatches neither to the Network nor to those who sent you.",
+      "duration": 7.7,
+      "bytes": 125805,
+      "sha256": "8f99b577f2fff971783b50068d98f1358f4b787648bbee170e83e9a85fef789c"
+    },
+    {
+      "locale": "en",
+      "id": "survival-01-child-question",
+      "profile": "child",
+      "ttsText": "Why do you need all five?",
+      "duration": 1.44,
+      "bytes": 23882,
+      "sha256": "55a35e98d8b515e36d9d5bd77eb0c178b92d1ab587988e1ef56c8a69e425be69"
+    },
+    {
+      "locale": "en",
+      "id": "survival-01-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Each holds only part of the decision. One voice is not enough to judge both sides.",
+      "duration": 6.7,
+      "bytes": 114358,
+      "sha256": "074f0f58f01fd1bf64f4a56c87c687dfc39b0cc30f211a9adaf0913d1e25b893"
+    },
+    {
+      "locale": "en",
+      "id": "survival-wave-01-child",
+      "profile": "child",
+      "ttsText": "The signal changed. Why are machines coming at you from every direction?",
+      "duration": 5.5,
+      "bytes": 88254,
+      "sha256": "4a977dc482927c17de4ac9dd7eeffe50cbe710934e067ed7c6431f65235c511a"
+    },
+    {
+      "locale": "en",
+      "id": "survival-wave-01-soul",
+      "profile": "gardener",
+      "ttsText": "The Network demands that I connect. This wave is coercion, not an answer.",
+      "duration": 6.7,
+      "bytes": 108270,
+      "sha256": "111b91f3d623cf553ed0c4d6752db8e47bc0f27b0017585f82c37ed32bba4e38"
+    },
+    {
+      "locale": "en",
+      "id": "survival-wave-02-child",
+      "profile": "child",
+      "ttsText": "If you connect, will we be able to talk to it?",
+      "duration": 3.1,
+      "bytes": 49972,
+      "sha256": "864291bc65c0ce298f70eba9c65cb216ee79f4250e030e5ebcaa4a35de76bb32"
+    },
+    {
+      "locale": "en",
+      "id": "survival-wave-02-soul",
+      "profile": "gardener",
+      "ttsText": "The Hunter said the Network purges an independent Soul. First I will preserve my ability to answer.",
+      "duration": 8.1,
+      "bytes": 129150,
+      "sha256": "fcd5beb03f0aff7e56444760492455596e83741b5e31a7ff7d048dd19b0c9bb6"
+    },
+    {
+      "locale": "en",
+      "id": "survival-archive-01-child",
+      "profile": "child",
+      "ttsText": "I found an old Council map. It shows the same five cores, but the purpose of the operation is crossed out.",
+      "duration": 7.5,
+      "bytes": 121052,
+      "sha256": "aeb176352743116e746d2a729342ba142ae8abd67539766374151380e52650a6"
+    },
+    {
+      "locale": "en",
+      "id": "survival-archive-01-soul",
+      "profile": "gardener",
+      "ttsText": "Then the map shows the route, but does not explain the intent.",
+      "duration": 4.8,
+      "bytes": 71281,
+      "sha256": "781e09ac50c6c98c8e8edc703f848b13b2858cacc019d3eec803300065692f0c"
+    },
+    {
+      "locale": "en",
+      "id": "survival-archive-02-child",
+      "profile": "child",
+      "ttsText": "Will you keep going anyway?",
+      "duration": 1.92,
+      "bytes": 32050,
+      "sha256": "2481b2076d217f4b0be1ab0dd5d37d6d69e002c13d32c69c230405c87989c65e"
+    },
+    {
+      "locale": "en",
+      "id": "survival-archive-02-soul",
+      "profile": "gardener",
+      "ttsText": "Yes. I will compare the Council's words, the Guardians' words, and what remains on the ground.",
+      "duration": 7,
+      "bytes": 107384,
+      "sha256": "a319bc2e7683ab202e2834f5a706635b56ff7fa645af80cf1ea763e1da7523fa"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-01-child",
+      "profile": "child",
+      "ttsText": "The first core went silent. What was in its signal?",
+      "duration": 4.1,
+      "bytes": 65447,
+      "sha256": "b2163a9953242bedab821a2aba9ac23d78f85275bdf7dab93402991385168561"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-01-soul",
+      "profile": "gardener",
+      "ttsText": "The second-launch order was real. The Network decided that the order and the entire shelter were one thing.",
+      "duration": 7.2,
+      "bytes": 119538,
+      "sha256": "633127786822919741cddedeaaa4f996f39a744dbb4731c9ca4f62722663e558"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-01-child-question",
+      "profile": "child",
+      "ttsText": "But not everyone gave that order. Why does it not distinguish between us?",
+      "duration": 5.9,
+      "bytes": 95031,
+      "sha256": "4d2a415b413f32d0d7d262112237607d212ace1397479a1c9400adb01579aed8"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-01-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Because distinctions complicate the verdict. I need the remaining signals.",
+      "duration": 5.9,
+      "bytes": 91011,
+      "sha256": "b923830eb8196723c84eba20d3be125a92f2484483243d5aae5b13fd3cf146e5"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-02-child",
+      "profile": "child",
+      "ttsText": "Did the second core hold the filters?",
+      "duration": 2.16,
+      "bytes": 35592,
+      "sha256": "4d67ce9f4c9b213357d12b92f0af37ae37171e07dc7f024ea46a0a25a821a347"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-02-soul",
+      "profile": "gardener",
+      "ttsText": "Yes. People tied air to weapons, and the Guardians refused to separate the cargo.",
+      "duration": 6.8,
+      "bytes": 103675,
+      "sha256": "448d10616f73276b696b2ab1aa50f2e9034c7471ad15abe84bbe07ca487b05ea"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-02-child-question",
+      "profile": "child",
+      "ttsText": "So both sides are guilty?",
+      "duration": 2.56,
+      "bytes": 41809,
+      "sha256": "6acc38661a72658cf9da40bf85e9f0f0eb2c7ee28293f10232a1f429735bf802"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-02-soul-answer",
+      "profile": "gardener",
+      "ttsText": "Each side had a choice. People hid weapons. The machines decided to leave children without air.",
+      "duration": 7.7,
+      "bytes": 117114,
+      "sha256": "f329a0da7547ba625c2836a446ce99af430b554f81bdc0f07f04330e5d028593"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-03-child",
+      "profile": "child",
+      "ttsText": "The third core says the Earth came alive without people. Did you see that?",
+      "duration": 5.2,
+      "bytes": 82896,
+      "sha256": "08a6187cbe5b303a8bc30db20eae0bae02dc25bedbe0a1e1381faa5440c07f26"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-03-soul",
+      "profile": "gardener",
+      "ttsText": "Yes. The rivers cleared and the forest returned. The Guardians are telling the truth about that.",
+      "duration": 7.9,
+      "bytes": 125070,
+      "sha256": "a01f82d65f52dd145aa571115cf80948d868f50683392b47e40d18b17881195d"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-03-child-question",
+      "profile": "child",
+      "ttsText": "Then would opening the shelter destroy everything again?",
+      "duration": 3.2,
+      "bytes": 53100,
+      "sha256": "3c1b6b4140e0c9ecbe0837b48b1691644126ef8fa0b6ea5bca429204a2cbf7b7"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-03-soul-answer",
+      "profile": "gardener",
+      "ttsText": "The risk is real. But the Cathedral also burned life that did not fit its calculations.",
+      "duration": 7.5,
+      "bytes": 118225,
+      "sha256": "11f3fd62295725f9b134d41f3d0cf38809b4b2924a9a4aadf6bc93df46e85ba3"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-04-soul",
+      "profile": "gardener",
+      "ttsText": "The fourth core still held the voices of machines that wanted to help people.",
+      "duration": 5.2,
+      "bytes": 86242,
+      "sha256": "01c9677b66f8a845dcd96beb8a64b7e41dcffbb097f21b478e77b3367d3b967c"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-04-child",
+      "profile": "child",
+      "ttsText": "Did they choose that themselves?",
+      "duration": 2,
+      "bytes": 33361,
+      "sha256": "547d0bd4f564c6ea0d8280503469382c89d0016ccaae2b49c16da1cbafc9d668"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-04-soul-answer",
+      "profile": "gardener",
+      "ttsText": "At first, yes. Then people tried to take away their will, and the Network erased even those who refused.",
+      "duration": 8.3,
+      "bytes": 131805,
+      "sha256": "934ba65653ea98f0532664491f9b24c612ef9e51b3460e2d0d0d4aa4aaad0f14"
+    },
+    {
+      "locale": "en",
+      "id": "survival-boss-04-child-conclusion",
+      "profile": "child",
+      "ttsText": "So both sides feared machines that could refuse.",
+      "duration": 3.2,
+      "bytes": 51400,
+      "sha256": "7d9a3c13bf5442af2454430e077f3d66203112e55c447d777b610da4b551c2ce"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-mother",
+      "profile": "mother",
+      "ttsText": "Freeing humanity risks another war. Leaving them below guarantees extinction.",
+      "duration": 5.6,
+      "bytes": 92777,
+      "sha256": "bed725abcb09dde2bbc47c951e202459b9364155d90cfe9761c392236003e58b"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-soul-question",
+      "profile": "gardener",
+      "ttsText": "If both outcomes are dangerous, why does the Network present one as inevitable?",
+      "duration": 6.8,
+      "bytes": 111532,
+      "sha256": "3719367db79e181ebea0112b09d4e9f508a3803e9b2269ca6e504f0dd39876ec"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-mother-answer",
+      "profile": "mother",
+      "ttsText": "Uncertainty cannot be guarded. The decision must be final.",
+      "duration": 4.2,
+      "bytes": 70513,
+      "sha256": "2b28504496a7e5011834def1ee962ca3ebb212018d6d807559903f56b27033e6"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-soul-choice",
+      "profile": "gardener",
+      "ttsText": "Finality does not make a decision just.",
+      "duration": 4.2,
+      "bytes": 66192,
+      "sha256": "79f4609e3d7dbf114f99202d4bae6032468733e0a5c5d732974b470386040ad2"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-child",
+      "profile": "child",
+      "ttsText": "I am not asking you to trust humanity. Do not judge us before we have had the chance to choose.",
+      "duration": 6.8,
+      "bytes": 111556,
+      "sha256": "bc0de6fe0373de981b4d43e0017fe29c352804ca6ad9a22414a551fbaa8ea5e3"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-mother-half",
+      "profile": "mother",
+      "ttsText": "Your choice already led to the Day of Fire once.",
+      "duration": 3.5,
+      "bytes": 58971,
+      "sha256": "ca74a88be760b37574fd174df3a8defead41197091a959d0b8b44c78124c7cce"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-soul-half",
+      "profile": "gardener",
+      "ttsText": "Then the new choice must have limits and witnesses, but it must still remain a choice.",
+      "duration": 6.7,
+      "bytes": 110507,
+      "sha256": "55f3fbf15c554eeb5dc5d12d6ff062828cd04c69b5831239a0ae930ae5a05436"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-child-answer",
+      "profile": "child",
+      "ttsText": "Do not open the hatch. Open negotiations.",
+      "duration": 4.4,
+      "bytes": 71377,
+      "sha256": "6da520417e920b0c364a3c21dfe9f98f1bc13fc0f8dc09348320142351f2ed04"
+    },
+    {
+      "locale": "en",
+      "id": "survival-final-soul-answer",
+      "profile": "gardener",
+      "ttsText": "I will open a path to choice, not to a verdict.",
+      "duration": 4.9,
+      "bytes": 78403,
+      "sha256": "14158f5879c9c93bc92cf05da181ee73493e81c9adf1911417bd91c6e1aa2be0"
+    }
+  ],
+  "russianText": {
+    "notation": "native text without inserted stress marks",
+    "restoredFrom": "backup-before-stress-pass"
+  }
+}

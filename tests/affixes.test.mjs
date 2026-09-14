@@ -6,13 +6,13 @@ import {generateLoot,rollAffixes,affixDescriptions,reloadDuration} from '../src/
 import {seededRandom} from '../src/simulation.js';
 import {CATALOG} from '../src/catalog.js';
 test('every part kind rolls distinct affixes by rarity, reproducibly and with variation',()=>{
- for(const key of ['wanderer','seed','universal','regen'])for(const [rarity,count] of Object.entries({common:0,uncommon:1,rare:1,relic:2})){
+ for(const key of ['wanderer','seed','universal','regen'])for(const [rarity,count] of Object.entries({common:0,uncommon:1,rare:2,relic:3})){
   const p={key,rarity},a=seededRandom(123),b=seededRandom(123),seen=new Set();
   for(let i=0;i<40;i++){const affixes=rollAffixes(p,a);assert.deepEqual(affixes,rollAffixes(p,b));assert.equal(affixes.length,count);assert.equal(new Set(affixes.map(a=>a.stat)).size,count);assert.equal(affixDescriptions({...p,affixes}).length,count);seen.add(JSON.stringify(affixes));}
   if(count)assert(seen.size>1);
  }
  const s=createRun();s.rng=seededRandom(42);s.profile.unlocked=Object.keys(CATALOG);const kinds=new Set();
- for(let i=0;i<200;i++){const p=generateLoot(s,createPart,1,'boss','relic',false);kinds.add(CATALOG[p.key].kind);assert.equal(p.affixes.length,2);}
+ for(let i=0;i<200;i++){const p=generateLoot(s,createPart,1,'boss','relic',false);kinds.add(CATALOG[p.key].kind);assert.equal(p.affixes.length,3);}
  assert.equal(kinds.size,4);
 });
 test('all generated properties change their actual target statistics',()=>{

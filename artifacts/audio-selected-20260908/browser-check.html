@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><title>BIOSO audio verification</title><button id="check">Verify audio</button><pre id="result">Ready</pre><script type="module">
+import {createCombatAudio} from '../../src/combat-audio.js';
+document.querySelector('#check').onclick=async()=>{
+ const out=document.querySelector('#result');out.textContent='Checking';
+ try{
+  const context=new AudioContext();await context.resume();
+  const rows=await(await fetch('/assets/audio/effect-sources.json')).json();
+  const buffers=new Map();
+  for(const row of rows){const response=await fetch('/assets/audio/'+row.file);if(!response.ok)throw Error(row.file+' '+response.status);const b=await context.decodeAudioData(await response.arrayBuffer());if(Math.abs(b.duration-row.duration)>.001)throw Error('duration '+row.file);buffers.set(row.key,b);}
+  let started=0;const make=context.createBufferSource.bind(context);context.createBufferSource=()=>{const s=make(),start=s.start.bind(s);s.start=(...args)=>{started++;start(...args);};return s;};
+  // Verify the actual production loader and routing. Silent output avoids an unsolicited demo.
+  const quiet=context.createGain();quiet.gain.value=0;quiet.connect(context.destination);
+  const routed={state:context.state,currentTime:context.currentTime,destination:quiet,createGain:()=>context.createGain(),createBufferSource:()=>context.createBufferSource(),decodeAudioData:b=>context.decodeAudioData(b)};
+  const audio=createCombatAudio(()=>60,{createContext:()=>routed});audio.unlock();
+  await new Promise(r=>setTimeout(r,500));
+  for(const key of ['hammer','claws','drill','harpoon'])audio.event({type:'attack',key,source:key});
+  audio.event({type:'arc'});audio.event({type:'blast',key:'rocket'});
+  if(started!==6)throw Error('Expected 6 voices, got '+started);
+  out.textContent=JSON.stringify({status:'PASS',decoded:rows.map(r=>({file:r.file,duration:buffers.get(r.key).duration})),productionVoices:started},null,2);
+  await context.close();
+ }catch(e){out.textContent='FAIL '+e.stack;}
+};
+</script>

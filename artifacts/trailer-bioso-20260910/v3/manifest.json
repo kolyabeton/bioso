@@ -1,0 +1,122 @@
+{
+  "file": "BIOSO-trailer-EN-16x9.mp4",
+  "duration": 22.233333333333334,
+  "fps": 30,
+  "dimensions": [
+    1280,
+    720
+  ],
+  "language": "English",
+  "logo": "public/assets/ui/bioso-wordmark-v1.png, captured in current desktop home menu",
+  "desktopBackground": "public/assets/ui/menu-art-desktop-v1.png; verified computed style on 1280x720 live route",
+  "revision": "No repeated source shots. Removed recap sequence, duplicate map/tree states and closing menu. Short ending on boss footage.",
+  "designSystem": "Unmodified shipped UI: src/ui/tokens.css, components.css, ceramic-theme.css, Onest font. Native screenshots preserve the original dialog sizes and layout. No custom captions.",
+  "music": "public/assets/audio/touch-zavorin.mp3, boss battle track verified in src/game-music.js",
+  "uiAudio": [
+    {
+      "at": 3.5,
+      "file": "approved-ui-open.wav"
+    },
+    {
+      "at": 5.5,
+      "file": "approved-ui-confirm.wav"
+    },
+    {
+      "at": 9.5,
+      "file": "approved-ui-open.wav"
+    },
+    {
+      "at": 11.5,
+      "file": "approved-ui-click.wav"
+    },
+    {
+      "at": 16.0,
+      "file": "approved-ui-click.wav"
+    },
+    {
+      "at": 18.0,
+      "file": "approved-ui-open.wav"
+    }
+  ],
+  "timeline": [
+    {
+      "type": "ui",
+      "source": "artifacts/trailer-bioso-20260910/raw/desktop-home-a.png",
+      "sourceStart": 0,
+      "start": 0,
+      "duration": 1.5
+    },
+    {
+      "type": "video",
+      "source": "artifacts/trailer-bioso-20260910/raw/garden.mp4",
+      "sourceStart": 1,
+      "start": 1.5,
+      "duration": 2.0
+    },
+    {
+      "type": "ui",
+      "source": "artifacts/trailer-bioso-20260910/raw/inventory-a.png",
+      "sourceStart": 0,
+      "start": 3.5,
+      "duration": 2.0
+    },
+    {
+      "type": "ui",
+      "source": "artifacts/trailer-bioso-20260910/raw/inventory-c.png",
+      "sourceStart": 0,
+      "start": 5.5,
+      "duration": 1.5
+    },
+    {
+      "type": "video",
+      "source": "artifacts/trailer-bioso-20260910/raw/scrap.mp4",
+      "sourceStart": 1,
+      "start": 7.0,
+      "duration": 2.5
+    },
+    {
+      "type": "ui",
+      "source": "artifacts/trailer-bioso-20260910/raw/level-a.png",
+      "sourceStart": 0,
+      "start": 9.5,
+      "duration": 2.0
+    },
+    {
+      "type": "ui",
+      "source": "artifacts/trailer-bioso-20260910/raw/skills-b.png",
+      "sourceStart": 0,
+      "start": 11.5,
+      "duration": 2.0
+    },
+    {
+      "type": "video",
+      "source": "artifacts/trailer-bioso-20260910/raw/city.mp4",
+      "sourceStart": 3,
+      "start": 13.5,
+      "duration": 2.5
+    },
+    {
+      "type": "ui",
+      "source": "artifacts/trailer-bioso-20260910/raw/map-b.png",
+      "sourceStart": 0,
+      "start": 16.0,
+      "duration": 2.0
+    },
+    {
+      "type": "ui",
+      "source": "artifacts/trailer-bioso-20260910/raw/home-b.png",
+      "sourceStart": 0,
+      "start": 18.0,
+      "duration": 1.7333333333333334
+    },
+    {
+      "type": "video",
+      "source": "artifacts/trailer-bioso-20260910/raw/boss.mp4",
+      "sourceStart": 5.5,
+      "start": 19.733333333333334,
+      "duration": 2.5
+    }
+  ],
+  "method": "Staged in-engine combat footage with synced source audio, intercut with native screenshots of actual UI interactions. Granted equipment, skills, invulnerability and explored map. UI upgrade actually executed: damage 6.3 to 7.1, biomass 1200 to 1188.",
+  "sha256": "adfbdc69b17e5b63e75224a19ac895a26a299b1f42ff14bb657206f34d7775bd"
+}

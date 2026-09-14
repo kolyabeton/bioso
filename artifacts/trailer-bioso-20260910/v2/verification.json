@@ -1,0 +1,8 @@
+{
+  "fullDecode": "PASS",
+  "audioPeak": 0.8875645995140076,
+  "audioRms": 0.13048405945301056,
+  "englishUI": true,
+  "originalLogo": true,
+  "streams": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'artifacts/trailer-bioso-20260910/v2/BIOSO-trailer-EN-16x9.mp4':\n  Metadata:\n    major_brand     : isom\n    minor_version   : 512\n    compatible_brands: isomiso2avc1mp41\n    title           : BIOSO \u2014 Build. Evolve. Survive.\n    encoder         : Lavf61.7.100\n    comment         : English game UI and original bioso wordmark. Boss music and game sound effects. Staged footage and native UI captures.\n  Duration: 00:00:34.91, start: 0.000000, bitrate: 2919 kb/s\n  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709/unknown/unknown, progressive), 1280x720 [SAR 1:1 DAR 16:9], 2645 kb/s, 30 fps, 30 tbr, 15360 tbn (default)\n      Metadata:\n        handler_name    : VideoHandler\n        vendor_id       : [0][0][0][0]\n        encoder         : Lavc61.19.100 libx264\n  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 265 kb/s (default)\n      Metadata:\n        handler_name    : SoundHandler\n        vendor_id       : [0][0][0][0]\nAt least one output file must be specified\n"
+}

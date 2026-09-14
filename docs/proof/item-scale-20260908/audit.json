@@ -1,0 +1,1340 @@
+[
+  {
+    "name": "rewards",
+    "width": 360,
+    "height": 640,
+    "cards": [
+      {
+        "frame": 95.328125,
+        "icon": 87.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.3359375,
+        "icon": 87.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.3359375,
+        "icon": 87.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 344,
+    "overflow": 0,
+    "screen": "encounter-detail",
+    "stage": 360
+  },
+  {
+    "name": "catalog",
+    "width": 360,
+    "height": 640,
+    "cards": [
+      {
+        "frame": 95.3203125,
+        "icon": 87.3203125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.328125,
+        "icon": 87.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.328125,
+        "icon": 87.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.3203125,
+        "icon": 87.3203125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.328125,
+        "icon": 87.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.328125,
+        "icon": 87.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.3203125,
+        "icon": 87.3203125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.328125,
+        "icon": 87.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 95.328125,
+        "icon": 87.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 344,
+    "overflow": 0,
+    "screen": "catalog",
+    "stage": 360
+  },
+  {
+    "name": "assembly",
+    "width": 360,
+    "height": 640,
+    "cards": [
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 344,
+    "overflow": 0,
+    "screen": "assembly",
+    "stage": 360
+  },
+  {
+    "name": "boss",
+    "width": 360,
+    "height": 640,
+    "cards": [
+      {
+        "frame": 92.6640625,
+        "icon": 84.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 92.6640625,
+        "icon": 84.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 92.6640625,
+        "icon": 84.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 344,
+    "overflow": 0,
+    "screen": "boss-reward",
+    "stage": 360
+  },
+  {
+    "name": "loadout",
+    "width": 360,
+    "height": 640,
+    "cards": [
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 98,
+        "icon": 90,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 344,
+    "overflow": 0,
+    "screen": "loadout",
+    "stage": 360
+  },
+  {
+    "name": "end",
+    "width": 360,
+    "height": 640,
+    "cards": [
+      {
+        "frame": 56,
+        "icon": 48,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 56,
+        "icon": 48,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 344,
+    "overflow": 0,
+    "screen": "end",
+    "stage": 360
+  },
+  {
+    "name": "swap",
+    "width": 360,
+    "height": 640,
+    "cards": [],
+    "dialog": 336,
+    "overflow": 0,
+    "screen": "body-swap",
+    "stage": 360
+  },
+  {
+    "name": "rewards",
+    "width": 390,
+    "height": 844,
+    "cards": [
+      {
+        "frame": 105.328125,
+        "icon": 97.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 374,
+    "overflow": 0,
+    "screen": "encounter-detail",
+    "stage": 390
+  },
+  {
+    "name": "catalog",
+    "width": 390,
+    "height": 844,
+    "cards": [
+      {
+        "frame": 105.3203125,
+        "icon": 97.3203125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3203125,
+        "icon": 97.3203125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3203125,
+        "icon": 97.3203125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3203125,
+        "icon": 97.3203125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 105.3359375,
+        "icon": 97.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 374,
+    "overflow": 0,
+    "screen": "catalog",
+    "stage": 390
+  },
+  {
+    "name": "assembly",
+    "width": 390,
+    "height": 844,
+    "cards": [
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 374,
+    "overflow": 0,
+    "screen": "assembly",
+    "stage": 390
+  },
+  {
+    "name": "boss",
+    "width": 390,
+    "height": 844,
+    "cards": [
+      {
+        "frame": 100,
+        "icon": 92,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 100,
+        "icon": 92,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 100,
+        "icon": 92,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 366,
+    "overflow": 0,
+    "screen": "boss-reward",
+    "stage": 390
+  },
+  {
+    "name": "loadout",
+    "width": 390,
+    "height": 844,
+    "cards": [
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 108,
+        "icon": 100,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 374,
+    "overflow": 0,
+    "screen": "loadout",
+    "stage": 390
+  },
+  {
+    "name": "end",
+    "width": 390,
+    "height": 844,
+    "cards": [
+      {
+        "frame": 56,
+        "icon": 48,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 56,
+        "icon": 48,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 374,
+    "overflow": 0,
+    "screen": "end",
+    "stage": 390
+  },
+  {
+    "name": "swap",
+    "width": 390,
+    "height": 844,
+    "cards": [],
+    "dialog": 366,
+    "overflow": 0,
+    "screen": "body-swap",
+    "stage": 390
+  },
+  {
+    "name": "rewards",
+    "width": 1280,
+    "height": 720,
+    "cards": [
+      {
+        "frame": 107.6640625,
+        "icon": 99.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.6640625,
+        "icon": 99.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.6640625,
+        "icon": 99.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 389,
+    "overflow": 0,
+    "screen": "encounter-detail",
+    "stage": 405
+  },
+  {
+    "name": "catalog",
+    "width": 1280,
+    "height": 720,
+    "cards": [
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4.0000152587890625,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4.0000152587890625,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.65625,
+        "icon": 99.65625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 389,
+    "overflow": 0,
+    "screen": "catalog",
+    "stage": 405
+  },
+  {
+    "name": "assembly",
+    "width": 1280,
+    "height": 720,
+    "cards": [
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 64,
+        "icon": 56,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 389,
+    "overflow": 0,
+    "screen": "assembly",
+    "stage": 405
+  },
+  {
+    "name": "boss",
+    "width": 1280,
+    "height": 720,
+    "cards": [
+      {
+        "frame": 107.6640625,
+        "icon": 99.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.6640625,
+        "icon": 99.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 107.6640625,
+        "icon": 99.6640625,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 389,
+    "overflow": 0,
+    "screen": "boss-reward",
+    "stage": 405
+  },
+  {
+    "name": "loadout",
+    "width": 1280,
+    "height": 720,
+    "cards": [
+      {
+        "frame": 110.328125,
+        "icon": 102.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.3359375,
+        "icon": 102.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.3359375,
+        "icon": 102.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.328125,
+        "icon": 102.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.3359375,
+        "icon": 102.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.3359375,
+        "icon": 102.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.328125,
+        "icon": 102.328125,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.3359375,
+        "icon": 102.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 110.3359375,
+        "icon": 102.3359375,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 389,
+    "overflow": 0,
+    "screen": "loadout",
+    "stage": 405
+  },
+  {
+    "name": "end",
+    "width": 1280,
+    "height": 720,
+    "cards": [
+      {
+        "frame": 56,
+        "icon": 48,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "frame": 56,
+        "icon": 48,
+        "insets": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "dialog": 389,
+    "overflow": 0,
+    "screen": "end",
+    "stage": 405
+  },
+  {
+    "name": "swap",
+    "width": 1280,
+    "height": 720,
+    "cards": [],
+    "dialog": 389,
+    "overflow": 0,
+    "screen": "body-swap",
+    "stage": 405
+  }
+]

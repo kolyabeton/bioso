@@ -18,7 +18,7 @@
 .resource{margin-top:8px;gap:8px}.resource svg{width:18px;height:22px;filter:drop-shadow(0 0 3px #83d4b433)}.resource span{font:400 17px/24px Onest,sans-serif}
 #objective{left:max(3.5%,env(safe-area-inset-left));top:192px}
 .dock{left:8px;right:8px;bottom:max(12px,env(safe-area-inset-bottom));gap:0}
-.dock-controls:has(#nearby[hidden]){display:none}.dock-controls{margin-bottom:8px}
+.dock-controls{margin-bottom:8px}
 #hands.module-dock{width:min(calc(var(--hand-count,2)*74px + 8px),100%);max-width:380px;margin:0 auto;border-color:#87734e91;background:linear-gradient(130deg,#6d5f414d,#201e19a8 30%,#39352899);box-shadow:inset 0 0 0 2px #141b1455;clip-path:var(--hud-cut);isolation:isolate}
 #hands .hand-slot{aspect-ratio:.97;background:none;box-shadow:none}
 #hands .hand-slot>.module-art{height:auto;margin:0}

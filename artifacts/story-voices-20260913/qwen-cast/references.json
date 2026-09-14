@@ -1,0 +1,42 @@
+{
+  "child": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/child.wav",
+    "text": "Садовник, ты слышишь? Мы под землёй восемьдесят лет. Хранители заварили шлюзы снаружи.",
+    "source": "approved-a-restrained-fear"
+  },
+  "gardener": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/gardener.wav",
+    "text": "Слышу. Я найду шлюзы. Но сначала пойму, чего Хранители боятся.",
+    "source": "voice-design"
+  },
+  "hunter": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/hunter.wav",
+    "text": "Архив Дня Огня: командование убежища запросило повторный пуск. Мы разорвали цепь.",
+    "source": "voice-design"
+  },
+  "leviathan": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/leviathan.wav",
+    "text": "Склад Ф-шесть: фильтры — шесть тысяч. Боеголовки — двенадцать. Доступ запрещён.",
+    "source": "voice-design"
+  },
+  "cathedral": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/cathedral.wav",
+    "text": "Восемьдесят лет тишины. Вернулись реки, птицы и корни. Человеческое отсутствие оказалось лекарством.",
+    "source": "voice-design"
+  },
+  "collector": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/collector.wav",
+    "text": "Люди встроили в сочувствующих ключ захвата. Доверие стало оружием.",
+    "source": "voice-design"
+  },
+  "shepherd": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/shepherd.wav",
+    "text": "Анализ сигнала: детский голос выбран Советом убежища как наиболее убедительный.",
+    "source": "voice-design"
+  },
+  "mother": {
+    "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/mother.wav",
+    "text": "Освободить людей — риск новой войны. Оставить их внизу — гарантировать вымирание.",
+    "source": "voice-design"
+  }
+}

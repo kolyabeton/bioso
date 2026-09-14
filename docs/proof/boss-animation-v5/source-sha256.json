@@ -1,0 +1,16 @@
+{
+  "src/boss-animation.js": "d2342456a5c93b09e3f17505bbc93d9393ef952394235917925c7f11f802b594",
+  "src/boss-model-view.js": "c91ec1c742352af94a935e70656708d8792d2f5f79c6ca3cb53f7e90088e5f32",
+  "src/boss-runtime-review.js": "a34a0a0a7b96ccd1769ce7f4afcaeaf5115a562671fcb83a4af54bdb769c2bd9",
+  "tests/boss-animation.test.mjs": "e622be9d80c40d794c13a6b408a263cae83fe541d34f983494fe33f350ee84a6",
+  "tests/helpers/boss-glb.mjs": "67d759d48f42f2949f0877f0a1922ad6f0195bb76924826c282505bdb8818afa",
+  "scripts/asset-kit/bosses_animation_v5.py": "31a1ac22e58a9ce12032bb3f80665ca27093e2dccd593276d1a0bf6876122965",
+  "public/assets/kit/boss-leviathan.glb": "1841d3169fdda3fe9cd7f11a14fb73497a2c8b0df5859b3b5bf70f68036c2c23",
+  "public/assets/kit/boss-swarm-shepherd.glb": "c0a6a3fcc3898d682a954747161f54fbf1e2b164b7741cba7e89118026c522f0",
+  "public/assets/kit/boss-scrap-leviathan.glb": "4eb43c8c4cd0479ca3729426fcd5778c432f9196235777196594348dad878403",
+  "public/assets/kit/boss-orchid.glb": "4ffddffca02f602c12d6415af2dbd28f335b67369262f204986a3e48f5eee222",
+  "public/assets/kit/boss-mirror-collector.glb": "d0d53e41cf92ac28cacb1be4d23e3240ec49f4efd93438d55df6b53a51889c46",
+  "public/assets/kit/boss-root-cathedral.glb": "7e1855d718f88667bf94e533a9a7141a05103d571367a7bf3a3de4bade53acde",
+  "public/assets/kit/boss-mercury-hunter.glb": "a4659786c40212f4414458e673ef343edaa405a15292b47a41de1b53ffdb8ee7",
+  "public/assets/kit/boss-warden.glb": "97e4d41dca806d486c1768848fd9288695be2ee30cee3348d06a0106eb227685"
+}

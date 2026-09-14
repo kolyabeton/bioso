@@ -7,6 +7,7 @@ export const WORLD_LABEL_STATES={
  reward:{label:'Заберите награду',icon:'bag'},
  complete:{label:'Завершено',icon:'check'},
  failed:{label:'Испытание провалено',icon:'close'},
+ skipped:{label:'Вы отказались',icon:'close'},
 };
 export function worldLabel({title,category='Событие',state='ready',level}={}){
  const key=Object.hasOwn(WORLD_LABEL_STATES,state)?state:'ready',status=WORLD_LABEL_STATES[key];

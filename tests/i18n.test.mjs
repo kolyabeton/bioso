@@ -4,6 +4,22 @@ import {readFileSync,readdirSync} from 'node:fs';
 import {parseAst} from 'rollup/parseAst';
 import {translateText,normalizeLanguage} from '../src/i18n/index.js';
 import {createSettings,readSettings,SETTINGS_KEY} from '../src/ui/settings.js';
+import {CONSUMABLES,CONSUMABLE_NOTICES} from '../src/systems/consumable-drops.js';
+
+test('all eleven pickups have English and Russian names, details and compact notices',()=>{
+  assert.equal(CONSUMABLES.length,11);
+  for(const item of CONSUMABLES){
+    for(const text of [item.name,item.description,CONSUMABLE_NOTICES[item.kind]]){
+      assert.ok(text,item.kind);
+      assert.doesNotMatch(translateText(text,'en'),/[А-Яа-яЁё]/u,`${item.kind}: ${text}`);
+      assert.equal(translateText(text,'ru'),text);
+      assert.deepEqual(translateText(text,'en').match(/\d+/g),text.match(/\d+/g));
+    }
+    for(const lang of ['en','ru'])assert.ok(translateText(CONSUMABLE_NOTICES[item.kind],lang).length<=36,item.kind);
+  }
+  assert.equal(translateText('Возрождение · запасной шанс использован'),'Revival · extra chance used');
+  assert.equal(translateText('+5 биомассы'),'+5 biomass');
+});
 
 test('new and existing profiles default to English without losing other settings',()=>{
   assert.equal(readSettings({getItem:()=>null}).language,'en');
@@ -32,7 +48,7 @@ test('dynamic stats, units and longest phrases translate without changing values
   assert.equal(translateText('Вход с 5-го уровня · ваш уровень 2'),'Requires level 5 · your level 2');
   assert.equal(translateText('Не хватает 25 биомассы'),'Need 25 more biomass');
   assert.equal(translateText('Нажмите на лишнюю деталь в инвентаре → «Переработать». До улучшения: 5 / 12.'),'Tap a spare part in your inventory → “Digest”. Until upgrade: 5 / 12.');
-  assert.equal(translateText('Странник · Урон руки +25%','ru'),'Странник · Урон руки +25%');
+  assert.equal(translateText('Садовник · Урон руки +25%','ru'),'Садовник · Урон руки +25%');
   assert.equal(translateText('BIOSO · 60 FPS · unknown_identifier'),'BIOSO · 60 FPS · unknown_identifier');
   assert.equal(translateText('СборкаНеизвестная'),'СборкаНеизвестная');
 });
@@ -51,7 +67,7 @@ test('production copy has English coverage, including catalog data and template 
     for(const value of Object.values(node))Array.isArray(value)?value.forEach(v=>walk(v,file)):walk(value,file);
   }
   for(const file of readdirSync(new URL('../src/',import.meta.url),{recursive:true})){
-    if(!file.endsWith('.js')||/review|qa-|biotech-record|^i18n\//.test(file))continue;
+    if(!file.endsWith('.js')||/review|qa-|biotech-record|cockpit-test|^i18n\//.test(file))continue;
     walk(parseAst(readFileSync(new URL(`../src/${file}`,import.meta.url),'utf8')),file);
   }
   check(readFileSync(new URL('../index.html',import.meta.url),'utf8'),'index.html');

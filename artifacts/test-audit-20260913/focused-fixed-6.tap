@@ -1,0 +1,82 @@
+✖ survival has nine secrets and three trial tiers at levels 3, 5 and 7 (2.067041ms)
+✔ time cannot unlock late trials before their level (0.123333ms)
+✔ approaching a secret gives no map marker, prompt, discovery or signal; opening enables local reward (1.005792ms)
+✔ higher-tier trials scale enemy health, pursuer count and granted item tier (0.903459ms)
+✔ altar charges one max HP once and applies only its bonus (2.457167ms)
+✔ altar_organs charges one max HP once and applies only its bonus (0.488ms)
+✔ altar_speed charges one max HP once and applies only its bonus (0.319625ms)
+✔ altar_armor charges one max HP once and applies only its bonus (0.271166ms)
+✔ altar_capacity charges one max HP once and applies only its bonus (0.310458ms)
+✔ fusion rejects last HP and cross-operation offers atomically (0.1805ms)
+✔ infection counts time in the expanded area, pauses outside, and rewards survival with pursuers alive (0.420875ms)
+✔ mission world is a 25-room northbound corridor with its own environment (4.671917ms)
+✔ mission corridor has fixed screen-width sides and cannot scroll into lateral space (4.272875ms)
+✔ a floor gate opens only after every enemy in that room is defeated (13.32225ms)
+✔ entering the next mission room closes the previous gate and prevents return (15.180333ms)
+✔ the first mission room uses its configured defender multiplier, keeps one elite and no room reward while survival keeps continuous waves (666.125208ms)
+✔ mission defenders enter in formation from the far north edge and run into the room (75.170959ms)
+✔ far-edge mission entry lanes stay walkable in every room and environment (89.261125ms)
+✔ every next mission room compounds enemy health and attack by seven percent (11.519666ms)
+✔ mission attack scaling travels with ranged projectiles (0.679333ms)
+✔ A star and enemy movement go around an obstacle using the same footprint (1.490625ms)
+✔ quick equip prefers empty compatible socket and rejects duplicate actions atomically (0.682125ms)
+✔ legacy ranged enemy fires immediately and recovery blocks a repeat (0.836542ms)
+✔ mission gates are simulation barriers, not destructible objective enemies (5.063042ms)
+✔ new survival run keeps only melee and does not auto-grant spawn loot (870.935875ms)
+✔ every mission and survival start without a digestion organ (262.621792ms)
+✔ each mission starts at the south edge of its first themed room (1.260667ms)
+✔ ranged enemy below its stopping distance navigates around blocked firing lane (11.515625ms)
+✔ failed path search observes its retry interval instead of searching every frame (0.175208ms)
+✔ mission room enemies spawn on real walkable ground across seeds (1356.607708ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 29
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3527.448458
+
+✖ failing tests:
+
+test at tests/event-stages.test.mjs:9:1
+✖ survival has nine secrets and three trial tiers at levels 3, 5 and 7 (2.067041ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      [
+  +     9,
+  +     9,
+  -     3,
+  -     3,
+        1
+      ],
+      [
+  +     11,
+  +     11,
+  -     5,
+  -     5,
+        2
+      ],
+      [
+  +     13,
+  +     13,
+  -     7,
+  -     7,
+        3
+      ]
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/event-stages.test.mjs:11:57)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ [ 9, 9, 1 ], [ 11, 11, 2 ], [ 13, 13, 3 ] ],
+    expected: [ [ 3, 3, 1 ], [ 5, 5, 2 ], [ 7, 7, 3 ] ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,678 @@
+{
+  "base": {
+    "hp": 3,
+    "armor": 2.5,
+    "dodge": 0,
+    "turnSpeed": 2.67986624987322,
+    "capacity": 210,
+    "weight": 63.6,
+    "loadFactor": 1,
+    "overloaded": false,
+    "speed": 3,
+    "shieldMax": 1,
+    "regen": false,
+    "regenAmount": 1,
+    "regenDelay": 15,
+    "armorRepairAmount": 0.5,
+    "armorRepairDelay": 15,
+    "shieldRate": 0.06666666666666667,
+    "projectile": 1,
+    "organEffect": 1,
+    "rate": 0,
+    "bodyFactor": 1,
+    "revive": 0,
+    "pickup": 7
+  },
+  "hits": [
+    [
+      0,
+      "shield",
+      {
+        "current": 3,
+        "max": 3,
+        "segments": [
+          true,
+          true,
+          true
+        ],
+        "armor": 2.5,
+        "armorMax": 2.5,
+        "armorRepairActive": false,
+        "armorRepairProgress": 0,
+        "armorRepairSecondsLeft": 0,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0,
+        "invulnerable": false,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          }
+        ]
+      }
+    ],
+    [
+      1,
+      "armor",
+      {
+        "current": 3,
+        "max": 3,
+        "segments": [
+          true,
+          true,
+          true
+        ],
+        "armor": 2,
+        "armorMax": 2.5,
+        "armorRepairActive": true,
+        "armorRepairProgress": 0.06666666666666665,
+        "armorRepairSecondsLeft": 14,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0.06666666666666665,
+        "invulnerable": false,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          }
+        ]
+      }
+    ],
+    [
+      2,
+      "armor",
+      {
+        "current": 3,
+        "max": 3,
+        "segments": [
+          true,
+          true,
+          true
+        ],
+        "armor": 1.5,
+        "armorMax": 2.5,
+        "armorRepairActive": true,
+        "armorRepairProgress": 0.1333333333333333,
+        "armorRepairSecondsLeft": 13,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0.1333333333333333,
+        "invulnerable": false,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          }
+        ]
+      }
+    ],
+    [
+      3,
+      "armor",
+      {
+        "current": 3,
+        "max": 3,
+        "segments": [
+          true,
+          true,
+          true
+        ],
+        "armor": 1,
+        "armorMax": 2.5,
+        "armorRepairActive": true,
+        "armorRepairProgress": 0.19999999999999996,
+        "armorRepairSecondsLeft": 12,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0.19999999999999996,
+        "invulnerable": false,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          }
+        ]
+      }
+    ],
+    [
+      4,
+      "armor",
+      {
+        "current": 3,
+        "max": 3,
+        "segments": [
+          true,
+          true,
+          true
+        ],
+        "armor": 0.5,
+        "armorMax": 2.5,
+        "armorRepairActive": true,
+        "armorRepairProgress": 0.2666666666666667,
+        "armorRepairSecondsLeft": 11,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0.2666666666666667,
+        "invulnerable": false,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          }
+        ]
+      }
+    ],
+    [
+      5,
+      "armor",
+      {
+        "current": 3,
+        "max": 3,
+        "segments": [
+          true,
+          true,
+          true
+        ],
+        "armor": 0,
+        "armorMax": 2.5,
+        "armorRepairActive": true,
+        "armorRepairProgress": 0.33333333333333337,
+        "armorRepairSecondsLeft": 10,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0.33333333333333337,
+        "invulnerable": false,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          }
+        ]
+      }
+    ],
+    [
+      6,
+      "hurt",
+      {
+        "current": 2,
+        "max": 3,
+        "segments": [
+          true,
+          true,
+          false
+        ],
+        "armor": 0,
+        "armorMax": 2.5,
+        "armorRepairActive": true,
+        "armorRepairProgress": 0.4,
+        "armorRepairSecondsLeft": 9,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0.4,
+        "invulnerable": true,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 0,
+            "fill": 0
+          }
+        ]
+      }
+    ],
+    [
+      7,
+      "hurt",
+      {
+        "current": 1,
+        "max": 3,
+        "segments": [
+          true,
+          false,
+          false
+        ],
+        "armor": 0,
+        "armorMax": 2.5,
+        "armorRepairActive": true,
+        "armorRepairProgress": 0.4666666666666667,
+        "armorRepairSecondsLeft": 8,
+        "shield": false,
+        "shieldCharges": 0,
+        "shieldMax": 1,
+        "shieldEquipped": true,
+        "shieldProgress": 0.4666666666666667,
+        "invulnerable": true,
+        "regenActive": false,
+        "regenProgress": 0,
+        "regenSecondsLeft": 0,
+        "regenAmount": 1,
+        "regenCells": [
+          {
+            "start": 1,
+            "fill": 0
+          },
+          {
+            "start": 0,
+            "fill": 0
+          },
+          {
+            "start": 0,
+            "fill": 0
+          }
+        ]
+      }
+    ]
+  ],
+  "repairStats": {
+    "hp": 3,
+    "armor": 2.5,
+    "dodge": 0,
+    "turnSpeed": 2.67986624987322,
+    "capacity": 210,
+    "weight": 61.6,
+    "loadFactor": 1,
+    "overloaded": false,
+    "speed": 3,
+    "shieldMax": 0,
+    "regen": false,
+    "regenAmount": 1,
+    "regenDelay": 15,
+    "armorRepairAmount": 1.5,
+    "armorRepairDelay": 15,
+    "shieldRate": 0.06666666666666667,
+    "projectile": 1,
+    "organEffect": 1,
+    "rate": 0,
+    "bodyFactor": 1,
+    "revive": 0,
+    "pickup": 7
+  },
+  "repairHits": [
+    "armor",
+    "armor",
+    "armor",
+    "armor",
+    "armor",
+    "hurt"
+  ],
+  "repairAfter": {
+    "current": 2,
+    "max": 3,
+    "segments": [
+      true,
+      true,
+      false
+    ],
+    "armor": 1.5,
+    "armorMax": 2.5,
+    "armorRepairActive": true,
+    "armorRepairProgress": 0,
+    "armorRepairSecondsLeft": 15,
+    "shield": false,
+    "shieldCharges": 0,
+    "shieldMax": 0,
+    "shieldEquipped": false,
+    "shieldProgress": 0,
+    "invulnerable": false,
+    "regenActive": false,
+    "regenProgress": 0,
+    "regenSecondsLeft": 0,
+    "regenAmount": 1,
+    "regenCells": [
+      {
+        "start": 1,
+        "fill": 0
+      },
+      {
+        "start": 1,
+        "fill": 0
+      },
+      {
+        "start": 0,
+        "fill": 0
+      }
+    ]
+  },
+  "plateRanks": [
+    {
+      "hp": 6,
+      "armor": 1.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 48,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 0.5,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 2,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 51.599999999999994,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 0.5,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 2.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 55.739999999999995,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 0.5,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 3,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 60.50099999999999,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 0.5,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 3.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 65.97614999999999,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 0.5,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    }
+  ],
+  "glandRanks": [
+    {
+      "hp": 6,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 40,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 1,
+      "armorRepairDelay": 15,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 42.4,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 1,
+      "armorRepairDelay": 12.5,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 45.16,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 1,
+      "armorRepairDelay": 10.714285714285715,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 48.333999999999996,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 1,
+      "armorRepairDelay": 9.375,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    },
+    {
+      "hp": 6,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 5.939138709164987,
+      "capacity": 125.99999999999999,
+      "weight": 51.98409999999999,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 7.199999999999999,
+      "shieldMax": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "armorRepairAmount": 1,
+      "armorRepairDelay": 8.333333333333334,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.8,
+      "revive": 0,
+      "pickup": 8.049999999999999
+    }
+  ]
+}

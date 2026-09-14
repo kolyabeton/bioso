@@ -1,0 +1,44 @@
+[
+  {
+    "file": "garden.mp4",
+    "duration": "00:00:08.00",
+    "bytes": 660476,
+    "decoded": true
+  },
+  {
+    "file": "quarantine.mp4",
+    "duration": "00:00:08.00",
+    "bytes": 992138,
+    "decoded": true
+  },
+  {
+    "file": "core.mp4",
+    "duration": "00:00:08.00",
+    "bytes": 709927,
+    "decoded": true
+  },
+  {
+    "file": "nursery.mp4",
+    "duration": "00:00:08.00",
+    "bytes": 565276,
+    "decoded": true
+  },
+  {
+    "file": "mother-flight.mp4",
+    "duration": "00:00:08.00",
+    "bytes": 812048,
+    "decoded": true
+  },
+  {
+    "file": "mother-ground.mp4",
+    "duration": "00:00:08.00",
+    "bytes": 817181,
+    "decoded": true
+  },
+  {
+    "file": "all-boss-animations.mp4",
+    "duration": "00:00:48.00",
+    "bytes": 4552975,
+    "decoded": true
+  }
+]

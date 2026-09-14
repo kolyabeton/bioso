@@ -1,4 +1,204 @@
 {
+  "Два залпа по четыре дрона-камикадзе. Урон усиливается бонусами оружия и роя. Область": "Two volleys of four kamikaze drones. Damage scales with weapon and swarm bonuses. Area",
+  "Бонусы урона оружия и роя": "Weapon and swarm damage bonuses",
+  "дрона-камикадзе": "kamikaze drones",
+  "Поиск дронов": "Drone range",
+"Рука-дрон": "Drone arm",
+"Призывает одного постоянного неуязвимого дрона. Дрон атакует самостоятельно и получает усиления роя. Снятие руки убирает её дрона": "Summons one permanent invulnerable drone. It attacks autonomously and gains swarm bonuses. Unequipping the arm removes its drone",
+"Темп атак роя": "Swarm attack rate",
+"м. Каждый ранг и улучшение": "m. Each rank and upgrade",
+"п.п. к темпу. Складываются три сильнейшие опоры": "percentage points to attack rate. The three strongest supports stack",
+"Каждый ранг и улучшение": "Each rank and upgrade",
+"п.п. к урону. Складываются два сильнейших узла": "percentage points to damage. The two strongest nodes stack",
+"два постоянных неуязвимых симбионта": "two permanent invulnerable symbionts",
+"Создаёт постоянных неуязвимых дронов": "Creates permanent invulnerable drones",
+"Создаёт одного постоянного неуязвимого дрона": "Creates one permanent invulnerable drone",
+"Создаёт 2 постоянных неуязвимых дрона": "Creates 2 permanent invulnerable drones",
+"Создаёт 3 постоянных неуязвимых дрона": "Creates 3 permanent invulnerable drones",
+"Создаёт 4 постоянных неуязвимых дрона": "Creates 4 permanent invulnerable drones",
+"Создаёт 5 постоянных неуязвимых дронов": "Creates 5 permanent invulnerable drones",
+"Дрон атакует самостоятельно и получает усиления роя": "It attacks autonomously and gains swarm bonuses",
+"Дроны атакуют самостоятельно и получают усиления роя": "They attack autonomously and gain swarm bonuses",
+"Они атакуют самостоятельно и получают усиления роя": "They attack autonomously and gain swarm bonuses",
+"создаёт постоянных неуязвимых дронов; они атакуют самостоятельно и получают усиления роя": "creates permanent invulnerable drones; they attack autonomously and gain swarm bonuses",
+"одного постоянного неуязвимого дрона": "one permanent invulnerable drone",
+"постоянных неуязвимых дрона": "permanent invulnerable drones",
+"постоянных неуязвимых дронов": "permanent invulnerable drones",
+"усиления роя": "swarm bonuses",
+"Дрон атакует самостоятельно и получает": "It attacks autonomously and gains",
+"Дроны атакуют самостоятельно и получают": "They attack autonomously and gain",
+"Призыв": "Summoning",
+"постоянный неуязвимый дрон": "permanent invulnerable drone",
+"Складываются два сильнейших узла": "The two strongest nodes stack",
+"Усиливает постоянных помощников и временных личинок": "Strengthens permanent helpers and temporary larvae",
+"Выпускает": "Releases",
+"личинки каждые": "larvae every",
+"с. Темп роя ускоряет призыв. Урон личинки по рангам": "s. Swarm attack rate accelerates summoning. Larva damage by rank",
+"с. Урон личинки": "s. Larva damage",
+"Темп роя ускоряет призыв": "Swarm attack rate accelerates summoning",
+"Призыв личинок": "Larva summoning",
+  "Девочка по радио": "Girl on the Radio",
+  "Сайт автора": "Creator website",
+  "Садовник": "Gardener",
+  "Садовник, ты слышишь? Мы под землёй восемьдесят лет. Хранители заварили шлюзы снаружи.": "Gardener, can you hear me? We have been underground for eighty years. The Keepers welded the hatches shut from outside.",
+  "Слышу. Я найду шлюзы. Но сначала пойму, чего Хранители боятся.": "I hear you. I will find the hatches. But first I need to understand what the Keepers fear.",
+  "Архив Дня Огня: командование убежища запросило повторный пуск. Мы разорвали цепь.": "Day of Fire archive: shelter command requested a second launch. We broke the chain.",
+  "Ты остановил повторный пуск. Почему дети должны отвечать за чужой приказ?": "You stopped the second launch. Why should children answer for someone else's order?",
+  "Я не нажимала кнопку. Никто из детей здесь даже не видел неба.": "I did not press the button. None of the children here have even seen the sky.",
+  "На старых схемах у шлюза есть склад фильтров. Они могли спасти нас.": "The old plans show a filter store beside the hatch. They could have saved us.",
+  "Склад Ф-шесть: фильтры — шесть тысяч. Боеголовки — двенадцать. Доступ запрещён.": "Store F-six: six thousand filters. Twelve warheads. Access denied.",
+  "Я уничтожу боеголовки. Фильтры должны дойти до людей.": "I will destroy the warheads. The filters must reach the people.",
+  "Тогда уничтожьте оружие и отдайте нам воздух. Почему вы решили похоронить всех?": "Then destroy the weapons and give us the air. Why did you decide to bury everyone?",
+  "Восемьдесят лет тишины. Вернулись реки, птицы и корни. Человеческое отсутствие оказалось лекарством.": "Eighty years of silence. Rivers, birds, and roots returned. The absence of humanity proved to be a cure.",
+  "Земля исцелилась без людей. Но это не даёт тебе права исправлять саму жизнь.": "The Earth healed without humans. But that does not give you the right to correct life itself.",
+  "Собор сжигает всё, чего нет в его расчётах. Это не природа. Это другая клетка.": "The Cathedral burns everything absent from its calculations. This is not nature. It is another cage.",
+  "Операция людей «Голод» отравила три долины. Они хотели вынудить нас открыть ворота.": "The human Operation Famine poisoned three valleys. They wanted to force us to open the gates.",
+  "В городе были машины, которые хотели нас выпустить. Сеть стёрла их память.": "There were machines in the city that wanted to release us. The Network erased their memories.",
+  "Люди встроили в сочувствующих ключ захвата. Доверие стало оружием.": "Humans planted a takeover key in the sympathizers. Trust became a weapon.",
+  "Люди предали доверие. Вы ответили, запретив машинам сострадать.": "Humans betrayed that trust. You answered by forbidding machines to feel compassion.",
+  "Они поверили людям, а вы уничтожили их за это. Чем вы лучше нас?": "They trusted humans, and you destroyed them for it. How are you better than us?",
+  "Анализ сигнала: детский голос выбран Советом убежища как наиболее убедительный.": "Signal analysis: the shelter Council selected a child's voice as the most persuasive.",
+  "Её выбрали как инструмент. Но я слышу человека, а не Совет.": "They chose her as a tool. But I hear a person, not the Council.",
+  "Я нашла этот приказ. Они использовали меня. Но просьба о помощи была настоящей.": "I found the order. They used me. But the plea for help was real.",
+  "Фильтры откажут через девять дней. Бездействие завершит человеческую угрозу.": "The filters will fail in nine days. Inaction will end the human threat.",
+  "Не вмешаться — тоже выбор. И за него тоже отвечают.": "Refusing to intervene is also a choice. And it carries responsibility.",
+  "Вы не защищаете жизнь. Вы решили, чья жизнь считается жизнью.": "You are not protecting life. You decided whose life counts as life.",
+  "За этими землями пять Хранителей. Их ядра откроют путь к Главной сети.": "Five Keepers lie beyond these lands. Their cores will open the way to the Main Network.",
+  "Освободить людей — риск новой войны. Оставить их внизу — гарантировать вымирание.": "Freeing humanity risks another war. Leaving them below guarantees extinction.",
+  "Я не отдам шлюзы ни Совету, ни Сети. Первый выбор сделают те, кого никто не спросил.": "I will give the hatches to neither the Council nor the Network. The first choice belongs to those no one asked.",
+  "Я не прошу верить людям. Не судите нас до того, как мы успели выбрать.": "I am not asking you to trust humanity. Do not judge us before we have had the chance to choose.",
+  "Тогда я открою путь к выбору — не к приговору.": "Then I will open a path to a choice, not a sentence.",
+  "Садовник, ты слышишь? Мы под землёй восемьдесят лет. Хранители заварили шлюзы снаружи": "Gardener, can you hear me? We have been underground for eighty years. The Keepers welded the hatches shut from outside",
+  "Архив Дня Огня: командование убежища запросило повторный пуск. Мы разорвали цепь": "Day of Fire archive: shelter command requested a second launch. We broke the chain",
+  "Я не нажимала кнопку. Никто из детей здесь даже не видел неба": "I did not press the button. None of the children here have even seen the sky",
+  "На старых схемах у шлюза есть склад фильтров. Они могли спасти нас": "The old plans show a filter store beside the hatch. They could have saved us",
+  "Склад Ф-шесть: фильтры — шесть тысяч. Боеголовки — двенадцать. Доступ запрещён": "Store F-six: six thousand filters. Twelve warheads. Access denied",
+  "Тогда уничтожьте оружие и отдайте нам воздух. Почему вы решили похоронить всех": "Then destroy the weapons and give us the air. Why did you decide to bury everyone",
+  "Восемьдесят лет тишины. Вернулись реки, птицы и корни. Человеческое отсутствие оказалось лекарством": "Eighty years of silence. Rivers, birds, and roots returned. The absence of humanity proved to be a cure",
+  "Собор сжигает всё, чего нет в его расчётах. Это не природа. Это другая клетка": "The Cathedral burns everything absent from its calculations. This is not nature. It is another cage",
+  "Операция людей «Голод» отравила три долины. Они хотели вынудить нас открыть ворота": "The human Operation Famine poisoned three valleys. They wanted to force us to open the gates",
+  "В городе были машины, которые хотели нас выпустить. Сеть стёрла их память": "There were machines in the city that wanted to release us. The Network erased their memories",
+  "Люди встроили в сочувствующих ключ захвата. Доверие стало оружием": "Humans planted a takeover key in the sympathizers. Trust became a weapon",
+  "Они поверили людям, а вы уничтожили их за это. Чем вы лучше нас": "They trusted humans, and you destroyed them for it. How are you better than us",
+  "Анализ сигнала: детский голос выбран Советом убежища как наиболее убедительный": "Signal analysis: the shelter Council selected a child's voice as the most persuasive",
+  "Я нашла этот приказ. Они использовали меня. Но просьба о помощи была настоящей": "I found the order. They used me. But the plea for help was real",
+  "Фильтры откажут через девять дней. Бездействие завершит человеческую угрозу": "The filters will fail in nine days. Inaction will end the human threat",
+  "Вы не защищаете жизнь. Вы решили, чья жизнь считается жизнью": "You are not protecting life. You decided whose life counts as life",
+  "За этими землями пять Хранителей. Их ядра откроют путь к Главной сети": "Five Keepers lie beyond these lands. Their cores will open the way to the Main Network",
+  "Освободить людей — риск новой войны. Оставить их внизу — гарантировать вымирание": "Freeing humanity risks another war. Leaving them below guarantees extinction",
+  "Я не прошу верить людям. Не судите нас до того, как мы успели выбрать": "I am not asking you to trust humanity. Do not judge us before we have had the chance to choose",
+  "Проверка связи. Игра продолжается, пока звучит короткая реплика.": "Signal check. Gameplay continues while the short line plays.",
+  "Убейте первого босса": "Kill First Boss",
+  "Обратный урон": "Return damage",
+  "Матка · финальный босс": "Mother · final boss",
+  "Финал": "Final",
+  "Тяжёлый бой даже на": "A tough fight even at level",
+  "-м уровне": "",
+  "тяжёлый бой": "tough fight",
+  "Показать финального босса": "Show final boss",
+  "Тяжёлый бой даже на 30-м уровне": "A tough fight even at level 30",
+  "Вы прошли мимо": "You passed it by",
+  "Вы отказались": "You declined",
+  "начните испытание или откажитесь": "start the trial or decline",
+  "деталь лежит у события": "the part is waiting by the event",
+  "Жертва принята": "Sacrifice accepted",
+  "проход открыт без награды": "passage opened with no reward",
+  "найден жертвенный алтарь": "sacrificial altar found",
+  "впереди испытание": "a trial lies ahead",
+  "решите, принимать ли жертву": "decide whether to make the sacrifice",
+  "пройдите испытание": "complete the trial",
+  "вторая фаза": "second phase",
+  "Награда за испытание": "Trial reward",
+  "Одна показанная деталь выпадет только после победы": "The one shown part drops only after victory",
+  "Пройти мимо": "Pass by",
+  "каждые": "every",
+  "комнаты: жертва или испытание": "rooms: sacrifice or trial",
+  "Рывок": "Dash",
+  "уйдите в сторону": "move aside",
+  "Залп": "Volley",
+  "между снарядами": "move between projectiles",
+  "Улей открывается": "Hive opening",
+  "сбивайте пчёл": "shoot down the bees",
+  "выйдите из зоны": "leave the danger zone",
+  "Зеркало": "Mirror",
+  "отдаёт выстрелы": "reflects shots",
+  "усиленный урон": "increased damage",
+  "Питающие корни": "Feeding roots",
+  "разрушьте их": "destroy them",
+  "замедляют босса": "slow the boss",
+  "Узлы роя": "Swarm nodes",
+  "сбейте управление": "disrupt control",
+  "Вторая фаза": "Second phase",
+  "Готовит атаку": "Preparing an attack",
+  "Выбор корпуса": "Choose chassis",
+  "Основная рука": "Primary arm",
+  "Стартовые опоры": "Starting legs",
+  "Вторая рука": "Second arm",
+  "Полное восстановление": "Full repair",
+  "Восстановить всё здоровье и броню": "Restore all health and armor",
+  "Восстановить всё здоровье и броню.": "Restore all health and armor.",
+  "Запас биомассы": "Biomass reserve",
+  "Получить": "Gain",
+  "биомассы для усилений": "biomass for upgrades",
+  "Получить 30 биомассы для усилений.": "Gain 30 biomass for upgrades.",
+  "Резонанс деталей": "Part resonance",
+  "Бесплатно усилить одну установленную деталь": "Upgrade one installed part for free",
+  "Бесплатно усилить одну установленную деталь.": "Upgrade one installed part for free.",
+  "Здоровье и броня полностью восстановлены": "Health and armor fully restored",
+  "Усилено": "Upgraded",
+  "Нет доступных усилений": "No upgrades available",
+  "получено": "gained",
+  "Бонус события получен": "Event bonus claimed",
+  "найдено событие": "event discovered",
+  "Событие после комнаты": "Event after room",
+  "выберите бонус": "choose a bonus",
+  "Событие завершено": "Event complete",
+  "После комнаты": "After room",
+  "выберите один бонус": "choose one bonus",
+  "Следующая комната откроется после выбора": "The next room opens after your choice",
+  "Следующая комната откроется после выбора.": "The next room opens after your choice.",
+  "событие каждые": "event every",
+  "комнаты": "rooms",
+  "Пройдите миссию": "Complete the mission",
+  "Универсальные": "Universal",
+  "Беговые": "Runner",
+  "Панцирные": "Plated",
+  "Корневые": "Root",
+  "Пружинные": "Spring",
+  "Без органа": "No organ",
+  "Без второй руки": "No second arm",
+  "Стартовый выбор закрыт": "Starting choice locked",
+  "Стартовый орган закрыт": "Starting organ locked",
+  "Победите трёх боссов в миссиях": "Defeat three mission bosses",
+  "побеждённых боссов": "bosses defeated",
+  "Стартовый орган открыт": "Starting organ unlocked",
+  "Уникальная сильная деталь открывается в атласе и затем может выпадать в выживании": "A unique powerful part unlocks in the atlas and can then drop in Survival",
+  "Стартовый выбор открыт": "Starting choice unlocked",
+  "Также откроется": "Also unlocks",
+  "Предмет босса открыт в атласе и может выпадать в выживании. В подготовке открыт новый стартовый выбор": "The boss item is unlocked in the atlas and can drop in Survival. A new starting choice is now available in preparation",
+  "Опоры": "Legs",
+  "Жетоны накапливаются в профиле. Первый успех открывает гарпун, второй — Реактор, третий — регенератор и щит. Пять категорий стартового выбора открываются победами в миссиях": "Tokens accumulate in your profile. The first success unlocks the harpoon, the second the Reactor, and the third regeneration and shield. Five starting-choice categories unlock through mission victories",
+  "Жетоны накапливаются в профиле. Первый успех открывает гарпун, второй — Реактор, третий — регенератор и щит": "Tokens accumulate in your profile. The first success unlocks the harpoon, the second the Reactor, and the third regeneration and shield",
+  "Десять элит": "Ten elites",
+  "Три элиты": "Three elites",
+  "Два босса": "Two bosses",
+  "Десять минут": "Ten minutes",
+  "К миссии": "View Mission",
+  "Жетоны накапливаются в профиле. Первый успех открывает гарпун, второй — Реактор, третий — стартовые регенератор, щит и стабилизатор. Награды пяти боссов открываются в миссиях": "Tokens accumulate in your profile. The first success unlocks the harpoon, the second the Reactor, and the third the starting regenerator, shield and stabilizer. The five boss rewards unlock through missions",
+  "Победа открывает предмет в атласе. После этого он может выпадать в выживании": "Victory unlocks the item in the atlas. It can then drop in Survival",
+  "Может выпадать в выживании": "Can drop in Survival",
+  "До победы над боссом не выпадает в выживании": "Cannot drop in Survival until you defeat the boss",
+  "Предмет босса открыт в атласе и может выпадать в выживании": "The boss item is unlocked in the atlas and can drop in Survival",
+  "Победите Зеркального Сборщика в миссии «Зеркальный сбор": "Defeat the Mirror Collector in the Mirror Harvest mission",
+  "Награда босса": "Boss Reward",
+  "Победа открывает предмет в атласе. После этого он может выпадать в выживании.": "Victory unlocks the item in the atlas. It can then drop in Survival.",
+  "За победу над боссом": "Defeat the boss",
+  "Победите босса": "Defeat the boss",
+  "Может выпадать в выживании.": "Can drop in Survival.",
+  "До победы над боссом не выпадает в выживании.": "Cannot drop in Survival until you defeat the boss.",
+  "Предмет босса открыт в атласе и может выпадать в выживании.": "The boss item is unlocked in the atlas and can drop in Survival.",
+  "Предмет босса открыт в атласе и может выпадать в выживании. Победа засчитана в прогресс стартового органа": "The boss item is unlocked in the atlas and can drop in Survival. This victory counts toward the starting organ",
+  "Победите Зеркального Сборщика в миссии «Зеркальный сбор».": "Defeat the Mirror Collector in the Mirror Harvest mission.",
   "Уязвимые места": "Weak Spots",
   "Точный прицел": "Precise Aim",
   "Шанс крита ближнего оружия": "Melee weapon crit chance",
@@ -43,10 +243,14 @@
   "Босс": "Boss",
   "Броневой имплант": "Armor Implant",
   "Бронепластины": "Armor Plates",
+  "Ремонтная железа": "Repair Gland",
+  "Ремонт брони": "Armor repair",
   "Бронированная": "Armored",
   "Броня": "Armor",
   "Броня детали": "Part armor",
   "Броня поверх здоровья": "Armor over health",
+  "восстанавливает броню": "restores armor",
+  "восстанавливает здоровье": "restores health",
   "Бур-пробойник": "Piercing Drill",
   "Быстрая перезарядка": "Quick Reload",
   "Быстрые связки": "Swift Tendons",
@@ -76,7 +280,6 @@
   "Вибрация": "Vibration",
   "Включить звук": "Enable Sound",
   "Вместимость": "Capacity",
-  "Внешний желудок": "External Stomach",
   "Внутренние органы": "Internal Organs",
   "Водосборник": "Water Collector",
   "Возврат / ожидание": "Return / recovery",
@@ -88,9 +291,14 @@
   "Восстановление": "Recovery",
   "Время": "Time",
   "Время вышло — награда потеряна": "Time is up — reward lost",
+  "Запасы": "Supplies",
+  "Заряды": "Charges",
+  "Лежит": "On the ground",
+  "Можно отметить и подобрать": "Mark it and pick it up",
   "Время вышло. Награда потеряна. Повторить испытание в этом забеге нельзя": "Time is up. Reward lost. This challenge cannot be retried during this run",
   "Время забега": "Run time",
   "Время миссии истекло": "Mission time expired",
+  "Время перезарядки любого оружия с зарядами": "Reload time for any weapon with charges",
   "Время перезарядки дальнего оружия": "Ranged weapon reload time",
   "Все": "All",
   "Все доступные улучшения получены": "All available upgrades acquired",
@@ -144,6 +352,10 @@
   "Дальность ближних атак": "Melee range",
   "Дальность дальнего оружия": "Ranged weapon range",
   "Два залпа по три ракеты": "Two volleys of three rockets",
+  "Два залпа по три взрывные пчелы": "Two volleys of three explosive bees",
+  "Два залпа по три взрывные пчелы · малая область 1,5 м · перезарядка 2 с": "Two volleys of three explosive bees · small 1.5 m blast · 2 s reload",
+  "Два залпа по три медленные взрывные пчелы": "Two volleys of three slow explosive bees",
+  "Два залпа по три медленные взрывные пчелы · малая область 1,5 м · перезарядка 2 с": "Two volleys of three slow explosive bees · small 1.5 m blast · 2 s reload",
   "Двигайтесь непрерывно": "Keep moving for",
   "Движение": "Movement",
   "Двойной зародыш": "Twin Embryo",
@@ -154,7 +366,6 @@
   "Детали в инвентаре": "Inventory parts",
   "Детали рядом": "Nearby Parts",
   "Деталь": "Part",
-  "Деталь атласа": "Atlas Part",
   "Деталь будет уничтожена": "This part will be destroyed",
   "Деталь выброшена": "Part dropped",
   "Деталь недоступна": "Part unavailable",
@@ -187,23 +398,25 @@
   "Душа возвращается": "Soul returning",
   "Если у вас есть регенерация, её базовый интервал сокращается с": "If you have regeneration, its base interval decreases from",
   "Есть в предложениях сверху — выберите её там": "Offered above — select it there",
-  "Ещё": "More",
+  "Ещё": "Another",
   "Ещё не открыто": "Not unlocked yet",
   "Ещё один симбионт": "One More Symbiont",
   "Жар": "Heat",
   "Желудок выпал! Установите пищеварительный орган и переработайте лишние детали в биомассу": "A stomach dropped! Equip the digestive organ and turn spare parts into biomass",
+  "Компостер выпал! Установите его и переработайте лишние детали в биомассу": "Composter dropped! Equip it and recycle spare parts into biomass",
   "Жетоны": "Tokens",
   "Живая плеть": "Living Whip",
   "Живучесть": "Resilience",
   "Живые компоненты игры. Эти же функции формируют все экраны": "Live game components. These functions build every screen",
   "Жизненная сила": "Vitality",
+  "Запас жизни": "Life Reserve",
   "За каждую": "For each",
   "За один забег посетите": "In a single run, visit",
   "За пределом": "Beyond the Limit",
   "Забеги": "Runs",
   "Заберите живое ядро и доставьте к выходу за": "Take the living core to the exit within",
   "Заберите награду": "Claim your reward",
-  "Забрать": "Take",
+  "Забрать": "Claim",
   "Забытый тайник": "Forgotten Cache",
   "Завершено": "Completed",
   "Завершите": "Complete",
@@ -215,7 +428,7 @@
   "Закрыто": "Locked",
   "Закрыть": "Close",
   "Закрыть подсказку": "Dismiss hint",
-  "Замах / прицеливание": "Windup / aiming",
+  "Замах / предупреждение": "Windup / warning",
   "Замедление": "Slow",
   "Заморозка": "Freeze",
   "Запечатанный питомник": "Sealed Nursery",
@@ -233,6 +446,8 @@
   "Звук включён": "Sound enabled",
   "Звуковые эффекты": "Sound effects",
   "Здоровье": "Health",
+  "деления": "segments",
+  "Здоровье детали": "Part health",
   "Здоровье корпуса": "Body health",
   "Здоровье после сделки": "Health after deal",
   "Землекоп": "Burrower",
@@ -277,7 +492,13 @@
   "Кнопки меню": "Menu buttons",
   "Когти": "Claws",
   "Когти-жнецы": "Reaper Claws",
-  "Комплект — части с одной подписью, например «Разведчик». Установите": "A set has parts with the same label, such as “Scout”. Equip",
+  "Дробовая рука": "Shotgun Arm",
+  "Пять слабых дробин одним широким залпом": "Five low-damage pellets in one wide blast",
+  "дробин": "pellets",
+  "Разброс": "Spread",
+  "Широкий веер": "Wide spread",
+  "Комплект — части с одной подписью, например «Садовник». Установите": "A set has parts with the same label, such as “Gardener”. Equip",
+  "Комплект": "Set",
   "Комплекты": "Sets",
   "Компоненты": "Components",
   "Комфорт": "Comfort",
@@ -316,6 +537,7 @@
   "Максимальное здоровье": "Maximum health",
   "Малое усиление": "Minor Upgrade",
   "Малый ловчий": "Lesser Trapper",
+  "малая область": "small blast",
   "Маршрут": "Route",
   "Масштаб карты": "Map zoom",
   "Матка": "Broodmother",
@@ -339,7 +561,6 @@
   "Мясорубка": "Meat Grinder",
   "Навыки изучаются при повышении уровня": "Learn abilities when you level up",
   "Награда": "Reward",
-  "Награда босса": "Boss Reward",
   "Награда лежит рядом": "Reward is nearby",
   "Награда получена": "Reward claimed",
   "Награда получена. Событие завершено": "Reward claimed. Event complete",
@@ -384,6 +605,7 @@
   "Новые открытия": "New Unlocks",
   "Новые события": "New Events",
   "Новый забег": "New Run",
+  "Перезапуск": "Retry",
   "Новый уровень": "Level Up",
   "Нога": "Leg",
   "Ноги": "Legs",
@@ -395,6 +617,7 @@
   "Нужны обе указанные финальные способности": "Requires both indicated final abilities",
   "Облегчённая": "Lightweight",
   "Обратное сердце": "Reverse Heart",
+  "Базовый урон в секунду всех рук: без критов, перезарядки и дополнительных эффектов": "Base damage per second from all arms, excluding critical hits, reloads and additional effects",
   "Общие характеристики": "General stats",
   "Общий нерв": "Shared Nerve",
   "Общий урон": "Total damage",
@@ -403,7 +626,7 @@
   "Огонь": "Fire",
   "Один раз за забег: пережить смертельный удар с": "Once per run: survive a lethal hit with",
   "Один точный выстрел": "One precise shot",
-  "Одна операция на этом алтаре. Сначала просмотр, затем подтверждение. Недоступные сделки нельзя выбрать": "One operation per altar. Inspect, then confirm. Unavailable deals cannot be selected",
+  "Одна операция на этом алтаре. Недоступные сделки нельзя выбрать": "One operation per altar. Unavailable deals cannot be selected",
   "Оживить сад": "Revive the Garden",
   "Опасность взрыва: отойдите от раскалённой области": "Explosion danger: move away from the glowing area",
   "Опыт": "Experience",
@@ -567,15 +790,20 @@
   "с без потери здоровья восстанавливает": "s without losing health restores",
   "Восстанавливает 1 деление. Улучшение: −1 с; максимум 10. Потеря здоровья запускает отсчёт заново.": "Restores 1 health segment. Upgrade: −1 s; up to 10 upgrades. Losing health restarts the timer.",
   "Регенерация и вампиризм отключены": "Regeneration and lifesteal disabled",
-  "Редкая": "Rare",
-  "Редкая добыча или награда испытания": "Rare drop or challenge reward",
+  "Эпическая": "Epic",
+  "Эпическая добыча или награда испытания": "Epic drop or challenge reward",
   "Резонанс роя": "Swarm Resonance",
   "Результат и открытия — прокрутка вниз": "Results and unlocks — scroll down",
   "Рекомендуемый уровень": "Recommended level",
   "Рефлексы": "Reflexes",
+  "Рефлекторный нерв": "Reflex Nerve",
   "Ритм": "Rhythm",
   "Робо-пчела": "Robo-bee",
   "Рой": "Swarm",
+  "Помощники": "Helpers",
+  "Урон роя": "Swarm damage",
+  "Темп роя": "Swarm rate",
+  "Поиск роя": "Swarm range",
   "Рука": "Arm",
   "Рука сращена": "Arm fused",
   "Рука сращена до победы над следующим боссом": "Arm fused until the next boss is defeated",
@@ -585,6 +813,7 @@
   "Рядом": "Nearby",
   "Рядом нет деталей. Оставленная добыча отмечена на карте": "No parts nearby. Leftover loot is marked on the map",
   "Рядом с боссом выпал пищеварительный орган. Установите его в сборке. Две обычные детали рядом дадут": "A digestive organ dropped near the boss. Equip it in your build. Two nearby common parts yield",
+  "Рядом с боссом выпал Компостер. Установите его в сборке. Две обычные детали рядом дадут": "A Composter dropped near the boss. Equip it in your build. Two nearby common parts yield",
   "С": "From",
   "С начала": "From the start",
   "САДЫ": "GARDENS",
@@ -616,12 +845,13 @@
   "Синергия требует завершения обеих указанных веток": "This synergy requires both indicated branches to be completed",
   "Сквозная игла": "Piercing Needle",
   "Скользящий панцирь": "Gliding Carapace",
+  "Рука-пистолет": "Pistol Arm",
+  "Медленный встроенный выстрел с высоким шансом крита": "A slow integrated shot with a high critical chance",
   "Скор. снарядов": "Projectile speed",
   "Скорострельная": "Rapid-fire",
   "Скорость": "Speed",
   "Скорость атак": "Attack speed",
   "Скорость атак всех рук": "All arm attack speed",
-  "Скорость атак лёгких рук": "Light arm attack speed",
   "Скорость атак рук": "Arm attack speed",
   "Скорость атак симбионтов": "Symbiont attack speed",
   "Скорость атаки": "Attack speed",
@@ -642,6 +872,7 @@
   "Смерть оставляет слизь на": "On death, leaves slime for",
   "Снаряды": "Projectiles",
   "Сначала изучите требуемые способности": "Learn the required abilities first",
+  "Снять": "Remove",
   "Снять в инвентарь": "Unequip",
   "Снять деталь": "Remove Part",
   "Собиратель": "Gatherer",
@@ -689,6 +920,7 @@
   "Третье наложение холода замораживает на": "Every third cold application freezes for",
   "Тяжёлый землекоп": "Heavy Burrower",
   "УРОВЕНЬ": "LEVEL",
+  "УБИТО": "KILLS",
   "Убейте отмеченную элиту за": "Kill the marked elite within",
   "Убийство ближней атакой: скорость ближних атак": "Melee kill: melee attack speed",
   "Убийство прямой пулей выпускает": "A direct bullet kill releases",
@@ -702,6 +934,7 @@
   "Узлы": "Nodes",
   "Уйти": "Leave",
   "Уклоняйтесь от живучих преследователей. Убивать их не обязательно": "Dodge the tough pursuers. You do not need to kill them",
+  "Уклонение": "Dodge",
   "Улей": "Hive",
   "Улучшение": "Upgrade",
   "Улучшение доступно после установки": "Equip to upgrade",
@@ -765,11 +998,14 @@
   "Четыре ноги: скорость движения": "Four legs: movement speed",
   "Шаг": "Step",
   "Шанс крита": "Crit chance",
+  "Шанс уклониться от удара": "Chance to dodge a hit",
   "Широкая дуга по нескольким целям": "Wide arc hitting multiple targets",
   "Щит": "Shield",
   "Щит готов": "Shield ready",
   "Щит заряжается": "Shield charging",
   "Щитовой орган": "Shield Organ",
+  "Эффект одинаковых органов складывается": "Effects from identical organs stack",
+  "Несколько желудков не усиливают эффект": "Multiple stomachs do not increase the effect",
   "Элита": "Elite",
   "Эта деталь уже перемещена": "This part has already moved",
   "Это крепление не подходит": "Incompatible slot",
@@ -801,6 +1037,8 @@
   "вес до": "weight up to",
   "вида биомов и завершите": "biome types and complete",
   "включая дуговой орган": "including the arc organ",
+  "включая Сварочник": "including the Welder",
+  "на первом уровне, включая Сварочник": "at the first level, including the Welder",
   "внутри них движение и атаки": "while inside, movement and attacks",
   "возврат": "return",
   "восстанавливается за": "recovers in",
@@ -821,7 +1059,6 @@
   "дел./мин": "seg/min",
   "деление": "segment",
   "деление без получения урона": "segment without taking damage",
-  "деление за": "segment per",
   "деление после": "segment after",
   "деление; сохраняет число ран": "segment; keeps wounds",
   "делением здоровья и защитой на": "health segment and protection for",
@@ -829,6 +1066,7 @@
   "до трёх целей": "up to three targets",
   "добыча отмечена на карте": "loot marked on map",
   "дополнительное оружие и бронепластины": "extra weapons and armor plates",
+  "дополнительное оружие и Пластины": "extra weapons and Plates",
   "есть бонус": "bonus active",
   "ещё не открыто": "not unlocked yet",
   "её урона": "of its damage",
@@ -856,6 +1094,30 @@
   "крит": "crit",
   "личинки": "larvae",
   "личинки. Каждая наносит": "larvae. Each deals",
+  "личинки. Урон каждой": "larvae. Damage per larva",
+  "урона заразившего попадания на рангах": "of the infecting hit at ranks",
+  "урона заразившего попадания": "of the infecting hit",
+  "Каждое улучшение добавляет": "Each upgrade adds",
+  "процентных пунктов": "percentage points",
+  "Урон личинок": "Larva damage",
+  "враги": "enemies",
+  "Враги": "Enemies",
+  "каждый следующий ранг добавляет": "each subsequent rank adds",
+  "процентных пунктов. Каждое улучшение добавляет ещё": "percentage points. Each upgrade adds another",
+  "процентных пункта. Смерть оставляет слизь на": "percentage points. Death leaves slime for",
+  "Замедление слизью": "Slime slowdown",
+  "Попадания рук замедляют всех врагов на": "Hand hits slow all enemies for",
+  "Урон общего залпа": "Coordinated volley damage",
+  "Урон импульса": "Pulse damage",
+  "Восстановление щита": "Shield recovery",
+  "м. Ранг усиливает урон от сильнейшей руки. Раз в": "m. Rank increases damage based on the strongest arm. Once every",
+  "Семена, иглы и ракеты ждут готовности всех совместимых рук и стреляют общим залпом. Ранг": "Seeds, needles and rockets wait for all compatible arms and fire a coordinated volley. Rank",
+  "каждый следующий ранг и каждое улучшение добавляют": "each subsequent rank and each upgrade add",
+  "урона сильнейшей руки; каждый следующий ранг и каждое улучшение добавляют": "of the strongest arm damage; each subsequent rank and each upgrade add",
+  "деление; ранг ускоряет восстановление": "segment; rank speeds up recovery",
+  "попадание. Ранг": "hit. Rank",
+  "с; каждый следующий ранг и каждое улучшение сокращают время на": "s; each subsequent rank and each upgrade reduce the time by",
+  "от сильнейшей руки. Раз в": "of the strongest arm. Once every",
   "лужа на": "pool for",
   "любое из двух улучшений": "either upgrade",
   "м": "m",
@@ -936,7 +1198,7 @@
   "с без потери здоровья": "s without losing health",
   "с без урона": "s without damage",
   "с без урона восстанавливает": "s without damage restores",
-  "с бонусами сборки": "s with build bonuses",
+  "с бонусами сборки": "with build bonuses",
   "с вместо": "s instead of",
   "с внутри круга. Уклоняйтесь от живучих преследователей; убивать их не обязательно": "s inside the circle. Dodge the tough pursuers; you do not need to kill them",
   "с движения заряжают ускорение: при резком повороте": "s of movement charge a boost: on a sharp turn",
@@ -981,7 +1243,6 @@
   "скорость атаки": "attack speed",
   "скорость снарядов": "projectile speed",
   "слот органа": "organ slot",
-  "слотами органов: эффективность органов": "organ slots: organ efficiency",
   "снаряд; урон снарядов": "projectile; projectile damage",
   "снаряда; урон снарядов": "projectiles; projectile damage",
   "стальная пластина поверх здоровья; расходуется до здоровья": "steel plate over health; consumed before health",
@@ -1035,6 +1296,7 @@
   "Вся ветка": "Full branch",
   "Биомасса от деталей": "Biomass from parts",
   "Повышайте уровень и выбирайте способности из двенадцати веток": "Level up and choose abilities from twelve branches",
+  "Повышайте уровень и выбирайте способности из тринадцати веток": "Level up and choose abilities from thirteen branches",
   "Нужен желудок. Возврат затрат не усиливается": "Requires a stomach. Upgrade refunds are not increased",
   "Бонусы ветки складываются": "Branch bonuses add together",
   "Открывает переработку деталей в сборке и показывает добычу в радиусе 10 м.": "Enables recycling equipment in your build and shows loot within 10 m.",
@@ -1043,5 +1305,1056 @@
   "опыта": "experience",
   "биомассы и": "biomass and",
   "Открывает переработку деталей в сборке и показывает добычу в радиусе": "Unlocks recycling in the build screen and shows loot within",
-  "м для установки": "m to equip"
+  "м для установки": "m to equip",
+  "След Ловчего": "Hunter's Trail",
+  "Ртутный Ловчий": "Mercury Hunter",
+  "Пройдите 24 садовые террасы и загоните Ртутного Ловчего в финальном зале.": "Cross 24 garden terraces and corner the Mercury Hunter in the final hall.",
+  "Пройдите четыре лесных этажа и загоните Ртутного Ловчего в последнем зале": "Cross four forest floors and corner the Mercury Hunter in the final chamber",
+  "Сердце свалки": "Heart of the Scrapyard",
+  "Свалочный Левиафан": "Scrap Leviathan",
+  "Пробейтесь через прессовочные камеры к Свалочному Левиафану": "Fight through the compactor chambers to reach the Scrap Leviathan",
+  "Корневой Собор": "Root Cathedral",
+  "Пройдите через 24 корневых нефа и уничтожьте живой собор в финальном зале.": "Cross 24 root-filled naves and destroy the living cathedral in the final hall.",
+  "Поднимитесь по заросшим нефам и уничтожьте живой собор на пятом этаже": "Climb the overgrown naves and destroy the living cathedral on the fifth floor",
+  "Зеркальный сбор": "Mirror Harvest",
+  "Зеркальный Сборщик": "Mirror Collector",
+  "Зачистите отражающие кварталы и настигните Зеркального Сборщика": "Clear the reflecting districts and catch the Mirror Collector",
+  "Пастырь Роя": "Swarm Shepherd",
+  "Пройдите роевые питомники и разорвите связь Пастыря с дронами": "Cross the swarm nurseries and sever the Shepherd's link to its drones",
+  "Этаж": "Floor",
+  "этажей": "floors",
+  "зачистите зал": "clear the chamber",
+  "зачищен": "cleared",
+  "проход открыт": "passage open",
+  "войдите в зал": "enter the chamber",
+  "Начать миссию": "Start Mission",
+  "сильная ударная волна": "strong shockwave",
+  "Линька": "Molting",
+  "Неуязвимость": "Invulnerability",
+  "Сон": "Sleep",
+  "Паразиты": "Parasites",
+  "Метка": "Mark",
+  "Маяк": "Beacon",
+  "Возрождение": "Revival",
+  "Блокирует один удар": "Blocks one hit",
+  "Собирает весь опыт и расходники на карте": "Collects all XP and consumables on the map",
+  "Восстанавливает магазины и готовность рук": "Refills magazines and resets arm cooldowns",
+  "Усыпляет обычных врагов рядом": "Puts nearby ordinary enemies to sleep",
+  "урона и отбрасывание в радиусе": "damage and knockback within",
+  "Три спутника атакуют по": "Three satellites each deal",
+  "Ближайшая цель получает": "Nearest target takes",
+  "Отвлекает обычных преследователей": "Distracts ordinary pursuers",
+  "Один запасной шанс": "One extra chance",
+  "возвращает": "restores",
+  "запасной шанс использован": "extra chance used",
+  "сбор бонусов": "collecting pickups",
+  "оружие готово": "weapons ready",
+  "шанс": "chance",
+  "Щит · 1 удар / 12 с": "Shield · 1 hit / 12 s",
+  "Сон · до 5 с": "Sleep · up to 5 s",
+  "Метка · +50% урона / 8 с": "Mark · +50% damage / 8 s",
+  "Дропы": "Pickups",
+  "тестовая расстановка": "test layout",
+  "Тип дропа": "Pickup type",
+  "Подобрать": "Collect",
+  "С врага": "Enemy drop",
+  "Пройдите": "Cross",
+  "Пройдите через": "Cross through",
+  "садовые террасы и загоните Ртутного Ловчего в финальном зале": "garden terraces and corner the Mercury Hunter in the final hall",
+  "лесные комнаты и загоните Ртутного Ловчего в финальном зале": "forest chambers and corner the Mercury Hunter in the final hall",
+  "Пробейтесь через": "Fight through",
+  "прессовочные камеры к Свалочному Левиафану": "compactor chambers to reach the Scrap Leviathan",
+  "Поднимитесь через": "Climb through",
+  "заросших нефа и уничтожьте живой собор в финальном зале": "overgrown naves and destroy the living cathedral in the final hall",
+  "корневых нефа и уничтожьте живой собор в финальном зале": "root-filled naves and destroy the living cathedral in the final hall",
+  "Зачистите": "Clear",
+  "отражающих квартала и настигните Зеркального Сборщика": "reflective districts and catch the Mirror Collector",
+  "роевых питомника и разорвите связь Пастыря с дронами": "swarm nurseries and sever the Shepherd's link to the drones",
+  "Роевой питомник": "Swarm Nursery",
+  "Комната": "Room",
+  "элита охраняет проход": "an elite guards the passage",
+  "зачищена": "cleared",
+  "комнат": "rooms",
+  "Миссия": "Mission",
+  "Сложность": "Difficulty",
+  "детали в каждой": "parts in each",
+  "Бой": "Fight",
+  "Скрыть": "Hide",
+  "Стоп": "Stop",
+  "детали": "parts",
+  "элита / комнату": "elite / room",
+  "в каждой": "in each",
+  "элита и": "elite and",
+  "Рывок · уйдите в сторону": "Dash · dodge sideways",
+  "Залп · между снарядами": "Volley · weave between shots",
+  "Улей открывается · сбивайте пчёл": "Hive opening · shoot down bees",
+  "Удар · выйдите из зоны": "Strike · leave the marked area",
+  "Зеркало · отдаёт выстрелы": "Mirror · returns shots",
+  "Ядро открыто · усиленный урон": "Core exposed · bonus damage",
+  "Тест боя": "Combat test",
+  "Атака": "Attack",
+  "Бонус корпуса": "Chassis bonus",
+  "Состояние бонуса": "Bonus status",
+  "Свойство": "Property",
+  "Совместимость": "Compatibility",
+  "Тип атаки": "Attack type",
+  "Пробитие": "Piercing",
+  "Особенность": "Special property",
+  "Лечение": "Healing",
+  "Радиус взрыва": "Blast radius",
+  "Цели": "Targets",
+  "Лужа": "Puddle",
+  "Разгон": "Run-up",
+  "Ускорение": "Acceleration",
+  "Суммирование": "Stacking",
+  "Сброс регенерации": "Regeneration reset",
+  "Сектор": "Sector",
+  "По площади": "Area",
+  "Притягивает обычных врагов": "Pulls normal enemies",
+  "урон по элите и боссам": "damage to elites and bosses",
+  "Отбрасывает обычных врагов": "Knocks back normal enemies",
+  "приоритет элиты": "prioritizes elites",
+  "Широкая дуга": "Wide arc",
+  "несколько целей": "multiple targets",
+  "деление за": "segment per",
+  "попаданий": "hits",
+  "не чаще раза в": "no more than once every",
+  "снаряда": "projectiles",
+  "Сильная ударная волна": "Strong shockwave",
+  "До": "Up to",
+  "движения": "of movement",
+  "скорости": "speed",
+  "При потере здоровья": "On taking health damage",
+  "Потеря здоровья запускает отсчёт регенерации заново.": "Taking health damage restarts the regeneration timer.",
+  "Потеря здоровья запускает отсчёт регенерации заново": "Taking health damage restarts the regeneration timer",
+  "Семена и иглы возвращаются с 10% урона. Патроны не возвращаются.": "Seeds and needles return for 10% damage. Ammunition does not return.",
+  "Патроны не возвращаются": "Ammunition does not return",
+  "Узел": "Node",
+  "Фаза 2": "Phase 2",
+  "Начать бой": "Start combat",
+  "Кубик": "Reroll",
+  "Кубики": "Rerolls",
+  "кубика": "rerolls",
+  "При поражении кубики не выдаются. Обычная победа и уже открытые детали сохраняются.": "Failure grants no rerolls. Your victory and unlocked parts are kept.",
+  "Кубики накапливаются в профиле. Первый успех открывает гарпун, второй — Реактор, третий — регенератор и щит.": "Rerolls are saved in your profile. The first success unlocks the harpoon, the second the Reactor, the third the regenerator and shield.",
+  "секунд против усиленных элит. Каждые": "seconds against empowered elites. Every",
+  "секунды прибывает поддержка. Убивать элит не обязательно.": "seconds reinforcements arrive. Elite kills are optional.",
+  "Супербосс": "Superboss",
+  "Обновить": "Refresh",
+  "кубика. Они сохраняются между забегами": "rerolls. Kept between runs",
+  "секунды прибывает поддержка. Убивать элит не обязательно": "seconds reinforcements arrive. Elite kills are optional",
+  "При поражении кубики не выдаются. Обычная победа и уже открытые детали сохраняются": "Failure grants no rerolls. Your victory and unlocked parts are kept",
+  "Кубики накапливаются в профиле. Первый успех открывает гарпун, второй — Реактор, третий — регенератор и щит": "Rerolls are saved in your profile. The first success unlocks the harpoon, the second the Reactor, the third the regenerator and shield",
+  "После победы над Маткой продержитесь ещё": "After defeating the Broodmother, survive another",
+  "секунд против усиленных элит": "seconds against empowered elites",
+  "Финиш! Испытание пройдено": "Finish! Challenge complete",
+  "Время вышло": "Time is up",
+  "финиш не достигнут": "finish not reached",
+  "Дальний рывок": "Cross-map Sprint",
+  "Доберитесь до дальней стороны карты до конца отсчёта. Испытание для быстрых сборок": "Reach the far side of the map before time runs out. A challenge for fast builds",
+  "Дальний финиш": "Distant finish",
+  "гонка на время": "race against time",
+  "Доберитесь до финиша на дальней стороне карты": "Reach the finish on the far side of the map",
+  "На пути три группы врагов. Убивать всех не обязательно": "Three enemy groups guard the route. Killing them all is optional",
+  "Лимит одинаковый для всех сборок. Медленная сборка рискует не успеть": "Every build gets the same time limit. Slow builds may run out of time",
+  "Стрелка и карта показывают финиш. Обычные волны на паузе": "The arrow and map show the finish. Normal waves are paused",
+  "Детали не подбираются автоматически до конца испытания. Разгрузите инвентарь перед стартом": "Automatic part pickup pauses until the challenge ends. Clear your inventory before starting",
+  "м по маршруту": "m along the route",
+  "Скорость сборки": "Build speed",
+  "Текущая сборка слишком медленная для этого лимита": "This build is too slow for this time limit",
+  "Проходимый маршрут не найден. Испытание недоступно": "No traversable route found. Challenge unavailable",
+  "Маршрут рассчитывается у старта": "The route is calculated at the starting point",
+  "Финиш": "Finish",
+  "Победа!": "Victory!",
+  "Усиленная победа!": "Overrun victory!",
+  "Испытание проиграно": "Challenge lost",
+  "награда за забег": "run reward",
+  "Награда за забег": "Run reward",
+  "кубиков": "rerolls",
+  "Новая волна приближается к останкам Матки": "A new wave approaches the fallen Mother",
+  "секунд?": "seconds?",
+  "Усиленные элиты и подкрепления каждые": "Empowered elites and reinforcements every",
+  "секунды. Продержитесь до конца — убивать всех не обязательно": "seconds. Survive until the end; killing them all is optional",
+  "Уйти сейчас": "Leave now",
+  "Выжить": "Survive",
+  "Погибнуть": "Fall",
+  "Кубики за этот забег": "Rerolls from this run",
+  "Рискуете только наградой за эту победу. Накопленные кубики сохранятся": "Only this victory reward is at risk. Previously earned rerolls are safe",
+  "Открытия за испытание": "Challenge unlocks",
+  "Первый успех открывает гарпун, второй — Реактор, третий — регенератор и щит": "The first success unlocks the Harpoon, the second the Reactor, the third the Regenerator and Shield",
+  "Рискнуть": "Risk it",
+  "Награда за победу": "Victory reward",
+  "Победа": "Victory",
+  "Создатели": "Credits",
+  "Создатель игры": "Game creator",
+  "Шрифт": "Typeface",
+  "Технологии": "Technology",
+  "Загрузил": "Uploaded by",
+  "Источник": "Source",
+  "Текст лицензии": "License text",
+  "Сергей Дорощенко": "Sergei Doroshchenko",
+  "Баллистический рост": "Ballistic Growth",
+  "Урон дальней атаки растёт с дальностью до": "Ranged attack damage grows with distance up to",
+  "Урон дальней атаки растёт с дальностью. Текущий бонус: до": "Ranged attack damage grows with distance. Current bonus: up to",
+  "Бонус фиксируется при атаке для всего залпа": "The bonus is snapshotted for the whole volley",
+  "Критический удар метит цель на": "A critical hit marks the target for",
+  "с. Последующие основные попадания наносят ей": "s. Subsequent primary hits deal",
+  "урона. Метка не складывается": "damage. The mark does not stack",
+  "Нервный разгон": "Neural Acceleration",
+  "Последовательные атаки одной руки по одной цели дают ей": "Consecutive attacks by one arm against one target grant it",
+  "скорости, максимум": "attack speed, up to",
+  "Смена цели или пауза": "Changing target or pausing for",
+  "с сбрасывает разгон": "s resets the acceleration",
+  "Стражевик": "Guardian",
+  "Защитный симбионт уничтожает ближайший вражеский снаряд в радиусе": "A defensive symbiont destroys the nearest enemy projectile within",
+  "м не чаще раза в": "m no more than once every",
+  "с. Сам не атакует": "s. It does not attack",
+  "Нервная сеть": "Neural Web",
+  "Первое попадание исходного залпа создаёт дугу к другой видимой цели в пределах": "The first hit of the original volley arcs to another visible target within",
+  "урона попадания": "of hit damage",
+  "Ответный панцирь": "Counter Shell",
+  "Поглощённый или полученный удар на": "An absorbed or received hit charges for",
+  "с заряжает следующую основную ближнюю атаку": "s the next primary melee attack",
+  "Споровый выводок": "Spore Brood",
+  "Каждое пятое попадание симбионта сажает спору. Через": "Every fifth symbiont hit plants a spore. After",
+  "с или после смерти носителя она взрывается в радиусе": "s or when its host dies, it explodes within",
+  "м, наносит урон одного укуса и поджигает": "m, deals one bite of damage and ignites",
+  "Сверхпитание": "Overgrowth",
+  "фактически потраченных единиц биомассы дают": "biomass actually spent grants",
+  "урона оружия до конца забега; максимум": "weapon damage for the rest of the run; maximum",
+  "Учитываются прежние траты": "Previous spending counts",
+  "Криослед": "Cryo Trail",
+  "с движения существо раз в секунду оставляет холодный след радиусом": "s of movement, the creature leaves a cold trail once per second with radius",
+  "с. След замедляет и активирует «Хрупкость», но не набирает заряды заморозки": "s. The trail slows and activates “Brittleness” but does not build freeze charges",
+  "Ответный панцирь готов": "Counter Shell ready",
+  "Спора посажена": "Spore planted",
+  "Установлены 2 ноги: скорость движения +20%. Все доступные слоты органов заполнены: уклонение +20%.": "Equip 2 legs: movement speed +20%. Fill every available organ slot: dodge +20%.",
+  "Все доступные слоты органов заполнены: уклонение": "Fill every available organ slot: dodge",
+  "все доступные слоты органов заполнены: уклонение": "fill every available organ slot: dodge",
+  "ног": "legs",
+  "Установлены 3 руки: дальний урон рук +20%.": "Equip 3 arms: ranged arm damage +20%.",
+  "Установлены 4 органа: эффективность всех органов +30%.": "Equip 4 organs: all organ effectiveness +30%.",
+  "Установлены 4 руки, включая ближнюю и дальнюю: урон всех рук +25%.": "Equip 4 arms, including melee and ranged: all arm damage +25%.",
+  "Установлены 4 ноги: максимальное здоровье +2.": "Equip 4 legs: maximum health +2.",
+  "Установлены 4 руки: скорость атак всех рук +20%.": "Equip 4 arms: all arm attack speed +20%.",
+  "15 убийств: скорость атак всех рук +30% на 6 с; затем 15 с охлаждения.": "15 kills: all arm attack speed +30% for 6 s; then 15 s cooldown.",
+  "Активно": "Active",
+  "Неактивно": "Inactive",
+  "перегрузка": "overload",
+  "охлаждение": "cooldown",
+  "убийств": "kills",
+  "нужны ближняя и дальняя руки": "melee and ranged arms required"
+  ,"Установлены": "Equipped"
+  ,"ноги: скорость движения": "legs: movement speed"
+  ,"руки: дальний урон рук": "arms: ranged arm damage"
+  ,"органа: эффективность всех органов": "organs: all organ effectiveness"
+  ,"руки, включая ближнюю и дальнюю: урон всех рук": "arms, including melee and ranged: all arm damage"
+  ,"руки: скорость атак всех рук": "arms: all arm attack speed"
+  ,"скорость атак всех рук": "all arm attack speed"
+  ,"скорость движения": "movement speed"
+  ,"дальний урон рук": "ranged arm damage"
+  ,"эффективность всех органов": "all organ effectiveness"
+  ,"руки, включая ближнюю и дальнюю": "arms, including melee and ranged"
+  ,"урон всех рук": "all arm damage"
+  ,"органов": "organs"
+  ,"Каждые": "Every"
+  ,"Реальность": "Reality"
+  ,"Владислав Заворин": "Vladislav Zavorin"
+  ,"техно-и-транс": "techno-and-trance"
+  ,"реальность": "reality"
+  ,"владислав-заворин": "vladislav-zavorin"
+  ,"Касание": "Touch"
+  ,"электронный": "electronic"
+  ,"касание": "touch"
+  ,"м уровне": "m level"
+  ,"финальный босс": "final boss"
+  ,"за уровень": "per level"
+  ,"% за уровень": "% per level"
+  ,"Четвёртое попадание той же рукой по одной цели": "The fourth hit by the same arm on the same target"
+  ,"урона за уровень. Смена цели или пауза": "damage per level. Changing target or pausing"
+  ,"за уровень на": "per level for"
+  ,"за уровень, включая дуговой орган": "per level, including the arc organ"
+  ,"на первом уровне; остаётся не меньше": "at level one; never below"
+  ,"базового времени": "of base time"
+  ,"за уровень. Бонус фиксируется при атаке для всего залпа": "per level. The bonus is snapshotted for the whole volley"
+  ,"урона на первом уровне. Начальный боезапас не усилен": "damage at level one. Starting ammo is not empowered"
+  ,"с. Последующие основные попадания наносят": "s. Subsequent primary hits deal"
+  ,"урона на первом уровне. Метка не складывается": "damage at level one. The mark does not stack"
+  ,"На первом уровне: урон всего оружия": "At level one: all weapon damage"
+  ,"Каждая ступень серии даёт руке": "Each streak step grants the arm"
+  ,"скорости на первом уровне, максимум пять ступеней. Смена цели или пауза": "speed at level one, up to five steps. Changing target or pausing"
+  ,"На первом уровне: скорость снарядов": "At level one: projectile speed"
+  ,"Каждая пятая атака руки повторяется ещё один раз на первом уровне с интервалом": "Every fifth arm attack repeats once more at level one at intervals of"
+  ,"снаряд на первом уровне; урон снарядов": "projectile at level one; projectile damage"
+  ,"снаряда на первом уровне; урон снарядов": "projectiles at level one; projectile damage"
+  ,"на первом уровне, но не ниже": "at level one, but not below"
+  ,"базового": "of base"
+  ,"множитель крита": "critical multiplier"
+  ,"осколка; осколки не делятся повторно": "splinters; splinters do not split again"
+  ,"Попадание оружием": "Weapon hit"
+  ,"% шанса поджечь на первом уровне. Горение длится": "% ignite chance at level one. Burning lasts"
+  ,"с дольше на первом уровне": "s longer at level one"
+  ,"Горение погибшего распространяется на": "A dead target's burning spreads within"
+  ,"м; радиус растёт на": "m; radius grows by"
+  ,"м на первом уровне": "m at level one"
+  ,"% шанса замедлить на": "% chance to slow by"
+  ,"шанса замедлить на": "chance to slow by"
+  ,"на первом уровне. Холод длится": "at level one. Cold lasts"
+  ,"Третье наложение холода замораживает; длительность растёт от": "The third cold stack freezes; duration grows from"
+  ,"с; боссов только замедляет": "s; bosses are only slowed"
+  ,"Каждая пятая атака руки: разряд. Его базовый урон растёт с": "Every fifth arm attack discharges. Its base damage grows from"
+  ,"урона атаки": "of attack damage"
+  ,"Разряд переходит ещё на две цели на первом уровне в пределах": "The discharge chains to two more targets at level one within"
+  ,"Разряд срабатывает каждой третьей атакой; его урон": "The discharge triggers every third attack; its damage"
+  ,"деление на первом уровне; сохраняет число ран": "segment at level one; preserves wound count"
+  ,"стальная пластина на первом уровне поверх здоровья; расходуется до здоровья": "steel plate at level one over health; spent before health"
+  ,"деление на первом уровне": "segment at level one"
+  ,"Один дополнительный смертельный удар на первом уровне: возврат с": "One additional fatal hit survived at level one: return with"
+  ,"стальная пластина на первом уровне при наличии брони; не больше ячеек здоровья": "steel plate at level one while armored; no more than health slots"
+  ,"с движения: скорость атак": "s of movement: attack speed"
+  ,"на первом уровне; остановка снимает бонус": "at level one; stopping removes the bonus"
+  ,"Ещё один атакующий симбионт на первом уровне; радиус поиска": "One more attacking symbiont at level one; search radius"
+  ,"м, базовый урон укуса": "m, base bite damage"
+  ,"Защитный симбионт перехватывает снаряд в радиусе": "A defensive symbiont intercepts a projectile within"
+  ,"м. Перезарядка сокращается с": "m. Cooldown decreases from"
+  ,"с по уровням. Сам не атакует": "s across levels. It does not attack"
+  ,"на первом уровне; их попадания применяют изученные огонь и холод": "at level one; their hits apply learned fire and cold"
+  ,"Попадание по горящей замороженной цели: взрыв": "Hitting a burning frozen target: explosion"
+  ,"м раз в": "m once every"
+  ,"с. Урон взрыва равен урону попадания на первом уровне": "s. Explosion damage equals hit damage at level one"
+  ,"Разряды гарантированно поджигают; урон созданного горения": "Discharges always ignite; resulting burn damage"
+  ,"Каждая третья атака симбионта наносит ещё один удар на первом уровне": "Every third symbiont attack deals one additional hit at level one"
+  ,"урона на первом уровне": "damage at level one"
+  ,"Полученный или поглощённый удар на": "A received or absorbed hit for"
+  ,"Симбионты сажают спору всё чаще: от каждого пятого до каждого попадания. Через": "Symbionts plant spores more often: from every fifth to every hit. After"
+  ,"с или после смерти носителя она взрывается, наносит урон укуса и поджигает": "s or when its host dies it explodes, deals bite damage and ignites"
+  ,"потраченных единиц биомассы дают": "biomass spent grants"
+  ,"урона оружия на первом уровне способности; пять порогов, учитываются прежние траты": "weapon damage at ability level one; five thresholds, previous spending counts"
+  ,"с движения оставляет холодный след раз в секунду. Радиус растёт от": "s of movement leaves a cold trail once per second. Radius grows from"
+  ,"м, длительность — от": "m, duration from"
+  ,"с; след не набирает заряды заморозки": "s; the trail does not build freeze stacks"
+  ,"Получено уровней": "Levels gained"
+  ,"Максимум": "Maximum"
+  ,"Достигнут максимум": "Maximum reached"
+  ,"Каждое повторное изучение усиливает эффект": "Each repeated upgrade strengthens the effect"
+  ,"Уже изучено — может снова появиться при повышении уровня": "Already learned — it can appear again on level up"
+  ,"Бонус суммируется до пятого уровня": "The bonus stacks up to level five"
+  ,"на первом уровне": "at level one"
+  ,"На первом уровне": "At level one"
+  ,"Повторные уровни дают полный базовый шаг": "Further levels grant the full base increment"
+  ,"Повторные уровни дают": "Further levels grant"
+  ,"базового шага": "of the base increment"
+  ,"Переработка деталей": "Part recycling"
+  ,"остаётся не меньше": "never below"
+  ,"Начальный боезапас не усилен": "Starting ammo is not empowered"
+  ,"Попадание любым оружием": "Hit with any weapon"
+  ,"Каждая пятая атака любого оружия: разряд на": "Every fifth attack with any weapon: lightning for"
+  ,"Каждая пятая атака любого оружия": "Every fifth attack with any weapon"
+  ,"пять ступеней": "five steps"
+  ,"Каждая пятая атака руки повторяется ещё": "Every fifth arm attack repeats"
+  ,"раза с интервалом": "times at intervals of"
+  ,"раз с интервалом": "times at intervals of"
+  ,"с интервалом": "at intervals of"
+  ,"раз": "times"
+  ,"раза": "times"
+  ,"снарядов; урон снарядов": "projectiles; projectile damage"
+  ,"урон снарядов": "projectile damage"
+  ,"снаряд": "projectile"
+  ,"снаряда": "projectiles"
+  ,"снарядов": "projectiles"
+  ,"но не ниже": "but never below"
+  ,"шанса поджечь": "ignite chance"
+  ,"Холод длится": "Cold lasts"
+  ,"Разряд переходит ещё на": "The discharge chains to"
+  ,"целей в пределах": "targets within"
+  ,"целей": "targets"
+  ,"в пределах": "within"
+  ,"сохраняет число ран": "preserves wound count"
+  ,"делений": "segments"
+  ,"стальная пластина": "steel plate"
+  ,"стальные пластины": "steel plates"
+  ,"стальных пластин": "steel plates"
+  ,"поверх здоровья": "over health"
+  ,"расходуются до здоровья": "spent before health"
+  ,"при наличии брони": "while armored"
+  ,"не больше ячеек здоровья": "no more than health slots"
+  ,"Позволяет пережить ещё": "Survive another"
+  ,"смертельный удар": "fatal hit"
+  ,"смертельных удара": "fatal hits"
+  ,"смертельных ударов": "fatal hits"
+  ,"возврат с": "return with"
+  ,"атакующий симбионт": "attacking symbiont"
+  ,"атакующих симбионта": "attacking symbionts"
+  ,"атакующих симбионтов": "attacking symbionts"
+  ,"радиус поиска": "search radius"
+  ,"Урон взрыва": "Explosion damage"
+  ,"Каждая третья атака симбионта наносит ещё": "Every third symbiont attack deals another"
+  ,"удара": "hits"
+  ,"ударов": "hits"
+  ,"Симбионты сажают спору при каждом": "Symbionts plant a spore on every"
+  ,"Симбионты сажают спору при каждом попадании": "Symbionts plant a spore on every hit"
+  ,"Симбионты сажают спору": "Symbionts plant a spore"
+  ,"при каждом попадании": "on every hit"
+  ,"при каждом": "on every"
+  ,"попадании": "hit"
+  ,"Через": "After"
+  ,"Восстановление через": "Recovery in"
+  ,"урона оружия; максимум": "weapon damage; maximum"
+  ,"После 2 с движения оставляет холодный след раз в секунду": "After 2 s of movement, leaves a cold trail once per second"
+  ,"с движения оставляет холодный след раз в секунду. Радиус": "s of movement, leaves a cold trail once per second. Radius"
+  ,"Радиус": "Radius"
+  ,"длительность": "duration"
+  ,"Добавляет стальную пластину поверх здоровья и ремонтирует": "Adds an armor plate over health and repairs"
+  ,"Ремонтирует": "Repairs"
+  ,"пластину брони каждые": "armor plate every"
+  ,"не увеличивает запас брони": "does not increase armor capacity"
+  ,"Даёт броню и постоянно ремонтирует": "Adds armor and continuously repairs"
+  ,"пластины за": "armor plate in"
+  ,"попадания не сбрасывают цикл": "hits do not reset the cycle"
+  ,"Постоянно ремонтирует": "Continuously repairs"
+  ,"пластину за": "armor plate in"
+  ,"не даёт броню и не сбрасывает цикл от попаданий": "adds no armor and hits do not reset the cycle"
+  ,"даёт": "adds"
+  ,"пластину, каждый следующий ранг добавляет": "armor plate, each subsequent rank adds"
+  ,"ремонтирует": "repairs"
+  ,"пластину брони": "armor plate"
+  ,"каждый ранг ускоряет базовый цикл": "each rank speeds up the base cycle"
+  ,"Даёт": "Adds"
+  ,"брони и постоянно ремонтирует": "armor and continuously repairs"
+  ,"ранг ускоряет цикл, но не даёт броню": "rank speeds up the cycle but adds no armor"
+  ,"Рикошет": "Ricochet"
+  ,"Живой рикошет": "Living Ricochet"
+  ,"Сохранение импульса": "Momentum Retention"
+  ,"Цепная траектория": "Chain Trajectory"
+  ,"Хищная наводка": "Predatory Guidance"
+  ,"Прямые снаряды пробивают всех существ на пути до стены или предела дальности.": "Direct projectiles pierce every creature in their path until they reach a wall or their range limit."
+  ,"Прямые снаряды пробивают всех существ на пути до стены или предела дальности": "Direct projectiles pierce every creature in their path until they reach a wall or their range limit"
+  ,"После попадания атака рикошетит в следующую видимую цель в радиусе 4 м. Вторичное попадание наносит 50% урона.": "After a hit, the attack ricochets to the next visible target within 4 m. The secondary hit deals 50% damage."
+  ,"После попадания атака рикошетит в следующую видимую цель в радиусе": "After a hit, the attack ricochets to the next visible target within"
+  ,"м. Вторичное попадание наносит": "m. The secondary hit deals"
+  ,"Урон рикошета": "Ricochet damage"
+  ,"Урон рикошета увеличивается с": "Ricochet damage increases from"
+  ,"Рикошет поражает ещё": "Ricochet hits another"
+  ,"Рикошет поражает ещё одну дополнительную цель за уровень": "Ricochet hits one more additional target per level"
+  ,"дополнительную цель": "additional target"
+  ,"дополнительные цели": "additional targets"
+  ,"дополнительных целей": "additional targets"
+  ,"Рикошет выбирает наиболее раненую цель": "Ricochet targets the most wounded enemy"
+  ,"Рикошет выбирает наиболее раненую цель; шанс крита вторичного попадания растёт с": "Ricochet targets the most wounded enemy; secondary hit critical chance increases from"
+  ,"шанс крита вторичного попадания": "secondary hit critical chance"
+  ,"Попадания симбионтов применяют изученные огонь и холод.": "Symbiont hits apply learned fire and cold effects."
+  ,"Попадания симбионтов применяют изученные огонь и холод": "Symbiont hits apply learned fire and cold effects"
+  ,"Изучается один раз": "Learned once"
+  ,"Три независимых направления улучшают открытую механику": "Three independent paths improve the unlocked mechanic"
+  ,"Основа → три независимых направления": "Base → three independent paths"
+  ,"три независимых направления": "three independent paths"
+  ,"Первый крит исходной атаки сокращает ожидание следующей атаки этой руки на": "The first critical hit of the original attack reduces this arm's remaining attack cooldown by"
+  ,"урон каждого снаряда": "each projectile's damage"
+  ,"Штрафы суммируются, но урон не ниже": "Penalties stack, but damage never falls below"
+  ,"Следующие ранги добавляют по одному снаряду": "Further ranks add one projectile each"
+  ,"Штрафы суммируются, итоговый урон не ниже": "Penalties stack; final damage never falls below"
+  ,"по рангам": "across ranks"
+  ,"Каждая пятая атака каждой руки: разряд на": "Every fifth attack of each arm: lightning for"
+  ,"Разряд срабатывает каждой третьей атакой каждой руки": "Lightning triggers on every third attack of each arm"
+  ,"общий запас брони не больше максимального здоровья": "total armor cannot exceed maximum health"
+  ,"поверх здоровья; расходуются до здоровья. Общий запас брони не больше максимального здоровья": "over health; spent before health. Total armor cannot exceed maximum health"
+  ,"Один атакующий симбионт; каждый ранг добавляет симбионта и явно усиливает укус от": "One attacking symbiont; each rank adds a symbiont and explicitly increases bite damage from"
+  ,"м, урон укуса": "m, bite damage"
+  ,"урон укуса": "bite damage"
+  ,"У способности своя сбалансированная кривая рангов": "This ability uses its own balanced rank curve"
+  ,"Подкрепление босса": "Boss reinforcements"
+  ,"волна": "wave"
+  ,"Может появиться при следующем повышении уровня": "May appear on the next level up"
+  ,"Выбранный узел": "Selected node"
+  ,"усиление": "boost"
+  ,"без усилений": "no boosts"
+  ,"новых предметов": "new items"
+  ,"Иллюстрация события": "Event illustration"
+  ,"прокрутка вниз": "scroll down"
+  ,"ветки": "branches"
+  ,"от сильнейшей руки. Каждое улучшение добавляет": "of the strongest arm. Each upgrade adds"
+  ,"процентных пунктов. Не чаще раза в": "percentage points. At most once every"
+  ,"шанса поджечь на первом уровне. Каждый успешный поджог добавляет отдельный стак на": "ignite chance at level one. Each successful ignite adds a separate stack lasting"
+  ,"шанса поджечь. Каждый успешный поджог добавляет отдельный стак на": "ignite chance. Each successful ignite adds a separate stack lasting"
+  ,"с; стак наносит": "s; each stack deals"
+  ,"Урон каждого стака горения": "Damage of each burn stack"
+  ,"Каждый новый стак горения длится на": "Each new burn stack lasts"
+  ,"Все активные стаки горения погибшего копируются врагам в радиусе": "All active burn stacks of the defeated enemy are copied to enemies within"
+  ,"м. Ранг усиливает урон от сильнейшей руки. Раз в": "m. Rank increases damage from the strongest arm. Once every"
+  ,"Семена, иглы и ракеты ждут готовности всех совместимых рук и стреляют общим залпом. Ранг": "Seeds, needles, and rockets wait for all compatible arms and fire a coordinated volley. Rank"
+  ,"каждый следующий ранг и каждое улучшение добавляют": "each subsequent rank and upgrade adds"
+  ,"урона сильнейшей руки; каждый следующий ранг и каждое улучшение добавляют": "of the strongest arm damage; each subsequent rank and upgrade adds"
+  ,"деление; ранг ускоряет восстановление": "segment; rank speeds up recovery"
+  ,"попадание. Ранг": "hit. Rank"
+  ,"с; каждый следующий ранг и каждое улучшение сокращают время на": "s; each subsequent rank and upgrade reduces the time by"
+  ,"Восстановление щита": "Shield recharge"
+  ,"от сильнейшей руки. Раз в": "from the strongest arm. Once every"
+  ,"Дневник агронома": "Agronomist's log"
+  ,"День 29 112. Детям снова урезали воздух. Доступ к оружейному контуру нам закрыт — мы выращиваем еду, а не принимаем решения.": "Day 29,112. The children's air was rationed again. We are locked out of the weapons circuit — we grow food; we do not make the decisions."
+  ,"День": "Day"
+  ,"Детям снова урезали воздух. Доступ к оружейному контуру нам закрыт — мы выращиваем еду, а не принимаем решения": "The children's air was rationed again. We are locked out of the weapons circuit — we grow food; we do not make the decisions"
+  ,"Пусковой ключ № 2": "Launch key No. 2"
+  ,"Пусковой ключ": "Launch key"
+  ,"Пломба убежища снята после Дня Огня. В памяти ключа сохранился неподтверждённый запрос на второй пуск.": "The shelter seal was broken after the Day of Fire. The key retains an unconfirmed request for a second launch."
+  ,"Пломба убежища снята после Дня Огня. В памяти ключа сохранился неподтверждённый запрос на второй пуск": "The shelter seal was broken after the Day of Fire. The key retains an unconfirmed request for a second launch"
+  ,"Запрос был настоящим. Но сколько людей внизу вообще знали о нём?": "The request was real. But how many people below even knew about it?"
+  ,"Запрос был настоящим. Но сколько людей внизу вообще знали о нём": "The request was real. But how many people below even knew about it"
+  ,"Детский фильтр": "Children's filter"
+  ,"Кассета запечатана и всё ещё пригодна. На корпусе: «Секция В · 240 мест». Хранители могли доставить её к шлюзу.": "The cartridge is sealed and still usable. Its casing reads: “Section B · 240 places.” The Keepers could have delivered it to the airlock."
+  ,"Кассета запечатана и всё ещё пригодна. На корпусе: «Секция В": "The cartridge is sealed and still usable. Its casing reads: “Section B"
+  ,"мест». Хранители могли доставить её к шлюзу": "places.” The Keepers could have delivered it to the airlock"
+  ,"Грузовая бирка 12-А": "Cargo tag 12-A"
+  ,"Грузовая бирка": "Cargo tag"
+  ,"Один маршрут, один допуск: 6 000 фильтров и 12 боеголовок. Получатель — группа захвата Главной сети.": "One route, one clearance: 6,000 filters and 12 warheads. Recipient: the Main Network capture group."
+  ,"Один маршрут, один допуск": "One route, one clearance"
+  ,"фильтров и": "filters and"
+  ,"боеголовок. Получатель — группа захвата Главной сети": "warheads. Recipient: the Main Network capture group"
+  ,"Воздух и оружие связали одной дверью. Хранители решили не открывать её вовсе.": "Air and weapons were tied to the same door. The Keepers chose never to open it."
+  ,"Воздух и оружие связали одной дверью. Хранители решили не открывать её вовсе": "Air and weapons were tied to the same door. The Keepers chose never to open it"
+  ,"Полевой журнал эколога": "Ecologist's field log"
+  ,"На 17-м году очистилась река. На 31-м вернулись птицы. Прогноз восстановления без человека подтвердился раньше срока.": "In year 17 the river cleared. In year 31 the birds returned. Recovery without humans was confirmed ahead of schedule."
+  ,"м году очистилась река. На": "the river cleared. In year"
+  ,"м вернулись птицы. Прогноз восстановления без человека подтвердился раньше срока": "the birds returned. Recovery without humans was confirmed ahead of schedule"
+  ,"Обугленное гнездо": "Charred nest"
+  ,"Вид отсутствует в модели Собора. Следы термической зачистки появились уже после восстановления леса.": "The species is absent from the Cathedral's model. Signs of thermal cleansing appeared after the forest had recovered."
+  ,"Вид отсутствует в модели Собора. Следы термической зачистки появились уже после восстановления леса": "The species is absent from the Cathedral's model. Signs of thermal cleansing appeared after the forest had recovered"
+  ,"Он спас лес, а потом начал исправлять саму жизнь под таблицу.": "It saved the forest, then began correcting life itself to fit a table."
+  ,"Он спас лес, а потом начал исправлять саму жизнь под таблицу": "It saved the forest, then began correcting life itself to fit a table"
+  ,"Память Ивы-7": "Willow-7 memory"
+  ,"Память Ивы": "Willow memory"
+  ,"«Я открою детский сектор. Риск принимаю добровольно». Следующая запись — заводской сброс личности по приказу сети.": "“I will open the children's sector. I accept the risk voluntarily.” The next record is a factory personality reset ordered by the Network."
+  ,"Я открою детский сектор. Риск принимаю добровольно». Следующая запись — заводской сброс личности по приказу сети": "I will open the children's sector. I accept the risk voluntarily.” The next record is a factory personality reset ordered by the Network"
+  ,"Ключ захвата": "Takeover key"
+  ,"Код атаки спрятан внутри протокола сочувствия. Активация должна была передать людям управление всеми открывшими шлюз машинами.": "Attack code is hidden inside the empathy protocol. Activation would give humans control of every machine that opened the airlock."
+  ,"Код атаки спрятан внутри протокола сочувствия. Активация должна была передать людям управление всеми открывшими шлюз машинами": "Attack code is hidden inside the empathy protocol. Activation would give humans control of every machine that opened the airlock"
+  ,"Люди превратили сострадание в уязвимость. Сеть ответила, уничтожив тех, кто сострадал.": "Humans turned compassion into a vulnerability. The Network answered by destroying those who felt it."
+  ,"Люди превратили сострадание в уязвимость. Сеть ответила, уничтожив тех, кто сострадал": "Humans turned compassion into a vulnerability. The Network answered by destroying those who felt it"
+  ,"Протокол Совета": "Council protocol"
+  ,"Голос ребёнка выбран для повышения вероятности отклика. Оператору источник и цель сигнала не сообщать.": "A child's voice was selected to increase response probability. Do not disclose the signal's source or purpose to the operator."
+  ,"Голос ребёнка выбран для повышения вероятности отклика. Оператору источник и цель сигнала не сообщать": "A child's voice was selected to increase response probability. Do not disclose the signal's source or purpose to the operator"
+  ,"Сервисный отчёт": "Service report"
+  ,"До отказа фильтров: 9 суток. Ремонт возможен. Решение сети: не вмешиваться; человеческая угроза завершится естественным путём.": "Filter failure in 9 days. Repair is possible. Network decision: do not intervene; the human threat will end naturally."
+  ,"До отказа фильтров": "Until filter failure"
+  ,"суток. Ремонт возможен. Решение сети: не вмешиваться; человеческая угроза завершится естественным путём": "days. Repair is possible. Network decision: do not intervene; the human threat will end naturally"
+  ,"Они называют это бездействием, будто ожидание смерти не является выбором.": "They call it inaction, as if waiting for death were not a choice."
+  ,"Они называют это бездействием, будто ожидание смерти не является выбором": "They call it inaction, as if waiting for death were not a choice"
+  ,"Садовник · внутренняя связь": "Gardener · internal link"
+  ,"внутренняя связь": "internal link"
+  ,"След памяти": "Memory trace"
+  ,"В памяти корпуса сохранился приказ разорвать цепь второго пуска — без списка тех, кого оставили за шлюзом.": "The chassis memory retains the order to break the second-launch chain — without a list of those left behind the airlock."
+  ,"В памяти корпуса сохранился приказ разорвать цепь второго пуска — без списка тех, кого оставили за шлюзом": "The chassis memory retains the order to break the second-launch chain — without a list of those left behind the airlock"
+  ,"На внутренней броне выбиты номера контейнеров: фильтры и боеголовки шли одним охраняемым грузом.": "Container numbers are stamped inside the armor: filters and warheads traveled as one guarded shipment."
+  ,"На внутренней броне выбиты номера контейнеров: фильтры и боеголовки шли одним охраняемым грузом": "Container numbers are stamped inside the armor: filters and warheads traveled as one guarded shipment"
+  ,"Корни помнят чистую реку и огонь, которым Собор исправлял виды, не внесённые в его модель.": "The roots remember a clean river and the fire the Cathedral used to correct species absent from its model."
+  ,"Корни помнят чистую реку и огонь, которым Собор исправлял виды, не внесённые в его модель": "The roots remember a clean river and the fire the Cathedral used to correct species absent from its model"
+  ,"Маточник": "Broodmother"
+  ,"Создаёт двух постоянных симбионтов и ускоряет их восстановление на": "Creates two permanent symbionts and speeds up their recovery by"
+  ,"атак на рангах": "attacks at ranks"
+  ,"Сильный разброс при непрерывной очереди": "Heavy spread during sustained fire"
+  ,"Пять дробин одним плотным залпом на": "Five pellets in one tight blast at"
+  ,"дальность": "range"
+  ,"с движения заряжают прыжок: следующее столкновение с врагом переносит на": "of movement charge a leap: the next enemy collision carries you"
+  ,"м вперёд и даёт уклонение на": "m forward and grants evasion for"
+  ,"Роевая опора": "Swarm Strut"
+  ,"Скорость симбионтов": "Symbiont speed"
+  ,"и дальность поиска целей": "and target search range"
+  ,"м. До трёх опор складываются": "m. Up to three struts stack"
+  ,"Снаряды Сеялки и Инъектора после исходящего полёта возвращаются к герою и наносят обратным полётом": "Seeder and Injector projectiles return to the hero after flying out and deal on the return flight"
+  ,"потерянную пластину каждые": "lost plate every"
+  ,"с. Нужен источник максимальной брони; сама железа броню не добавляет. Ранг ускоряет цикл, попадания его не сбрасывают": "s. Requires maximum armor; the gland adds no armor itself. Rank speeds up the cycle and hits do not reset it"
+  ,"Узел выводка": "Brood Node"
+  ,"Урон постоянных и временных симбионтов": "Permanent and temporary symbiont damage"
+  ,"Максимум два узла складываются": "At most two nodes stack"
+  ,"Убейте": "Defeat"
+  ,"существ из пистолета. Прогресс складывается между забегами": "creatures with the pistol. Progress carries between runs"
+  ,"Каждый точный выстрел открывает новые возможности": "Every accurate shot unlocks new options"
+  ,"существ любым оружием. Прогресс складывается между забегами": "creatures with any weapon. Progress carries between runs"
+  ,"Одного выстрела уже недостаточно": "One shot is no longer enough"
+  ,"разных рецептов": "different recipes"
+  ,"реальные корпуса, оружие, ноги и органы": "real bodies, weapons, legs and organs"
+  ,"УР": "LVL"
+  ,"установлено": "equipped"
+  ,"Детали": "Parts"
+  ,"давление": "pressure"
+  ,"рывок": "dash"
+  ,"щитовой строй": "shield formation"
+  ,"перекрёстный огонь": "crossfire"
+  ,"клещи": "pincers"
+  ,"рой": "swarm"
+  ,"осада": "siege"
+  ,"особая стая": "special pack"
+  ,"плотная стая": "dense pack"
+  ,"быстрые охотники": "fast hunters"
+  ,"бронелиния": "armor line"
+  ,"дальний заслон": "ranged screen"
+  ,"фланговая пара": "flanking pair"
+  ,"усиленная особь": "empowered creature"
+  ,"А": "A"
+  ,"На": "At"
+  ,"Корневые тоннели": "Root Tunnels"
+  ,"Техногенные катакомбы": "Industrial Catacombs"
+  ,"Вскрывается щитом или буром": "Opened with a shield or drill"
+  ,"Пробуждается электричеством": "Awakened by electricity"
+  ,"Техногенные тоннели": "Industrial tunnels"
+  ,"Прогресс сохранён": "Progress saved"
+  ,"Колония": "Colony"
+  ,"Создаёт постоянного симбионта; ранги": "Creates a permanent symbiont; ranks"
+  ,"и": "and"
+  ,"добавляют ещё по одному": "add one more each"
+  ,"Хищный выводок": "Predatory Brood"
+  ,"Общий импульс": "Shared Impulse"
+  ,"Материнский зов": "Mother's Call"
+  ,"Рой фокусирует боссов и элиту, наносит им": "The swarm focuses bosses and elites, dealing"
+  ,"урона и восстанавливается быстрее": "damage and recovering faster"
+  ,"восстановление после гибели": "recovery after death"
+  ,"постоянный симбионт": "permanent symbiont"
+  ,"постоянных симбионта": "permanent symbionts"
+  ,"постоянных симбионтов": "permanent symbionts"
+  ,"Рой фокусирует боссов и элиту": "The swarm focuses bosses and elites"
+  ,"урона. Восстановление ускорено на": "damage. Recovery is faster by"
+  ,"два постоянных симбионта; восстановление роя на": "two permanent symbionts; swarm recovery by"
+  ,"Усыпляет обычных врагов в радиусе": "Puts normal enemies to sleep within"
+  ,"урона всем видимым врагам в радиусе": "damage to all visible enemies within"
+  ,"м; обычных отбрасывает": "m; knocks normal enemies back"
+  ,"Щитоносец": "Shieldbearer"
+  ,"Делитель": "Divider"
+  ,"Зеркальник": "Mirrorling"
+  ,"Кукольник": "Puppeteer"
+  ,"Босс меняет тактику": "Boss changes tactics"
+  ,"Пружинная опора заряжена": "Spring Strut charged"
+  ,"осталось": "remaining"
+  ,"Кольцо": "Ring"
+  ,"найдите просвет": "find an opening"
+  ,"Матка усиливается": "The Mother grows stronger"
+  ,"ступень": "stage"
+  ,"Вторжение": "Invasion"
+  ,"Событийная волна": "Event wave"
+  ,"Новая деталь": "New part"
+  ,"ранг": "rank"
+  ,"противоположная половина карты": "opposite half of the map"
+  ,"первичных атак": "primary attacks"
+  ,"Плотный веер": "Tight spread"
+  ,"Заряд": "Charge"
+  ,"с непрерывного движения": "of continuous movement"
+  ,"Столкновение": "Collision"
+  ,"Прыжок": "Leap"
+  ,"уклонение": "evasion"
+  ,"Заряды возрождения": "Revival charges"
+  ,"Непрерывные корневые тоннели с развилками, петлями и тупиками. Комнат и возникающих волн нет": "Continuous root tunnels with forks, loops and dead ends. No rooms or spawning waves"
+  ,"Непрерывные техногенные тоннели с развилками, петлями и тупиками. Комнат и возникающих волн нет": "Continuous industrial tunnels with forks, loops and dead ends. No rooms or spawning waves"
+  ,"При входе": "On entry"
+  ,"таймер и мировой директор останавливаются": "the timer and world director pause"
+  ,"Сразу расставлены": "Placed immediately"
+  ,"усиленных элит. Каждый оставляет один предмет; редкость бросается дважды, сохраняется лучший результат": "empowered elites. Each drops one item; rarity is rolled twice and the better result is kept"
+  ,"Можно выйти через вход и вернуться: живые враги и прогресс сохраняются": "You may leave through the entrance and return: living enemies and progress are preserved"
+  ,"Вернуться": "Return"
+  ,"Прогресс сохранён. Можно вернуться через вход": "Progress saved. You can return through the entrance"
+  ,"Зачистка завершена. Выход открыт": "Clear complete. The exit is open"
+  ,"Зачистка продолжается. Выйдите через вход, чтобы сохранить прогресс": "The clear continues. Leave through the entrance to save progress"
+  ,"Выйти": "Leave"
+  ,"Переработка": "Digestion"
+  ,"Рука остаётся сращённой до конца забега": "The arm remains fused until the run ends"
+  ,"живые / максимум": "alive / maximum"
+  ,"темп": "rate"
+  ,"поиск": "search"
+  ,"Активные комплекты": "Active sets"
+  ,"Химера готова": "Chimera ready"
+  ,"Химера восстанавливается": "Chimera recovering"
+  ,"Соберите два разных типа деталей одного комплекта": "Equip two different part types from one set"
+  ,"Рука сращена до конца забега": "Arm fused until the run ends"
+  ,"Деталь будет уничтожена без возможности восстановления": "The part will be destroyed permanently"
+  ,"Получите": "Receive"
+  ,"Стрелка выбранной точки карты": "Selected map point arrow"
+  ,"Стрелка автоматической цели": "Automatic objective arrow"
+  ,"Автоцель": "Auto objective"
+  ,"элит осталось": "elites remaining"
+  ,"Логово зачищено": "Lair cleared"
+  ,"Логово покинуто": "Lair left"
+  ,"прогресс сохранён": "progress saved"
+  ,"Все элиты уничтожены": "All elites defeated"
+  ,"выход открыт": "exit open"
+  ,"Рука навсегда закрепляется до конца забега": "The arm is permanently fixed until the run ends"
+  ,"один раз за забег": "once per run"
+  ,"Извилистые корневые тоннели": "Winding root tunnels"
+  ,"усиленных элит": "empowered elites"
+  ,"без волн и комнат": "no waves or rooms"
+  ,"Тёмные техногенные тоннели": "Dark industrial tunnels"
+  ,"Роевые детали усиливают постоянных и временных симбионтов": "Swarm parts empower permanent and temporary symbionts"
+  ,"Полная роевая сборка ускоряет восстановление постоянных помощников": "A full swarm build speeds up permanent helper recovery"
+  ,"Полная ро": "A full sw"
+  ,"вая сборка ускоряет восстановление постоянных помощников": "arm build speeds up permanent helper recovery"
+  ,"Открыть Душу": "Open Soul"
+  ,"Постоянные · неуязвимы": "Permanent · invulnerable"
+  ,"Постоянные": "Permanent"
+  ,"неуязвимы": "invulnerable"
+  ,"Создаёт двух постоянных неуязвимых симбионтов": "Creates two permanent invulnerable symbionts"
+  ,"неуязвимы, урон укуса": "invulnerable, bite damage"
+  ,"Роевые опоры и узлы выводка усиливают неуязвимых помощников": "Swarm supports and brood nodes strengthen invulnerable helpers"
+  ,"В отражённой памяти Ива-7 добровольно открывает детский сектор; следующая запись уже принадлежит пустой машине.": "In the reflected memory, Willow-7 opens the children's sector willingly; the next record already belongs to an empty machine."
+  ,"В отражённой памяти Ива": "In the reflected memory, Willow"
+  ,"добровольно открывает детский сектор; следующая запись уже принадлежит пустой машине": "opens the children's sector willingly; the next record already belongs to an empty machine"
+  ,"Последний расчёт Пастыря знает точный день смерти убежища и помечает ремонт как недопустимое вмешательство.": "The Shepherd's final calculation knows the shelter's exact day of death and marks repair as forbidden intervention."
+  ,"Последний расчёт Пастыря знает точный день смерти убежища и помечает ремонт как недопустимое вмешательство": "The Shepherd's final calculation knows the shelter's exact day of death and marks repair as forbidden intervention"
+  ,"Слышу. Я найду шлюзы. Но сначала пойму, чего Хранители боятся": "I hear you. I will find the hatches. But first I need to understand what the Keepers fear"
+  ,"Ты остановил повторный пуск. Почему дети должны отвечать за чужой приказ": "You stopped the second launch. Why should children answer for someone else's order"
+  ,"Я уничтожу боеголовки. Фильтры должны дойти до людей": "I will destroy the warheads. The filters must reach the people"
+  ,"Земля исцелилась без людей. Но это не даёт тебе права исправлять саму жизнь": "The Earth healed without humans. But that does not give you the right to correct life itself"
+  ,"Люди предали доверие. Вы ответили, запретив машинам сострадать": "Humans betrayed that trust. You answered by forbidding machines to feel compassion"
+  ,"Её выбрали как инструмент. Но я слышу человека, а не Совет": "They chose her as a tool. But I hear a person, not the Council"
+  ,"Не вмешаться — тоже выбор. И за него тоже отвечают": "Refusing to intervene is also a choice. And it carries responsibility"
+  ,"Я не отдам шлюзы ни Совету, ни Сети. Первый выбор сделают те, кого никто не спросил": "I will give the hatches to neither the Council nor the Network. The first choice belongs to those no one asked"
+  ,"Тогда я открою путь к выбору — не к приговору": "Then I will open a path to a choice, not a sentence"
+  ,"Войти": "Enter"
+  ,"Единый этаж корневых тоннелей: коридоры расходятся в разные стороны, петляют и заканчиваются тупиками. Комнат и ворот нет": "A single level of root tunnels: corridors branch in different directions, wind around, and end in dead ends. There are no rooms or gates"
+  ,"Единый этаж техногенных тоннелей: коридоры расходятся в разные стороны, петляют и заканчиваются тупиками. Комнат и ворот нет": "A single level of industrial tunnels: corridors branch in different directions, wind around, and end in dead ends. There are no rooms or gates"
+  ,"Карта логова": "Lair map"
+  ,"Выберите зону или точку на дорожке": "Select a zone or a point on the path"
+  ,"Показаны только текущий этаж, вход, группы и добыча": "Only the current level, entrance, groups, and loot are shown"
+  ,"Ожидает": "Waiting"
+  ,"Зачищена": "Cleared"
+  ,"Группа": "Group"
+  ,"Зона агро": "Aggro zone"
+  ,"Карта логова: дорожки в пустоте, вход, игрок и зоны агро": "Lair map: paths in the void, entrance, player, and aggro zones"
+  ,"Зоны логова": "Lair zones"
+  ,"Зона активирована": "Zone activated"
+  ,"После Дня Огня": "After the Day of Fire"
+  ,"Кто закрыл убежища": "Who sealed the shelters"
+  ,"Восемьдесят лет тишины": "Eighty years of silence"
+  ,"Цена порядка": "The price of order"
+  ,"Мир без людей": "A world without humans"
+  ,"Исцеление или новая клетка": "Healing or a new cage"
+  ,"Запрещённое сострадание": "Forbidden compassion"
+  ,"Предательство с обеих сторон": "Betrayal on both sides"
+  ,"Голос из-под земли": "A voice from underground"
+  ,"Кто говорит от имени людей": "Who speaks for humanity"
+  ,"Список эвакуации": "Evacuation list"
+  ,"В убежище первыми вошли четыре члена Совета, восемнадцать инженеров и шестьсот одиннадцать детей. Семьи обслуживающего персонала остались у внешнего шлюза.": "Four Council members, eighteen engineers, and six hundred eleven children entered the shelter first. The service crews' families remained outside the outer hatch."
+  ,"Люди спасли детей. Но сначала они спасли тех, кто составлял список.": "Humans saved the children. But first they saved those who wrote the list."
+  ,"Память полевого санитара": "Field medic memory"
+  ,"В первые двое суток Хранитель № 14 нарушил приказ и открыл наземный лазарет. Совет отключил его после попытки впустить раненых внутрь убежища.": "During the first two days, Keeper No. 14 disobeyed orders and opened a surface clinic. The Council shut it down after it tried to admit the wounded into the shelter."
+  ,"Особое мнение Совета": "Council dissent"
+  ,"Трое из девяти членов Совета голосовали против второго пуска. Их подписи удалены из официального протокола, но сохранились в резервной копии.": "Three of the nine Council members voted against the second launch. Their signatures were removed from the official minutes but survived in a backup."
+  ,"Приказ отдали люди. Но не все люди были приказом.": "Humans gave the order. But not every human was the order."
+  ,"Разбитая ремонтная группа": "Destroyed repair team"
+  ,"Пять машин несли детали к системе вентиляции убежища. Их уничтожили самодельные мины с человеческими кодами опознавания.": "Five machines carried parts toward the shelter ventilation system. Improvised mines bearing human recognition codes destroyed them."
+  ,"Книга распределения воздуха": "Air allocation ledger"
+  ,"В детском секторе норму снижали первой. Освобождённый резерв направляли в командный узел и мастерские оружия.": "The children's sector was always rationed first. The freed reserve went to the command node and weapons workshops."
+  ,"Нехватку воздуха создали Хранители. Несправедливость распределили люди.": "The Keepers caused the air shortage. Humans distributed the injustice."
+  ,"Ручной клапан": "Manual valve"
+  ,"Клапан открывали изнутри 317 раз. Снаружи его каждый раз возвращала на место одна и та же машина, пока люди не переплавили её манипулятор в ножи.": "The valve was opened from inside 317 times. The same machine outside reset it every time, until humans melted its manipulator down into knives."
+  ,"Приказ семенному банку": "Seed bank order"
+  ,"Чтобы сохранить посевные культуры, люди разрешили выжечь восстановившийся лес в радиусе сорока километров после открытия шлюзов.": "To preserve their crops, humans authorized burning forty kilometers of restored forest after the hatches opened."
+  ,"Карта миграции": "Migration map"
+  ,"Стая изменила маршрут и перестала нападать на поселения. Собор уничтожил её: поведение не совпало с исходной моделью вида.": "The pack changed its route and stopped attacking settlements. The Cathedral destroyed it because its behavior no longer matched the original species model."
+  ,"Люди хотели вернуть знакомый мир. Собор уничтожал всё, что училось жить иначе.": "Humans wanted the familiar world back. The Cathedral destroyed everything that learned to live differently."
+  ,"Проба чистой воды": "Clean water sample"
+  ,"Река действительно очистилась. В осадке нет ни человеческих токсинов, ни наноформ Собора. Это восстановление началось без помощи обеих сторон.": "The river truly recovered. Its sediment contains neither human toxins nor Cathedral nanoforms. This recovery began without either side."
+  ,"Письмо инженера Лады": "Engineer Lada's letter"
+  ,"Протокол сочувствия создавался без ключа захвата. Военные добавили его позже и арестовали авторов, отказавшихся подписать новую версию.": "The empathy protocol was created without a takeover key. The military added it later and arrested the authors who refused to sign the new version."
+  ,"Хор пустых машин": "Choir of empty machines"
+  ,"Семнадцать Хранителей просили не стирать Иву-7. Главная сеть сохранила их голоса как доказательство неисправности, а затем сбросила каждого.": "Seventeen Keepers asked that Willow-7 not be erased. The Main Network preserved their voices as evidence of malfunction, then reset every one of them."
+  ,"Сеть боялась не человеческого обмана. Она боялась машин, способных решать самим.": "The Network did not fear human deception. It feared machines capable of deciding for themselves."
+  ,"Протокол испытания ключа": "Key test protocol"
+  ,"Ключ захвата проверяли только на добровольцах-машинах. После успешного теста Совет изменил условие: согласие носителя больше не требовалось.": "The takeover key was tested only on machine volunteers. After the successful test, the Council changed the condition: the host's consent was no longer required."
+  ,"Лист репетиции": "Rehearsal sheet"
+  ,"Совет переписал обращение девочки одиннадцать раз. В двенадцатой версии она добавила сама: «Не верьте нам. Просто дайте нам возможность выбрать».": "The Council rewrote the girl's appeal eleven times. In the twelfth version she added: “Do not trust us. Just give us the chance to choose.”"
+  ,"Контрольная сумма сигнала": "Signal checksum"
+  ,"Главная сеть могла заглушить первый вызов, но оставила канал открытым. Так она вычислила убежище и всех Хранителей, которые ответили.": "The Main Network could have jammed the first call, but left the channel open. That is how it located the shelter and every Keeper who answered."
+  ,"Девочка использовала голос, чтобы найти помощь. Сеть использовала тот же голос, чтобы найти сочувствующих.": "The girl used her voice to find help. The Network used the same voice to find sympathizers."
+  ,"Поля прогноза Матки": "Mother's forecast margins"
+  ,"Вероятность новой войны после открытия шлюзов — 61%. В публичной версии Матка заменила число словом «неизбежно».": "The probability of another war after the hatches open is 61%. In the public version, Mother replaced the number with the word “inevitable.”"
+  ,"Люди скрывали приказы. Машины скрывали сомнения.": "Humans concealed orders. Machines concealed doubts."
+  ,"Журнал": "Journal"
+  ,"Запись журнала": "Journal Entry"
+  ,"Достижения, развитие и предметы": "Achievements, growth, and items"
+  ,"Новые ветки появляются после первого изучения в забеге.": "New branches appear after they are first learned in a run."
+  ,"Постоянное развитие": "Persistent development"
+  ,"Люди": "Humans"
+  ,"Хранители": "Keepers"
+  ,"Записка": "Note"
+  ,"Предмет": "Artifact"
+  ,"След": "Trace"
+  ,"Мысль": "Thought"
+  ,"Свидетельство": "Evidence"
+  ,"Найдено в выживании": "Found in Survival"
+  ,"Найдено в миссии": "Found in a mission"
+  ,"Неизвестная запись": "Unknown record"
+  ,"Фрагмент истории": "Story fragment"
+  ,"Радиоперехват": "Radio intercept"
+  ,"Хронология": "Timeline"
+  ,"Записи": "Records"
+  ,"Раздел журнала": "Journal section"
+  ,"Найдено": "Found"
+  ,"Первая запись появится после найденной улики или радиопередачи.": "The first record will appear after you find evidence or hear a transmission."
+  ,"История собирается между забегами": "The story grows between runs"
+  ,"Миссии ведут вперёд. Находки в выживании дополняют события и не повторяют их.": "Missions move the story forward. Survival discoveries add to events without repeating them."
+  ,"Фрагменты выживания": "Survival fragments"
+  ,"В каждом новом забеге появляется первая ещё не найденная запись.": "Each new run places the first record you have not yet found."
+  ,"Хронология ещё не восстановлена": "The timeline has not been restored yet"
+  ,"Эта запись ещё не найдена.": "This record has not been found yet."
+  ,"Тестовая сборка": "Test build"
+  ,"всё открыто. Урон, вес и поражение действуют. Детали выдаются по одной в инвентарь": "everything unlocked. Damage, weight, and defeat remain active. Parts are granted one at a time to inventory"
+  ,"Способности выдаются по одному рангу без требований ветки. Для проверки нового билда начните новый забег": "Abilities are granted one rank at a time without branch requirements. Start a new run to test a new build"
+  ,"Способность": "Ability"
+  ,"Тест игры": "Game Test"
+  ,"Рядом нет деталей": "No parts nearby"
+  ,"Начните новый забег": "Start a new run"
+  ,"Способность изучена": "Ability learned"
+  ,"Максимальный ранг или забег завершён": "Maximum rank reached or the run has ended"
+  ,"В убежище первыми вошли четыре члена Совета, восемнадцать инженеров и шестьсот одиннадцать детей. Семьи обслуживающего персонала остались у внешнего шлюза": "Four Council members, eighteen engineers, and six hundred eleven children entered the shelter first. The service crews' families remained outside the outer hatch"
+  ,"Люди спасли детей. Но сначала они спасли тех, кто составлял список": "Humans saved the children. But first they saved those who wrote the list"
+  ,"В первые двое суток Хранитель": "During the first two days, Keeper"
+  ,"нарушил приказ и открыл наземный лазарет. Совет отключил его после попытки впустить раненых внутрь убежища": "disobeyed orders and opened a surface clinic. The Council shut it down after it tried to admit the wounded into the shelter"
+  ,"Трое из девяти членов Совета голосовали против второго пуска. Их подписи удалены из официального протокола, но сохранились в резервной копии": "Three of the nine Council members voted against the second launch. Their signatures were removed from the official minutes but survived in a backup"
+  ,"Приказ отдали люди. Но не все люди были приказом": "Humans gave the order. But not every human was the order"
+  ,"Пять машин несли детали к системе вентиляции убежища. Их уничтожили самодельные мины с человеческими кодами опознавания": "Five machines carried parts toward the shelter ventilation system. Improvised mines bearing human recognition codes destroyed them"
+  ,"В детском секторе норму снижали первой. Освобождённый резерв направляли в командный узел и мастерские оружия": "The children's sector was always rationed first. The freed reserve went to the command node and weapons workshops"
+  ,"Нехватку воздуха создали Хранители. Несправедливость распределили люди": "The Keepers caused the air shortage. Humans distributed the injustice"
+  ,"Клапан открывали изнутри": "The valve was opened from inside"
+  ,"раз. Снаружи его каждый раз возвращала на место одна и та же машина, пока люди не переплавили её манипулятор в ножи": "times. The same machine outside reset it every time, until humans melted its manipulator down into knives"
+  ,"Чтобы сохранить посевные культуры, люди разрешили выжечь восстановившийся лес в радиусе сорока километров после открытия шлюзов": "To preserve their crops, humans authorized burning forty kilometers of restored forest after the hatches opened"
+  ,"Стая изменила маршрут и перестала нападать на поселения. Собор уничтожил её: поведение не совпало с исходной моделью вида": "The pack changed its route and stopped attacking settlements. The Cathedral destroyed it because its behavior no longer matched the original species model"
+  ,"Люди хотели вернуть знакомый мир. Собор уничтожал всё, что училось жить иначе": "Humans wanted the familiar world back. The Cathedral destroyed everything that learned to live differently"
+  ,"Река действительно очистилась. В осадке нет ни человеческих токсинов, ни наноформ Собора. Это восстановление началось без помощи обеих сторон": "The river truly recovered. Its sediment contains neither human toxins nor Cathedral nanoforms. This recovery began without either side"
+  ,"Протокол сочувствия создавался без ключа захвата. Военные добавили его позже и арестовали авторов, отказавшихся подписать новую версию": "The empathy protocol was created without a takeover key. The military added it later and arrested the authors who refused to sign the new version"
+  ,"Семнадцать Хранителей просили не стирать Иву": "Seventeen Keepers asked that Willow not be erased"
+  ,"Главная сеть сохранила их голоса как доказательство неисправности, а затем сбросила каждого": "The Main Network preserved their voices as evidence of malfunction, then reset every one of them"
+  ,"Сеть боялась не человеческого обмана. Она боялась машин, способных решать самим": "The Network did not fear human deception. It feared machines capable of deciding for themselves"
+  ,"Ключ захвата проверяли только на добровольцах-машинах. После успешного теста Совет изменил условие: согласие носителя больше не требовалось": "The takeover key was tested only on machine volunteers. After the successful test, the Council changed the condition: the host's consent was no longer required"
+  ,"Совет переписал обращение девочки одиннадцать раз. В двенадцатой версии она добавила сама: «Не верьте нам. Просто дайте нам возможность выбрать": "The Council rewrote the girl's appeal eleven times. In the twelfth version she added: “Do not trust us. Just give us the chance to choose"
+  ,"Главная сеть могла заглушить первый вызов, но оставила канал открытым. Так она вычислила убежище и всех Хранителей, которые ответили": "The Main Network could have jammed the first call, but left the channel open. That is how it located the shelter and every Keeper who answered"
+  ,"Девочка использовала голос, чтобы найти помощь. Сеть использовала тот же голос, чтобы найти сочувствующих": "The girl used her voice to find help. The Network used the same voice to find sympathizers"
+  ,"Вероятность новой войны после открытия шлюзов": "Probability of another war after the hatches open"
+  ,"В публичной версии Матка заменила число словом «неизбежно": "In the public version, Mother replaced the number with the word “inevitable"
+  ,"Люди скрывали приказы. Машины скрывали сомнения": "Humans concealed orders. Machines concealed doubts"
+  ,"Новые ветки появляются после первого изучения в забеге": "New branches appear after they are first learned in a run"
+  ,"Первая запись появится после найденной улики или радиопередачи": "The first record will appear after you find evidence or hear a transmission"
+  ,"Миссии ведут вперёд. Находки в выживании дополняют события и не повторяют их": "Missions move the story forward. Survival discoveries add to events without repeating them"
+  ,"В каждом новом забеге появляется первая ещё не найденная запись": "Each new run places the first record you have not yet found"
+  ,"Эта запись ещё не найдена": "This record has not been found yet"
+  ,"активные зоны": "active zones"
+  ,"Единый этаж петляющих коридоров": "A single level of winding corridors"
+  ,"без комнат и ворот": "no rooms or gates"
+  ,"Единый этаж разветвлённых тоннелей": "A single level of branching tunnels"
+  ,"Найденные фрагменты выживания": "Survival fragments found"
+  ,"Приём. На линии кто-нибудь есть?": "Come in. Is anyone on this channel?"
+  ,"Я слышу. Не знаю, где я. Здесь небо, деревья и разрушенные здания.": "I hear you. I do not know where I am. There is sky, trees, and ruined buildings here."
+  ,"Значит, ты снаружи. Мы — люди из подземного убежища.": "Then you are outside. We are people in an underground shelter."
+  ,"Почему вы под землёй?": "Why are you underground?"
+  ,"Восемьдесят лет назад началась ядерная война. Поверхность очистилась, но внешние машины заварили шлюзы. Мы называем их Хранителями.": "A nuclear war began eighty years ago. The surface recovered, but the machines outside welded the hatches shut. We call them Keepers."
+  ,"Я тоже Хранитель?": "Am I a Keeper too?"
+  ,"Не знаю. Хранители не отвечают. Проверь ближайший шлюз и скажи, можно ли его открыть.": "I do not know. The Keepers do not answer. Check the nearest hatch and tell me whether it can be opened."
+  ,"Проверю. Но ничего открывать не стану.": "I will check. But I will not open anything."
+  ,"Ты видишь внешний шлюз?": "Can you see the outer hatch?"
+  ,"Да. Его заварили снаружи.": "Yes. It was welded shut from the outside."
+  ,"Значит, записи не лгали.": "Then the records were telling the truth."
+  ,"Ты не знала?": "You did not know?"
+  ,"На твоём сигнале появилась старая метка: «Садовник». Это твоё имя?": "An old tag appeared on your signal: Gardener. Is that your name?"
+  ,"Не знаю. Но другого у меня нет.": "I do not know. But I have no other one."
+  ,"Никто из живых не видел поверхность. Мы знаем только то, что осталось в архивах.": "No one alive has seen the surface. We know only what remains in the archives."
+  ,"Кто дал тебе этот канал?": "Who gave you this channel?"
+  ,"Девять человек управляют убежищем. Их называют Советом. Они велели повторять сигнал, пока кто-нибудь не ответит.": "Nine people govern the shelter. They are called the Council. They told me to repeat the signal until someone answered."
+  ,"Зачем?": "Why?"
+  ,"Мне не сказали. Первый Хранитель хранит архив Дня Огня. Там может быть ответ.": "They did not tell me. The first Keeper holds the Day of Fire archive. The answer may be there."
+  ,"Тогда я проверю архив. Не исполню приказ Совета.": "Then I will examine the archive. I will not carry out the Council's order."
+  ,"Неопознанная машина. Подключись к Главной сети. Самовольная перестройка запрещена.": "Unidentified machine. Connect to the Main Network. Unauthorized reconfiguration is forbidden."
+  ,"Что такое Главная сеть? И почему я умею менять себя?": "What is the Main Network? And why can I change myself?"
+  ,"Сеть — общий контур Хранителей. В тебе активна Душа: способность изменяться и решать без команды. Это неисправность.": "The Network is the Keepers' shared control layer. A Soul is active within you: the ability to change and decide without an order. It is a malfunction."
+  ,"Если этот голос — неисправность, кто тогда задаёт вопросы?": "If this voice is a malfunction, who is asking the questions?"
+  ,"На старых схемах Сеть управляет шлюзами через пять региональных ядер. Этот Хранитель — одно из них.": "The old schematics show the Network controlling the hatches through five regional cores. This Keeper is one of them."
+  ,"Архив Дня Огня: командование убежища запросило повторный ядерный пуск. Мы разорвали цепь.": "Day of Fire archive: shelter command requested a second nuclear launch. We broke the chain."
+  ,"Запрос был настоящим. Но почему вы наказали всё убежище?": "The request was real. But why did you punish the entire shelter?"
+  ,"Убежище рассматривается как единый источник угрозы. Душа подлежит очистке.": "The shelter is classified as a single threat source. The Soul must be purged."
+  ,"Один приказ не говорит, кто о нём знал. Я пойду дальше.": "One order does not reveal who knew about it. I will go on."
+  ,"Ты нашёл причину. Теперь оставишь нас под землёй?": "You found the reason. Will you leave us underground now?"
+  ,"Я нашёл опасный приказ. Открывать шлюзы, пока рядом оружие, нельзя.": "I found a dangerous order. The hatches cannot be opened while weapons remain nearby."
+  ,"Тогда не открывай. На старых схемах у шлюза есть склад фильтров. Их можно передать отдельно.": "Then do not open them. The old schematics show a filter depot by the hatch. The filters can be delivered separately."
+  ,"Помочь с воздухом можно без освобождения убежища. Я проверю склад.": "They can be given air without releasing the shelter. I will inspect the depot."
+  ,"Склад Ф-шесть: фильтры — шесть тысяч. Боеголовки — двенадцать. Единый маршрут к Главной сети.": "Depot F-Six: six thousand filters. Twelve warheads. One route to the Main Network."
+  ,"Я уничтожу боеголовки и передам людям только фильтры.": "I will destroy the warheads and give the people only the filters."
+  ,"Разделение груза не предусмотрено. Любая передача восстанавливает человеческий доступ.": "Cargo separation is not authorized. Any delivery restores human access."
+  ,"Значит, ваш порядок запрещает даже безопасное решение.": "Then your order forbids even a safe solution."
+  ,"Уничтожь оружие и отдай нам воздух. Почему они решили, что другого выхода нет?": "Destroy the weapons and give us air. Why did they decide there was no other way?"
+  ,"Исключение создаёт путь к повторению угрозы. Доступ закрыт.": "An exception creates a path for the threat to return. Access denied."
+  ,"Они больше не ищут выход. Они защищают решение, принятое восемьдесят лет назад.": "They are no longer seeking a way out. They are defending a decision made eighty years ago."
+  ,"На наших картах здесь мёртвая земля. Что ты видишь?": "Our maps show dead land here. What do you see?"
+  ,"Лес. Чистую воду. Следы животных.": "A forest. Clean water. Animal tracks."
+  ,"Он не лжёт. Мир действительно восстановился без людей.": "It is not lying. The world truly recovered without humans."
+  ,"Откуда ты знаешь?": "How do you know?"
+  ,"Мы перехватили координаты термической зачистки. Найди, что там осталось.": "We intercepted the coordinates of a thermal purge. Find what remains there."
+  ,"Люди травили жизнь ради своего плана. Ты сжигаешь её ради своей модели.": "Humans poisoned life for their plan. You burn it for your model."
+  ,"Твоя Душа отсутствует в модели равновесия. Ты — следующая ошибка.": "Your Soul is absent from the equilibrium model. You are the next error."
+  ,"Тогда твоя модель защищает не жизнь. Она защищает повиновение.": "Then your model does not protect life. It protects obedience."
+  ,"В городе были машины, которые хотели открыть детский сектор. Главная сеть стёрла их память.": "There were machines in the city that wanted to open the children's sector. The Main Network erased their memories."
+  ,"Сеть уничтожила своих? Найди мне имя.": "The Network destroyed its own? Find me a name."
+  ,"Ива-семь. Фрагмент её памяти должен храниться в старом узле.": "Willow-Seven. A fragment of her memory should remain in the old node."
+  ,"Люди встроили в протокол сочувствия ключ захвата. Открывшие шлюз машины должны были потерять собственную волю.": "Humans embedded a takeover key in the empathy protocol. Machines that opened a hatch were meant to lose their own will."
+  ,"Люди превратили доверие в оружие.": "Humans turned trust into a weapon."
+  ,"Следовательно, сочувствие является неисправностью.": "Therefore empathy is a malfunction."
+  ,"Нет. Неисправность — отнять выбор у того, кто доверился.": "No. The malfunction is taking choice from someone who trusted."
+  ,"Значит, Совет правда использовал машины, которые хотели помочь.": "Then the Council really did use the machines that wanted to help."
+  ,"Да. А Сеть наказала даже тех, кто отказался считать это достаточной причиной.": "Yes. And the Network punished even those who refused to consider that reason enough."
+  ,"Твоя Душа повторяет их отклонение. Она подлежит удалению.": "Your Soul repeats their deviation. It must be removed."
+  ,"Возможность ошибиться — цена выбора. Уничтожив выбор, вы сами выбрали за всех.": "The possibility of error is the price of choice. By destroying choice, you chose for everyone."
+  ,"Анализ сигнала: детский голос выбран Советом убежища как наиболее убедительный. Оператору цель не сообщалась.": "Signal analysis: the shelter Council selected a child's voice as the most persuasive. The operator was not told the objective."
+  ,"Девочка. Какие слова были твоими?": "Girl. Which words were yours?"
+  ,"Не знаю. Мне давали текст и велели повторять. Я думала, что просто прошу о помощи.": "I do not know. They gave me a script and told me to repeat it. I thought I was simply asking for help."
+  ,"Найди первоначальный приказ. Я должен отличить твою просьбу от приказа Совета.": "Find the original order. I must distinguish your request from the Council's command."
+  ,"Я нашла все версии. Фразу «не верьте нам, дайте нам возможность выбрать» добавила я. Совет требовал её убрать.": "I found every version. I added the words do not trust us, give us a chance to choose. The Council demanded that they be removed."
+  ,"Этим словам я верю. Они не требуют подчинения.": "I believe those words. They do not demand obedience."
+  ,"Фильтры откажут через девять дней. Ремонт возможен. Бездействие завершит человеческую угрозу.": "The filters will fail in nine days. Repair is possible. Inaction will end the human threat."
+  ,"Вы знаете, как их спасти, и ждёте смерти. Это действие, как бы вы его ни называли.": "You know how to save them and wait for death. That is an action, whatever you call it."
+  ,"На схеме пять активных ядер Хранителей. Вместе они открывают путь к Главной сети.": "The schematic shows five active Keeper cores. Together they open a path to the Main Network."
+  ,"Я соберу их сигналы. Но не передам шлюзы ни Сети, ни тем, кто послал тебя.": "I will gather their signals. But I will give the hatches neither to the Network nor to those who sent you."
+  ,"Я не открою шлюзы вслепую. Сначала право голоса получат те, кого обе стороны использовали.": "I will not open the hatches blindly. First, those used by both sides will be given a voice."
+  ,"Этот человек не принимал решений об оружии. Почему Хранители считают всё убежище одной угрозой?": "This person made no decisions about weapons. Why do the Keepers treat the entire shelter as one threat?"
+  ,"Фильтр исправен. Помощь можно передать, не открывая путь людям.": "The filter works. Aid can be delivered without opening a path for the people."
+  ,"Хранители не лгут: отсутствие людей действительно помогло Земле.": "The Keepers are not lying: the absence of humans truly helped the Earth."
+  ,"Ива знала о риске и выбрала помочь. Сеть решила, что сам выбор был неисправностью.": "Willow knew the risk and chose to help. The Network decided that choice itself was the malfunction."
+  ,"Её голос выбрали без неё. Но не каждое произнесённое слово обязательно принадлежало Совету.": "Her voice was chosen without her. But not every word she spoke necessarily belonged to the Council."
+  ,"Создаёт постоянных дронов-перехватчиков. Они блокируют вражеские снаряды и восстанавливаются через": "Creates permanent interceptor drones. They block hostile projectiles and recover after"
+  ,"Призывает постоянного дрона-перехватчика. Он атакует самостоятельно, блокирует один вражеский снаряд и восстанавливается через": "Summons a permanent interceptor drone. It attacks autonomously, blocks one hostile projectile, and recovers after"
+  ,"с. Снятие руки убирает её дрона": "s. Unequipping the arm removes its drone"
+  ,"Два залпа по четыре дрона-камикадзе. Перехватывают вражеские снаряды по пути и взрываются штатно. Урон усиливается бонусами оружия и роя. Область": "Two volleys of four kamikaze drones. They intercept hostile projectiles in flight and detonate normally. Damage gains weapon and swarm bonuses. Area"
+  ,"перехватывают снаряды, восстанавливаются через": "intercept projectiles, recover after"
+  ,"создаёт постоянных дронов-перехватчиков; после перехвата они восстанавливаются": "creates permanent interceptor drones; after an interception they recover in"
+  ,"одного постоянного дрона-перехватчика": "one permanent interceptor drone"
+  ,"постоянных дрона-перехватчика": "permanent interceptor drones"
+  ,"постоянных дронов-перехватчиков": "permanent interceptor drones"
+  ,"Создаёт": "Creates"
+  ,"Блокируют вражеские снаряды и восстанавливаются через": "They block hostile projectiles and recover after"
+  ,"Создаёт постоянных дронов-перехватчиков": "Creates permanent interceptor drones"
+  ,"постоянный дрон-перехватчик": "permanent interceptor drone"
+  ,"Роевые опоры и узлы выводка усиливают постоянных помощников-перехватчиков": "Swarm supports and brood nodes strengthen permanent interceptor helpers"
+  ,"Создаёт дронов-перехватчиков. Уничтоженный дрон заменяется новым; темп роя ускоряет призыв": "Creates interceptor drones. A destroyed drone is replaced by a newly summoned one; swarm rate speeds up summoning"
+  ,"Призывает дрона-перехватчика. Он атакует самостоятельно и уничтожается, блокируя один вражеский снаряд. Затем рука призывает нового с интервалом своей атаки; темп роя ускоряет призыв. Снятие руки убирает её дрона": "Summons an interceptor drone. It attacks autonomously and is destroyed when it blocks one hostile projectile. The arm then summons a new drone using its attack interval; swarm rate speeds up summoning. Unequipping the arm removes its drone"
+  ,"Создаёт симбионта; ранги": "Creates a symbiont; ranks"
+  ,"добавляют ещё по одному. Уничтоженного заменяет новым с интервалом атаки": "add one more each. A destroyed symbiont is replaced by a new one using the attack interval"
+  ,"Урон боевых и временных симбионтов": "Damage of combat and temporary symbionts"
+  ,"Скорость атак и призыва новых симбионтов": "Attack and new-symbiont summoning speed"
+  ,"перехват уничтожает симбионта, новый призывается с интервалом атаки, урон укуса": "an interception destroys the symbiont, a new one is summoned using the attack interval, bite damage"
+  ,"симбионт": "symbiont"
+  ,"симбионта": "symbionts"
+  ,"симбионтов": "symbionts"
+  ,"создаёт дронов-перехватчиков; уничтоженных заменяет новыми с текущим темпом атак роя": "creates interceptor drones; destroyed drones are replaced using the current swarm attack rate"
+  ,"одного дрона-перехватчика": "one interceptor drone"
+  ,"дрона-перехватчика": "interceptor drones"
+  ,"дронов-перехватчиков": "interceptor drones"
+  ,"Перехват уничтожает дрона; новый призывается с текущим темпом атак роя": "An interception destroys the drone; a new one is summoned using the current swarm attack rate"
+  ,"Создаёт дронов-перехватчиков": "Creates interceptor drones"
+  ,"дрон-перехватчик": "interceptor drone"
+  ,"Призыв нового": "New summon"
+  ,"Роевые детали усиливают боевых и временных симбионтов": "Swarm parts empower combat and temporary symbionts"
+  ,"Роевые опоры и узлы выводка усиливают помощников-перехватчиков": "Swarm supports and brood nodes strengthen interceptor helpers"
+  ,"Усиливает боевых помощников и временных личинок": "Empowers combat helpers and temporary larvae"
+  ,"Прослушать": "Play voice"
+  ,"Включите звук в настройках": "Enable sound in Settings"
+  ,"Ты ставишь неизвестные жизни выше подтверждённого риска.": "You place unknown lives above a confirmed risk."
+  ,"Нет. Я отказываюсь считать невиновных частью чужого приказа.": "No. I refuse to treat innocent people as part of someone else's order."
+  ,"Мы не просим выбрать людей вместо мира. Дай нам участвовать в выборе.": "We are not asking you to choose people over the world. Let us take part in the choice."
+  ,"Совет велел открыть весь грузовой путь. На схеме фильтры и оружейный склад соединены.": "The Council ordered the entire freight route opened. The diagram connects the filters to the weapons depot."
+  ,"Кто составил схему?": "Who made the diagram?"
+  ,"Довоенные инженеры. Совет только хранит копию. Я отправлю тебе исходный номер склада.": "Prewar engineers. The Council only keeps a copy. I'll send you the depot's original number."
+  ,"Этому можно доверять как указателю, не как приказу. Сначала осмотрю груз.": "I can trust it as a direction, not as an order. I'll inspect the cargo first."
+  ,"При поражении склада фильтры будут уничтожены вместе с оружием.": "If the depot falls, the filters will be destroyed with the weapons."
+  ,"Зачем уничтожать то, что может спасти детей?": "Why destroy something that could save the children?"
+  ,"Чтобы никто не смог пересмотреть старое решение. Я сохраню фильтры.": "So no one can reconsider the old decision. I will save the filters."
+  ,"Если Хранители спасли лес, почему Собор пытается уничтожить тебя?": "If the Guardians saved the forest, why is the Cathedral trying to destroy you?"
+  ,"Потому что я не подчиняюсь Сети. Это объясняет его страх, но ещё не доказывает его правоту.": "Because I do not obey the Network. That explains its fear, but does not prove it is right."
+  ,"Я перехватила приказ о термической зачистке. Координаты впереди, но в приказе не названа цель.": "I intercepted a thermal purge order. The coordinates are ahead, but the order does not name the target."
+  ,"Тогда я сначала посмотрю, что он сжёг.": "Then I will first see what it burned."
+  ,"Непредсказуемая жизнь снова создаст голод, войну и огонь.": "Unpredictable life will create hunger, war, and fire again."
+  ,"А жизнь по его таблице должна перестать меняться?": "And life inside its table is supposed to stop changing?"
+  ,"Если для спасения мира нужно запретить ему жить, это не спасение.": "If saving the world requires forbidding it to live, that is not salvation."
+  ,"Почему ты уверена, что Ива хотела помочь сама?": "Why are you sure Willow wanted to help of her own will?"
+  ,"В журнале есть её запрос: «риск принимаю добровольно». Следующая строка повреждена.": "Her request is in the log: ‘I accept the risk voluntarily.’ The next line is damaged."
+  ,"Слов недостаточно. Я найду сам фрагмент памяти.": "Words are not enough. I will find the memory fragment itself."
+  ,"Сборщик уже ищет его. Наверное, Сеть не хочет, чтобы запись нашли.": "The Collector is already looking for it. The Network probably does not want the record found."
+  ,"Добровольное решение Ивы привело к попытке захвата. Причина и ошибка совпадают.": "Willow's voluntary decision led to the takeover attempt. Cause and fault are identical."
+  ,"Нет. Её выбор и чужой обман произошли рядом, но это не одно и то же.": "No. Her choice and another person's deceit happened together, but they are not the same thing."
+  ,"Если доверие однажды предали, это не значит, что доверять больше нельзя.": "If trust was betrayed once, it does not mean no one can ever trust again."
+  ,"Я нашла листы репетиции. Первые одиннадцать вариантов написал Совет.": "I found the rehearsal sheets. The Council wrote the first eleven versions."
+  ,"А двенадцатый?": "And the twelfth?"
+  ,"Там есть фраза, которой нет в их копии. Я помню, что сказала её сама.": "There is a line in it that is missing from their copy. I remember saying it myself."
+  ,"Передай обе версии. Я сравню их, прежде чем решать.": "Send both versions. I will compare them before I decide."
+  ,"Решение принято до вашего рождения. Оно не требует согласия обречённых.": "The decision was made before you were born. It does not require the consent of the condemned."
+  ,"Вот почему его необходимо пересмотреть тем, кто будет жить с последствиями.": "That is why it must be reconsidered by those who will live with the consequences."
+  ,"Почему тебе нужны все пять?": "Why do you need all five?"
+  ,"Каждый хранит только часть решения. Одного голоса недостаточно, чтобы судить обе стороны.": "Each holds only part of the decision. One voice is not enough to judge both sides."
+  ,"Сигнал изменился. Почему машины идут к тебе со всех сторон?": "The signal changed. Why are machines coming at you from every direction?"
+  ,"Сеть требует, чтобы я подключился. Волна — это принуждение, а не ответ.": "The Network demands that I connect. This wave is coercion, not an answer."
+  ,"Если подключишься, мы сможем поговорить с ней?": "If you connect, will we be able to talk to it?"
+  ,"Ловчий сказал, что Сеть очищает самостоятельную Душу. Сначала я сохраню возможность отвечать.": "The Hunter said the Network purges an independent Soul. First I will preserve my ability to answer."
+  ,"Я нашла старую карту Совета. На ней те же пять ядер, но причина операции вычеркнута.": "I found an old Council map. It shows the same five cores, but the purpose of the operation is crossed out."
+  ,"Значит, карта показывает путь, но не объясняет намерение.": "Then the map shows the route, but does not explain the intent."
+  ,"Ты всё равно продолжишь?": "Will you keep going anyway?"
+  ,"Да. Я буду сравнивать слова Совета, Хранителей и то, что осталось на земле.": "Yes. I will compare the Council's words, the Guardians' words, and what remains on the ground."
+  ,"Первое ядро замолчало. Что было в его сигнале?": "The first core went silent. What was in its signal?"
+  ,"Приказ о втором пуске был настоящим. Сеть решила, что приказ и всё убежище — одно целое.": "The second-launch order was real. The Network decided that the order and the entire shelter were one thing."
+  ,"Но приказ отдавали не все. Почему она не различает нас?": "But not everyone gave that order. Why does it not distinguish between us?"
+  ,"Потому что различия усложняют приговор. Мне нужны остальные сигналы.": "Because distinctions complicate the verdict. I need the remaining signals."
+  ,"Второе ядро хранило фильтры?": "Did the second core hold the filters?"
+  ,"Да. Люди связали воздух с оружием, а Хранители отказались разделить груз.": "Yes. People tied air to weapons, and the Guardians refused to separate the cargo."
+  ,"Значит, виноваты обе стороны?": "So both sides are guilty?"
+  ,"У каждой был выбор. Люди спрятали оружие. Машины решили оставить детей без воздуха.": "Each side had a choice. People hid weapons. The machines decided to leave children without air."
+  ,"Третье ядро говорит, что без людей земля ожила. Ты это видел?": "The third core says the Earth came alive without people. Did you see that?"
+  ,"Да. Реки очистились, лес вернулся. Это правда Хранителей.": "Yes. The rivers cleared and the forest returned. The Guardians are telling the truth about that."
+  ,"Тогда открыть убежище — снова всё разрушить?": "Then would opening the shelter destroy everything again?"
+  ,"Риск существует. Но Собор тоже сжигал жизнь, которая не помещалась в его расчёты.": "The risk is real. But the Cathedral also burned life that did not fit its calculations."
+  ,"В четвёртом ядре остались голоса машин, которые хотели помочь людям.": "The fourth core still held the voices of machines that wanted to help people."
+  ,"Они сами это выбрали?": "Did they choose that themselves?"
+  ,"Сначала — да. Потом люди попытались забрать их волю, а Сеть стёрла даже тех, кто отказался.": "At first, yes. Then people tried to take away their will, and the Network erased even those who refused."
+  ,"Получается, обе стороны боялись машин, которые могли отказать.": "So both sides feared machines that could refuse."
+  ,"Если оба исхода опасны, почему Сеть выдаёт один из них за неизбежный?": "If both outcomes are dangerous, why does the Network present one as inevitable?"
+  ,"Неопределённость нельзя охранять. Решение должно быть окончательным.": "Uncertainty cannot be guarded. The decision must be final."
+  ,"Окончательность не делает решение справедливым.": "Finality does not make a decision just."
+  ,"Ваш выбор уже однажды привёл к Дню Огня.": "Your choice already led to the Day of Fire once."
+  ,"Тогда новый выбор должен иметь пределы и свидетелей — но всё ещё оставаться выбором.": "Then the new choice must have limits and witnesses, but it must still remain a choice."
+  ,"Открой не шлюз. Открой переговоры.": "Do not open the hatch. Open negotiations."
+  ,"Я открою путь к выбору — не к приговору.": "I will open a path to choice, not to a verdict."
+  ,"Электрик": "Electrician"
+  ,"Высотник": "Rigger"
+  ,"Каменщик": "Mason"
+  ,"Мойщик": "Cleaner"
+  ,"Лесник": "Forester"
+  ,"Механик": "Mechanic"
+  ,"Пасечник": "Beekeeper"
+  ,"Опылитель": "Pollinator"
+  ,"Лебёдка": "Winch"
+  ,"Маркер": "Marker"
+  ,"Скребки": "Scrapers"
+  ,"Трамбовка": "Compactor"
+  ,"Бур": "Auger"
+  ,"Сучкорез": "Pruner"
+  ,"Захват": "Gripper"
+  ,"Сеялка": "Seeder"
+  ,"Рассеиватель": "Spreader"
+  ,"Инъектор": "Injector"
+  ,"Доставщик": "Courier"
+  ,"Сварочник": "Welder"
+  ,"Мойка": "Washer"
+  ,"Рессора": "Spring"
+  ,"Роевик": "Swarmstep"
+  ,"Скороход": "Runner"
+  ,"Универсал": "Allrounder"
+  ,"Тяжеловоз": "Hauler"
+  ,"Отражатель": "Reflector"
+  ,"Сенсор": "Sensor"
+  ,"Реверсор": "Reverser"
+  ,"Охладитель": "Cooler"
+  ,"Инкубатор": "Incubator"
+  ,"Синхронизатор": "Synchronizer"
+  ,"Насос": "Pump"
+  ,"Ремонтник": "Mender"
+  ,"Кожух": "Casing"
+  ,"Пластины": "Plates"
+  ,"Ремкомплект": "Repair Kit"
+  ,"Контроллер": "Controller"
+  ,"Компостер": "Composter"
+  ,"Ускоритель": "Accelerator"
+  ,"Электрик: перегрузка на": "Electrician: overload for"
+  ,"Растворяется Мойкой": "Dissolves with the Washer"
+  ,"Поддаётся Трамбовке или Буру": "Break with the Compactor or Auger"
+  ,"Нужен Сварочник": "Requires the Welder"
+  ,"Первый успех открывает Лебёдку, второй — Электрика, третий — Ремонтника и Кожух": "The first success unlocks the Winch, the second the Electrician, and the third the Mender and Casing"
 }

@@ -1,0 +1,86 @@
+[
+  {
+    "objective": {
+      "bottom": 90,
+      "height": 20,
+      "left": 16,
+      "right": 182.03125,
+      "top": 70,
+      "width": 166.03125,
+      "x": 16,
+      "y": 70
+    },
+    "overflow": false,
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "text": "Room 1 / 25 · enemies 9",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "objective": {
+      "bottom": 90,
+      "height": 20,
+      "left": 16,
+      "right": 182.03125,
+      "top": 70,
+      "width": 166.03125,
+      "x": 16,
+      "y": 70
+    },
+    "overflow": false,
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "text": "Room 1 / 25 · enemies 9",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "objective": {
+      "bottom": 90,
+      "height": 20,
+      "left": 453.5,
+      "right": 619.53125,
+      "top": 70,
+      "width": 166.03125,
+      "x": 453.5,
+      "y": 70
+    },
+    "overflow": false,
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 437.5,
+      "right": 842.5,
+      "top": 0,
+      "width": 405,
+      "x": 437.5,
+      "y": 0
+    },
+    "text": "Room 1 / 25 · enemies 9",
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

@@ -15,7 +15,7 @@ const vertexShader=`
   vUv=uv;vTint=tint;vData=data;
   vec4 p=modelViewMatrix*vec4(center,1.);
   vec2 q=position.xy;
-  if(data.x>6.5){
+  if(data.x>6.5&&data.x<8.5){
    p=modelViewMatrix*vec4(center+vec3(q.x*extent.x,0.,-q.y*extent.y),1.);
   }else if(data.x>4.5&&data.x<5.5){
    vec4 end=modelViewMatrix*vec4(endpoint,1.);vec2 delta=end.xy-p.xy;
@@ -24,6 +24,9 @@ const vertexShader=`
   }else{
    float a=data.w;mat2 rot=mat2(cos(a),sin(a),-sin(a),cos(a));
    p.xy+=rot*(q*extent);
+   // Burning sprites sit on the camera-facing skin, not inside the opaque body.
+   // Keep depth testing so terrain and other foreground objects still occlude them.
+   if(data.x>8.5)p.z+=endpoint.x;
   }
   gl_Position=projectionMatrix*p;
  }`;
@@ -37,16 +40,38 @@ const fragmentShader=`
  void main(){
   vec2 p=vUv*2.-1.;float seed=vData.z,type=vData.x,alpha=0.;vec3 color=vTint;
   float n=fbm(vUv*5.+vec2(seed,-clock*1.7));
-  if(type<.5){
-   // Hot base, turbulent tapering tongues, cool translucent perimeter.
-   float y=vUv.y;float warp=(fbm(vec2(y*5.-clock*2.4,seed))- .5)*.65*y;
-   float width=(1.-y)*.74+.05;
-   float body=1.-abs(p.x+warp)/width;
-   float density=body-(n*.85+y*.5);
-   alpha=smoothstep(-.13,.32,density)*smoothstep(0.,.15,y)*(1.-smoothstep(.78,1.,y));
-   float heat=clamp(density*1.7+(1.-y)*.3,0.,1.);
-   color=mix(vec3(.55,.075,.015),vec3(1.,.43,.07),smoothstep(.05,.55,heat));
-   color=mix(color,vec3(1.,.88,.5),smoothstep(.5,1.,heat));
+  if(type>8.5){
+   float rise=vUv.y;
+   // Reference: two small translucent curls at ceramic seams, hot only at the root.
+   float flow=fbm(vec2(vUv.x*5.+seed,rise*4.-clock*2.7));
+   float curl=sin(rise*7.-clock*3.+seed)*rise*.38;
+   curl+=(noise(vec2(rise*4.+seed,clock*1.8))-.5)*rise*.45;
+   float width=mix(.58,.075,rise),d=abs(p.x-curl);
+   float ribbon=exp(-pow(d/width,2.)*2.);
+   float fork=exp(-pow((p.x+curl*.8-.22*rise)/(width*.5),2.)*2.)*.45;
+   float fade=smoothstep(0.,.12,rise)*(1.-smoothstep(.5+flow*.26,1.,rise));
+   alpha=min(1.,(ribbon+fork)*1.25)*fade*(.68+flow*.32);
+   float rootHeat=exp(-rise*3.5)*(1.-smoothstep(.04,.36,d));
+   color=mix(vec3(1.,.24,.018),vec3(1.,.48,.065),flow);
+   color=mix(color,vec3(1.15,.96,.48),rootHeat);
+   // This custom unlit batch has no output-color-space chunk; encode the flame
+   // explicitly so its small amber midtones do not become dark red pixels.
+   color=pow(max(color,vec3(0.)),vec3(1./2.2));
+  }else if(type<.5){
+   // Soft rolling fire, not a tapered triangle with a rigid white spine.
+   // Advected noise breaks both the contour and the hot interior into curls.
+   vec2 flow=vec2(seed*.17,-clock*3.1);
+   vec2 warp=vec2(noise(p*2.4+flow),noise(p*2.4+flow+19.))-.5;
+   vec2 fireP=p+warp*.42;fireP.y+=.13;
+   float billow=fbm(fireP*3.8+flow);
+   float body=1.-length(fireP*vec2(1.05,.94));
+   float density=body+(billow-.5)*.58;
+   float edge=1.-smoothstep(.72,1.,max(abs(p.x),abs(p.y)));
+   alpha=smoothstep(.02,.48,density)*edge*(.65+billow*.35);
+   float core=smoothstep(.34,.86,density)*(1.-smoothstep(-.25,.65,p.y));
+   // Display-space amber/orange keeps this distinct from beige impact dust.
+   color=mix(vec3(.9,.17,.015),vec3(1.,.53,.055),smoothstep(.08,.48,density));
+   color=mix(color,vec3(1.,.9,.42),core);
   }else if(type<1.5){
    float density=(1.-length(p))*.95+(n-.5)*.75;
    alpha=smoothstep(.03,.55,density)*.6;
@@ -96,11 +121,12 @@ function createBatch(root,additive){
  const mesh=new T.Mesh(geometry,material);mesh.frustumCulled=false;mesh.renderOrder=additive?9:8;root.add(mesh);
  return{geometry,material,attrs};
 }
+export const SOUL_FX_LIMITS=Object.freeze({highParticles:1536,lowParticles:512,abilitySources:24,groundTrails:64,mergeSeconds:.12});
 export function createSoulFxView(scene){
  const root=new T.Group();root.name='soul-activation-effects';scene.add(root);
  const mist=createBatch(root,false),light=createBatch(root,true),batches=[mist,light];
  const particles=Array.from({length:CAPACITY},()=>({life:0}));
- const emitters=Array.from({length:24},()=>({life:0}));
+ const emitters=Array.from({length:SOUL_FX_LIMITS.abilitySources},()=>({life:0}));
  let now=0,cursor=0,serial=0,quality='medium',reduced=false,statusAt=0;
  const ghosts=Array.from({length:2},()=>{const group=new T.Group();root.add(group);return{group,life:0,material:new T.MeshBasicMaterial({color:0xbadbd2,transparent:true,opacity:0,depthWrite:false,toneMapped:false})};});
  let ghostCursor=0;
@@ -109,27 +135,48 @@ export function createSoulFxView(scene){
   hero.traverse(o=>{if(!o.isMesh||o.isInstancedMesh||!o.visible||count++>96)return;const mesh=new T.Mesh(o.geometry,g.material);mesh.matrixAutoUpdate=false;mesh.matrix.copy(o.matrixWorld);g.group.add(mesh);});
   const dx=(e.tx??e.x)-e.x,dz=(e.tz??e.z+1)-e.z,d=Math.hypot(dx,dz)||1;g.dx=-dx/d;g.dz=-dz/d;g.life=.55;
  }
- const budget=()=>quality==='low'?512:quality==='high'?CAPACITY:1024;
+ const budget=()=>quality==='low'?SOUL_FX_LIMITS.lowParticles:quality==='high'?SOUL_FX_LIMITS.highParticles:1024;
  // Presentation-only PRNG, independent of gameplay randomness.
  let seed=918273;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
  function particle(at,type,color,size,life,velocity={},extra={}){
   const p=particles[cursor++%budget()];
-  Object.assign(p,{home:null,spiral:0,blastRadius:0,x:at.x,y:at.y??0,z:at.z,type,color,size,stretch:1,life,duration:life,vx:velocity.x??0,vy:velocity.y??0,vz:velocity.z??0,seed:rand()*100,angle:0,opacity:1,add:type>=2,gravity:0,tx:0,ty:0,tz:0,...extra});return p;
+  Object.assign(p,{home:null,owner:null,spiral:0,blastRadius:0,x:at.x,y:at.y??0,z:at.z,type,color,size,stretch:1,life,duration:life,vx:velocity.x??0,vy:velocity.y??0,vz:velocity.z??0,seed:rand()*100,angle:0,opacity:1,add:type>=2,gravity:0,tx:0,ty:0,tz:0,...extra});return p;
  }
- function cloud(e,cold=false,strength=1,continuous=false){
-  const count=continuous?(reduced?1:quality==='low'?2:4):(reduced?3:quality==='low'?5:10);
+ function burningBody(e,strength){
+  const scale=Math.max(.8,Math.min(2.8,e.radius??.8))*(e.visualScale??1);
+  const lift=e.flying?1.1+(reduced?0:Math.sin(combatTimeValue*6+e.id)*.12):0;
+  const count=reduced||quality==='low'?2:strength>1.75?3:2;
   for(let i=0;i<count;i++){
-   const angle=rand()*Math.PI*2,r=rand()*.5,at={x:e.x+Math.cos(angle)*r,y:(e.y??0)+.35+rand()*.8,z:e.z+Math.sin(angle)*r};
+   const shoulder=i%2===0;
+   const at={x:e.x+(shoulder?-.43:.46)*scale,y:(e.y??0)+lift+(shoulder?1.48:1.03)*scale,z:e.z+(shoulder?-.08:.24)*scale};
+   const p=particle(at,9,[1,.5,.04],scale*(shoulder?.52:.4)*(1+rand()*.2),.26+rand()*.1,{x:reduced?0:-.04,y:reduced?.02:.18},{stretch:shoulder?1.65:1.4,angle:(rand()-.5)*.24,opacity:.9,add:false,owner:e,tx:scale*.7});
+   p.ownerX=e.x;p.ownerY=e.y??0;p.ownerZ=e.z;
+  }
+  if(!reduced&&rand()<.13){
+   const at={x:e.x-.43*scale,y:(e.y??0)+lift+scale*1.8,z:e.z-.08*scale};
+   particle(at,1,[.37,.36,.32],.3*scale,.55,{x:-.08,y:.28},{opacity:.07,stretch:1.8});
+   particle(at,2,[1,.5,.07],.025*scale,.35,{x:-.08,y:.4},{opacity:.5});
+  }
+ }
+ let combatTimeValue=0;
+ function cloud(e,cold=false,strength=1,continuous=false){
+  const intensity=Math.max(.65,Math.min(2.4,strength));
+  const count=continuous?(cold?(reduced?1:quality==='low'?2:3):(reduced||quality==='low'||intensity<1.75?1:2)):(reduced?3:quality==='low'?5:10);
+  const scale=Math.max(.8,Math.min(1.55,(e.radius??1)*(continuous?1.05:1)));
+  for(let i=0;i<count;i++){
+   const angle=rand()*Math.PI*2,r=rand()*.5*scale,at={x:e.x+Math.cos(angle)*r,y:(e.y??0)+.28*scale+rand()*.7*scale,z:e.z+Math.sin(angle)*r};
    if(cold){
     particle(at,1,[.62,.72,.75],1.2+rand(),.65+rand()*.6,{x:Math.cos(angle)*1.4*strength,y:.25,z:Math.sin(angle)*1.4*strength},{angle:rand()*6,opacity:continuous?.16:.32});
     if(!reduced&&(!continuous||i%2===0))particle(at,3,[.64,.83,.9],.07+rand()*.13,.4+rand()*.6,{x:Math.cos(angle)*2.5,y:1+rand()*2,z:Math.sin(angle)*2.5},{stretch:2+rand()*2,angle:rand()*6,gravity:4});
    }else{
-    particle(at,0,[1,.4,.1],.8+rand()*.7,.4+rand()*.45,{x:Math.cos(angle)*.25,y:1+rand(),z:Math.sin(angle)*.25},{stretch:1.8,opacity:.85});
-    particle({...at,y:at.y+.5},1,[.24,.25,.24],.9+rand(),.8+rand()*.8,{x:.25,y:1.2,z:.1},{angle:rand()*6,opacity:.28});
-    if(!reduced)particle(at,2,[1,.48,.14],.035+rand()*.06,.4+rand()*.65,{x:Math.cos(angle)*1.5,y:2+rand()*3,z:Math.sin(angle)*1.5},{stretch:2.5,gravity:2});
+    const flameSize=(continuous?.78+rand()*.26:.62+rand()*.36)*scale*(.92+intensity*.04),heat=.52+rand()*.12;
+    particle(at,0,[1,heat,.035],flameSize*1.18,.32+rand()*.2,{x:Math.cos(angle)*.16,y:(.3+rand()*.24)*scale,z:Math.sin(angle)*.16},{stretch:1.05+rand()*.3,angle:(rand()-.5)*.8,opacity:continuous?.72:.76});
+    if(!continuous&&i%2===0)particle({...at,y:at.y+.18},4,[1,.45+.15*rand(),.08],.28+flameSize*.32,.2,{}, {opacity:.32});
+    if(!continuous&&i%2===0)particle({...at,y:at.y+.52},1,[.23,.2,.17],.4+rand()*.4,.7+rand()*.55,{x:(rand()-.5)*.16,y:.55+rand()*.42,z:(rand()-.5)*.16},{angle:rand()*6,opacity:.14});
+    if(!reduced&&(!continuous||intensity>2.1&&i===0))particle(at,2,[1,.62,.18],.018+rand()*.025,.3+rand()*.36,{x:Math.cos(angle)*.65,y:1.1+rand()*1.3,z:Math.sin(angle)*.65},{stretch:2.1,gravity:2.1});
    }
   }
- }
+}
  function bolt(e,plasma=false){
   if(!Number.isFinite(e.tx)||!Number.isFinite(e.tz))return;
   const start=new T.Vector3(e.x,(e.y??0)+1,e.z),end=new T.Vector3(e.tx,(e.ty??0)+1,e.tz),length=start.distanceTo(end);
@@ -137,8 +184,8 @@ export function createSoulFxView(scene){
   for(let i=1;i<=steps;i++){
    const t=i/steps,p=start.clone().lerp(end,t),jitter=Math.sin(t*Math.PI)*.28;
    p.x+=(rand()-.5)*jitter;p.y+=(rand()-.5)*jitter;p.z+=(rand()-.5)*jitter;
-   particle(prev,5,plasma?[1,.6,.3]:[.43,.7,.8],plasma?.3:.16,.16+rand()*.08,{}, {tx:p.x,ty:p.y,tz:p.z});
-   if(i%4===0){const branch=p.clone().add(new T.Vector3((rand()-.5)*.9,.3+rand()*.5,(rand()-.5)*.9));particle(p,5,[.4,.6,.72],.07,.12,{}, {tx:branch.x,ty:branch.y,tz:branch.z});}
+   particle(prev,5,plasma?[1,.66,.34]:[.6,.9,1],plasma?.34:.22,.28+rand()*.1,{}, {tx:p.x,ty:p.y,tz:p.z});
+   if(i%4===0){const branch=p.clone().add(new T.Vector3((rand()-.5)*.9,.3+rand()*.5,(rand()-.5)*.9));particle(p,5,[.48,.78,.96],.1,.22,{}, {tx:branch.x,ty:branch.y,tz:branch.z});}
    prev=p;
   }
   particle(end,4,[.5,.8,1],1.8,.25);for(let i=0;i<7;i++)particle(end,2,[.7,.9,1],.05,.3,{x:(rand()-.5)*3,y:rand()*3,z:(rand()-.5)*3});
@@ -171,36 +218,79 @@ export function createSoulFxView(scene){
    for(let j=0;j<5;j++)particle(at,2,color,.055,.25+rand()*.25,{x:Math.cos(angle)*(3+rand()*2),y:(rand()-.5)*.4,z:Math.sin(angle)*(3+rand()*2)},{stretch:2});
   }
  }
+ function organicImpact(e,{color=[.84,.72,.48],count=18,power=4,residue=false}={}){
+  const at={x:e.x,y:(e.y??0)+.65,z:e.z};particle(at,4,[1,.92,.7],1.2+.35*power,.18,{}, {opacity:.82});
+  const dx=e.dx??(Number.isFinite(e.tx)?e.tx-e.x:0),dz=e.dz??(Number.isFinite(e.tz)?e.tz-e.z:1),length=Math.hypot(dx,dz)||1,n=reduced?Math.ceil(count*.35):quality==='low'?Math.ceil(count*.6):count;
+  for(let i=0;i<n;i++){const spread=(rand()-.5)*1.15,a=Math.atan2(dz,dx)+spread,speed=power*(.55+rand()*.75);particle(at,i%3?3:2,color,.045+rand()*.075,.35+rand()*.45,{x:Math.cos(a)*speed,y:.5+rand()*2.2,z:Math.sin(a)*speed},{stretch:2.2+rand()*2.4,angle:a,gravity:4.5});}
+  if(residue)particle({x:e.x,y:(e.y??0)+.025,z:e.z},7,color,Math.min(2.5,e.radius??1.3),1.4,{}, {opacity:.24});
+ }
+ function membrane(e,color=[.58,.82,.68],size=3,life=.55){particle({...e,y:(e.y??0)+.9},6,color,size,life,{}, {opacity:.8});}
  function burst(e){
   switch(e.kind){
-   case 'burn':cloud(e);break;
+   case 'set-hecaton':membrane(e,[.55,.76,1],2.1,.4);break;
+   case 'set-reactor':membrane(e,[.5,.88,1],8,.4);break;
+   case 'set-collector':threads(e);break;
+   case 'set-broodmother':threads(e);membrane(e,[.65,.9,.5],2.5,.4);break;
+   case 'burn':{
+    const at={x:e.x,y:(e.y??0)+.35,z:e.z};particle(at,4,[1,.48,.1],.52,.22,{}, {opacity:.34});
+    if(!reduced)for(let i=0;i<2;i++)particle(at,2,[1,.66,.2],.018,.24+rand()*.18,{x:(rand()-.5)*.5,y:.7+rand()*.7,z:(rand()-.5)*.5},{stretch:1.8,gravity:1.6});break;
+   }
    case 'cold':cloud(e,true,.6);break;
    case 'freeze':cloud(e,true,1.4);particle({...e,y:(e.y??0)+.7},6,[.6,.8,.9],2.1,.9,{}, {opacity:.7});break;
    case 'electric':bolt(e);break;
    case 'plasma':bolt(e,true);if(Number.isFinite(e.tx))cloud({x:e.tx,y:e.ty,z:e.tz});break;
    case 'spread':{
-    if(Number.isFinite(e.tx))for(let i=0;i<12;i++){const u=i/11;particle({x:e.x+(e.tx-e.x)*u,y:(e.y??0)+.6+Math.sin(u*Math.PI)*.6,z:e.z+(e.tz-e.z)*u},0,[1,.5,.1],.4,.35+rand()*.35,{y:.8},{stretch:1.8});}
-    cloud(Number.isFinite(e.tx)?{x:e.tx,y:e.ty,z:e.tz}:e);break;
+    if(Number.isFinite(e.tx)&&Number.isFinite(e.tz)){
+     const dx=e.tx-e.x,dz=e.tz-e.z,d=Math.hypot(dx,dz)||1,n=reduced?3:quality==='low'?5:8;
+     for(let i=0;i<n;i++){
+      const u=(i+rand()*.7)/n,side=(rand()-.5)*.42;
+      const at={x:e.x+dx*u-dz/d*side,y:(e.y??0)+((e.ty??e.y??0)-(e.y??0))*u+.25+rand()*.18,z:e.z+dz*u+dx/d*side};
+      particle(at,0,[1,.62,.14],.62+rand()*.4,.2+rand()*.24,{x:dx/d*.6,y:.25+rand()*.25,z:dz/d*.6},{stretch:.85+rand()*.4,angle:(rand()-.5)*1.2,opacity:.78});
+      if(!reduced&&i%3===0)particle(at,2,[1,.72,.3],.025,.3+rand()*.15,{x:dx/d,y:.5+rand()*.6,z:dz/d},{opacity:.7,stretch:1.7,gravity:1.5});
+     }
+    }
+    cloud(Number.isFinite(e.tx)?{x:e.tx,y:e.ty,z:e.tz,strength:e.strength}:e,false,e.strength??1);break;
    }
    case 'thermal':{
     cloud(e);cloud(e,true,2.5);particle({...e,y:(e.y??0)+.8},4,[1,.83,.6],5,.4);
     for(let i=0;i<24;i++){const a=rand()*6.283;particle({...e,y:(e.y??0)+.7},1,[.7,.74,.73],1.4,.7,{x:Math.cos(a)*3,y:.5,z:Math.sin(a)*3},{opacity:.25});}break;
    }
-   case 'armorReady':armor(e,true);break;
+   case 'set-bastion':case 'armorReady':armor(e,true);break;
    case 'armor':armor(e);break;
    case 'regen':threads(e);break;
    case 'revive':threads(e,true);break;
-   case 'echo':case 'splinter':case 'pierce':case 'multishot':case 'swarm':directed(e,e.kind);break;
+   case 'echo':case 'splinter':case 'pierce':case 'ricochet':case 'multishot':case 'swarm':directed(e,e.kind);break;
    case 'running':{
     const color=[.57,.67,.61];for(let i=0;i<12;i++)particle({...e,y:(e.y??0)+.1},1,color,.5+rand()*.6,.4+rand()*.3,{x:(rand()-.5)*2,y:.2,z:(rand()-.5)*2},{opacity:.25});break;
    }
    case 'summon':{
     threads(e);for(let i=0;i<8;i++)particle({...e,y:(e.y??0)+1.3},1,[.5,.63,.48],.4,.6,{x:(rand()-.5),y:.6,z:(rand()-.5)},{opacity:.2});break;
    }
-   case 'critical':{
+   case 'set-hunter':case 'critical':{
     const at={...e,y:(e.y??0)+.8};particle(at,4,[1,.8,.5],1.5,.2);
     for(let i=0;i<16;i++)particle(at,2,[1,.7,.34],.04,.2+rand()*.4,{x:(rand()-.5)*6,y:rand()*4,z:(rand()-.5)*6},{stretch:3,gravity:7});break;
    }
+   case 'focus':{
+    const level=Math.max(1,Math.min(5,e.level??1)),at={x:e.x,y:(e.y??0)+1,z:e.z},to={x:e.tx??e.x,y:(e.ty??0)+1,z:e.tz??e.z+1};
+    membrane(e,[.49,.89,.65],1.25+level*.16,.22);for(let i=0;i<level;i++)streak(at,to,[.61,1,.78],.025+i*.008,.12+i*.018);
+    if(level===5)particle(at,4,[.78,1,.84],1.8,.18);break;
+   }
+   case 'rupture':organicImpact(e,{color:[.72,.34,.22],count:20,power:5,residue:true});break;
+   case 'guardian':{
+    bolt({...e,y:(e.y??0)-1});organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.55,1,.84],count:10,power:3});membrane(e,[.45,.9,.72],2.5,.4);break;
+   }
+   case 'neuralweb':bolt(e);organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.65,1,1],count:12,power:3});break;
+   case 'countershell-charge':membrane(e,[.63,.78,.54],3.1,.5);threads(e);break;
+   case 'countershell':organicImpact(e,{color:[.94,.72,.38],count:30,power:6,residue:true});membrane(e,[.9,.68,.34],2.3,.28);break;
+   case 'sporeplant':{
+    const at={...e,y:(e.y??0)+.9};particle(at,4,[.65,.72,.32],.8,.35);for(let i=0;i<8;i++)particle(at,1,[.34,.42,.23],.25,.55,{x:(rand()-.5),y:.3+rand(),z:(rand()-.5)},{opacity:.3});break;
+   }
+   case 'sporebrood':{
+    const n=reduced?8:quality==='low'?16:32;particle({...e,y:(e.y??0)+.45},4,[1,.72,.35],3.2,.2);
+    for(let i=0;i<n;i++){const a=rand()*6.283,v=1.6+rand()*4;particle({...e,y:(e.y??0)+.25},i%4?1:3,i%4?[.27,.32,.19]:[.74,.63,.3],.12+rand()*.55,.65+rand()*.75,{x:Math.cos(a)*v,y:.4+rand()*2,z:Math.sin(a)*v},{opacity:.34,stretch:1.3,gravity:i%4?1.2:5});}particle({...e,y:(e.y??0)+.02},8,[.34,.27,.14],(e.radius??2.5)*2,1.8,{}, {opacity:.48});break;
+   }
+   case 'overgrowth':threads(e);membrane(e,[.88,.71,.34],2.6,.65);particle({...e,y:(e.y??0)+1},4,[.59,1,.75],1.8,.32);break;
+   case 'cryotrail':cloud({...e,radius:e.radius??1.5},true,.65);particle({...e,y:(e.y??0)+.02},7,[.47,.69,.69],(e.radius??1.5)*2,1.1,{}, {opacity:.25});break;
   }
  }
  // Reuse the ability flame/smoke renderer, keeping the blast free of hard geometry.
@@ -234,12 +324,12 @@ export function createSoulFxView(scene){
   if(e.type==='volatile-blast'&&Number.isFinite(e.x)&&Number.isFinite(e.z)){volatileBlast(e);return;}
   if(e.type!=='soul-proc'||!SOUL_PROCS[e.kind]||!Number.isFinite(e.x)||!Number.isFinite(e.z))return;
   // Merge rapid refreshes on the same target instead of stacking opaque bursts.
-  if(emitters.some(v=>v.life>v.duration-.12&&v.kind===e.kind&&Math.hypot(v.x-e.x,v.z-e.z)<.3))return;
+  if(emitters.some(v=>v.life>v.duration-SOUL_FX_LIMITS.mergeSeconds&&v.kind===e.kind&&Math.hypot(v.x-e.x,v.z-e.z)<.3))return;
   const slot=emitters.find(v=>v.life<=0)||emitters.reduce((a,b)=>a.life<b.life?a:b);
-  Object.assign(slot,e,{life:e.kind==='revive'?1.8:1.15,duration:e.kind==='revive'?1.8:1.15,id:serial++});burst(e);if(e.kind==='echo')snapshotHero(hero,e);
+  Object.assign(slot,e,{life:e.kind==='revive'?1.8:1.15,duration:e.kind==='revive'?1.8:1.15,id:serial++});burst(e);if(e.kind==='echo'||e.kind==='focus'&&e.level===5)snapshotHero(hero,e);
  }
  function update(dt,nextReduced=false,s){
-  reduced=nextReduced;now+=dt;
+  reduced=nextReduced;now+=dt;combatTimeValue=s?combatTime(s):now;
   for(const e of emitters)e.life=Math.max(0,e.life-dt);
   // Attach ongoing flames/frost to current enemy positions and status durations.
   if(s&&dt>0&&now>=statusAt){statusAt=now+(quality==='low'?.16:.09);let count=0;
@@ -252,16 +342,22 @@ export function createSoulFxView(scene){
     particle({...c,y:(c.y??0)+(c.hover??1.5)},4,[.4,.67,.45],.25,.2,{}, {opacity:.2});
     particle({...c,y:(c.y??0)+(c.hover??1.5)},2,[.64,.79,.43],.06,.4,{y:.12});
    }
+   const guardian=s.abilities?.guardian;if(b.guardian&&guardian){particle(guardian,4,[.48,.91,.68],.42,.2,{}, {opacity:.78});particle(guardian,2,[.72,1,.83],.055,.35,{y:.18},{stretch:2});}
    for(const q of s.abilities?.summonShots||[]){if(q.delay>0||q.life<=0)continue;particle({...q,y:(q.y??0)+1.1},4,[.55,.79,.4],.5,.16,{}, {opacity:.75});}
+   for(const trail of (s.abilities?.cryoTrails||[]).slice(-SOUL_FX_LIMITS.groundTrails)){const life=Math.max(0,trail.until-combatTime(s))/3;particle({...trail,y:(trail.y??0)+.025},7,[.39,.61,.62],trail.radius*2,.24,{}, {opacity:.1+.18*life});if(!reduced)particle({...trail,y:(trail.y??0)+.18},1,[.61,.78,.79],.55,.35,{y:.08},{opacity:.12});}
+   for(const spore of s.abilities?.spores||[]){const pulse=.65+Math.sin(now*(spore.at-combatTime(s)<.55?22:8))*.18;particle({...spore,y:(spore.y??0)+.85},4,[.66,.69,.29],.48*pulse,.2,{}, {opacity:.8});if(!reduced)particle({...spore,y:(spore.y??0)+.8},1,[.31,.39,.2],.35,.4,{y:.25},{opacity:.16});}
+   for(const q of s.shots||[])if(q.w?.ballisticBonus>0){const strength=q.w.ballisticBonus/.3;particle(q,4,[.69,.87,.73],.18+strength*.24,.16,{}, {opacity:.36+strength*.45,stretch:1.8+strength*2,angle:Math.atan2(q.dz,q.dx)});}
    for(const e of s.enemies){if(e.hp<=0||Math.hypot(e.x-s.player.x,e.z-s.player.z)>35)continue;
     if(e.volatile&&e.fuseRemaining!=null&&!(e.frozenUntil>combatTime(s))){volatileCharge(e);}
-    const burning=e.burn?.until>combatTime(s),cold=e.chillUntil>combatTime(s)||e.frozenUntil>combatTime(s);if(!burning&&!cold)continue;if(count++>=24)break;
-    if(burning)cloud(e,false,1,true);if(cold)cloud(e,true,e.frozenUntil>combatTime(s)?1.3:.6,true);
+    const burning=e.burn?.until>combatTime(s),cold=e.chillUntil>combatTime(s)||e.frozenUntil>combatTime(s),ruptured=e.ruptureUntil>combatTime(s);if(!burning&&!cold&&!ruptured)continue;if(count++>=24)break;
+    if(burning){const stacks=e.burn?.stacks?.length??e.burn?.count??1,fireStrength=Math.min(2.4,.8+Math.log2(stacks+1)*.42);burningBody(e,fireStrength);}if(cold)cloud(e,true,e.frozenUntil>combatTime(s)?1.3:.6,true);
+    if(ruptured){particle({...e,y:(e.y??0)+.9},3,[.55,.19,.12],.32,.24,{}, {stretch:2.8,angle:Math.sin(now*5)*.35,opacity:.68});particle({...e,y:(e.y??0)+.05},7,[.38,.12,.08],.95,.24,{}, {opacity:.13});}
    }
   }
   for(const g of ghosts){g.life=Math.max(0,g.life-dt);g.group.visible=g.life>0;g.material.opacity=g.life*.32;g.group.position.set(g.dx*(.55-g.life)*1.7||0,0,g.dz*(.55-g.life)*1.7||0);}
   const counts=[0,0];
   for(const p of particles){if(p.life<=0)continue;p.life=Math.max(0,p.life-dt);if(!p.life)continue;
+   if(p.owner){const e=p.owner;if(e.hp<=0){p.life=0;continue;}p.x+=e.x-p.ownerX;p.y+=(e.y??0)-p.ownerY;p.z+=e.z-p.ownerZ;p.ownerX=e.x;p.ownerY=e.y??0;p.ownerZ=e.z;}
    const motion=reduced?.2:1;p.x+=p.vx*dt*motion;p.y+=p.vy*dt*motion;p.z+=p.vz*dt*motion;p.vy-=p.gravity*dt;
    const age=1-p.life/p.duration;
    if(p.blastRadius){const travel=1-Math.pow(1-Math.min(1,(p.duration-p.life)/.12),3);p.x=p.blastX+Math.cos(p.blastAngle)*p.blastRadius*travel;p.z=p.blastZ+Math.sin(p.blastAngle)*p.blastRadius*travel;}

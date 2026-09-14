@@ -13,7 +13,7 @@ export const STYLE_BRANCHES={melee:['melee','might','tempo','cold','motion'],ran
 export function pickAbility(s,style='ranged'){return s.choices.map((c,i)=>{const branch=c.id.split('.')[0],rank=STYLE_BRANCHES[style].indexOf(branch);return{i,score:(rank<0?0:20-rank*2)+(c.id.endsWith('.3')?5:0)+(c.id==='vitality.0'?40:c.id==='vitality.2'?35:0)};}).sort((a,b)=>b.score-a.score)[0]?.i;}
 function scorePart(s,p,style){const d=def(p);if(d.kind==='arm'){const w=weaponStats(s,p),melee=['sector','area','contact'].includes(w.mode);return w.damage/(w.interval+(w.reload||0)/(w.magazine||1))*(melee?style==='melee'?1.6:.12:style==='melee'?.2:1)*(1+(w.pierce||1)*.1)*(w.mode==='area'?3:w.mode==='sector'?2:1);}if(d.kind==='body')return d.arms*30+d.hp*8+d.capacity*.1;if(d.kind==='leg')return d.speed*10;return ['regen','shield'].includes(p.key)?120:p.key==='digestion'?80:30;}
 export function assembleEarned(s,style='ranged',discarded=new Set()){
- for(const q of [...s.ground])if(dist(q,s.player)<=3&&!discarded.has(q.part.id))pickup(s,q.id);
+ for(const q of [...s.ground])if(dist(q,s.player)<=3&&(q.lore||q.part&&!discarded.has(q.part.id)))pickup(s,q.id);
  for(const p of [...s.inventory]){const d=def(p);if(d.kind==='body'){if(scorePart(s,p,style)>scorePart(s,s.body,style)&&d.legs<=s.legs.filter(Boolean).length+s.inventory.filter(p=>def(p).kind==='leg').length)swapBody(s,p.id);continue;}const group={arm:'arms',leg:'legs',organ:'organs'}[d.kind];let i=s[group].findIndex(p=>!p);if(i<0){i=s[group].map((p,i)=>({i,v:scorePart(s,p,style)})).sort((a,b)=>a.v-b.v)[0]?.i;if(i==null||scorePart(s,p,style)<=scorePart(s,s[group][i],style))continue;}equip(s,p.id,i);}
  const digester=s.inventory.find(p=>p.key==='digestion');let restore=null;if(digester&&!s.organs.some(p=>p?.key==='digestion')){restore=s.organs[0];equip(s,digester.id,0);}let spare=0;
  for(const p of [...s.inventory]){if(p===restore||p.key==='digestion'||def(p).kind==='leg'&&spare++<2)continue;if(digest(s,p.id)===false){discarded.add(p.id);drop(s,p.id);}}if(restore)equip(s,restore.id,0);
@@ -26,7 +26,7 @@ export function createPilot({style='ranged',approach='gate',exit='far'}={}){
  let returnRoute=null;
  function direction(s){
   const movementStyle=s.arms.filter(Boolean).every(p=>['sector','area','contact'].includes(weaponStats(s,p).mode))?'melee':style;
-  const nearby=s.enemies.filter(e=>e.hp>0&&e.kind!=='objective'&&dist(e,s.player)<26),resources=[...s.xpDrops,...s.ground.filter(q=>!state.discarded.has(q.part.id))].filter(q=>dist(q,s.player)<18).sort((a,b)=>dist(a,s.player)-dist(b,s.player));let target;
+  const nearby=s.enemies.filter(e=>e.hp>0&&e.kind!=='objective'&&dist(e,s.player)<26),resources=[...s.xpDrops,...s.ground.filter(q=>q.lore||q.part&&!state.discarded.has(q.part.id))].filter(q=>dist(q,s.player)<18).sort((a,b)=>dist(a,s.player)-dist(b,s.player));let target;
   if(s.mode==='core'){
    if(s.mission.carrying&&!returnRoute){returnRoute=exit==='near'?[[45,-480],[290,-480],[330,-480]]:approach==='relays'?[[0,-560],[190,-560],[190,-190],[190,30],[190,150],[0,150],[0,480]]:[[0,-420],[0,-98],[0,150],[0,480]];state.waypoint=0;state.path=[];}
    const route=returnRoute||routes[approach];let waypoint=route[Math.min(state.waypoint,route.length-1)];if(dist(s.player,{x:waypoint[0],z:waypoint[1]})<3.2&&state.waypoint<route.length-1){state.waypoint++;waypoint=route[state.waypoint];state.path=[];}target={x:waypoint[0],z:waypoint[1]};
@@ -35,7 +35,7 @@ export function createPilot({style='ranged',approach='gate',exit='far'}={}){
    if(approach==='gate'&&!s.mission.open&&s.player.z< -395&&s.player.x<40&&!engaged.length)target=s.mission.nodes[5];
   }else {
    const needsRanged=style!=='melee'&&!s.arms.some(p=>p&&!['sector','area','contact'].includes(weaponStats(s,p).mode)),missingHand=s.arms.some(p=>!p);
-   const scout=needsRanged||missingHand?s.ground.filter(q=>def(q.part).kind==='arm'&&!state.discarded.has(q.part.id)&&(!needsRanged||!['sector','area','contact'].includes(def(q.part).mode))).sort((a,b)=>dist(a,s.player)-dist(b,s.player))[0]:null;
+   const scout=needsRanged||missingHand?s.ground.filter(q=>q.part&&def(q.part).kind==='arm'&&!state.discarded.has(q.part.id)&&(!needsRanged||!['sector','area','contact'].includes(def(q.part).mode))).sort((a,b)=>dist(a,s.player)-dist(b,s.player))[0]:null;
    target=scout||resources[0]||nearby.sort((a,b)=>dist(a,s.player)-dist(b,s.player))[0]||s.world.tiles?.[0]?.safe?.[2]||CAMP;
   }
   const boss=s.enemies.find(e=>e.hp>0&&['boss','final'].includes(e.kind)&&dist(e,s.player)<60);if(boss&&s.time%12<8)target=boss;

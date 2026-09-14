@@ -9,7 +9,7 @@ import {receiveHit} from '../src/systems/health.js';
 
 test('a lethal hit delays results, separates actual equipped parts and freezes gameplay',async()=>{
  const s=createRun(undefined,'survival',123),scene=new T.Scene(),hero=creatureModel(s);await hero.userData.modelsReady;scene.add(hero);
- const view=createDeathView(scene);s.hp=1;receiveHit(s,stats(s));step(s,.02);
+ const view=createDeathView(scene),st=stats(s);s.hp=1;s.health.armorSpent=st.armor;receiveHit(s,st);step(s,.02);
  assert.equal(s.dead,true);assert.equal(view.pending(s),true);
  const before={time:s.time,kills:s.kills,xp:s.xp,player:{...s.player}};
  view.update(s,hero,0);assert.equal(hero.visible,false);
@@ -38,7 +38,7 @@ test('nonlethal hits, revival and mission failure do not disassemble a living cr
 test('loaded body/head and varied limb assemblies keep shared materials and late loads out of debris',async()=>{
  for(const key of ['wanderer','bastion','hecaton']){
   const s=createRun();s.body=createPart(s,key);s.arms=[createPart(s,'seed'),createPart(s,'claws')];s.legs=[createPart(s,'runner'),createPart(s,'root')];
-  const template=new T.Group(),material=new T.MeshStandardMaterial(),geometry=new T.BoxGeometry(1,1,1);template.add(new T.Mesh(geometry,material));
+  const template=new T.Group(),material=new T.MeshStandardMaterial(),geometry=new T.BoxGeometry(1,1,1),mockMesh=new T.Mesh(geometry,material);mockMesh.name='mock-steel';template.add(mockMesh);
   let disposed=0;material.addEventListener('dispose',()=>disposed++);geometry.addEventListener('dispose',()=>disposed++);
   const scene=new T.Scene(),hero=creatureModel(s,{load:async()=>template});await hero.userData.modelsReady;scene.add(hero);hero.position.set(7,2,4);hero.rotation.y=.8;hero.scale.setScalar(1.3);s.player.y=2;s.hp=0;s.dead=true;
   const view=createDeathView(scene);view.update(s,hero,0);const debris=scene.getObjectByName('player-death');assert.ok(debris.children.some(o=>o.name.startsWith('asset:body-')));

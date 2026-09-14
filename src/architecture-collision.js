@@ -15,13 +15,22 @@ export function architectureFootprint(item){
  return d?{halfX:d[0]*item.size/2,halfZ:d[2]*item.size/2,height:d[1]*item.size}:null;
 }
 const profiles=Object.fromEntries(Object.entries(outlines).map(([key,p])=>[key,{...p,radius:Math.max(...p.hull.map(([x,z])=>Math.hypot(x,z)))}]));
-export const obstacleProfile=item=>profiles[item.feature==='rock'?'rock':item.feature==='thicket'?'veg-shrub':item.model];
+export const obstacleProfile=item=>item.collisionProfile||profiles[item.feature==='rock'?'rock':item.feature==='thicket'?'veg-shrub':item.model];
 export const obstacleScale=item=>item.feature==='rock'?item.radius:item.size;
 export function obstacleHeight(item){
  const p=obstacleProfile(item);return p?p.height*(item.feature==='thicket'?item.height:obstacleScale(item)):item.height;
 }
+function authoredBoxContains(item,x,z,r){
+ if(item.collisionFootprint?.shape==='boxes')return item.collisionFootprint.boxes.some(box=>authoredBoxContains({...item,collisionFootprint:{shape:'box',...box}},x,z,r));
+ const footprint=item.collisionFootprint;if(footprint?.shape!=='box')return null;
+ const angle=item.rotation||0,c=Math.cos(angle),s=Math.sin(angle),ox=footprint.offsetX||0,oz=footprint.offsetZ||0;
+ const cx=item.x+c*ox+s*oz,cz=item.z-s*ox+c*oz,dx=x-cx,dz=z-cz;
+ const px=Math.abs(c*dx-s*dz),pz=Math.abs(s*dx+c*dz),qx=Math.max(0,px-footprint.halfX),qz=Math.max(0,pz-footprint.halfZ);
+ return px<=footprint.halfX&&pz<=footprint.halfZ||qx*qx+qz*qz<r*r;
+}
 // Circle against the convex outline of the visible geometry, including rounded corners.
 export function obstacleContains(item,x,z,r=0){
+ const authored=authoredBoxContains(item,x,z,r);if(authored!==null)return authored;
  const profile=obstacleProfile(item);
  if(!profile)return Math.hypot(x-item.x,z-item.z)<item.radius+r;
  const scale=obstacleScale(item),dx=x-item.x,dz=z-item.z;

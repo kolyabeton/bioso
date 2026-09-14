@@ -1,0 +1,72 @@
+{
+  "source": "docs/art/landscape-camera-20260908/decor-overhead-draft.png",
+  "size": [
+    1536,
+    1024
+  ],
+  "cells": [
+    {
+      "name": "gardens",
+      "sourceBox": [
+        0,
+        0,
+        768,
+        579
+      ],
+      "targetBox": [
+        159,
+        24,
+        609,
+        488
+      ]
+    },
+    {
+      "name": "forest",
+      "sourceBox": [
+        768,
+        0,
+        1536,
+        579
+      ],
+      "targetBox": [
+        846,
+        24,
+        1457,
+        488
+      ]
+    },
+    {
+      "name": "city",
+      "sourceBox": [
+        0,
+        579,
+        768,
+        1024
+      ],
+      "targetBox": [
+        40,
+        565,
+        728,
+        1000
+      ]
+    },
+    {
+      "name": "scrapyard",
+      "sourceBox": [
+        768,
+        579,
+        1536,
+        1024
+      ],
+      "targetBox": [
+        808,
+        595,
+        1496,
+        1000
+      ]
+    }
+  ],
+  "transparentPixels": 838716,
+  "partialAlphaPixels": 85046,
+  "opaquePixels": 649102
+}

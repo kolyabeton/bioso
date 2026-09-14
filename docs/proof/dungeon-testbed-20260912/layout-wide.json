@@ -1,0 +1,38 @@
+{
+  "overflow": false,
+  "panel": {
+    "bottom": 616,
+    "height": 168,
+    "left": 449.5,
+    "right": 830.5,
+    "top": 448,
+    "width": 381,
+    "x": 449.5,
+    "y": 448
+  },
+  "proof": {
+    "cleared": false,
+    "elapsed": 0,
+    "inventory": 0,
+    "invulnerable": true,
+    "loot": 0,
+    "paused": true,
+    "player": {
+      "vertical": "grounded",
+      "vy": 0,
+      "x": -17.634409231441424,
+      "y": 0,
+      "z": 253.870968924044
+    },
+    "remaining": 12,
+    "scenario": "roots",
+    "state": "active",
+    "time": 900,
+    "total": 12,
+    "type": "dungeon_roots"
+  },
+  "viewport": [
+    1280,
+    720
+  ]
+}

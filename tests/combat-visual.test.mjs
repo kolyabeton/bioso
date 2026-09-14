@@ -10,6 +10,12 @@ test('shot creates a full readable recoil with exponential recovery',()=>{
  tickWeapons(s,.1);assert.ok(p.recoil>.25&&p.recoil<.35);
  assert.equal(SHOOT_MOVE_FACTOR,.5);
 });
+test('pistol arm cycles its slide and breech through a distinct attack pose',()=>{
+ const s=createRun(undefined,'survival',123),p=createPart(s,'pistol');s.arms=[p];consumeRound(s,p);
+ const release=weaponPose(p);assert.ok(release.retract>.5);assert.equal(release.slide,0);
+ tickWeapons(s,.04);const cycle=weaponPose(p);assert.ok(cycle.slide>.1);assert.ok(cycle.roll>0);assert.ok(cycle.breech>0);
+ tickWeapons(s,.24);const recovered=weaponPose(p);assert.equal(recovered.slide,0);assert.ok(recovered.retract<release.retract);assert.ok(Math.abs(recovered.roll)<1e-8);
+});
 test('impact color and squash decay, reload readout follows actual timer',()=>{
  assert.deepEqual(impactShape({}),{flash:0,squash:1,stretch:1});
  assert.equal(impactShape({hitFlash:.16}).flash,1);

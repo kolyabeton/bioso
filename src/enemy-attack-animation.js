@@ -17,7 +17,7 @@ export function enemyAnimationState(e,time){
  const a=e.attackPose;if(a&&time>=a.at&&time<a.at+enemyAttackRecovery(a.key))return {attack:a,preparing:false};
  return null;
 }
-/** The weapon reaches contact at warning.at, exactly when simulation applies the hit.
+/** The weapon reaches contact on the simulation hit tick, after any authored warning.
  * No render-delta accumulator: pause, replay and low frame rates share the same pose. */
 export function enemyWeaponPose(e,slot,time,reducedMotion=false){
  const state=enemyAnimationState(e,time),pose=zero();if(!state||state.attack.slot!==slot)return pose;

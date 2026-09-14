@@ -1,0 +1,107 @@
+[
+  {
+    "id": "leg-runner-icon-v2",
+    "equipmentKey": "runner",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "two blunt articulated forefoot digits",
+      "short posterior support",
+      "individual narrow toe axles",
+      "flat toe pads",
+      "articulated knee",
+      "exposed shin pistons",
+      "slender digitigrade shin"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1755000,
+    "primitives": 3
+  },
+  {
+    "id": "leg-universal-icon-v2",
+    "equipmentKey": "universal",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "two blunt articulated forefoot digits",
+      "short posterior support",
+      "individual narrow toe axles",
+      "flat toe pads",
+      "articulated knee",
+      "exposed shin pistons",
+      "ceramic shin guard"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1768712,
+    "primitives": 3
+  },
+  {
+    "id": "leg-plated-icon-v2",
+    "equipmentKey": "plated",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "two blunt articulated forefoot digits",
+      "short posterior support",
+      "individual narrow toe axles",
+      "flat toe pads",
+      "articulated knee",
+      "exposed shin pistons",
+      "overlapping shin armour"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1763220,
+    "primitives": 3
+  },
+  {
+    "id": "leg-spring-icon-v2",
+    "equipmentKey": "spring",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "two blunt articulated forefoot digits",
+      "short posterior support",
+      "individual narrow toe axles",
+      "flat toe pads",
+      "articulated knee",
+      "exposed shin pistons",
+      "shin spring"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1847044,
+    "primitives": 3
+  },
+  {
+    "id": "leg-swarmLeg-icon-v2",
+    "equipmentKey": "swarmLeg",
+    "reference": "canonical partArt",
+    "geometryReuse": [
+      "arm-pistol-v1:Pistol arm upper assembly"
+    ],
+    "features": [
+      "two blunt articulated forefoot digits",
+      "short posterior support",
+      "individual narrow toe axles",
+      "flat toe pads",
+      "articulated knee",
+      "exposed shin pistons",
+      "three recessed brood cells"
+    ],
+    "materialSource": "leg-worker.glb",
+    "uvWindows": "src/equipment-surface.js",
+    "bytes": 1787296,
+    "primitives": 4
+  }
+]

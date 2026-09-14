@@ -20,7 +20,7 @@
 .atlas-toolbar .ui-button[data-value=events]>span:before{background:#c1acd4}
 .atlas-survey{font-size:13px;line-height:1.5;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;color:#e1e8d7}
 .atlas-survey small{display:block;font-size:9px;letter-spacing:.02em;color:#b0c1ac}
-.ui-dialog[data-screen=map] .atlas-illustration{position:relative;flex:1;min-height:100px;overflow:hidden;background:#e5e4d9;border:1px solid #a7b19a;border-radius:5px;box-shadow:inset 0 0 0 4px #e9e8dc}
+.ui-dialog[data-screen=map] .atlas-illustration{position:relative;flex:1;min-height:100px;max-height:calc(var(--game-stage-width) - 40px);overflow:hidden;background:#e5e4d9;border:1px solid #a7b19a;border-radius:5px;box-shadow:inset 0 0 0 4px #e9e8dc}
 .ui-dialog[data-screen=map] .atlas-illustration canvas{width:100%;height:100%;display:block;object-fit:fill}
 .atlas-targets{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .atlas-target{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border:0;border-radius:50%;background:transparent;padding:0;pointer-events:auto;cursor:pointer;touch-action:manipulation}
@@ -39,6 +39,7 @@
 .atlas-legend>span{display:flex;align-items:center;gap:8px;font-size:11px;color:#dce4d2}
 .atlas-key{display:inline-grid;place-items:center;width:23px;height:23px;border:1px solid currentColor;border-radius:50%;font:500 16px/1 'Onest',sans-serif;font-style:normal}
 .atlas-key-player{border:0;color:#b9e5cc;font-size:21px}.atlas-key-boss{color:#e8a28d}.atlas-key-elite{border:0;color:#dfbe7e;font-size:26px}.atlas-key-event{color:#cbb5dc}
+.atlas-key-loot{color:#8a662a;font-size:17px}
 @media(max-width:480px){
  .ui-dialog[data-screen=map] .ui-screen-header{padding:16px 16px 14px}
  .ui-dialog[data-screen=map] .ui-screen-header h2{font-size:27px}
@@ -47,7 +48,7 @@
  .ui-dialog[data-screen=map] .atlas-toolbar .ui-button{padding:8px;font-size:11px}
  .atlas-toolbar .ui-button>span:before{margin-right:5px}
  .atlas-survey{font-size:11px}.atlas-survey small{font-size:8px}
- .atlas-legend{gap:4px;padding-top:10px}.atlas-legend>span{gap:5px;font-size:10px}
+ .atlas-legend{gap:4px;padding-top:10px}.atlas-legend>span{gap:4px;font-size:9px}
  .atlas-readout{min-height:54px}
 }
 @media(max-height:540px){
@@ -69,5 +70,10 @@
 .ui-dialog[data-screen=map] .atlas-readout>.ui-icon-button{width:44px;min-width:44px;height:44px;min-height:44px}
 .ui-dialog[data-screen=map] .atlas-controls .ui-button{min-height:44px;min-width:44px}
 
-.ui-dialog[data-screen=map][open]{height:calc(100dvh - 16px)}
+.ui-dialog[data-screen=map][open]{height:min(calc(100dvh - 16px),calc(var(--game-stage-width) + 310px))}
 .ui-dialog[data-screen=map] .atlas-controls{position:static;flex:none;justify-content:flex-end;margin-top:8px}
+
+/* The dungeon map is only the route itself; its state is communicated on the map. */
+.ui-dialog[data-screen=map]:has(.dungeon-map-body)[open]{height:min(calc(100dvh - 16px),calc(var(--game-stage-width) + 110px))}
+.ui-dialog[data-screen=map] .dungeon-map-body{padding-top:12px}
+.ui-dialog[data-screen=map] .dungeon-map-illustration{max-height:none}

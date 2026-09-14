@@ -1,0 +1,152 @@
+[
+  {
+    "weapon": "claws",
+    "seed": 1,
+    "moving": true,
+    "missedHit": true,
+    "initial": {
+      "level": 4,
+      "hp": 2,
+      "abilities": {
+        "melee.0": 1,
+        "melee.1": 1,
+        "melee.2": 1
+      },
+      "bossHp": 600,
+      "damage": 0.5
+    },
+    "seconds": 40.13333333333362,
+    "killed": true,
+    "dead": false,
+    "hp": 1.5,
+    "bossHp": 0,
+    "hits": 1,
+    "phase": 2,
+    "rewards": 1
+  },
+  {
+    "weapon": "claws",
+    "seed": 42,
+    "moving": true,
+    "missedHit": true,
+    "initial": {
+      "level": 4,
+      "hp": 2,
+      "abilities": {
+        "melee.0": 1,
+        "melee.1": 1,
+        "melee.3": 1
+      },
+      "bossHp": 600,
+      "damage": 0.5
+    },
+    "seconds": 48.76666666666646,
+    "killed": true,
+    "dead": false,
+    "hp": 1.5,
+    "bossHp": 0,
+    "hits": 1,
+    "phase": 2,
+    "rewards": 1
+  },
+  {
+    "weapon": "claws",
+    "seed": 20317,
+    "moving": true,
+    "missedHit": true,
+    "initial": {
+      "level": 4,
+      "hp": 2,
+      "abilities": {
+        "melee.0": 1,
+        "melee.2": 1,
+        "melee.1": 1
+      },
+      "bossHp": 600,
+      "damage": 0.5
+    },
+    "seconds": 40.13333333333362,
+    "killed": true,
+    "dead": false,
+    "hp": 1.5,
+    "bossHp": 0,
+    "hits": 1,
+    "phase": 2,
+    "rewards": 1
+  },
+  {
+    "weapon": "pistol",
+    "seed": 1,
+    "moving": true,
+    "missedHit": true,
+    "initial": {
+      "level": 4,
+      "hp": 2,
+      "abilities": {
+        "ranged.0": 1,
+        "ranged.1": 1,
+        "ranged.2": 1
+      },
+      "bossHp": 600,
+      "damage": 0.5
+    },
+    "seconds": 81.93333333333125,
+    "killed": true,
+    "dead": false,
+    "hp": 1.5,
+    "bossHp": 0,
+    "hits": 1,
+    "phase": 2,
+    "rewards": 1
+  },
+  {
+    "weapon": "pistol",
+    "seed": 42,
+    "moving": true,
+    "missedHit": true,
+    "initial": {
+      "level": 4,
+      "hp": 2,
+      "abilities": {
+        "ranged.0": 1,
+        "ranged.1": 1,
+        "ranged.3": 1
+      },
+      "bossHp": 600,
+      "damage": 0.5
+    },
+    "seconds": 84.23333333333112,
+    "killed": true,
+    "dead": false,
+    "hp": 1.5,
+    "bossHp": 0,
+    "hits": 1,
+    "phase": 2,
+    "rewards": 1
+  },
+  {
+    "weapon": "pistol",
+    "seed": 20317,
+    "moving": true,
+    "missedHit": true,
+    "initial": {
+      "level": 4,
+      "hp": 2,
+      "abilities": {
+        "ranged.0": 1,
+        "ranged.2": 1,
+        "ranged.1": 1
+      },
+      "bossHp": 600,
+      "damage": 0.5
+    },
+    "seconds": 73.43333333333173,
+    "killed": true,
+    "dead": false,
+    "hp": 1.5,
+    "bossHp": 0,
+    "hits": 1,
+    "phase": 2,
+    "rewards": 1
+  }
+]

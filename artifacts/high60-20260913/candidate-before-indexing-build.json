@@ -1,0 +1,15 @@
+{
+  "reused": 445,
+  "rebuilt": 221,
+  "bytes": 163335579,
+  "limitBytes": 500000000,
+  "remainingBytes": 336664421,
+  "files": 944,
+  "categories": {
+    "ui": 11340519,
+    "models": 86915907,
+    "environment": 8901260,
+    "audio": 51526940,
+    "application": 4650953
+  }
+}

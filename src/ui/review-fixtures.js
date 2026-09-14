@@ -1,3 +1,4 @@
+import {prepareSetReview} from './sets-review.js';
 import {meta} from '../systems/meta-progression.js';
 import {isaacState} from '../systems/mutations.js';
 import {queueBossReward,rollAffixes} from '../systems/sets-loot.js';
@@ -6,7 +7,40 @@ import {queueBossReward,rollAffixes} from '../systems/sets-loot.js';
 import {createPart,equip,swapBody,stats} from '../assembly.js';
 import {CATALOG} from '../catalog.js';
 import {addXP} from '../game.js';
+import {ABILITIES} from '../systems/abilities.js';
+import {STORY_CUES} from '../story-cues.js';
 export function prepareReview(run,name){
+  if(new URLSearchParams(location.search).get('variant')==='sets-v2'){prepareSetReview(run);return name==='catalog'?{view:'sets'}:{};}
+  if(name==='journal'||name==='journal-entry'){
+    run.profile.meta.storyEvidence=['garden-agronomist-log','survival-fire-census','survival-field-clinic','survival-launch-dissent','survival-air-ledger','survival-river-sample','survival-empathy-author'];
+    run.profile.meta.storyCues=STORY_CUES.filter(item=>['global','garden'].includes(item.mission)).map(item=>item.id);
+    if(name==='journal-entry')return {id:new URLSearchParams(location.search).get('id')||'survival-fire-census'};
+    return {view:new URLSearchParams(location.search).get('view')||'chronology'};
+  }
+  if(name==='development'){
+    if(new URLSearchParams(location.search).get('variant')!=='base')run.profile.meta.abilityBranches=['fire','cold'];
+    return {browse:true,branch:new URLSearchParams(location.search).get('branch')||'might'};
+  }
+  if(name==='soul'){
+    run.body=createPart(run,'broodmother',1);
+    run.arms=['seed','acid'].map(key=>createPart(run,key,1));
+    run.legs=Array.from({length:3},()=>createPart(run,'swarmLeg',1));
+    run.organs=[createPart(run,'broodNode',1),createPart(run,'broodNode',1),createPart(run,'regen',1)];
+    run.abilities.learned=['summons.0','summons.1','summons.2','summons.3'];
+    run.abilities.levels={'summons.0':5,'summons.1':5,'summons.2':5,'summons.3':5};
+    run.abilities.companions=Array.from({length:8},(_,i)=>({id:`symbiont-${i}`,cooldown:0,attacks:0,x:run.player.x,y:run.player.y??0,z:run.player.z}));
+    run.inventory=[];run.ground=[];run.hp=stats(run).hp;
+    const variant=new URLSearchParams(location.search).get('variant');
+    if(['chimera-two','chimera-ready','chimera-recovering'].includes(variant)){
+      run.body=createPart(run,'chimera');
+      run.arms=[createPart(run,'claws'),createPart(run,'acid')];
+      run.legs=[createPart(run,'runner'),createPart(run,'runner')];
+      run.organs=variant==='chimera-two'?[]:[createPart(run,'digestion')];
+      run.abilities.learned=[];run.abilities.levels={};run.abilities.companions=[];
+      run.setCombat={chimeraAt:variant==='chimera-recovering'?run.time+1:0};
+      run.hp=stats(run).hp;
+    }
+  }
   if(name==='boss-reward'){run.time=480;queueBossReward(run,createPart,2);if(new URLSearchParams(location.search).get('variant')==='first-boss'){run.bosses=1;meta(run.profile).rerolls=1;}}
   if(new URLSearchParams(location.search).get('variant')==='sets'){run.arms=[createPart(run,'seed'),createPart(run,'claws')];for(const p of [run.body,...run.arms,...run.legs]){p.setId='wanderer';p.rarity='rare';}run.arms[0].affix={stat:'reload',value:.08};}
   if(['assembly','part','body-swap','level','map','end'].includes(name)){
@@ -16,14 +50,30 @@ export function prepareReview(run,name){
     run.ground.push({id:++run.entityId,part:createPart(run,'arc'),x:run.player.x+1,z:run.player.z});
   }
   if(new URLSearchParams(location.search).get('variant')==='affixes'){const p=run.inventory[0];if(p){p.rarity='relic';p.affixes=rollAffixes(p,()=>0);}run.body.rarity='rare';run.body.affixes=rollAffixes(run.body,()=>0);}
-  if(name==='level'){addXP(run,18);const variant=new URLSearchParams(location.search).get('variant');if(['tree','synergy','minor'].includes(variant)){run.abilities.learned=variant==='synergy'?['fire.0','fire.1','fire.3','cold.0','cold.1','cold.3']:['fire.0'];run.choices=(variant==='synergy'?['thermal','fire.2','cold.2','minor.damage','minor.rate']:variant==='minor'?['minor.damage','minor.rate','minor.pickup','minor.speed','minor.critPower']:['fire.1','fire.2','cold.0','electric.0','vitality.0']).map(id=>({id}));}}
+  if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='leg-rank'){const key=new URLSearchParams(location.search).get('leg')||'root';run.legs[0]=createPart(run,CATALOG[key]?.kind==='leg'?key:'root',Number(new URLSearchParams(location.search).get('tier'))||2);run.inventory=[];run.hp=stats(run).hp;}
+  if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='armor-affix'){
+    const p=createPart(run,'stabilizer',2);p.rarity='uncommon';p.affixes=[{stat:'armor',value:1}];run.inventory=[p];
+  }
+  if(name==='level'){addXP(run,18);const query=new URLSearchParams(location.search),variant=query.get('variant');if(['tree','synergy','minor'].includes(variant)){const synergy=ABILITIES[query.get('synergy')]?.branch==='synergy'?query.get('synergy'):'thermal';run.abilities.learned=variant==='synergy'?[...ABILITIES[synergy].requires]:['fire.0'];run.choices=(variant==='synergy'?[synergy,'fire.2','cold.2','minor.damage','minor.rate']:variant==='minor'?['minor.damage','minor.rate','minor.pickup','minor.speed','minor.hp']:['fire.1','fire.2','cold.0','electric.0','vitality.0']).map(id=>({id}));}}
   if(name==='level'&&new URLSearchParams(location.search).get('variant')==='metabolism')run.choices=['metabolism.0','might.0','vitality.0','motion.0','summons.0'].map(id=>({id}));
+  if(name==='level'){
+    const query=new URLSearchParams(location.search),id=query.get('ability'),rank=Math.max(0,Math.min(4,Number(query.get('rank'))||0));
+    if(rank&&ABILITIES[id]){if(!run.abilities.learned.includes(id))run.abilities.learned.push(id);run.abilities.levels[id]=rank;run.choices=[{id},...run.choices.filter(choice=>choice.id!==id)].slice(0,5);}
+  }
   if(name==='level'&&new URLSearchParams(location.search).get('variant')==='metabolism-xp'){
     run.abilities.learned=['metabolism.0'];run.choices=['metabolism.1','metabolism.2','vitality.0','motion.0','summons.0'].map(id=>({id}));
     run.xpDrops.push({id:++run.entityId,...run.player,value:10});
   }
-  if(name==='catalog')run.profile.unlocked=Object.keys(CATALOG).slice(0,12);
-  if(name==='map'){run.time=180;run.mission?.nodes.forEach((n,i)=>n.active=i<2);if(run.mission)run.mission.activated=2;}
+  if(name==='catalog'){
+    run.profile.unlocked=Object.keys(CATALOG).slice(0,12);
+    const key=new URLSearchParams(location.search).get('key');
+    if(CATALOG[key])return {key};
+  }
+  if(name==='map'){
+    run.time=180;run.mission?.nodes?.forEach((n,i)=>n.active=i<2);if(run.mission)run.mission.activated=2;
+    run.recoveryDrops.push({id:++run.entityId,kind:'health',x:run.player.x+16,y:run.player.y??0,z:run.player.z-10,expiresAt:300});
+    run.recoveryDrops.push({id:++run.entityId,kind:'armor',x:run.player.x-15,y:run.player.y??0,z:run.player.z+12,expiresAt:300});
+  }
   if(name==='end'){run.won=true;if(run.mission)run.mission.complete=true;run.time=462;run.level=12;run.kills=186;run.profile.unlocked.push('arc','regen');}
   if(name==='end'){
     const variant=new URLSearchParams(location.search).get('variant');
@@ -53,6 +103,15 @@ export function prepareReview(run,name){
     if(new URLSearchParams(location.search).get('variant')==='regeneration'){run.arms[0]=createPart(run,'seed');run.biomass=1000;}
     run.ground=[];
   }
+  if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='body-trait-bastion'){
+    const active=new URLSearchParams(location.search).get('active')==='1';
+    run.body=createPart(run,'bastion',2);
+    run.arms=['whip','needle'].map(key=>createPart(run,key));
+    run.legs=['root','plated','universal','runner'].map(key=>createPart(run,key));
+    run.organs=['regen','shield','digestion',active?'stabilizer':null].map(key=>key?createPart(run,key):null);
+    run.inventory=active?[]:[createPart(run,'stabilizer')];
+    run.ground=[];run.hp=stats(run).hp;
+  }
   if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='assembly-dense'){
     run.body=createPart(run,'rootwalker');run.arms=['seed','needle','whip','hammer'].map(k=>createPart(run,k));
     run.legs=['root','plated','universal','runner'].map(k=>createPart(run,k));
@@ -61,7 +120,7 @@ export function prepareReview(run,name){
   }
   if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='eight-organs'){
     const body=createPart(run,'wanderer',5);body.rarity='rare';run.inventory.push(body);swapBody(run,body.id);
-    run.organs=['returnNerve','slime','parasite','commonNerve','outerStomach','reverseHeart','shield',null].map(k=>k?createPart(run,k):null);run.hp=stats(run).hp;
+    run.organs=['returnNerve','slime','parasite','commonNerve','reverseHeart','shield',null,null].map(k=>k?createPart(run,k):null);run.hp=stats(run).hp;
   }
   if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='mounts'){
     const q=new URLSearchParams(location.search),body=q.get('body')||'rootwalker';
@@ -75,7 +134,22 @@ export function prepareReview(run,name){
     run.organs=Array.from({length:d.organs},(_,i)=>createPart(run,i?'shield':'regen'));
     run.inventory=[];run.ground=[];run.hp=stats(run).hp;
   }
+  if(name==='part'&&new URLSearchParams(location.search).get('variant')==='summon-equipment'){
+    const key=new URLSearchParams(location.search).get('key');
+    if(['drone','swarmLeg','broodNode','parasite'].includes(key)){
+      const p=createPart(run,key);run.body=createPart(run,'broodmother');run.biomass=1000;
+      run[{drone:'arms',swarmLeg:'legs',broodNode:'organs',parasite:'organs'}[key]][0]=p;
+      return {group:{drone:'arms',swarmLeg:'legs',broodNode:'organs',parasite:'organs'}[key],slot:0};
+    }
+  }
   if(name==='part')return {id:run.inventory.find(p=>p.key==='drill').id};
+  if(name==='ability-detail'){
+    const query=new URLSearchParams(location.search),branch=query.get('branch')||'might',id=ABILITIES[branch]?branch:`${branch}.0`,rank=Math.max(0,Math.min(5,Number(query.get('rank'))||0));
+    if(rank&&ABILITIES[id]){run.abilities.learned=id.startsWith('ricochet.')&&id!=='ricochet.0'?['ricochet.0',id]:[id];run.abilities.levels[id]=rank;if(run.abilities.learned.includes('ricochet.0'))run.abilities.levels['ricochet.0']=1;}
+    return {browse:true,branch};
+  }
   if(name==='body-swap')return {id:run.inventory.find(p=>p.key==='bastion').id};
+  if(name==='map'&&new URLSearchParams(location.search).get('variant')==='recovery')return {filter:'loot',zoom:'near'};
+  if(name==='map'&&new URLSearchParams(location.search).get('variant')==='loot')return {filter:'loot',zoom:'world'};
   return {};
 }

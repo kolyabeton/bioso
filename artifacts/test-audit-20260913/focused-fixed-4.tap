@@ -1,0 +1,417 @@
+✔ HUD updates consume changes once and a new run establishes a fresh baseline (1.251375ms)
+✔ either reduced-motion preference suppresses JS feedback and screen animations (0.138ms)
+✔ repeat feedback cancels only the previous pulse, preserving unrelated animation (0.075916ms)
+✔ bursts reuse fixed storage; low and reduced motion limit decoration immediately (4.804166ms)
+✔ pause freezes particles, expiry clears them and restart has no stale effects (0.60225ms)
+✔ weapon colors are distinct and arcs connect elevated world endpoints (0.440792ms)
+✔ player hit pours varied directional green droplets that fall and settle without allocating beyond the pool (0.374917ms)
+✔ enemy death creates a small radial burst of yellow droplets (0.1355ms)
+✔ hit VFX review loops the real player-hit event without spawning combatants (0.143917ms)
+✔ Three view keeps two pooled draw objects and releases both materials and geometries (9.858583ms)
+✔ survival result fixture works without a mission object (158.002291ms)
+✔ each melee weapon has a distinct trajectory, with a shield thrust and drill rotation (1.347791ms)
+✔ projectiles differ in silhouette and trail length, independent of simulation stats (0.731375ms)
+✔ melee effects have different spatial patterns and expire in fixed storage (0.938708ms)
+✔ bulk and rated capacity slow turning; backpack load does not (1.965959ms)
+✔ turning takes the shortest arc, is bounded and independent of timestep (0.305458ms)
+✔ each mount owns its side; rear targets and empty opposite mounts cannot bypass it (0.1895ms)
+✔ blocked attacks spend no ammo or attack proc and resume after the body turns (4.796792ms)
+✔ shield splash crosses the centreline after a valid strike, but repeats cannot originate across the body (0.682791ms)
+✔ body health grows independently with rank and rarity for every chassis (9.121333ms)
+✔ swapping high quality bodies preserves wounds through repeated swaps (0.936125ms)
+✔ body swap eligibility includes rank and rarity after health deals (0.502625ms)
+✔ each chassis exposes one signature condition without universal slot bonuses (2.362333ms)
+✔ wanderer needs both installed legs for its movement multiplier (0.779125ms)
+✔ hunter needs three installed arms and boosts only ranged damage (0.428583ms)
+✔ bastion requires four installed organs rather than four available or empty slots (0.140542ms)
+✔ chimera needs four mixed arms and boosts every arm only while mixed (0.287917ms)
+✔ rootwalker gains two max health with four legs and preserves wounds when toggled (0.427584ms)
+✔ hecaton needs four installed arms for twenty percent attack speed (1.533958ms)
+✔ organ booster scales projectile speed, attack rate, regeneration and biomass but not refunds (0.368459ms)
+✔ slime snapshots on attack and larvae snapshot organ power when summoned (0.707666ms)
+✔ shield recharge and armor capacity use boosted organs without extra HP (0.506958ms)
+✔ reverse heart impulse uses boosted power without recursively creating pulses (5.81375ms)
+✔ reflex organ and Mobility ranks share one bounded dodge stat (2.005334ms)
+✔ a dodge consumes no health, armor, shield or hit invulnerability (1.714792ms)
+✔ repeatable health skill grants one maximum-health segment per rank (0.740959ms)
+✖ survival has five secrets and all three trials at levels 5, 15 and 25 (1.381792ms)
+✔ time cannot unlock late trials before their level (0.149541ms)
+✔ approaching a secret gives no map marker, prompt, discovery or signal; opening enables local reward (0.99675ms)
+✔ higher-tier trials scale enemy health, pursuer count and granted item tier (1.035ms)
+✖ altar charges one max HP once and applies only its bonus (5.950625ms)
+✔ altar_organs charges one max HP once and applies only its bonus (0.814834ms)
+✔ altar_speed charges one max HP once and applies only its bonus (0.37475ms)
+✔ altar_armor charges one max HP once and applies only its bonus (0.321834ms)
+✔ altar_capacity charges one max HP once and applies only its bonus (0.274791ms)
+✔ fusion rejects last HP and cross-operation offers atomically (0.194208ms)
+✔ infection counts time in the expanded area, pauses outside, and rewards survival with pursuers alive (0.441084ms)
+✔ intro boss takes 8–11 seconds with one unupgraded starter claw (22.764792ms)
+✔ first boss guarantees digestion every run and unlocks real recycling/upgrading (1.90075ms)
+✔ boss and elite bars face camera, shrink and disappear after death/reset (1.983458ms)
+✔ first boss funds one real upgrade through pickup, equip and two digestions, only once (3.778916ms)
+✔ combat scatters life and requires five active quiet seconds; pause cannot advance recovery (0.68725ms)
+✔ decoration governor is sustained, budget-aware and one-way across quality changes (0.22375ms)
+✔ ambient pools obey tiers, player proximity, combat density, reduced motion and reset (1.724292ms)
+✔ new installs default to 60, saved choices survive and menus throttle (0.13375ms)
+✔ catalog contains all current bodies, weapons and organs (0.596959ms)
+✔ baseline is one melee arm, vacant second mount, two legs and active Wanderer speed (1.967042ms)
+✔ four arms fire in one tick and retain independent timers (2.00575ms)
+✔ body shrink preserves selected limbs, old body, soul, enhancements and missing health segments (1.012833ms)
+✔ invalid duplicate body selections are atomic (0.194084ms)
+✔ overload prevents movement but allows attack; thrown item persists and can return (5.711875ms)
+✔ body weight is spare-only and Hecaton no longer discounts individual arms (0.184125ms)
+✔ missing legs scale mobility and Rootwalker trades its health bonus at four installed legs (0.285375ms)
+✔ shield cannot be refilled by un/re-equipping or swapping bodies (1.683584ms)
+✔ each item rank adds 15 percent weight while power and capacity retain their own scaling (0.377667ms)
+✔ individual upgrades follow item; learned abilities affect replacement arms (0.45575ms)
+✔ biomass cost, limits and actual-spend refund; no self digestion or distant digestion (0.587208ms)
+✔ rank ten enforced and insufficient biomass is atomic (0.4435ms)
+✔ loot tier boundaries redistribute mass without out-of-range levels (0.06525ms)
+✔ multiple earned levels resolve one choice each and block combat until selected (0.776ms)
+✔ all twelve attacks cause damage with distinct projectile handling (188.073709ms)
+✔ pistol arm has five rounds, a slower cadence and a 30 percent double-damage critical (2.249292ms)
+✖ needle pierces three enemies, rocket assigns distinct available targets, chain drops off (1.005875ms)
+✔ living ricochet redirects a real shot and launches a melee fragment (5.736ms)
+✔ rocket bees fly slowly, show their damage and strongly scatter a small area (9.119708ms)
+✔ rocket hive is intentionally the heaviest weapon (0.092042ms)
+✔ acid pools from same arm do not stack, other arms do (0.403458ms)
+✔ fangs do not heal on every hit, drill ignores half armor, projectile stabilizer does not affect ray intervals (0.37475ms)
+✔ enemy scaling is time driven and spawns outside hero footprint (0.126458ms)
+✔ elite loot chance, boss reward, unlock award and persistence stay coherent (1.033542ms)
+✔ final boss on minute forty yields decision and continuation (1.523541ms)
+✔ all five missions clear 25 escalating rooms, end with boss plus elite and award their catalogue (629.381416ms)
+✔ mission events block every third-room gate and alternate sacrifices with combat trials (104.136208ms)
+✔ mission altar costs health and circle reward appears only after holding it (22.721292ms)
+✔ missions have no timeout and do not alter the survival world contract (348.534459ms)
+✔ procedural chunks deterministic and connected corridors fit largest creature (36.707875ms)
+✔ death and fresh runs reset soul, inventory and biomass while keeping catalog (0.272375ms)
+✔ all eleven pickups have English and Russian names, details and compact notices (16.71525ms)
+✔ new and existing profiles default to English without losing other settings (0.1735ms)
+✔ language survives reload and remains effective when storage is unavailable (0.172792ms)
+✔ dynamic stats, units and longest phrases translate without changing values (0.092667ms)
+✔ production copy has English coverage, including catalog data and template fragments (140.522459ms)
+✔ highlight animates deterministically, respects reduced motion, restores shared material and disposes once (3.674375ms)
+✔ event highlight follows availability, distance and outcome without changing simulation state (1.43825ms)
+✔ new inventory badge counts collected items that remain in inventory (1.997667ms)
+✔ items removed before assembly do not remain in the badge count (0.413625ms)
+✔ a viewed item does not become new again after drop and pickup (0.254833ms)
+✔ chosen boss reward is new inventory (0.496875ms)
+✔ enemy death creates experience orb; set radius attracts it but does not collect equipment (16.532917ms)
+✔ random pickup property activates only when installed and attracts actual orbs (1.062083ms)
+✔ displayed reload and regeneration use applied affixes, sets and legs (1.521834ms)
+✔ installed body inspector includes event-granted organ mounts (0.464ms)
+✔ preview matches paid upgrade without mutating the live run (3.828167ms)
+✔ inspector disables unaffordable and exhausted upgrades; inventory cannot upgrade (1.917333ms)
+✔ capacity preview does not heal or change wounds on the live run (0.509875ms)
+✔ installed chassis shows live trait progress while spare and catalog bodies show only the rule (1.029917ms)
+✔ rare common nerve has no contradictory common label and exposes its real volley upgrade (1.009708ms)
+✔ common nerve paid upgrades add ten volley damage points and stop at ten (9.666ms)
+✔ reverse heart paid upgrades add twenty pulse damage points and stop at ten (2.507834ms)
+✔ shield ranks improve its starting recharge and paid upgrades remove one second (2.837584ms)
+✔ every organ rank changes its displayed core effect (7.011166ms)
+✔ all-hand organs do not repeat the installed weapon list (0.312208ms)
+✔ catalog inspectors describe every base part without actions or run mutations (5.490708ms)
+✔ each item category leads with its useful property, before weight (4.895125ms)
+✔ player health and armor item values use only whole or half units (33.09ms)
+✔ ranked leg speed is reflected in the stat without a duplicate explanation (0.110459ms)
+✔ leg inspectors show current stats without rank formulas (8.864625ms)
+✔ base item properties stay in stats while the copy slot is reserved for rarity bonuses (7.556875ms)
+✔ every weapon omits prose that repeats common numeric characteristics (4.224416ms)
+✔ starter pistol shows its critical profile and uses dedicated transparent art (0.304375ms)
+✔ armor affix is shown only once in the general description (0.123584ms)
+✔ return nerve inspector shows the current rank and chassis damage bonus (7.623875ms)
+✔ parasite inspector shows autonomous larva damage and summon interval (9.944125ms)
+✔ slime inspector shows equal slowdown for every enemy class at every organ rank (1.985334ms)
+✔ slime paid upgrades add two slowdown points, preview exactly and stop at ten (2.655541ms)
+✔ parasite paid upgrades add 2.4 damage, preview exactly and stop at ten (3.226375ms)
+✔ return nerve paid upgrades preview exact percentages, charge once and stop at ten (5.208208ms)
+✔ only slow leg ranks add half HP while every leg rank adds 15 percent weight (3.016417ms)
+✔ installed legs stack HP, inventory does not; swapping and removing preserve wounds (0.86375ms)
+✔ half HP survives damage and healing and is represented in the actual HUD markup (0.582333ms)
+✔ speed, health and armor ranks improve their assigned attribute plus universal weight (5.961834ms)
+✔ plated ranks I through V grant half a segment per rank without percent bonuses (4.859208ms)
+✔ natural and plated half segments each absorb one hit (0.603042ms)
+✔ a half segment is visible in HUD and removing a leg does not refill spent armor (1.23075ms)
+✔ paid plated upgrades add half a segment, retain speed and stop at ten (2.010583ms)
+✔ roots heal after fifteen seconds, retain HP bonus and offer regeneration upgrades (1.730292ms)
+✔ ten root upgrades each remove one second, keep speed and HP, and do not heal immediately (1.52ms)
+✔ old root upgrades accelerate regenerator organs; installed roots stack down to half a second (0.461834ms)
+✔ a root upgrade adjusts a pending heal and a new hit restarts the timer (0.178084ms)
+✔ a fatal instant strike cannot be undone by the thirtieth fang hit in the same frame (7.278041ms)
+✖ corrupt profile keys cannot enter the loot pool through inherited object properties (1.770166ms)
+✔ failed profile writes retain session unlocks and report failure until a successful retry (0.28725ms)
+✔ screen culling keeps the index-zero enemy and friendly projectile (0.476875ms)
+✔ equipment comparison carries ability HP and wounds while isolating the live run (3.877209ms)
+✔ equipment descriptions expose real purchase price after a rank changes (0.975667ms)
+✔ only elite deaths roll once; ordinary enemies and objectives drop no recovery (2.92375ms)
+✔ elite recovery distribution uses the raised thirty-percent budget (1.071333ms)
+✔ armor repairs spent plates once and never grants unequipped armor (0.591917ms)
+✔ red health pickup heals through the actual simulation and stays at full HP (11.249125ms)
+✔ range, floors, occlusion, healing suppression and death prevent collection (0.400708ms)
+✔ consumables expire on combat time and land on the world surface (0.130083ms)
+✔ view shows distinct shapes and removes picked up objects and resets (2.303125ms)
+✔ regeneration HUD follows the real 15 second health timer (2.66175ms)
+✔ regeneration HUD uses upgraded 10 second timing and damage resets it (0.340542ms)
+✔ regeneration HUD stays inactive at full or zero health (0.243792ms)
+✔ clearing the first pack in the real game loop brings reinforcements within 0.6s (7.672125ms)
+✔ continuous clears receive growing packs throughout 45 seconds, then spawning ends (10.853917ms)
+✔ pressure grows with enemies still alive, remains capped and does not bank a spawn backlog (2.821167ms)
+✔ reinforcements use the central area, preserve tier health and retry obstructed spawns (0.371959ms)
+✔ actual survival arenas keep spawning across seeds and all three tiers (2281.041041ms)
+✔ ordinary survival spawns retain the every-30th elite promotion (0.443041ms)
+✔ shield damage, knockback and impact effects occur at full extension, once (4.254584ms)
+✔ one shield contact damages and marks three clustered targets in its impact area (1.339458ms)
+✔ shield windup cannot hit a removed, dead, out-of-range or occluded target (1.0975ms)
+✔ every catalog part exposes at most one upgrade parameter (1.732875ms)
+✔ wrong parameters are rejected without spending resources or modifying parts (0.420625ms)
+✔ capacity grows through ten ranks without adding weight or health (0.92475ms)
+✔ leg speed and weapon damage improve without increasing armor or attack rate (0.495959ms)
+✔ element visuals follow successful rolls and preserve elevation (2.82025ms)
+✔ revive and movement trigger once; no lightning visual without a target (0.675083ms)
+✔ effect pool is bounded, pause preserves age, reset clears all visuals (4.623542ms)
+✔ persistent status follows current targets, stops spawning on expiry and stays within budget (7.773167ms)
+✔ persistent fire becomes denser with accumulated burn stacks (0.67375ms)
+✔ body fire follows a moving elevated target between emissions and clears on death (0.551916ms)
+✔ real extra shots and echo report actual direction without extra gameplay RNG (1.720833ms)
+✔ volatile uses shared flame and smoke buffers, respects elevation, pause and cleanup (1.048708ms)
+✔ volatile pressure pop covers the damage radius within .12 seconds and remains low (0.964791ms)
+✔ all new ability VFX use bounded pools, merge bursts, and retain reduced-motion cues (1.636541ms)
+✔ rank-I sustained weapon DPS matches the stabilization table (4.155375ms)
+✔ Broodmother full build exposes five independent permanent helpers (40.798ms)
+✔ permanent helpers neither take contact damage nor consume enemy attacks (11.647084ms)
+✔ damage contract uses half armor and HP-only invulnerability (0.293833ms)
+✔ dungeon and horde schedules are level- and time-gated as specified (0.19375ms)
+✔ dungeon presentation is a connected corridor graph with a distinct theme and no rooms (2.941541ms)
+✔ both survival dungeons spawn all elites immediately, pause time and keep one best-of-two item per elite (739.861291ms)
+✔ new settings default to High/60 and enabled 30 percent audio while preserving old values (0.160542ms)
+✔ swarm equipment integrates rank, paid upgrades and strongest duplicate caps (8.591209ms)
+✔ old swarm-leg movement upgrades retain their investment as summon rate (0.339917ms)
+✔ drone arm attacks autonomously through the shared swarm, with no hero shots (5.680667ms)
+✔ arm drones are additional to the five body and skill companions (0.956959ms)
+✔ unmodified rank-I arm drone sustains fifteen DPS after reaching its target (4.770875ms)
+✔ drone arm acquires targets within ten metres without range bonuses from swarm legs (0.385291ms)
+✔ womb produces two larvae every two seconds without attacks or deaths (0.995833ms)
+✖ summon rate accelerates womb production and swarm damage affects the larva hit (0.877583ms)
+✔ womb ranks, independent timers and old infection removal (4.258583ms)
+✔ Hive uses the same timed production and no longer responds to deaths (2.727041ms)
+✔ one user action chooses its result over click and navigation; next action stays independent (2.825333ms)
+✔ equipment previews stay silent; successful body/organ and limb/weapon mutations use the selected materials (2.497167ms)
+✔ failed upgrade reports denial, successful upgrade confirms, and zero-valued success is not failure (0.343208ms)
+✔ UI feedback respects opt-in, effects volume, and independent music setting (0.174584ms)
+✔ shipped closing is exactly the opening PCM reversed; all chosen UI files contain non-silent mono PCM (10.085708ms)
+✔ master sound switch is opt-in, persists, and preserves channel levels (1.553917ms)
+✔ equipment preview compares actual weapon values without equipping in the live run (3.514834ms)
+✔ corrupt settings recover and unavailable storage still applies session settings (0.786583ms)
+✔ comparison distinguishes lower damage from faster attacks (0.583292ms)
+✔ external link button uses safe new-tab attributes (0.232791ms)
+✔ all weapons obey damage and melee critical chance without extra range (6.243833ms)
+✔ combo fourth hit only; target, time, weapon and secondary boundaries (0.881458ms)
+✔ frenzy accelerates only melee for four seconds and does not stack (0.328458ms)
+✔ reload speed applies to every charged weapon; full salvo remains ranged-only (1.3745ms)
+✔ actual attack consumes charged salvo once and direct melee kills trigger frenzy (2.361916ms)
+✔ equipment controls specialization offers without permanently locking a branch (2.013875ms)
+✔ reworked skills retain IDs and preserve projectile effects (0.375666ms)
+✔ remaining critical chance and multiplier affect actual melee and arc damage (0.815958ms)
+✔ preparation includes gated candidates but only unlocked weapons are selectable (6.02625ms)
+✔ pistol kill threshold carries between runs, unlocks the shotgun once and is recoverable from the achievement (3.60575ms)
+✔ machine gun counts 60 player kills and excludes objectives, summoned children and environment deaths (0.939708ms)
+✔ actual pistol projectile resolution owns the kill, not the equipped off-hand (7.589584ms)
+✔ legacy unlocked weapons survive migration; malformed new counters cannot bypass gates (0.185584ms)
+✔ load curve matches requested percentages and scales with capacity (0.582125ms)
+✔ survival movement applies the load curve and stops at full capacity (2379.203167ms)
+✔ dropping weight or upgrading capacity immediately restores movement (570.229792ms)
+✔ mission world is a 25-room northbound corridor with its own environment (5.088375ms)
+✔ mission corridor has fixed screen-width sides and cannot scroll into lateral space (3.991834ms)
+✔ a floor gate opens only after every enemy in that room is defeated (14.699042ms)
+✔ entering the next mission room closes the previous gate and prevents return (14.406625ms)
+✔ the first mission room uses its configured defender multiplier, keeps one elite and no room reward while survival keeps continuous waves (677.912292ms)
+✔ mission defenders enter in formation from the far north edge and run into the room (73.250375ms)
+✔ far-edge mission entry lanes stay walkable in every room and environment (85.786166ms)
+✖ every next mission room compounds enemy health and attack by seven percent (11.007458ms)
+✔ mission attack scaling travels with ranged projectiles (0.675542ms)
+✔ A star and enemy movement go around an obstacle using the same footprint (1.253667ms)
+✔ quick equip prefers empty compatible socket and rejects duplicate actions atomically (0.573333ms)
+✔ legacy ranged enemy fires immediately and recovery blocks a repeat (1.045625ms)
+✔ mission gates are simulation barriers, not destructible objective enemies (4.706625ms)
+✔ new survival run keeps only melee and does not auto-grant spawn loot (844.4595ms)
+✔ every mission and survival start without a digestion organ (253.326625ms)
+✔ each mission starts at the south edge of its first themed room (1.329583ms)
+✖ ranged enemy below its stopping distance navigates around blocked firing lane (14.708167ms)
+✔ failed path search observes its retry interval instead of searching every frame (0.272292ms)
+✔ mission room enemies spawn on real walkable ground across seeds (1346.212166ms)
+ℹ tests 241
+ℹ suites 0
+ℹ pass 234
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4143.71475
+
+✖ failing tests:
+
+test at tests/event-stages.test.mjs:9:1
+✖ survival has five secrets and all three trials at levels 5, 15 and 25 (1.381792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  9 !== 5
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/event-stages.test.mjs:10:52)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 9,
+    expected: 5,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/event-surgeries.test.mjs:9:75
+✖ altar charges one max HP once and applies only its bonus (5.950625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(takeDeal(s,n.id,key,p.id))
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/event-surgeries.test.mjs:11:52)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/game.test.mjs:35:1
+✖ needle pierces three enemies, rocket assigns distinct available targets, chain drops off (1.005875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 3
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/game.test.mjs:35:390)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/playtest-regressions.test.mjs:25:1
+✖ corrupt profile keys cannot enter the loot pool through inherited object properties (1.770166ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'drone',
+      'wanderer',
+      'universal',
+      'runner',
+  ...
+      'broodNode',
+  +   'seed',
+      'shield'
+    ]
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/playtest-regressions.test.mjs:27:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'drone',      'wanderer',
+      'universal',  'runner',
+      'pistol',     'claws',
+      'stabilizer', 'broodmother',
+      'swarmLeg',   'broodNode',
+      'seed',       'shield'
+    ],
+    expected: [
+      'drone',      'wanderer',
+      'universal',  'runner',
+      'pistol',     'claws',
+      'stabilizer', 'broodmother',
+      'swarmLeg',   'broodNode',
+      'shield'
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/summon-equipment.test.mjs:92:1
+✖ summon rate accelerates womb production and swarm damage affects the larva hit (0.877583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/summon-equipment.test.mjs:95:58)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/world-expedition.test.mjs:21:1
+✖ every next mission room compounds enemy health and attack by seven percent (11.007458ms)
+  AssertionError [ERR_ASSERTION]: 2 != 0.9299999999999999
+      at near (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/world-expedition.test.mjs:12:51)
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/world-expedition.test.mjs:21:941)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/world-expedition.test.mjs:34:1
+✖ ranged enemy below its stopping distance navigates around blocked firing lane (14.708167ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(clearSegment(s.world,enemy,s.player,.05))
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/world-expedition.test.mjs:34:532)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

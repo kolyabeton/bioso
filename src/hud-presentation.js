@@ -1,15 +1,16 @@
 import { CATALOG, ROMAN, MAX_ARMS } from './catalog.js';
-import { stats, weaponStats } from './assembly.js';
+import { ranks, stats, weaponStats } from './assembly.js';
 
 // Presentation only: read real slots, enabled state and independent cooldowns.
 export function handPresentation(run) {
   const st = stats(run);
   return run.arms.slice(0,MAX_ARMS).map((part, index) => ({
-    identity: part ? `${part.id}:${part.key}:${part.tier}` : `empty:${index}`,
+    identity: part ? `${part.id}:${part.key}:${part.tier}:${ranks(part)}` : `empty:${index}`,
     key: part?.key ?? 'empty',
     enabled: !!part && !part.disabled,
     name: part ? CATALOG[part.key].name : `Свободное крепление ${index + 1}`,
     tier: part ? ROMAN[part.tier] : '—',
+    upgradeRank: part ? ranks(part) : 0,
     charge: part ? Math.max(0, Math.min(1, 1 - part.cooldown / weaponStats(run, part, st).interval)) : 0,
     magazine: part ? CATALOG[part.key].magazine ?? 0 : 0,
     ammo: part ? part.ammo ?? CATALOG[part.key].magazine ?? 0 : 0,
@@ -24,6 +25,7 @@ const silhouettes = {
   hammer: '<path d="m30 19 30-5 13 26-32 8Z M49 45l9 35-12 4-8-35Z"/>',
   whip: '<path d="M30 77c-3-24 51-13 39-38C62 25 25 42 37 16" fill="none" stroke-width="9"/><path d="m24 70 16 5-5 15-16-5Z"/>',
   fangs: '<path d="M22 20c33 0 30 29 19 44-2-20-7-25-19-25Z M78 20C45 20 48 49 59 64c2-20 7-25 19-25Z M36 71h28v15H36Z"/>',
+  shotgun: '<path d="M22 25h56l-7 34H29Z M34 59h32l-4 26H38Z"/><circle cx="38" cy="40" r="6" fill="#91ddbb"/><circle cx="50" cy="36" r="6" fill="#91ddbb"/><circle cx="62" cy="40" r="6" fill="#91ddbb"/><circle cx="44" cy="49" r="6" fill="#91ddbb"/><circle cx="56" cy="49" r="6" fill="#91ddbb"/>',
   needle: '<path d="m43 42 8-31 6 32M30 47l2-30 10 29M58 44l16-26-6 33M26 49l43-4-6 27-29 5Z M38 77l21-3 2 14-20 2Z"/>',
   rocket: '<path d="m23 36 27-20 27 20-5 42-22 12-22-12Z"/><path d="M36 37v20M50 29v25M64 37v20" stroke="#91ddbb" stroke-width="7"/>',
   arc: '<path d="m22 20 12 24-3 13 15 12-3 18h17l-3-18 15-12-3-13 10-24-19 19 4 12-14 9-13-9 4-12Z"/><path d="m50 20-8 17h16l-8 17" fill="none" stroke="#91ddbb" stroke-width="3"/>',

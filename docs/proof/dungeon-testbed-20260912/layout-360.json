@@ -1,0 +1,85 @@
+{
+  "buttons": [
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "✓ Корни"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Катакомбы"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Начать бой"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Инструменты"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Дальше"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "К выходу"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Зачистить"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Выйти"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Бессмертие: да"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Сбросить"
+    },
+    {
+      "fits": true,
+      "height": 44,
+      "lines": 1,
+      "text": "Условия"
+    }
+  ],
+  "overflow": false,
+  "panel": {
+    "bottom": 536,
+    "height": 307.1953125,
+    "left": 12,
+    "right": 348,
+    "top": 228.8046875,
+    "width": 336,
+    "x": 12,
+    "y": 228.8046875
+  },
+  "viewport": [
+    360,
+    640
+  ]
+}

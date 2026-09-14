@@ -1,0 +1,50 @@
+[
+  {
+    "size": {
+      "width": 360,
+      "height": 640
+    },
+    "atlas": {
+      "overflow": false,
+      "screen": "catalog",
+      "width": 344
+    },
+    "home": {
+      "open": true,
+      "screen": "home",
+      "width": 360
+    }
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "atlas": {
+      "overflow": false,
+      "screen": "catalog",
+      "width": 374
+    },
+    "home": {
+      "open": true,
+      "screen": "home",
+      "width": 390
+    }
+  },
+  {
+    "size": {
+      "width": 1280,
+      "height": 720
+    },
+    "atlas": {
+      "overflow": false,
+      "screen": "catalog",
+      "width": 1280
+    },
+    "home": {
+      "open": true,
+      "screen": "home",
+      "width": 1280
+    }
+  }
+]

@@ -1,0 +1,6 @@
+file '/Users/serg/Documents/ChatGPT/Biomecha/docs/proof/boss-animation-v5/garden.mp4'
+file '/Users/serg/Documents/ChatGPT/Biomecha/docs/proof/boss-animation-v5/quarantine.mp4'
+file '/Users/serg/Documents/ChatGPT/Biomecha/docs/proof/boss-animation-v5/core.mp4'
+file '/Users/serg/Documents/ChatGPT/Biomecha/docs/proof/boss-animation-v5/nursery.mp4'
+file '/Users/serg/Documents/ChatGPT/Biomecha/docs/proof/boss-animation-v5/mother-flight.mp4'
+file '/Users/serg/Documents/ChatGPT/Biomecha/docs/proof/boss-animation-v5/mother-ground.mp4'

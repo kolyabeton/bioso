@@ -1,0 +1,20 @@
+{
+  "route": "http://127.0.0.1:5298/?review=trailer&shot=skills&screen=ability-detail&environment=overgrown-city&skills=electric.0,electric.1,electric.2,projectiles.1&quality=high",
+  "screen": "ability-detail",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "panel": {
+    "x": 445.5,
+    "y": 8,
+    "width": 389,
+    "height": 704,
+    "top": 8,
+    "right": 834.5,
+    "bottom": 712,
+    "left": 445.5
+  },
+  "text": "SOUL · BRANCHES\nABILITY DEVELOPMENT\nMight\nAttack rate\nProjectiles\nBioelectricity\nResilience\nMelee\nRanged\nRicochet\nFire\nCold\nMobility\nSymbionts\nMetabolism\nThermal Shock\nPlasma\nSwarm Resonance\nNeural Web\nCounter Shell\nSpore Brood\nOvergrowth\nCryo Trail\nBRANCH\nBioelectricity\nLearned\nLearned\nLearned\nAvailable\nSELECTED NODE\nStorm Organ\nAvailable\n\nLightning triggers on every third attack of each arm.\n\nMay appear on the next level up.",
+  "method": "Exact native IAB screenshot of actual live UI, transferred locally through browser clipboard."
+}

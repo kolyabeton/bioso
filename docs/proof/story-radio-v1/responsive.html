@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIOSO story radio responsive proof</title>
+<style>
+  *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#111713;color:#e6e1d2;font:12px/1.4 system-ui,sans-serif}
+  body{display:grid;place-items:start center;padding:12px}.proof{display:grid;gap:8px;justify-items:start}.proof strong{width:100%;text-align:center;letter-spacing:.08em;text-transform:uppercase}
+  iframe{display:block;border:1px solid #777d6d;background:#20271f;transform-origin:top left}
+</style>
+<main class="proof">
+  <strong id="label"></strong>
+  <iframe id="game" title="BIOSO story radio"></iframe>
+</main>
+<script>
+  const params=new URLSearchParams(location.search),requested=params.get('size')||'360x640',cue=params.get('cue')||'garden-01-child';
+  const [width,height]=requested.split('x').map(Number),frame=document.querySelector('#game');
+  frame.width=width;frame.height=height;frame.src=`/?review=story-radio&lang=ru&cue=${encodeURIComponent(cue)}`;
+  document.querySelector('#label').textContent=`${width} × ${height}`;
+  const scale=Math.min(1,(innerWidth-24)/width,(innerHeight-52)/height);
+  frame.style.transform=`scale(${scale})`;frame.parentElement.style.width=`${width*scale}px`;frame.parentElement.style.height=`${52+height*scale}px`;
+</script>
+</html>

@@ -1,0 +1,1 @@
+function n(s,t){const e={west:[-26,0],east:[282,0],north:[0,-26],south:[0,282],corner:[-29,-27],ne:[282,-26],sw:[-26,282],se:[282,282]},[r,o]=e[t.get("side")]||e.west;return Object.assign(s.player,{x:r,z:o,y:0}),{paused:!0}}export{n as prepareForestBorderReview};

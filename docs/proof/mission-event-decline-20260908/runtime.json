@@ -1,0 +1,65 @@
+{
+  "dialogOpen": false,
+  "enemies": 0,
+  "errors": 0,
+  "event": null,
+  "eventHistory": [
+    {
+      "claimed": true,
+      "id": "mission-event-3",
+      "kind": "altar",
+      "nodeId": "mission-event-3",
+      "outcome": "skipped",
+      "result": "Вы отказались · проход открыт без награды",
+      "room": 3,
+      "type": "altar_speed"
+    },
+    {
+      "claimed": true,
+      "id": "mission-event-6",
+      "kind": "challenge",
+      "nodeId": "mission-event-6",
+      "outcome": "skipped",
+      "result": "Вы отказались · проход открыт без награды",
+      "room": 6,
+      "type": "infection"
+    },
+    {
+      "claimed": true,
+      "id": "mission-event-9",
+      "kind": "challenge",
+      "nodeId": "mission-event-9",
+      "outcome": "skipped",
+      "result": "Вы отказались · проход открыт без награды",
+      "room": 9,
+      "type": "sealed"
+    },
+    {
+      "claimed": true,
+      "id": "mission-event-12",
+      "kind": "challenge",
+      "nodeId": "mission-event-12",
+      "outcome": "skipped",
+      "result": "Вы отказались · проход открыт без награды",
+      "room": 12,
+      "type": "hunt"
+    }
+  ],
+  "eventRewards": 0,
+  "gateClosed": false,
+  "gateErrors": [],
+  "gateModels": [
+    "arch-gate",
+    "arch-wall-straight",
+    "arch-pillar"
+  ],
+  "gates": 3,
+  "models": [],
+  "player": {
+    "x": 0,
+    "y": 0,
+    "z": -721
+  },
+  "ready": true,
+  "room": 13
+}

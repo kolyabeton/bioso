@@ -23,7 +23,7 @@ export function createPaintedRun(profile,mode='survival',seed){
   run.world=paintedTerrain(run.seed);
   run.player={x:1.5,z:21};
   const nodes=mode==='core'?[[4,-21],[1.5,24]]:mode==='nursery'?[[1.5,3]]:[[4,-19],[-2,2],[5,20],[9,-3]];
-  run.mission?.nodes.forEach((node,i)=>{[node.x,node.z]=nodes[i];});
+  run.mission?.nodes?.forEach((node,i)=>{[node.x,node.z]=nodes[i];});
   return prepareEncounters(run);
 }
 

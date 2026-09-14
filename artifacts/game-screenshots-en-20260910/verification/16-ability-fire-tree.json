@@ -1,0 +1,16 @@
+{
+  "dialog": [
+    {
+      "clientWidth": 364,
+      "height": 828,
+      "scrollWidth": 364,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    }
+  ],
+  "height": 844,
+  "route": "http://127.0.0.1:5291/?review=ability-detail&branch=fire&rank=3&quality=high",
+  "text": "00:00\n0\nLEVEL 1\nKILLS 0\nKill First Boss\nMap\nBuild\n1/1\nSOUL · BRANCHES\nABILITY DEVELOPMENT\nFire\nMight\nMelee\nRanged\nAttack rate\nProjectiles\nRicochet\nCold\nBioelectricity\nResilience\nMobility\nSymbionts\nMetabolism\nThermal Shock\nPlasma\nSwarm Resonance\nNeural Web\nCounter Shell\nSpore Brood\nOvergrowth\nCryo Trail\nBRANCH\nFire\nLearned\nAvailable\nAvailable\nLocked\nSELECTED NODE\nHeat\nLearned\n\nHit with any weapon: 25% ignite chance. Each successful ignite adds a separate stack lasting 3 s; each stack deals 20% hit damage per second.\n\nLevel 3 / 5.",
+  "width": 390
+}

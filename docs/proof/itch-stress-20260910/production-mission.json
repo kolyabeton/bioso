@@ -1,0 +1,253 @@
+{
+  "brokenImages": [],
+  "dialog": {
+    "height": 704,
+    "width": 389,
+    "x": 445.5,
+    "y": 8
+  },
+  "failedResources": [],
+  "failures": [],
+  "snapshot": {
+    "abilityLevels": {},
+    "ambientActive": false,
+    "ambientCeiling": "high",
+    "ambientCombat": false,
+    "ambientP95Ms": 0,
+    "ambientTier": "medium",
+    "ambientTime": 24.466599999999698,
+    "arms": [
+      "claws",
+      null
+    ],
+    "assetEnemies": 2,
+    "assetErrors": 0,
+    "bioParticles": 0,
+    "biomass": 0,
+    "birds": 0,
+    "body": "wanderer",
+    "bossAnimations": [],
+    "bossModelFailures": [],
+    "bossModelIds": [],
+    "bossModelObjects": 0,
+    "bossModels": 0,
+    "choices": [],
+    "consumableDrawBatches": 5,
+    "consumableDrops": [],
+    "consumableOrbs": 0,
+    "consumables": {
+      "beacon": null,
+      "parasiteAt": 0,
+      "parasitesUntil": 0,
+      "phaseUntil": 0,
+      "revival": false,
+      "shieldCharges": 0,
+      "shieldUntil": 0
+    },
+    "contactShadows": 0,
+    "dead": true,
+    "death": {
+      "active": true,
+      "complete": true,
+      "elapsed": 2.6,
+      "parts": 5
+    },
+    "dodgeAfterimages": 0,
+    "drawCalls": 162,
+    "enemies": 2,
+    "enemyContactShadows": 0,
+    "enemyDeaths": 0,
+    "enemyDebris": 0,
+    "enemyDrawBatches": 6,
+    "enemyFallbackParts": 0,
+    "enemyFittedShapes": 16,
+    "enemyMeshPools": 30,
+    "enemyParts": 13,
+    "enemyShadowsEnabled": false,
+    "enemyVisualArchetypes": 1,
+    "environmentFamilies": 1,
+    "environmentId": "upper-gardens",
+    "environmentMaterialAtlas": true,
+    "environmentRelief": "terraces",
+    "environmentShadowMode": "static-depth",
+    "events": 0,
+    "failedModels": [],
+    "firstPaidUpgrade": false,
+    "forestBakedLightmaps": 1,
+    "forestCameraDegrees": 35.92850242282283,
+    "fps": 10,
+    "geometries": 195,
+    "gpuMs": 2.513124,
+    "ground": 0,
+    "groundItemDrawBatches": 0,
+    "harpoons": 0,
+    "hostileShots": 0,
+    "hp": 0,
+    "inventory": 0,
+    "kills": 14,
+    "lastHit": "contact",
+    "learned": [],
+    "legs": [
+      "universal",
+      "universal"
+    ],
+    "level": 1,
+    "loadedModels": 45,
+    "loadingTiles": 0,
+    "mission": {
+      "currentRoom": 1,
+      "event": null,
+      "eventsClaimed": 0
+    },
+    "missionBossCamera": {
+      "active": false,
+      "blend": 0,
+      "depth": 40,
+      "height": 30,
+      "lookAhead": 1.4,
+      "lookHeight": 0
+    },
+    "missionGateErrors": [],
+    "missionGateLoading": false,
+    "missionGateModels": [
+      "arch-gate",
+      "arch-wall-straight",
+      "arch-pillar"
+    ],
+    "missionGates": 1,
+    "mode": "garden",
+    "modularEnemies": 2,
+    "organs": [
+      null,
+      null
+    ],
+    "particles": 0,
+    "paused": true,
+    "pending": 0,
+    "player": {
+      "facing": 2.9962649045445784,
+      "vertical": "grounded",
+      "vy": 0,
+      "x": 0,
+      "y": 0,
+      "z": 22
+    },
+    "puddles": 0,
+    "reducedMotion": false,
+    "renderCadence": 10,
+    "residentTiles": 2,
+    "ricochetBees": 0,
+    "rocketBees": 0,
+    "rocketExhaust": {
+      "flames": 0,
+      "smoke": 0
+    },
+    "rocketExplosion": {
+      "active": 0,
+      "debris": 0,
+      "dust": 0,
+      "fireballs": 0,
+      "flash": 0,
+      "pressure": 0,
+      "radius": 1.5,
+      "reducedMotion": false,
+      "rings": 0,
+      "smoke": 0,
+      "sparks": 0
+    },
+    "screen": "end",
+    "settings": {
+      "effects": 5,
+      "fps": 60,
+      "language": "ru",
+      "music": 5,
+      "quality": "medium",
+      "reducedMotion": false,
+      "soundEnabled": true,
+      "vibration": true
+    },
+    "shadows": false,
+    "shotgunParticles": 0,
+    "shots": 0,
+    "soulEffects": 0,
+    "staticShadowCells": 2,
+    "stats": {
+      "armor": 0,
+      "armorRepairAmount": 0,
+      "armorRepairDelay": 15,
+      "bodyFactor": 1,
+      "capacity": 100,
+      "dodge": 0,
+      "hp": 2,
+      "loadFactor": 1,
+      "organEffect": 1,
+      "overloaded": false,
+      "pickup": 8.049999999999999,
+      "projectile": 1,
+      "rate": 0,
+      "regen": false,
+      "regenAmount": 1,
+      "regenDelay": 15,
+      "revive": 0,
+      "shieldMax": 0,
+      "shieldRate": 0.06666666666666667,
+      "speed": 7.199999999999999,
+      "turnSpeed": 8,
+      "weight": 24
+    },
+    "subsystemMs": {
+      "render": {
+        "max": 5,
+        "mean": 2.2199999901983474,
+        "p95": 3.700000047683716
+      },
+      "simulation": {
+        "max": 0.5999999046325684,
+        "mean": 0.051111112700568305,
+        "p95": 0.4000000953674317
+      },
+      "ui": {
+        "max": 0.5,
+        "mean": 0.09166666136847602,
+        "p95": 0.3000001907348633
+      }
+    },
+    "textures": 64,
+    "time": 21.783199999999788,
+    "triangles": 447621,
+    "unlocked": [
+      "wanderer",
+      "universal",
+      "runner",
+      "pistol",
+      "claws",
+      "stabilizer",
+      "seed"
+    ],
+    "visibleEnemies": 2,
+    "visibleGroundItems": 0,
+    "weather": "sunny-pollen",
+    "weatherBlend": {
+      "brood-nursery": 0,
+      "overgrown-city": 0,
+      "quiet-scrapyard": 0,
+      "root-forest": 0,
+      "upper-gardens": 1
+    },
+    "weatherEnvironment": "upper-gardens",
+    "weatherParticles": 26,
+    "windStrength": 0.2623205560796115,
+    "won": false,
+    "xpDrops": 0
+  },
+  "stage": {
+    "height": 720,
+    "width": 1280,
+    "x": 0,
+    "y": 0
+  },
+  "viewport": [
+    1280,
+    720
+  ]
+}

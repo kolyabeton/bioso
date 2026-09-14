@@ -1,0 +1,98 @@
+[
+  {
+    "scenario": "nursery arc no enemies",
+    "arms": [
+      "arc",
+      null
+    ],
+    "enemies": 0,
+    "failedModels": [],
+    "fps": 59,
+    "generatedSecrets": 9,
+    "loadedModels": 32,
+    "mode": "survival",
+    "nodes": [
+      {
+        "state": "reward",
+        "type": "nursery",
+        "x": 0,
+        "y": 0,
+        "z": 23.5
+      }
+    ],
+    "state": "ready",
+    "triangles": 766229
+  },
+  {
+    "scenario": "membrane acid no enemies",
+    "arms": [
+      "acid",
+      null
+    ],
+    "enemies": 0,
+    "failedModels": [],
+    "fps": 46,
+    "generatedSecrets": 9,
+    "loadedModels": 32,
+    "mode": "survival",
+    "nodes": [
+      {
+        "state": "reward",
+        "type": "membrane",
+        "x": 0,
+        "y": 0,
+        "z": 23.5
+      }
+    ],
+    "state": "ready",
+    "triangles": 726040
+  },
+  {
+    "scenario": "slab drill no enemies",
+    "arms": [
+      "drill",
+      null
+    ],
+    "enemies": 0,
+    "failedModels": [],
+    "fps": 20,
+    "generatedSecrets": 9,
+    "loadedModels": 32,
+    "mode": "survival",
+    "nodes": [
+      {
+        "state": "reward",
+        "type": "slab",
+        "x": 0,
+        "y": 0,
+        "z": 23.5
+      }
+    ],
+    "state": "ready",
+    "triangles": 627119
+  },
+  {
+    "scenario": "slab hammer no enemies",
+    "arms": [
+      "hammer",
+      null
+    ],
+    "enemies": 0,
+    "failedModels": [],
+    "fps": 23,
+    "generatedSecrets": 9,
+    "loadedModels": 32,
+    "mode": "survival",
+    "nodes": [
+      {
+        "state": "reward",
+        "type": "slab",
+        "x": 0,
+        "y": 0,
+        "z": 23.5
+      }
+    ],
+    "state": "ready",
+    "triangles": 626149
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-08",
+  "build": "npm run build: PASS (existing bundle-size warning)",
+  "focusedTests": {"command": "node --test tests/combat-audio.test.mjs tests/ui-audio.test.mjs tests/drop-items.test.mjs", "passed": 13, "failed": 0},
+  "diffCheck": "PASS",
+  "reverse": "Test compares all close PCM samples to reversed open PCM samples: PASS",
+  "browser": {
+    "route": "http://127.0.0.1:5173/artifacts/ui-audio-selected-20260908/runtime.html?review=assembly",
+    "viewport": [360, 640],
+    "method": "Instrumented copy of the real game entry point observes AudioBufferSourceNode.start and records source filenames in hidden DOM. No production instrumentation.",
+    "observedStartedFiles": ["approved-ui-click.wav", "approved-ui-open.wav", "approved-ui-close.wav", "approved-ui-confirm.wav", "approved-ui-organic.wav", "approved-ui-mechanical.wav", "approved-ui-pickup.wav"],
+    "limits": "Playback starts verified, not acoustic listening or full mix acceptance. Deny is covered by focused tests, not this browser trace. The session changed during checks, so individual actions are not attributed to the agent. Active tab left open. No guaranteed background idle timer is installed."
+  },
+  "otherTests": "Two failures in tests/ui-components.test.mjs observed outside the audio changes: comparison value formatting (8 vs 8.0), and missing comparison row tone. Not repaired in this audio task.",
+  "pending": "Milestone/ability cue (selection 8) awaits user choice; candidates only, no new milestone audio imported."
+}

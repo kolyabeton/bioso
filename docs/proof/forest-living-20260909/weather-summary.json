@@ -1,0 +1,203 @@
+{
+  "environments": [
+    {
+      "id": "garden",
+      "route": "http://127.0.0.1:4185/?review=forest-living&environment=upper-gardens&landmark&proof=weather-final-garden-390",
+      "weather": "sunny-pollen",
+      "weatherBlend": {
+        "upper-gardens": 1,
+        "root-forest": 0,
+        "quiet-scrapyard": 0,
+        "overgrown-city": 0,
+        "brood-nursery": 0
+      },
+      "weatherParticles": 26,
+      "drawCalls": 41,
+      "triangles": 472374,
+      "textures": 28,
+      "errors": []
+    },
+    {
+      "id": "forest",
+      "route": "http://127.0.0.1:4185/?review=forest-living&environment=root-forest&landmark&proof=weather-final-forest-390",
+      "weather": "morning-mist",
+      "weatherBlend": {
+        "root-forest": 1,
+        "upper-gardens": 0,
+        "quiet-scrapyard": 0,
+        "overgrown-city": 0,
+        "brood-nursery": 0
+      },
+      "weatherParticles": 20,
+      "drawCalls": 45,
+      "triangles": 253160,
+      "textures": 29,
+      "errors": []
+    },
+    {
+      "id": "scrap",
+      "route": "http://127.0.0.1:4185/?review=forest-living&environment=quiet-scrapyard&landmark&proof=weather-final-scrap-390",
+      "weather": "dry-dust",
+      "weatherBlend": {
+        "quiet-scrapyard": 1,
+        "upper-gardens": 0,
+        "root-forest": 0,
+        "overgrown-city": 0,
+        "brood-nursery": 0
+      },
+      "weatherParticles": 54,
+      "drawCalls": 42,
+      "triangles": 478456,
+      "textures": 32,
+      "errors": []
+    },
+    {
+      "id": "city",
+      "route": "http://127.0.0.1:4185/?review=forest-living&environment=overgrown-city&landmark&proof=weather-final-city-390",
+      "weather": "overcast-rain",
+      "weatherBlend": {
+        "overgrown-city": 1,
+        "upper-gardens": 0,
+        "root-forest": 0,
+        "quiet-scrapyard": 0,
+        "brood-nursery": 0
+      },
+      "weatherParticles": 72,
+      "drawCalls": 46,
+      "triangles": 498284,
+      "textures": 33,
+      "errors": []
+    },
+    {
+      "id": "mother",
+      "route": "http://127.0.0.1:4185/?review=forest-living&environment=brood-nursery&landmark&proof=weather-final-mother-390",
+      "weather": "spore-dusk",
+      "weatherBlend": {
+        "brood-nursery": 1,
+        "upper-gardens": 0,
+        "root-forest": 0,
+        "quiet-scrapyard": 0,
+        "overgrown-city": 0
+      },
+      "weatherParticles": 45,
+      "drawCalls": 46,
+      "triangles": 539444,
+      "textures": 37,
+      "errors": []
+    }
+  ],
+  "crossing": [
+    {
+      "t": 0.559399999856949,
+      "z": 27.00456000000002,
+      "weather": "sunny-pollen",
+      "gardens": 0.9916345810094317,
+      "scrap": 0.008365418990568255
+    },
+    {
+      "t": 1.4435000000000007,
+      "z": 32.64216000000001,
+      "weather": "sunny-pollen",
+      "gardens": 0.8756382787425807,
+      "scrap": 0.12436172125741926
+    },
+    {
+      "t": 2.4787999999523174,
+      "z": 40.20360000000002,
+      "weather": "sunny-pollen",
+      "gardens": 0.5460585215054032,
+      "scrap": 0.45394147849459665
+    },
+    {
+      "t": 3.4793999998569496,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.3118789217369933,
+      "scrap": 0.6881210782630068
+    },
+    {
+      "t": 4.4797000000476865,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.17894159820250197,
+      "scrap": 0.8210584017974982
+    },
+    {
+      "t": 5.512899999856953,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.10079205021162704,
+      "scrap": 0.8992079497883732
+    },
+    {
+      "t": 6.545700000047686,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.056763460570865565,
+      "scrap": 0.9432365394291347
+    },
+    {
+      "t": 7.546000000000003,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.03256822967542852,
+      "scrap": 0.9674317703245715
+    },
+    {
+      "t": 8.57939999985695,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.018352791858428055,
+      "scrap": 0.981647208141572
+    },
+    {
+      "t": 9.612599999904631,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.010331796224097911,
+      "scrap": 0.9896682037759021
+    },
+    {
+      "t": 10.613099999904628,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.005927903425938271,
+      "scrap": 0.9940720965740617
+    },
+    {
+      "t": 11.64579999995231,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.0033391829531097196,
+      "scrap": 0.9966608170468905
+    },
+    {
+      "t": 12.679299999952308,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.0018806454476434334,
+      "scrap": 0.9981193545523567
+    },
+    {
+      "t": 13.712799999952304,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.0010593071275390774,
+      "scrap": 0.998940692872461
+    },
+    {
+      "t": 14.745999999999988,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.0005965410742307259,
+      "scrap": 0.9994034589257694
+    },
+    {
+      "t": 15.77909999990462,
+      "z": 42.66240000000003,
+      "weather": "dry-dust",
+      "gardens": 0.0003359937445364576,
+      "scrap": 0.9996640062554636
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+function p(e,a,i=()=>performance.now()){e.enemies=[],e.hostileShots=[],e.waves.credit=-1e6,e.nextElite=e.waves.nextElite=1e9,e.nextBoss=e.waves.nextBoss=1e9;let t=0;return{paused:!1,tick(){const s=i();s<t||(a({type:"player-hit",hp:e.hp,cause:"review",x:e.player.x,y:e.player.y??0,z:e.player.z,dx:.707,dz:-.707}),t=s+1100)}}}export{p as prepareHitVfxReview};

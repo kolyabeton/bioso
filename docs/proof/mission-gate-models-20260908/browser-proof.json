@@ -1,0 +1,147 @@
+{
+  "method": "Actual mission rendered in isolated development checkpoint. Paused simulation and invulnerable player; test controls call production movement and damage. Not a full unaided playthrough.",
+  "checks": [
+    {
+      "viewport": "390x844-closed-contact",
+      "state": {
+        "room": 1,
+        "gateClosed": true,
+        "enemies": 9,
+        "player": {
+          "x": 0,
+          "y": 0,
+          "z": -29,
+          "vy": 0,
+          "vertical": "grounded",
+          "facing": 0
+        },
+        "ready": true,
+        "errors": 0,
+        "gateErrors": [],
+        "gateModels": [
+          "arch-gate",
+          "arch-wall-straight",
+          "arch-pillar"
+        ],
+        "models": [],
+        "gates": 2
+      }
+    },
+    {
+      "viewport": "360x640-last-enemy",
+      "state": {
+        "room": 1,
+        "gateClosed": true,
+        "enemies": 1,
+        "player": {
+          "x": 0,
+          "y": 0,
+          "z": -25,
+          "vy": 0,
+          "vertical": "grounded",
+          "facing": 0
+        },
+        "ready": true,
+        "errors": 0,
+        "gateErrors": [],
+        "gateModels": [
+          "arch-gate",
+          "arch-wall-straight",
+          "arch-pillar"
+        ],
+        "models": [],
+        "gates": 2
+      }
+    },
+    {
+      "viewport": "360x640-open-side",
+      "state": {
+        "room": 2,
+        "gateClosed": false,
+        "enemies": 0,
+        "player": {
+          "x": 6,
+          "y": 0,
+          "z": -29,
+          "vy": 0,
+          "vertical": "grounded",
+          "facing": 0
+        },
+        "ready": true,
+        "errors": 0,
+        "gateErrors": [],
+        "gateModels": [
+          "arch-gate",
+          "arch-wall-straight",
+          "arch-pillar"
+        ],
+        "models": [],
+        "gates": 2
+      }
+    },
+    {
+      "viewport": "360x640-open-centre",
+      "state": {
+        "room": 2,
+        "gateClosed": false,
+        "enemies": 5,
+        "player": {
+          "x": 0,
+          "y": 0,
+          "z": -41,
+          "vy": 0,
+          "vertical": "grounded",
+          "facing": 0
+        },
+        "ready": true,
+        "errors": 0,
+        "gateErrors": [],
+        "gateModels": [
+          "arch-gate",
+          "arch-wall-straight",
+          "arch-pillar"
+        ],
+        "models": [],
+        "gates": 2
+      }
+    },
+    {
+      "viewport": "360x640",
+      "bounds": {
+        "height": 640,
+        "overflow": false,
+        "width": 360
+      }
+    },
+    {
+      "viewport": "1280x720",
+      "state": {
+        "room": 1,
+        "gateClosed": true,
+        "enemies": 9,
+        "player": {
+          "x": 0,
+          "y": 0,
+          "z": -25
+        },
+        "ready": true,
+        "errors": 0,
+        "gateErrors": [],
+        "gateModels": [
+          "arch-gate",
+          "arch-wall-straight",
+          "arch-pillar"
+        ],
+        "models": [],
+        "gates": 2
+      },
+      "bounds": {
+        "height": 720,
+        "overflow": false,
+        "width": 405,
+        "x": 437.5
+      }
+    }
+  ],
+  "logs": []
+}

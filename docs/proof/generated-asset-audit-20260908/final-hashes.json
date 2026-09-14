@@ -1,0 +1,17 @@
+[
+  {
+    "path": "public/assets/encounters/nursery-v2.png",
+    "sha256": "2479106facbfee8ed8e4883ba70e02a12f39cc52d7e618f4804e926b2bcf6251",
+    "mode": "RGBA"
+  },
+  {
+    "path": "public/assets/encounters/slab-v2.png",
+    "sha256": "217d95cbf3ed0c56346c99cafc408f988c31cb00b65d6d9941e80a2c1627f843",
+    "mode": "RGBA"
+  },
+  {
+    "path": "public/assets/encounters/membrane-v2.png",
+    "sha256": "f31f896b9867b8f06ce8e55a77a9c0526704fc63daa705599c094a3b1075eccc",
+    "mode": "RGBA"
+  }
+]

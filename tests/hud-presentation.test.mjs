@@ -11,7 +11,7 @@ test('HUD describes real starting arms without changing the run', () => {
   assert.deepEqual(handPresentation(run).map(p => p.key), ['claws', 'empty']);
   assert.equal(JSON.stringify(run), before);
 });
-test('HUD preserves four slots, vacant mount and actual Roman tier', () => {
+test('HUD preserves four slots, vacant mount, item tier and numeric upgrade rank', () => {
   const run = createRun();
   run.body = createPart(run, 'hecaton');
   run.arms = Array.from({length:4}, () => createPart(run, 'seed', 3));
@@ -19,8 +19,13 @@ test('HUD preserves four slots, vacant mount and actual Roman tier', () => {
   const hands = handPresentation(run);
   assert.equal(hands.length, 4);
   assert.equal(hands[0].tier, 'III');
+  assert.equal(hands[0].upgradeRank, 0);
   assert.equal(hands[2].key, 'empty');
   assert.equal(hands[2].charge, 0);
+  const beforeUpgradeIdentity=hands[0].identity;
+  run.arms[0].upgrades.damage=4;
+  assert.equal(handPresentation(run)[0].upgradeRank, 4);
+  assert.notEqual(handPresentation(run)[0].identity, beforeUpgradeIdentity);
 });
 test('HUD derives independent cooldown fractions and clamps the indicators', () => {
   const run = createRun();

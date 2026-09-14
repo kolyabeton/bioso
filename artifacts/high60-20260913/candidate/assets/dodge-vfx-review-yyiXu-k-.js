@@ -1,0 +1,1 @@
+function x(e,o,a=()=>performance.now()){e.enemies=[],e.hostileShots=[],e.waves.credit=-1e6,e.nextElite=e.waves.nextElite=1e9,e.nextBoss=e.waves.nextBoss=1e9;let t=0;return{paused:!1,tick(){const s=a();s<t||(o({type:"dodge",x:e.player.x,y:e.player.y??0,z:e.player.z,dx:.707,dz:-.707}),t=s+300)}}}export{x as prepareDodgeVfxReview};

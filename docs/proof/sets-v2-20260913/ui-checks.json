@@ -1,0 +1,550 @@
+[
+  {
+    "card": "Разведчик\n2 / 3\n2 типа · Активно\n\nСкорость движения +10%. Радиус притяжения опыта +50%.\n\n3 типа · Нужно ещё 1 тип\n\nСборщик: каждые 12 с притягивает опыт в радиусе 20 м.\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:4173/?review=soul&variant=sets-v2&set=wanderer&count=2&lang=ru",
+    "viewport": [
+      360,
+      640
+    ],
+    "width": 344
+  },
+  {
+    "card": "Бастион\nКомплект собран · 3 типа\n2 типа · Активно\n\n+1 пластина брони.\n\n3 типа · Активно\n\nПанцирь: блокирует одно попадание и восстанавливается 12 с.\n\nПанцирь · Готов\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=bastion&count=3&phase=ready&lang=ru",
+    "viewport": [
+      1280,
+      720
+    ],
+    "width": 389
+  },
+  {
+    "card": "Химера\nКомплект собран · 3 типа\n2 типа · Активно\n\nБлижний урон +20%. Дальность ближних атак +25%.\n\n3 типа · Активно\n\nБлижние попадания усиливают дальние атаки на 30% на 3 с, а дальние — ближние.\n\nБлижние атаки +30% · 3 с · Дальние атаки +30% · 3 с\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=chimera&count=3&phase=active&lang=ru",
+    "viewport": [
+      1280,
+      720
+    ],
+    "width": 389
+  },
+  {
+    "card": "Корнеход\nКомплект собран · 3 типа\n2 типа · Активно\n\n+1 деление максимального здоровья.\n\n3 типа · Активно\n\nЖивые ткани: восстанавливает 1 деление здоровья каждые 12 с, даже в бою.\n\nЖивые ткани · 12 с\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=rootwalker&count=3&phase=wounded&lang=ru",
+    "viewport": [
+      1280,
+      720
+    ],
+    "width": 389
+  },
+  {
+    "card": "Гекатон\nКомплект собран · 4 типа\n2 типа · Активно\n\nСкорость перезарядки +25%.\n\n3 типа · Активно\n\nОбщий затвор: атаки трёх разных рук перезаряжают все магазины. Не чаще раза в 8 с.\n\nОбщий затвор · 0 / 3 рук\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=hecaton&count=4&phase=&lang=ru",
+    "viewport": [
+      1280,
+      720
+    ],
+    "width": 389
+  },
+  {
+    "buttons": [
+      {
+        "h": 48,
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Как работает"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Назад"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Ветки"
+      }
+    ],
+    "card": "Реактор\nКомплект собран · 3 типа\n2 типа · Активно\n\nСкорость атак рук +15%.\n\n3 типа · Активно\n\nРазряд: каждые 12 с следующая атака руки выпускает электрический импульс радиусом 4 м.\n\nРазряд · Готов\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=reactor&count=3&phase=ready&lang=ru",
+    "viewport": [
+      360,
+      640
+    ],
+    "width": 344
+  },
+  {
+    "buttons": [
+      {
+        "h": 48,
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Как работает"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Назад"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Ветки"
+      }
+    ],
+    "card": "Маточник\nКомплект собран · 3 типа\n2 типа · Активно\n\nСоздаёт одного дополнительного симбионта.\n\n3 типа · Активно\n\nПерехват снаряда симбионтом: скорость атак и призыва роя +40% на 4 с.\n\nРой ускорен · 4 с\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=broodmother&count=3&phase=active&lang=ru",
+    "viewport": [
+      360,
+      640
+    ],
+    "width": 344
+  },
+  {
+    "buttons": [
+      {
+        "h": 48,
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Как работает"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Назад"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Ветки"
+      }
+    ],
+    "card": "Химера\n2 / 3\n2 типа · Активно\n\nБлижний урон +20%. Дальность ближних атак +25%.\n\n3 типа · Нужно ещё 1 тип\n\nБлижние попадания усиливают дальние атаки на 30% на 3 с, а дальние — ближние.\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=chimera&count=2&phase=&lang=ru",
+    "viewport": [
+      360,
+      640
+    ],
+    "width": 344
+  },
+  {
+    "buttons": [
+      {
+        "h": 48,
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Как работает"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Назад"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Ветки"
+      }
+    ],
+    "card": "Гекатон\nКомплект собран · 4 типа\n2 типа · Активно\n\nСкорость перезарядки +25%.\n\n3 типа · Активно\n\nОбщий затвор: атаки трёх разных рук перезаряжают все магазины. Не чаще раза в 8 с.\n\nОбщий затвор · 0 / 3 рук\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=hecaton&count=4&phase=&lang=ru",
+    "viewport": [
+      360,
+      640
+    ],
+    "width": 344
+  },
+  {
+    "card": "Разведчик\nКомплект собран · 3 типа\n2 типа · Активно\n\nСкорость движения +10%. Радиус притяжения опыта +50%.\n\n3 типа · Активно\n\nСборщик: каждые 12 с притягивает опыт в радиусе 20 м.\n\nСборщик · 12 с\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=wanderer&count=3&phase=&lang=ru",
+    "viewport": [
+      390,
+      844
+    ],
+    "width": 374
+  },
+  {
+    "card": "Ловчий\nКомплект собран · 3 типа\n2 типа · Активно\n\nДальний урон +20%. Дальность дальних атак +20%.\n\n3 типа · Активно\n\nТочный залп: каждый третий дальний залп наносит на 60% больше урона.\n\nДо точного залпа: 3\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=hunter&count=3&phase=&lang=ru",
+    "viewport": [
+      390,
+      844
+    ],
+    "width": 374
+  },
+  {
+    "card": "Бастион\nКомплект собран · 3 типа\n2 типа · Активно\n\n+1 пластина брони.\n\n3 типа · Активно\n\nПанцирь: блокирует одно попадание и восстанавливается 12 с.\n\nПанцирь · 12 с\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=bastion&count=3&phase=&lang=ru",
+    "viewport": [
+      390,
+      844
+    ],
+    "width": 374
+  },
+  {
+    "card": "Корнеход\nКомплект собран · 3 типа\n2 типа · Активно\n\n+1 деление максимального здоровья.\n\n3 типа · Активно\n\nЖивые ткани: восстанавливает 1 деление здоровья каждые 12 с, даже в бою.\n\nЖивые ткани · 12 с\n\nКак работает",
+    "overflow": false,
+    "url": "http://127.0.0.1:5298/?review=soul&variant=sets-v2&set=rootwalker&count=3&phase=wounded&lang=ru",
+    "viewport": [
+      390,
+      844
+    ],
+    "width": 374
+  },
+  {
+    "contentOverflow": [],
+    "overflow": false,
+    "route": "catalog-expanded",
+    "viewport": [
+      360,
+      640
+    ],
+    "width": 344
+  },
+  {
+    "contentOverflow": [],
+    "overflow": false,
+    "route": "catalog-expanded",
+    "viewport": [
+      390,
+      844
+    ],
+    "width": 374
+  },
+  {
+    "contentOverflow": [],
+    "overflow": false,
+    "route": "catalog-expanded",
+    "viewport": [
+      1280,
+      720
+    ],
+    "width": 389
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "overflow": false,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Бонусы комплекта",
+        "width": 312
+      }
+    ],
+    "panels": [
+      {
+        "id": "panel",
+        "overflow": false,
+        "width": 344
+      },
+      {
+        "id": "item-inspector",
+        "overflow": false,
+        "width": 340
+      }
+    ],
+    "route": "http://127.0.0.1:5298/?review=catalog&variant=sets-v2&set=broodmother&count=3&lang=ru",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "box": {
+      "bottom": 632,
+      "overflow": false,
+      "top": 111,
+      "width": 340
+    },
+    "route": "catalog item expanded",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "actions": [
+      {
+        "height": 48,
+        "overflow": false,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Бонусы комплекта",
+        "width": 312
+      }
+    ],
+    "box": {
+      "bottom": 836,
+      "overflow": false,
+      "top": 315,
+      "width": 340
+    },
+    "route": "catalog item expanded",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "actions": [
+      {
+        "height": 48,
+        "overflow": false,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "overflow": false,
+        "text": "Бонусы комплекта",
+        "width": 312
+      }
+    ],
+    "box": {
+      "bottom": 712,
+      "overflow": false,
+      "top": 191,
+      "width": 340
+    },
+    "route": "catalog item expanded",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "route": "assembly",
+    "viewport": [
+      360,
+      640
+    ],
+    "upgrade": {
+      "before": 8,
+      "after": 9,
+      "biomassBefore": 100,
+      "biomassAfter": 88
+    },
+    "expandedTooltip": {
+      "width": 340,
+      "top": 8,
+      "bottom": 632,
+      "scrollBottom": 174,
+      "scrollHeight": 493,
+      "clientHeight": 319,
+      "minAction": 44
+    }
+  },
+  {
+    "route": "bastion HUD ready",
+    "viewport": [
+      1280,
+      720
+    ],
+    "canvas": [
+      1280,
+      720
+    ],
+    "health": "Здоровье 2 из 2. Броня 2 из 2. 1/1 · Щит готов"
+  },
+  {
+    "route": "home",
+    "viewport": [
+      1280,
+      720
+    ],
+    "panelWidth": 1280,
+    "canvasWidth": 1280,
+    "overflow": false
+  },
+  {
+    "panels": [
+      {
+        "overflow": false,
+        "width": 389
+      }
+    ],
+    "route": "map",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "route": "soul en broodmother",
+    "viewport": [
+      390,
+      844
+    ],
+    "translated": true
+  },
+  {
+    "accordion": 0,
+    "hasHow": false,
+    "panels": [
+      {
+        "overflow": false,
+        "width": 344
+      },
+      {
+        "overflow": false,
+        "width": 298
+      }
+    ],
+    "route": "soul without accordion",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "accordion": 0,
+    "hasHow": false,
+    "panels": [
+      {
+        "overflow": false,
+        "width": 374
+      },
+      {
+        "overflow": false,
+        "width": 328
+      }
+    ],
+    "route": "soul without accordion",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "accordion": 0,
+    "hasHow": false,
+    "panels": [
+      {
+        "overflow": false,
+        "width": 389
+      },
+      {
+        "overflow": false,
+        "width": 335
+      }
+    ],
+    "route": "soul without accordion",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "route": "assembly visible bonuses",
+    "viewport": [
+      360,
+      640
+    ],
+    "accordion": 0,
+    "width": 340,
+    "top": 8,
+    "bottom": 632,
+    "overflow": false
+  },
+  {
+    "accordion": 0,
+    "actions": [
+      {
+        "h": 48,
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Улучшить · 12"
+      }
+    ],
+    "panels": [
+      {
+        "bottom": 836,
+        "overflow": false,
+        "top": 89.5,
+        "width": 340
+      }
+    ],
+    "route": "assembly visible bonuses",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "accordion": 0,
+    "actions": [
+      {
+        "h": 48,
+        "overflow": false,
+        "text": ""
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Улучшить · 12"
+      },
+      {
+        "h": 48,
+        "overflow": false,
+        "text": "Переработать · +6"
+      },
+      {
+        "h": 44,
+        "overflow": false,
+        "text": "Выбросить"
+      }
+    ],
+    "panels": [
+      {
+        "bottom": 712,
+        "overflow": false,
+        "top": 8,
+        "width": 340
+      }
+    ],
+    "route": "assembly visible bonuses",
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

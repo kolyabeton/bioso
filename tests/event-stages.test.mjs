@@ -6,9 +6,10 @@ import {filteredMapMarkers} from '../src/ui/map.js';
 import {modulePresentation} from '../src/gameplay-modules/definitions.js';
 import {startChallenge} from '../src/systems/events/challenges.js';
 const s=createWorldRun(undefined,'survival',71);
-test('survival has five secrets and all three trials at levels 5, 15 and 25',()=>{
- assert.equal(s.encounters.nodes.length,19);assert.equal(s.encounters.nodes.filter(n=>['membrane','slab','nursery'].includes(n.type)).length,5);
- for(const type of ['sealed','infection','hunt'])assert.deepEqual(s.encounters.nodes.filter(n=>n.type===type).map(n=>[n.unlockLevel,n.recommended,n.rewardTier]),[[5,5,1],[15,15,2],[25,25,3]]);
+test('survival has nine secrets and three sequential tiers for each trial',()=>{
+ assert.equal(s.encounters.nodes.length,26);assert.equal(s.encounters.nodes.filter(n=>['membrane','slab','nursery'].includes(n.type)).length,9);
+ for(const [type,levels] of Object.entries({sealed:[3,5,7],infection:[9,11,13],hunt:[15,17,19]}))assert.deepEqual(s.encounters.nodes.filter(n=>n.type===type).map(n=>[n.unlockLevel,n.recommended,n.rewardTier]),levels.map((level,index)=>[level,level,index+1]));
+ assert.deepEqual(s.encounters.nodes.filter(n=>n.type==='sealed').map(n=>n.radius),[11,11,11]);
 });
 test('time cannot unlock late trials before their level',()=>{
  const state={...s,time:10000};for(const n of s.encounters.nodes.filter(n=>n.unlockLevel)){state.level=n.unlockLevel-1;assert.equal(availableEncounter(state,n),false);state.level++;assert.equal(availableEncounter(state,n),true);}

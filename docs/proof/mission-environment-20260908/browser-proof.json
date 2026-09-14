@@ -1,0 +1,38 @@
+{
+  "method": "Production mission route in isolated development checkpoint; movement and damage use the game functions. Checkpoint is paused, player invulnerable; this is not an unaided full playthrough.",
+  "checks": [
+    {
+      "viewport": "360x640",
+      "proof": "{\"room\":1,\"gateClosed\":true,\"enemies\":4,\"player\":{\"x\":0,\"y\":0,\"z\":-25},\"ready\":true,\"errors\":0,\"models\":[],\"gates\":2}",
+      "bounds": {
+        "height": 640,
+        "overflow": false,
+        "width": 360
+      }
+    },
+    {
+      "viewport": "390x844-entry",
+      "proof": "{\"room\":1,\"gateClosed\":true,\"enemies\":4,\"player\":{\"x\":0,\"z\":22,\"y\":0,\"vy\":0,\"vertical\":\"grounded\",\"facing\":0},\"ready\":true,\"errors\":0,\"models\":[],\"gates\":1}",
+      "bounds": {
+        "height": 844,
+        "overflow": false,
+        "width": 390
+      }
+    },
+    {
+      "viewport": "390x844-open",
+      "proof": "{\"room\":2,\"gateClosed\":false,\"enemies\":0,\"player\":{\"x\":0,\"y\":0,\"z\":-25,\"vy\":0,\"vertical\":\"grounded\",\"facing\":0},\"ready\":true,\"errors\":0,\"models\":[],\"gates\":2}"
+    },
+    {
+      "viewport": "1280x720",
+      "proof": "{\"room\":1,\"gateClosed\":true,\"enemies\":4,\"player\":{\"x\":0,\"y\":0,\"z\":-25},\"ready\":true,\"errors\":0,\"models\":[],\"gates\":2}",
+      "bounds": {
+        "height": 720,
+        "overflow": false,
+        "width": 405,
+        "x": 437.5
+      }
+    }
+  ],
+  "consoleErrors": []
+}

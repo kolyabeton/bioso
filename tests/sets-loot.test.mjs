@@ -4,7 +4,16 @@ import {createRun,step} from '../src/game.js';
 import {createPart,stats,weaponStats,weight,pickup} from '../src/assembly.js';
 import {seededRandom} from '../src/simulation.js';
 import {SETS,LOOT_RULES,normalDrop,rollRarity,recordReward,generateLoot,queueBossReward,chooseBossReward,setCounts,setBonuses,partMeta,hitSetMultiplier,reloadDuration} from '../src/systems/sets-loot.js';
+import {CATALOG} from '../src/catalog.js';
+import {activeSetDescription} from '../src/ui/catalog-sets.js';
 const set=(s,id)=>{for(const p of [s.body,...s.arms,...s.legs,...s.organs].filter(Boolean))p.setId=id;};
+test('every base catalog part is common; rarity is an affixed loot variation',()=>{
+ const s=createRun();
+ for(const key of Object.keys(CATALOG)){
+  const p=createPart(s,key);assert.equal(p.rarity,'common',key);assert.deepEqual(p.affixes,[],key);
+ }
+ const relic=generateLoot(s,createPart,1,'boss','relic',false);assert.equal(relic.rarity,'relic');assert.equal(relic.affixes.length,3);
+});
 test('80th normal kill and eighth received reward guarantees are independent',()=>{
  const s=createRun();s.rng=()=>.5;for(let i=0;i<79;i++)assert.equal(normalDrop(s),false);assert.equal(normalDrop(s),true);assert.equal(s.lootState.normalMisses,0);
  const p=createPart(s,'seed');for(let i=0;i<7;i++)recordReward(s,p);assert.equal(rollRarity(s),'rare');recordReward(s,{...p,rarity:'rare'});assert.equal(rollRarity(s),'common');
@@ -19,20 +28,27 @@ test('boss offers share quality, block simulation and award exactly one; no repl
  const before=s.time;step(s,.02);assert.equal(s.time,before);assert.equal(chooseBossReward(s,-1),false);assert(chooseBossReward(s,1));assert.equal(s.inventory.length,1);assert.equal(s.bossRewards.length,0);assert.equal(chooseBossReward(s,1),false);
 });
 test('set bonuses count categories, not duplicate limbs; remove category disables bonus',()=>{
- const s=createRun();s.arms=[];s.organs=[];s.legs=Array.from({length:4},()=>createPart(s,'universal'));set(s,'hecaton');assert.equal(setCounts(s).hecaton,2);assert.equal(setBonuses(s).reload,.08);s.body=null;assert.equal(setCounts(s).hecaton,1);assert.equal(setBonuses(s).reload,0);
+ const s=createRun();s.arms=[];s.organs=[];s.legs=Array.from({length:4},()=>createPart(s,'universal'));set(s,'hecaton');assert.equal(setCounts(s).hecaton,2);assert.equal(setBonuses(s).reload,.25);s.body=null;assert.equal(setCounts(s).hecaton,1);assert.equal(setBonuses(s).reload,0);
+});
+test('active Broodmother set reports both set bonuses separately from equipment',()=>{
+ const s=createRun();s.body=createPart(s,'broodmother',5);s.arms=[];
+ s.legs=Array.from({length:3},()=>createPart(s,'swarmLeg',1));
+ s.organs=Array.from({length:2},()=>createPart(s,'broodNode',1));
+ assert.equal(setCounts(s).broodmother,3);
+ assert.equal(activeSetDescription(s,'broodmother',3),`${SETS.broodmother.two} ${SETS.broodmother.three}`);
 });
 test('legacy parts keep rank and modifier; generated affixes have one stat; weight is real',()=>{
  const s=createRun(),old={...createPart(s,'seed'),modifier:'light'};delete old.rarity;delete old.setId;assert.equal(partMeta(old).rarity,'common');assert.equal(weight(old),8);
- for(const rarity of ['common','uncommon','rare','relic']){const p=generateLoot(s,createPart,3,'elite',rarity,false);assert.equal(p.tier,3);assert.equal(p.modifier,null);assert.equal(p.affixes.length,({common:0,uncommon:1,rare:1,relic:2})[rarity]);}
+ for(const rarity of ['common','uncommon','rare','relic']){const p=generateLoot(s,createPart,3,'elite',rarity,false);assert.equal(p.tier,3);assert.equal(p.modifier,null);assert.equal(p.affixes.length,({common:0,uncommon:1,rare:2,relic:3})[rarity]);}
 });
 test('active set and affix effects reach weight, range, reload and healing settings',()=>{
- const s=createRun();s.arms=[createPart(s,'seed')];s.organs=[createPart(s,'shield')];set(s,'bastion');assert.equal(setBonuses(s).shieldDelay,10.8);
- set(s,'hunter');assert.equal(weaponStats(s,s.arms[0]).range,9*1.1);set(s,'rootwalker');assert.equal(setBonuses(s).regenDelay,10);
- set(s,'wanderer');s.abilities.moving=3;s.arms[0].affix={stat:'reload',value:.08};assert.ok(Math.abs(reloadDuration(s,s.arms[0],1.2)-1.2/1.18)<1e-12);assert.equal(stats(s).pickup,7*1.15);
+ const s=createRun();s.arms=[createPart(s,'seed')];s.organs=[createPart(s,'shield')];set(s,'bastion');assert.equal(setBonuses(s).shieldDelay,15);
+ set(s,'hunter');assert.equal(weaponStats(s,s.arms[0]).range,9*1.2);set(s,'rootwalker');assert.equal(setBonuses(s).regenDelay,15);
+ set(s,'wanderer');s.abilities.moving=3;s.arms[0].affix={stat:'reload',value:.08};assert.ok(Math.abs(reloadDuration(s,s.arms[0],1.2)-1.2/1.08)<1e-12);assert.equal(stats(s).pickup,7*1.5);
 });
 test('direct hit bonuses obey cooldown, range and secondary exclusion',()=>{
- const s=createRun();s.organs=[createPart(s,'shield')];set(s,'chimera');s.time=4;const e={x:10,z:0};assert.equal(hitSetMultiplier(s,e,{mode:'sector',partId:1}),1);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:2}),1.12);assert.equal(hitSetMultiplier(s,e,{mode:'sector',partId:1}),1);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',secondary:'echo'}),1);
- set(s,'hecaton');s.time=7;assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:1}),1);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:2}),1);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:3}),1.12);
+ const s=createRun();s.organs=[createPart(s,'shield')];set(s,'chimera');s.time=4;const e={x:10,z:0};assert.equal(hitSetMultiplier(s,e,{mode:'sector',partId:1}),1);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:2}),1.3);assert.equal(hitSetMultiplier(s,e,{mode:'sector',partId:1}),1.3);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',secondary:'echo'}),1);
+ set(s,'hecaton');s.time=7;assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:1}),1);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:2}),1);assert.equal(hitSetMultiplier(s,e,{mode:'projectile',partId:3}),1);
 });
 test('ground reward advances quality counter only once when received',()=>{
  const s=createRun();s.player={x:0,z:0};const p=createPart(s,'seed');p.lootSource='normal';s.ground=[{id:42,x:0,z:0,part:p}];assert(pickup(s,42));assert.equal(s.lootState.qualityMisses,1);assert(!pickup(s,42));assert.equal(s.lootState.qualityMisses,1);

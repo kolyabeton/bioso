@@ -11,7 +11,7 @@ export function prepareWorldLabelReview(run,params){
  run.time=300;run.enemies=[];run.ground=[];
  const state=params.get('state')||'complete';
  node.state=Object.hasOwn(WORLD_LABEL_STATES,state)?state:'ready';
- const approach={x:node.x,y:node.y,z:node.z+7};
+ const approach={x:node.x,y:node.y,z:node.z+(params.get('view')==='nearby'?2:7)};
  Object.assign(run.player,run.world.walkable(approach.x,approach.z,.8)?approach:{x:node.x,y:node.y,z:node.z+3});
  discoverEncounters(run);
  return {paused:true};

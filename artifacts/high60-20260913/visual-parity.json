@@ -1,0 +1,6 @@
+{
+  "meanAbsoluteChannelError": 0.015929904513888888,
+  "maxChannelError": 18,
+  "channelsOver8Percent": 0.007703993055555555,
+  "note": "JPEG screenshots; fixed paused seed, camera and time at 1280x720, rendering DPR 2."
+}

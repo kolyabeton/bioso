@@ -1,0 +1,77 @@
+[
+  {
+    "environment": "garden",
+    "mode": "survival",
+    "route": "http://127.0.0.1:4185/?review=forest-living&environment=upper-gardens&landmark&proof=world-light-final-garden-390",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "drawCalls": 38,
+    "triangles": 509680,
+    "textures": 36,
+    "staticShadowCells": 4,
+    "shadowMode": "static-depth",
+    "assetErrors": 0
+  },
+  {
+    "environment": "scrap",
+    "mode": "survival",
+    "route": "http://127.0.0.1:4185/?review=forest-living&environment=quiet-scrapyard&landmark&proof=world-light-final-scrap-390",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "drawCalls": 41,
+    "triangles": 502602,
+    "textures": 27,
+    "staticShadowCells": 4,
+    "shadowMode": "static-depth",
+    "assetErrors": 0
+  },
+  {
+    "environment": "forest",
+    "mode": "survival",
+    "route": "http://127.0.0.1:4185/?review=forest-living&environment=root-forest&landmark&proof=world-light-final-forest-390",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "drawCalls": 41,
+    "triangles": 277656,
+    "textures": 28,
+    "staticShadowCells": 4,
+    "shadowMode": "static-depth",
+    "assetErrors": 0
+  },
+  {
+    "environment": "city",
+    "mode": "survival",
+    "route": "http://127.0.0.1:4185/?review=forest-living&environment=overgrown-city&landmark&proof=world-light-final-city-390",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "drawCalls": 45,
+    "triangles": 533920,
+    "textures": 28,
+    "staticShadowCells": 4,
+    "shadowMode": "static-depth",
+    "assetErrors": 0
+  },
+  {
+    "environment": "mother",
+    "mode": "survival",
+    "route": "http://127.0.0.1:4185/?review=forest-living&environment=brood-nursery&landmark&proof=world-light-final-mother-390",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "drawCalls": 44,
+    "triangles": 570902,
+    "textures": 36,
+    "staticShadowCells": 9,
+    "shadowMode": "static-depth",
+    "assetErrors": 0
+  }
+]

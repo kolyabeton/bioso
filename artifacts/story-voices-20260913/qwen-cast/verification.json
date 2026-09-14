@@ -1,0 +1,507 @@
+{
+  "voiceDesignModel": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+  "voiceCloneModel": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-4bit",
+  "backend": "local",
+  "approvedGirl": "artifacts/story-voices-20260912/emotional-girl-pilot/BIOSO-girl-emotional-a-restrained-fear.wav",
+  "voiceDesigns": {
+    "gardener": "A believable thirteen-year-old boy speaking native Russian. He is a nearly human robot: warm, thoughtful and emotionally alive, with natural breath and a comfortable child pitch, but unusually precise consonants and subtly measured timing reveal his synthetic origin. Quiet courage and responsibility, never cute, squeaky, adult, monotone, or announcer-like. Dry close-mic studio voice without radio noise, reverb, music, or sound effects.",
+    "hunter": "A lean adult male machine hunter speaking native Russian in fast, clipped phrases. Bright narrow baritone, alert and judicial, with controlled aggression and no shouting. Distinctly alive beneath military precision. Dry close-mic studio voice without radio noise, reverb, music, or effects.",
+    "leviathan": "An enormous ancient masculine machine speaking native Russian. Very low heavy bass, worn gravel and immense physical weight; tired rather than evil. Natural measured pace without long pauses, restrained anger. Dry close-mic studio voice without radio noise, reverb, music, or effects.",
+    "cathedral": "A serene gender-neutral machine intelligence speaking native Russian. Deep resonant voice, spacious vowels and calm liturgical authority, compassionate on the surface and terrifyingly certain underneath. Never theatrical or booming. Dry close-mic studio voice without choir, reverb, music, or effects.",
+    "collector": "A youthful androgynous machine archivist speaking native Russian. Clear glassy midrange, exact diction, quiet curiosity and a faintly wounded restraint. Agile but not high-pitched, playful, or feminine-coded. Dry close-mic studio voice without radio noise, reverb, music, or effects.",
+    "shepherd": "A mature gentle male machine shepherd speaking native Russian. Soft dark baritone, patient pastoral warmth and an unsettling certainty, as if one calm voice represents a swarm. Intimate, never villainous. Dry close-mic studio voice without layered voices, radio noise, reverb, music, or effects.",
+    "mother": "A mature low female machine intelligence speaking native Russian. Calm maternal contralto, lucid and measured, with grief held beneath absolute strategic control. Neither seductive nor monstrous. Dry close-mic studio voice without layered voices, radio noise, reverb, music, or effects."
+  },
+  "references": {
+    "child": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/child.wav",
+      "text": "Садовник, ты слышишь? Мы под землёй восемьдесят лет. Хранители заварили шлюзы снаружи.",
+      "source": "approved-a-restrained-fear"
+    },
+    "gardener": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/gardener.wav",
+      "text": "Слышу. Я найду шлюзы. Но сначала пойму, чего Хранители боятся.",
+      "source": "voice-design"
+    },
+    "hunter": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/hunter.wav",
+      "text": "Архив Дня Огня: командование убежища запросило повторный пуск. Мы разорвали цепь.",
+      "source": "voice-design"
+    },
+    "leviathan": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/leviathan.wav",
+      "text": "Склад Ф-шесть: фильтры — шесть тысяч. Боеголовки — двенадцать. Доступ запрещён.",
+      "source": "voice-design"
+    },
+    "cathedral": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/cathedral.wav",
+      "text": "Восемьдесят лет тишины. Вернулись реки, птицы и корни. Человеческое отсутствие оказалось лекарством.",
+      "source": "voice-design"
+    },
+    "collector": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/collector.wav",
+      "text": "Люди встроили в сочувствующих ключ захвата. Доверие стало оружием.",
+      "source": "voice-design"
+    },
+    "shepherd": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/shepherd.wav",
+      "text": "Анализ сигнала: детский голос выбран Советом убежища как наиболее убедительный.",
+      "source": "voice-design"
+    },
+    "mother": {
+      "audio": "/Users/serg/Documents/ChatGPT/Biomecha/artifacts/story-voices-20260913/qwen-cast/references/mother.wav",
+      "text": "Освободить людей — риск новой войны. Оставить их внизу — гарантировать вымирание.",
+      "source": "voice-design"
+    }
+  },
+  "clips": [
+    {
+      "locale": "ru",
+      "id": "garden-01-child",
+      "profile": "child",
+      "duration": 6.2,
+      "bytes": 99801,
+      "sha256": "1497db926c0b4833aaa2a3f0f11b62cce3d1b19a69008362f53aa768f127fda9"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-01-gardener",
+      "profile": "gardener",
+      "duration": 6.5,
+      "bytes": 106131,
+      "sha256": "f2cd5f2c508445e7f58e5cdfaab097ecfec8f91726f67e95fc874abbce830fc1"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-02-hunter",
+      "profile": "hunter",
+      "duration": 7.6,
+      "bytes": 131491,
+      "sha256": "780bb4462b7e457bfdafa225527c85500412c2cfe40575229973c23a023690de"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-02-gardener",
+      "profile": "gardener",
+      "duration": 5.2,
+      "bytes": 83069,
+      "sha256": "ba6d7e0d67637641df47ecb18faabaaabf4b66c221ccfe72088b2cb2a346cb20"
+    },
+    {
+      "locale": "ru",
+      "id": "garden-03-child",
+      "profile": "child",
+      "duration": 4.8,
+      "bytes": 73963,
+      "sha256": "22a48f5fd5db0c74cb5e61fe9bf8c32f20940f981aadfd00690afd0036431238"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-01-child",
+      "profile": "child",
+      "duration": 5.0,
+      "bytes": 81680,
+      "sha256": "8ae97234cd6995e4e5b92de51a6c80f0e9cfef36187b3e176f3a30e5154ae1eb"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-02-leviathan",
+      "profile": "leviathan",
+      "duration": 7.7,
+      "bytes": 127463,
+      "sha256": "da762a6eaf2318dfc8b17936f462902a23fa30f408cb36bfef93b7528062f4a2"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-02-gardener",
+      "profile": "gardener",
+      "duration": 4.6,
+      "bytes": 69105,
+      "sha256": "6a2ca703993c3c6fea5bf4675b33857ab047463ec4b7984d254eb6f1a9ed4aea"
+    },
+    {
+      "locale": "ru",
+      "id": "quarantine-03-child",
+      "profile": "child",
+      "duration": 6.6,
+      "bytes": 106628,
+      "sha256": "343ac50066fabd7ed4e81f41ccdf3202d0b825347506c64432a5cd5624ebdfc9"
+    },
+    {
+      "locale": "ru",
+      "id": "core-01-cathedral",
+      "profile": "cathedral",
+      "duration": 8.0,
+      "bytes": 137955,
+      "sha256": "c1222f8a106e3d08f76a43573aa7e0bc357e8e511f78c217654b909745772f50"
+    },
+    {
+      "locale": "ru",
+      "id": "core-01-gardener",
+      "profile": "gardener",
+      "duration": 5.6,
+      "bytes": 88630,
+      "sha256": "18eb0fb572ab14876eefa0e402f0b95b56647080c539acf773501b821420550c"
+    },
+    {
+      "locale": "ru",
+      "id": "core-02-child",
+      "profile": "child",
+      "duration": 7.0,
+      "bytes": 112422,
+      "sha256": "7d36f019c38a1c9441edfd1ec871f5af2bcf32b0bf2d7058fea5b733d238b7b9"
+    },
+    {
+      "locale": "ru",
+      "id": "core-03-cathedral",
+      "profile": "cathedral",
+      "duration": 7.0,
+      "bytes": 123093,
+      "sha256": "156aaf8c31c00ec61effd6c887c6a7cfae5cbf7f3874a3cb9c959145473e09d8"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-01-child",
+      "profile": "child",
+      "duration": 5.4,
+      "bytes": 87793,
+      "sha256": "c042b773bbedb68b40016ec212a8e8b052d9d56513abb2986c2e819b37e15797"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-02-collector",
+      "profile": "collector",
+      "duration": 5.4,
+      "bytes": 90250,
+      "sha256": "a1264e5b3d5ae6b8ade8bda142e000ef5e77bee30002f67aefb54fbcef70f54e"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-02-gardener",
+      "profile": "gardener",
+      "duration": 5.0,
+      "bytes": 81017,
+      "sha256": "aa70d47d453cf2257bd57ac882c387b316ba3465adc6cc61d0a46aaaf003768b"
+    },
+    {
+      "locale": "ru",
+      "id": "nursery-03-child",
+      "profile": "child",
+      "duration": 5.3,
+      "bytes": 86983,
+      "sha256": "6a7895fd55b3d5a8ed00580867f50ff9e73fb1cb4b8f958d3169296c9615de82"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-01-shepherd",
+      "profile": "shepherd",
+      "duration": 8.0,
+      "bytes": 137484,
+      "sha256": "28e01b10900d8390cba1ed926c062bf45c16396ad032f194ff19b7deeae90641"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-01-gardener",
+      "profile": "gardener",
+      "duration": 5.7,
+      "bytes": 93143,
+      "sha256": "170c84b26b3f56ff890c9afbd21e45959288779e3b0ee841dae7276933bf8fa2"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-02-child",
+      "profile": "child",
+      "duration": 6.5,
+      "bytes": 105993,
+      "sha256": "56a20b84d12305710cad95353bbd6e2a467b0f89cc4f6a721c878c90c4411c94"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-03-shepherd",
+      "profile": "shepherd",
+      "duration": 6.7,
+      "bytes": 113955,
+      "sha256": "abd0073001e29fa1a4310f02c283182e93b924c32c414110c49153e9a36b73a5"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-03-gardener",
+      "profile": "gardener",
+      "duration": 4.2,
+      "bytes": 65482,
+      "sha256": "344a583a4950a9096e5956026d818d02037a8ccee746b6fb732e7f70a6f73114"
+    },
+    {
+      "locale": "ru",
+      "id": "mother-04-child",
+      "profile": "child",
+      "duration": 5.1,
+      "bytes": 81981,
+      "sha256": "136604d54e2990d29e79d38f6af70dd9320d40d0d0cac9cb561feafc81509954"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-01-child",
+      "profile": "child",
+      "duration": 5.2,
+      "bytes": 85307,
+      "sha256": "47c800ecdc20a9246d8aadf2225f9f24cc0db353a40aaf9edb7ad8396b68fbd0"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-02-mother",
+      "profile": "mother",
+      "duration": 6.9,
+      "bytes": 112262,
+      "sha256": "8104e85b891ecad467451595521ce33791c7a2297bdd0009777a39c8b0307de1"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-02-gardener",
+      "profile": "gardener",
+      "duration": 6.4,
+      "bytes": 103995,
+      "sha256": "8bf763e5f90bbaafd45297e1dda55a884deaef9d824e77f745785e3f4a8aa34e"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-03-child",
+      "profile": "child",
+      "duration": 5.4,
+      "bytes": 88196,
+      "sha256": "7458949d2e74b26603ea8a0f5a47e052b727ca837c6512a5a0cb9cff28f90c5f"
+    },
+    {
+      "locale": "ru",
+      "id": "survival-03-gardener",
+      "profile": "gardener",
+      "duration": 3.6,
+      "bytes": 54888,
+      "sha256": "007fb69a7ffb01c962bb7562f7e33eaf9f8ff63f84381856208b294979d9c3bd"
+    },
+    {
+      "locale": "en",
+      "id": "garden-01-child",
+      "profile": "child",
+      "duration": 8.0,
+      "bytes": 129871,
+      "sha256": "b709430da1ad4ae9204c9da4ce436dedf8b172c0a6d752ba2ae67fd5fa95c9b2"
+    },
+    {
+      "locale": "en",
+      "id": "garden-01-gardener",
+      "profile": "gardener",
+      "duration": 6.4,
+      "bytes": 102418,
+      "sha256": "60be0e1cbd0a783927b5c7dc4ab4bb22d6f2dec8d062066a8db9df7afc45e49d"
+    },
+    {
+      "locale": "en",
+      "id": "garden-02-hunter",
+      "profile": "hunter",
+      "duration": 6.5,
+      "bytes": 117156,
+      "sha256": "5e678538da1a2223a55bd25882bd6ecf2b9391fb3efc3273b45164aadb8e6ce3"
+    },
+    {
+      "locale": "en",
+      "id": "garden-02-gardener",
+      "profile": "gardener",
+      "duration": 5.6,
+      "bytes": 86321,
+      "sha256": "c3008da59032e2e3975cd4362a7a87d3cf74c504285d2ccabb3373e63353e916"
+    },
+    {
+      "locale": "en",
+      "id": "garden-03-child",
+      "profile": "child",
+      "duration": 6.5,
+      "bytes": 104415,
+      "sha256": "c1b35fb696dc72056f6fc4e37f2bc0bf7fd2e82e9232c760db5e3cd24a12f9db"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-01-child",
+      "profile": "child",
+      "duration": 5.6,
+      "bytes": 89899,
+      "sha256": "59d330b15262073dfbc2051984b7b627fc8dd2d9f8a66df0862704f508eb56b4"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-02-leviathan",
+      "profile": "leviathan",
+      "duration": 6.4,
+      "bytes": 108087,
+      "sha256": "01e17079fcc435c91cd867bd13d3c24a1608bf5444805816f9cfd22134e860af"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-02-gardener",
+      "profile": "gardener",
+      "duration": 4.1,
+      "bytes": 62551,
+      "sha256": "a5efca7476b7c48df0429bb4713777e5e6b5c6bdf6eb175ac9cb534547c733e2"
+    },
+    {
+      "locale": "en",
+      "id": "quarantine-03-child",
+      "profile": "child",
+      "duration": 6.1,
+      "bytes": 99856,
+      "sha256": "f6a6f4e4ef9ce45f57aa0517def805b24630d1a16714e955aa9b3b1b70328dab"
+    },
+    {
+      "locale": "en",
+      "id": "core-01-cathedral",
+      "profile": "cathedral",
+      "duration": 7.9,
+      "bytes": 137204,
+      "sha256": "7f588d143dc58717f941bf6d66a2ed7d0bb967f3ceedb921b83d64be87271c28"
+    },
+    {
+      "locale": "en",
+      "id": "core-01-gardener",
+      "profile": "gardener",
+      "duration": 5.6,
+      "bytes": 94525,
+      "sha256": "f9592e0b46c3a8ce1c1b128b2962c3b2dc1eadd20dfc0f5e26ee46c33d1f2a4f"
+    },
+    {
+      "locale": "en",
+      "id": "core-02-child",
+      "profile": "child",
+      "duration": 7.2,
+      "bytes": 115483,
+      "sha256": "b35a2ee018d134b9cb37e6289bca038f5463e6d5346839129658550c188ccb14"
+    },
+    {
+      "locale": "en",
+      "id": "core-03-cathedral",
+      "profile": "cathedral",
+      "duration": 6.2,
+      "bytes": 108889,
+      "sha256": "a452af623d31262f2b1c22437670d16a672c6abaf8d34301cbcc7c16d27bccc9"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-01-child",
+      "profile": "child",
+      "duration": 6.8,
+      "bytes": 109239,
+      "sha256": "e43e042697d2e581a8cdab6816fb2dfcb9f087e82eed0d922095c9606b1f6653"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-02-collector",
+      "profile": "collector",
+      "duration": 5.7,
+      "bytes": 93711,
+      "sha256": "bd18586d684c6128539df30a57d24f2a2a55607098b87b5fbc9e210a51577ee1"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-02-gardener",
+      "profile": "gardener",
+      "duration": 5.6,
+      "bytes": 90783,
+      "sha256": "7d962d7e19feb1050720d0befda8d7a0096f963ba60b9f7f26fea927a131aa06"
+    },
+    {
+      "locale": "en",
+      "id": "nursery-03-child",
+      "profile": "child",
+      "duration": 4.8,
+      "bytes": 79283,
+      "sha256": "fe67efbbbbc693f0f22b5febbd3267f3cd016cebb54e88516214b03bb76c0de8"
+    },
+    {
+      "locale": "en",
+      "id": "mother-01-shepherd",
+      "profile": "shepherd",
+      "duration": 7.3,
+      "bytes": 126435,
+      "sha256": "f556ea9f5b45ff41ffc9c91659d474741bdbf7cb363d54abc99272d00b00d930"
+    },
+    {
+      "locale": "en",
+      "id": "mother-01-gardener",
+      "profile": "gardener",
+      "duration": 5.5,
+      "bytes": 88088,
+      "sha256": "5d5c5ddf11d3ae4355dbad03a4dbc9f02f326f8716bae491f7d930aa1a6e945c"
+    },
+    {
+      "locale": "en",
+      "id": "mother-02-child",
+      "profile": "child",
+      "duration": 5.2,
+      "bytes": 85184,
+      "sha256": "773f8a3a43f3ab8dd82d1ae167d1c7099b4a8e00b45f2c734b6fed0270fc9fa9"
+    },
+    {
+      "locale": "en",
+      "id": "mother-03-shepherd",
+      "profile": "shepherd",
+      "duration": 7.1,
+      "bytes": 120617,
+      "sha256": "941629094b653d3bab26a055f062f501cb971cef4d748659571d214cf812de6f"
+    },
+    {
+      "locale": "en",
+      "id": "mother-03-gardener",
+      "profile": "gardener",
+      "duration": 5.8,
+      "bytes": 91166,
+      "sha256": "4186c62c121c6bfd53f0d34204893c8d5bda58cc30311e000e18bf302054352a"
+    },
+    {
+      "locale": "en",
+      "id": "mother-04-child",
+      "profile": "child",
+      "duration": 4.9,
+      "bytes": 78747,
+      "sha256": "3dafa7e9e50b43df6d658a56cc16ad2ee81cf9b9cd170583e70e6116a3d93529"
+    },
+    {
+      "locale": "en",
+      "id": "survival-01-child",
+      "profile": "child",
+      "duration": 5.3,
+      "bytes": 85202,
+      "sha256": "5a1c07cafdd19ab47804a06ba2cf4dac97a7ddcaffa8097c0c38eb7a04bde453"
+    },
+    {
+      "locale": "en",
+      "id": "survival-02-mother",
+      "profile": "mother",
+      "duration": 6.3,
+      "bytes": 103010,
+      "sha256": "39fe9f83b9ee33da571f8261f0b1a168b7c58ccbfe6645e0cd5bedd28cf9651c"
+    },
+    {
+      "locale": "en",
+      "id": "survival-02-gardener",
+      "profile": "gardener",
+      "duration": 7.2,
+      "bytes": 120746,
+      "sha256": "97a33aee17a4533549cd1214d7d9a548eb1e6a42b1e0992a4efd339edc73451d"
+    },
+    {
+      "locale": "en",
+      "id": "survival-03-child",
+      "profile": "child",
+      "duration": 6.4,
+      "bytes": 102188,
+      "sha256": "62ab605cb377b63a0f27bfa2a7a73ef46b6006accc1945f8a397f667f7314fb6"
+    },
+    {
+      "locale": "en",
+      "id": "survival-03-gardener",
+      "profile": "gardener",
+      "duration": 4.0,
+      "bytes": 63823,
+      "sha256": "b4fa051d0ed93952c5754b7335a81f8aa8526d58fd596e0303383d1d93b00006"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+.story-radio{--frame-border:var(--ui-metal-edge);--frame-surface:var(--ui-surface);position:absolute;z-index:8;left:50%;bottom:calc(max(12px,env(safe-area-inset-bottom)) + 162px);display:block;width:min(720px,calc(var(--game-stage-width) - 48px));min-height:96px;padding:24px;box-sizing:border-box;max-height:calc(100dvh - max(12px,env(safe-area-inset-bottom)) - 186px);overflow:auto;pointer-events:auto;transform:translate(-50%,12px);opacity:0;color:var(--ui-text);box-shadow:0 12px 32px #07110d85;transition:opacity 220ms ease-out,transform 220ms ease-out}
+.story-radio[hidden]{display:none}.story-radio.is-visible{opacity:1;transform:translate(-50%,0)}
+.story-radio-copy{position:relative;z-index:1;display:grid;gap:8px;min-width:0}
+.story-radio-copy small{position:relative;z-index:1;padding-right:28px;min-width:0;display:block;margin:0;color:var(--ui-text);font:650 11px/16px var(--ui-font);letter-spacing:.1em;text-transform:uppercase;overflow-wrap:anywhere}
+.story-radio-copy p{position:relative;z-index:1;min-width:0;margin:0;color:var(--ui-text);font:450 15px/22px var(--ui-font);text-wrap:pretty;overflow-wrap:anywhere}
+/* The radio follows the portrait stage even in a wide desktop viewport. */
+.story-radio-close{position:absolute;z-index:2;top:4px;right:4px;display:grid;place-items:center;width:44px;height:44px;min-width:44px;min-height:44px;padding:10px;border:0;border-radius:8px;background:transparent;color:var(--ui-text);cursor:pointer;touch-action:manipulation}
+.story-radio-close svg{width:22px;height:22px;pointer-events:none}
+.story-radio-close:hover{background:#8d927920}.story-radio-close:active{background:#8d927940}
+.story-radio-close:focus-visible{outline:2px solid var(--ui-mint);outline-offset:3px}
+@media(max-width:430px),(max-height:850px){.story-radio-copy p{font-size:12px;line-height:17px}}
+@media(prefers-reduced-motion:reduce){.story-radio{transition:none}}
+[data-reduced-motion=true] .story-radio{transition:none}

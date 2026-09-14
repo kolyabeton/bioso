@@ -1,0 +1,16 @@
+{
+  "dialog": [
+    {
+      "clientWidth": 334,
+      "height": 624,
+      "scrollWidth": 334,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    }
+  ],
+  "height": 640,
+  "route": "http://127.0.0.1:5291/?review=ability-detail&branch=fire&rank=3&quality=high",
+  "text": "00:00\n0\nLEVEL 1\nKILLS 0\nKill First Boss\nMap\nBuild\n1/1\nSOUL · BRANCHES\nABILITY DEVELOPMENT\nFire\nMight\nMelee\nRanged\nAttack rate\nProjectiles\nRicochet\nCold\nBioelectricity\nResilience\nMobility\nSymbionts\nMetabolism\nThermal Shock\nPlasma\nSwarm Resonance\nNeural Web\nCounter Shell\nSpore Brood\nOvergrowth\nCryo Trail\nBRANCH\nRanged\nLocked\nLocked\nLocked\nLocked\nSELECTED NODE\nTargeting Nerves\nLocked\n\nRanged weapon damage +15%, including the arc organ.\n\nLearn the required abilities first.",
+  "width": 360
+}

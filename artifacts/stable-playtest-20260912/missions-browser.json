@@ -1,0 +1,18 @@
+[
+  {
+    "id": "quarantine",
+    "loaded": true
+  },
+  {
+    "id": "core",
+    "loaded": true
+  },
+  {
+    "id": "nursery",
+    "loaded": true
+  },
+  {
+    "id": "mother",
+    "loaded": true
+  }
+]

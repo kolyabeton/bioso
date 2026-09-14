@@ -1,0 +1,26 @@
+✔ repeated tiles share immutable atlas windows without invalidating uploads (3.428792ms)
+✔ incremental light preparation preserves one clear, all depth draws and renderer state (2.331333ms)
+✔ the synchronous compatibility entrypoint keeps a single depth scene draw (0.994458ms)
+✔ cancelled light preparation releases its render target and owned depth materials (0.699667ms)
+✔ an empty incremental light target is still cleared to fully lit (0.839667ms)
+✔ all five mission identities also exist in the mixed survival map (7.548542ms)
+✔ new environment module collisions match normalized Blender exports (77.014291ms)
+✔ five side reliefs are distinct, central mission combat and seams remain flat (0.680584ms)
+✔ terrain vertices use the same height source as collision and preserve portals (16.236292ms)
+✔ each of five survival families owns all three modules, including a full nursery set (1.732583ms)
+✔ material weights agree on both sides of every edge, including corners (2.82575ms)
+✔ the active shared ground path preserves baked direct lighting and binds the new atlas (0.833792ms)
+✔ neighbor lightmaps feather reciprocal forest shadows across tile seams (0.45925ms)
+✔ sums every pass and upload once and waits for the complete frame (1.310375ms)
+✔ disjoint and query overflow frames cannot report partial GPU times (0.104584ms)
+✔ missing extension stays unavailable and dispose restores methods (0.094792ms)
+✔ counts preparation submitted between animation callbacks (0.074583ms)
+✔ unregistered loot cannot interrupt frames or hide other pickups (5.462708ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 286.963209

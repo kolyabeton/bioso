@@ -44,6 +44,7 @@
   --ui-metal-edge: #959783;
   --ui-texture-ceramic: url('/assets/ui/materials/ceramic-worn-v1.jpg');
   --ui-texture-metal: url('/assets/ui/materials/metal-olive-v1.jpg');
+  --ui-texture-primary: url('/assets/ui/materials/ceramic-green-v1.jpg');
   --ui-panel-face: linear-gradient(#f9f4e42b,#e2d8bd20), var(--ui-texture-ceramic) center/512px repeat;
   --ui-shadow: 0 24px 80px #0b100dc9;
 }

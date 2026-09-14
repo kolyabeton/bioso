@@ -1,0 +1,743 @@
+{
+  "auditDate": "2026-09-08",
+  "routes": [
+    {
+      "label": "sealed-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 3,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "encounter-detail",
+      "stage": 390,
+      "standalone": 3
+    },
+    {
+      "label": "catalog-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 12,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 390,
+      "standalone": 0
+    },
+    {
+      "label": "assembly-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 10,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "assembly",
+      "stage": 390,
+      "standalone": 0
+    },
+    {
+      "label": "part-390",
+      "dialog": 366,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "part",
+      "stage": 390,
+      "standalone": 1
+    },
+    {
+      "label": "body-swap-390",
+      "dialog": 366,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "body-swap",
+      "stage": 390,
+      "standalone": 1
+    },
+    {
+      "label": "boss-reward-390",
+      "dialog": 366,
+      "doubleFrames": 0,
+      "icons": 3,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "boss-reward",
+      "stage": 390,
+      "standalone": 3
+    },
+    {
+      "label": "loot-390",
+      "dialog": 366,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "loot",
+      "stage": 390,
+      "standalone": 0
+    },
+    {
+      "label": "loadout-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "loadout",
+      "stage": 390,
+      "standalone": 0
+    },
+    {
+      "label": "profile-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "profile",
+      "stage": 390,
+      "standalone": 1
+    },
+    {
+      "label": "achievement-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "meta-achievement",
+      "stage": 390,
+      "standalone": 1
+    },
+    {
+      "label": "end-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 2,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "end",
+      "stage": 390,
+      "standalone": 0
+    },
+    {
+      "label": "missions-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "missions",
+      "stage": 390,
+      "standalone": 0
+    },
+    {
+      "label": "sealed-390",
+      "dialog": 374,
+      "doubleFrames": 0,
+      "icons": 3,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "encounter-detail",
+      "stage": 390,
+      "standalone": 3
+    },
+    {
+      "label": "catalog-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "assembly-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 10,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "assembly",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "part-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "part",
+      "stage": 360,
+      "standalone": 1
+    },
+    {
+      "label": "body-swap-360",
+      "dialog": 336,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "body-swap",
+      "stage": 360,
+      "standalone": 1
+    },
+    {
+      "label": "boss-reward-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 3,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "boss-reward",
+      "stage": 360,
+      "standalone": 3
+    },
+    {
+      "label": "loot-360",
+      "dialog": 336,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "loot",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "loadout-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "loadout",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "profile-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "profile",
+      "stage": 360,
+      "standalone": 1
+    },
+    {
+      "label": "achievement-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "meta-achievement",
+      "stage": 360,
+      "standalone": 1
+    },
+    {
+      "label": "end-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 2,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "end",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "missions-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "missions",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "sealed-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 3,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "encounter-detail",
+      "stage": 360,
+      "standalone": 3
+    },
+    {
+      "label": "catalog-tooltip-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 10,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 360,
+      "standalone": 1
+    },
+    {
+      "label": "catalog-sets-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 7,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 360,
+      "standalone": 7
+    },
+    {
+      "label": "mission-detail-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "mission-detail",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "catalog-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 405,
+      "standalone": 0
+    },
+    {
+      "label": "assembly-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 10,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "assembly",
+      "stage": 405,
+      "standalone": 0
+    },
+    {
+      "label": "part-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "part",
+      "stage": 405,
+      "standalone": 1
+    },
+    {
+      "label": "body-swap-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "body-swap",
+      "stage": 405,
+      "standalone": 1
+    },
+    {
+      "label": "boss-reward-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 3,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "boss-reward",
+      "stage": 405,
+      "standalone": 3
+    },
+    {
+      "label": "loot-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "loot",
+      "stage": 405,
+      "standalone": 0
+    },
+    {
+      "label": "loadout-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "loadout",
+      "stage": 405,
+      "standalone": 0
+    },
+    {
+      "label": "profile-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "profile",
+      "stage": 405,
+      "standalone": 1
+    },
+    {
+      "label": "achievement-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 1,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "meta-achievement",
+      "stage": 405,
+      "standalone": 1
+    },
+    {
+      "label": "end-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 2,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "end",
+      "stage": 405,
+      "standalone": 0
+    },
+    {
+      "label": "missions-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "missions",
+      "stage": 405,
+      "standalone": 0
+    },
+    {
+      "label": "sealed-wide",
+      "dialog": 389,
+      "doubleFrames": 0,
+      "icons": 3,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "encounter-detail",
+      "stage": 405,
+      "standalone": 3
+    },
+    {
+      "label": "catalog-page-1-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "catalog-page-2-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "catalog-page-3-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "catalog-page-4-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 9,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "catalog",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "home-360",
+      "dialog": 360,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "home",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "pause-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "pause",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "settings-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "settings",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "map-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "map",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "level-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "level",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "soul-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "soul",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "overrun-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 0,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "overrun",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "components-360",
+      "dialog": 344,
+      "doubleFrames": 0,
+      "icons": 4,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "components",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "hud-360",
+      "dialog": 360,
+      "doubleFrames": 0,
+      "icons": 2,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "game",
+      "stage": 360,
+      "standalone": 0
+    },
+    {
+      "label": "hud-390",
+      "dialog": 390,
+      "doubleFrames": 0,
+      "icons": 2,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "game",
+      "stage": 390,
+      "standalone": 0
+    },
+    {
+      "label": "hud-1280",
+      "dialog": 405,
+      "doubleFrames": 0,
+      "icons": 2,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "game",
+      "stage": 405,
+      "standalone": 0
+    },
+    {
+      "label": "boss-reward-claimed-390",
+      "dialog": 390,
+      "doubleFrames": 0,
+      "icons": 2,
+      "missing": 0,
+      "overflow": 0,
+      "screen": "game",
+      "stage": 390,
+      "standalone": 0
+    }
+  ],
+  "buttons": [
+    {
+      "label": "catalog",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "assembly",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "part",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "body-swap",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "boss-reward",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "loot",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "loadout",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "profile",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "achievement",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "end",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "missions",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "sealed",
+      "width": 360,
+      "issues": []
+    },
+    {
+      "label": "catalog",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "assembly",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "part",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "body-swap",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "boss-reward",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "loot",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "loadout",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "profile",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "achievement",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "end",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "missions",
+      "width": 390,
+      "issues": []
+    },
+    {
+      "label": "sealed",
+      "width": 390,
+      "issues": []
+    }
+  ]
+}

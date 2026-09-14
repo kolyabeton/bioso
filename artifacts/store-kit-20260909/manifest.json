@@ -1,0 +1,133 @@
+{
+  "name": "BIOSO store kit",
+  "date": "2026-09-09",
+  "status": "platform art and page drafts ready; gameplay media and build pending",
+  "assets": [
+    {
+      "path": "key-art/bioso-leviathan-swarm-vertical-v1.png",
+      "kind": "promotional-key-art",
+      "width": 941,
+      "height": 1672,
+      "sha256": "b72cfa77d4ea95d379cf33dafdc730243d498a0ec59b0fc8b65ff943edbb7714"
+    },
+    {
+      "path": "key-art/bioso-root-cathedral-swarm-wide-v1.png",
+      "kind": "promotional-key-art",
+      "width": 1672,
+      "height": 941,
+      "sha256": "9e4ba50137c3d19fff51e8c0bfbb4d8bb004146ea200d2699f2ac9371e6cfd07"
+    },
+    {
+      "path": "key-art/bioso-root-cathedral-hero-3x1-v1.png",
+      "kind": "promotional-key-art",
+      "width": 2172,
+      "height": 724,
+      "sha256": "1b9d40c1887b574bf9403036568ecd79fd05a702a77951fbae00ab160d02583f"
+    },
+    {
+      "path": "key-art/bioso-leviathan-swarm-square-v1.png",
+      "kind": "promotional-key-art",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "1985366214860213506a6825b294af9400ecce2545c51f6d142c6a17f49976e1"
+    },
+    {
+      "path": "platforms/yandex/icon-512.png",
+      "kind": "store-icon",
+      "width": 512,
+      "height": 512,
+      "sha256": "35115bba86e92198abc98b0fabfbb72359ea3d969926f06bf9550de24c3e3b15"
+    },
+    {
+      "path": "platforms/yandex/cover-800x470.png",
+      "kind": "store-cover",
+      "width": 800,
+      "height": 470,
+      "sha256": "c0649a231a066f68c4f2167851479ebd2112cde87fe64f6f407461add77b9545"
+    },
+    {
+      "path": "platforms/yandex/hero-1560x520.png",
+      "kind": "store-hero",
+      "width": 1560,
+      "height": 520,
+      "sha256": "6f6369039e2c0a81c7ad56942e5d5382f5408290cf3bce97fbbb1c4f9a6e3bc6"
+    },
+    {
+      "path": "platforms/crazygames/cover-landscape-1920x1080.jpg",
+      "kind": "store-cover",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "dacb675d6be1ceef5cf1fdc9ae9fed026dd35ff0b4a8a51b724d7e43b65553b6"
+    },
+    {
+      "path": "platforms/crazygames/cover-portrait-800x1200.jpg",
+      "kind": "store-cover",
+      "width": 800,
+      "height": 1200,
+      "sha256": "99dfef48800af628b4c0a308ca8faa3180a05245325fb126b143a1b1d3cc483d"
+    },
+    {
+      "path": "platforms/crazygames/cover-square-800x800.jpg",
+      "kind": "store-cover",
+      "width": 800,
+      "height": 800,
+      "sha256": "fd788148f99c27dbb4916d817f3d4a91ede7349e8c6886fcd70c252825202589"
+    },
+    {
+      "path": "platforms/telegram/bot-icon-512.png",
+      "kind": "bot-icon",
+      "width": 512,
+      "height": 512,
+      "sha256": "35115bba86e92198abc98b0fabfbb72359ea3d969926f06bf9550de24c3e3b15"
+    },
+    {
+      "path": "platforms/telegram/preview-portrait-1080x1920.png",
+      "kind": "preview-art",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "b5fb2f3db63f69cd8c8ddc321e84f8b4f5d10aa477a509bf3c4eee6e4c4fa816"
+    },
+    {
+      "path": "platforms/telegram/preview-landscape-1920x1080.png",
+      "kind": "preview-art",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "c1549b69887e158673905356b2a13dd337e4b8b676056deb21505ca6e4d2e520"
+    },
+    {
+      "path": "platforms/vk/logo-512.png",
+      "kind": "store-logo",
+      "width": 512,
+      "height": 512,
+      "sha256": "35115bba86e92198abc98b0fabfbb72359ea3d969926f06bf9550de24c3e3b15"
+    },
+    {
+      "path": "platforms/vk/cover-landscape-1920x1080.jpg",
+      "kind": "store-cover",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "dacb675d6be1ceef5cf1fdc9ae9fed026dd35ff0b4a8a51b724d7e43b65553b6"
+    },
+    {
+      "path": "platforms/vk/cover-portrait-1080x1920.jpg",
+      "kind": "store-cover",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "6e9e995eec455724eb823c4ddd38f0f8fff88559f081d1c06546ff12f49cb4d3"
+    },
+    {
+      "path": "platforms/vk/cover-square-800x800.jpg",
+      "kind": "store-cover",
+      "width": 800,
+      "height": 800,
+      "sha256": "fd788148f99c27dbb4916d817f3d4a91ede7349e8c6886fcd70c252825202589"
+    },
+    {
+      "path": "platforms/common/bioso-wordmark-original.png",
+      "kind": "canonical-wordmark",
+      "width": 1853,
+      "height": 849,
+      "sha256": "101f7b0c9cdf1583f88d7dbe22959207fa1cb679eddbd65eb1c6e745d51ccc01"
+    }
+  ]
+}

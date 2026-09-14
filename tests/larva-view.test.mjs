@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import * as T from 'three';
 import {createLarvaView} from '../src/systems/larva-view.js';
 import {createIsaacView} from '../src/isaac-view.js';
+import {createEnemyWarningView} from '../src/enemy-warning-view.js';
 
 test('larvae retain orientation by entity id when pool order changes, without mutating combat state',()=>{
  const scene=new T.Scene(),view=createLarvaView(scene),s={time:1,isaac:{larvae:[{id:1,x:0,y:7,z:0,prepare:.35},{id:2,x:4,y:0,z:4}]}};
@@ -20,4 +21,12 @@ test('runtime view bounds larvae at 120 and clears instanced geometry on reset/d
  const transform=new T.Matrix4();for(const mesh of root.children){mesh.getMatrixAt(0,transform);assert(transform.determinant()>0,'instancing requires positive scales');}
  let disposed=0;for(const mesh of root.children)mesh.geometry.addEventListener('dispose',()=>disposed++);
  view.reset();assert(root.children.every(m=>m.count===0));s.isaac.larvae=[];view.update(s);assert(root.children.every(m=>m.count===0));view.dispose();assert.equal(disposed,11);assert.equal(scene.children.length,0);
+});
+
+test('slime sac pools use the same animated organic impact surface as enemy slime',()=>{
+ const scene=new T.Scene(),view=createIsaacView(scene),enemyView=createEnemyWarningView(scene),pool={id:7,x:2,y:4,z:-3,radius:2,life:2.4},s={time:1,enemies:[],isaac:{larvae:[],slimePools:[pool],extraTime:0,active:[]},arms:[],legs:[],organs:[]};
+ view.update(s);const slime=scene.getObjectByName('isaac-slime-pools'),data=slime.geometry.getAttribute('effectData'),matrix=new T.Matrix4(),position=new T.Vector3();
+ assert.ok(slime.material.isShaderMaterial);assert.equal(slime.material.fragmentShader,scene.getObjectByName('enemy-acid-impact').material.fragmentShader);assert.equal(slime.material.depthTest,true);assert.equal(slime.renderOrder,1);assert.equal(slime.count,1);assert.ok(Math.abs(data.getX(0)-.2)<1e-8);assert.equal(slime.material.uniforms.clock.value,1);
+ slime.getMatrixAt(0,matrix);position.setFromMatrixPosition(matrix);assert.ok(Math.abs(position.y-4.018)<1e-5);assert.deepEqual(pool,{id:7,x:2,y:4,z:-3,radius:2,life:2.4});
+ view.reset();assert.equal(slime.count,0);view.dispose();enemyView.dispose();assert.equal(scene.children.length,0);
 });

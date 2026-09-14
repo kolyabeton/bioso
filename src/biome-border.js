@@ -10,9 +10,9 @@ export function forestBorder(tile,world){
  if(tile.z+32===b.maxZ)edges.push([0,1]);
  const rng=seededRandom(world.seed+tile.index*15427),patches=[],plants=[];
  for(const [dx,dz] of edges){
-  // Extend corner patches sideways as well, so no background leaks through diagonally.
-  const start=(dx?tile.z:tile.x)-32-((dx?tile.z-32===b.minZ:tile.x-32===b.minX)?DEPTH:0);
-  const end=(dx?tile.z:tile.x)+32+((dx?tile.z+32===b.maxZ:tile.x+32===b.maxX)?DEPTH:0);
+  // West/east patches own corner squares. No coplanar overlap with north/south.
+  const start=(dx?tile.z:tile.x)-32-(dx&&tile.z-32===b.minZ?DEPTH:0);
+  const end=(dx?tile.z:tile.x)+32+(dx&&tile.z+32===b.maxZ?DEPTH:0);
   const edge=(dx?tile.x:tile.z)+32*(dx||dz);
   patches.push(dx?{x:edge+dx*DEPTH/2,z:(start+end)/2,width:DEPTH,depth:end-start}:{x:(start+end)/2,z:edge+dz*DEPTH/2,width:end-start,depth:DEPTH});
   for(let row=0;row<9;row++)for(let along=start+3;along<end;along+=7){

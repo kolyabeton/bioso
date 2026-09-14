@@ -11,8 +11,8 @@
 .ui-fusion-footer p{margin:4px 0 10px;color:#d5c9ac;font-size:12px;line-height:18px}
 .ui-fusion-footer>div{display:flex;gap:8px}
 .ui-fusion-footer .ui-button{flex:1;min-width:0;min-height:44px;white-space:nowrap}
-.ui-fusion-footer [data-action=fuse-accept]{color:#26312a;text-shadow:none}
-.ui-fusion-footer [data-action=fuse-accept]>span{color:#26312a;text-shadow:none}
+.ui-fusion-footer [data-action=fuse-accept]{color:var(--ui-ivory);text-shadow:0 1px 1px #10271f}
+.ui-fusion-footer [data-action=fuse-accept]>span{color:var(--ui-ivory);text-shadow:0 1px 1px #10271f}
 @keyframes fusion-glow{50%{box-shadow:0 0 15px var(--ui-selection-glow),inset 0 0 8px var(--ui-selection-tint)}}
 @media(prefers-reduced-motion:reduce){.ui-dialog :is(.is-fusion-eligible,.is-compatible>button,.is-drop-installed){animation:none}}
 body[data-reduced-motion=true] .ui-dialog :is(.is-fusion-eligible,.is-compatible>button,.is-drop-installed){animation:none}

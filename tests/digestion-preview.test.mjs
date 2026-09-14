@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import {createRun} from '../src/game.js';
 import {createPart,digestionYield,digest,stats} from '../src/assembly.js';
 test('digestion quote leaves inventory untouched and matches the actual reward once',()=>{
- for(const key of ['digestion','outerStomach']){
-  const s=createRun();s.organs[0]=createPart(s,key);const p=createPart(s,'bastion');p.spent=36;s.inventory.push(p);
+ {
+  const s=createRun();s.organs[0]=createPart(s,'digestion');const p=createPart(s,'bastion');p.spent=36;s.inventory.push(p);
   const before=JSON.stringify(s),amount=digestionYield(s,p.id);assert.equal(JSON.stringify(s),before);assert.ok(amount>0);
   const biomass=s.biomass;assert.equal(digest(s,p.id),amount);assert.equal(s.biomass,biomass+amount);assert.equal(digest(s,p.id),false);
  }
@@ -23,11 +23,11 @@ test('equipped arms, legs and organs recycle atomically with the quoted refund a
  }
 });
 test('ground loot cannot be recycled by current or legacy calls',()=>{
- const s=createRun();s.organs[0]=createPart(s,'outerStomach');const p=createPart(s,'seed');s.ground.push({id:99,x:s.player.x,z:s.player.z,part:p,consume:true});
+ const s=createRun();s.organs[0]=createPart(s,'digestion');const p=createPart(s,'seed');s.ground.push({id:99,x:s.player.x,z:s.player.z,part:p,consume:true});
  const before=JSON.stringify(s);assert.equal(digestionYield(s,p.id),false);assert.equal(digestionYield(s,p.id,true),false);assert.equal(digest(s,p.id),false);assert.equal(digest(s,p.id,true),false);assert.equal(JSON.stringify(s),before);
 });
 test('current body, bound arm and sole stomach remain protected; another stomach permits recycling one',()=>{
  const s=createRun();s.organs[0]=createPart(s,'digestion');s.arms[0].bound=true;
  for(const p of [s.body,s.arms[0],s.organs[0]]){const before=JSON.stringify(s);assert.equal(digestionYield(s,p.id),false);assert.equal(digest(s,p.id),false);assert.equal(JSON.stringify(s),before);}
- const stomach=s.organs[0];s.organs[1]=createPart(s,'outerStomach');assert.ok(digest(s,stomach.id)>0);assert.equal(s.organs[0],null);assert.equal(digest(s,s.organs[1].id),false);
+ const stomach=s.organs[0];s.organs[1]=createPart(s,'digestion');assert.ok(digest(s,stomach.id)>0);assert.equal(s.organs[0],null);assert.equal(digest(s,s.organs[1].id),false);
 });

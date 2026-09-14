@@ -1,12 +1,16 @@
 # Shared menu materials
 
-Approved direction: user attachment on 2026-09-07, warm ceramic primary key, dark olive metal secondary keys, rounded layered rims and mint indicators.
+Approved direction: user attachment on 2026-09-07, dark olive metal secondary keys, rounded layered rims and mint indicators. Primary CTAs use a filled green face and occupy the rightmost position in horizontal action rows.
 
 The shared button() atom supports variant, size: 'menu' and indicator: true. Text remains real HTML. Surfaces and states live in src/ui/components.css; home CSS controls placement and dimensions. Live gallery: /?ui=components.
 
-Textures are shared through --ui-texture-ceramic and --ui-texture-metal. Frames use native CSS resolution so resizing does not stretch corners or text. Compact buttons retain the materials with narrower rims. Focus uses an external mint outline, pressed buttons move down, disabled indicators are unlit.
+Textures are shared through --ui-texture-ceramic, --ui-texture-metal and --ui-texture-primary. Frames use native CSS resolution so resizing does not stretch corners or text. Compact buttons retain the materials with narrower rims. Focus uses an external mint outline, pressed buttons move down, disabled indicators are unlit.
 
-Generated with built-in image_gen using the selected menu image and docs/references/biomecha-style-master.png. PNGs: public/assets/ui/materials/ceramic-worn-v1.png and metal-olive-v1.png.
+Generated with built-in image_gen using the selected menu image and docs/references/biomecha-style-master.png. Current runtime textures: public/assets/ui/materials/ceramic-worn-v1.jpg, metal-olive-v1.jpg and ceramic-green-v1.jpg. Unused PNG exports were removed during the 2026-09-10 cleanup.
+
+## Green primary prompt
+
+Use case: game UI material texture. Generate a square seamless tileable deep green weathered ceramic-enamel surface for the inside face of a primary game button, NOT a button or scene. biomecha-style-master.png is authoritative for material realism, palette and mood; metal-olive-v1.png only sets the restrained wear and microtexture scale. Deep desaturated forest and jade green, aged matte ceramic enamel, fine hairline crazing, subtle rubbing and tiny sparse dark nicks. Orthographic front view, edge-to-edge material, quiet center, uniform diffuse illumination, no vignette, directional shadow, hotspot, text, symbol, border, bevel, frame, object, plant, robot or watermark. Seamless repeat; no cartoon, painterly strokes, ornate gold, neon green, glossy plastic, large cracks or loud grunge.
 
 ## Ceramic prompt
 

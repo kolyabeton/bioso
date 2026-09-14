@@ -1,0 +1,41 @@
+[
+  {
+    "overflow": false,
+    "panel": {
+      "height": 828,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    },
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "overflow": false,
+    "panel": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "overflow": false,
+    "panel": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 8
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

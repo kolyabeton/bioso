@@ -6,12 +6,12 @@ import {createPart,stats} from '../src/assembly.js';
 import {armorRemaining,receiveHit} from '../src/systems/health.js';
 import {spawnRecoveryDrop,tickRecoveryDrops} from '../src/systems/recovery-drops.js';
 import {createRecoveryDropsView} from '../src/recovery-drops-view.js';
-const spawn=(s,kind,position=s.player)=>{s.rng=()=>kind==='armor'?.01:.04;return spawnRecoveryDrop(s,position);};
-test('enemy death rolls once; objectives do not drop consumables',()=>{
- const s=createRun();s.rng=()=>.01;const e=spawnEnemy(s,'normal',{x:6,z:0});hurtEnemy(s,e,1e6);assert.equal(s.recoveryDrops.length,1);hurtEnemy(s,e,1e6);assert.equal(s.recoveryDrops.length,1);hurtEnemy(s,{kind:'objective',hp:1,x:0,z:0},2);assert.equal(s.recoveryDrops.length,1);
+const spawn=(s,kind,position=s.player)=>{s.rng=()=>kind==='armor'?.01:.2;return spawnRecoveryDrop(s,position);};
+test('only elite deaths roll once; ordinary enemies and objectives drop no recovery',()=>{
+ const s=createRun();s.rng=()=>.01;const normal=spawnEnemy(s,'normal',{x:6,z:0});hurtEnemy(s,normal,1e6);assert.equal(s.recoveryDrops.length,0);const elite=spawnEnemy(s,'elite',{x:6,z:0});hurtEnemy(s,elite,1e6);assert.equal(s.recoveryDrops.length,1);hurtEnemy(s,elite,1e6);hurtEnemy(s,{kind:'objective',hp:1,x:0,z:0},2);assert.equal(s.recoveryDrops.length,1);
 });
-test('seeded distribution remains rare for both resources',()=>{
- const s=createRun(undefined,'survival',123),counts={armor:0,health:0};for(let i=0;i<10000;i++){const q=spawnRecoveryDrop(s,s.player);if(q)counts[q.kind]++;}assert(counts.armor>200&&counts.armor<300);assert(counts.health>330&&counts.health<470);
+test('elite recovery distribution uses the raised thirty-percent budget',()=>{
+ const s=createRun(undefined,'survival',123),counts={armor:0,health:0};for(let i=0;i<10000;i++){const q=spawnRecoveryDrop(s,s.player);if(q)counts[q.kind]++;}assert(counts.armor>1050&&counts.armor<1350);assert(counts.health>1650&&counts.health<1950);
 });
 test('armor repairs spent plates once and never grants unequipped armor',()=>{
  const s=createRun();spawn(s,'armor');tickRecoveryDrops(s,stats(s));assert.equal(s.recoveryDrops.length,1);
@@ -19,7 +19,7 @@ test('armor repairs spent plates once and never grants unequipped armor',()=>{
  s.health.armorSpent=20;spawn(s,'armor');tickRecoveryDrops(s,st);assert.equal(armorRemaining(s,st.armor),1);
 });
 test('red health pickup heals through the actual simulation and stays at full HP',()=>{
- const s=createRun();spawn(s,'health');step(s,.01);assert.equal(s.recoveryDrops.length,1);receiveHit(s,stats(s));step(s,.01);assert.equal(s.hp,stats(s).hp);assert.equal(s.health.missing,0);assert.equal(s.recoveryDrops.length,0);
+ const s=createRun(),st=stats(s);spawn(s,'health');step(s,.01);assert.equal(s.recoveryDrops.length,1);s.health.armorSpent=st.armor;receiveHit(s,st);step(s,.01);assert.equal(s.hp,st.hp);assert.equal(s.health.missing,0);assert.equal(s.recoveryDrops.length,0);
 });
 test('range, floors, occlusion, healing suppression and death prevent collection',()=>{
  const s=createRun();s.hp=1;const q=spawn(s,'health',{x:4,z:0});tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);

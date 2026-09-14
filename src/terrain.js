@@ -14,7 +14,8 @@ export function terrain(seed){
 }
 export function move(world,p,dx,dz,r=FOOTPRINT){
  const steps=Math.max(1,Math.ceil(Math.hypot(dx,dz)/.5));
- for(let i=0;i<steps;i++){if(world.canMove?world.canMove(p,{x:p.x+dx/steps,z:p.z},r):world.walkable(p.x+dx/steps,p.z,r))p.x+=dx/steps;if(world.canMove?world.canMove(p,{x:p.x,z:p.z+dz/steps},r):world.walkable(p.x,p.z+dz/steps,r))p.z+=dz/steps;if(world.heightAt)p.y=world.heightAt(p.x,p.z)??p.y??0;}
+ const canStep=(a,b)=>p.flying&&world.canFly?world.canFly(a,b,r):world.canMove?world.canMove(a,b,r):p.flying&&world.flyable?world.flyable(b.x,b.z,r):world.walkable(b.x,b.z,r);
+ for(let i=0;i<steps;i++){if(canStep(p,{x:p.x+dx/steps,z:p.z}))p.x+=dx/steps;if(canStep(p,{x:p.x,z:p.z+dz/steps}))p.z+=dz/steps;if(world.heightAt)p.y=world.heightAt(p.x,p.z)??p.y??0;}
 }
 export function spawnPoint(world,player,rng,min=27,max=40,r=FOOTPRINT){
  for(let i=0;i<80;i++){const a=rng()*Math.PI*2,d=min+rng()*(max-min),p={x:player.x+Math.cos(a)*d,z:player.z+Math.sin(a)*d};if(world.walkable(p.x,p.z,r))return p;}

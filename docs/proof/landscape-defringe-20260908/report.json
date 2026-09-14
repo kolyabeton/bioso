@@ -1,0 +1,16 @@
+{
+  "atlas": "public/assets/biomes/decor-atlas-v4.png",
+  "sha256": "d4612d101db854bc37588a9e454cc94038d52704dab13a5af1cc85a02abd8b04",
+  "mode": "RGBA",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "reason": "Remove checkerboard matte from translucent foliage edges; user rejected v3 white fringe.",
+  "validation": [
+    "alpha gutters asserted by preparation script",
+    "forest inspected on actual renderer at 360x640 and 390x844",
+    "atlas v4 confirmed by rendered scene diagnostics",
+    "npm run build PASS"
+  ]
+}

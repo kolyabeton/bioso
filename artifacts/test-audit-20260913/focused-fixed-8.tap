@@ -1,0 +1,18 @@
+✔ final challenge never scales down for an early arrival and leaves mission tuning alone (2.688417ms)
+✔ Mother remains identifiable from spawn, focuses a live waypoint, and clears on victory (306.022333ms)
+✔ Mother teaches two telegraphed patterns, then unlocks a third attack below sixty percent (0.611583ms)
+✔ prepared level 30 builds can win a sustained duel with spacing; standing still loses (896.510209ms)
+✔ playable survival has continuous sculpted ground, filled gaps and no jump links (318.451084ms)
+✔ continuous survival boundary stops the hero without falling or damage (263.009417ms)
+✔ sculpted landscape fills all cells and former cutouts with connected ground (253.92275ms)
+✔ all biome entry points ignore the retired terrain option and generate continuous sculpted ground (270.304333ms)
+✔ every map edge blocks both body sizes without terrain damage (264.543458ms)
+✔ stale vertical state is grounded without applying damage or a jump (249.26325ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1773.147792

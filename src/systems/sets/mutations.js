@@ -1,5 +1,5 @@
 export const FAMILIES={
- hive:{name:'Улей',keys:['rocket','fangs','parasite','digestion'],description:'Каждая пятая смерть рядом выпускает 3 личинки.'},
+ hive:{name:'Улей',keys:['rocket','fangs','parasite','digestion'],description:'Выпускает 3 личинки каждые 2 с. Темп роя ускоряет призыв.'},
  conductor:{name:'Проводник',keys:['arc','shield','stabilizer','accelerator'],description:'Каждая пятая атака выпускает электрическую цепь на 3 цели.'},
  mire:{name:'Топь',keys:['acid','slime','regen','plated'],description:'Лужи шире на 50%; внутри них движение и атаки +25%.'},
 };

@@ -1,0 +1,22 @@
+{
+  "url": "http://127.0.0.1:5194/",
+  "previousRelease": "/Users/serg/Library/Application Support/bioso-play/releases/20260913T135317Z-unlocked",
+  "previousService": "/Users/serg/Library/LaunchAgents/local.bioso.frozen.20260913T135317Z-unlocked.plist.disabled",
+  "release": "/Users/serg/Library/Application Support/bioso-play/releases/20260913T165043Z-unlocked",
+  "service": "/Users/serg/Library/LaunchAgents/local.bioso.frozen.20260913T165043Z-unlocked.plist",
+  "bundle": "assets/index-DUdBQfkB.js",
+  "bundleSha256": "432a1b979bed1230d4255a76e58320aa4148152f56ba1485b74fee80ae77b06a",
+  "servedBundleSha256": "432a1b979bed1230d4255a76e58320aa4148152f56ba1485b74fee80ae77b06a",
+  "archive": "/Users/serg/Documents/ChatGPT/Biomecha/outputs/itch/bioso-20260913T165043Z/bioso-unlocked-20260913T165043Z.zip",
+  "archiveBytes": 139276177,
+  "archiveSha256": "2d01ce76c2f8aa0f55daa5caae319bfbf5c345dc2143d407960e3ccf1a7bbd21",
+  "fileCount": 898,
+  "extractedBytes": 157066921,
+  "tests": {"passed": 1062, "failed": 0},
+  "assets": {"resources": 666, "models": 171, "images": 179, "audio": 19, "originalsUnchanged": true},
+  "httpVerified": true,
+  "browserMenuVerified": true,
+  "browserSurvivalVerified": true,
+  "browserConsoleErrors": [],
+  "screenshots": ["home-5194.png", "survival-5194.png"]
+}

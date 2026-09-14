@@ -1,0 +1,401 @@
+[
+  {
+    "name": "rewards",
+    "width": 360,
+    "height": 640,
+    "cards": 3,
+    "dialog": 344,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "encounter-detail",
+    "stage": 360,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "catalog",
+    "width": 360,
+    "height": 640,
+    "cards": 9,
+    "dialog": 344,
+    "gridExtraText": 1,
+    "overflow": 0,
+    "screen": "catalog",
+    "stage": 360,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "boss",
+    "width": 360,
+    "height": 640,
+    "cards": 3,
+    "dialog": 344,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "boss-reward",
+    "stage": 360,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "loadout",
+    "width": 360,
+    "height": 640,
+    "cards": 9,
+    "dialog": 344,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "loadout",
+    "stage": 360,
+    "style": {
+      "border": "1px solid rgb(230, 197, 119)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "achievement",
+    "width": 360,
+    "height": 640,
+    "cards": 1,
+    "dialog": 344,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "meta-achievement",
+    "stage": 360,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "assembly",
+    "width": 360,
+    "height": 640,
+    "cards": 10,
+    "dialog": 344,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "assembly",
+    "stage": 360,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "end",
+    "width": 360,
+    "height": 640,
+    "cards": 2,
+    "dialog": 344,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "end",
+    "stage": 360,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "4px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "rewards",
+    "width": 390,
+    "height": 844,
+    "cards": 3,
+    "dialog": 374,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "encounter-detail",
+    "stage": 390,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "catalog",
+    "width": 390,
+    "height": 844,
+    "cards": 12,
+    "dialog": 374,
+    "gridExtraText": 1,
+    "overflow": 0,
+    "screen": "catalog",
+    "stage": 390,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "boss",
+    "width": 390,
+    "height": 844,
+    "cards": 3,
+    "dialog": 366,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "boss-reward",
+    "stage": 390,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "loadout",
+    "width": 390,
+    "height": 844,
+    "cards": 9,
+    "dialog": 374,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "loadout",
+    "stage": 390,
+    "style": {
+      "border": "1px solid rgb(230, 197, 119)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "achievement",
+    "width": 390,
+    "height": 844,
+    "cards": 1,
+    "dialog": 374,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "meta-achievement",
+    "stage": 390,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "assembly",
+    "width": 390,
+    "height": 844,
+    "cards": 10,
+    "dialog": 374,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "assembly",
+    "stage": 390,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "end",
+    "width": 390,
+    "height": 844,
+    "cards": 2,
+    "dialog": 374,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "end",
+    "stage": 390,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "4px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "rewards",
+    "width": 1280,
+    "height": 720,
+    "cards": 3,
+    "dialog": 389,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "encounter-detail",
+    "stage": 405,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "catalog",
+    "width": 1280,
+    "height": 720,
+    "cards": 9,
+    "dialog": 389,
+    "gridExtraText": 1,
+    "overflow": 0,
+    "screen": "catalog",
+    "stage": 405,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "boss",
+    "width": 1280,
+    "height": 720,
+    "cards": 3,
+    "dialog": 389,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "boss-reward",
+    "stage": 405,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "loadout",
+    "width": 1280,
+    "height": 720,
+    "cards": 9,
+    "dialog": 389,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "loadout",
+    "stage": 405,
+    "style": {
+      "border": "1px solid rgb(230, 197, 119)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "achievement",
+    "width": 1280,
+    "height": 720,
+    "cards": 1,
+    "dialog": 389,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "meta-achievement",
+    "stage": 405,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "assembly",
+    "width": 1280,
+    "height": 720,
+    "cards": 10,
+    "dialog": 389,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "assembly",
+    "stage": 405,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "8px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  },
+  {
+    "name": "end",
+    "width": 1280,
+    "height": 720,
+    "cards": 2,
+    "dialog": 389,
+    "gridExtraText": 0,
+    "overflow": 0,
+    "screen": "end",
+    "stage": 405,
+    "style": {
+      "border": "1px solid rgba(120, 139, 114, 0.314)",
+      "iconWidth": 48,
+      "padding": "4px",
+      "radius": "10px"
+    },
+    "undersized": 0,
+    "visibleCardLabels": 0
+  }
+]

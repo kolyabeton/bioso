@@ -3,12 +3,20 @@ import {paintMap,filteredMapMarkers} from './map.js';
 import {loadAtlasGround} from './map-terrain.js';
 import {e} from './atoms.js';
 
+export function focusFinalBoss(s){
+ const boss=filteredMapMarkers(s,'threats').find(m=>m.kind==='final');
+ return boss&&setWaypoint(s,boss)?boss.id:null;
+}
+
 export function atlasSelection(s,selected){
  const m=selected==='waypoint'?waypointTarget(s):filteredMapMarkers(s).find(m=>String(m.id)===String(selected));
- if(!m)return {title:'Куда идём?',detail:'Нажмите на объект или свободную точку',state:'',access:'События видны сразу · вход по уровню'};
+ if(!m)return s.encounters?.active?.dungeon?{title:'Карта логова',detail:'Выберите зону или точку на дорожке',state:'',access:'Показаны только текущий этаж, вход, группы и добыча'}:{title:'Куда идём?',detail:'Нажмите на объект или свободную точку',state:'',access:'События видны сразу · вход по уровню'};
  const distance=Math.round(Math.hypot(m.x-s.player.x,m.z-s.player.z));
- const state=m.locked?'Закрыто':m.kind?(m.territory?.state==='engaged'?'В бою':m.territory?.state==='returning'?'Возвращается':'Не в бою'):({ready:'Доступно',active:'Испытание',reward:'Награда',complete:'Пройдено',failed:'Завершено'}[m.state]||'Цель компаса');
- return {title:m.label,access:m.type?`Вход с ${m.requiredLevel}-го уровня · ваш уровень ${s.level}`:'События видны сразу · вход по уровню',detail:`${distance} м${m.territory?' · агро '+m.territory.aggro+' м':''}${m.recommended?' · рекомендуемый уровень '+m.recommended:''}`,state};
+ const pickup=m.pickupKind||m.groundItem;
+ const state=m.dungeonZone?({idle:'Ожидает',engaged:'В бою',cleared:'Зачищена'}[m.state]):m.locked?'Закрыто':pickup?'Лежит':m.kind?(m.territory?.state==='engaged'?'В бою':m.territory?.state==='returning'?'Возвращается':'Не в бою'):({ready:'Доступно',active:'Испытание',reward:'Награда',complete:'Пройдено',failed:'Завершено'}[m.state]||'Цель компаса');
+ const access=m.dungeonZone?`Группа ${m.alive} · агро ${m.radius} м`:m.kind==='final'?`Тяжёлый бой даже на ${m.recommended}-м уровне`:pickup?'Можно отметить и подобрать':m.type?`Вход с ${m.requiredLevel}-го уровня · ваш уровень ${s.level}`:'События видны сразу · вход по уровню';
+ const pickupDetail=m.pickupKind==='health'?' · восстанавливает здоровье':m.pickupKind==='armor'?' · восстанавливает броню':m.itemDetail?' · '+m.itemDetail:'';
+ return {title:m.label,access,detail:`${distance} м${pickupDetail}${m.territory?' · агро '+m.territory.aggro+' м':''}${m.recommended?' · рекомендуемый уровень '+m.recommended:''}`,state};
 }
 export function mountAtlas(host,s,params,onSelect){
  const canvas=host.querySelector('#atlas'),layer=host.querySelector('.atlas-targets');let disposed=false,geometry;
@@ -23,7 +31,7 @@ export function mountAtlas(host,s,params,onSelect){
  };
  const observer=new ResizeObserver(draw);observer.observe(canvas);
  if(layer)layer.onclick=event=>{const button=event.target.closest('[data-marker]');if(button){const m=filteredMapMarkers(s).find(m=>String(m.id)===button.dataset.marker);if(setWaypoint(s,m))onSelect(button.dataset.marker);}};
- canvas.onclick=event=>{if(!geometry)return;const rect=canvas.getBoundingClientRect(),x=(event.clientX-rect.left)*canvas.clientWidth/rect.width,z=(event.clientY-rect.top)*canvas.clientHeight/rect.height;if(x<16||x>geometry.w-16||z<18||z>geometry.h-18)return;const point=geometry.worldAt(x,z);if(setWaypoint(s,point))onSelect('waypoint');};
+ canvas.onclick=event=>{if(!geometry)return;const rect=canvas.getBoundingClientRect(),x=(event.clientX-rect.left)*canvas.clientWidth/rect.width,z=(event.clientY-rect.top)*canvas.clientHeight/rect.height;if(x<16||x>geometry.w-16||z<18||z>geometry.h-18)return;const point=geometry.worldAt(x,z);if(s.encounters?.active?.dungeon&&!s.world.walkable(point.x,point.z,.2))return;if(setWaypoint(s,point))onSelect('waypoint');};
  const cancelImage=loadAtlasGround(draw);
  return {disconnect(){disposed=true;observer.disconnect();cancelImage?.();}};
 }

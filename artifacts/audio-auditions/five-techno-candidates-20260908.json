@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Stomper",
+    "artist": "Alexander Ehlers / Tricks & Traps",
+    "bpm": 160,
+    "license": "CC0 1.0 Universal",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourcePage": "https://opengameart.org/content/free-rhythm-game-music-pack-2",
+    "downloadUrl": "https://opengameart.org/sites/default/files/1_stomper.wav",
+    "originalFile": "stomper-160bpm.wav",
+    "auditionFile": "stomper-160bpm.m4a",
+    "auditionConversion": "AAC 192 kbps, full duration",
+    "downloadVerifiedWithoutLogin": true,
+    "approvedForGame": false
+  },
+  {
+    "title": "Mental Corruption",
+    "artist": "Alexander Ehlers / Tricks & Traps",
+    "bpm": 150,
+    "license": "CC0 1.0 Universal",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourcePage": "https://opengameart.org/content/free-rhythm-game-music-pack-2",
+    "downloadUrl": "https://opengameart.org/sites/default/files/3_mental_corruption.wav",
+    "originalFile": "mental-corruption-150bpm.wav",
+    "auditionFile": "mental-corruption-150bpm.m4a",
+    "auditionConversion": "AAC 192 kbps, full duration",
+    "downloadVerifiedWithoutLogin": true,
+    "approvedForGame": false
+  },
+  {
+    "title": "Ripped Apart",
+    "artist": "Alexander Ehlers / Tricks & Traps",
+    "bpm": 174,
+    "license": "CC0 1.0 Universal",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourcePage": "https://opengameart.org/content/free-rhythm-game-music-pack-2",
+    "downloadUrl": "https://opengameart.org/sites/default/files/8_ripped_apart.wav",
+    "originalFile": "ripped-apart-174bpm.wav",
+    "auditionFile": "ripped-apart-174bpm.m4a",
+    "auditionConversion": "AAC 192 kbps, full duration",
+    "downloadVerifiedWithoutLogin": true,
+    "approvedForGame": false
+  },
+  {
+    "title": "Bow For Me",
+    "artist": "Alexander Ehlers / Tricks & Traps",
+    "bpm": 157,
+    "license": "CC0 1.0 Universal",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourcePage": "https://opengameart.org/content/free-rhythm-game-music-pack-1",
+    "downloadUrl": "https://opengameart.org/sites/default/files/3_bow_for_me.wav",
+    "originalFile": "bow-for-me-157bpm.wav",
+    "auditionFile": "bow-for-me-157bpm.m4a",
+    "auditionConversion": "AAC 192 kbps, full duration",
+    "downloadVerifiedWithoutLogin": true,
+    "approvedForGame": false
+  },
+  {
+    "title": "Electric Stream",
+    "artist": "Alexander Ehlers / Tricks & Traps",
+    "bpm": 180,
+    "license": "CC0 1.0 Universal",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "sourcePage": "https://opengameart.org/content/t-t-free-cyberpunk-pack-2",
+    "downloadUrl": "https://opengameart.org/sites/default/files/electric_stream_180bpm.ogg",
+    "originalFile": "electric-stream-180bpm.ogg",
+    "auditionFile": "electric-stream-180bpm.ogg",
+    "auditionConversion": "none",
+    "downloadVerifiedWithoutLogin": true,
+    "approvedForGame": false
+  }
+]

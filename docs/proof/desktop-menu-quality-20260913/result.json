@@ -1,0 +1,10 @@
+{
+  "width": 1672,
+  "height": 940,
+  "pixelsIdentical": true,
+  "productionCssUsesAsset": true,
+  "bytes": 2208888,
+  "buildBytes": 136453842,
+  "assetTestsPassed": 8,
+  "browserCheck": "Blocked by iab: net::ERR_BLOCKED_BY_CLIENT"
+}

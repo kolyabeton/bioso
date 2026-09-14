@@ -1,0 +1,450 @@
+[
+  {
+    "elements": [
+      {
+        "element": "game",
+        "overflow": false,
+        "rect": {
+          "bottom": 640,
+          "height": 640,
+          "left": 0,
+          "right": 360,
+          "top": 0,
+          "width": 360,
+          "x": 0,
+          "y": 0
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "event-nearby",
+        "overflow": false,
+        "rect": {
+          "bottom": 468,
+          "height": 144,
+          "left": 16,
+          "right": 344,
+          "top": 324,
+          "width": 328,
+          "x": 16,
+          "y": 324
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "encounter-button",
+        "overflow": false,
+        "rect": {
+          "bottom": 458,
+          "height": 44,
+          "left": 26,
+          "right": 334,
+          "top": 414,
+          "width": 308,
+          "x": 26,
+          "y": 414
+        },
+        "text": "Inspect",
+        "whiteSpace": "nowrap"
+      }
+    ],
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "elements": [
+      {
+        "element": "game",
+        "overflow": false,
+        "rect": {
+          "bottom": 640,
+          "height": 640,
+          "left": 0,
+          "right": 360,
+          "top": 0,
+          "width": 360,
+          "x": 0,
+          "y": 0
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "event-nearby",
+        "overflow": false,
+        "rect": {
+          "bottom": 468,
+          "height": 144,
+          "left": 16,
+          "right": 344,
+          "top": 324,
+          "width": 328,
+          "x": 16,
+          "y": 324
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "encounter-button",
+        "overflow": false,
+        "rect": {
+          "bottom": 458,
+          "height": 44,
+          "left": 26,
+          "right": 334,
+          "top": 414,
+          "width": 308,
+          "x": 26,
+          "y": 414
+        },
+        "text": "Inspect",
+        "whiteSpace": "nowrap"
+      },
+      {
+        "element": "panel",
+        "overflow": false,
+        "rect": {
+          "bottom": 632,
+          "height": 624,
+          "left": 8,
+          "right": 352,
+          "top": 8,
+          "width": 344,
+          "x": 8,
+          "y": 8
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "ui-screen-body ui-event-detail",
+        "overflow": false,
+        "rect": {
+          "bottom": 562,
+          "height": 480,
+          "left": 13,
+          "right": 347,
+          "top": 82,
+          "width": 334,
+          "x": 13,
+          "y": 82
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "ui-frame ui-button ui-button--secondary ",
+        "overflow": false,
+        "rect": {
+          "bottom": 617,
+          "height": 44,
+          "left": 29,
+          "right": 176,
+          "top": 573,
+          "width": 147,
+          "x": 29,
+          "y": 573
+        },
+        "text": "Later",
+        "whiteSpace": "nowrap"
+      },
+      {
+        "element": "ui-frame ui-button ui-button--primary ",
+        "overflow": false,
+        "rect": {
+          "bottom": 617,
+          "height": 44,
+          "left": 184,
+          "right": 331,
+          "top": 573,
+          "width": 147,
+          "x": 184,
+          "y": 573
+        },
+        "text": "Start",
+        "whiteSpace": "nowrap"
+      }
+    ],
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "elements": [
+      {
+        "element": "game",
+        "overflow": false,
+        "rect": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "event-nearby",
+        "overflow": false,
+        "rect": {
+          "bottom": 672,
+          "height": 150,
+          "left": 16,
+          "right": 374,
+          "top": 522,
+          "width": 358,
+          "x": 16,
+          "y": 522
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "encounter-button",
+        "overflow": false,
+        "rect": {
+          "bottom": 659,
+          "height": 44,
+          "left": 29,
+          "right": 361,
+          "top": 615,
+          "width": 332,
+          "x": 29,
+          "y": 615
+        },
+        "text": "Inspect",
+        "whiteSpace": "nowrap"
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "elements": [
+      {
+        "element": "game",
+        "overflow": false,
+        "rect": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "event-nearby",
+        "overflow": false,
+        "rect": {
+          "bottom": 672,
+          "height": 150,
+          "left": 16,
+          "right": 374,
+          "top": 522,
+          "width": 358,
+          "x": 16,
+          "y": 522
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "encounter-button",
+        "overflow": false,
+        "rect": {
+          "bottom": 659,
+          "height": 44,
+          "left": 29,
+          "right": 361,
+          "top": 615,
+          "width": 332,
+          "x": 29,
+          "y": 615
+        },
+        "text": "Inspect",
+        "whiteSpace": "nowrap"
+      },
+      {
+        "element": "panel",
+        "overflow": false,
+        "rect": {
+          "bottom": 836,
+          "height": 828,
+          "left": 8,
+          "right": 382,
+          "top": 8,
+          "width": 374,
+          "x": 8,
+          "y": 8
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "ui-screen-body ui-event-detail",
+        "overflow": false,
+        "rect": {
+          "bottom": 766,
+          "height": 684,
+          "left": 13,
+          "right": 377,
+          "top": 82,
+          "width": 364,
+          "x": 13,
+          "y": 82
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "ui-frame ui-button ui-button--secondary ",
+        "overflow": false,
+        "rect": {
+          "bottom": 821,
+          "height": 44,
+          "left": 29,
+          "right": 191,
+          "top": 777,
+          "width": 162,
+          "x": 29,
+          "y": 777
+        },
+        "text": "Later",
+        "whiteSpace": "nowrap"
+      },
+      {
+        "element": "ui-frame ui-button ui-button--primary ",
+        "overflow": false,
+        "rect": {
+          "bottom": 821,
+          "height": 44,
+          "left": 199,
+          "right": 361,
+          "top": 777,
+          "width": 162,
+          "x": 199,
+          "y": 777
+        },
+        "text": "Start",
+        "whiteSpace": "nowrap"
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "elements": [
+      {
+        "element": "game",
+        "overflow": false,
+        "rect": {
+          "bottom": 640,
+          "height": 640,
+          "left": 0,
+          "right": 360,
+          "top": 0,
+          "width": 360,
+          "x": 0,
+          "y": 0
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "event-nearby",
+        "overflow": false,
+        "rect": {
+          "bottom": 468,
+          "height": 144,
+          "left": 16,
+          "right": 344,
+          "top": 324,
+          "width": 328,
+          "x": 16,
+          "y": 324
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "encounter-button",
+        "overflow": false,
+        "rect": {
+          "bottom": 458,
+          "height": 44,
+          "left": 26,
+          "right": 334,
+          "top": 414,
+          "width": 308,
+          "x": 26,
+          "y": 414
+        },
+        "text": "Reward",
+        "whiteSpace": "nowrap"
+      }
+    ],
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "elements": [
+      {
+        "element": "game",
+        "overflow": false,
+        "rect": {
+          "bottom": 720,
+          "height": 720,
+          "left": 437.5,
+          "right": 842.5,
+          "top": 0,
+          "width": 405,
+          "x": 437.5,
+          "y": 0
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "event-nearby",
+        "overflow": false,
+        "rect": {
+          "bottom": 548,
+          "height": 150,
+          "left": 453.5,
+          "right": 826.5,
+          "top": 398,
+          "width": 373,
+          "x": 453.5,
+          "y": 398
+        },
+        "whiteSpace": "normal"
+      },
+      {
+        "element": "encounter-button",
+        "overflow": false,
+        "rect": {
+          "bottom": 535,
+          "height": 44,
+          "left": 466.5,
+          "right": 813.5,
+          "top": 491,
+          "width": 347,
+          "x": 466.5,
+          "y": 491
+        },
+        "text": "Reward",
+        "whiteSpace": "nowrap"
+      }
+    ],
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

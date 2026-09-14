@@ -9,7 +9,7 @@ source = root / 'output/imagegen/organs-20260907'
 target = root / 'public/assets/ui/organs'
 proof = root / 'proof/organs-icons'
 proof.mkdir(parents=True, exist_ok=True)
-ids = ['return-nerve', 'slime-sac', 'parasite-womb', 'common-nerve', 'outer-stomach', 'reverse-heart']
+ids = ['return-nerve', 'slime-sac', 'parasite-womb', 'common-nerve', 'reverse-heart']
 preview = Image.new('RGB', (1536, 1080), '#192e2e')
 for i, name in enumerate(ids):
     im = Image.open(source / f'{name}.png').convert('RGBA')

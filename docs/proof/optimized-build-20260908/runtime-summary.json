@@ -1,0 +1,611 @@
+{
+  "scenarios": [
+    {
+      "evidence": "mission-boss-attack.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 20,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [
+        "boss-mercury-hunter"
+      ],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-abilities-360.json",
+      "viewport": [
+        360,
+        640
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      },
+      "dialog": {
+        "x": 8,
+        "y": 8.000168800354004,
+        "width": 344,
+        "height": 624
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-abilities-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 12,
+        "y": 8.006658554077148,
+        "width": 366,
+        "height": 828
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-assembly-360.json",
+      "viewport": [
+        360,
+        640
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      },
+      "dialog": {
+        "x": 8,
+        "y": 8,
+        "width": 344,
+        "height": 624
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-assembly-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 8,
+        "y": 8,
+        "width": 374,
+        "height": 828
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-assembly-wide.json",
+      "viewport": [
+        1280,
+        720
+      ],
+      "stage": {
+        "x": 437.5,
+        "y": 0,
+        "width": 405,
+        "height": 720
+      },
+      "dialog": {
+        "x": 445.5,
+        "y": 8,
+        "width": 389,
+        "height": 704
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-boss-core-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 20,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [
+        "boss-root-cathedral"
+      ],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-boss-mother-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 20,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [
+        "boss-swarm-shepherd"
+      ],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-boss-nursery-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 19,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [
+        "boss-mirror-collector"
+      ],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-boss-quarantine-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 21,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [
+        "boss-scrap-leviathan"
+      ],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-city-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 23,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-forest-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 21,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-gardens-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 21,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-home-360.json",
+      "viewport": [
+        360,
+        640
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0.007131543941795826,
+        "width": 360,
+        "height": 640
+      },
+      "loadedModels": 21,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-item-360.json",
+      "viewport": [
+        360,
+        640
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      },
+      "dialog": {
+        "x": 8,
+        "y": 8,
+        "width": 344,
+        "height": 624
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-item-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 8,
+        "y": 8,
+        "width": 374,
+        "height": 828
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-mission-boss-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 20,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [
+        "boss-mercury-hunter"
+      ],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "optimized-scrapyard-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "original-abilities-360.json",
+      "viewport": [
+        360,
+        640
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      },
+      "dialog": {
+        "x": 8,
+        "y": 8.000251770019531,
+        "width": 344,
+        "height": 624
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "original-assembly-360.json",
+      "viewport": [
+        360,
+        640
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      },
+      "dialog": {
+        "x": 8,
+        "y": 8.057960510253906,
+        "width": 344,
+        "height": 624
+      },
+      "loadedModels": 22,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "original-city-390.json",
+      "viewport": [
+        390,
+        844
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "loadedModels": 23,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    },
+    {
+      "evidence": "original-home-360.json",
+      "viewport": [
+        360,
+        640
+      ],
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0.00010625411960063502,
+        "width": 360,
+        "height": 640
+      },
+      "loadedModels": 21,
+      "modelFailures": [],
+      "assetErrors": 0,
+      "bossModels": [],
+      "bossFailures": [],
+      "failedResources": [],
+      "brokenImages": [],
+      "runtimeError": null
+    }
+  ],
+  "errors": []
+}

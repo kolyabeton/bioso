@@ -1,0 +1,89 @@
+[
+  {
+    "buttons": [
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "map-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      },
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "soul-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      },
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "assembly-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      }
+    ],
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "map-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      },
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "soul-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      },
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "assembly-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "map-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      },
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "soul-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      },
+      {
+        "gap": 6,
+        "height": 44,
+        "id": "assembly-button",
+        "nowrap": "nowrap",
+        "overflow": false
+      }
+    ],
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

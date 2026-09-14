@@ -24,7 +24,16 @@ export function tickExploration(s,dt,{spawn,loot}){
   if(g.state==='active'&&g.members.length&&g.members.every(id=>!s.enemies.some(e=>e.id===id&&e.hp>0))){g.state='cleared';ex.cleared.add(g.id);ex.lootNotice=true;const part=g.stash?createPart(s,'needle'):loot();s.ground.push({id:++s.entityId,x:g.x,z:g.z,part,groupId:g.id});s.events.push({type:'group-cleared',id:g.id,text:'Участок зачищен · добыча отмечена на карте'});}
  }
 }
-export function missionEnemyTarget(s,e,fallback){if(!e.groupId||s.mode==='survival'||e.pursuit)return fallback;const g=s.exploration.groups.find(g=>g.id===e.groupId);if(g.defense&&fallback!==s.player)return fallback;if(dist(e,s.player)<26||e.hp<e.maxHp&&dist(e,e.anchor)<45)return s.player;const a=s.time*.12+e.id;return{x:g.x+Math.cos(a)*(g.patrol||4),z:g.z+Math.sin(a)*(g.patrol||4)};}
+export function missionEnemyTarget(s,e,fallback){
+ if(!e.groupId||s.mode==='survival'||e.pursuit)return fallback;
+ const g=s.exploration.groups.find(g=>g.id===e.groupId);if(g.defense&&fallback!==s.player)return fallback;
+ if(e.missionArrival){
+  if(dist(e,s.player)<26)delete e.missionArrival;
+  else return fallback;
+ }
+ if(dist(e,s.player)<26||e.hp<e.maxHp&&dist(e,e.anchor)<45)return s.player;
+ const a=s.time*.12+e.id;return{x:g.x+Math.cos(a)*(g.patrol||4),z:g.z+Math.sin(a)*(g.patrol||4)};
+}
 export function tickDelivery(s){
  const m=s.mission;if(!s.exploration||s.mode!=='core')return null;
  const [core,far,near,a,b,gate]=m.nodes;

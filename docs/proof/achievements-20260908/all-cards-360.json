@@ -1,0 +1,716 @@
+[
+  {
+    "id": "elite1",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/elite1-v1.jpg",
+    "name": "Первая элита",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "elite3",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/elite3-v1.jpg",
+    "name": "Три элиты",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "time5",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/time5-v1.jpg",
+    "name": "Пять минут",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "rootLeg5",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/rootLeg5-v1.jpg",
+    "name": "Корневая опора",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "level5",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/level5-v1.jpg",
+    "name": "Уровень 5",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "boss1",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/boss1-v1.jpg",
+    "name": "Первый босс",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "boss2",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/boss2-v1.jpg",
+    "name": "Два босса",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "elite5",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/elite5-v1.jpg",
+    "name": "Пять элит",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "elite10",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/elite10-v1.jpg",
+    "name": "Десять элит",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "level10",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/level10-v1.jpg",
+    "name": "Уровень 10",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "time10",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/time10-v1.jpg",
+    "name": "Десять минут",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "level15",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/level15-v1.jpg",
+    "name": "Уровень 15",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "level20",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/level20-v1.jpg",
+    "name": "Уровень 20",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "final",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/final-v1.jpg",
+    "name": "Матка повержена",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "mission:garden",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/mission-garden-v1.jpg",
+    "name": "След Ловчего",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "mission:quarantine",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/mission-quarantine-v1.jpg",
+    "name": "Сердце свалки",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "mission:core",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/mission-core-v1.jpg",
+    "name": "Корневой Собор",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "mission:nursery",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/mission-nursery-v1.jpg",
+    "name": "Зеркальный сбор",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "mission:mother",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/mission-mother-v1.jpg",
+    "name": "Пастырь Роя",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "meta:harpoon",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/meta-harpoon-v1.jpg",
+    "name": "За пределом",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "meta:reactor",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/meta-reactor-v1.jpg",
+    "name": "Повторный прорыв",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "meta:spring",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Деталь"
+      }
+    ],
+    "image": "/assets/ui/achievements/meta-spring-v1.jpg",
+    "name": "Первопроходец",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:contract",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-contract-v1.jpg",
+    "name": "Первый контракт",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:infection",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-infection-v1.jpg",
+    "name": "Замкнутый круг",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:sealed",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-sealed-v1.jpg",
+    "name": "Без выхода",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:hunt",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-hunt-v1.jpg",
+    "name": "По следу носителя",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:secrets",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-secrets-v1.jpg",
+    "name": "Универсальный инструмент",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:recycle",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-recycle-v1.jpg",
+    "name": "Ничего лишнего",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:upgrade",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-upgrade-v1.jpg",
+    "name": "Точная настройка",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:set",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-set-v1.jpg",
+    "name": "Единый организм",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:mutation",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "name": "Новая форма",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:natures",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-natures-v1.jpg",
+    "name": "Три природы",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:evolution",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-evolution-v1.jpg",
+    "name": "Завершённая эволюция",
+    "overflow": false,
+    "width": 344
+  },
+  {
+    "id": "feat:synergy",
+    "buttons": [
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Назад"
+      },
+      {
+        "fits": true,
+        "height": 44,
+        "nowrap": true,
+        "text": "Подготовка"
+      }
+    ],
+    "image": "/assets/ui/achievements/feat-synergy-v1.jpg",
+    "name": "На стыке стихий",
+    "overflow": false,
+    "width": 344
+  }
+]

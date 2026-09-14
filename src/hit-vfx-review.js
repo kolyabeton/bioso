@@ -1,0 +1,6 @@
+// DEV-only looping proof of the player-hit presentation contract.
+export function prepareHitVfxReview(run,emit,clock=()=>performance.now()){
+ run.enemies=[];run.hostileShots=[];run.waves.credit=-1e6;run.nextElite=run.waves.nextElite=1e9;run.nextBoss=run.waves.nextBoss=1e9;
+ let next=0;
+ return{paused:false,tick(){const now=clock();if(now<next)return;emit({type:'player-hit',hp:run.hp,cause:'review',x:run.player.x,y:run.player.y??0,z:run.player.z,dx:.707,dz:-.707});next=now+1100;}};
+}

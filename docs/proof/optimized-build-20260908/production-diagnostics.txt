@@ -1,0 +1,6 @@
+60 FPS · 39 draws · 21 GLB/0 errors · 0 mesh enemies
+5 enemies · 20 parts
+0.0, 22.0
+acid-puddles@0.0,0.1,-0.0# | soul-activation-effects@0.0,0.1,-0.0# | soul-activation-effects@0.0,0.1,-0.0# | tile-0>painted-biomes@0.0,0.0,-0.1#ground-atlas-v2.png.webp
+
+0:Mesh:ground-atlas-v2.png.webp|1:arch-planter:|2:arch-solar-panel:|3:arch-pillar:|4:Mesh:|5:Mesh:|6:stone-recesses:ground-atlas-v2.png.webp|7:solid-thickets:|8:forest-border-ground:ground-atlas-v2.png.webp|9:forest-border-ground:ground-atlas-v2.png.webp|10:forest-composition-west-1:west-1.png.webp|11:forest-composition-north:north.png.webp|12:forest-composition-west-0:west-0.png.webp|13:forest-composition-north:north.png.webp|14:forest-composition-west-1:west-1.png.webp|15:forest-composition-north:north.png.webp|16:forest-composition-nw:continuous.png.webp|17:forest-composition-nw:continuous.png.webp|18:forest-composition-nw:continuous.png.webp|19:forest-edge-shrubs:

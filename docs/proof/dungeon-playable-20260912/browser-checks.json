@@ -1,0 +1,383 @@
+[
+  {
+    "stage": "walk",
+    "proof": {
+      "type": "dungeon_catacombs",
+      "state": "active",
+      "total": 18,
+      "remaining": 18,
+      "cleared": false,
+      "time": 1500,
+      "elapsed": 0.2998999999999996,
+      "loot": 0,
+      "inventory": 7,
+      "invulnerable": true,
+      "layout": {
+        "nodes": 17,
+        "edges": 20,
+        "branches": 6,
+        "deadEnds": 2,
+        "loops": 4,
+        "extent": 64
+      },
+      "zones": {
+        "total": 4,
+        "engaged": 0,
+        "groups": [
+          5,
+          5,
+          4,
+          4
+        ]
+      },
+      "terrain": {
+        "missionFloor": true,
+        "environmentId": "quiet-scrapyard"
+      },
+      "player": {
+        "x": 0,
+        "z": 25.84642695395312,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "id": 0,
+        "facing": 0.11688901294915074
+      },
+      "paused": false,
+      "scenario": "catacombs",
+      "inside": true
+    }
+  },
+  {
+    "stage": "outside",
+    "proof": {
+      "type": "dungeon_catacombs",
+      "state": "paused",
+      "total": 18,
+      "remaining": 18,
+      "cleared": false,
+      "time": 1508.6915999999774,
+      "elapsed": 0.34989999999999966,
+      "loot": 0,
+      "inventory": 7,
+      "invulnerable": true,
+      "layout": {
+        "nodes": 17,
+        "edges": 20,
+        "branches": 6,
+        "deadEnds": 2,
+        "loops": 4,
+        "extent": 64
+      },
+      "zones": {
+        "total": 4,
+        "engaged": 0,
+        "groups": [
+          5,
+          5,
+          4,
+          4
+        ]
+      },
+      "terrain": {
+        "missionFloor": true,
+        "environmentId": "quiet-scrapyard"
+      },
+      "player": {
+        "x": 63.779537208378315,
+        "z": 131.6144948285073,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "id": 0,
+        "facing": -2.2171722067885002
+      },
+      "paused": false,
+      "scenario": "catacombs",
+      "inside": false
+    }
+  },
+  {
+    "stage": "reentry-walk",
+    "proof": {
+      "type": "dungeon_catacombs",
+      "state": "active",
+      "total": 18,
+      "remaining": 18,
+      "cleared": false,
+      "time": 1508.7575999999772,
+      "elapsed": 0.633999999999998,
+      "loot": 0,
+      "inventory": 7,
+      "invulnerable": true,
+      "layout": {
+        "nodes": 17,
+        "edges": 20,
+        "branches": 6,
+        "deadEnds": 2,
+        "loops": 4,
+        "extent": 64
+      },
+      "zones": {
+        "total": 4,
+        "engaged": 0,
+        "groups": [
+          5,
+          5,
+          4,
+          4
+        ]
+      },
+      "terrain": {
+        "missionFloor": true,
+        "environmentId": "quiet-scrapyard"
+      },
+      "player": {
+        "x": 0,
+        "z": 25.846324776277775,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "id": 0,
+        "facing": -2.3602427334629112
+      },
+      "paused": false,
+      "scenario": "catacombs",
+      "inside": true
+    }
+  },
+  {
+    "stage": "layout360",
+    "metrics": {
+      "buttons": [
+        {
+          "height": 44,
+          "scroll": 354,
+          "text": "Выход",
+          "width": 354
+        },
+        {
+          "height": 44,
+          "scroll": 180,
+          "text": "Пауза",
+          "width": 180
+        },
+        {
+          "height": 44,
+          "scroll": 180,
+          "text": "Инструменты",
+          "width": 180
+        }
+      ],
+      "overflow": false,
+      "viewport": [
+        916,
+        733
+      ]
+    }
+  },
+  {
+    "stage": "layout390",
+    "metrics": {
+      "buttons": [
+        {
+          "height": 44,
+          "scroll": 332,
+          "text": "Выход",
+          "width": 332
+        },
+        {
+          "height": 44,
+          "scroll": 169,
+          "text": "Пауза",
+          "width": 169
+        },
+        {
+          "height": 44,
+          "scroll": 169,
+          "text": "Инструменты",
+          "width": 169
+        }
+      ],
+      "overflow": false,
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  },
+  {
+    "stage": "roots-walk",
+    "proof": {
+      "type": "dungeon_roots",
+      "state": "active",
+      "total": 12,
+      "remaining": 12,
+      "cleared": false,
+      "time": 900,
+      "elapsed": 0.3667000000000045,
+      "loot": 0,
+      "inventory": 0,
+      "invulnerable": true,
+      "layout": {
+        "nodes": 17,
+        "edges": 20,
+        "branches": 6,
+        "deadEnds": 2,
+        "loops": 4,
+        "extent": 64
+      },
+      "zones": {
+        "total": 3,
+        "engaged": 0,
+        "groups": [
+          4,
+          4,
+          4
+        ]
+      },
+      "terrain": {
+        "missionFloor": true,
+        "environmentId": "root-forest"
+      },
+      "player": {
+        "x": 0,
+        "z": 25.88356666666668,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "id": 0,
+        "facing": 0.07769269722966429
+      },
+      "paused": false,
+      "scenario": "roots",
+      "inside": true
+    }
+  },
+  {
+    "stage": "roots-outside",
+    "proof": {
+      "type": "dungeon_roots",
+      "state": "paused",
+      "total": 12,
+      "remaining": 12,
+      "cleared": false,
+      "time": 908.449900000004,
+      "elapsed": 2.6997000000000058,
+      "loot": 0,
+      "inventory": 0,
+      "invulnerable": true,
+      "layout": {
+        "nodes": 17,
+        "edges": 20,
+        "branches": 6,
+        "deadEnds": 2,
+        "loops": 4,
+        "extent": 64
+      },
+      "zones": {
+        "total": 3,
+        "engaged": 0,
+        "groups": [
+          4,
+          4,
+          4
+        ]
+      },
+      "terrain": {
+        "missionFloor": true,
+        "environmentId": "root-forest"
+      },
+      "player": {
+        "x": 252.91570771410525,
+        "z": 196.48484698879406,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "id": 0,
+        "facing": -2.5275384108117156
+      },
+      "paused": false,
+      "scenario": "roots",
+      "inside": false
+    }
+  },
+  {
+    "stage": "roots-reentry",
+    "proof": {
+      "type": "dungeon_roots",
+      "state": "active",
+      "total": 12,
+      "remaining": 12,
+      "cleared": false,
+      "time": 908.449900000004,
+      "elapsed": 2.6997000000000058,
+      "loot": 0,
+      "inventory": 0,
+      "invulnerable": true,
+      "layout": {
+        "nodes": 17,
+        "edges": 20,
+        "branches": 6,
+        "deadEnds": 2,
+        "loops": 4,
+        "extent": 64
+      },
+      "zones": {
+        "total": 3,
+        "engaged": 0,
+        "groups": [
+          4,
+          4,
+          4
+        ]
+      },
+      "terrain": {
+        "missionFloor": true,
+        "environmentId": "root-forest"
+      },
+      "player": {
+        "x": 0,
+        "z": 26,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "id": 0,
+        "facing": -2.5275384108117156
+      },
+      "paused": false,
+      "scenario": "roots",
+      "inside": true
+    }
+  },
+  {
+    "stage": "layout360-final",
+    "metrics": {
+      "buttons": [
+        {
+          "height": 44,
+          "scroll": 308,
+          "text": "Выход",
+          "width": 308
+        },
+        {
+          "height": 44,
+          "scroll": 154,
+          "text": "Пауза",
+          "width": 154
+        },
+        {
+          "height": 44,
+          "scroll": 154,
+          "text": "Инструменты",
+          "width": 154
+        }
+      ],
+      "overflow": false,
+      "viewport": [
+        360,
+        640
+      ]
+    }
+  }
+]

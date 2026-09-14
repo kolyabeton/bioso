@@ -1,8 +1,9 @@
 import * as T from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import {combatTime} from './mutations.js';
+import {MAX_COMPANIONS} from './summon-equipment.js';
 
-/** Two reusable, articulated bee models; the simulation owns movement and damage. */
+/** Shared pooled models for skill companions and arm drones. */
 export function createSymbiontView(parent){
  const shell=new T.MeshStandardMaterial({color:0xbebda9,roughness:.82,metalness:.18});
  const metal=new T.MeshStandardMaterial({color:0x303934,roughness:.7,metalness:.7});
@@ -19,7 +20,7 @@ export function createSymbiontView(parent){
  const resources=[shell,metal,seam,glow,membrane,sphere,rod,box,ring,plate,wingPanel];
  function part(parent,geometry,material,position,scale){const mesh=new T.Mesh(geometry,material);mesh.position.set(...position);mesh.scale.set(...scale);parent.add(mesh);return mesh;}
  function strut(parent,a,b,width,material=metal){const p=new T.Vector3(...a),q=new T.Vector3(...b),d=q.clone().sub(p);const mesh=part(parent,rod,material,p.add(q).multiplyScalar(.5).toArray(),[width,d.length(),width]);mesh.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());return mesh;}
- const bees=Array.from({length:2},(_,index)=>{
+ const bees=Array.from({length:MAX_COMPANIONS},(_,index)=>{
   const root=new T.Group();root.name=`mechanical-bee-${index}`;root.visible=false;parent.add(root);
   root.scale.setScalar(.65);
   const body=new T.Group();root.add(body);
@@ -91,7 +92,7 @@ export function createSymbiontView(parent){
  });
  return{
   update(s,reduced=false){const time=combatTime(s);
-   bees.forEach((bee,i)=>{const c=s.abilities?.companions?.[i];bee.root.visible=!!c;if(!c)return;
+   bees.forEach((bee,i)=>{const c=s.abilities?.companions?.[i];bee.root.visible=!!c&&c.phase!=='dead';if(!c||c.phase==='dead')return;
     const phase=time*.8+i*Math.PI,age=time-(c.lastShotAt??-100),kick=Math.max(0,1-age/.18);
     bee.root.position.set(c.x,(c.y??0)+(c.hover??1.5)+(reduced?0:Math.sin(time*4+i*2)*.075),c.z);
     bee.root.rotation.y=c.aim??-phase;

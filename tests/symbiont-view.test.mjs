@@ -11,5 +11,7 @@ test('bee models follow elevated companions, reset, and release their scene',()=
  assert.equal(bee.visible,true);assert.deepEqual(bee.position.toArray(),[2,8.5,3]);assert.equal(bee.rotation.y,.7);
  assert.equal(scene.getObjectByName('mechanical-bee-1').visible,false);
  s.abilities.companions.push({x:-2,z:-3});view.update(s);assert.equal(scene.getObjectByName('mechanical-bee-1').visible,true);
+ s.abilities.companions=Array.from({length:7},(_,i)=>({x:i,z:0}));view.update(s,true);
+ assert.equal(scene.getObjectByName('mechanical-bee-6').visible,true);assert.equal(scene.getObjectByName('mechanical-bee-7').visible,false);
  view.reset();assert.equal(bee.visible,false);view.dispose();assert.equal(scene.children.length,0);
 });

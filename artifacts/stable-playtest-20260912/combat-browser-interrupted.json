@@ -1,0 +1,53 @@
+{
+  "status": "interrupted: active tab disappeared",
+  "checks": [
+    {
+      "i": 0,
+      "time": 0.05,
+      "mode": "garden",
+      "hp": 2,
+      "kills": 0,
+      "player": {
+        "x": 0,
+        "z": 22,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0
+      },
+      "errors": []
+    },
+    {
+      "i": 10,
+      "time": 3.0001999999999995,
+      "mode": "garden",
+      "hp": 2,
+      "kills": 0,
+      "player": {
+        "x": 0,
+        "z": 4.486360000000016,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 3.141592653589793
+      },
+      "errors": []
+    },
+    {
+      "i": 20,
+      "time": 5.991300000000007,
+      "mode": "garden",
+      "hp": 1.5,
+      "kills": 1,
+      "player": {
+        "x": 0,
+        "z": -13.911219999999975,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.283171234819079
+      },
+      "errors": []
+    }
+  ]
+}

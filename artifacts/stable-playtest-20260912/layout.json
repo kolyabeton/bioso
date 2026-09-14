@@ -1,0 +1,218 @@
+[
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Получить",
+        "width": 298
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Изучить",
+        "width": 298
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Биомасса +10000",
+        "width": 298
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Уровень +5",
+        "width": 298
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Сборка",
+        "width": 298
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Миссии",
+        "width": 298
+      }
+    ],
+    "contentOverflow": false,
+    "dialog": {
+      "bottom": 632,
+      "height": 624,
+      "left": 8,
+      "right": 352,
+      "top": 8,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "documentOverflow": false,
+    "stage": {
+      "bottom": 640,
+      "height": 640,
+      "left": 0,
+      "right": 360,
+      "top": 0,
+      "width": 360,
+      "x": 0,
+      "y": 0
+    },
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Получить",
+        "width": 328
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Изучить",
+        "width": 328
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Биомасса +10000",
+        "width": 328
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Уровень +5",
+        "width": 328
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Сборка",
+        "width": 328
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Миссии",
+        "width": 328
+      }
+    ],
+    "contentOverflow": false,
+    "dialog": {
+      "bottom": 836,
+      "height": 828,
+      "left": 8,
+      "right": 382,
+      "top": 8,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    },
+    "documentOverflow": false,
+    "stage": {
+      "bottom": 844,
+      "height": 844,
+      "left": 0,
+      "right": 390,
+      "top": 0,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Получить",
+        "width": 335
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Изучить",
+        "width": 335
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Биомасса +10000",
+        "width": 335
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Уровень +5",
+        "width": 335
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Сборка",
+        "width": 335
+      },
+      {
+        "height": 48,
+        "lines": 1,
+        "overflow": false,
+        "text": "Миссии",
+        "width": 335
+      }
+    ],
+    "contentOverflow": false,
+    "dialog": {
+      "bottom": 712,
+      "height": 704,
+      "left": 445.5,
+      "right": 834.5,
+      "top": 8,
+      "width": 389,
+      "x": 445.5,
+      "y": 8
+    },
+    "documentOverflow": false,
+    "stage": {
+      "bottom": 720,
+      "height": 720,
+      "left": 0,
+      "right": 1280,
+      "top": 0,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

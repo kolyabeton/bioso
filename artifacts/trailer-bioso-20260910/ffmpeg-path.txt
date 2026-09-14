@@ -1,0 +1,1 @@
+/Users/serg/Documents/ChatGPT/Biomecha/temp/trailer-tools/imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1

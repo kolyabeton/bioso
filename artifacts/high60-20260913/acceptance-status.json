@@ -1,0 +1,146 @@
+{
+  "status": "INCOMPLETE",
+  "deploymentAllowed": false,
+  "results": [
+    {
+      "file": "artifacts/high60-20260913/candidate-1789315213615-early.json",
+      "scenario": "early",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 2
+      },
+      "failures": [
+        "stall over 50 ms requires attribution",
+        "cpu budget",
+        "gpu budget"
+      ],
+      "fps": 59.69353320057118,
+      "cpu": {
+        "count": 10746,
+        "mean": 5.75363856153561,
+        "p95": 10.400000095367432,
+        "p99": 12.800000190734863,
+        "max": 32.5,
+        "over50": 0
+      },
+      "gpu": {
+        "count": 10746,
+        "mean": 8.214608344221107,
+        "p95": 12.83904,
+        "p99": 18.875374,
+        "max": 42.313707,
+        "over50": 0
+      }
+    },
+    {
+      "file": "artifacts/high60-20260913/candidate-1789313988828-late.json",
+      "scenario": "late",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "dpr": 2
+      },
+      "failures": [
+        "uncontrolled initial profile",
+        "average FPS below 59",
+        "stall over 50 ms requires attribution",
+        "cpu budget",
+        "gpu budget"
+      ],
+      "fps": 57.74509166720875,
+      "cpu": {
+        "count": 10395,
+        "mean": 11.160355940365115,
+        "p95": 19.200000047683716,
+        "p99": 22.899999856948853,
+        "max": 59.200000047683716,
+        "over50": 3
+      },
+      "gpu": {
+        "count": 10395,
+        "mean": 9.862000553342947,
+        "p95": 12.305,
+        "p99": 13.643749,
+        "max": 45.361333,
+        "over50": 0
+      }
+    },
+    {
+      "file": "artifacts/high60-20260913/candidate-1789314584799-effects.json",
+      "scenario": "effects",
+      "viewport": {
+        "width": 414,
+        "height": 736,
+        "dpr": 2
+      },
+      "failures": [
+        "average FPS below 59",
+        "stall over 50 ms requires attribution",
+        "cpu budget",
+        "gpu budget"
+      ],
+      "fps": 58.22264271908783,
+      "cpu": {
+        "count": 10480,
+        "mean": 10.011374045828827,
+        "p95": 17.100000143051147,
+        "p99": 22.200000047683716,
+        "max": 313.40000009536743,
+        "over50": 3
+      },
+      "gpu": {
+        "count": 10479,
+        "mean": 5.9070642485924125,
+        "p95": 10.783916,
+        "p99": 17.989666,
+        "max": 57.732791,
+        "over50": 2
+      }
+    }
+  ],
+  "missingRuns": [
+    {
+      "width": 1280,
+      "height": 720,
+      "scenario": "early",
+      "missing": 3
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scenario": "late",
+      "missing": 3
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "scenario": "effects",
+      "missing": 3
+    },
+    {
+      "width": 414,
+      "height": 736,
+      "scenario": "early",
+      "missing": 3
+    },
+    {
+      "width": 414,
+      "height": 736,
+      "scenario": "late",
+      "missing": 3
+    },
+    {
+      "width": 414,
+      "height": 736,
+      "scenario": "effects",
+      "missing": 3
+    }
+  ],
+  "remaining": [
+    "Full CPU coverage including asynchronous tasks",
+    "Strict 1 ms preparation budget",
+    "Interactive mission/boss/biome routes",
+    "20 minute summons/transitions memory soak"
+  ]
+}

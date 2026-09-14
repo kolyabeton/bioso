@@ -1,0 +1,41 @@
+✔ all eleven pickups have English and Russian names, details and compact notices (8.415917ms)
+✔ new and existing profiles default to English without losing other settings (0.156166ms)
+✔ language survives reload and remains effective when storage is unavailable (0.172709ms)
+✔ dynamic stats, units and longest phrases translate without changing values (0.078ms)
+✖ production copy has English coverage, including catalog data and template fragments (71.836708ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 190.43125
+
+✖ failing tests:
+
+test at tests/i18n.test.mjs:56:1
+✖ production copy has English coverage, including catalog data and template fragments (71.836708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'ui/map-atlas.js: м уровне',
+  +   'ui/map.js: финальный босс'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///Users/serg/Documents/ChatGPT/Biomecha/tests/i18n.test.mjs:74:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'ui/map-atlas.js: м уровне', 'ui/map.js: финальный босс' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

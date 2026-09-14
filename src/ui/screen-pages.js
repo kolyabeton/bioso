@@ -3,7 +3,7 @@ export function paginateScreen(content, state = {}) {
   // Confirmations keep their actions at the bottom and scroll the content as a whole.
   if (content.closest('.ui-dialog--confirmation')) return;
   // Assembly keeps all mounts visible and scrolls only the inventory rail.
-  if (content.querySelector('.ui-level-body,.ui-catalog-sets,.meta-screen,.ui-assembly,.atlas-body,.ui-soul-panel,.ui-ability-browser,.ui-event-detail,.ui-encounters,.ui-component-library')) return;
+  if (content.querySelector('.ui-credits,.ui-level-body,.ui-catalog,.meta-screen,.ui-assembly,.atlas-body,.ui-soul-panel,.ui-ability-browser,.ui-mission-list,.ui-event-detail,.ui-encounters,.ui-component-library,.ui-journal,.ui-journal-entry')) return;
   let serial = 0;
   function fit(host, limit) {
     if (!host || host.dataset.paged || !host.children.length) return;

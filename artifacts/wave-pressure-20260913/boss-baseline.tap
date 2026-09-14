@@ -1,0 +1,43 @@
+TAP version 13
+# (node:74365) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+# --import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./artifacts/wave-pressure-20260913/baseline-loader.mjs", pathToFileURL("./")); register("./artifacts/wave-pressure-20260913/baseline-loader.mjs", pathToFileURL("./"));'
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: fourth generated habitat shows level 24 and keeps its fixed budget across seeds
+ok 1 - fourth generated habitat shows level 24 and keeps its fixed budget across seeds
+  ---
+  duration_ms: 868.04125
+  type: 'test'
+  ...
+# Subtest: level-24 player can beat the fourth habitat with tier-one melee or ranged gear, including a mistake
+ok 2 - level-24 player can beat the fourth habitat with tier-one melee or ranged gear, including a mistake
+  ---
+  duration_ms: 3196.64075
+  type: 'test'
+  ...
+# Subtest: standing still remains dangerous for level-24 melee and ranged players
+ok 3 - standing still remains dangerous for level-24 melee and ranged players
+  ---
+  duration_ms: 506.31325
+  type: 'test'
+  ...
+# Subtest: generated level-four boss uses its own phase-two ring and bounded damage
+ok 4 - generated level-four boss uses its own phase-two ring and bounded damage
+  ---
+  duration_ms: 246.187625
+  type: 'test'
+  ...
+# Subtest: mission and roaming Collector setup keeps its separate damage and timing
+ok 5 - mission and roaming Collector setup keeps its separate damage and timing
+  ---
+  duration_ms: 0.785541
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4953.872583

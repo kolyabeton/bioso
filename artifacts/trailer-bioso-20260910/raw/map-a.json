@@ -1,0 +1,20 @@
+{
+  "route": "http://127.0.0.1:5298/?review=trailer&shot=map&screen=map&environment=overgrown-city&quality=high",
+  "screen": "map",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "panel": {
+    "x": 445.5,
+    "y": 8,
+    "width": 389,
+    "height": 704,
+    "top": 8,
+    "right": 834.5,
+    "bottom": 712,
+    "left": 445.5
+  },
+  "text": "MAP\nAll\nThreats\nEvents\nLoot\n25 / 25\nexplored\n\nEvents visible from the start · level requirement\n\nNearby\nDestination?\nTap an object or an empty point\n▲\nYou\nB\nBoss\n◇\nElite\n✚\nEvent\n✦\nLoot",
+  "method": "Exact native IAB screenshot of actual live UI, transferred locally through browser clipboard."
+}

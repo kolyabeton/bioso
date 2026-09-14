@@ -1,0 +1,293 @@
+[
+  {
+    "model": [
+      "boss-mercury-hunter"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-mercury-hunter",
+        "x": 6.443799851074741e-16,
+        "y": 0,
+        "z": -1537.746919999999,
+        "contact": -8.000000000000034,
+        "radius": 1.8,
+        "speed": 3.8,
+        "hp": 16800,
+        "phase": 1,
+        "actions": {
+          "dash": 2,
+          "dash-finished": 2
+        },
+        "warning": null,
+        "hover": 0
+      }
+    ],
+    "parts": 0,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-mercury-hunter",
+        "state": "exposed",
+        "action": "recover",
+        "walkWeight": 0.000003727542857610641,
+        "legs": 6,
+        "phase": 83.20172502790953,
+        "clock": 8.000000000000034,
+        "travel": 18.591719999998112
+      }
+    ],
+    "time": 8.000000000000034,
+    "fps": 60
+  },
+  {
+    "model": [
+      "boss-scrap-leviathan"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-scrap-leviathan",
+        "x": 0,
+        "y": 0,
+        "z": -1542.9925649999996,
+        "contact": -7.999900000000023,
+        "radius": 7,
+        "speed": 0.65,
+        "hp": 23200,
+        "phase": 1,
+        "actions": {
+          "crush": 1
+        },
+        "warning": {
+          "x": 0,
+          "y": 0,
+          "z": -1542.9925649999996,
+          "dx": 0,
+          "dz": 1,
+          "started": 7.63330000000002,
+          "at": 9.23330000000002,
+          "key": "seed",
+          "mode": "shot",
+          "radius": 9,
+          "angle": 6.283185307179586,
+          "bossAction": "crush",
+          "range": 20,
+          "count": 5,
+          "speed": 4.5
+        },
+        "hover": 0
+      }
+    ],
+    "parts": 4,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-scrap-leviathan",
+        "state": "prepare",
+        "action": "crush",
+        "walkWeight": 9.594202393164588e-43,
+        "legs": 6,
+        "phase": 2.8258485669380535,
+        "clock": 7.999900000000023,
+        "travel": 1.0074350000004415
+      }
+    ],
+    "time": 7.999900000000023,
+    "fps": 60
+  },
+  {
+    "model": [
+      "boss-root-cathedral"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-root-cathedral",
+        "x": 0,
+        "y": 0,
+        "z": -1544,
+        "contact": -8.000000000000034,
+        "radius": 4.5,
+        "speed": 0,
+        "hp": 30400,
+        "phase": 1,
+        "actions": {
+          "roots": 2
+        },
+        "warning": null,
+        "hover": 0
+      }
+    ],
+    "parts": 3,
+    "bees": 0,
+    "shots": 5,
+    "animation": [
+      {
+        "id": "boss-root-cathedral",
+        "state": "release",
+        "action": "roots",
+        "walkWeight": 0,
+        "legs": 7,
+        "phase": 0,
+        "clock": 8.000000000000034,
+        "travel": 0
+      }
+    ],
+    "time": 8.000000000000034,
+    "fps": 60
+  },
+  {
+    "model": [
+      "boss-mirror-collector"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-mirror-collector",
+        "x": 0,
+        "y": 0,
+        "z": -1541.9832599999993,
+        "contact": -8.008300000000037,
+        "radius": 2.2,
+        "speed": 2.2,
+        "hp": 30400,
+        "phase": 1,
+        "actions": {
+          "copy": 2
+        },
+        "warning": null,
+        "hover": 0
+      }
+    ],
+    "parts": 0,
+    "bees": 0,
+    "shots": 2,
+    "animation": [
+      {
+        "id": "boss-mirror-collector",
+        "state": "mirror",
+        "action": "copy",
+        "walkWeight": 6.34392906950389e-47,
+        "legs": 4,
+        "phase": 11.076530713641445,
+        "clock": 8.008300000000037,
+        "travel": 2.016740000000709
+      }
+    ],
+    "time": 8.008300000000037,
+    "fps": 60
+  },
+  {
+    "model": [
+      "boss-swarm-shepherd"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-swarm-shepherd",
+        "x": 0,
+        "y": 0,
+        "z": -1544,
+        "contact": -7.9999000000000295,
+        "radius": 3,
+        "speed": 1.7,
+        "hp": 30400,
+        "phase": 1,
+        "actions": {
+          "swarm": 1,
+          "bees": 1
+        },
+        "warning": {
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "dx": 0,
+          "dz": 1,
+          "started": 7.650000000000027,
+          "at": 8.950000000000028,
+          "key": "hammer",
+          "mode": "area",
+          "radius": 5,
+          "angle": 6.283185307179586,
+          "bossAction": "swarm"
+        },
+        "hover": 1.1
+      }
+    ],
+    "parts": 3,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-swarm-shepherd",
+        "state": "prepare",
+        "action": "swarm",
+        "walkWeight": 0,
+        "legs": 4,
+        "phase": 0,
+        "clock": 7.9999000000000295,
+        "travel": 0
+      }
+    ],
+    "time": 7.9999000000000295,
+    "fps": 60
+  },
+  {
+    "model": [
+      "boss-swarm-shepherd"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-swarm-shepherd",
+        "x": 0,
+        "y": 0,
+        "z": -1538.9853445333342,
+        "contact": -8.050400000000025,
+        "radius": 3,
+        "speed": 2.074,
+        "hp": 30400,
+        "phase": 2,
+        "actions": {
+          "node-destroyed": 3,
+          "phase-2": 1,
+          "ground-claws": 2
+        },
+        "warning": null,
+        "hover": 0
+      }
+    ],
+    "parts": 0,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-swarm-shepherd",
+        "state": "release",
+        "action": "ground-claws",
+        "walkWeight": 1.2478007338471442e-28,
+        "legs": 4,
+        "phase": 21.880562186612618,
+        "clock": 8.050400000000025,
+        "travel": 5.014655466665772
+      }
+    ],
+    "time": 8.050400000000025,
+    "fps": 60
+  }
+]

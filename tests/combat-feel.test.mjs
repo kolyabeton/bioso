@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRun,attack,step,spawnEnemy} from '../src/game.js';
-import {createPart,stats,equip,unequip} from '../src/assembly.js';
+import {createPart,stats,weaponStats,equip,unequip} from '../src/assembly.js';
 import {toggleWeapon,startReload,tickWeapons,movementFactor,tickImpact,hitFeedback,SHOOT_MOVE_FACTOR} from '../src/combat-feel.js';
 import {handPresentation} from '../src/hud-presentation.js';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-6,`${a} != ${b}`);
@@ -18,6 +18,16 @@ test('eight rounds start a committed reload; no shots until magazine restored',(
  attack(s,.5);assert.equal(s.shots.length,count);attack(s,.21);
  assert.equal(s.shots.length,count+1);assert.equal(p.ammo,7);assert.equal(p.reloadRemaining,0);
 });
+test('shotgun spends one of two charges on five 5.25-damage pellets and reloads in two seconds',()=>{
+ const {s,p}=fixture('shotgun');s.rng=()=>.5;attack(s,0);
+ assert.equal(s.shots.length,5);assert.equal(p.ammo,1);assert.ok(s.shots.every(q=>q.w.damage===5.25));
+ assert.deepEqual(s.shots.map(q=>Number((Math.atan2(q.dz,q.dx)-Math.PI/2).toFixed(2))),[-.2,-.1,0,.1,.2]);
+ p.cooldown=0;attack(s,0);assert.equal(s.shots.length,10);assert.equal(p.ammo,0);near(p.reloadRemaining,2);
+});
+test('machine gun uses strong line spread that grows through the burst',()=>{
+ const {s,p}=fixture('seed');s.rng=()=>1;attack(s,0);p.cooldown=0;attack(s,0);const second=Math.atan2(s.shots[1].dx,s.shots[1].dz);
+ assert.ok(Math.abs(second)>.2);assert.ok(p.bloom>1);
+});
 test('partial magazine reloads after combat and idle never spends rounds',()=>{
  const {s,p}=fixture();attack(s,.01);assert.equal(p.ammo,7);s.enemies=[];
  for(let i=0;i<75;i++)attack(s,1/60);
@@ -32,18 +42,39 @@ test('independent magazines do not block other guns or claws',()=>{
  assert.ok(s.events.some(e=>e.type==='attack'&&e.key==='claws'));
  assert.ok(s.events.some(e=>e.type==='attack'&&e.source===s.arms[2].id));
 });
+test('melee charges are spent and restored independently without slowing movement',()=>{
+ const expected={claws:[2,.7],hammer:[1,2],drill:[6,1],whip:[3,1.1],fangs:[2,.9]};
+ for(const [key,[magazine,reload]] of Object.entries(expected)){
+  const {s,p,enemy}=fixture(key);enemy.z=1;
+  assert.equal(p.ammo,magazine,key);assert.equal(movementFactor(s),1,key);
+  for(let hit=0;hit<magazine;hit++){
+   p.cooldown=0;attack(s,0);
+   assert.equal(p.ammo,magazine-hit-1,key);
+  }
+  near(p.reloadRemaining,reload);const attacks=s.events.filter(e=>(e.type==='attack'||e.type==='melee-windup')&&e.source===p.id).length;
+  p.cooldown=0;attack(s,0);assert.equal(s.events.filter(e=>(e.type==='attack'||e.type==='melee-windup')&&e.source===p.id).length,attacks,key);
+  tickWeapons(s,reload);assert.equal(p.ammo,magazine,key);near(p.reloadRemaining,0);
+ }
+});
 test('unequip/equip cannot refill a magazine or cancel its timer; pauses freeze both',()=>{
  const {s,p}=fixture();p.ammo=0;startReload(s,p);unequip(s,'arms',0);tickWeapons(s,.25);equip(s,p.id,0);
  assert.equal(p.ammo,0);near(p.reloadRemaining,.95);
  s.pending=1;step(s,.5);near(p.reloadRemaining,.95);assert.equal(p.ammo,0);
 });
 test('shooting slows walking once, reload restores it, releasing input stops immediately',()=>{
- const {s,p}=fixture();near(movementFactor(s),SHOOT_MOVE_FACTOR);
- const speed=stats(s).speed;step(s,.1,{x:1,z:0});near(s.player.x,speed*.1*SHOOT_MOVE_FACTOR);
- p.ammo=0;startReload(s,p);near(movementFactor(s),1);
+ const {s,p}=fixture();near(movementFactor(s),1);
+ const speed=stats(s).speed;attack(s,0);near(movementFactor(s),SHOOT_MOVE_FACTOR);step(s,.1,{x:1,z:0});near(s.player.x,speed*.1*SHOOT_MOVE_FACTOR);
+ p.ammo=0;startReload(s,p);near(movementFactor(s),SHOOT_MOVE_FACTOR);p.attackAge=.12;near(movementFactor(s),1);
  const x=s.player.x;step(s,.1,{x:1,z:0});near(s.player.x-x,speed*.1);
  const stop={...s.player};step(s,.1,{x:0,z:0});near(s.player.x,stop.x);near(s.player.z,stop.z);near(s.motion.x,0);
  s.arms=[createPart(s,'claws'),null];near(movementFactor(s),1);
+});
+test('rocket launch slows the short recovery window; flying bees do not keep the player slow',()=>{
+ const {s,p}=fixture('rocket'),speed=stats(s).speed;
+ step(s,.05,{x:1,z:0});near(s.player.x,speed*.05);
+ assert.equal(s.shots.filter(q=>q.mode==='rocket').length,4);assert.ok(p.cooldown>0);near(movementFactor(s),SHOOT_MOVE_FACTOR);
+ let x=s.player.x;step(s,.05,{x:1,z:0});near(s.player.x-x,speed*.05*SHOOT_MOVE_FACTOR);assert.ok(s.shots.some(q=>q.mode==='rocket'));
+ x=s.player.x;step(s,.1,{x:1,z:0});near(s.player.x-x,speed*.1*SHOOT_MOVE_FACTOR);near(movementFactor(s),1);
 });
 test('diagonal motion is normalized and regular bullets do not home after emission',()=>{
  const {s}=fixture();s.enemies[0].z=100;
@@ -89,7 +120,6 @@ test('distant, occluded and out-of-arc targets do not slow walking',()=>{
  enemy.z=5;s.world.lineClear=()=>false;assert.equal(movementFactor(s),1);
  s.world.lineClear=()=>true;enemy.z=-5;assert.equal(movementFactor(s),1);
 });
-test('ranged weapons engage closer while melee reach stays unchanged',()=>{
- const expected={seed:9,needle:14,rocket:13,harpoon:11,arc:7,acid:9,claws:2.8};
- for(const [key,range]of Object.entries(expected)){const {s,enemy}=fixture(key);enemy.radius=0;enemy.z=range+.1;attack(s,0);assert.equal(s.events.filter(e=>e.type==='attack').length,0,key);enemy.z=range-.1;attack(s,0);assert.ok(s.events.some(e=>e.type==='attack'),key);}
+test('weapons engage at their effective range, including melee body radius',()=>{
+ for(const key of ['seed','needle','rocket','harpoon','arc','acid','claws']){const {s,p,enemy}=fixture(key),range=weaponStats(s,p).range;enemy.radius=0;enemy.z=range+.1;attack(s,0);assert.equal(s.events.filter(e=>e.type==='attack').length,0,key);enemy.z=range-.1;attack(s,0);assert.ok(s.events.some(e=>e.type==='attack'),key);}
 });

@@ -13,6 +13,7 @@ body{background:radial-gradient(ellipse at 50% 20%,#213331,transparent 65%),#101
 .ui-tier{font-family:var(--ui-font);font-variant-numeric:tabular-nums;background:#152321de}
 .ui-health-segments>i{border-color:#789b8b;border-radius:5px 1px 5px 1px;background:#243a36}
 .ui-health-segments>i.is-full{background:linear-gradient(100deg,#86baa5,#c8e2c9);box-shadow:0 0 5px #9adfcd20}
+.ui-health-segments>i.is-half-full{background:linear-gradient(90deg,#a7ceba 50%,#243a36 50%)}
 .ui-meter{border-color:#658b8266;background:#101c1d}
 .ui-meter>i{background:linear-gradient(90deg,#659f90,#b9e4cd);transition:width 180ms linear}
 .ui-hand-charge i{transition:width 100ms linear}
@@ -42,8 +43,9 @@ body{background:radial-gradient(ellipse at 50% 20%,#213331,transparent 65%),#101
 @keyframes bio-breathe{0%,100%{opacity:.72}50%{opacity:1}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 [data-reduced-motion=true] *,[data-reduced-motion=true] *:before,[data-reduced-motion=true] *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-.vitals .resource{display:flex;order:3;gap:5px;margin:0;font-size:11px;line-height:16px;text-shadow:0 1px 4px #081614}
-.vitals .resource .ui-icon{width:12px;height:14px}
+.timer-plate .resource{display:flex;align-items:center;justify-content:center;gap:5px;margin:5px 0 0;font-size:11px;line-height:16px;white-space:nowrap;text-shadow:0 1px 4px #081614}
+.timer-plate .resource .ui-icon{width:12px;height:14px;color:var(--ui-mint)}
+.vitals .progression{display:flex;justify-content:flex-start;gap:8px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .vitals .vital-line:not(.progression){display:flex;order:4;margin:0;line-height:14px;font-size:9px}
 .vitals #health-text{display:none}
 .vitals .hud-defense{display:block;order:5;font-size:9px;line-height:14px}
@@ -57,12 +59,16 @@ body .ui-dialog .ui-screen-header h2{font-size:20px;line-height:28px}
 body .ui-dialog .ui-settings{padding:16px;gap:22px}
 body .ui-dialog .ui-settings-block{gap:12px}
 body .ui-dialog .ui-settings .ui-segmented>.ui-button{min-width:0;padding:8px 6px;font-size:11px}
+.vitals .health{position:relative}
+body .event-nearby,body #objective{box-sizing:border-box;left:50%;right:auto;width:calc(var(--game-stage-width) - 32px);max-width:calc(var(--game-stage-width) - 32px);transform:translateX(-50%)}
 .ui-notification{max-width:calc(var(--game-stage-width) - 32px);padding:10px 14px;font-size:11px;border-radius:4px;background:#192820eb;border:0;border-left:2px solid #9dbda4;box-shadow:0 4px 16px #07171455}
 
 /* Health and protection share the canonical cell geometry and mobile bounds. */
 .ui-health-display{display:flex;align-items:center;gap:5px;width:100%;height:100%;min-width:0}
 .ui-health-display .ui-health-segments{height:100%;min-width:0;flex:1}
 .ui-health-segments>i{position:relative;min-width:0}
+.ui-health-regen{position:absolute;top:0;bottom:0;left:0;width:0;z-index:0;border-radius:inherit;background:linear-gradient(100deg,#70a993,#c8e2c9);box-shadow:inset 0 0 0 1px #d8f1dd55,0 0 6px #9adfcd3d;transition:left 120ms linear,width 120ms linear;pointer-events:none}
+.ui-health-segments>i.is-regenerating{border-color:#9dcbb8;box-shadow:0 0 5px #9adfcd24}
 .ui-health-segments>i.is-armored:after{content:'';position:absolute;inset:-1px -1px 2px;border:1px solid #bcc5c5;border-radius:inherit;background:linear-gradient(130deg,transparent 47%,#424f52 48%,#d1d8d5 51%,transparent 52%),linear-gradient(#aab4b3,#667476 48%,#879391);box-shadow:inset 0 1px #e0e5de66,0 1px 2px #071714aa}
 
 #assembly-button.is-overloaded:before{border-color:#ef706b;box-shadow:inset 0 0 0 1px #ef706b,0 0 0 1px #ef706b}
@@ -79,11 +85,20 @@ body .ui-dialog .ui-settings .ui-segmented>.ui-button{min-width:0;padding:8px 6p
 .ui-shield-track{opacity:.18}
 .ui-shield-charge{filter:drop-shadow(0 0 2px #9adfcd99);transition:stroke-dasharray .1s linear}
 .has-shield .ui-shield-charge{stroke-width:1.5}
+.ui-shield-count{position:absolute;right:3px;top:50%;z-index:1;transform:translateY(-50%);font:600 8px/1 var(--ui-font);color:var(--ui-text);text-shadow:0 1px 2px #071714}
 .vitals .vital-line:not(.progression),.vitals .hud-defense{display:none}
 
 .ui-boss-reward-list{display:grid;gap:12px}.ui-boss-reward-row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center}.ui-boss-reward-row .ui-part-card{width:64px;height:64px}.ui-boss-reward-row strong{font-size:15px;line-height:21px}.ui-boss-reward-row p{font-size:13px;line-height:19px;margin:4px 0 0}.ui-first-upgrade-guide{margin:4px 0;padding:8px;border:1px solid var(--ui-border);border-radius:8px}
 
 .ui-item-primary-effect{margin:0;padding:12px 16px;font-size:14px;line-height:21px;color:var(--ui-text)}
+
+/* Desktop home and catalog fill the browser like gameplay. The map and the
+   remaining dialogs continue to use the portrait stage token. */
+@media (min-width:600px) and (min-height:600px) and (hover:hover) and (pointer:fine){
+  body .ui-dialog[data-screen=home]{width:100vw;max-width:none}
+  body .ui-dialog[data-screen=home] .ui-home{background-image:url('/assets/ui/menu-art-desktop-v1.png');background-position:center;background-size:cover}
+  body .ui-dialog[data-screen=home] .ui-home-actions{width:min(520px,calc(100vw - 64px));margin-inline:auto}
+}
 
 /* Weapon switches keep the same mobile touch target and a text state. */
 .ui-hand-slot.is-weapon-off .ui-part-art{opacity:.35;filter:grayscale(1)}

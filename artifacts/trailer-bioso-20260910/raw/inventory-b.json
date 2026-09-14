@@ -1,0 +1,20 @@
+{
+  "route": "http://127.0.0.1:5298/?review=trailer&shot=inventory&screen=assembly&environment=upper-gardens&weapons=seed,rocket,claws,arc&quality=high",
+  "screen": "assembly",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "panel": {
+    "x": 445.5,
+    "y": 8,
+    "width": 389,
+    "height": 704,
+    "top": 8,
+    "right": 834.5,
+    "bottom": 712,
+    "left": 445.5
+  },
+  "text": "Rootwalker\nIV\nWEIGHT\n333 / 247\nBIOMASS\n1200\nOverloaded\nSoul\nBODY\nARM 1\nARM 2\nARM 3\nARM 4\nLEG 1\nLEG 2\nLEG 3\nLEG 4\nORGAN 1\nORGAN 2\nORGAN 3\n\nThe first boss drops a stomach: it turns spare parts into biomass.\n\nInventory · 8\nSeed Machine Gun\n\nArm · Rank II · Common\n\nSet: Scout\n\nDamage\n\n6.3\n→\n7.1\n\nUpgrades 0/10\n\nDamage\n6.3\nAttack speed\n0.14 s\nRange\n9.0 m\nCrit\n5% · ×1.50\nMagazine\n5 / 8\nReload\n1.11 s\nWeight\n12\nBiomass\n1200\nUpgrade · 12\nDrop",
+  "method": "Exact native IAB screenshot of actual live UI, transferred locally through browser clipboard."
+}

@@ -1,0 +1,44 @@
+{
+  "model": [
+    "boss-mercury-hunter"
+  ],
+  "tiles": 2,
+  "loading": 0,
+  "errors": 0,
+  "boss": [
+    {
+      "id": "boss-mercury-hunter",
+      "x": 6.442017022347918e-16,
+      "y": 0,
+      "z": -1537.74616,
+      "contact": -7.9999000000000375,
+      "radius": 1.8,
+      "speed": 3.8,
+      "hp": 16800,
+      "phase": 1,
+      "actions": {
+        "dash": 2,
+        "dash-finished": 2
+      },
+      "warning": null,
+      "hover": 0
+    }
+  ],
+  "parts": 0,
+  "bees": 0,
+  "shots": 0,
+  "animation": [
+    {
+      "id": "boss-mercury-hunter",
+      "state": "exposed",
+      "action": "recover",
+      "walkWeight": 0.0000037331398297372086,
+      "legs": 6,
+      "phase": 83.21425559690132,
+      "clock": 7.9999000000000375,
+      "travel": 18.59451999999881
+    }
+  ],
+  "time": 7.9999000000000375,
+  "fps": 60
+}

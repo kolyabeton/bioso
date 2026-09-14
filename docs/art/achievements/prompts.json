@@ -1,0 +1,223 @@
+{
+  "generator": "Built-in image_gen",
+  "reference": "docs/references/biomecha-style-master.png",
+  "style": "Use case: stylized-concept. Asset type: individual square achievement illustration for BIOSO portrait mobile game. One image, one scene, no sheet. Strong readable central silhouette at thumbnail scale, cinematic close-up with atmospheric background, edge-to-edge square composition, focal subject inside central 75%, no text, no letters, no numbers, no frame, no UI, no gold ornaments. Style reference: attached biomecha-style-master.png is authoritative for materials, palette, light and mood. Cinematic photorealistic grounded solarpunk, physically plausible weathered materials and natural proportions. Desaturated olive foliage, gray fractured stone, dirty warm-white ceramic panels, dark aged industrial metal, restrained rust. Low warm sunlight from upper left with cool ambient fill and deep detailed shadows. Quiet reclaimed industrial world, realistic microtexture without exaggerated contrast. No cartoon, no painterly brush strokes, no storybook illustration, no toy diorama, no ornate golden domes, no saturated yellow-green foliage, no glossy plastic, no heavy sepia wash. Do not copy the reference robot or portrait composition. Subject: ",
+  "assets": [
+    {
+      "id": "weapon:shotgun",
+      "subject": "A weathered ceramic survivor makes one decisive close-range pistol shot at a falling hostile machine; a newly recovered heavy twin-barrel shotgun arm lies prominently in the foreground.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a09757-bbe9-7831-a675-2a88718e00f7/exec-2c4b0354-be0f-4ddb-bf9e-7be1968e01e0.png",
+      "runtime": "public/assets/ui/achievements/weapon-shotgun-v1.jpg"
+    },
+    {
+      "id": "weapon:seed",
+      "subject": "A weathered ceramic survivor holds a rotary seed machine-gun arm after clearing an industrial garden corridor; dark organic seed casings fall beside defeated hostile machines.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a09757-bbe9-7831-a675-2a88718e00f7/exec-526f9fd8-6c2e-45d0-8cca-57481210b13e.png",
+      "runtime": "public/assets/ui/achievements/weapon-seed-v1.jpg"
+    },
+    {
+      "id": "elite1",
+      "subject": "A single defeated needle-armed ceramic elite, its broken pointed crown lying among mossy roots.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-05f22535-77e7-4a94-a2ba-72a946cd6824.png",
+      "runtime": "public/assets/ui/achievements/elite1-v1.jpg"
+    },
+    {
+      "id": "elite3",
+      "subject": "Three severed drill-like biomechanical elite crests arranged as trophies on fractured stone.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-bb20a141-3d46-4268-8a4f-64dbf94f4d40.png",
+      "runtime": "public/assets/ui/achievements/elite3-v1.jpg"
+    },
+    {
+      "id": "time5",
+      "subject": "An ancient five-segment mechanical survival timer beside a pair of heavy armored ceramic legs.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-818743c9-38b9-426d-a5eb-d699e937f649.png",
+      "runtime": "public/assets/ui/achievements/time5-v1.jpg"
+    },
+    {
+      "id": "rootLeg5",
+      "subject": "Root-wrapped articulated mechanical legs anchored into cracked stone, botanical engineering.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-fdd51022-e1b8-44bf-b7ef-e305727d286b.png",
+      "runtime": "public/assets/ui/achievements/rootLeg5-v1.jpg"
+    },
+    {
+      "id": "level5",
+      "subject": "A translucent biomechanical digestion organ, dark ceramic protective cage, restrained green living enzymes.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-d2590db2-bd0c-4cbe-8c69-047d38a3540c.png",
+      "runtime": "public/assets/ui/achievements/level5-v1.jpg"
+    },
+    {
+      "id": "boss1",
+      "subject": "A massive fallen ceramic boss head and a heavy mechanical ram shield resting beside it.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-16db5899-52bd-4b04-8882-5bb13204dda5.png",
+      "runtime": "public/assets/ui/achievements/boss1-v1.jpg"
+    },
+    {
+      "id": "boss2",
+      "subject": "Two enormous fallen armored boss masks, one behind the other, curved fang-like mechanical trophies.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-00cdfd41-bdc7-4371-9b9e-81c0670cfd7e.png",
+      "runtime": "public/assets/ui/achievements/boss2-v1.jpg"
+    },
+    {
+      "id": "elite5",
+      "subject": "Five dark tendon whip strands rising from a recovered elite core in a fan shape.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-e5cd3dd3-b1bf-4585-a581-f515d6d34070.png",
+      "runtime": "public/assets/ui/achievements/elite5-v1.jpg"
+    },
+    {
+      "id": "elite10",
+      "subject": "An imposing chimera biomechanical torso with multiple mechanical arm sockets and ten small defeated crests at its base.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-bdce720a-2a90-4268-86c3-0ae4db9bd81c.png",
+      "runtime": "public/assets/ui/achievements/elite10-v1.jpg"
+    },
+    {
+      "id": "level10",
+      "subject": "Overlapping weathered ceramic armor plates, exposed industrial fasteners and moss.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-2b128c38-0a85-447f-93fa-10d0bab3ec64.png",
+      "runtime": "public/assets/ui/achievements/level10-v1.jpg"
+    },
+    {
+      "id": "time10",
+      "subject": "A ten-segment mechanical timer with acid-worn casing and a small glowing acid reservoir.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-70d752eb-3574-4a72-a833-a6bce11cec80.png",
+      "runtime": "public/assets/ui/achievements/time10-v1.jpg"
+    },
+    {
+      "id": "level15",
+      "subject": "A ceramic arc weapon discharging a precise mint electrical arc between three aged metal contacts.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-6c4f4ef9-09b1-4295-8faf-e491b7ad44ab.png",
+      "runtime": "public/assets/ui/achievements/level15-v1.jpg"
+    },
+    {
+      "id": "level20",
+      "subject": "An exposed accelerator turbine organ with layered concentric ceramic vanes and a mint energy core.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-d17109cf-933f-4375-9281-73da5e7b38f8.png",
+      "runtime": "public/assets/ui/achievements/level20-v1.jpg"
+    },
+    {
+      "id": "final",
+      "subject": "An immense fallen biomechanical brood mother shell, cracked open, tiny survivor silhouette for scale in reclaimed gardens.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-2a403066-4328-4925-827e-318b2101ffed.png",
+      "runtime": "public/assets/ui/achievements/final-v1.jpg"
+    },
+    {
+      "id": "mission-garden",
+      "subject": "An agile mercury biomechanical hunter with long blade-like limbs and worn white ceramic armor amid dense forest roots.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-b14d7adf-0170-4c9d-a190-35b7d0d51335.png",
+      "runtime": "public/assets/ui/achievements/mission-garden-v1.jpg"
+    },
+    {
+      "id": "mission-quarantine",
+      "subject": "A colossal scrap leviathan assembled from rusted heavy machinery and broken ceramic armor, half submerged in an industrial scrapyard.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-d56ef708-ff4f-4824-8b10-5ac8f3ba8e86.png",
+      "runtime": "public/assets/ui/achievements/mission-quarantine-v1.jpg"
+    },
+    {
+      "id": "mission-core",
+      "subject": "A living root cathedral, heavy gray stone and utilitarian ceramic infrastructure bound together by enormous roots, mechanical heart within.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-ca61fd07-0dcf-4249-9e67-020b92d21de3.png",
+      "runtime": "public/assets/ui/achievements/mission-core-v1.jpg"
+    },
+    {
+      "id": "mission-nursery",
+      "subject": "A biomechanical mirror collector with asymmetric reflective metal shields and cracked white ceramic mask, overgrown industrial city.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-88619a24-6748-4dbb-bb30-95dc7c8c55da.png",
+      "runtime": "public/assets/ui/achievements/mission-nursery-v1.jpg"
+    },
+    {
+      "id": "mission-mother",
+      "subject": "A biomechanical swarm shepherd with a ceramic command carapace and a small orbiting drone swarm above abandoned garden terraces.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-1a30fc3d-b324-4638-90cc-4c8adb0c391f.png",
+      "runtime": "public/assets/ui/achievements/mission-mother-v1.jpg"
+    },
+    {
+      "id": "meta-harpoon",
+      "subject": "A biomechanical tendon harpoon thrust forward through smoke, with two menacing elite silhouettes behind, sense of surviving beyond the limit.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-60cc2e3b-c0c7-4ffb-8f4a-7b72af5e45dc.png",
+      "runtime": "public/assets/ui/achievements/meta-harpoon-v1.jpg"
+    },
+    {
+      "id": "meta-reactor",
+      "subject": "A recovered ceramic reactor torso with two brilliant restrained mint pulses at its core, endurance and renewed breakthrough.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-12217cab-7d08-488d-b915-5c7c730da8ac.png",
+      "runtime": "public/assets/ui/achievements/meta-reactor-v1.jpg"
+    },
+    {
+      "id": "meta-spring",
+      "subject": "A weathered biomechanical compass and spring-loaded walking support on a stone overlook, forest, gardens, city ruins and scrapyard landscapes visible beyond.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-1c39146d-fd70-4a89-9730-28993895a5f7.png",
+      "runtime": "public/assets/ui/achievements/meta-spring-v1.jpg"
+    },
+    {
+      "id": "feat-contract",
+      "subject": "A biomechanical forearm fused into a living industrial altar by braided tendons, small mint point of energy, first binding pact.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-962956ff-6542-4d38-b071-b3024926eb35.png",
+      "runtime": "public/assets/ui/achievements/feat-contract-v1.jpg"
+    },
+    {
+      "id": "feat-infection",
+      "subject": "A lone weathered ceramic explorer standing within a circular ring of infected roots and mist while pursuers linger beyond.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-b76c0c37-8a3f-4348-9b82-0543c63334f9.png",
+      "runtime": "public/assets/ui/achievements/feat-infection-v1.jpg"
+    },
+    {
+      "id": "feat-sealed",
+      "subject": "Heavy root-covered nursery doors sealing an arena, survivor foreground, egg-like mechanical growths and abandoned machinery.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-d55b020a-dcc6-4aa8-adf9-bfc7910c4ce5.png",
+      "runtime": "public/assets/ui/achievements/feat-sealed-v1.jpg"
+    },
+    {
+      "id": "feat-hunt",
+      "subject": "A marked elite biomechanical carrier fleeing between roots, a focused mint targeting ring in its ceramic chest, no HUD.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-e4861131-e245-4f11-a9b9-3803eef414f6.png",
+      "runtime": "public/assets/ui/achievements/feat-hunt-v1.jpg"
+    },
+    {
+      "id": "feat-secrets",
+      "subject": "Three tangible secret mechanisms on stone: acid-dissolved membrane, cracked stone hatch pierced by a drill, and electrically awakened nursery seed.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-522cc578-e966-4f1f-bd2d-dafae6036291.png",
+      "runtime": "public/assets/ui/achievements/feat-secrets-v1.jpg"
+    },
+    {
+      "id": "feat-recycle",
+      "subject": "A ceramic digestion chamber transforming discarded mechanical parts into small organic biomass pearls, industrial biological recycling.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-a55a49c2-f2ba-409b-960e-0217e0d437b0.png",
+      "runtime": "public/assets/ui/achievements/feat-recycle-v1.jpg"
+    },
+    {
+      "id": "feat-upgrade",
+      "subject": "A single finely tuned mechanical claw displayed with ten precise glowing adjustment studs, ceramic and dark metal, crafted mastery.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-9439b2c5-a0c3-4968-9ce7-fd3c707b2390.png",
+      "runtime": "public/assets/ui/achievements/feat-upgrade-v1.jpg"
+    },
+    {
+      "id": "feat-set",
+      "subject": "Three distinct matching equipment pieces: torso, arm and leg, weathered ceramic and aged metal, visually interlocking as one organism.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-42a90486-28b4-4e4b-9c99-52c2d02098a6.png",
+      "runtime": "public/assets/ui/achievements/feat-set-v1.jpg"
+    },
+    {
+      "id": "feat-mutation",
+      "subject": "A ceramic biomechanical organism undergoing first symbiosis, roots and living tendons connecting machinery, subtle mint bioluminescence.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-5ea786d8-b384-417c-85af-324752372818.png",
+      "runtime": "public/assets/ui/achievements/feat-mutation-v1.jpg"
+    },
+    {
+      "id": "feat-natures",
+      "subject": "Three symbiotic biological cores: a larval hive, electrical conductor, and swamp organism, arranged as an organic triangular composition.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-0b7dbb9e-0f84-4458-b92e-8275a47159ee.png",
+      "runtime": "public/assets/ui/achievements/feat-natures-v1.jpg"
+    },
+    {
+      "id": "feat-evolution",
+      "subject": "An intricate living mechanical neural branch rising from a ceramic seed into one mature luminous crown, a completed evolutionary path.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-b5d5f49c-6d41-4efe-adf4-eeb405ad69e1.png",
+      "runtime": "public/assets/ui/achievements/feat-evolution-v1.jpg"
+    },
+    {
+      "id": "feat-synergy",
+      "subject": "Fire-warmed copper tendons, frost-edged ceramic and a restrained electric arc converging at a single biomechanical heart, elemental synergy.",
+      "generatedSource": "/Users/serg/.codex/generated_images/01a080da-27b9-7181-9c94-21a99c2a893e/exec-9bafe542-c830-4e46-ab9b-74249d1b34d2.png",
+      "runtime": "public/assets/ui/achievements/feat-synergy-v1.jpg"
+    }
+  ]
+}

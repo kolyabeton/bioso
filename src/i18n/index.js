@@ -1,4 +1,14 @@
-import english from './en.json' with {type:'json'};
+import baseEnglish from './en.json' with {type:'json'};
+import achievementEnglish from './achievements-en.json' with {type:'json'};
+import setEnglish from './sets-en.json' with {type:'json'};
+const english={...baseEnglish,...achievementEnglish,...setEnglish};
+// AST and DOM text fragments can omit a sentence's final punctuation. Derive
+// that safe boundary form once so dialogue does not need duplicate dictionary
+// entries for the spoken line and the same line inside a larger UI fragment.
+for(const [source,target] of Object.entries({...english})){
+  const normalizedSource=source.replace(/[.!?]+$/u,'');
+  if(normalizedSource!==source&&!(normalizedSource in english))english[normalizedSource]=target.replace(/[.!?]+$/u,'');
+}
 
 export const DEFAULT_LANGUAGE = 'en';
 export const LANGUAGES = Object.freeze(['en', 'ru']);

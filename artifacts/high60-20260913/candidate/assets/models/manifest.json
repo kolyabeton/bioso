@@ -1,0 +1,83 @@
+[
+  {
+    "name": "hero",
+    "file": "hero.glb",
+    "bytes": 622124,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "beetle",
+    "file": "beetle.glb",
+    "bytes": 519792,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "sentinel",
+    "file": "sentinel.glb",
+    "bytes": 468972,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "arm-seed",
+    "file": "arm-seed.glb",
+    "bytes": 53040,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "arm-arc",
+    "file": "arm-arc.glb",
+    "bytes": 34288,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "arm-pulse",
+    "file": "arm-pulse.glb",
+    "bytes": 33684,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "planter",
+    "file": "planter.glb",
+    "bytes": 19904,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "pylon",
+    "file": "pylon.glb",
+    "bytes": 44564,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  },
+  {
+    "name": "wall",
+    "file": "wall.glb",
+    "bytes": 30588,
+    "units": "metres",
+    "up": "Y",
+    "source": "src/kit.js",
+    "animation": "rigid modular hierarchy; no baked animation clips"
+  }
+]

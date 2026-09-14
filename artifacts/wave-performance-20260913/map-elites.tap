@@ -1,0 +1,14 @@
+✔ map elites remain independent during warmup, exhausted wave quota, rest and relief (3.199375ms)
+✔ warmup never promotes wave mobs, so the first assault starts with one weak elite (0.423417ms)
+✔ successive waves issue exactly 1, 2, 3, 4, 5, 6 elites even when every enemy dies immediately (29.08025ms)
+✔ surviving elites occupy next-wave slots and cannot stack beyond its quota (22.024666ms)
+✔ direct wave promotions and scheduled requests cannot bypass the quota after a kill (0.909333ms)
+✔ blocked placement does not spend the first elite and no wave elite appears during relief (0.300625ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 207.86925

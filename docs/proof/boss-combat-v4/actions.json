@@ -1,0 +1,481 @@
+[
+  {
+    "mission": "mother",
+    "stage": "bees",
+    "proof": {
+      "model": [
+        "boss-swarm-shepherd"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-swarm-shepherd",
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "contact": 0,
+          "radius": 3,
+          "speed": 1.7,
+          "hp": 30400,
+          "phase": 1,
+          "actions": {},
+          "warning": null,
+          "hover": 1.1
+        }
+      ],
+      "parts": 3,
+      "bees": 0,
+      "shots": 0,
+      "time": 0,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "quarantine",
+    "stage": "attack",
+    "proof": {
+      "model": [
+        "boss-scrap-leviathan"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-scrap-leviathan",
+          "x": 0,
+          "y": 0,
+          "z": -1542.9925000000062,
+          "contact": -3.433333333333326,
+          "radius": 7,
+          "speed": 0.65,
+          "hp": 23200,
+          "phase": 1,
+          "actions": {
+            "crush": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 4,
+      "bees": 0,
+      "shots": 0,
+      "time": 3.433333333333326,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "quarantine",
+    "stage": "support-destroyed",
+    "proof": {
+      "model": [
+        "boss-scrap-leviathan"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-scrap-leviathan",
+          "x": 0,
+          "y": 0,
+          "z": -1542.9925000000062,
+          "contact": -3.4499999999999926,
+          "radius": 7,
+          "speed": 0.48750000000000004,
+          "hp": 23200,
+          "phase": 1,
+          "actions": {
+            "crush": 1,
+            "node-destroyed": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 3,
+      "bees": 0,
+      "shots": 0,
+      "time": 3.4499999999999926,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "core",
+    "stage": "roots",
+    "proof": {
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-root-cathedral",
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "contact": -3.183333333333327,
+          "radius": 4.5,
+          "speed": 0,
+          "hp": 30400,
+          "phase": 1,
+          "actions": {
+            "roots": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 3,
+      "bees": 0,
+      "shots": 0,
+      "time": 3.183333333333327,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "core",
+    "stage": "seed-volley",
+    "proof": {
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-root-cathedral",
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "contact": -7.566666666666645,
+          "radius": 4.5,
+          "speed": 0,
+          "hp": 30400,
+          "phase": 1,
+          "actions": {
+            "roots": 2
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 3,
+      "bees": 0,
+      "shots": 5,
+      "time": 7.566666666666645,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "core",
+    "stage": "root-1",
+    "proof": {
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-root-cathedral",
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "contact": -7.583333333333312,
+          "radius": 4.5,
+          "speed": 0,
+          "hp": 30400,
+          "phase": 1,
+          "actions": {
+            "roots": 2,
+            "node-destroyed": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 2,
+      "bees": 0,
+      "shots": 5,
+      "time": 7.583333333333312,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "core",
+    "stage": "root-2",
+    "proof": {
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-root-cathedral",
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "contact": -7.599999999999978,
+          "radius": 4.5,
+          "speed": 0,
+          "hp": 30400,
+          "phase": 1,
+          "actions": {
+            "roots": 2,
+            "node-destroyed": 2
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 1,
+      "bees": 0,
+      "shots": 5,
+      "time": 7.599999999999978,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "core",
+    "stage": "root-3",
+    "proof": {
+      "model": [
+        "boss-root-cathedral"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-root-cathedral",
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "contact": -7.616666666666645,
+          "radius": 4.5,
+          "speed": 0,
+          "hp": 30400,
+          "phase": 2,
+          "actions": {
+            "roots": 2,
+            "node-destroyed": 3,
+            "phase-2": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 0,
+      "bees": 0,
+      "shots": 5,
+      "time": 7.616666666666645,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "nursery",
+    "stage": "copied-volley",
+    "proof": {
+      "model": [
+        "boss-mirror-collector"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-mirror-collector",
+          "x": 0,
+          "y": 0,
+          "z": -1541.9833333333352,
+          "contact": -2.933333333333328,
+          "radius": 2.2,
+          "speed": 2.2,
+          "hp": 30400,
+          "phase": 1,
+          "actions": {
+            "copy": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 0,
+      "bees": 0,
+      "shots": 3,
+      "time": 2.933333333333328,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "garden",
+    "stage": "dash-release",
+    "proof": {
+      "model": [
+        "boss-mercury-hunter"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-mercury-hunter",
+          "x": 0,
+          "y": 0,
+          "z": -1537.793333333339,
+          "contact": -2.7833333333333283,
+          "radius": 1.8,
+          "speed": 3.8,
+          "hp": 16800,
+          "phase": 1,
+          "actions": {
+            "dash": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 0,
+      "bees": 0,
+      "shots": 0,
+      "time": 2.7833333333333283,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "garden",
+    "stage": "live-dashes",
+    "proof": {
+      "model": [
+        "boss-mercury-hunter"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-mercury-hunter",
+          "x": 1.2935373480700056e-16,
+          "y": 0,
+          "z": -1537.5557799999985,
+          "contact": -48.55793333333423,
+          "radius": 1.8,
+          "speed": 3.8,
+          "hp": 16800,
+          "phase": 1,
+          "actions": {
+            "dash": 12,
+            "dash-finished": 12
+          },
+          "warning": {
+            "x": 1.2935373480700056e-16,
+            "y": 0,
+            "z": -1537.5557799999985,
+            "dx": -4.482453090916794e-17,
+            "dz": 1,
+            "started": 48.02463333333419,
+            "at": 48.97463333333419,
+            "key": "needle",
+            "mode": "shot",
+            "radius": 3.8,
+            "angle": 6.283185307179586,
+            "bossAction": "dash",
+            "range": 5.949239999998781,
+            "width": 3.6
+          },
+          "hover": 0
+        }
+      ],
+      "parts": 0,
+      "bees": 0,
+      "shots": 0,
+      "time": 48.55793333333423,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "mother",
+    "stage": "final-bees",
+    "proof": {
+      "model": [
+        "boss-swarm-shepherd"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-swarm-shepherd",
+          "x": 0,
+          "y": 0,
+          "z": -1544,
+          "contact": -3.133333333333327,
+          "radius": 3,
+          "speed": 1.7,
+          "hp": 30400,
+          "phase": 1,
+          "actions": {
+            "swarm": 1,
+            "bees": 1
+          },
+          "warning": null,
+          "hover": 1.1
+        }
+      ],
+      "parts": 3,
+      "bees": 4,
+      "shots": 0,
+      "time": 3.133333333333327,
+      "fps": 60
+    }
+  },
+  {
+    "mission": "mother",
+    "stage": "ground-phase-final",
+    "proof": {
+      "model": [
+        "boss-swarm-shepherd"
+      ],
+      "tiles": 2,
+      "loading": 0,
+      "errors": 0,
+      "boss": [
+        {
+          "id": "boss-swarm-shepherd",
+          "x": 0,
+          "y": 0,
+          "z": -1541.4420666666638,
+          "contact": -5.716666666666652,
+          "radius": 3,
+          "speed": 2.074,
+          "hp": 30400,
+          "phase": 2,
+          "actions": {
+            "swarm": 1,
+            "bees": 1,
+            "node-destroyed": 3,
+            "phase-2": 1,
+            "ground-claws": 1
+          },
+          "warning": null,
+          "hover": 0
+        }
+      ],
+      "parts": 0,
+      "bees": 0,
+      "shots": 0,
+      "time": 5.716666666666652,
+      "fps": 60
+    }
+  }
+]

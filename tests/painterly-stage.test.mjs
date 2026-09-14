@@ -29,18 +29,7 @@ test('movement stays on painted ground at all edges, including large bodies',()=
  assert.equal(s.world.walkable(-100,0),false);
  assert.equal(s.world.walkable(0,100),false);
 });
-test('all mission nodes remain shared with objective enemies and reachable on terrace',()=>{
- for(const mission of MISSIONS){
-  const s=createPaintedRun(newProfile(),mission.id,123);
-  for(const node of s.mission.nodes){
-   assert.ok(s.world.walkable(node.x,node.z),mission.id);
-   const p={...s.player};
-   for(let i=0;i<300;i++){const dx=node.x-p.x,dz=node.z-p.z,d=Math.hypot(dx,dz);if(d<.1)break;move(s.world,p,dx/d*.5,dz/d*.5);}
-   assert.ok(Math.hypot(node.x-p.x,node.z-p.z)<.6,mission.id);
-   if(node.kind==='objective')assert.ok(s.enemies.includes(node));
-  }
- }
-});
+test('retired painted adapter can still open every mission without inventing old objective nodes',()=>{for(const mission of MISSIONS){const s=createPaintedRun(newProfile(),mission.id,123);assert.equal(s.mission.id,mission.id);assert.equal(s.mission.floorsState.length,25);assert.equal(s.mission.nodes,undefined);}});
 test('enemies can spawn on actual painted ground from center and either end',()=>{
  const s=createPaintedRun(newProfile(),'survival',123);
  for(const player of [{x:1.5,z:21},{x:2,z:0},{x:6,z:-24}]){

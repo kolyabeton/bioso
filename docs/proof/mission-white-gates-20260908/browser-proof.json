@@ -1,0 +1,45 @@
+{
+  "method": "Paused development checkpoint of the actual mission route; source geometry is preserved and only the leaf surface material is changed.",
+  "checks": [
+    {
+      "viewport": "390x844",
+      "state": {
+        "room": 1,
+        "gateClosed": true,
+        "enemies": 9,
+        "player": {
+          "x": 0,
+          "y": 0,
+          "z": -25
+        },
+        "ready": true,
+        "errors": 0,
+        "gateErrors": [],
+        "gateModels": [
+          "arch-gate",
+          "arch-wall-straight",
+          "arch-pillar"
+        ],
+        "models": [],
+        "gates": 2
+      }
+    },
+    {
+      "viewport": "360x640",
+      "bounds": {
+        "height": 640,
+        "overflow": false,
+        "width": 360
+      }
+    },
+    {
+      "viewport": "1280x720",
+      "bounds": {
+        "height": 720,
+        "overflow": false,
+        "width": 405
+      }
+    }
+  ],
+  "logs": []
+}

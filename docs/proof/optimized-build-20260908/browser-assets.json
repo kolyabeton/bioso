@@ -1,0 +1,11 @@
+{
+  "models": 101,
+  "images": 174,
+  "audio": 19,
+  "failures": [],
+  "loader": {
+    "loadedModels": 92,
+    "failedModels": []
+  },
+  "complete": true
+}

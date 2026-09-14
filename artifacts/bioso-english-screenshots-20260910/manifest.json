@@ -1,0 +1,226 @@
+[
+  {
+    "file": "portrait/01-root-forest-swarm.png",
+    "title": "Root Forest",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=battle&mission=core&count=65&quality=high",
+    "enemies": 49,
+    "visibleEnemies": 49,
+    "body": "rootwalker",
+    "arms": [
+      "rocket",
+      "harpoon",
+      "claws",
+      "arc"
+    ]
+  },
+  {
+    "file": "portrait/02-scrapyard-heavy-build.png",
+    "title": "Scrapyard",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=battle&mission=quarantine&count=85&body=bastion&weapons=rocket,shotgun&quality=high",
+    "enemies": 60,
+    "visibleEnemies": 60,
+    "body": "bastion",
+    "arms": [
+      "rocket",
+      "shotgun"
+    ]
+  },
+  {
+    "file": "portrait/03-overgrown-city-horde.png",
+    "title": "Overgrown City",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=battle&mission=nursery&count=100&body=hecaton&weapons=arc,needle,harpoon,seed&quality=high",
+    "enemies": 67,
+    "visibleEnemies": 67,
+    "body": "hecaton",
+    "arms": [
+      "arc",
+      "needle",
+      "harpoon",
+      "seed"
+    ]
+  },
+  {
+    "file": "portrait/04-brood-nursery-melee.png",
+    "title": "Brood Nursery",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=battle&mission=mother&count=90&body=hunter&weapons=claws,whip&quality=high",
+    "enemies": 61,
+    "visibleEnemies": 61,
+    "body": "hunter",
+    "arms": [
+      "claws",
+      "whip",
+      "claws"
+    ]
+  },
+  {
+    "file": "portrait/05-upper-gardens-gunslinger.png",
+    "title": "Upper Gardens",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=battle&mission=garden&count=70&body=wanderer&weapons=pistol,shotgun&quality=high",
+    "enemies": 50,
+    "visibleEnemies": 50,
+    "body": "wanderer",
+    "arms": [
+      "pistol",
+      "shotgun"
+    ]
+  },
+  {
+    "file": "portrait/06-boss-scrap-leviathan.png",
+    "title": "Scrap Leviathan",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=boss&mission=quarantine&body=bastion&weapons=rocket,shotgun&quality=high",
+    "enemies": 6,
+    "visibleEnemies": 6,
+    "body": "bastion",
+    "arms": [
+      "rocket",
+      "shotgun"
+    ]
+  },
+  {
+    "file": "portrait/07-boss-root-cathedral.png",
+    "title": "Root Cathedral",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=boss&mission=core&quality=high",
+    "enemies": 5,
+    "visibleEnemies": 5,
+    "body": "rootwalker",
+    "arms": [
+      "rocket",
+      "harpoon",
+      "claws",
+      "arc"
+    ]
+  },
+  {
+    "file": "portrait/08-boss-swarm-shepherd.png",
+    "title": "Swarm Shepherd",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=boss&mission=mother&body=hunter&weapons=claws,whip,harpoon&quality=high",
+    "enemies": 5,
+    "visibleEnemies": 5,
+    "body": "hunter",
+    "arms": [
+      "claws",
+      "whip",
+      "harpoon"
+    ]
+  },
+  {
+    "file": "portrait/09-boss-mirror-collector.png",
+    "title": "Mirror Collector",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=boss&mission=nursery&body=hecaton&weapons=arc,needle,harpoon,seed&quality=high",
+    "enemies": 2,
+    "visibleEnemies": 2,
+    "body": "hecaton",
+    "arms": [
+      "arc",
+      "needle",
+      "harpoon",
+      "seed"
+    ]
+  },
+  {
+    "file": "portrait/10-boss-mercury-hunter.png",
+    "title": "Mercury Hunter",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=boss&mission=garden&body=wanderer&weapons=pistol,shotgun&quality=high",
+    "enemies": 2,
+    "visibleEnemies": 2,
+    "body": "wanderer",
+    "arms": [
+      "pistol",
+      "shotgun"
+    ]
+  },
+  {
+    "file": "portrait/11-build-rootwalker.png",
+    "title": "Rootwalker Build",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=assembly&body=rootwalker&quality=high",
+    "enemies": 0,
+    "visibleEnemies": 0,
+    "body": "rootwalker",
+    "arms": [
+      "rocket",
+      "harpoon",
+      "claws",
+      "arc"
+    ]
+  },
+  {
+    "file": "portrait/12-build-bastion.png",
+    "title": "Bastion Build",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=assembly&body=bastion&weapons=rocket,shotgun&quality=high",
+    "enemies": 0,
+    "visibleEnemies": 0,
+    "body": "bastion",
+    "arms": [
+      "rocket",
+      "shotgun"
+    ]
+  },
+  {
+    "file": "portrait/13-build-trapper.png",
+    "title": "Trapper Build",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=assembly&body=hunter&weapons=claws,whip,harpoon&quality=high",
+    "enemies": 0,
+    "visibleEnemies": 0,
+    "body": "hunter",
+    "arms": [
+      "claws",
+      "whip",
+      "harpoon"
+    ]
+  },
+  {
+    "file": "portrait/14-weapon-upgrade.png",
+    "title": "Weapon Upgrade",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=press&scene=assembly&body=hunter&weapons=claws,whip,harpoon&quality=high",
+    "enemies": 0,
+    "visibleEnemies": 0,
+    "body": "hunter",
+    "arms": [
+      "claws",
+      "whip",
+      "harpoon"
+    ]
+  },
+  {
+    "file": "portrait/15-level-up.png",
+    "title": "Level Up",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=level&variant=tree&quality=high"
+  },
+  {
+    "file": "portrait/16-ability-fire-tree.png",
+    "title": "Fire Ability Tree",
+    "width": 390,
+    "height": 844,
+    "route": "http://127.0.0.1:5291/?review=ability-detail&branch=fire&rank=3&quality=high"
+  }
+]

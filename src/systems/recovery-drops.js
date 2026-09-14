@@ -2,7 +2,7 @@ import {spatialDistance,surfaceReach} from '../elevation.js';
 import {armorRemaining,heal} from './health.js';
 import {combatTime} from './mutations.js';
 
-export const RECOVERY_DROPS=Object.freeze({armorChance:.025,healthChance:.04,amount:1,radius:1.25,lifetime:120});
+export const RECOVERY_DROPS=Object.freeze({armorChance:.12,healthChance:.18,amount:1,radius:1.25,lifetime:120});
 export function spawnRecoveryDrop(s,enemy){
  const roll=s.rng(),kind=roll<RECOVERY_DROPS.armorChance?'armor':roll<RECOVERY_DROPS.armorChance+RECOVERY_DROPS.healthChance?'health':null;
  if(!kind)return null;

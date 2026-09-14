@@ -1,0 +1,26 @@
+[
+  {
+    "level": "warn",
+    "message": "THREE.WebGLRenderer: Texture marked for update but no image data found.",
+    "timestamp": "2026-09-08T12:34:44.255Z",
+    "url": "http://127.0.0.1:5292/node_modules/.vite/deps/chunk-IT3TP6RZ.js?v=43189596"
+  },
+  {
+    "level": "warn",
+    "message": "THREE.WebGLRenderer: Texture marked for update but no image data found.",
+    "timestamp": "2026-09-08T12:34:44.255Z",
+    "url": "http://127.0.0.1:5292/node_modules/.vite/deps/chunk-IT3TP6RZ.js?v=43189596"
+  },
+  {
+    "level": "warn",
+    "message": "THREE.WebGLRenderer: Texture marked for update but no image data found.",
+    "timestamp": "2026-09-08T12:34:44.262Z",
+    "url": "http://127.0.0.1:5292/node_modules/.vite/deps/chunk-IT3TP6RZ.js?v=43189596"
+  },
+  {
+    "level": "warn",
+    "message": "THREE.WebGLRenderer: Texture marked for update but no image data found.",
+    "timestamp": "2026-09-08T12:34:44.263Z",
+    "url": "http://127.0.0.1:5292/node_modules/.vite/deps/chunk-IT3TP6RZ.js?v=43189596"
+  }
+]

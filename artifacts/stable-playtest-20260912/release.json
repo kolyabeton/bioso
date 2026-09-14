@@ -1,0 +1,12 @@
+{
+  "url": "http://127.0.0.1:5194/",
+  "directory": "/Users/serg/Library/Application Support/bioso-play/releases/20260912T205738Z-unlocked",
+  "launchAgent": "/Users/serg/Library/LaunchAgents/local.bioso.frozen.20260912T205738Z-unlocked.plist",
+  "archive": "/Users/serg/Documents/ChatGPT/Biomecha/outputs/itch/bioso-20260912T205738Z/bioso-unlocked-20260912T205738Z.zip",
+  "archiveBytes": 112628394,
+  "sha256": "f486fa62b2afd874d47a71a272977f73e9837b697facb5eec14b42330152ed94",
+  "achievements": 36,
+  "weapons": 14,
+  "parts": 43,
+  "mode": "ordinary gameplay; all profile achievements unlocked"
+}

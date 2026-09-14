@@ -1,22 +1,24 @@
 /* Event layouts stay inside shared portrait dialog bounds. */
 .event-world-labels{position:absolute;inset:0;pointer-events:none;z-index:5}
 .event-world-label{position:absolute;transform:translate(-50%,-100%);width:224px;max-width:calc(100% - 32px)}
-.event-world-label:after{content:'';position:absolute;left:var(--label-anchor,50%);top:100%;width:1px;height:10px;background:var(--ui-metal-edge);box-shadow:0 1px 3px #0b100d80}
-.event-world-label--progress{width:max-content;max-width:min(224px,calc(100% - 32px));padding:6px 9px;border:1px solid var(--ui-metal-edge);border-radius:5px;background:var(--ui-surface);color:var(--ui-text);font-size:12px;line-height:18px;text-align:center;font-variant-numeric:tabular-nums;box-shadow:0 2px 8px #0004}
+.event-world-label:after{content:'';position:absolute;left:var(--label-anchor,50%);top:100%;width:1px;height:8px;background:#d6cfb8;box-shadow:0 1px 2px #0b100d66}
+.event-world-label--progress{box-sizing:border-box;width:max-content;max-width:calc(100% - 24px);padding:7px 12px 7px 28px;border:0;border-radius:8px;background:linear-gradient(#fffbee80,#d9d0b526),var(--ui-texture-ceramic) center/256px repeat;color:var(--ui-ceramic-ink);font-size:11px;line-height:16px;font-weight:600;letter-spacing:.01em;text-align:center;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 1px #93947f,0 2px 8px #0005}
+.event-world-label--progress:before{content:'';position:absolute;left:11px;top:50%;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);background:radial-gradient(circle at 35% 30%,#f0dcff 0 18%,#a86bc5 38%,#6f3f86 74%);box-shadow:0 0 0 1px #5c4065,0 0 5px #a86bc566}
 .event-nearby{position:absolute;z-index:8;bottom:172px;left:16px;right:16px;padding:12px;background:#142321ed;border:1px solid #90afa077;border-radius:7px;box-shadow:0 5px 20px #0005;display:grid;gap:5px;pointer-events:auto}
 .event-nearby[hidden],.event-world-label[hidden]{display:none}.event-nearby small{font-size:10px;letter-spacing:1px;color:#b8d5c3}.event-nearby strong{font-size:16px;line-height:21px;color:#eceadb;font-weight:500}.event-nearby>span{font-size:12px;line-height:18px;color:#c1c9b9}
 .event-nearby #encounter-button{position:relative;inset:auto;max-width:100%;width:100%;min-height:44px;white-space:nowrap;margin-top:4px}
 body .ui-dialog[data-screen=encounter-detail] #panel-content{display:flex;flex-direction:column;min-height:0;overflow:hidden}
 body .ui-dialog .ui-event-detail{flex:1;min-height:0;overflow-y:auto;overflow-x:visible;padding:14px 16px;display:block;scrollbar-width:thin;scrollbar-color:#8ca794 #152321}
 .ui-event-detail>*{max-width:100%;box-sizing:border-box}.event-heading h3{font-size:20px;line-height:26px;font-weight:500;margin:7px 0 10px}.event-heading .ui-eyebrow{font-size:10px;line-height:16px;color:#b4d3be;letter-spacing:.6px}
-.event-model-image{display:block;width:100%;height:108px;object-fit:contain;background:radial-gradient(ellipse,#52655d66,#14201d);border:1px solid #aab69b30;border-radius:5px;margin:0 0 12px}
+.event-illustration{display:block;width:100%;height:154px;object-fit:cover;object-position:center 42%;background:#14201d;border:1px solid #aab69b30;border-radius:7px;margin:0 0 12px;box-shadow:inset 0 0 0 1px #fff2,0 5px 14px #07110c40}
+.event-illustration--infection{object-position:center 18%}
+.event-illustration--altar,.event-illustration--altar_organs,.event-illustration--altar_speed,.event-illustration--altar_armor,.event-illustration--altar_capacity{object-position:center 58%}
 .ui-event-detail p,.event-rules{font-size:13px;line-height:20px;margin:8px 0}.event-rules{padding-left:18px}.event-rules li+li{margin-top:5px}
 .ui-event-detail .ui-section-label{font-size:11px;margin:14px 0 10px}
-.event-rewards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.event-rewards>div{min-width:0;text-align:center}.event-rewards .ui-part-card{width:100%;min-height:64px;aspect-ratio:1;margin:0}.event-rewards .ui-part-art{height:72px;width:100%;display:block;object-fit:contain}.event-rewards>div>span{display:block;font-size:11px;line-height:16px;margin-top:5px;overflow-wrap:anywhere}
 body .ui-dialog .event-footer{flex:none;display:flex;gap:8px;padding:10px 16px;margin:0;border-top:1px solid #9bad9444;background:#14211f}.event-footer .ui-button{flex:1;min-width:0;min-height:44px;margin:0;white-space:nowrap}
 .event-deal{padding:12px;margin-top:10px}.event-deal h3{font-size:16px;line-height:22px;margin:0}.ui-event-detail .ui-button{white-space:nowrap;min-height:44px;font-size:13px}.event-deal .ui-button{margin:8px 0 0;width:100%}.event-hand-picker>summary{min-height:44px;padding:12px 0;cursor:pointer;color:#e8e5d4}.event-hand{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;font-size:12px}.event-hand .ui-button{width:auto}.ui-event-detail .ui-note{font-size:11px;line-height:17px;color:#bdc8b5}
 body .ui-dialog .ui-encounters{overflow-y:auto}.atlas-readout .ui-button{min-height:44px;white-space:nowrap}
-@media(max-height:680px){.event-model-image{height:82px}.event-nearby{bottom:172px;padding:9px}.event-nearby strong{font-size:15px}.ui-event-detail .event-rewards .ui-part-art{height:60px}}
+@media(max-height:680px){.event-illustration{height:112px}.event-nearby{bottom:172px;padding:9px}.event-nearby strong{font-size:15px}}
 /* A selected event keeps its full name above actions, even on a 360px stage. */
 .ui-dialog[data-screen=map] .atlas-readout:has([data-action=encounter-detail]){display:grid;grid-template-columns:minmax(0,1fr) auto 44px;gap:6px 8px}
 .ui-dialog[data-screen=map] .atlas-readout:has([data-action=encounter-detail])>div{grid-column:1/-1}
