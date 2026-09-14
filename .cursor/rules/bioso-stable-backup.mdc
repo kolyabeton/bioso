@@ -1,12 +1,13 @@
 ---
-description: Treat the current game tree as the approved backup snapshot and keep stable-port requests lightweight
+description: Treat the current game tree as the approved backup snapshot and use one live development port
 alwaysApply: true
 ---
 
-# Game backup and stable port
+# Game backup and live port
 
 - Treat all current files and changes inside this repository as approved game state for backup.
 - When the user asks to update Git for backup, stage and commit the complete current repository state unless the user names an exclusion.
-- When the user asks for a stable build or an up-to-date game port, do not run tests, asset verification, acceptance suites, or unrelated checks unless explicitly requested.
-- For that request, only build/export the current game if needed, create an immutable release copy, and expose it on a dedicated local port.
+- The canonical live-testing URL is `http://127.0.0.1:5196/`. It must serve the current working tree through the Vite development server with hot reload.
+- When the user asks to update the build or current game port, do not build, export, freeze, run tests, run asset verification, or run acceptance suites. Only ensure the live server is running and reload the open page when useful.
+- Create an immutable release or upload archive only when the user explicitly asks for a frozen release, distributable build, or archive.
 - Preserve older frozen releases and their files unless the user explicitly asks to replace or remove them.
