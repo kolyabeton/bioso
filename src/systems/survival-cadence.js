@@ -29,8 +29,12 @@ export function scheduleFirstSurvivalWave(s,defeatedAt=s.time){
 export function survivalCadenceAt(time,start=SURVIVAL_CADENCE.start){
  const {assault,rest,cap}=SURVIVAL_CADENCE,cycle=assault+rest;
  if(time<start)return null;
- const index=Math.floor((time-start)/cycle),at=start+index*cycle,elapsed=time-at,resting=elapsed>=assault;
- return {index,at,elapsed,rest:resting,until:at+(resting?cycle:assault),
+ let index=Math.floor((time-start)/cycle);
+ // A fractional boss-death time can round subtraction below an exact boundary.
+ // Compare absolute timestamps so budget integration always advances past it.
+ if(time>=start+(index+1)*cycle)index++;
+ const at=start+index*cycle,elapsed=time-at,resting=time>=at+assault;
+ return {index,at,elapsed,rest:resting,until:resting?start+(index+1)*cycle:at+assault,
   rate:resting?SURVIVAL_CADENCE.restRate:Math.min(SURVIVAL_CADENCE.maxRate,SURVIVAL_CADENCE.startRate+index*SURVIVAL_CADENCE.rateStep),
   softCap:resting?SURVIVAL_CADENCE.restSoftCap:Math.min(cap,SURVIVAL_CADENCE.startSoftCap+index*SURVIVAL_CADENCE.softCapStep),
   burst:Math.min(SURVIVAL_CADENCE.maxBurst,SURVIVAL_CADENCE.startBurst+index*SURVIVAL_CADENCE.burstStep),eliteCap:Math.min(WAVE_RULES.eliteCap,index+1)};
