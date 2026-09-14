@@ -93,9 +93,10 @@ test('public encounters are visible from level one but entry requires their leve
  }
  discoverEncounters(s);const count=s.events.length;discoverEncounters(s);assert.equal(s.events.length,count);
 });
-test('elite schedule depends only on time and habitat bosses do not duplicate',()=>{
+test('elite schedule follows the active wave clock and habitat bosses do not duplicate',()=>{
  const s=createWorldRun(undefined,'survival',12),calls=[];s.level=4;
  tickWaves(s,0,(...args)=>calls.push(args));assert.equal(calls.length,0);
+ s.survivalFirstWaveAt=120;s.nextElite=s.waves.nextElite=180;
  s.time=180;tickWaves(s,0,(...args)=>calls.push(args));assert.equal(calls.filter(a=>a[0]==='elite').length,1);
  s.level=20;tickWaves(s,0,(...args)=>calls.push(args));assert.equal(calls.length,1);
  s.time=480;tickWaves(s,0,(...args)=>calls.push(args));assert.ok(!calls.some(a=>a[0]==='boss'));

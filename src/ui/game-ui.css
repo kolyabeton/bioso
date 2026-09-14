@@ -388,14 +388,6 @@ html,body{width:100%;height:100%;margin:0}body{font-family:var(--ui-font);font-s
 .ui-dialog[data-screen=pause] .ui-pause .ui-menu-actions{gap:12px}
 .ui-dialog[data-screen=pause][open]{height:fit-content;min-height:0;inset:0;margin:auto}
 .ui-dialog[data-screen=pause] #panel-content{flex:none}
-/* Olive direction indicator centered above the map. */
-.dock-map-controls{position:relative;display:flex;align-items:center}
-.dock-map-controls .hud-compass{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;width:44px;height:44px;pointer-events:none}
-.dock-map-controls .hud-compass[hidden]{display:none}
-.hud-compass .ui-icon{width:26px;height:26px;color:var(--ui-mint);transform-origin:center;filter:drop-shadow(0 1px 2px #071714)}
-.hud-compass .compass-arrow{fill:url(#hud-compass-olive) #62694c;stroke:#bac09c;stroke-width:.8}
-.hud-compass .compass-arrived{display:none}.hud-compass.is-arrived .compass-arrow{display:none}.hud-compass.is-arrived .compass-arrived{display:block}
-
 /* Compact assembly: identity and resources above, organs below the creature. */
 .ui-dialog[data-screen=assembly] .panel-head{display:flex;flex-direction:column;align-items:stretch;gap:6px;padding:10px 12px}
 .ui-assembly-heading{display:flex;align-items:center;gap:8px;min-width:0}

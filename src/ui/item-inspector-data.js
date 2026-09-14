@@ -1,6 +1,6 @@
 import {summonPartBonus} from '../systems/summon-equipment.js';
 import {affectedHands} from '../systems/organs/compatibility.js';
-import {bodyTraitDescription,bodyTraitStatus,organEffect} from '../systems/body-traits.js';
+import {bodyTraitDescription,organEffect} from '../systems/body-traits.js';
 import {organCapacity,slotCount} from '../systems/body-slots.js';
 import {describePart,partPropertyRows,weaponChargeLabel} from './adapters.js';
 import {def,weight,capacity,bodyHealth,weaponStats,stats,addBonus,tierFactor,upgradeOptions,installed,upgrade,regenerationDelay,legArmor,legHealth,legSpeed,returnNerveDamage,parasiteLarvaDamage,slimeSlowdown,commonNerveVolleyMultiplier,reverseHeartDamageMultiplier} from '../assembly.js';
@@ -20,7 +20,7 @@ export function itemInspectorData(s,p,selected){
  const armor=(d.kind==='leg'?legArmor(p):(d.armor||0)/20*(1+addBonus(p,'armor'))*(p.key==='armor'?organEffect(s):1))+(p.modifier==='armored'?1:0)+armorAffix;
  const intrinsicArmor=armor-armorAffix;
  if(d.kind==='arm'){const w=weaponStats(s,p);rows.unshift(row('Урон',current.damage));rows.push(row('Скорость атаки',current.rate),row('Дальность',`${w.range.toFixed(1)} м`),...(p.key==='drone'?[]:[row('Крит',`${current.crit} · ${current.critPower}`)]));if(w.magazine)rows.push(row(weaponChargeLabel(w),`${p.ammo??w.magazine} / ${w.magazine}`),row('Перезарядка',`${reloadDuration(s,p,w.reload).toFixed(2)} с`));for(const [label,value] of partPropertyRows(p))rows.push(row(label,value,value.length>30));}
- if(d.kind==='body'){rows.push(row('Здоровье корпуса',`${bodyHealth(p)} дел.`));if(intrinsicArmor)rows.push(row('Броня детали',`${Number(intrinsicArmor.toFixed(2))} пласт.`));rows.push(row('Вместимость',(isInstalled?stats(s).capacity:capacity(p)).toFixed(0)),row('Крепления',`Руки: ${d.arms} · ноги: ${d.legs} · ${isInstalled?slotCount(s,p,'organs'):organCapacity(p)} органов`));const status=isInstalled?bodyTraitStatus(s,p):'';if(status)rows.push(row('Состояние бонуса',status,true));}
+ if(d.kind==='body'){rows.push(row('Здоровье корпуса',`${bodyHealth(p)} дел.`));if(intrinsicArmor)rows.push(row('Броня детали',`${Number(intrinsicArmor.toFixed(2))} пласт.`));rows.push(row('Вместимость',(isInstalled?stats(s).capacity:capacity(p)).toFixed(0)),row('Крепления',`Руки: ${d.arms} · ноги: ${d.legs} · ${isInstalled?slotCount(s,p,'organs'):organCapacity(p)} органов`));}
  if(d.kind==='leg'){rows.push(row('Скорость ноги',current.speed));if(d.rankStat==='hp')rows.push(row('Здоровье детали',`+${String(legHealth(p)).replace('.',',')} HP`));if(intrinsicArmor)rows.push(row('Броня детали',`${Number(intrinsicArmor.toFixed(2))} пласт.`));if(d.regen)rows.push(row('Регенерация',`1 дел. / ${current.regen}`));for(const [label,value] of partPropertyRows(p))rows.push(row(label,value,value.length>30));}
  if(d.kind==='organ'){if(intrinsicArmor)rows.push(row('Броня детали',`${Number(intrinsicArmor.toFixed(2))} пласт.`));for(const [i,line] of info.lines.entries())rows.push(row(i?'Свойство':'Эффект',line,true));const names=['returnNerve','commonNerve'].includes(p.key)?affectedHands(s,p.key):null;if(names?.length)rows.push(row('Совместимость',names.join(', '),true));}
  rows.push(row('Вес',weight(p).toFixed(0)));

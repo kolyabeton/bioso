@@ -3,7 +3,6 @@ import {meta} from './systems/meta-progression.js';
 import {applyStartingLoadout} from './game.js';
 import {createEventHud} from './ui/event-hud.js';
 import './ui/events.css';
-import {createWaypointCompass} from './ui/waypoint-compass.js';
 import {createWrongWayFeedback} from './systems/waypoint.js';
 import './ui/game-ui.css';
 import './ui/biotech.css';
@@ -57,7 +56,7 @@ const systemMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 const backgroundMusic=createGameMusic(import.meta.env.BASE_URL);
 backgroundMusic.setActive(!document.hidden);
 let combatAudio,storyAudio,storyRadio,journalAudioActive=false;
-const settings=createSettings(storage,{notify,feedback:cue=>combatAudio?.ui(cue),apply:value=>{localization.setLanguage(value.language);backgroundMusic.setVolume(value.soundEnabled?value.music:0);combatAudio?.syncVolume();storyAudio?.syncLanguage();storyAudio?.syncVolume();const reduced=effectiveReducedMotion(value.reducedMotion,systemMotion.matches);view.setQuality?.(value.quality);view.setReducedMotion(reduced);document.body.dataset.reducedMotion=String(reduced);if(reduced)document.getAnimations().forEach(a=>a.cancel());}});settings.apply();
+const settings=createSettings(storage,{notify,feedback:cue=>combatAudio?.ui(cue),apply:value=>{localization.setLanguage(value.language);backgroundMusic.setVolume(value.soundEnabled?value.music:0);combatAudio?.syncVolume();storyAudio?.syncLanguage();storyAudio?.syncVolume();if(!value.storyEnabled){storyRadio?.clear();storyAudio?.stop();journalAudioActive=false;}const reduced=effectiveReducedMotion(value.reducedMotion,systemMotion.matches);view.setQuality?.(value.quality);view.setReducedMotion(reduced);document.body.dataset.reducedMotion=String(reduced);if(reduced)document.getAnimations().forEach(a=>a.cancel());}});settings.apply();
 const wrongWayFeedback=createWrongWayFeedback(duration=>settings.haptic(duration));
 window.addEventListener('pointerdown',backgroundMusic.unlock);
 window.addEventListener('keydown',backgroundMusic.unlock);
@@ -71,13 +70,12 @@ combatAudio=createCombatAudio(()=>settings.get().soundEnabled?settings.get().eff
 storyAudio=createStoryAudio(import.meta.env.BASE_URL,settings.get,{setDucked:value=>backgroundMusic.setDucked(value),onEnded:cue=>{journalAudioActive=false;storyRadio?.audioEnded(cue.id);}});window.addEventListener('pointerdown',storyAudio.unlock);window.addEventListener('keydown',storyAudio.unlock);
 const renderHands=createHandsHud($('hands'),()=>ui.open('assembly'));
 const renderHud=createHud($('game'));
-const renderCompass=createWaypointCompass($('game'));
 const eventHud=createEventHud($('encounter-button'));
-storyRadio=createStoryRadio($('game'),{localize:localization.localize,play:cue=>{journalAudioActive=false;return storyAudio.play(cue);},stop:()=>storyAudio.stop(),pause:()=>storyAudio.pause(),resumeAudio:()=>storyAudio.resume()});
+storyRadio=createStoryRadio($('game'),{localize:localization.localize,play:cue=>{journalAudioActive=false;return settings.get().storyEnabled&&storyAudio.play(cue);},stop:()=>storyAudio.stop(),pause:()=>storyAudio.pause(),resumeAudio:()=>storyAudio.resume()});
 const storyDirector=createStoryDirector(storyRadio,{enabled:!review,onRecord:cue=>{const records=meta(profile).storyCues,id=storyCueRecordId(cue);if(!records.includes(id)){records.push(id);save();}}});
 function updateHud(){renderHud(run);renderHands(run);eventHud.update(run);}
 function start(mode,seed,loadout){gameplayActive=true;wasOverloaded=false;overloadUntil=0;storyRadio.clear();$('game').inert=false;run=createWorldRun(profile,mode,seed);storyDirector.reset(run);if(mode==='survival'){applyStartingLoadout(run,loadout);meta(profile).runs++;save();}initialUnlocks=new Set(profile.unlocked);view.reset();wrongWayFeedback.reset();stopInput();$('world').focus();updateHud();toast.classList.remove('visible');toastUntil=0;}
-ui=createScreens({dialog:panel,content:$('panel-content'),previewHolder,getRun:()=>run,getProfile:()=>profile,startRun:start,canResume:()=>gameplayActive,resume:()=>{stopInput();updateHud();},stopInput,notify,updateHud,settings,localize:localization.localize,getSaveStatus:()=>profileStorage.saved,saveProfile:save,getNewUnlocks:()=>profile.unlocked.filter(key=>!initialUnlocks.has(key)),playStoryCue:cue=>{journalAudioActive=storyAudio.play(cue);return journalAudioActive;},onRoute:name=>{if(name==='home')gameplayActive=false;document.body.dataset.screen=name;backgroundMusic.updateRun(run);backgroundMusic.setScreen(name);if(storyRadioShouldSuspend(name))storyRadio.suspend();else if(!name)storyRadio.resume();if(!['journal','journal-entry'].includes(name)&&journalAudioActive){storyAudio.stop();journalAudioActive=false;}}});
+ui=createScreens({dialog:panel,content:$('panel-content'),previewHolder,getRun:()=>run,getProfile:()=>profile,startRun:start,canResume:()=>gameplayActive,resume:()=>{stopInput();updateHud();},stopInput,notify,updateHud,settings,localize:localization.localize,getSaveStatus:()=>profileStorage.saved,saveProfile:save,getNewUnlocks:()=>profile.unlocked.filter(key=>!initialUnlocks.has(key)),playStoryCue:cue=>{journalAudioActive=settings.get().storyEnabled&&storyAudio.play(cue);return journalAudioActive;},onRoute:name=>{if(name==='home')gameplayActive=false;document.body.dataset.screen=name;backgroundMusic.updateRun(run);backgroundMusic.setScreen(name);if(storyRadioShouldSuspend(name))storyRadio.suspend();else if(!name)storyRadio.resume();if(!['journal','journal-entry'].includes(name)&&journalAudioActive){storyAudio.stop();journalAudioActive=false;}}});
 $('encounter-button').onclick=()=>{const n=eventHud.target();if(n)ui.open('encounter-detail',{id:n.id});};
 $('pause-button').onclick=()=>ui.open('pause');$('assembly-button').onclick=()=>ui.open('assembly');$('soul-button').onclick=()=>ui.open('soul');$('map-button').onclick=()=>ui.open('map');
 $('world').addEventListener('pointerdown',event=>{if(panel.open)return;pointer={id:event.pointerId,x:event.clientX,y:event.clientY};$('world').setPointerCapture(event.pointerId);const rect=$('game').getBoundingClientRect();Object.assign($('joystick').style,{left:(event.clientX-rect.left)+'px',top:(event.clientY-rect.top)+'px'});$('joystick').hidden=false;});
@@ -94,19 +92,19 @@ const diagnostic=params.has('debug');$('diagnostics').hidden=!diagnostic;
 function frame(now){requestAnimationFrame(frame);const cadence=renderCadence({hidden:document.hidden,menu:panel.open,preview:ui.previewVisible,fps:settings.get().fps});if(!cadence){last=now;return;}const elapsed=(now-last)/1000;if(elapsed<1/cadence-.001)return;last=now;const dt=Math.min(.05,elapsed),frameStarted=performance.now();
   browserQA?.tick();isaacReview?.tick?.();enemyReview?.tick?.();
   if(gameplayActive&&!panel.open&&!enemyReview?.paused&&!isaacReview?.paused&&(!run.world.tiles||run.streaming?.ready?.has(run.world.tileAt(run.player.x,run.player.z)?.id))){const input=keys.size?{x:Number(keys.has('KeyD')||keys.has('ArrowRight'))-Number(keys.has('KeyA')||keys.has('ArrowLeft')),z:Number(keys.has('KeyS')||keys.has('ArrowDown'))-Number(keys.has('KeyW')||keys.has('ArrowUp'))}:movement,simulationAt=performance.now();step(run,dt,input);wrongWayFeedback.update(run,input,dt);recordSubsystem('simulation',performance.now()-simulationAt);
-    for(const event of run.events){view.event(event);renderHands.event(event,run);combatAudio.event(event);if(event.type==='lore-found'){storyDirector.discover(event.evidence);}else if(event.type==='profile-progress'){save();}else if(event.type==='unlock'){save();notify(event.text);}else if((event.type==='notice'&&event.category!=='landmark')||event.type==='group-cleared')notify(event.text);else if(event.type==='player-hit')settings.haptic();}run.events.length=0;
+    for(const event of run.events){view.event(event);renderHands.event(event,run);combatAudio.event(event);if(event.type==='lore-found'){if(settings.get().storyEnabled)storyDirector.discover(event.evidence);}else if(event.type==='profile-progress'){save();}else if(event.type==='unlock'){save();notify(event.text);}else if((event.type==='notice'&&event.category!=='landmark')||event.type==='group-cleared')notify(event.text);else if(event.type==='player-hit')settings.haptic();}run.events.length=0;
     if(run.dead){
       if(view.deathPending(run)){if(!$('game').inert){stopInput();notify('Существо погибло');$('game').inert=true;}}
       else{$('game').inert=false;ui.open('end');}
     }else if(run.bossRewards?.length)ui.open('boss-reward');else if(run.won&&!run.continued)ui.open('end');else if(run.pending)ui.open('level');
   }
-  if(!panel.open&&!run.dead)storyDirector.tick(run);
+  if(settings.get().storyEnabled&&!panel.open&&!run.dead)storyDirector.tick(run);
   backgroundMusic.updateRun(run);
   loading.hidden=!run.streaming?.errors?.length;loading.textContent='Не удалось загрузить участок · повторить';
   const paused=panel.open||enemyReview?.paused||isaacReview?.paused||run.dead&&(document.hidden||!document.hasFocus());
   const renderAt=performance.now();view.render(run,dt,ui.previewVisible,paused,cadence);recordSubsystem('render',performance.now()-renderAt);enemyReview?.afterRender?.();
   const ambient=view.ambientInfo();combatAudio.updateAmbient({active:ambient.ambientActive,paused,combat:ambient.ambientCombat,strength:ambient.windStrength});
-  const uiAt=performance.now();renderCompass(run,view.directionTo);hudClock+=dt;if(hudClock>.1){updateHud();hudClock=0;}if(now>toastUntil)toast.classList.remove('visible');recordSubsystem('ui',performance.now()-uiAt);
+  const uiAt=performance.now();hudClock+=dt;if(hudClock>.1){updateHud();hudClock=0;}if(now>toastUntil)toast.classList.remove('visible');recordSubsystem('ui',performance.now()-uiAt);
   frames++;fpsClock+=elapsed;if(fpsClock>=1){fps=Math.round(frames/fpsClock);frames=fpsClock=0;if(diagnostic){const info=view.info(),rect=$('world').getBoundingClientRect(),pick=view.debugPick(rect.left+rect.width/2,44).map(hit=>`${hit.names.join('>')}@${hit.point.map(n=>n.toFixed(1)).join(',')}#${hit.map.split('/').at(-1)}`).join(' | '),near=(run.encounters?.nodes||[]).filter(n=>Math.hypot(n.x,n.z)<12).map(n=>`${n.type}:${n.state}@${n.x.toFixed(1)},${n.z.toFixed(1)}r${n.radius}`).join('|');$('diagnostics').textContent=`${fps} FPS · ${info.drawCalls} draws · ${info.loadedModels} GLB/${info.failedModels.length} errors · ${info.assetEnemies} mesh enemies\n${run.enemies.length} enemies · ${run.ground.length} parts\n${run.player.x.toFixed(1)}, ${run.player.z.toFixed(1)}\n${pick}\n${near}\n${view.debugBiomeChildren().join('|')}`;}}
   enemyReview?.afterFrame?.({cpuMs:performance.now()-frameStarted,intervalMs:elapsed*1000});
 }

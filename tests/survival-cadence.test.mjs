@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createRun,spawnEnemy,step} from '../src/game.js';
+import {createRun,spawnEnemy,step,hurtEnemy} from '../src/game.js';
 import {tickWaves} from '../src/systems/waves.js';
 import {tickSurvivalHordes} from '../src/systems/survival-hordes.js';
-import {SURVIVAL_CADENCE,survivalCadenceAt,survivalBudgetBetween,survivalWavePosition} from '../src/systems/survival-cadence.js';
+import {SURVIVAL_CADENCE,SURVIVAL_FIRST_WAVE_DELAY,survivalCadenceAt,survivalBudgetBetween,survivalSpawnLimit,survivalWavePosition} from '../src/systems/survival-cadence.js';
 
 function fixture(){
  const s=createRun(undefined,'survival',20260913);
@@ -12,6 +12,16 @@ function fixture(){
  return s;
 }
 const tick=(s,dt)=>{const spawn=(...args)=>spawnEnemy(s,...args);tickSurvivalHordes(s,dt,spawn);tickWaves(s,dt,spawn);};
+
+test('the first assault starts fifteen seconds after the introductory boss dies',()=>{
+ const s=fixture(),boss=spawnEnemy(s,'boss',{x:1,z:0});
+ s.time=200;tick(s,80);assert.equal(s.survivalHordes?.queue,null);assert.equal(survivalSpawnLimit(s).intro,true);
+ hurtEnemy(s,boss,1e9);assert.equal(s.survivalFirstWaveAt,200+SURVIVAL_FIRST_WAVE_DELAY);assert.equal(s.nextElite,275);
+ s.enemies=[];s.time=214.9;tick(s,14.9);assert.equal(s.enemies.length,0);assert.equal(survivalSpawnLimit(s).intro,true);
+ s.time=215;tick(s,.1);assert.deepEqual({index:survivalSpawnLimit(s).index,rest:survivalSpawnLimit(s).rest},{index:0,rest:false});
+ s.time=216.3;tick(s,1.3);assert.ok(s.enemies.some(e=>e.hordeEvent));
+ assert.equal(survivalCadenceAt(280,s.survivalFirstWaveAt).rest,true);assert.equal(survivalCadenceAt(315,s.survivalFirstWaveAt).index,1);
+});
 
 test('the first two minutes keep at most a six-enemy mass trickle before the first assault',()=>{
  const s=fixture();

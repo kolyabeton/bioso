@@ -1,0 +1,13 @@
+---
+description: Run bioso browser game tests muted and clean up temporary test tabs
+alwaysApply: true
+---
+
+# Browser game test hygiene
+
+- Run interactive game tests only in the Codex in-app browser, as required by `AGENTS.md`.
+- Disable the game's master sound before gameplay or any interaction that can unlock audio. Prefer a supported `sound=0` test-route parameter; otherwise turn sound off in the game settings first.
+- Never use `sound=1` for an agent test unless the user explicitly requests an audible check.
+- After the required checks and evidence are complete, close every in-app browser tab opened by the agent for that test.
+- Never close a tab opened by the user or another task, and do not keep a finished test tab alive as a deliverable or handoff.
+- Stop a local preview or development server that was started only for the finished browser test.

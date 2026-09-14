@@ -2,9 +2,9 @@ import {SURVIVAL_CADENCE,survivalCadenceAt,survivalSpawnLimit,waveEliteAllowance
 import {assignWaveEliteDisposition} from './territories.js';
 const PATTERNS=['ring','pincers','perimeter','spiral'];
 
-function nextSpec(index){
- const at=SURVIVAL_CADENCE.start+index*(SURVIVAL_CADENCE.assault+SURVIVAL_CADENCE.rest);
- return{at,count:survivalCadenceAt(at).burst,pattern:PATTERNS[index%PATTERNS.length]};
+function nextSpec(index,start=SURVIVAL_CADENCE.start){
+ const at=start+index*(SURVIVAL_CADENCE.assault+SURVIVAL_CADENCE.rest);
+ return{at,count:survivalCadenceAt(at,start).burst,pattern:PATTERNS[index%PATTERNS.length]};
 }
 function position(s,pattern,index,count){
  const spread=index/Math.max(1,count-1),side=index%2?1:-1;
@@ -24,7 +24,7 @@ export function tickSurvivalHordes(s,dt,spawn){
  if(h.index<=pressure.index){
   h.index=pressure.index+1;
   if(pressure.elapsed<SURVIVAL_CADENCE.burstSeconds){
-   const spec=nextSpec(pressure.index),count=Math.floor(spec.count*pressure.flow);
+   const spec=nextSpec(pressure.index,pressure.startAt),count=Math.floor(spec.count*pressure.flow);
    h.queue={...spec,count,spawned:Math.floor(count*pressure.elapsed/SURVIVAL_CADENCE.burstSeconds),duration:SURVIVAL_CADENCE.burstSeconds};
   }
  }

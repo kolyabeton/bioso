@@ -14,8 +14,6 @@ export const LEG_MODELS={spring:['leg-spring-icon-v2'],runner:['leg-runner-icon-
 export const ORGAN_MODELS={...Object.fromEntries(['mirrorGland','returnNerve','slime','parasite','commonNerve','reverseHeart','regen','shield','armor','stabilizer','digestion','accelerator'].map(key=>[key,['organ-'+key]])),reflexNerve:['organ-capacitor'],broodNode:['organ-parasite']};
 export const legModelId=p=>LEG_MODELS[p.key]?.[0];
 export const legMountOptions=(side,height)=>({size:.83,anchor:'top',rotation:[0,Math.PI,-side*.55],floorDistance:height-.03});
-const heroOutlineMaterial=new T.MeshBasicMaterial({color:'#173d35',side:T.BackSide});
-function addHeroOutline(model,parent){let owner=parent;while(owner&&!owner.userData.heroOutline)owner=owner.parent;if(!owner)return;const meshes=[];model.traverse(o=>{if(o.isMesh)meshes.push(o);});for(const mesh of meshes){const outline=new T.Mesh(mesh.geometry,heroOutlineMaterial);outline.name='hero-outline';outline.scale.setScalar(1.055);mesh.add(outline);}}
 const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder),cache=new Map(),errors=new Set();let loaded=0;
 export const modelInfo=()=>({loadedModels:loaded,failedModels:[...errors]});
 export function loadModel(id){
@@ -40,7 +38,7 @@ function install(parent,id,options,position,hide,load=loadModel){
    for(const [key,name] of [['pistolSlide','pistol-slide'],['pistolBreech','pistol-breech'],['pistolMuzzle','pistol-muzzle']]){const part=model.getObjectByName(name);if(part){parent.userData[key]=part;parent.userData[key+'Rest']={position:part.position.clone(),rotation:part.rotation.clone()};}}
   }
   if(id.endsWith('-v3'))model.traverse(o=>{if(o.isMesh){const source=Object.values(CHASSIS_BODY_MATERIALS).find(m=>m.name===o.material?.name);if(source)o.material=source;}});
-  parent.add(model);if(parent.userData.structuralFrame&&id.startsWith('body-'))parent.userData.structuralFrame.fit(model);addHeroOutline(model,parent);});
+  parent.add(model);if(parent.userData.structuralFrame&&id.startsWith('body-'))parent.userData.structuralFrame.fit(model);});
 }
 export function retireModel(root){root?.traverse(o=>{o.userData.retired=true;});}
 const variant=(list,p)=>list[Math.max(0,Object.keys(SETS).indexOf(partMeta(p).setId))%list.length];

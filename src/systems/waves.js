@@ -52,7 +52,7 @@ export function tickWaves(s,dt,spawn){
  w.softCap=softCap;w.minuteSignature=p.minuteSignature;w.budget=MINUTE_BUDGET;
  w.pressure=pressure?{index:pressure.index,rest:resting||protectedRest,until:pressure.until}:null;
  if(protectedRest||living>=softCap)w.credit=0;
- else if(pressure)w.credit+=survivalBudgetBetween(Math.max(s.time-dt,pressure.at,s.reliefUntil||0),s.time)*pressure.flow;
+ else if(pressure)w.credit+=survivalBudgetBetween(Math.max(s.time-dt,pressure.at,s.reliefUntil||0),s.time,pressure.startAt)*pressure.flow;
  else w.credit+=waveBudgetBetween(s.time-dt,s.time,superBossAlive?WAVE_RULES.bossFlow:1);
  while(w.credit>=1){
   w.credit--;const count=s.enemies.filter(e=>e.hp>0).length;if(count>=(pressure?SURVIVAL_CADENCE.cap:WAVE_RULES.cap)||count>=softCap){w.credit=0;break;}

@@ -27,7 +27,7 @@ import {prepareAbilityAttack,abilityDamageMultiplier,applyCriticalTempo,markRupt
 import {gainXP,selectAbility,rollChoices} from './systems/progression.js';
 import {createWaves,tickWaves,tickEnemyRanged,tickHostileShots} from './systems/waves.js';
 import {tickSurvivalHordes} from './systems/survival-hordes.js';
-import {survivalCadenceAt,survivalWavePosition,waveEliteAllowance,recordWaveElite} from './systems/survival-cadence.js';
+import {survivalCadenceForRun,scheduleFirstSurvivalWave,survivalWavePosition,waveEliteAllowance,recordWaveElite} from './systems/survival-cadence.js';
 import {tickTimedItems} from './systems/timed-items.js';
 import {enemyBalance,ECONOMY,SURVIVAL_PRESSURE,SURVIVAL_FINAL,XP_PICKUP_MULTIPLIER} from './systems/balance.js';
 import {onHit,onDeath,enemyPace,lightning,tickEffects} from './systems/effects.js';
@@ -75,7 +75,7 @@ export function spawnEnemy(s,kind='normal',position=null,role='mass',threat=s.ti
   if(kind==='boss'&&introductory&&!s.introBossId){base.hp=SURVIVAL_PRESSURE.introBossHp;base.damage=SURVIVAL_PRESSURE.introBossDamage;base.xp=SURVIVAL_PRESSURE.introBossXp;}
   if(kind==='final')Object.assign(base,{hp:SURVIVAL_FINAL.hp,armor:SURVIVAL_FINAL.armor,speed:SURVIVAL_FINAL.speed,recommended:SURVIVAL_FINAL.recommendedLevel});
  }
- const p=position||(s.mode==='survival'&&wave&&survivalCadenceAt(s.time)?survivalWavePosition(s,base.radius):spawnPoint(s.world,s.player,s.rng,27,40,s.world.heightAt?base.radius:undefined));if(!p)return null;
+ const p=position||(s.mode==='survival'&&wave&&survivalCadenceForRun(s)?survivalWavePosition(s,base.radius):spawnPoint(s.world,s.player,s.rng,27,40,s.world.heightAt?base.radius:undefined));if(!p)return null;
  if(s.world.heightAt){if(!s.world.walkable(p.x,p.z,base.radius))return null;p.y=s.world.heightAt(p.x,p.z);}
  const e={...p,...base,id:++s.entityId,kind,contact:0,born:combatTime(s)};if(wave||promoted)e.waveSpawn=true;e.maxHp=e.hp;if(s.mode==='survival'&&kind==='boss'&&introductory&&!s.introBossId)s.introBossId=e.id;assignEnemyAssembly(s,e,threat);decorateLivingEnemy(s,e,!position);s.enemies.push(e);if(wave&&kind==='elite')recordWaveElite(s,e);s.metrics.spawned++;s.metrics.maxEnemies=Math.max(s.metrics.maxEnemies,s.enemies.length);return assignTerritory(s,e);
 }
@@ -120,6 +120,7 @@ export function hurtEnemy(s,e,damage,ignore=0,source='direct',critical=false,wea
   if(s.mode==='survival'&&e.survivalSuperBoss){s.reliefUntil=Math.max(s.reliefUntil||0,combatTime(s)+12);s.waves.credit=0;}
   if(s.mode==='survival'&&e.id===s.introBossId&&!s.introBossRewarded){
    s.introBossRewarded=true;
+   scheduleFirstSurvivalWave(s);
    const stomach=createPart(s,'digestion',1);
    s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part:stomach});
    // Two ordinary spares teach digestion and fund one base-price upgrade.

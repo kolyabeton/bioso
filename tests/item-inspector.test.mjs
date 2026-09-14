@@ -24,10 +24,11 @@ test('capacity preview does not heal or change wounds on the live run',()=>{
  const s=createRun();const before=JSON.stringify(s);const model=itemInspectorData(s,s.body,'capacity');assert.equal(JSON.stringify(s),before);assert.equal(model.preview.after,'99');
 });
 
-test('installed chassis shows live trait progress while spare and catalog bodies show only the rule',()=>{
- const s=createRun(),installed=itemInspectorData(s,s.body);assert(installed.rows.some(r=>r.label==='Состояние бонуса'&&/Скорость: Активно · 2\/2 ног/.test(r.value)&&/Уклонение: Неактивно · 0\/2 органов/.test(r.value)));
- assert.equal(installed.rows.some(r=>r.label==='Бонус корпуса'),false);assert.ok(installed.lines.some(line=>line.includes('скорость движения +20%')));
- s.legs[1]=null;assert(itemInspectorData(s,s.body).rows.some(r=>r.label==='Состояние бонуса'&&/Скорость: Неактивно · 1\/2 ног/.test(r.value)));
+test('body inspectors show the trait rule without live bonus status text',()=>{
+ const s=createRun(),installed=itemInspectorData(s,s.body);
+ assert.equal(installed.rows.some(r=>r.label==='Состояние бонуса'),false);assert.equal(installed.rows.some(r=>r.label==='Бонус корпуса'),false);assert.ok(installed.lines.some(line=>line.includes('скорость движения +20%')));
+ assert.doesNotMatch(describePart(s,s.body).lines.join(' '),/Скорость: Активно|Уклонение: Неактивно/);
+ s.legs[1]=null;assert.equal(itemInspectorData(s,s.body).rows.some(r=>r.label==='Состояние бонуса'),false);assert.doesNotMatch(describePart(s,s.body).lines.join(' '),/Скорость: Неактивно/);
  const spare=createPart(s,'bastion');s.inventory.push(spare);const spareModel=itemInspectorData(s,spare);assert.equal(spareModel.rows.some(r=>r.label==='Состояние бонуса'),false);assert.ok(spareModel.lines.some(line=>line.includes('эффективность всех органов +30%')));
  const catalogModel=catalogInspectorData(s,'bastion');assert.equal(catalogModel.rows.some(r=>r.label==='Состояние бонуса'),false);assert.ok(catalogModel.lines.some(line=>line.includes('эффективность всех органов +30%')));
 });
