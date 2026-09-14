@@ -13,6 +13,8 @@
     <string>--port</string>
     <string>5196</string>
     <string>--strictPort</string>
+    <string>--config</string>
+    <string>/Users/serg/Documents/ChatGPT/Biomecha/config/vite.live.config.mjs</string>
   </array>
   <key>WorkingDirectory</key>
   <string>/Users/serg/Documents/ChatGPT/Biomecha</string>
