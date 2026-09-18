@@ -193,24 +193,27 @@ export function createSoulFxView(scene){
  function streak(at,to,color,width=.08,life=.35){
   particle(at,5,color,width,life,{}, {tx:to.x,ty:to.y??0,tz:to.z});
  }
- /** Expanding ring plus cross-linked strands along the arc: the readable "net/wave" shape. */
+ /** The net reads as strands along the arc; the wave lands on the struck enemy and
+  * whitens it, rather than pulsing under the hero where nothing was hit. */
  function neuralWave(e){
-  const color=[.65,1,1],origin={x:e.x,y:(e.y??0)+.4,z:e.z};
-  // Wave: a widening shell pushed out from the hero.
-  for(const [size,life] of reduced?[[3.4,.34]]:[[2.2,.26],[3.6,.4],[5,.52]])membrane({...e,y:(e.y??0)+.4},color,size,life);
   if(!Number.isFinite(e.tx)||!Number.isFinite(e.tz))return;
+  const strand=[.65,1,1],origin={x:e.x,y:(e.y??0)+.7,z:e.z},end={x:e.tx,y:(e.ty??0)+1,z:e.tz};
   // Net: strands offset either side of the arc, cross-linked into a mesh.
-  const end={x:e.tx,y:(e.ty??0)+1,z:e.tz},dx=end.x-origin.x,dz=end.z-origin.z,len=Math.hypot(dx,dz)||1,nx=-dz/len,nz=dx/len;
-  const rows=reduced?2:4;
+  const dx=end.x-origin.x,dz=end.z-origin.z,len=Math.hypot(dx,dz)||1,nx=-dz/len,nz=dx/len,rows=reduced?2:4;
   for(let i=1;i<=rows;i++){
    const spread=(i/rows)*1.5;
    for(const side of [-1,1]){
-    const a={x:origin.x+nx*spread*side*.3,y:origin.y,z:origin.z+nz*spread*side*.3};
+    const a={x:origin.x+nx*spread*side*.25,y:origin.y,z:origin.z+nz*spread*side*.25};
     const b={x:end.x+nx*spread*side,y:end.y,z:end.z+nz*spread*side};
-    streak(a,b,color,.06,.34+i*.04);
-    if(i>1)streak({x:end.x+nx*spread*side,y:end.y,z:end.z+nz*spread*side},{x:end.x+nx*(spread-1.5/rows)*side,y:end.y,z:end.z+nz*(spread-1.5/rows)*side},color,.05,.3);
+    streak(a,b,strand,.06,.3+i*.04);
+    if(i>1)streak(b,{x:end.x+nx*(spread-1.5/rows)*side,y:end.y,z:end.z+nz*(spread-1.5/rows)*side},strand,.05,.28);
    }
   }
+  // Wave: white shells blooming out of the target, plus a bright core.
+  const white=[1,1,1];
+  for(const [size,life] of reduced?[[2.6,.28]]:[[1.4,.18],[2.4,.28],[3.4,.4]])membrane(end,white,size,life);
+  particle(end,4,white,2.2,.22);
+  for(let i=0;i<(reduced?6:14);i++)particle(end,2,[.88,1,1],.09,.3+rand()*.2,{x:(rand()-.5)*3.4,y:rand()*2.4,z:(rand()-.5)*3.4},{opacity:.9});
  }
  function threads(e,revive=false){
   const center={x:e.x,y:(e.y??0)+1,z:e.z},color=revive?[.9,.82,.56]:[.4,.73,.56];
@@ -298,7 +301,7 @@ export function createSoulFxView(scene){
    case 'guardian':{
     bolt({...e,y:(e.y??0)-1});organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.55,1,.84],count:10,power:3});membrane(e,[.45,.9,.72],2.5,.4);break;
    }
-   case 'neuralweb':neuralWave(e);bolt(e);organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.65,1,1],count:18,power:4});break;
+   case 'neuralweb':neuralWave(e);bolt(e);organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.92,1,1],count:16,power:4});break;
    case 'countershell-charge':membrane(e,[.63,.78,.54],3.1,.5);threads(e);break;
    case 'countershell':organicImpact(e,{color:[.94,.72,.38],count:30,power:6,residue:true});membrane(e,[.9,.68,.34],2.3,.28);break;
    case 'sporeplant':{
