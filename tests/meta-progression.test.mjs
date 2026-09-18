@@ -1,7 +1,8 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {createRun,spawnEnemy,hurtEnemy,applyStartingLoadout,rerollReward,addXP,attack,step} from '../src/game.js';
 import {newProfile,readProfile,createPart,stats,weaponStats} from '../src/assembly.js';
-import {meta,validLoadout,starterAllowed,startOverrun,tickOverrun,awardMeta,recordVictory} from '../src/systems/meta-progression.js';
+import {meta,validLoadout,starterAllowed,startOverrun,tickOverrun,awardMeta,recordVictory,survivalUnlocked,survivalRequirement,SURVIVAL_UNLOCK_MISSION} from '../src/systems/meta-progression.js';
+import {MISSIONS} from '../src/catalog.js';
 import {tickExtraParts,pullHarpoon,springContact} from '../src/systems/extra-parts.js';
 import {receiveHit} from '../src/systems/health.js';
 const run=()=>{const s=createRun(undefined,'survival',42);s.world={walkable:()=>true};return s;};
@@ -72,4 +73,21 @@ test('starter organs respect their own gates and equip exactly one selected orga
  }
  const s=run();meta(s.profile).overruns=3;s.profile.achievements.push('mission:garden','mission:quarantine','mission:core');
  assert.equal(validLoadout(s.profile,{organ:'digestion'}).organ,null);
+});
+
+/** Item 43: survival opens only after the first mission is cleared. Note the
+ * playtest build calls unlockProfile(), which grants every achievement, so this
+ * gate cannot be observed on the live dev server — only here. */
+test('survival is locked until the first mission victory',()=>{
+ const fresh=newProfile();
+ assert.equal(survivalUnlocked(fresh),false,'a new profile cannot reach survival');
+ assert.equal(survivalRequirement(),`Пройдите миссию: ${MISSIONS[0].name}`);
+ assert.equal(SURVIVAL_UNLOCK_MISSION,MISSIONS[0].id);
+ // A later mission victory does not substitute for the first one.
+ const later={...fresh,achievements:['mission:'+MISSIONS[1].id]};
+ assert.equal(survivalUnlocked(later),false);
+ const cleared={...fresh,achievements:['mission:'+MISSIONS[0].id]};
+ assert.equal(survivalUnlocked(cleared),true);
+ // Malformed profiles must not open it either.
+ for(const bad of [null,undefined,{},{achievements:null},{achievements:'mission:garden'}])assert.equal(survivalUnlocked(bad),false,JSON.stringify(bad));
 });

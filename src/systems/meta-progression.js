@@ -15,6 +15,10 @@ export const START_WEAPONS=['pistol','claws','shotgun'];
 export const START_ORGANS=['stabilizer','regen','shield'];
 export const OVERRUN_PART_UNLOCKS=[{count:3,key:'regen'},{count:3,key:'shield'}];
 export const missionBossVictories=p=>MISSIONS.filter(m=>p?.achievements?.includes('mission:'+m.id)).length;
+/** Item 43: survival opens once the first mission is cleared. */
+export const SURVIVAL_UNLOCK_MISSION=MISSIONS[0].id;
+export const survivalUnlocked=p=>Array.isArray(p?.achievements)&&p.achievements.includes('mission:'+SURVIVAL_UNLOCK_MISSION);
+export const survivalRequirement=()=>`Пройдите миссию: ${MISSIONS[0].name}`;
 export function missionAvailable(p,id){
  const index=MISSIONS.findIndex(m=>m.id===id);if(index<0)return false;
  const victories=p?.achievements||[];

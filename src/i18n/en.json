@@ -2586,5 +2586,9 @@
   "При смертельном ударе воскрешает героя с 1 делением здоровья и защитой на 2 с, затем разрушается. Одноразовый, не улучшается": "On a lethal hit it revives the hero with 1 health cell and 2 s of protection, then breaks. Single use, cannot be upgraded",
   "Реаниматор сработал и разрушился": "The Reanimator fired and broke",
   "При смертельном ударе воскрешает героя с": "On a lethal hit it revives the hero with",
-  "с, затем разрушается. Одноразовый, не улучшается": "s of protection, then breaks. Single use, cannot be upgraded"
+  "с, затем разрушается. Одноразовый, не улучшается": "s of protection, then breaks. Single use, cannot be upgraded",
+  "Выживание закрыто": "Survival is locked",
+  "Выживание открывается после первой миссии.": "Survival opens after the first mission.",
+  "Миссия учит сборке и выдаёт Компостер, без которого в выживании нечем перерабатывать детали.": "The mission teaches assembly and hands over the Composter, without which nothing can be recycled in survival.",
+  "К миссиям": "To the missions"
 }
