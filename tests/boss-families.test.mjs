@@ -7,7 +7,6 @@ import {SURVIVAL_FINAL,SURVIVAL_MOTHER_GROWTH_AT} from '../src/systems/balance.j
 import {survivalBossScheduledAt,tickSurvivalBosses} from '../src/systems/survival-bosses.js';
 import {MISSIONS} from '../src/catalog.js';
 import {bossModelId} from '../src/boss-model-view.js';
-import {BOSS_REGEN_PERIOD,MOTHER_REGEN_REDUCTION,MOTHER_REGEN_REDUCTION_LEVEL,tickHabitatBossRegeneration} from '../src/systems/territories.js';
 
 test('map bosses retain five different generated bodies and weapons, including the Mother',()=>{
  for(const seed of [1,42,20317]){
@@ -25,31 +24,14 @@ test('map bosses retain five different generated bodies and weapons, including t
   assert.equal(mother.maxHp,240000);for(const key of ['armor','speed'])assert.equal(mother[key],SURVIVAL_FINAL[key]);
   assert.equal(mother.recommended,30);
   assert.deepEqual(bosses.map(e=>e.bossLevel),[1,8,16,24,30]);
-  assert.deepEqual(bosses.map(e=>e.bossRegenRate),[.01,.02,.03,.04,.05]);
+  assert.ok(bosses.every(e=>e.bossRegenRate===undefined));
  }
 });
 
-test('map bosses regenerate their rank percent of maximum health every minute',()=>{
- const s=createWorldRun(undefined,'survival',42),bosses=s.enemies.filter(e=>e.habitat);
- for(const e of bosses)e.hp=e.maxHp*.25;
- tickHabitatBossRegeneration(s,BOSS_REGEN_PERIOD);
- for(const [index,e] of bosses.entries())assert.ok(Math.abs(e.hp-e.maxHp*(.25+(index+1)/100))<1e-9);
- const mother=bosses[4];mother.hp=mother.maxHp-1;tickHabitatBossRegeneration(s,BOSS_REGEN_PERIOD);assert.equal(mother.hp,mother.maxHp);
- mother.hp=0;tickHabitatBossRegeneration(s,BOSS_REGEN_PERIOD);assert.equal(mother.hp,0);
-});
-
-test('Mother outheals sustained low-level chip damage',()=>{
- const s=createWorldRun(undefined,'survival',42),mother=s.enemies.find(e=>e.habitatRank===5);
- for(let second=0;second<60;second++){mother.hp-=20;tickHabitatBossRegeneration(s,1);}
- assert.equal(mother.hp,mother.maxHp);
-});
-
-test('Mother regeneration is three times lower from player level 25',()=>{
- const s=createWorldRun(undefined,'survival',42),mother=s.enemies.find(e=>e.habitatRank===5),startingHp=mother.maxHp*.5;
- mother.hp=startingHp;s.level=MOTHER_REGEN_REDUCTION_LEVEL-1;tickHabitatBossRegeneration(s,BOSS_REGEN_PERIOD);
- assert.equal(mother.hp,startingHp+mother.maxHp*mother.bossRegenRate);
- mother.hp=startingHp;s.level=MOTHER_REGEN_REDUCTION_LEVEL;tickHabitatBossRegeneration(s,BOSS_REGEN_PERIOD);
- assert.ok(Math.abs(mother.hp-(startingHp+mother.maxHp*mother.bossRegenRate/MOTHER_REGEN_REDUCTION))<1e-9);
+test('map bosses retain lost health; leaving a habitat never restores them',()=>{
+ const s=createWorldRun(undefined,'survival',42),mother=s.enemies.find(e=>e.habitatRank===5),before=mother.maxHp*.5;mother.hp=before;
+ for(let second=0;second<90;second++)stepWorldRun(s,1);
+ assert.equal(mother.hp,before);
 });
 
 test('Orchid keeps closing between attacks instead of freezing at acid range',()=>{

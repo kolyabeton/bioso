@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {missionRosters} from '../src/mission-rosters.js';
 import {createWorldRun,stepWorldRun} from '../src/world-run.js';
 import {hurtEnemy} from '../src/game.js';
-import {MISSION_ENEMY_MULTIPLIER,skipMissionEvent} from '../src/mission-run.js';
+import {MISSION_ENEMY_MULTIPLIER,skipMissionEvent,MISSION_EIGHTH_FLOOR_ELITES} from '../src/mission-run.js';
 import {CATALOG} from '../src/catalog.js';
 import {enemyVisualParts} from '../src/enemy-assembly-view.js';
 
@@ -32,11 +32,13 @@ test('all missions spawn promised roles, flying models and elites through all 24
    const floor=s.mission.floorsState[i],{roles,recipeIds,eliteRole}=floor.roster;
    s.player={x:0,y:0,z:floor.z+22};stepWorldRun(s,0);
    const defenders=s.enemies.filter(e=>floor.members.includes(e.id));
-   assert.equal(defenders.length,(roles.length+1)*MISSION_ENEMY_MULTIPLIER,`${mode}/${seed}/${i} spawn count`);
-   const normalRoles=Array.from({length:defenders.length-1},(_,index)=>roles[index%roles.length]),normalRecipes=Array.from({length:defenders.length-1},(_,index)=>recipeIds[index%recipeIds.length]);
-   assert.deepEqual(defenders.map(e=>e.assemblyRole),[...normalRoles,eliteRole]);
-   assert.deepEqual(defenders.slice(0,-1).map(e=>e.recipeId),normalRecipes);
-   assert.equal(defenders.filter(e=>e.kind==='elite'&&e.guaranteedPartDrop).length,1);
+   // Item 18: every 8th room fields five elites instead of one.
+   const eliteCount=(i+1)%8===0?MISSION_EIGHTH_FLOOR_ELITES:1,normalCount=(roles.length+1)*MISSION_ENEMY_MULTIPLIER-1;
+   assert.equal(defenders.length,normalCount+eliteCount,`${mode}/${seed}/${i} spawn count`);
+   const normalRoles=Array.from({length:normalCount},(_,index)=>roles[index%roles.length]),normalRecipes=Array.from({length:normalCount},(_,index)=>recipeIds[index%recipeIds.length]);
+   assert.deepEqual(defenders.map(e=>e.assemblyRole),[...normalRoles,...Array.from({length:eliteCount},()=>eliteRole)]);
+   assert.deepEqual(defenders.slice(0,normalCount).map(e=>e.recipeId),normalRecipes);
+   assert.equal(defenders.filter(e=>e.kind==='elite'&&e.guaranteedPartDrop).length,eliteCount);
    for(const e of defenders){
     assert.ok(s.world.walkable(e.x,e.z,e.radius));assert.ok(e.enemyAttack);
     const main=CATALOG[e.assembly.arms.find(Boolean).key];assert.ok(main);

@@ -22,11 +22,6 @@ test('giants take the direct route without A* and cannot leave terrain or cross 
  moveCreature(s,e,50,0);assert.equal(e.x,30);assert.equal(e.y,6);
  const gap=state();gap.world.heightAt=x=>Math.abs(x)<1?null:0;const other=giant();moveCreature(gap,other,24,0);assert.ok(other.x<=-1);
 });
-test('boss support targets settle at their own terrain height',()=>{
- const s=createRun(),e=spawnEnemy(s,'boss',{x:0,z:0});s.world={heightAt:(x,z)=>x*.1+z*.2,walkable:()=>true};setupMissionBoss(s,e,'boss-scrap-leviathan');
- for(const q of s.enemies.filter(q=>q.bossOwner===e.id))assert.equal(q.y,s.world.heightAt(q.x,q.z));
- e.bossCombat.facing=Math.PI/2;const q=s.enemies.find(q=>q.bossOwner===e.id);tickMissionBoss(s,q,0,()=>{});assert.equal(q.y,s.world.heightAt(q.x,q.z));
-});
 test('production boss meshes stay above relief during movement, turning, impact and freeze',async()=>{
  const radii=[3.6,14,9,4.4,6],point=new T.Vector3();
  for(let i=0;i<5;i++){

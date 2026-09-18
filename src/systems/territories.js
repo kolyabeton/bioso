@@ -5,19 +5,8 @@ import {BOSS_RECIPES} from './enemy-assembly.js';
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 // Keep even two fully extended 30 m territories separated by a visible stretch of map.
 export const BOSS_HABITAT_DISTANCE=112;
-export const BOSS_REGEN_PERIOD=60;
-export const MOTHER_REGEN_REDUCTION_LEVEL=25;
-export const MOTHER_REGEN_REDUCTION=3;
 export const isBoss=e=>['boss','final'].includes(e.kind);
 export const bossEngaged=e=>e.hp>0&&isBoss(e)&&(!e.territory||e.territory.state==='engaged');
-export function tickHabitatBossRegeneration(s,dt){
- if(s.mode!=='survival'||!(dt>0))return;
- for(const e of s.enemies)if(e.habitat&&e.hp>0&&e.hp<e.maxHp){
-  const reduction=e.kind==='final'&&s.level>=MOTHER_REGEN_REDUCTION_LEVEL?MOTHER_REGEN_REDUCTION:1;
-  const rate=Math.max(0,Number(e.bossRegenRate)||0)/reduction;
-  if(rate)e.hp=Math.min(e.maxHp,e.hp+e.maxHp*rate*dt/BOSS_REGEN_PERIOD);
- }
-}
 export function assignTerritory(s,e){
  if(s.mode!=='survival'||!s.world.flat||!['elite','boss','final'].includes(e.kind))return e;
  e.territory={home:{x:e.x,y:e.y??0,z:e.z},aggro:isBoss(e)?18:14,leash:isBoss(e)?30:24,state:'idle'};
@@ -72,7 +61,7 @@ export function prepareTerritories(s,spawn){
    }}if(!p)continue;occupied.push({...p,radius:requiredRadius});
   const e=spawn(i===4?'final':'boss',p,'mass',(i+1)*480);if(!e)continue;
   const habitatBalance=SURVIVAL_HABITAT_BALANCE[i];
-  e.habitatRank=i+1;e.bossLevel=habitatBalance.level;e.bossRegenRate=e.habitatRank/100;e.radius=requiredRadius;
+  e.habitatRank=i+1;e.bossLevel=habitatBalance.level;e.radius=requiredRadius;
   e.hp=e.maxHp=habitatBalance.hp;e.damage=habitatBalance.damage;e.armor=habitatBalance.armor;e.speed=habitatBalance.speed;e.attackRecoveryScale=habitatBalance.recovery;
   // spawnEnemy already built five distinct assemblies and the Mother's own stats.
   // Never replace them with a mission model/controller or apply wave multipliers.

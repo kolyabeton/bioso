@@ -324,7 +324,7 @@
   "уйдите в сторону": "move aside",
   "Залп": "Volley",
   "между снарядами": "move between projectiles",
-  "Улей открывается": "Hive opening",
+  "Улей открывается": "The hive opens",
   "сбивайте пчёл": "shoot down the bees",
   "выйдите из зоны": "leave the danger zone",
   "Зеркало": "Mirror",
@@ -2595,5 +2595,8 @@
   "запаса брони в секунду. Ранг и каждое улучшение добавляют": "of the armour pool per second. Rank and each upgrade add",
   "п.п. и увеличивают запас. Несколько Пластин складываются": "points and raise the pool. Several Plates stack",
   "запаса брони в секунду; попадания не прерывают восстановление": "of the armour pool per second; hits do not interrupt the recovery",
-  "брони/с": "armour/s"
+  "брони/с": "armour/s",
+  "Глаз заряжается": "The eye is charging",
+  "выйдите из луча": "step out of the beam",
+  "мухи начнут стрелять": "the flies will start shooting"
 }

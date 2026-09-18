@@ -20,7 +20,7 @@ import {assignEnemyAssembly,eligibleRecipes,ENEMY_RECIPES} from './systems/enemy
 import {tickModularAttack,tickEnemyAcidPools,enemyAttackRange,enemyContactRange,enemyAcidPace,cancelEnemyAttack} from './systems/enemy-combat.js';
 import {PUPPETEER_BUILD_SECONDS,DRONE_HUNTER_REPLACEMENT_DELAY,puppeteerSummonSpread,tickEnemySpecialist,specialistDamageScale,specialistEvades,tryMirrorProjectile} from './systems/enemy-specialists.js';
 import {enemyInvulnerable,enemyTargetable,tickEnemyLocomotion} from './systems/enemy-locomotion.js';
-import {assignTerritory,territoryTarget,tickHabitatBossRegeneration} from './systems/territories.js';
+import {assignTerritory,territoryTarget} from './systems/territories.js';
 import {generateLoot,normalDrop,queueBossReward,hitSetMultiplier,rollRarity} from './systems/sets-loot.js';
 import {combatTime,isaacState,activeMutation,syncMutations} from './systems/mutations.js';
 import {prepareIsaacAttack,isaacHit,isaacDeath,conductorAttack,slimePace,tickIsaacCombat} from './systems/isaac-combat.js';
@@ -347,7 +347,7 @@ export function step(s,dt,input={x:0,z:0}){
  if(s.dead||s.pending||s.bossRewards?.length||s.won&&!s.continued)return;
  const profile=s.performanceEnabled?{start:performance.now(),at:performance.now(),values:{}}:null,mark=name=>{if(!profile)return;const now=performance.now();profile.values[name]=now-profile.at;profile.at=now;};
  syncSetState(s);if(!s.encounters)prepareEncounters(s);syncMutations(s);discoverEncounters(s);const challengeWasActive=!!s.encounters.active;
- if(challengeWasActive)isaacState(s).extraTime+=dt;else s.time+=dt;s.hitAgo+=dt;tickHabitatBossRegeneration(s,dt);const st=stats(s),length=Math.hypot(input.x,input.z)||1,pace=movementFactor(s,st)*enemyAcidPace(s),oldPlayer={...s.player};
+ if(challengeWasActive)isaacState(s).extraTime+=dt;else s.time+=dt;s.hitAgo+=dt;const st=stats(s),length=Math.hypot(input.x,input.z)||1,pace=movementFactor(s,st)*enemyAcidPace(s),oldPlayer={...s.player};
  const springLeaping=combatTime(s)<(s.extraParts?.springLeapUntil||0);
  if(!springLeaping){if(s.world.heightAt)movePlayer(s,dt,input.x/Math.max(1,length)*st.speed*pace*dt,input.z/Math.max(1,length)*st.speed*pace*dt,st.overloaded);else moveCreature(s,s.player,input.x/Math.max(1,length)*st.speed*pace*dt,input.z/Math.max(1,length)*st.speed*pace*dt);}
  containChallenge(s,oldPlayer);tickEnemyAcidPools(s,dt,(damage,source)=>receiveHit(s,st,{damage,cause:'acid-puddle',source,fractional:true}));if(s.dead)return;

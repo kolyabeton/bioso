@@ -17,6 +17,10 @@ export const MISSION_ENEMY_MULTIPLIER=2;
 export const MISSION_BOSS_WAVE_SIZE=3;
 export const MISSION_BOSS_WAVE_INTERVAL=10;
 export const MISSION_BOSS_REINFORCEMENT_CAP=12;
+export const MISSION_EIGHTH_FLOOR_ELITES=5;
+/** Item 18: the final-room boss also carries the per-room strength curve, which
+ * reaches about 5x by room 25. Halve its health so the fight is finishable. */
+export const MISSION_BOSS_HP_SCALE=.5;
 export const MISSION_ENTRY_MIN_Z_OFFSET=-24;
 export const MISSION_ENTRY_MAX_Z_OFFSET=-16;
 export const MISSION_ROOM_STRENGTH_STEP=.07;
@@ -137,7 +141,7 @@ export function tickMissionFloors(s,{spawn,loot}={}){
   floor.entered=true;floor.state=group.state='active';
   	  const {eliteRole}=floor.roster,elitePosition=missionEntryPosition(s.world,floor,0);
   if(floor.index===m.floors-1){
-   const enemy=strengthenMissionEnemy(spawn?.('boss',{x:0,z:floor.z-8},'mass',missionRoomThreat(m,floor.index)+m.difficulty*360),floor.index),elite=defender('elite',elitePosition,eliteRole,floor.roster.eliteRecipeId);if(enemy){enemy.bossDesignId=m.bossId;enemy.bossName=m.bossName;setupMissionBoss(s,enemy,m.bossId);enemy.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:enemy.id,kind:enemy.kind,x:enemy.x,y:enemy.y??0,z:enemy.z});}addEnemy(enemy);addEnemy(elite,{guaranteedPartDrop:true,arriving:true});m.bossSpawned=true;
+   const enemy=strengthenMissionEnemy(spawn?.('boss',{x:0,z:floor.z-8},'mass',missionRoomThreat(m,floor.index)+m.difficulty*360),floor.index),elite=defender('elite',elitePosition,eliteRole,floor.roster.eliteRecipeId);if(enemy){enemy.hp=enemy.maxHp=Math.max(1,Math.round(enemy.maxHp*MISSION_BOSS_HP_SCALE));enemy.bossDesignId=m.bossId;enemy.bossName=m.bossName;setupMissionBoss(s,enemy,m.bossId);enemy.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:enemy.id,kind:enemy.kind,x:enemy.x,y:enemy.y??0,z:enemy.z});}addEnemy(enemy);addEnemy(elite,{guaranteedPartDrop:true,arriving:true});m.bossSpawned=true;
    floor.bossWave={index:0,nextAt:combatTime(s)+MISSION_BOSS_WAVE_INTERVAL};
    s.events.push({type:'notice',text:`Босс: ${m.bossName}`});
   }else{
@@ -147,7 +151,8 @@ export function tickMissionFloors(s,{spawn,loot}={}){
     const slot=index%roles.length,role=roles[slot],p=missionEntryPosition(s.world,floor,index+1);
     addEnemy(defender('normal',p,role,recipes[slot]),{arriving:true});
    }
-   addEnemy(defender('elite',elitePosition,eliteRole,floor.roster.eliteRecipeId),{guaranteedPartDrop:true,guaranteedPartKind:floor.index===0?'arm':null,arriving:true});
+   const eliteCount=(floor.index+1)%8===0?MISSION_EIGHTH_FLOOR_ELITES:1;
+   for(let index=0;index<eliteCount;index++)addEnemy(defender('elite',missionEntryPosition(s.world,floor,index),eliteRole,floor.roster.eliteRecipeId),{guaranteedPartDrop:true,guaranteedPartKind:floor.index===0?'arm':null,arriving:true});
    s.events.push({type:'notice',text:`Комната ${floor.index+1} · ${floor.roster.tacticName} · ${floor.roster.enhancementName}`});
   }
  }

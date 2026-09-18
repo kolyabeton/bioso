@@ -86,6 +86,7 @@ export function warningHits(w,target){
  const dx=target.x-w.x,dz=target.z-w.z,d=Math.hypot(dx,dz);
  if(Math.abs((target.y??0)-(w.y??0))>1.5)return false;
  if(w.mode==='acid'||w.mode==='area')return d<=w.radius+.35;
+ if(w.mode==='laser'){const along=dx*w.dx+dz*w.dz,cross=Math.abs(dx*w.dz-dz*w.dx);return along>=0&&along<=w.range&&cross<=(w.width||1)*.5+.35;}
  return d<=w.radius+.35&&(d<.01||(dx*w.dx+dz*w.dz)/d>=Math.cos(w.angle/2));
 }
 /** Resolves one weapon at a time; bosses retain readable warnings for every authored move. */
