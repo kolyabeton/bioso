@@ -3,6 +3,7 @@ export function soulRecoveryRows(stats){
  return [
   ['Регенерация',stats.regen?`+${stats.regenAmount||1} HP / ${stats.regenDelay.toFixed(1)} с${stats.regenPersistsThroughDamage?'':' без урона'}`:'Нет'],
   ...(continuous>0?[['Восстановление корней',`${Number((continuous*100).toFixed(1)).toString().replace('.',',')}% здоровья/с`]]:[]),
+  ...(Number(stats.armorRepairPerSecond)>0?[['Ремонт брони',`${Number((stats.armorRepairPerSecond*100).toFixed(1)).toString().replace('.',',')}% брони/с`]]:[]),
   ...(stats.setRegen?[['Живые ткани','+1 HP / 12 с']]:[]),
  ];
 }

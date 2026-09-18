@@ -47,10 +47,15 @@ test('70% dodge and capped stats reject ineffective purchases without spending',
  near(stats(r).regenDelay,15);near(stats(r).regenPerSecond,.04*r.legs.filter(Boolean).length);assert.ok(upgrade(r,r.organs[0].id,'regenRate',true));
 });
 test('repair and regeneration retain timer fractions; purchases never heal or fill new armor',()=>{
- for(const key of ['regen','repairGland']){const s=fixture(key),p=s.organs[0];s.hp--;s.health.missing=1;s.health.armorSpent=1;tickHealth(s,stats(s));s.time=5;const prop=key==='regen'?'regenAt':'armorRepairAt',duration=key==='regen'?'regenDelay':'armorRepairDelay',old=s.health[duration],remaining=(s.health[prop]-5)/old,hp=s.hp,spent=s.health.armorSpent;
-  assert.ok(upgrade(s,p.id,ORGAN_UPGRADE_STATS[key],true));near((s.health[prop]-5)/s.health[duration],remaining);tickHealth(s,stats(s));assert.equal(s.hp,hp);assert.equal(s.health.armorSpent,spent);
- }
- const s=fixture('armor'),p=s.organs[0];s.health.armorSpent=.5;const before=armorRemaining(s,stats(s).armor);assert.ok(upgrade(s,p.id,'plateCapacity',true));near(armorRemaining(s,stats(s).armor),before);s.time=15;tickHealth(s,stats(s));near(armorRemaining(s,stats(s).armor),before+.5);
+ {const s=fixture('regen'),p=s.organs[0];s.hp--;s.health.missing=1;s.health.armorSpent=1;tickHealth(s,stats(s));s.time=5;
+  const old=s.health.regenDelay,remaining=(s.health.regenAt-5)/old,hp=s.hp,spent=s.health.armorSpent;
+  assert.ok(upgrade(s,p.id,ORGAN_UPGRADE_STATS.regen,true));near((s.health.regenAt-5)/s.health.regenDelay,remaining);
+  tickHealth(s,stats(s));assert.equal(s.hp,hp);assert.equal(s.health.armorSpent,spent);}
+ const s=fixture('armor'),p=s.organs[0];s.health.armorSpent=.5;const before=armorRemaining(s,stats(s).armor);
+ assert.ok(upgrade(s,p.id,'plateCapacity',true));near(armorRemaining(s,stats(s).armor),before);
+ // Continuous repair closes the spent half plate; tickHealth credits at most one second per call.
+ const st=stats(s);for(let i=0;i<80;i++){s.time+=.25;tickHealth(s,st);}
+ assert.ok(armorRemaining(s,st.armor)>before+.4,`${armorRemaining(s,st.armor)} should approach ${before+.5}`);
 });
 test('regeneration applies weighted upgrade multiplier after roots without amplifying their subtraction',()=>{
  const s=fixture('regen'),p=s.organs[0],q=createPart(s,'regen',5);s.organs=[p,q];s.legs[0]=createPart(s,'root');s.legs[0].upgrades.regen=1;const base=regenerationDelay(s);p.upgrades.regenRate=20;near(regenerationDelay(s),base/((1.6+1.8)/2.8));q.upgrades.regenRate=20;near(regenerationDelay(s),Math.max(.5,base/1.6));

@@ -127,7 +127,8 @@ test('slime snapshots on attack and larvae snapshot organ power when summoned',(
  near(e.slimeUntil,3.9);near(s.isaac.larvae[0].damage,7.8);assert.equal(e.clutch,undefined);
 });
 test('shield recharge and armor capacity use boosted organs without extra HP',()=>{
- const s=organic();s.organs=['shield','armor','stabilizer','digestion'].map(k=>createPart(s,k));const st=stats(s);assert.equal(st.hp,4);assert.equal(st.armor,3);near(st.armorRepairDelay,15/1.3);tickHealth(s,st);near(s.organs[0].shieldReadyAt,15/1.3);s.time=15/1.3;tickHealth(s,st);assert.equal(receiveHit(s,st),'shield');assert.equal(s.organs[0].shieldCharge,0);
+ const s=organic();s.organs=['shield','armor','stabilizer','digestion'].map(k=>createPart(s,k));const st=stats(s);assert.equal(st.hp,4);assert.equal(st.armor,3);// Item 2: armour repairs continuously, and the Mason's organ boost scales the rate.
+ near(st.armorRepairPerSecond,.01*1.3);near(st.armorRepairDelay,1/(.01*1.3));tickHealth(s,st);near(s.organs[0].shieldReadyAt,15/1.3);s.time=15/1.3;tickHealth(s,st);assert.equal(receiveHit(s,st),'shield');assert.equal(s.organs[0].shieldCharge,0);
 });
 test('reverse heart impulse uses boosted power without recursively creating pulses',()=>{
  const s=organic();s.organs=['reverseHeart','stabilizer','regen','digestion'].map(k=>createPart(s,k));s.isaac={deals:{organs:1},pulses:1,pulseDamage:2,larvae:[],slimePools:[]};s.enemies=[{hp:1000,x:1,y:0,z:0}];let total=0;tickIsaacCombat(s,0,(e,d)=>total+=d);near(total,weaponStats(s,s.arms[0]).damage*2.6);assert.equal(s.isaac.pulses,0);

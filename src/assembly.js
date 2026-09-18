@@ -81,6 +81,7 @@ export function continuousRecoveryRate(p,stat){
  return CONTINUOUS_REGEN_BASE+CONTINUOUS_REGEN_STEP*(tier-1+upgrades);
 }
 /** Rootwalker legs heal continuously; armour parts still use their repair cycle. */
+export const armorRegenPerSecond=s=>(s?.organs||[]).filter(p=>p?.key==='armor').reduce((sum,p)=>sum+continuousRecoveryRate(p,'plateCapacity'),0);
 export const rootRegenPerSecond=s=>(s?.legs||[]).filter(p=>p?.key==='root').reduce((sum,p)=>sum+continuousRecoveryRate(p,'regen'),0);
 export const legHealth=p=>{
  const d=def(p),tier=Math.max(1,Math.min(5,Math.floor(p.tier??1)));
@@ -97,8 +98,8 @@ export function stats(s){
  const hp=HEALTH.base+bodyHealth(s.body)+s.legs.filter(Boolean).reduce((sum,p)=>sum+legHealth(p),0)+bodyBonus.hp+sets.hp+(b.hp||0)-(s.isaac?.deals.hpCost||0),armorBase=.5+sets.armor+list.reduce((n,p)=>n+(p.key==='armor'||def(p).kind==='leg'?0:(def(p).armor||0)/20*(1+addBonus(p,'armor')))+(p.modifier==='armored'?1:0)+affixBonus(p,'armor'),0)+(b.armor||0),armor=Math.min(hp,armorBase+armorPlateBase+legArmorBase+(armorBase+armorPlateBase+legArmorBase>.5?(b.movingArmor||0):0)+.5*(s.isaac?.deals.armor||0));
  const speed=s.legs.filter(Boolean).reduce((sum,p)=>sum+legSpeed(p,b.speed||0),0)/body.legs*(1+bodyBonus.speed+sets.speed);
  const carriedWeight=load(s),maxWeight=capacity(s.body)+20*(s.isaac?.deals.capacity||0),loadFactor=weightSpeedFactor(carriedWeight,maxWeight);
- const shields=s.organs.filter(p=>p?.key==='shield').reduce((sum,p)=>sum+defensiveOrganHitCapacity(s,p),0),regenerators=s.organs.filter(p=>p?.key==='regen').length,regenPersistsThroughDamage=s.legs.some(p=>p?.key==='root'),plates=s.organs.filter(p=>p?.key==='armor'),armorRepairAmount=.5*plates.length,armorRepairRate=.5*plates.length,armorRepairDelay=armorRepairAmount?ARMOR_REPAIR_SECONDS*armorRepairAmount/armorRepairRate/organBoost:ARMOR_REPAIR_SECONDS/organBoost,dodge=Math.min(MAX_DODGE_CHANCE,(b.dodge||0)+(bodyBonus.dodge||0)+.1*organPower(s,'reflexNerve'));
- return{hp,armor,dodge,turnSpeed:bodyTurnSpeed(s.body,maxWeight),capacity:maxWeight,weight:carriedWeight,loadFactor,overloaded:loadFactor===0,speed:speed*(1+.15*(s.isaac?.deals.speed||0))*(1+affix('movement'))*loadFactor*(inMire(s)?1.25:1),shieldMax:shields+(sets.barrier?1:0),setRegen:sets.tissue,regen:!!(regenerators||b.regen),regenPersistsThroughDamage,regenPerSecond:rootRegenPerSecond(s)*organBoost,regenAmount:Math.max(1,b.regen||0),regenDelay:regenerationDelay(s),armorRepairAmount,armorRepairDelay,shieldRate:organBoost/setBonuses(s).shieldDelay,projectile:1+.3*organPower(s,'stabilizer'),organEffect:organBoost,rate:affix('rate')+bodyBonus.rate+sets.rate+.15*organPower(s,'accelerator')+(inMire(s)?.25:0),bodyFactor:f,revive:b.revive||0,pickup:7*(1+(b.pickup||0)+setBonuses(s).pickup+affix('pickup'))};
+ const shields=s.organs.filter(p=>p?.key==='shield').reduce((sum,p)=>sum+defensiveOrganHitCapacity(s,p),0),regenerators=s.organs.filter(p=>p?.key==='regen').length,regenPersistsThroughDamage=s.legs.some(p=>p?.key==='root'),armorRepairPerSecond=armorRegenPerSecond(s)*organBoost,dodge=Math.min(MAX_DODGE_CHANCE,(b.dodge||0)+(bodyBonus.dodge||0)+.1*organPower(s,'reflexNerve'));
+ return{hp,armor,dodge,turnSpeed:bodyTurnSpeed(s.body,maxWeight),capacity:maxWeight,weight:carriedWeight,loadFactor,overloaded:loadFactor===0,speed:speed*(1+.15*(s.isaac?.deals.speed||0))*(1+affix('movement'))*loadFactor*(inMire(s)?1.25:1),shieldMax:shields+(sets.barrier?1:0),setRegen:sets.tissue,regen:!!(regenerators||b.regen),regenPersistsThroughDamage,regenPerSecond:rootRegenPerSecond(s)*organBoost,regenAmount:Math.max(1,b.regen||0),regenDelay:regenerationDelay(s),armorRepairPerSecond,armorRepairAmount:armorRepairPerSecond*armor,armorRepairDelay:armorRepairPerSecond>0?1/armorRepairPerSecond:Infinity,shieldRate:organBoost/setBonuses(s).shieldDelay,projectile:1+.3*organPower(s,'stabilizer'),organEffect:organBoost,rate:affix('rate')+bodyBonus.rate+sets.rate+.15*organPower(s,'accelerator')+(inMire(s)?.25:0),bodyFactor:f,revive:b.revive||0,pickup:7*(1+(b.pickup||0)+setBonuses(s).pickup+affix('pickup'))};
 }
 export function weaponStats(s,p,st=stats(s)){
  if(p.key==='drone'){const d=def(p),base=droneStats(p),swarm=summonTuning(s,modifiers(s));return{...d,partId:p.id,damage:base.damage*swarm.damage,interval:base.interval/swarm.rate,range:swarm.droneSearch,crit:0,critPower:1,speed:0,extra:0};}
@@ -138,7 +139,6 @@ export function upgradeHasEffect(s,p,stat){
  if(stat==='sensorDodge')return after.dodge-before.dodge>1e-9;
  if(stat==='plateCapacity')return after.armor-before.armor>1e-9;
  if(stat==='regenRate')return before.regenDelay-after.regenDelay>1e-9;
- if(stat==='repairRate')return Math.max(.5,before.armorRepairDelay)-Math.max(.5,after.armorRepairDelay)>1e-9;
  if(stat==='traitBoost')return Object.keys(bodyBonuses(next)).some(key=>Math.abs((bodyBonuses(next)[key]||0)-(bodyBonuses(s)[key]||0))>1e-9);
  return false;
 }
@@ -149,7 +149,6 @@ export function upgrade(s,id,stat,paid=false){
  const after=stats(s),now=combatTime(s),h=s.health;
  if(stat==='plateCapacity'&&h)h.armorSpent=(h.armorSpent||0)+Math.max(0,after.armor-old.armor);
  if(stat==='regenRate'&&h){if(h.regenAt!=null)h.regenAt=rescaleRecovery(h.regenAt,h.regenDelay??old.regenDelay,after.regenDelay,now);h.regenDelay=after.regenDelay;}
- if(stat==='repairRate'&&h){const delay=Math.max(.5,after.armorRepairDelay);if(h.armorRepairAt!=null)h.armorRepairAt=rescaleRecovery(h.armorRepairAt,h.armorRepairDelay??old.armorRepairDelay,delay,now);h.armorRepairDelay=delay;}
  preserveHealth(s,old.hp,after.hp);return true;
 }
 export function equip(s,id,slot){

@@ -6,7 +6,7 @@ import {combatTime,isaacState,healingSuppressed} from './mutations.js';
 import {HEALTH} from './balance.js';
 import {ARMOR_REPAIR_SECONDS,REGEN_MIN_SECONDS,SHIELD_RECHARGE_SECONDS} from './health-tuning.js';
 import {resolveCounterShellHit} from './ability-combat.js';
-export function createHealth(){return{invulnerableUntil:0,armorSpent:0,continuousAt:null,continuousHealed:0,armorRepairAt:ARMOR_REPAIR_SECONDS,armorRepairDelay:ARMOR_REPAIR_SECONDS,regenAt:HEALTH.regenDelay,vampireHits:0,vampireAt:0,revived:false,abilityRevivesUsed:0,missing:0,hits:0,blocked:0,dodged:0,lastCause:null};}
+export function createHealth(){return{invulnerableUntil:0,armorSpent:0,continuousAt:null,continuousHealed:0,regenAt:HEALTH.regenDelay,vampireHits:0,vampireAt:0,revived:false,abilityRevivesUsed:0,missing:0,hits:0,blocked:0,dodged:0,lastCause:null};}
 const state=s=>s.health??=createHealth();
 export const armorRemaining=(s,capacity)=>Math.min(s.hp,Math.max(0,capacity-(s.health?.armorSpent||0)));
 export const shieldRechargeDelay=(s,p)=>Math.max(REGEN_MIN_SECONDS,(SHIELD_RECHARGE_SECONDS-Math.max(0,Math.min(4,(p?.tier??1)-1))-Math.max(0,Math.min(10,p?.upgrades?.shieldRecharge||0)))*(setBonuses(s).shieldDelay/SHIELD_RECHARGE_SECONDS)/organEffect(s));
@@ -53,6 +53,13 @@ export function vampireHit(s,st){if(s.dead||s.hp<=0||healingSuppressed(s))return
 function tickContinuousRecovery(s,st){
  const h=state(s),now=combatTime(s),last=h.continuousAt??now;h.continuousAt=now;
  const dt=Math.max(0,Math.min(1,now-last));if(!dt)return;
+ const armorRate=Math.max(0,Number(st.armorRepairPerSecond)||0);
+ if(armorRate>0&&(h.armorSpent||0)>0){
+  const before=armorRemaining(s,st.armor);
+  h.armorSpent=Math.max(0,(h.armorSpent||0)-armorRate*st.armor*dt);
+  const repaired=armorRemaining(s,st.armor)-before;
+  if(repaired>0)soulProc(s,'armorRepair',s.player,{amount:repaired});
+ }
  const healthRate=Math.max(0,Number(st.regenPerSecond)||0);
  if(healthRate>0&&s.hp<st.hp&&!healingSuppressed(s)){
   const before=s.hp;heal(s,st.hp,healthRate*st.hp*dt);
@@ -63,10 +70,6 @@ export function tickHealth(s,st){
  if(s.hp<=0)return;
  tickContinuousRecovery(s,st);const sets=syncSetState(s),h=state(s),shields=s.organs.filter(p=>p?.key==='shield');
  for(const shield of shields)syncShieldCharge(s,shield);
- const armorRepairAmount=Math.max(0,Number(st.armorRepairAmount)||0),armorRepairDelay=Math.max(REGEN_MIN_SECONDS,Number(st.armorRepairDelay)||ARMOR_REPAIR_SECONDS);
- const previousArmorRepairDelay=h.armorRepairDelay??ARMOR_REPAIR_SECONDS;if(h.armorRepairAt==null)h.armorRepairAt=combatTime(s)+armorRepairDelay;else if(armorRepairDelay!==previousArmorRepairDelay){const remaining=Math.max(0,Math.min(1,(h.armorRepairAt-combatTime(s))/previousArmorRepairDelay));h.armorRepairAt=combatTime(s)+armorRepairDelay*remaining;}h.armorRepairDelay=armorRepairDelay;
- if(armorRepairAmount<=0)h.armorRepairAt=combatTime(s)+armorRepairDelay;
- else if(combatTime(s)>=h.armorRepairAt){const before=armorRemaining(s,st.armor);h.armorSpent=Math.max(0,(h.armorSpent||0)-armorRepairAmount);const repaired=armorRemaining(s,st.armor)-before;if(repaired>0)soulProc(s,'armorRepair',s.player,{amount:repaired});h.armorRepairAt=combatTime(s)+armorRepairDelay;}
  if(sets.active.rootwalker&&combatTime(s)>=sets.tissueAt){const before=s.hp;if(s.hp<st.hp)heal(s,st.hp,1);if(s.hp>before)soulProc(s,'regen',s.player,{amount:s.hp-before});sets.tissueAt=combatTime(s)+SET_TIMING.tissue;}
  const delay=st.regenDelay??HEALTH.regenDelay;
  h.regenAt+=delay-(h.regenDelay??HEALTH.regenDelay);h.regenDelay=delay;
@@ -80,7 +83,11 @@ export function healthView(s,max,armorMax=0,regeneration=null){
  const regenActive=!!((regeneration?.regen||useTissue)&&s.hp>0&&s.hp<max&&!healingSuppressed(s)&&Number.isFinite(regenAt));
  const regenProgress=regenActive?Math.max(0,Math.min(1,1-(regenAt-now)/regenDelay)):0,regenValue=Math.min(max,s.hp+regenAmount*regenProgress);
  const segments=Array.from({length:Math.ceil(max)},(_,i)=>i<s.hp),regenCells=segments.map((_,i)=>{const start=Math.max(0,Math.min(1,s.hp-i)),fill=regenActive?Math.max(0,Math.min(1,regenValue-i)-start):0;return{start,fill};});
- const armor=armorRemaining(s,armorMax),repairAt=s.health?.armorRepairAt,repairDelay=s.health?.armorRepairDelay||ARMOR_REPAIR_SECONDS,armorRepairActive=armor<armorMax&&Number.isFinite(repairAt),armorRepairProgress=armorRepairActive?Math.max(0,Math.min(1,1-(repairAt-now)/repairDelay)):0;
+ const armor=armorRemaining(s,armorMax),armorRate=Math.max(0,Number(regeneration?.armorRepairPerSecond)||0),spent=Math.max(0,s.health?.armorSpent||0);
+ const armorRepairActive=armor<armorMax&&armorRate>0&&spent>0;
+ // Continuous repair has no cycle, so the bar fills the half plate being restored.
+ const armorRepairProgress=armorRepairActive?Math.max(0,Math.min(1,((.5-(spent%.5))%.5)/.5)):0;
+ const armorRepairSecondsLeft=armorRepairActive&&armorMax>0?spent/(armorRate*armorMax):0;
  const shieldMax=pickupCharges+shields.reduce((sum,p)=>sum+defensiveOrganHitCapacity(s,p),0)+(barrier.active?1:0);
- return{current:s.hp,max,segments,armor,armorMax,armorRepairActive,armorRepairProgress,armorRepairSecondsLeft:armorRepairActive?Math.max(0,repairAt-now):0,shield:pickupCharges+ready>0,shieldCharges:pickupCharges+ready,shieldMax,shieldEquipped:shieldMax>0,shieldProgress:progress,setBarrier:barrier,invulnerable:now<(s.health?.invulnerableUntil||0),regenActive,regenProgress,regenSecondsLeft:regenActive?Math.max(0,regenAt-now):0,regenAmount,regenCells};
+ return{current:s.hp,max,segments,armor,armorMax,armorRepairActive,armorRepairProgress,armorRepairSecondsLeft,shield:pickupCharges+ready>0,shieldCharges:pickupCharges+ready,shieldMax,shieldEquipped:shieldMax>0,shieldProgress:progress,setBarrier:barrier,invulnerable:now<(s.health?.invulnerableUntil||0),regenActive,regenProgress,regenSecondsLeft:regenActive?Math.max(0,regenAt-now):0,regenAmount,regenCells};
 }

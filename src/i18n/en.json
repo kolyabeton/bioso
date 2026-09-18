@@ -451,7 +451,7 @@
   "Броневой имплант": "Armor Implant",
   "Бронепластины": "Armor Plates",
   "Ремонтная железа": "Repair Gland",
-  "Ремонт брони": "Armor repair",
+  "Ремонт брони": "Armour repair",
   "Бронированная": "Armored",
   "Броня": "Armor",
   "Броня детали": "Part armor",
@@ -2590,5 +2590,10 @@
   "Выживание закрыто": "Survival is locked",
   "Выживание открывается после первой миссии.": "Survival opens after the first mission.",
   "Миссия учит сборке и выдаёт Компостер, без которого в выживании нечем перерабатывать детали.": "The mission teaches assembly and hands over the Composter, without which nothing can be recycled in survival.",
-  "К миссиям": "To the missions"
+  "К миссиям": "To the missions",
+  "Добавляет броню и непрерывно восстанавливает": "Adds armour and continuously restores",
+  "запаса брони в секунду. Ранг и каждое улучшение добавляют": "of the armour pool per second. Rank and each upgrade add",
+  "п.п. и увеличивают запас. Несколько Пластин складываются": "points and raise the pool. Several Plates stack",
+  "запаса брони в секунду; попадания не прерывают восстановление": "of the armour pool per second; hits do not interrupt the recovery",
+  "брони/с": "armour/s"
 }
