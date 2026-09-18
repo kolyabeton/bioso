@@ -163,9 +163,12 @@ export function swapBody(s,id,keep){
  for(const group of ['arms','legs','organs']){s.inventory.push(...s[group].filter(q=>q&&!selection[group].includes(q)));s[group]=Array.from({length:slotCount(s,p,group)},(_,i)=>selection[group][i]||null);}
  preserveHealth(s,oldMax,stats(s).hp);return true;
 }
-export function canDrop(s,p){return !!p&&p!==s.body&&!boundPart(p)&&carried(s).includes(p);}
-export function drop(s,id){
- const p=carried(s).find(p=>p.id===id);if(!canDrop(s,p))return false;
+/** Item 24: the last installed leg is protected by default, so neither the drop
+ * nor the recycle action is offered for it and the hero cannot be left legless. */
+export const isLastInstalledLeg=(s,p)=>def(p).kind==='leg'&&(s?.legs||[]).includes(p)&&(s?.legs||[]).filter(Boolean).length<=1;
+export function canDrop(s,p,{allowLastLeg=false}={}){return !!p&&p!==s.body&&!boundPart(p)&&carried(s).includes(p)&&(allowLastLeg||!isLastInstalledLeg(s,p));}
+export function drop(s,id,options){
+ const p=carried(s).find(p=>p.id===id);if(!canDrop(s,p,options))return false;
  p.setAssignmentComplete=true;delete p.setCandidateId;
  const oldHp=stats(s).hp;
  s.inventory=s.inventory.filter(q=>q!==p);

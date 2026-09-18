@@ -4,6 +4,8 @@ import {LOOT_RULES} from './sets-loot.js';
 export const HEALTH = Object.freeze({base:1,invulnerability:1,regenDelay:REGEN_INTERVAL_SECONDS,vampireHits:10,vampireDelay:0,shieldDelay:SHIELD_RECHARGE_SECONDS});
 // Sell price is additive: 4 biomass at rank I common, then +2 per rank and +2 per rarity step.
 export const ECONOMY = Object.freeze({upgradeBase:12,upgradeStep:6,normalLoot:LOOT_RULES.normalChance,digest:[0,4,6,8,10,12],digestRarityBonus:{common:0,uncommon:2,rare:4,relic:6},digestRefund:.5,tierLevels:[1,7,13,20,27]});
+/** Item 21: survival elites dropped an item every time; the roll is now 30% rarer. */
+export const SURVIVAL_ELITE_DROP_CHANCE=.7;
 export const upgradeCost = ranks => ECONOMY.upgradeBase + ECONOMY.upgradeStep*ranks;
 // Player-reported survival pacing target: displayed level stays near elapsed minutes.
 export const XP_PICKUP_MULTIPLIER=.5;

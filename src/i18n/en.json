@@ -2568,5 +2568,7 @@
   "Установлен Кожух: он выдерживает": "Casing installed: it withstands",
   "Установлен Кожух": "Casing installed",
   "Кожух выдерживает": "The Casing withstands",
-  "за": "for"
+  "за": "for",
+  "Нет оружия с магазином": "No weapon with a magazine",
+  "Скорость перезарядки": "Reload speed"
 }

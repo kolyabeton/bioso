@@ -20,7 +20,7 @@ test('installed legs stack HP, inventory does not; swapping and removing preserv
  s.hp-=1;assert.ok(equip(s,p.id,0));assert.equal(stats(s).hp,base+.5);assert.equal(s.hp,base-.5);
  assert.ok(equip(s,q.id,1));assert.equal(stats(s).hp,base+1.5);assert.equal(s.hp,base+.5);
  assert.ok(unequip(s,'legs',0));assert.equal(stats(s).hp,base+1);assert.equal(s.hp,base);
- assert.ok(drop(s,q.id));assert.equal(stats(s).hp,base);assert.equal(s.hp,base-1);
+ assert.ok(drop(s,q.id,{allowLastLeg:true}));assert.equal(stats(s).hp,base);assert.equal(s.hp,base-1);
 });
 test('half HP survives damage and healing and is represented in the actual HUD markup',()=>{
  const s=createRun();s.rng=()=>1;s.legs=[null,null];s.hp=stats(s).hp;const base=stats(s).hp,p=createPart(s,'root',2);s.inventory.push(p);equip(s,p.id,0);const st=stats(s);

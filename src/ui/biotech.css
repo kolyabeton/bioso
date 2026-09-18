@@ -66,10 +66,16 @@ body .event-nearby,body #objective{box-sizing:border-box;left:50%;right:auto;wid
 /* Health and protection share the canonical cell geometry and mobile bounds. */
 .ui-health-display{display:flex;align-items:center;gap:5px;width:100%;height:100%;min-width:0}
 .ui-health-display .ui-health-segments{height:100%;min-width:0;flex:1}
+.ui-health-bar>.ui-health-segments,.ui-health-bar>.ui-health-progress{flex:1;min-width:0}
 .ui-health-segments>i{position:relative;min-width:0}
 .ui-health-regen{position:absolute;top:0;bottom:0;left:0;width:0;z-index:0;border-radius:inherit;background:linear-gradient(100deg,#70a993,#c8e2c9);box-shadow:inset 0 0 0 1px #d8f1dd55,0 0 6px #9adfcd3d;transition:left 120ms linear,width 120ms linear;pointer-events:none}
 .ui-health-segments>i.is-regenerating{border-color:#9dcbb8;box-shadow:0 0 5px #9adfcd24}
 .ui-health-segments>i.is-armored:after{content:'';position:absolute;inset:-1px -1px 2px;border:1px solid #bcc5c5;border-radius:inherit;background:linear-gradient(130deg,transparent 47%,#424f52 48%,#d1d8d5 51%,transparent 52%),linear-gradient(#aab4b3,#667476 48%,#879391);box-shadow:inset 0 1px #e0e5de66,0 1px 2px #071714aa}
+.ui-health-progress{position:relative;display:block;flex:1;min-width:0;height:100%;overflow:hidden;box-sizing:border-box;border:1px solid #789b8b;border-radius:5px 1px 5px 1px;background:#243a36}
+.ui-health-progress>i{position:absolute;top:0;bottom:0;display:block;pointer-events:none}
+.ui-health-progress-fill{left:0;background:linear-gradient(100deg,#86baa5,#c8e2c9);box-shadow:0 0 5px #9adfcd20;transition:width 120ms linear}
+.ui-health-progress-regen{z-index:1;background:linear-gradient(100deg,#70a993,#c8e2c9);box-shadow:inset 0 0 0 1px #d8f1dd55,0 0 6px #9adfcd3d;transition:left 120ms linear,width 120ms linear}
+.ui-health-progress-armor{z-index:2;border-inline:1px solid #bcc5c5;background:linear-gradient(130deg,transparent 47%,#424f52 48%,#d1d8d5 51%,transparent 52%),linear-gradient(#aab4b3,#667476 48%,#879391);box-shadow:inset 0 1px #e0e5de66,0 1px 2px #071714aa}
 
 #assembly-button.is-overloaded:before{border-color:#ef706b;box-shadow:inset 0 0 0 1px #ef706b,0 0 0 1px #ef706b}
 #assembly-button.is-overloaded:after{box-shadow:inset 0 1px 1px #f2e7c94a,inset 0 -1px 2px #030b0780,0 0 0 1px #ef706b80}
@@ -79,13 +85,13 @@ body .event-nearby,body #objective{box-sizing:border-box;left:50%;right:auto;wid
 
 .ui-health-segments>i.is-half-armored:after{clip-path:polygon(0 0,60% 0,40% 100%,0 100%)}
 
-.ui-health-display{position:relative}
+.ui-health-bar{position:relative;display:flex;align-items:center;flex:1;min-width:0;height:100%}
 .ui-shield-ring{position:absolute;inset:-4px;width:calc(100% + 8px);height:calc(100% + 8px);overflow:visible;pointer-events:none}
 .ui-shield-ring rect{fill:none;stroke:var(--ui-mint);stroke-width:1.25;vector-effect:non-scaling-stroke}
 .ui-shield-track{opacity:.18}
 .ui-shield-charge{filter:drop-shadow(0 0 2px #9adfcd99);transition:stroke-dasharray .1s linear}
 .has-shield .ui-shield-charge{stroke-width:1.5}
-.ui-shield-count{position:absolute;right:3px;top:50%;z-index:1;transform:translateY(-50%);font:600 8px/1 var(--ui-font);color:var(--ui-text);text-shadow:0 1px 2px #071714}
+.ui-shield-count{flex:0 0 auto;z-index:1;font:600 9px/1 var(--ui-font);color:var(--ui-text);text-shadow:0 1px 2px #071714}
 .vitals .vital-line:not(.progression),.vitals .hud-defense{display:none}
 
 .ui-boss-reward-list{display:grid;gap:12px}.ui-boss-reward-row{display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px;align-items:center}.ui-boss-reward-row .ui-part-card{width:64px;height:64px}.ui-boss-reward-row strong{font-size:15px;line-height:21px}.ui-boss-reward-row p{font-size:13px;line-height:19px;margin:4px 0 0}.ui-first-upgrade-guide{margin:4px 0;padding:8px;border:1px solid var(--ui-border);border-radius:8px}

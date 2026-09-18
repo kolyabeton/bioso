@@ -34,7 +34,7 @@ import {gainXP,selectAbility,rollChoices} from './systems/progression.js';
 import {createWaves,tickWaves,tickEnemyRanged,tickHostileShots} from './systems/waves.js';
 import {survivalCadenceForRun,startNextSurvivalWave,advanceSurvivalWave,survivalWavePosition,waveEliteAllowance,recordWaveElite} from './systems/survival-cadence.js';
 import {tickTimedItems} from './systems/timed-items.js';
-import {enemyBalance,ECONOMY,SURVIVAL_PRESSURE,SURVIVAL_FINAL,XP_PICKUP_MULTIPLIER,survivalPressureProfile,ACID_PUDDLE_RADIUS,ACID_PUDDLE_SLOW,ACID_PUDDLE_SECONDS} from './systems/balance.js';
+import {enemyBalance,ECONOMY,SURVIVAL_ELITE_DROP_CHANCE,SURVIVAL_PRESSURE,SURVIVAL_FINAL,XP_PICKUP_MULTIPLIER,survivalPressureProfile,ACID_PUDDLE_RADIUS,ACID_PUDDLE_SLOW,ACID_PUDDLE_SECONDS} from './systems/balance.js';
 import {onHit,onDeath,enemyPace,lightning,tickEffects} from './systems/effects.js';
 import {CATALOG,MISSIONS,SURVIVAL_UNLOCKS,WEAPON_UNLOCKS,INCREMENTS} from './catalog.js';
 import {createPart,newProfile,autoPickup,stats,weaponStats,installed,upgradeOptions,upgrade,lootTier,tierFactor,addBonus,stackedCommonNerveVolleyMultiplier} from './assembly.js';
@@ -146,7 +146,19 @@ export function hurtEnemy(s,e,damage,ignore=0,source='direct',critical=false,wea
   else queueBossReward(s,createPart,lootTier(s.level,s.rng));
  }
  else if(e.kind==='elite'){
-  {const exclude=e.guaranteedPartKind==='arm'?s.arms.filter(Boolean).map(p=>p.key):[],rarityOrder=['common','uncommon','rare','relic'];let part;if(e.dungeonElite){const quality=Array.from({length:3},()=>rollRarity(s,'elite')).sort((a,b)=>rarityOrder.indexOf(b)-rarityOrder.indexOf(a))[0];part=generateLoot(s,createPart,lootTier(s.level,s.rng),'elite',quality,true,exclude,e.guaranteedPartKind);}else part=randomLoot(s,'elite',e.guaranteedPartKind,exclude);s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part,groupId:e.groupId,missionEliteDrop:!!e.guaranteedPartDrop,dungeonLoot:!!e.dungeonElite});}
+  {const exclude=e.guaranteedPartKind==='arm'?s.arms.filter(Boolean).map(p=>p.key):[],rarityOrder=['common','uncommon','rare','relic'];
+   // Item 21: survival elites drop 30% less often. Dungeon packs and mission
+   // elites keep their guaranteed drop, so only the open survival roll changes.
+   const rolled=s.mode!=='survival'||e.dungeonElite||e.guaranteedPartDrop||s.rng()<SURVIVAL_ELITE_DROP_CHANCE;
+   if(rolled){
+    let part;
+    if(e.dungeonElite){
+     // Item 35: the pack's marked carrier always yields a legendary.
+     const quality=e.dungeonRelicDrop?'relic':Array.from({length:3},()=>rollRarity(s,'elite')).sort((a,b)=>rarityOrder.indexOf(b)-rarityOrder.indexOf(a))[0];
+     part=generateLoot(s,createPart,lootTier(s.level,s.rng),'elite',quality,true,exclude,e.guaranteedPartKind);
+    }else part=randomLoot(s,'elite',e.guaranteedPartKind,exclude);
+    s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part,groupId:e.groupId,missionEliteDrop:!!e.guaranteedPartDrop,dungeonLoot:!!e.dungeonElite});
+   }}
  }else normalDrop(s); // Preserve the established combat RNG stream; ordinary loot is suppressed.
  if(['elite','boss','final'].includes(e.kind))spawnRecoveryDrop(s,e);else if(e.kind==='normal')spawnConsumableDrop(s,e);checkUnlocks(s);s.events.push(deathEvent);if(s.mode==='survival'&&['boss','final'].includes(e.kind))selectFirstBoss(s);advanceSurvivalWave(s);return true;
 }

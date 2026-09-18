@@ -1,6 +1,7 @@
 import {weaponStats} from '../assembly.js';
 import {modifiers} from '../systems/abilities.js';
-import {setBonuses} from '../systems/sets-loot.js';
+import {setBonuses,reloadDuration} from '../systems/sets-loot.js';
+import {CATALOG} from '../catalog.js';
 import {healthView} from '../systems/health.js';
 import {loadoutDps} from './adapters.js';
 import {soulRecoveryRows} from './soul-copy.js';
@@ -10,6 +11,16 @@ const percent=(value,digits=0)=>`${(value*100).toFixed(digits)}%`;
 const signed=(value,digits=0)=>`${value<0?'−':'+'}${(Math.abs(value)*100).toFixed(digits)}%`;
 /** Weapons carry their own crit, so the panel shows the spread across equipped hands. */
 const range=(values,format)=>{const low=Math.min(...values),high=Math.max(...values);return low===high?format(low):`${format(low)} – ${format(high)}`;};
+
+/** Item 19: the panel listed attack rate but never reload speed, which comes from
+ * sets, affixes, the weapon family, the chassis and the Quick Reload ability. */
+function reloadRows(s,st){
+ const buff=modifiers(s),ability=Math.max(.2,1-(buff.weaponReload||0));
+ const armed=(s.arms||[]).filter(p=>p&&!p.disabled&&CATALOG[p.key]?.magazine);
+ if(!armed.length)return [['Скорость перезарядки','Нет оружия с магазином']];
+ const speeds=armed.map(p=>{const base=CATALOG[p.key].magazine?CATALOG[p.key].reload:0;return base?base/(reloadDuration(s,p,base)*ability):1;});
+ return [['Скорость перезарядки',range(speeds,v=>`×${v.toFixed(2)}`)]];
+}
 
 function critRows(s,st){
  const active=(s.arms||[]).filter(p=>p&&!p.disabled).map(p=>weaponStats(s,p,st)).filter(w=>w.crit>0);
@@ -36,6 +47,7 @@ export function soulStatGroups(s,st){
    ['Ближний урон',percent((buff.damage||0)+(buff.meleeDamage||0)+sets.meleeDamage)],
    ['Дальний урон',percent((buff.damage||0)+(buff.rangedDamage||0)+sets.rangedDamage)],
    ['Скорость атаки',percent(st.rate+(buff.rate||0))],
+   ...reloadRows(s,st),
    ...critRows(s,st),
    ['Скор. снарядов',`×${(st.projectile*(1+(buff.velocity||0))).toFixed(2)}`],
   ]},
