@@ -34,7 +34,7 @@ test('registered catalog items have nonempty real GLBs and only the authored bro
  const ids={};for(const [key,meta] of Object.entries(CATALOG)){
   let id;try{id=partModelId({key,setId:'wanderer'});}catch(error){assert.equal(key,'repairGland');assert.match(error.message,/No equipment model registered/);continue;}const model=await load(id),box=new T.Box3().setFromObject(model);
   assert(!box.isEmpty(),key);assert(box.getSize(new T.Vector3()).length()>0,key);
-  if(meta.kind!=='body'){ids[meta.kind]??=new Set();if(ids[meta.kind].has(id))assert.deepEqual([key,id],['broodNode','organ-parasite']);ids[meta.kind].add(id);}
+  if(meta.kind!=='body'){ids[meta.kind]??=new Set();if(ids[meta.kind].has(id))assert.ok([['broodNode','organ-parasite'],['revivalCore','organ-reverseHeart-icon-v1']].some(pair=>pair[0]===key&&pair[1]===id),`${key} shares ${id}`);ids[meta.kind].add(id);}
  }
 });
 test('real attachments fit every chassis, weapon, leg and additional six-leg configuration',async()=>{

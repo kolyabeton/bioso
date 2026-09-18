@@ -81,6 +81,7 @@ test('shield ranks improve its starting recharge and paid upgrades remove one se
 
 test('every organ rank changes its displayed core effect',()=>{
  for(const key of Object.keys(ORGANS)){
+  if(key==='revivalCore')continue; // one-shot revival does not scale with rank
   const s=createRun(),low=createPart(s,key,1),high=createPart(s,key,5);s.organs[0]=low;
   const lowEffect=itemInspectorData(s,low).rows.find(r=>r.label==='Эффект')?.value;s.organs[0]=high;
   const highEffect=itemInspectorData(s,high).rows.find(r=>r.label==='Эффект')?.value;

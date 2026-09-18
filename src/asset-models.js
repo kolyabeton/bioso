@@ -12,7 +12,9 @@ export const BODY_MODELS=Object.fromEntries(Object.keys(CHASSIS_PROFILES).map(ke
 export const ARM_MODELS={drone:['arm-drone-icon-v1'],harpoon:['arm-harpoon-icon-v1'],pistol:['arm-pistol-v1'],claws:['arm-claws-icon-v1'],fangs:['arm-fangs-icon-v1'],hammer:['arm-hammer-icon-v1'],drill:['arm-drill-icon-v1'],whip:['arm-whip-icon-v1'],seed:['arm-seed-icon-v1'],shotgun:['arm-shotgun-v2'],needle:['arm-needle-icon-v1'],rocket:['arm-rocket-icon-v1'],arc:['arm-arc-icon-v1'],acid:['arm-acid-icon-v1']};
 // Part type owns its silhouette. Set affiliation must never turn a normal leg into a root.
 export const LEG_MODELS={spring:['leg-spring-icon-v2'],runner:['leg-runner-icon-v2'],universal:['leg-universal-icon-v2'],plated:['leg-plated-icon-v2'],root:['leg-root'],swarmLeg:['leg-swarmLeg-icon-v2']};
-export const ORGAN_MODELS=Object.fromEntries(['mirrorGland','reflexNerve','returnNerve','slime','parasite','commonNerve','reverseHeart','regen','shield','armor','repairGland','broodNode','stabilizer','digestion','accelerator'].map(key=>[key,['organ-'+key+'-icon-v1']]));
+export const ORGAN_MODELS={...Object.fromEntries(['mirrorGland','reflexNerve','returnNerve','slime','parasite','commonNerve','reverseHeart','regen','shield','armor','repairGland','broodNode','stabilizer','digestion','accelerator'].map(key=>[key,['organ-'+key+'-icon-v1']])),
+ // Authored reuse: the Reanimator borrows the Pump's heart until it gets its own.
+ revivalCore:['organ-reverseHeart-icon-v1']};
 export const legModelId=p=>LEG_MODELS[p.key]?.[0];
 export const legMountOptions=(side,height)=>({size:.83,anchor:'top',rotation:[0,Math.PI,-side*.55],floorDistance:height-.03});
 const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder),cache=new Map(),errors=new Set();let loaded=0;

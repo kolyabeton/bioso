@@ -28,7 +28,7 @@ export function recordReward(s,p,source='normal'){
  l.duplicates=[...equipped(s),...s.inventory].some(q=>q!==p&&fingerprint(q)===fingerprint(p))?l.duplicates+1:0;
 }
 export function generateLoot(s,createPart,tier,source='normal',quality=null,commit=true,exclude=[],onlyKind=null){
- const rarity=quality||rollRarity(s,source),all=[...new Set([...s.profile.unlocked.filter(k=>CATALOG[k]&&!CATALOG[k].rare),'reflexNerve','returnNerve','slime','parasite','repairGland'])];
+ const rarity=quality||rollRarity(s,source),all=[...new Set([...s.profile.unlocked.filter(k=>CATALOG[k]&&!CATALOG[k].rare),'reflexNerve','returnNerve','slime','parasite','repairGland','revivalCore'])];
  let pool=(rarity==='relic'?[...new Set([...all,...rareKeys])]:all).filter(key=>partAvailable(s.profile,key));
  if(onlyKind)pool=pool.filter(key=>CATALOG[key].kind===onlyKind);
  const ownedKeys=[...equipped(s),...s.inventory].map(p=>p.key),avoidKeys=[...exclude,...(state(s).duplicates>=4?ownedKeys:[])],novel=pool.filter(k=>!avoidKeys.includes(k));if(novel.length)pool=novel;

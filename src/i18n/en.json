@@ -2581,5 +2581,10 @@
   "п.п., каждое улучшение": "points, and each upgrade",
   "п.п. Несколько Ремкомплектов складываются": "points. Several Repair Kits stack",
   "Усиление корпуса": "Chassis amplification",
-  "Несколько Ремкомплектов складываются": "Several Repair Kits stack"
+  "Несколько Ремкомплектов складываются": "Several Repair Kits stack",
+  "Реаниматор": "Reanimator",
+  "При смертельном ударе воскрешает героя с 1 делением здоровья и защитой на 2 с, затем разрушается. Одноразовый, не улучшается": "On a lethal hit it revives the hero with 1 health cell and 2 s of protection, then breaks. Single use, cannot be upgraded",
+  "Реаниматор сработал и разрушился": "The Reanimator fired and broke",
+  "При смертельном ударе воскрешает героя с": "On a lethal hit it revives the hero with",
+  "с, затем разрушается. Одноразовый, не улучшается": "s of protection, then breaks. Single use, cannot be upgraded"
 }

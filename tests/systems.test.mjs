@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRun,addXP,chooseUpgrade,receiveDamage,spawnEnemy,step,attack} from '../src/game.js';
-import {stats,weaponStats,createPart,equip,unequip,swapBody,upgrade} from '../src/assembly.js';
+import {stats,weaponStats,createPart,equip,unequip,swapBody,upgrade,upgradeOptions} from '../src/assembly.js';
 import {ABILITIES,FALLBACKS,abilityLevel,learn,modifiers,attackTriggers} from '../src/systems/abilities.js';
 import {eligible,rollChoices,abilityCards,xpRequired} from '../src/systems/progression.js';
 import {tickHealth,vampireHit,healthView} from '../src/systems/health.js';
@@ -86,4 +86,22 @@ test('late XP pacing keeps thresholds increasing and preserves overflow across t
   assert.equal(abilityCards(s).length,5);
  }
  assert.equal(xpRequired(1),9);assert.equal(xpRequired(2),22);
+});
+
+/** Item 20: the Reanimator organ replaces "Second Life" with a consumable. */
+test('the Reanimator revives once, is destroyed, and cannot be upgraded',()=>{
+ const s=run();s.rng=()=>1;s.body=createPart(s,'bastion');
+ const core=createPart(s,'revivalCore');s.organs=[core,null,null,null,null];
+ const st=stats(s);
+ assert.deepEqual(upgradeOptions(core,s),[],'a one-shot has nothing to buy');
+ s.hp=1;s.health.missing=st.hp-1;s.health.armorSpent=st.armor;
+ assert.equal(receiveDamage(s,99,st),'revived');
+ assert.equal(s.hp,1);
+ assert.ok(!s.organs.includes(core),'the organ is consumed');
+ assert.ok(!s.inventory.includes(core),'and does not fall back into the inventory');
+ assert.ok(s.events.some(e=>e.type==='notice'&&/Реаниматор/.test(e.text)));
+ // The next lethal hit is fatal: the charge is gone for good.
+ s.health.invulnerableUntil=-1;s.hp=1;
+ assert.equal(receiveDamage(s,99,stats(s)),'hurt');
+ assert.equal(s.hp,0);
 });

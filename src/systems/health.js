@@ -36,6 +36,15 @@ export function receiveHit(s,st,{damage=1,cause='contact',source=null,dx=0,dz=0,
  if(source&&Number.isFinite(source.x)&&Number.isFinite(source.z)){dx=s.player.x-source.x;dz=s.player.z-source.z;}
  const direction=Math.hypot(dx,dz)||1,hitEvent={hp:s.hp,amount:lost,cause,dx:dx/direction,dz:dz/direction,x:s.player.x,y:s.player.y??0,z:s.player.z};s.events.push({type:'player-health-hit',...hitEvent});s.events.push({type:'player-hit',...hitEvent});s.events.push({type:'shield',kind:'health-invulnerability',duration:HEALTH.invulnerability,x:s.player.x,y:s.player.y??0,z:s.player.z});
  if(s.hp<=0&&(s.consumables?.revivalCharges||0)>0){s.consumables.revivalCharges--;s.hp=1;h.missing=st.hp-1;h.invulnerableUntil=combatTime(s)+2;soulProc(s,'revive',s.player);s.events.push({type:'notice',text:`Возрождение · осталось ${s.consumables.revivalCharges}`});return resolve('revived');}
+ const core=(s.organs||[]).find(p=>p?.key==='revivalCore');
+ if(s.hp<=0&&core){
+  s.organs=s.organs.map(p=>p===core?null:p);
+  s.inventory=(s.inventory||[]).filter(p=>p!==core);
+  s.hp=1;h.missing=st.hp-1;h.invulnerableUntil=combatTime(s)+2;
+  soulProc(s,'revive',s.player);
+  s.events.push({type:'notice',text:'Реаниматор сработал и разрушился'});
+  return resolve('revived');
+ }
  const reviveLimit=Math.max(0,Math.floor(Number(st.revive)||0));
  if(s.hp<=0&&(h.abilityRevivesUsed||0)<reviveLimit){h.abilityRevivesUsed=(h.abilityRevivesUsed||0)+1;h.revived=h.abilityRevivesUsed>=reviveLimit;s.hp=1;h.missing=st.hp-1;h.invulnerableUntil=combatTime(s)+2;soulProc(s,'revive',s.player);return resolve('revived');}
  return resolve('hurt');

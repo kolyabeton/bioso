@@ -6,7 +6,7 @@ export const ART_KEYS=['wanderer','hunter','bastion','chimera','rootwalker','hec
 // Sheet coordinates are immutable: adding catalog keys must not shift existing artwork.
 const ATLAS_KEYS=['wanderer','hunter','bastion','chimera','rootwalker','hecaton','claws','hammer','drill','whip','fangs','seed','needle','rocket','arc','acid','runner','universal','plated','regen','shield','armor','stabilizer','digestion','accelerator'];
 // Values carry their own version so a single organ can be reissued without touching the rest.
-const ORGAN_ART={reflexNerve:'reflex-nerve-v2',returnNerve:'return-nerve-v2',slime:'slime-sac-v2',parasite:'parasite-womb-v2',commonNerve:'common-nerve-v2',reverseHeart:'reverse-heart-v2',repairGland:'repair-gland-v2',regen:'regen-gland-v2'};
+const ORGAN_ART={reflexNerve:'reflex-nerve-v2',returnNerve:'return-nerve-v2',slime:'slime-sac-v2',parasite:'parasite-womb-v2',commonNerve:'common-nerve-v2',reverseHeart:'reverse-heart-v2',repairGland:'repair-gland-v2',regen:'regen-gland-v2',revivalCore:'reverse-heart-v2'};
 let atlasClipSerial=0;
 // Authored row boundaries: the source sheet is not a uniform 5 x 5 grid.
 const ATLAS_ROWS=[0,250,510,735,970,1254];

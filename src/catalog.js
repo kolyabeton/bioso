@@ -53,6 +53,7 @@ export const ORGANS = {
  stabilizer:{name:'Стабилизатор',weight:10,description:'Повышает скорость снарядов.'},
  digestion:{name:'Компостер',weight:12,description:'Перерабатывает ненужные детали в биомассу и возвращает 80% вложенной в них биомассы.'},
  accelerator:{name:'Ускоритель',weight:16,description:'Повышает скорость атак всего оружия.'},
+ revivalCore:{name:'Реаниматор',weight:14,description:'При смертельном ударе воскрешает героя с 1 делением здоровья и защитой на 2 с, затем разрушается. Одноразовый, не улучшается.'},
 };
 export const CATALOG = Object.fromEntries([['body',BODIES],['arm',WEAPONS],['leg',LEGS],['organ',ORGANS]].flatMap(([kind,defs])=>Object.entries(defs).map(([key,d])=>[key,{...d,key,kind}])));
 // Basic atlas parts stay independent from the single reward owned by each boss.
