@@ -85,7 +85,7 @@ export function enemyBalance(time,kind='normal',role='mass'){
  if(kind==='elite')return{hp:p.elite,damage:1,speed:p.speed*ELITE_SPEED_MULTIPLIER,radius:1,armor:15,xp:16,role:'elite'};
  if(kind==='boss'||kind==='final')return{hp:p.boss*(kind==='final'?3.5:1.6),damage:2,speed:p.speed*(kind==='final'?1.3:.65),radius:3.4,armor:20,xp:kind==='final'?90:60,role:kind};
  // Fliers ignore terrain, so they only read as a distinct threat when they close twice as fast as a runner.
- const roles={flying:{hp:.45,speed:1.45*1.15*2,radius:.4,armor:0},mass:{hp:1,speed:1,radius:.55,armor:0},fast:{hp:.55,speed:1.3,radius:.4,armor:0},armored:{hp:2,speed:.7,radius:.8,armor:35},ranged:{hp:.8,speed:.8,radius:.5,armor:0}};
+ const roles={flying:{hp:.45,speed:1.45*1.15,radius:.4,armor:0},mass:{hp:1,speed:1,radius:.55,armor:0},fast:{hp:.55,speed:1.3,radius:.4,armor:0},armored:{hp:2,speed:.7,radius:.8,armor:35},ranged:{hp:.8,speed:.8,radius:.5,armor:0}};
  const r=roles[role]||roles.mass;
  return{...r,hp:p.hp*r.hp,speed:p.speed*r.speed,damage:.5,xp:1,role};
 }

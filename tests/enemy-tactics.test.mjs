@@ -16,9 +16,11 @@ test('bosses telegraph their authored moves while an ordinary shooter still fire
 });
 test('bee crosses ground crowd and damages the player only by touching',()=>{
  const s=run(),b=spawnEnemy(s,'normal',{x:0,z:5},'flying',120),g=spawnEnemy(s,'normal',{x:0,z:5},'mass',120);
- assert.ok(b.flying);assert.ok(Math.abs(b.speed/g.speed-1.45*1.15)<1e-8);separateEnemies(s,.1);assert.equal(b.z,g.z);assert.equal(b.x,g.x);
+ // Item 9: fliers stay the fastest ordinary role but must stay slower than the
+ // hero's 6 m/s, so they can be kited instead of closing in unavoidably.
+ assert.ok(b.flying);assert.ok(Math.abs(b.speed/g.speed-1.45*1.15)<1e-8);assert.ok(b.speed<6);separateEnemies(s,.1);assert.equal(b.z,g.z);assert.equal(b.x,g.x);
  g.speed=0;b.enemyAttack.readyAt=100;step(s,.05);assert.ok(b.z<5);assert.equal(g.z,5);
- b.z=0;b.enemyAttack.readyAt=0;s.health.armorSpent=stats(s).armor;step(s,.01);assert.equal(b.enemyAttack.warning,null);assert.equal(b.attackPose,undefined);assert.equal(s.health.hits,1);assert.equal(s.hp,1.5);
+ b.z=0;b.enemyAttack.readyAt=0;s.health.armorSpent=stats(s).armor;step(s,.01);assert.equal(b.enemyAttack.warning,null);assert.equal(b.attackPose,undefined);assert.equal(s.health.hits,1);assert.equal(s.hp,3.5);
 });
 test('minute signatures enter actual spawn requests',()=>{
  for(const [time,expected]of [[0,'mass'],[60,'fast'],[120,'ranged'],[180,'armored'],[240,'mass'],[300,'flying'],[360,'fast'],[420,'ranged']]){const s=run();s.mode='garden';s.time=time;s.waves.credit=1;s.rng=()=>0;const roles=[];tickWaves(s,0,(kind,pos,role)=>roles.push(role));assert.ok(roles.includes(expected),`${time}/${expected}/${roles}`);}
