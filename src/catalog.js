@@ -3,7 +3,7 @@ import {survivalItemAvailable} from './systems/survival-unlock-rules.js';
 // Gameplay values are deliberately independent of rendering and persistence.
 export const MAX_ARMS = 4;
 export const BODIES = {
- reactor:{name:'Электрик',arms:3,legs:2,organs:2,capacity:100,hp:2,armor:0,trait:'Установлен Кожух или Пластины: каждый защитный орган выдерживает 2 попадания до восстановления'},
+ reactor:{name:'Электрик',arms:3,legs:2,organs:2,capacity:100,hp:2,armor:0,trait:'Каждое убийство повышает урон всего оружия на 1%, до +100%. Установлен Кожух: он выдерживает 2 попадания до восстановления'},
  wanderer:{name:'Садовник',arms:2,legs:2,organs:2,capacity:90,hp:2,armor:0,trait:'Уклонение +20% без условий. Установлен Скороход: скорость движения +20%, а урон и скорость атаки +8% за каждый 1 м/с скорости свыше 8 м/с, но не больше +100%.'},
  hunter:{name:'Высотник',arms:3,legs:2,organs:2,capacity:105,hp:1,armor:0,trait:'Установлены 3 единицы оружия: каждая атака повышает шанс и урон крита на 3%, до +30%; пауза в 2 с сбрасывает разгон'},
  bastion:{name:'Каменщик',arms:3,legs:4,organs:5,capacity:210,hp:3,armor:20,trait:'Установлены 4 органа: эффективность всех органов +30%, кроме Компостера'},

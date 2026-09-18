@@ -3,7 +3,10 @@ import assert from 'node:assert/strict';
 import {createRun} from '../src/game.js';
 import {createPart,stats,upgrade,upgradeOptions,upgradeLimit,regenerationDelay,armorPlateCapacity,unequip,equip,resonanceBonus} from '../src/assembly.js';
 import {ORGAN_UPGRADE_STATS,RESONANCE_RANK_STEP,RESONANCE_UPGRADE_STEP} from '../src/systems/organ-upgrades.js';
-import {modifiers,RESONANCE_EXEMPT} from '../src/systems/abilities.js';
+import {modifiers,RESONANCE_EXEMPT,learn} from '../src/systems/abilities.js';
+import {setBonuses} from '../src/systems/sets/bonuses.js';
+import {mutationView} from '../src/systems/sets/mutations.js';
+import {affixBonus} from '../src/systems/sets/affixes.js';
 import {receiveHit,tickHealth,armorRemaining} from '../src/systems/health.js';
 import {tickExtraParts} from '../src/systems/extra-parts.js';
 import {itemInspectorData} from '../src/ui/item-inspector-data.js';
@@ -69,4 +72,26 @@ test('old retaliation is removed and new descriptions translate',()=>{
 });
 test('new paid upgrades reject insufficient biomass without touching instances or timers',()=>{
  for(const [key,stat] of Object.entries(ORGAN_UPGRADE_STATS)){const s=fixture(key);s.biomass=11;const p=s.organs[0];const before=JSON.stringify(s);assert.equal(upgrade(s,p.id,stat,true),false,key);assert.equal(JSON.stringify(s),before);assert.equal(itemInspectorData(s,p).disabled,true);}
+});
+
+/** Item 37: the Reflector echoes soul abilities only. Sets, mutations and item
+ * affixes are computed outside modifiers(), so they must be untouched by it. */
+test('reflector raises soul abilities but never sets, mutations or item affixes',()=>{
+ const s=createRun();
+ learn(s,'might.0');
+ const weapon=createPart(s,'seed');weapon.affixes=[{stat:'damage',value:.1},{stat:'weight',value:.3}];
+ s.arms=[weapon,null];
+ const before={damage:modifiers(s).damage,sets:JSON.stringify(setBonuses(s)),mutations:JSON.stringify(mutationView(s)),
+  affixDamage:affixBonus(weapon,'damage'),affixWeight:affixBonus(weapon,'weight')};
+ assert.equal(before.damage,.1);
+ s.organs[0]=createPart(s,'mirrorGland',5);
+ const after={damage:modifiers(s).damage,sets:JSON.stringify(setBonuses(s)),mutations:JSON.stringify(mutationView(s)),
+  affixDamage:affixBonus(weapon,'damage'),affixWeight:affixBonus(weapon,'weight')};
+ // The soul ability grows by the reflector's bonus.
+ near(after.damage,.15);
+ // Everything computed outside the ability map is byte-identical.
+ assert.equal(after.sets,before.sets);
+ assert.equal(after.mutations,before.mutations);
+ assert.equal(after.affixDamage,before.affixDamage);
+ assert.equal(after.affixWeight,before.affixWeight);
 });

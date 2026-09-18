@@ -2563,5 +2563,10 @@
   "Тяжеловоза": "Heavy Haulers",
   "Скорохода": "Runner",
   "Уклонение: всегда активно": "Dodge: always active",
-  "без условий": "with no conditions"
+  "без условий": "with no conditions",
+  "Каждое убийство повышает урон всего оружия на": "Each kill raises the damage of all weapons by",
+  "Установлен Кожух: он выдерживает": "Casing installed: it withstands",
+  "Установлен Кожух": "Casing installed",
+  "Кожух выдерживает": "The Casing withstands",
+  "за": "for"
 }

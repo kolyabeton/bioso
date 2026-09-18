@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createRun} from '../src/game.js';
 import {createPart,equip,unequip,stats,weaponStats,digestionYield} from '../src/assembly.js';
 import {CATALOG} from '../src/catalog.js';
-import {bodyBonuses,organEffect,bodyReloadBonus,bodyTraitDescription,bodyTraitState,recordCritRamp,critRampStacks} from '../src/systems/body-traits.js';
+import {bodyBonuses,organEffect,bodyReloadBonus,bodyTraitDescription,bodyTraitState,recordCritRamp,critRampStacks,defensiveOrganHitCapacity} from '../src/systems/body-traits.js';
 import {reloadDuration} from '../src/systems/sets-loot.js';
 import {prepareIsaacAttack,isaacHit,tickIsaacCombat} from '../src/systems/organs/combat.js';
 import {tickHealth,receiveHit} from '../src/systems/health.js';
@@ -14,16 +14,25 @@ function organic(){const s=createRun();body(s,'bastion');s.arms[0]=part(s,'seed'
 
 test('each chassis exposes one signature condition without universal slot bonuses',()=>{
  const s=createRun();
- for(const [key,text] of Object.entries({reactor:'Кожух или Пластины',wanderer:'Установлен Скороход',hunter:'каждая атака повышает шанс и урон крита на 3%',bastion:'Установлены 4 органа',chimera:'включая ближний бой и снаряды',rootwalker:'за каждую ячейку максимального здоровья',hecaton:'скорость перезарядки Сеялки, Рассеивателя, Маркера и Скребков \\+35%',broodmother:'постоянных неуязвимых дронов'}))assert.match(bodyTraitDescription({key}),new RegExp(text));
+ for(const [key,text] of Object.entries({reactor:'Каждое убийство повышает урон всего оружия на 1%, до \\+100%',wanderer:'Установлен Скороход',hunter:'каждая атака повышает шанс и урон крита на 3%',bastion:'Установлены 4 органа',chimera:'включая ближний бой и снаряды',rootwalker:'за каждую ячейку максимального здоровья',hecaton:'скорость перезарядки Сеялки, Рассеивателя, Маркера и Скребков \\+35%',broodmother:'постоянных неуязвимых дронов'}))assert.match(bodyTraitDescription({key}),new RegExp(text));
  body(s,'rootwalker');s.arms=Array.from({length:4},()=>part(s,'seed'));s.legs=Array(4).fill(null);assert.equal(bodyTraitState(s).active,false);assert.deepEqual(bodyBonuses(s),{speed:0,rate:0,organ:0,damage:0,rangedDamage:0,hp:0,familyReload:0,healthDamage:0,speedDamage:0});
 });
 
-test('reactor activates only for protective organs and no longer grants attack speed',()=>{
+/** Item 36: the Casing clause is Casing-only now, and kills drive weapon damage. */
+test('reactor doubles only the Casing and ramps weapon damage with every kill',()=>{
  const s=createRun();body(s,'reactor');s.arms=[part(s,'seed'),null];const interval=weaponStats(s,s.arms[0]).interval;
  s.organs=[part(s,'stabilizer'),null];assert.equal(bodyTraitState(s).active,false);assert.equal(weaponStats(s,s.arms[0]).interval,interval);
- s.organs[1]=part(s,'shield');assert.equal(bodyTraitState(s).active,true);assert.match(bodyTraitState(s).status,/Защитные органы: Активно/);assert.equal(weaponStats(s,s.arms[0]).interval,interval);
- s.organs=[part(s,'armor'),null];assert.equal(bodyTraitState(s).active,true);
+ s.organs[1]=part(s,'shield');assert.equal(bodyTraitState(s).active,true);assert.match(bodyTraitState(s).status,/Кожух: Активно/);assert.equal(weaponStats(s,s.arms[0]).interval,interval);
+ assert.equal(defensiveOrganHitCapacity(s,s.organs[1]),2);
+ // Plates are a shared 0.5-per-hit pool, so the trait never applied to them.
+ s.organs=[part(s,'armor'),null];assert.equal(bodyTraitState(s).active,false);assert.equal(defensiveOrganHitCapacity(s,s.organs[0]),1);
  s.organs=[part(s,'mirrorGland'),null];assert.equal(bodyTraitState(s).active,false);
+ // The kill ramp needs no organ and stops at double damage.
+ const base=weaponStats(s,s.arms[0]).damage;
+ for(const [kills,bonus] of [[0,0],[1,.01],[50,.5],[100,1],[400,1]]){
+  s.kills=kills;assert.equal(bodyBonuses(s).damage,bonus);
+  assert.ok(Math.abs(weaponStats(s,s.arms[0]).damage-base*(1+bonus))<1e-9,`${kills} kills`);
+ }
 });
 
 test('broodmother description shows the current drone count without a rank formula',()=>{

@@ -2,9 +2,10 @@ import {modifiers} from './abilities.js';
 import {combatTime} from './mutations.js';
 import {soulProc} from './soul-procs.js';
 import {spatialDistance,visibleBetween} from '../elevation.js';
+import {enemyTargetable} from './enemy-locomotion.js';
+import {isMelee,isRangedHand,isFlyingProjectileHand,isRicochetProjectileHand} from './hand-compatibility.js';
 
 const distance=spatialDistance;
-const isMelee=w=>['sector','area','contact'].includes(w?.mode);
 const primary=w=>!w?.secondary&&!w?.repeat;
 
 export function prepareAbilityAttack(s,p,w,target,repeat=false){
@@ -15,7 +16,7 @@ export function prepareAbilityAttack(s,p,w,target,repeat=false){
   a.focus[p.id]={target:target.id,stacks,at:now};out.interval/=1+stacks*(b.focusRatePerStack||.05);
   soulProc(s,'focus',s.player,{tx:target.x,ty:target.y??0,tz:target.z,source:p.id,level:stacks});
  }
- if(b.ballisticGrowth&&!isMelee(out)&&target&&out.range>0){
+ if(b.ballisticGrowth&&isRangedHand(out)&&target&&out.range>0){
   const maximum=b.ballisticMax||.3,rangeProgress=distance(s.player,target)/out.range;
   out.ballisticBonus=Math.min(1,Math.max(0,(rangeProgress-.5)*2))*maximum;out.damage*=1+out.ballisticBonus;
  }
@@ -23,7 +24,7 @@ export function prepareAbilityAttack(s,p,w,target,repeat=false){
   a.retaliationUntil=0;out.damage*=1+(b.counterShellDamage||1);out.counterShell=true;soulProc(s,'countershell',s.player,{tx:target?.x,ty:target?.y??0,tz:target?.z});
   s.events.push({type:'ability-impact',kind:'countershell',x:s.player.x,y:s.player.y??0,z:s.player.z});
  }
- if(b.neuralWeb&&['projectile','rocket','acid'].includes(out.mode))out.abilityVolley={neuralWebUsed:false};
+ if(b.neuralWeb&&isFlyingProjectileHand(out))out.abilityVolley={neuralWebUsed:false};
  return out;
 }
 
@@ -42,22 +43,27 @@ export function markRupture(s,e,w,critical){
  e.ruptureUntil=combatTime(s)+3;soulProc(s,'rupture',e,{dx:w?.dx??0,dz:w?.dz??1});return true;
 }
 
+/** Reach of the neural arc, in metres. */
+export const NEURAL_WEB_RANGE=12;
 export function tryNeuralWeb(s,origin,w,hitDamage,applyDamage){
  const volley=w?.abilityVolley;if(!volley||volley.neuralWebUsed||!primary(w)||!modifiers(s).neuralWeb)return false;
- const pool=s.enemySpatial?.queryCircle(origin.x,origin.z,6)??s.enemies;let target=null,nearest=Infinity;
- for(const candidate of pool){if(candidate===origin||candidate.hp<=0)continue;const d=distance(origin,candidate);if(d<=4&&d<nearest&&visibleBetween(s,origin,candidate)){target=candidate;nearest=d;}}
+ const pool=s.enemySpatial?.queryCircle(origin.x,origin.z,NEURAL_WEB_RANGE+2)??s.enemies;let target=null,nearest=Infinity;
+ for(const candidate of pool){if(candidate===origin||!enemyTargetable(candidate))continue;const d=distance(origin,candidate);if(d<=NEURAL_WEB_RANGE&&d<nearest&&visibleBetween(s,origin,candidate)){target=candidate;nearest=d;}}
  if(!target)return false;volley.neuralWebUsed=true;
  soulProc(s,'neuralweb',origin,{tx:target.x,ty:target.y??0,tz:target.z});applyDamage(target,hitDamage*(modifiers(s).neuralWebDamage||.4),'neuralweb');return true;
 }
 
 export function ricochetProfile(s,w){
- const b=modifiers(s);if(!b.ricochet||!primary(w)||!['projectile','rocket','acid'].includes(w?.mode))return null;
- return{hops:1+(b.ricochetTargets||0),damage:.5+(b.ricochetDamage||0),crit:b.ricochetCrit||0,hunter:!!b.ricochetHunter,range:4};
+ const b=modifiers(s);if(!primary(w)||!isRicochetProjectileHand(w))return null;
+ const nativeHops=Math.max(0,Math.floor(w.ricochetHops||0)),abilityHops=b.ricochet?1+(b.ricochetTargets||0):0,hops=nativeHops+abilityHops;
+ if(!hops)return null;
+ const nativeDamage=Math.max(0,w.ricochetDamage||0),abilityDamage=b.ricochet?.5+(b.ricochetDamage||0):0;
+ return{hops,damage:Math.max(nativeDamage,abilityDamage),crit:b.ricochetCrit||0,hunter:!!b.ricochetHunter,range:w.ricochetRange||4};
 }
 
 export function nextRicochetTarget(s,origin,visited,hunter=false,range=4){
  const pool=s.enemySpatial?.queryCircle(origin.x,origin.z,range+2)??s.enemies,candidates=[];
- for(const e of pool){if(e.hp<=0||visited.has(e.id))continue;const d=distance(origin,e);if(d<=range+(e.radius||0)&&visibleBetween(s,origin,e))candidates.push({e,d,health:e.maxHp>0?e.hp/e.maxHp:e.hp});}
+ for(const e of pool){if(!enemyTargetable(e)||visited.has(e.id))continue;const d=distance(origin,e);if(d<=range+(e.radius||0)&&visibleBetween(s,origin,e))candidates.push({e,d,health:e.maxHp>0?e.hp/e.maxHp:e.hp});}
  candidates.sort((a,b)=>hunter?a.health-b.health||a.d-b.d:a.d-b.d);return candidates[0]?.e??null;
 }
 
@@ -83,7 +89,7 @@ export function tickCryoTrail(s){
   a.cryoAt=now+1;a.cryoTrails.push({id:`cryo-${now}`,x:s.player.x,y:s.player.y??0,z:s.player.z,radius,until:now+duration});
   if(a.cryoTrails.length>limit)a.cryoTrails.splice(0,a.cryoTrails.length-limit);soulProc(s,'cryotrail',s.player,{radius});
  }
- for(const patch of a.cryoTrails)for(const e of s.enemies)if(e.hp>0&&distance(patch,e)<=patch.radius+(e.radius||0))e.chillUntil=Math.max(e.chillUntil||0,now+.2);
+ for(const patch of a.cryoTrails)for(const e of s.enemies)if(enemyTargetable(e)&&distance(patch,e)<=patch.radius+(e.radius||0))e.chillUntil=Math.max(e.chillUntil||0,now+.2);
 }
 
 export function symbiontAbilityHit(s,target,damage){
@@ -100,7 +106,7 @@ export function tickSporeBrood(s,applyDamage,ignite){
   if(host?.hp>0&&now<spore.at){remaining.push(spore);continue;}
   soulProc(s,'sporebrood',spore,{radius:2.5});s.events.push({type:'ability-impact',kind:'sporebrood',x:spore.x,y:spore.y,z:spore.z,radius:2.5});
   const pool=s.enemySpatial?.queryCircle(spore.x,spore.z,5)??s.enemies;
-  for(const e of pool)if(e.hp>0&&distance(spore,e)<=2.5+(e.radius||0)&&visibleBetween(s,spore,e)){ignite(e,spore.damage);applyDamage(e,spore.damage,'sporebrood');}
+  for(const e of pool)if(enemyTargetable(e)&&distance(spore,e)<=2.5+(e.radius||0)&&visibleBetween(s,spore,e)){ignite(e,spore.damage);applyDamage(e,spore.damage,'sporebrood');}
  }
  a.spores=remaining;
 }

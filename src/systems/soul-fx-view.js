@@ -193,6 +193,25 @@ export function createSoulFxView(scene){
  function streak(at,to,color,width=.08,life=.35){
   particle(at,5,color,width,life,{}, {tx:to.x,ty:to.y??0,tz:to.z});
  }
+ /** Expanding ring plus cross-linked strands along the arc: the readable "net/wave" shape. */
+ function neuralWave(e){
+  const color=[.65,1,1],origin={x:e.x,y:(e.y??0)+.4,z:e.z};
+  // Wave: a widening shell pushed out from the hero.
+  for(const [size,life] of reduced?[[3.4,.34]]:[[2.2,.26],[3.6,.4],[5,.52]])membrane({...e,y:(e.y??0)+.4},color,size,life);
+  if(!Number.isFinite(e.tx)||!Number.isFinite(e.tz))return;
+  // Net: strands offset either side of the arc, cross-linked into a mesh.
+  const end={x:e.tx,y:(e.ty??0)+1,z:e.tz},dx=end.x-origin.x,dz=end.z-origin.z,len=Math.hypot(dx,dz)||1,nx=-dz/len,nz=dx/len;
+  const rows=reduced?2:4;
+  for(let i=1;i<=rows;i++){
+   const spread=(i/rows)*1.5;
+   for(const side of [-1,1]){
+    const a={x:origin.x+nx*spread*side*.3,y:origin.y,z:origin.z+nz*spread*side*.3};
+    const b={x:end.x+nx*spread*side,y:end.y,z:end.z+nz*spread*side};
+    streak(a,b,color,.06,.34+i*.04);
+    if(i>1)streak({x:end.x+nx*spread*side,y:end.y,z:end.z+nz*spread*side},{x:end.x+nx*(spread-1.5/rows)*side,y:end.y,z:end.z+nz*(spread-1.5/rows)*side},color,.05,.3);
+   }
+  }
+ }
  function threads(e,revive=false){
   const center={x:e.x,y:(e.y??0)+1,z:e.z},color=revive?[.9,.82,.56]:[.4,.73,.56];
   for(let i=0;i<(reduced?5:revive?36:18);i++){
@@ -279,7 +298,7 @@ export function createSoulFxView(scene){
    case 'guardian':{
     bolt({...e,y:(e.y??0)-1});organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.55,1,.84],count:10,power:3});membrane(e,[.45,.9,.72],2.5,.4);break;
    }
-   case 'neuralweb':bolt(e);organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.65,1,1],count:12,power:3});break;
+   case 'neuralweb':neuralWave(e);bolt(e);organicImpact({x:e.tx,y:e.ty,z:e.tz,dx:(e.tx??e.x)-e.x,dz:(e.tz??e.z)-e.z},{color:[.65,1,1],count:18,power:4});break;
    case 'countershell-charge':membrane(e,[.63,.78,.54],3.1,.5);threads(e);break;
    case 'countershell':organicImpact(e,{color:[.94,.72,.38],count:30,power:6,residue:true});membrane(e,[.9,.68,.34],2.3,.28);break;
    case 'sporeplant':{
@@ -293,17 +312,10 @@ export function createSoulFxView(scene){
    case 'cryotrail':cloud({...e,radius:e.radius??1.5},true,.65);particle({...e,y:(e.y??0)+.02},7,[.47,.69,.69],(e.radius??1.5)*2,1.1,{}, {opacity:.25});break;
   }
  }
- // Reuse the ability flame/smoke renderer, keeping the blast free of hard geometry.
+ // Ground warning only while arming; the body does not emit flames or sparks.
  function volatileCharge(e){
-  const heat=1-Math.max(0,e.fuseRemaining)/VOLATILE.fuse,at={x:e.x,y:(e.y??0)+.7,z:e.z};
+  const heat=1-Math.max(0,e.fuseRemaining)/VOLATILE.fuse;
   particle({...e,y:(e.y??0)+.08},7,[1,.25,.035],VOLATILE.radius*2,.24,{}, {opacity:.65+heat*.3});
-  particle(at,4,[1,.3+.25*heat,.06],1.2+heat*.9,.25,{}, {opacity:.45+heat*.35});
-  const n=reduced?1:quality==='low'?2:4;
-  for(let i=0;i<n;i++){
-   const a=rand()*Math.PI*2,r=.2+rand()*.35,p={x:e.x+Math.cos(a)*r,y:(e.y??0)+.3,z:e.z+Math.sin(a)*r};
-   particle(p,0,[1,.4,.1],.5+heat*.45,.3+rand()*.2,{y:.4+heat},{stretch:1.5+heat,opacity:.6});
-   if(!reduced)particle(p,2,[1,.65,.2],.04,.4,{x:Math.cos(a)*.7,y:1+heat*2,z:Math.sin(a)*.7},{stretch:2.5});
-  }
  }
  function volatileBlast(e){
   const radius=e.radius??VOLATILE.radius,ground=e.y??0;
