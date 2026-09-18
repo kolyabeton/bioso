@@ -2570,5 +2570,10 @@
   "Кожух выдерживает": "The Casing withstands",
   "за": "for",
   "Нет оружия с магазином": "No weapon with a magazine",
-  "Скорость перезарядки": "Reload speed"
+  "Скорость перезарядки": "Reload speed",
+  "Непрерывно восстанавливает": "Continuously restores",
+  "максимального здоровья в секунду. Ранг и каждое улучшение добавляют": "of maximum health per second. Rank and each upgrade add",
+  "п.п. Несколько Корнеходов складываются": "points. Several Rootwalkers stack",
+  "Восстановление корней": "Root recovery",
+  "здоровья/с": "health/s"
 }

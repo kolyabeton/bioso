@@ -37,7 +37,9 @@ test('70% dodge and capped stats reject ineffective purchases without spending',
  const before=JSON.stringify(s);assert.equal(upgrade(s,p.id,'sensorDodge',true),false);assert.equal(JSON.stringify(s),before);assert.equal(itemInspectorData(s,p).notice,'Достигнут предел сборки');
  s.organs=[p,null];assert.ok(upgrade(s,p.id,'sensorDodge',true));
  const a=fixture('armor',5);a.body.tier=1;a.organs.push(createPart(a,'armor',5));assert.equal(stats(a).armor,stats(a).hp);assert.deepEqual(upgradeOptions(a.organs[0],a),[]);
- const r=fixture('regen');r.legs.forEach((_,i)=>{r.legs[i]=createPart(r,'root');r.legs[i].upgrades.regen=10;});near(stats(r).regenDelay,.5);assert.equal(upgrade(r,r.organs[0].id,'regenRate',true),false);
+ const r=fixture('regen');r.legs.forEach((_,i)=>{r.legs[i]=createPart(r,'root');r.legs[i].upgrades.regen=10;});
+ // Roots feed continuous regeneration and leave the organ timer untouched.
+ near(stats(r).regenDelay,15);near(stats(r).regenPerSecond,.04*r.legs.filter(Boolean).length);assert.ok(upgrade(r,r.organs[0].id,'regenRate',true));
 });
 test('repair and regeneration retain timer fractions; purchases never heal or fill new armor',()=>{
  for(const key of ['regen','repairGland']){const s=fixture(key),p=s.organs[0];s.hp--;s.health.missing=1;s.health.armorSpent=1;tickHealth(s,stats(s));s.time=5;const prop=key==='regen'?'regenAt':'armorRepairAt',duration=key==='regen'?'regenDelay':'armorRepairDelay',old=s.health[duration],remaining=(s.health[prop]-5)/old,hp=s.hp,spent=s.health.armorSpent;

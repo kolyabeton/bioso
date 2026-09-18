@@ -15,7 +15,7 @@ import {inMire,slotCount,boundPart} from './systems/mutations.js';
 import {surfaceReach,groundDistance} from './elevation.js';
 import {modifiers,recordBiomassSpend} from './systems/abilities.js';
 import {preserveHealth} from './systems/health.js';
-import {ARMOR_REPAIR_SECONDS,REGEN_MIN_SECONDS,REGEN_UPGRADE_SECONDS} from './systems/health-tuning.js';
+import {ARMOR_REPAIR_SECONDS,REGEN_MIN_SECONDS,REGEN_UPGRADE_SECONDS,CONTINUOUS_REGEN_BASE,CONTINUOUS_REGEN_STEP} from './systems/health-tuning.js';
 import {upgradeCost,ECONOMY,HEALTH} from './systems/balance.js';
 import {CATALOG,STARTERS,INCREMENTS,MISSIONS,WEAPON_UNLOCKS} from './catalog.js';
 import {heroMeleeAttackRange} from './melee-range.js';
@@ -65,7 +65,7 @@ export function weightSpeedFactor(weight,capacity){
 export const addBonus=(p,stat)=> (p.upgrades[stat]||0)*(INCREMENTS[stat]||0);
 export const soulBonus=(s,stat)=>(s.soul[stat]||0)*(INCREMENTS[stat]||0)/3;
 // Installed root upgrades subtract seconds from the shared recovery timer.
-export const legRecovery=p=>def(p).regen?Math.max(0,Math.min(10,p.upgrades.regen||0))*REGEN_UPGRADE_SECONDS:0;
+export const legRecovery=p=>0;
 export function regenerationDelay(s,part=null){
  const legs=s.legs.filter(Boolean);
  if(part&&def(part).kind==='leg'&&!legs.includes(part))legs.push(part);
@@ -74,6 +74,14 @@ export function regenerationDelay(s,part=null){
  const base=Math.max(REGEN_MIN_SECONDS,setBonuses(s).regenDelay/(regenerators?organEffect(s)*regenerators:1)-legs.reduce((n,p)=>n+legRecovery(p),0));
  return Math.max(REGEN_MIN_SECONDS,base/boost);
 }
+/** Item 2: continuous share for one part, as a fraction of the maximum per second. */
+export function continuousRecoveryRate(p,stat){
+ if(!p)return 0;
+ const tier=Math.max(1,Math.min(5,Math.floor(p.tier??1))),upgrades=Math.max(0,Math.min(20,p.upgrades?.[stat]||0));
+ return CONTINUOUS_REGEN_BASE+CONTINUOUS_REGEN_STEP*(tier-1+upgrades);
+}
+/** Rootwalker legs heal continuously; armour parts still use their repair cycle. */
+export const rootRegenPerSecond=s=>(s?.legs||[]).filter(p=>p?.key==='root').reduce((sum,p)=>sum+continuousRecoveryRate(p,'regen'),0);
 export const legHealth=p=>{
  const d=def(p),tier=Math.max(1,Math.min(5,Math.floor(p.tier??1)));
  return d.healthByTier?.[tier-1]??(d.rankStat==='hp'?.5*(tier-1):0);
@@ -90,7 +98,7 @@ export function stats(s){
  const speed=s.legs.filter(Boolean).reduce((sum,p)=>sum+legSpeed(p,b.speed||0),0)/body.legs*(1+bodyBonus.speed+sets.speed);
  const carriedWeight=load(s),maxWeight=capacity(s.body)+20*(s.isaac?.deals.capacity||0),loadFactor=weightSpeedFactor(carriedWeight,maxWeight);
  const shields=s.organs.filter(p=>p?.key==='shield').reduce((sum,p)=>sum+defensiveOrganHitCapacity(s,p),0),regenerators=s.organs.filter(p=>p?.key==='regen').length,regenPersistsThroughDamage=s.legs.some(p=>p?.key==='root'),plates=s.organs.filter(p=>p?.key==='armor'),repairGlands=s.organs.filter(p=>p?.key==='repairGland'),armorRepairAmount=.5*plates.length+repairGlands.length,armorRepairRate=.5*plates.length+repairGlands.reduce((sum,p)=>sum+tierFactor(p)*recoveryMultiplier(p,'repairRate'),0),armorRepairDelay=armorRepairAmount?ARMOR_REPAIR_SECONDS*armorRepairAmount/armorRepairRate/organBoost:ARMOR_REPAIR_SECONDS/organBoost,dodge=Math.min(MAX_DODGE_CHANCE,(b.dodge||0)+(bodyBonus.dodge||0)+.1*organPower(s,'reflexNerve'));
- return{hp,armor,dodge,turnSpeed:bodyTurnSpeed(s.body,maxWeight),capacity:maxWeight,weight:carriedWeight,loadFactor,overloaded:loadFactor===0,speed:speed*(1+.15*(s.isaac?.deals.speed||0))*(1+affix('movement'))*loadFactor*(inMire(s)?1.25:1),shieldMax:shields+(sets.barrier?1:0),setRegen:sets.tissue,regen:!!(regenerators||b.regen||regenPersistsThroughDamage),regenPersistsThroughDamage,regenAmount:Math.max(1,b.regen||0),regenDelay:regenerationDelay(s),armorRepairAmount,armorRepairDelay,shieldRate:organBoost/setBonuses(s).shieldDelay,projectile:1+.3*organPower(s,'stabilizer'),organEffect:organBoost,rate:affix('rate')+bodyBonus.rate+sets.rate+.15*organPower(s,'accelerator')+(inMire(s)?.25:0),bodyFactor:f,revive:b.revive||0,pickup:7*(1+(b.pickup||0)+setBonuses(s).pickup+affix('pickup'))};
+ return{hp,armor,dodge,turnSpeed:bodyTurnSpeed(s.body,maxWeight),capacity:maxWeight,weight:carriedWeight,loadFactor,overloaded:loadFactor===0,speed:speed*(1+.15*(s.isaac?.deals.speed||0))*(1+affix('movement'))*loadFactor*(inMire(s)?1.25:1),shieldMax:shields+(sets.barrier?1:0),setRegen:sets.tissue,regen:!!(regenerators||b.regen),regenPersistsThroughDamage,regenPerSecond:rootRegenPerSecond(s)*organBoost,regenAmount:Math.max(1,b.regen||0),regenDelay:regenerationDelay(s),armorRepairAmount,armorRepairDelay,shieldRate:organBoost/setBonuses(s).shieldDelay,projectile:1+.3*organPower(s,'stabilizer'),organEffect:organBoost,rate:affix('rate')+bodyBonus.rate+sets.rate+.15*organPower(s,'accelerator')+(inMire(s)?.25:0),bodyFactor:f,revive:b.revive||0,pickup:7*(1+(b.pickup||0)+setBonuses(s).pickup+affix('pickup'))};
 }
 export function weaponStats(s,p,st=stats(s)){
  if(p.key==='drone'){const d=def(p),base=droneStats(p),swarm=summonTuning(s,modifiers(s));return{...d,partId:p.id,damage:base.damage*swarm.damage,interval:base.interval/swarm.rate,range:swarm.droneSearch,crit:0,critPower:1,speed:0,extra:0};}

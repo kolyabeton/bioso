@@ -35,7 +35,7 @@ export const LEGS = {
  runner:{rankStat:'speed',name:'Скороход',weight:6,speed:7,hp:0,armor:0,description:'Дополнительно повышает урон Рассеивателя, Маркера и Скребков на 10%. Несколько опор не усиливают эффект.'},
  universal:{rankStat:'speed',healthByTier:[.5,.5,1,1,2],name:'Универсал',weight:8,speed:6,hp:0,armor:0,description:'Даёт 0,5 HP на рангах I–II, 1 HP на III–IV и 2 HP на V. Ранг и улучшения повышают скорость движения.'},
  plated:{rankStat:'armor',name:'Тяжеловоз',weight:12,speed:5,hp:0,armor:10,upgradeStat:'armor'},
- root:{rankStat:'hp',name:'Корнеход',weight:12,speed:2,hp:0,armor:0,upgradeStat:'regen',regen:true,description:'Восстанавливает HP по таймеру. Полученный урон не сбрасывает отсчёт.'},
+ root:{rankStat:'hp',name:'Корнеход',weight:12,speed:2,hp:0,armor:0,upgradeStat:'regen',regen:true,description:'Непрерывно восстанавливает 1% максимального здоровья в секунду. Ранг и каждое улучшение добавляют 0,3 п.п. Несколько Корнеходов складываются.'},
 };
 export const ORGANS = {
  mirrorGland:{name:'Отражатель',weight:14,description:'Отражает вложенные усиления обратно в сборку: каждая уже прокачанная способность души усиливается на +1% с каждым рангом. Счётчики, деления здоровья и длительности не усиливаются. Несколько Отражателей складываются.'},

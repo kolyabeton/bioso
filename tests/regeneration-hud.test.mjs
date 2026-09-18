@@ -18,10 +18,17 @@ test('regeneration HUD follows the real 15 second health timer',()=>{
  assert.match(healthSegments(view),/ui-health-regen/);
 });
 
-test('root regeneration HUD uses upgraded 10 second timing and damage keeps its progress',()=>{
+/** Item 2: root legs stopped shortening the organ timer and now heal continuously,
+ * so the HUD keeps the Repairman's own 15 s while a root build still regenerates. */
+test('root legs leave the organ timer alone and expose a continuous rate instead',()=>{
  const {s,st}=woundedRun(10);s.time=5;
- let view=healthView(s,st.hp,st.armor,st);assert.equal(st.regenDelay,10);assert.equal(view.regenProgress,.5);assert.equal(view.regenSecondsLeft,5);
- s.hp=st.hp;s.health.missing=0;s.health.armorSpent=st.armor;s.health.invulnerableUntil=0;s.time=6;receiveDamage(s,1,st);view=healthView(s,st.hp,st.armor,st);assert.equal(view.regenProgress,.6);assert.equal(view.regenSecondsLeft,4);
+ assert.equal(st.regenDelay,15);
+ assert.ok(st.regenPerSecond>0,'the installed root leg regenerates continuously');
+ const view=healthView(s,st.hp,st.armor,st);
+ assert.ok(Math.abs(view.regenProgress-5/15)<1e-9,`${view.regenProgress} != 1/3`);assert.equal(view.regenSecondsLeft,10);
+ // Damage does not restart the organ timer while a root leg is installed.
+ s.hp=st.hp;s.health.missing=0;s.health.armorSpent=st.armor;s.health.invulnerableUntil=0;s.time=6;receiveDamage(s,1,st);
+ assert.equal(healthView(s,st.hp,st.armor,st).regenSecondsLeft,9);
 });
 
 test('regenerator organ still restarts its timer after damage',()=>{
