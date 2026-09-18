@@ -12,7 +12,8 @@
 
 .meta-reroll{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}.meta-reroll .ui-button{white-space:nowrap}
 
-#objective.meta-overrun-status{top:84px;left:16px;right:16px;max-width:none;font-size:13px;line-height:20px;padding:8px;color:var(--ui-ceramic-ink);background:var(--ui-surface,#192721);border:1px solid var(--ui-border,#7e8a76);border-radius:8px;display:block}
+#objective.meta-overrun-status{top:84px;left:50%;right:auto;width:calc(var(--game-stage-width) - 32px);max-width:calc(var(--game-stage-width) - 32px);transform:translateX(-50%);font-size:13px;line-height:20px;padding:8px;color:var(--ui-ceramic-ink);background:var(--ui-surface,#192721);border:1px solid var(--ui-border,#7e8a76);border-radius:8px;display:block}
+@media(max-width:380px){#objective.meta-overrun-status{font-size:12px}}
 
 .ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-screen-footer .ui-reroll-button{flex:0 0 auto;gap:6px;white-space:nowrap}
 .ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-screen-footer .ui-reroll-button:only-child{margin-inline:auto}

@@ -1,13 +1,14 @@
 import {combatTime} from './mutations.js';
-import {move} from '../terrain.js';
+import {eventCollisionWorld,moveCreature} from '../gameplay-modules/event-collision.js';
 import {navigateEnemy} from '../world-navigation.js';
 import {visibleBetween,bodyRadius} from '../elevation.js';
 import {enemyPace} from './effects.js';
 import {enemyAttackSpeed,warningHits} from './enemy-combat.js';
+import {turnBossFacing} from '../boss-facing.js';
 
 // World metres, independently tuned from the survival boss budget.
 export const MISSION_BOSSES=Object.freeze({
- 'boss-mercury-hunter':{radius:1.8,speed:3.8,armor:12,action:'dash',warning:.95,recovery:3.2,range:15},
+ 'boss-mercury-hunter':{radius:1.8,speed:3.8,armor:12,damage:.5,action:'dash',warning:.95,recovery:3.2,range:15},
  'boss-scrap-leviathan':{radius:7,speed:.65,armor:65,action:'crush',warning:1.6,recovery:4.2,range:13,nodes:4,nodeType:'support'},
  'boss-root-cathedral':{radius:4.5,speed:0,armor:35,action:'roots',warning:1.35,recovery:3,range:24,nodes:3,nodeType:'root'},
  'boss-mirror-collector':{radius:2.2,speed:2.2,armor:20,action:'copy',warning:1.1,recovery:2.8,range:16},
@@ -17,20 +18,20 @@ export const missionBoss=e=>!!e.bossCombat&&!!MISSION_BOSSES[e.bossDesignId];
 const children=(s,e)=>s.enemies.filter(q=>q.bossOwner===e.id&&q.hp>0);
 const nodes=(s,e)=>children(s,e).filter(q=>q.kind==='boss-part');
 const log=(s,e,action)=>{e.bossCombat.counts[action]=(e.bossCombat.counts[action]||0)+1;s.events.push({type:'boss-action',boss:e.bossDesignId,action,x:e.x,z:e.z});};
-function placeNode(e,q){
+function placeNode(e,q,world){
  const yaw=e.bossCombat.facing||0,c=Math.cos(yaw),t=Math.sin(yaw);
- q.x=e.x+q.offset.x*c+q.offset.z*t;q.z=e.z-q.offset.x*t+q.offset.z*c;q.y=e.y??0;
+ q.x=e.x+q.offset.x*c+q.offset.z*t;q.z=e.z-q.offset.x*t+q.offset.z*c;q.y=world?.heightAt?.(q.x,q.z)??e.y??0;
 }
 export function setupMissionBoss(s,e,id){
  const p=MISSION_BOSSES[id];if(!p||e.bossCombat)return;
- e.bossDesignId=id;e.radius=p.radius*2;e.speed=p.speed;e.damage=2;e.armor=p.armor+(e.bossArmorBonus||0);e.assembly=null;e.enemyAttack={warning:null};
- e.bossCombat={phase:1,readyAt:combatTime(s)+1.8,cycle:0,counts:{},facing:0,anchor:{x:e.x,z:e.z},exposedUntil:0};
+ e.bossDesignId=id;e.radius=p.radius*2;e.speed=p.speed;e.damage=p.damage??2;e.armor=p.armor+(e.bossArmorBonus||0);e.assembly=null;e.enemyAttack={warning:null};
+ e.bossCombat={phase:1,readyAt:combatTime(s)+1.8,cycle:0,counts:{},facing:Math.atan2(s.player.x-e.x,s.player.z-e.z),anchor:{x:e.x,z:e.z},exposedUntil:0};
  e.visualHeight=id==='boss-root-cathedral'?10:undefined;
  for(let i=0;i<(p.nodes||0);i++){
   // Front/side anchors keep all targets reachable within the 18 m mission corridor.
   const offset=p.nodeType==='support'?{x:(i%2?1:-1)*5.5,z:i<2?3.8:-3.8}:{x:(i-1)*(p.nodeType==='root'?5.4:3.8),z:i===1?(p.nodeType==='root'?6.2:4.3):2.5};
   const hp=Math.round(e.maxHp*(p.nodeType==='support'?.045:.035));
-  const q={id:++s.entityId,kind:'boss-part',role:p.nodeType,bossOwner:e.id,nodeIndex:i,offset,hp,maxHp:hp,radius:.8,speed:0,armor:0,damage:0,contact:0,born:combatTime(s),missionRoom:e.missionRoom};placeNode(e,q);s.enemies.push(q);
+  const q={id:++s.entityId,kind:'boss-part',role:p.nodeType,bossOwner:e.id,nodeIndex:i,offset,hp,maxHp:hp,radius:.8,speed:0,armor:0,damage:0,contact:0,born:combatTime(s),missionRoom:e.missionRoom};placeNode(e,q,s.world);s.enemies.push(q);
  }
 }
 export function bossDamageMultiplier(s,e,source){
@@ -72,7 +73,7 @@ function spawnBees(s,e){
  const live=children(s,e).filter(q=>q.kind==='boss-drone').length,commands=nodes(s,e).length,count=Math.min(8-live,Math.max(2,commands+1));
  for(let i=0;i<count;i++){
   const a=(i+.5)*Math.PI*2/count,x=e.x+Math.sin(a)*3.2,z=e.z+Math.cos(a)*3.2;
-  if(!s.world.walkable(x,z,.4))continue;
+  if(!eventCollisionWorld(s).walkable(x,z,.4))continue;
   const hp=Math.max(20,Math.round(e.maxHp*.004));s.enemies.push({id:++s.entityId,kind:'boss-drone',role:'flying',flying:true,bossOwner:e.id,x,y:e.y??0,z,hp,maxHp:hp,radius:.4,speed:4.4,armor:0,damage:e.damage??1,missionRoomStrength:e.missionRoomStrength,contact:0,born:combatTime(s),expires:combatTime(s)+16});
  }log(s,e,'bees');
 }
@@ -83,11 +84,11 @@ export function tickMissionBoss(s,e,dt,hit,target=s.player){
  const now=combatTime(s);
  if(e.bossOwner){
   const owner=s.enemies.find(q=>q.id===e.bossOwner&&q.hp>0);if(!owner){e.hp=0;return true;}
-  if(e.kind==='boss-part'){placeNode(owner,e);return true;}
+  if(e.kind==='boss-part'){placeNode(owner,e,s.world);return true;}
   if(now>=e.expires||owner.territory&&owner.territory.state!=='engaged'){e.hp=0;return true;}
   if(e.frozenUntil>now||e.pickupSleepUntil>now)return true;
   const d=Math.hypot(s.player.x-e.x,s.player.z-e.z)||1;e.dx=(s.player.x-e.x)/d;e.dz=(s.player.z-e.z)/d;
-  const old={x:e.x,z:e.z};move(s.world,e,e.dx*e.speed*enemyPace(s,e)*dt,e.dz*e.speed*enemyPace(s,e)*dt,e.radius);
+  const old={x:e.x,z:e.z};moveCreature(s,e,e.dx*e.speed*enemyPace(s,e)*dt,e.dz*e.speed*enemyPace(s,e)*dt,e.radius);
   if(segmentDistance(s.player,old,e)<bodyRadius(s)+e.radius&&visibleBetween(s,e,s.player)){hit(e);e.hp=0;s.events.push({type:'enemy-strike',mode:'area',key:'hammer',x:e.x,y:e.y??0,z:e.z,radius:.8});}
   return true;
  }
@@ -106,15 +107,15 @@ export function tickMissionBoss(s,e,dt,hit,target=s.player){
   a.dash=null;e.enemyAttack.warning=null;a.mirrorUntil=0;a.readyAt=now+1.8;
   s.hostileShots=s.hostileShots.filter(q=>q.owner!==e.id);
   if(e.speed>0&&Math.hypot(target.x-e.x,target.z-e.z)>e.radius+.6){
-   a.facing=Math.atan2(target.x-e.x,target.z-e.z);
+   turnBossFacing(e,target,dt,now);
    navigateEnemy(s,e,target,e.speed*enemyPace(s,e),dt);
   }
-  for(const q of nodes(s,e))placeNode(e,q);
+  for(const q of nodes(s,e))placeNode(e,q,s.world);
   return true;
  }
  const d=Math.hypot(s.player.x-e.x,s.player.z-e.z)||1;
  if(a.dash){
-  const dash=a.dash,old={x:e.x,z:e.z},travel=Math.min(12*enemyPace(s,e)*dt,dash.left);move(s.world,e,dash.dx*travel,dash.dz*travel,e.radius);dash.left-=travel;
+  const dash=a.dash,old={x:e.x,z:e.z},travel=Math.min(12*enemyPace(s,e)*dt,dash.left);moveCreature(s,e,dash.dx*travel,dash.dz*travel,e.radius);dash.left-=travel;
   if(!dash.hit&&segmentDistance(s.player,old,e)<=e.radius+bodyRadius(s)&&visibleBetween(s,e,s.player)){hit(e);dash.hit=true;}
   if(dash.left<=.01||Math.hypot(e.x-old.x,e.z-old.z)<travel*.3){a.dash=null;a.exposedUntil=now+2.4;a.readyAt=now+2.4/enemyAttackSpeed(e);log(s,e,'dash-finished');}return true;
  }
@@ -130,8 +131,8 @@ export function tickMissionBoss(s,e,dt,hit,target=s.player){
  }
  const desired=p.action==='swarm'&&a.phase===1?10:p.action==='copy'?7:e.radius+1;
  if(e.speed>0&&d>desired)navigateEnemy(s,e,s.player,e.speed*enemyPace(s,e),dt);
- a.facing=Math.atan2(s.player.x-e.x,s.player.z-e.z);
- for(const q of nodes(s,e))placeNode(e,q);
+ turnBossFacing(e,s.player,dt,now);
+ for(const q of nodes(s,e))placeNode(e,q,s.world);
  if(now<a.readyAt||d>p.range||!visibleBetween(s,e,s.player))return true;
  const dx=Math.sin(a.facing),dz=Math.cos(a.facing),slot=a.cycle%3,base={x:e.x,y:e.y??0,z:e.z,dx,dz,started:now,at:now+p.warning,key:'hammer',mode:'area',radius:e.radius+2,angle:Math.PI*2,bossAction:p.action};
  if(p.action==='dash'){

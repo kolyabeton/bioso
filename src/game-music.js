@@ -6,24 +6,26 @@ const sharedScreens = new Set(['settings', 'credits', 'components']);
 
 export function createGameMusic(baseUrl, options) {
   const background = [`${baseUrl}assets/audio/technology-sub-clair.mp3`];
-  const boss = [`${baseUrl}assets/audio/touch-zavorin.mp3`];
+  const boss = [`${baseUrl}assets/audio/touch-zavorin-intro.mp3`];
   const music = createBackgroundMusic(background, options);
-  let inMenu = true, bossActive = false, ducked = false, bossId = null, bossStartedAt = 0;
+  let inMenu = true, bossActive = false, ducked = false, bossId = null;
+  let bossNeedsRestart = false;
   const sync = () => {
     const fightingBoss = !inMenu && bossActive;
     music.setGainMultiplier((fightingBoss ? 1.15 : 1) * (ducked ? .48 : 1));
-    music.setPlaylist(fightingBoss ? boss : background);
+    music.setPlaylist(fightingBoss ? boss : background, {restart: fightingBoss && bossNeedsRestart});
+    if (fightingBoss) bossNeedsRestart = false;
   };
   return {...music, setScreen(name) {
     // Settings and credits inherit the music of the screen that opened them.
     if (!sharedScreens.has(name)) { inMenu = menuScreens.has(name); sync(); }
   }, updateRun(run) {
-    const now=Number.isFinite(run.time)?run.time:0;
     const target = !run.dead && !(run.won && !run.continued) ? run.enemies.find(bossEngaged) : null;
     const targetId=target?.id??(target?target:null);
-    if (targetId !== bossId) { bossId = targetId; bossStartedAt = now; }
-    const engaged = !!target && now - bossStartedAt < 45;
-    if (engaged !== bossActive) { bossActive = engaged; sync(); }
+    const changed = targetId !== bossId;
+    if (changed) { bossId = targetId; bossNeedsRestart = !!target; }
+    const engaged = !!target;
+    if (engaged !== bossActive || changed) { bossActive = engaged; sync(); }
   }, setDucked(value) {
     const next=!!value;if(next!==ducked){ducked=next;sync();}
   }};

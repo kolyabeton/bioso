@@ -48,7 +48,7 @@ export const ORGANS = {
  regen:{name:'Ремонтник',weight:14,description:'После периода без потери здоровья восстанавливает 1 деление. Ранг ускоряет восстановление.'},
  shield:{name:'Кожух',weight:18,shield:40,description:`Поглощает 1 попадание и восстанавливается за ${SHIELD_RECHARGE_SECONDS} с. Ранг и улучшения сокращают время восстановления.`},
  armor:{name:'Пластины',weight:24,armor:20,description:'Добавляет броню и постепенно ремонтирует повреждённые пластины. Ранг увеличивает запас брони.'},
- repairGland:{name:'Ремкомплект',weight:16,description:'Постепенно ремонтирует повреждённые пластины.'},
+ repairGland:{name:'Ремкомплект',weight:16,description:'Усиливает бонус способности корпуса на 30%. Ранг добавляет 10 п.п., каждое улучшение — 2 п.п. Несколько Ремкомплектов складываются.'},
  broodNode:{name:'Контроллер',weight:18,summonDamage:.2,description:'Повышает урон постоянных и временных дронов. Эффект растёт с рангом и улучшениями; складываются два сильнейших узла.'},
  stabilizer:{name:'Стабилизатор',weight:10,description:'Повышает скорость снарядов.'},
  digestion:{name:'Компостер',weight:12,description:'Перерабатывает ненужные детали в биомассу и возвращает 80% вложенной в них биомассы.'},
@@ -62,8 +62,8 @@ export const WEAPON_UNLOCKS=[
  {id:'weapon:seed',key:'seed',name:'Зачистка',counter:'total',goal:60,label:'Убитые существа',description:'Убейте 60 существ любым оружием. Прогресс складывается между забегами.',lore:'Одного выстрела уже недостаточно.'},
 ];
 export const MODIFIERS={light:'Облегчённая',rapid:'Скорострельная',armored:'Бронированная'};
-export const STAT_LABELS={resonance:'Резонанс души',sensorDodge:'Уклонение сборки',regenRate:'Восстановление здоровья',repairRate:'Ремонт брони',plateCapacity:'Броня сборки',summonRate:'Темп роя',summonDamage:'Урон роя',capacity:'Вместимость',damage:'Урон',rate:'Скорость атаки',crit:'Шанс крита',critPower:'Множитель крита',hp:'Здоровье',armor:'Броня',regen:'Регенерация',speed:'Движение',dodge:'Уклонение',power:'Эффективность органа',returnDamage:'Обратный урон',larvaDamage:'Урон личинок',slimeSlow:'Замедление слизью',commonVolley:'Урон общего залпа',heartDamage:'Урон импульса',shieldRecharge:'Восстановление щита'};
-export const INCREMENTS={summonRate:.04,summonDamage:.04,capacity:.1,damage:.12,rate:.09,crit:.03,critPower:.15,hp:1,armor:.12,regen:1,speed:.06,power:.12,returnDamage:.03,larvaDamage:.08,slimeSlow:.02,commonVolley:.1,heartDamage:.2,shieldRecharge:1};
+export const STAT_LABELS={resonance:'Резонанс души',sensorDodge:'Уклонение сборки',regenRate:'Восстановление здоровья',repairRate:'Ремонт брони',traitBoost:'Усиление корпуса',plateCapacity:'Броня сборки',summonRate:'Темп роя',summonDamage:'Урон роя',capacity:'Вместимость',damage:'Урон',rate:'Скорость атаки',crit:'Шанс крита',critPower:'Множитель крита',hp:'Здоровье',armor:'Броня',regen:'Регенерация',speed:'Движение',dodge:'Уклонение',power:'Эффективность органа',returnDamage:'Обратный урон',larvaDamage:'Урон личинок',slimeSlow:'Замедление слизью',commonVolley:'Урон общего залпа',heartDamage:'Урон импульса',shieldRecharge:'Восстановление щита'};
+export const INCREMENTS={summonRate:.04,summonDamage:.04,capacity:.1,damage:.12,rate:.09,crit:.03,critPower:.15,hp:1,armor:.12,regen:1,speed:.06,power:.12,returnDamage:.03,larvaDamage:.08,slimeSlow:.02,commonVolley:.1,heartDamage:.2,shieldRecharge:1,traitBoost:.02};
 export const MISSIONS=[
  {id:'garden',name:'След Ловчего',bossId:'boss-mercury-hunter',bossName:'Ртутный Ловчий',biome:'gardens',floors:25,difficulty:1,description:'Пройдите 24 садовые террасы и загоните Ртутного Ловчего в финальном зале.',rewards:['hunter'],rewardTier:3},
  {id:'quarantine',name:'Сердце свалки',bossId:'boss-scrap-leviathan',bossName:'Свалочный Левиафан',biome:'scrapyard',floors:25,difficulty:2,description:'Пробейтесь через 24 прессовочные камеры к Свалочному Левиафану.',rewards:['bastion'],rewardTier:4},

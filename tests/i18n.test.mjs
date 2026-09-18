@@ -21,13 +21,13 @@ test('all eleven pickups have English and Russian names, details and compact not
   assert.equal(translateText('+5 биомассы'),'+5 biomass');
 });
 
-test('new and existing profiles default to English without losing other settings',()=>{
-  assert.equal(readSettings({getItem:()=>null}).language,'en');
+test('new and existing profiles default to Russian without losing other settings',()=>{
+  assert.equal(readSettings({getItem:()=>null}).language,'ru');
   const old=readSettings({getItem:()=>JSON.stringify({music:35,quality:'high'})});
-  assert.equal(old.language,'en'); assert.equal(old.music,35); assert.equal(old.quality,'high');
+  assert.equal(old.language,'ru'); assert.equal(old.music,35); assert.equal(old.quality,'high');
   for(const value of [null,42,'de',{},undefined])assert.equal(normalizeLanguage(value),'en');
-  assert.equal(readSettings({getItem:()=>'{bad'}).language,'en');
-  assert.equal(readSettings({getItem:()=>{throw Error('blocked');}}).language,'en');
+  assert.equal(readSettings({getItem:()=>'{bad'}).language,'ru');
+  assert.equal(readSettings({getItem:()=>{throw Error('blocked');}}).language,'ru');
 });
 
 test('language survives reload and remains effective when storage is unavailable',()=>{
@@ -41,13 +41,18 @@ test('language survives reload and remains effective when storage is unavailable
   blocked.update('language','ru'); assert.equal(applied.language,'ru'); assert.ok(notice);
 });
 
+test('browser review routes support the mandatory silent mode',()=>{
+  const main=readFileSync(new URL('../src/main.js',import.meta.url),'utf8');
+  assert.match(main,/review&&params\.get\('sound'\)==='0'\)settings\.update\('soundEnabled',false\)/);
+});
+
 test('dynamic stats, units and longest phrases translate without changing values',()=>{
   assert.equal(translateText('УРОВЕНЬ 12 · Урон руки +25% · 1.5с'),'LEVEL 12 · Arm damage +25% · 1.5s');
   assert.equal(translateText('Здоровье 2 из 3. Броня 1 из 2. Щит готов'),'Health 2 of 3. Armor 1 of 2. Shield ready');
-  assert.equal(translateText('Биомасса: 120 · Вес 8 / 20'),'Biomass: 120 · Weight 8 / 20');
+  assert.equal(translateText('Биомасса: 120 · Вес 8 из 20'),'Biomass: 120 · Weight 8 of 20');
   assert.equal(translateText('Вход с 5-го уровня · ваш уровень 2'),'Requires level 5 · your level 2');
   assert.equal(translateText('Не хватает 25 биомассы'),'Need 25 more biomass');
-  assert.equal(translateText('Нажмите на лишнюю деталь в инвентаре → «Переработать». До улучшения: 5 / 12.'),'Tap a spare part in your inventory → “Digest”. Until upgrade: 5 / 12.');
+  assert.equal(translateText('Нажмите на лишнюю деталь в инвентаре → «Переработать». До улучшения: 5 из 12.'),'Tap a spare part in your inventory → “Digest”. Until upgrade: 5 of 12.');
   assert.equal(translateText('Садовник · Урон руки +25%','ru'),'Садовник · Урон руки +25%');
   assert.equal(translateText('BIOSO · 60 FPS · unknown_identifier'),'BIOSO · 60 FPS · unknown_identifier');
   assert.equal(translateText('СборкаНеизвестная'),'СборкаНеизвестная');

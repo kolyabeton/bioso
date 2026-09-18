@@ -7,17 +7,17 @@ test('Soul omits summon statistics when no helpers are available',()=>{
 });
 
 test('Soul adds summon statistics to the common table for the full build',()=>{
-  const s={body:{key:'broodmother',tier:5},legs:Array(3).fill({key:'swarmLeg'}),organs:Array(2).fill({key:'broodNode'}),abilities:{companions:Array(8).fill({})}};
+  const s={body:{key:'broodmother',tier:5,setId:'broodmother'},arms:[{key:'drone',setId:'broodmother'}],legs:Array.from({length:3},()=>({key:'swarmLeg',setId:'broodmother'})),organs:Array.from({length:2},()=>({key:'broodNode',setId:'broodmother'})),abilities:{companions:Array(8).fill({})}};
   assert.deepEqual(soulSummonStats(s,{summons:3,summonDamage:.75,summonRate:.6}),[
-    ['Помощники','8 / 9'],['Урон роя','×2.15'],['Темп роя','×2.05'],['Призыв нового','0.59 с'],['Поиск роя','12 м'],
+    ['Помощники','8 из 10'],['Урон роя','×2.15'],['Темп роя','×2.05'],['Призыв нового','0.59 с'],['Поиск роя','12 м'],['Поиск дронов','10 м'],
   ]);
 });
 
 test('Soul shows helpers unlocked by Colony on another body',()=>{
-  assert.equal(soulSummonStats({abilities:{companions:[{}]}},{summons:1})[0][1],'1 / 1');
+  assert.equal(soulSummonStats({abilities:{companions:[{}]}},{summons:1})[0][1],'1 из 1');
 });
 
 test('Soul shows a missing destroyed interceptor until its replacement is summoned',()=>{
-  const s={body:{key:'broodmother',tier:2},abilities:{companions:[{}]}};
-  assert.equal(soulSummonStats(s,{})[0][1],'1 / 2');
+  const s={body:{key:'broodmother',tier:2,setId:'broodmother'},arms:[{key:'drone',setId:'broodmother'}],abilities:{companions:[{}]}};
+  assert.equal(soulSummonStats(s,{})[0][1],'1 из 4');
 });

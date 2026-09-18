@@ -9,7 +9,7 @@ import {recordSurvivalRecycle} from './systems/survival-achievement-progress.js'
 import {SURVIVAL_ITEM_ACHIEVEMENTS} from './systems/survival-unlock-rules.js';
 import {seededRandom} from './simulation.js';
 import {bodyFitsHere} from './body-size.js';
-import {bodyBonuses,defensiveOrganHitCapacity,organEffect,speedRushBonus,critRampStacks,CRIT_RAMP_STEP} from './systems/body-traits.js';
+import {bodyBonuses,defensiveOrganHitCapacity,organEffect,speedRushBonus,critRampStacks,CRIT_RAMP_STEP,chassisTraitBoost} from './systems/body-traits.js';
 import {initializePart,partMeta,setBonuses,affixBonus,magazineCapacity,recordReward,finalizeReceivedPart} from './systems/sets-loot.js';
 import {inMire,slotCount,boundPart} from './systems/mutations.js';
 import {surfaceReach,groundDistance} from './elevation.js';
@@ -97,14 +97,14 @@ export function stats(s){
  const hp=HEALTH.base+bodyHealth(s.body)+s.legs.filter(Boolean).reduce((sum,p)=>sum+legHealth(p),0)+bodyBonus.hp+sets.hp+(b.hp||0)-(s.isaac?.deals.hpCost||0),armorBase=.5+sets.armor+list.reduce((n,p)=>n+(p.key==='armor'||def(p).kind==='leg'?0:(def(p).armor||0)/20*(1+addBonus(p,'armor')))+(p.modifier==='armored'?1:0)+affixBonus(p,'armor'),0)+(b.armor||0),armor=Math.min(hp,armorBase+armorPlateBase+legArmorBase+(armorBase+armorPlateBase+legArmorBase>.5?(b.movingArmor||0):0)+.5*(s.isaac?.deals.armor||0));
  const speed=s.legs.filter(Boolean).reduce((sum,p)=>sum+legSpeed(p,b.speed||0),0)/body.legs*(1+bodyBonus.speed+sets.speed);
  const carriedWeight=load(s),maxWeight=capacity(s.body)+20*(s.isaac?.deals.capacity||0),loadFactor=weightSpeedFactor(carriedWeight,maxWeight);
- const shields=s.organs.filter(p=>p?.key==='shield').reduce((sum,p)=>sum+defensiveOrganHitCapacity(s,p),0),regenerators=s.organs.filter(p=>p?.key==='regen').length,regenPersistsThroughDamage=s.legs.some(p=>p?.key==='root'),plates=s.organs.filter(p=>p?.key==='armor'),repairGlands=s.organs.filter(p=>p?.key==='repairGland'),armorRepairAmount=.5*plates.length+repairGlands.length,armorRepairRate=.5*plates.length+repairGlands.reduce((sum,p)=>sum+tierFactor(p)*recoveryMultiplier(p,'repairRate'),0),armorRepairDelay=armorRepairAmount?ARMOR_REPAIR_SECONDS*armorRepairAmount/armorRepairRate/organBoost:ARMOR_REPAIR_SECONDS/organBoost,dodge=Math.min(MAX_DODGE_CHANCE,(b.dodge||0)+(bodyBonus.dodge||0)+.1*organPower(s,'reflexNerve'));
+ const shields=s.organs.filter(p=>p?.key==='shield').reduce((sum,p)=>sum+defensiveOrganHitCapacity(s,p),0),regenerators=s.organs.filter(p=>p?.key==='regen').length,regenPersistsThroughDamage=s.legs.some(p=>p?.key==='root'),plates=s.organs.filter(p=>p?.key==='armor'),armorRepairAmount=.5*plates.length,armorRepairRate=.5*plates.length,armorRepairDelay=armorRepairAmount?ARMOR_REPAIR_SECONDS*armorRepairAmount/armorRepairRate/organBoost:ARMOR_REPAIR_SECONDS/organBoost,dodge=Math.min(MAX_DODGE_CHANCE,(b.dodge||0)+(bodyBonus.dodge||0)+.1*organPower(s,'reflexNerve'));
  return{hp,armor,dodge,turnSpeed:bodyTurnSpeed(s.body,maxWeight),capacity:maxWeight,weight:carriedWeight,loadFactor,overloaded:loadFactor===0,speed:speed*(1+.15*(s.isaac?.deals.speed||0))*(1+affix('movement'))*loadFactor*(inMire(s)?1.25:1),shieldMax:shields+(sets.barrier?1:0),setRegen:sets.tissue,regen:!!(regenerators||b.regen),regenPersistsThroughDamage,regenPerSecond:rootRegenPerSecond(s)*organBoost,regenAmount:Math.max(1,b.regen||0),regenDelay:regenerationDelay(s),armorRepairAmount,armorRepairDelay,shieldRate:organBoost/setBonuses(s).shieldDelay,projectile:1+.3*organPower(s,'stabilizer'),organEffect:organBoost,rate:affix('rate')+bodyBonus.rate+sets.rate+.15*organPower(s,'accelerator')+(inMire(s)?.25:0),bodyFactor:f,revive:b.revive||0,pickup:7*(1+(b.pickup||0)+setBonuses(s).pickup+affix('pickup'))};
 }
 export function weaponStats(s,p,st=stats(s)){
  if(p.key==='drone'){const d=def(p),base=droneStats(p),swarm=summonTuning(s,modifiers(s));return{...d,partId:p.id,damage:base.damage*swarm.damage,interval:base.interval/swarm.rate,range:swarm.droneSearch,crit:0,critPower:1,speed:0,extra:0};}
  const d=def(p),melee=['sector','area','contact'].includes(d.mode),b=modifiers(s),bodyBonus=bodyBonuses(s),projectile=['projectile','rocket','acid'].includes(d.mode),family=weaponFamilyBonus(s,p);
  // The Forester scales every weapon with the assembly's health, the Runner only sharpens its own family.
- const rush=speedRushBonus(s,st.speed),ramp=critRampStacks(s,combatTime(s))*CRIT_RAMP_STEP;
+ const rush=speedRushBonus(s,st.speed),ramp=critRampStacks(s,combatTime(s))*CRIT_RAMP_STEP*(1+chassisTraitBoost(s));
  const partBonus=bodyBonus.healthDamage*Math.max(0,st.hp)+rush+(RUNNER_DAMAGE_KEYS.has(p.key)&&s.legs.some(q=>q?.key==='runner')?RUNNER_DAMAGE_BONUS:0);
  const swarm=d.mode==='rocket'?summonTuning(s,b):null;
  const reachMultiplier=1+(melee?(b.reach||0)+(b.meleeReach||0)+setBonuses(s).reach:(b.range||0)+(b.rangedReach||0)+setBonuses(s).range),range=melee?heroMeleeAttackRange(s,d.range*reachMultiplier):d.range*reachMultiplier;
@@ -139,6 +139,7 @@ export function upgradeHasEffect(s,p,stat){
  if(stat==='plateCapacity')return after.armor-before.armor>1e-9;
  if(stat==='regenRate')return before.regenDelay-after.regenDelay>1e-9;
  if(stat==='repairRate')return Math.max(.5,before.armorRepairDelay)-Math.max(.5,after.armorRepairDelay)>1e-9;
+ if(stat==='traitBoost')return Object.keys(bodyBonuses(next)).some(key=>Math.abs((bodyBonuses(next)[key]||0)-(bodyBonuses(s)[key]||0))>1e-9);
  return false;
 }
 export function upgrade(s,id,stat,paid=false){

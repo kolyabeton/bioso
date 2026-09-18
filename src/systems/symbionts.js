@@ -4,10 +4,12 @@ import {combatTime} from './mutations.js';
 import {CATALOG} from '../catalog.js';
 import {summonPartBonus,droneStats,MAX_COMPANIONS,MAX_BODY_COMPANIONS,MAX_COLONY_COMPANIONS} from './summon-equipment.js';
 import {spatialDistance as dist,visibleBetween} from '../elevation.js';
+import {enemyTargetable} from './enemy-locomotion.js';
+import {bodyTraitState} from './body-traits.js';
 
 export function summonTuning(s,b={}){
  const strongest=(parts,key,stat,limit)=>(parts||[]).filter(p=>p?.key===key).sort((a,b)=>summonPartBonus(b,stat)-summonPartBonus(a,stat)).slice(0,limit);
- const legs=strongest(s.legs,'swarmLeg','summonRate',3),nodes=strongest(s.organs,'broodNode','summonDamage',2),brood=s.body?.key==='broodmother';
+ const legs=strongest(s.legs,'swarmLeg','summonRate',3),nodes=strongest(s.organs,'broodNode','summonDamage',2),brood=s.body?.key==='broodmother'&&bodyTraitState(s).active;
  const broodCount=brood?Math.max(1,Math.min(MAX_BODY_COMPANIONS,Math.floor(s.body.tier??1))):0;
  const colonyCount=Math.max(0,Math.min(MAX_COLONY_COMPANIONS,Math.floor(b.summons||0)));
  const sets=setBonuses(s),setCount=sets.summons;
@@ -24,9 +26,9 @@ export function syncSwarmRate(s,rate){
  for(const key of Object.keys(a.companionSummonReadyAt||{}))a.companionSummonReadyAt[key]=now+Math.max(0,a.companionSummonReadyAt[key]-now)*previous/rate;
 }
 
-export function destroySymbiont(s,c,b={}){
+export function destroySymbiont(s,c,b={},minimumDelay=0){
  const sets=syncSetState(s);if(sets.active.broodmother){sets.broodUntil=combatTime(s)+SET_TIMING.brood;soulProc(s,'set-broodmother',s.player);}
- const tuning=summonTuning(s,b),source=tuning.drones.find(p=>p.id===c.sourcePartId),interval=(source?droneStats(source).interval:1.2)/tuning.rate;
+ const tuning=summonTuning(s,b),source=tuning.drones.find(p=>p.id===c.sourcePartId),naturalInterval=(source?droneStats(source).interval:1.2)/tuning.rate,interval=Math.max(naturalInterval,minimumDelay);
  syncSwarmRate(s,tuning.rate);
  const sourceKey=c.sourceKey??c.id,readyAt=combatTime(s)+interval,a=s.abilities;
  a.companions=a.companions.filter(q=>q!==c);(a.companionSummonReadyAt??={})[sourceKey]=readyAt;a.swarmInterceptions=(a.swarmInterceptions||0)+1;
@@ -42,7 +44,7 @@ function recallCompanion(c,player){
 // Simulation owns every flight phase. A bee can only deal damage at the target.
 export function tickSymbionts(s,dt,b,strike){
  const now=combatTime(s),companions=s.abilities.companions,tuning=summonTuning(s,b);
- const dungeon=s.encounters?.active?.dungeon?s.encounters.active.id:null,eligible=e=>e&&e.hp>0&&(!dungeon||e.challengeId===dungeon)&&dist(s.player,e)<=tuning.search&&visibleBetween(s,s.player,e);
+ const dungeon=s.encounters?.active?.dungeon?s.encounters.active.id:null,eligible=e=>enemyTargetable(e)&&(!dungeon||e.challengeId===dungeon)&&dist(s.player,e)<=tuning.search&&visibleBetween(s,s.player,e);
  const sharedFocus=b.summonFocus?s.enemies.filter(eligible).sort((a,d)=>{
   const priority=e=>e.kind==='final'||e.kind==='boss'?-1000:e.kind==='elite'?-500:0;
   return priority(a)-priority(d)||dist(s.player,a)-dist(s.player,d);
@@ -100,8 +102,9 @@ export function tickSymbionts(s,dt,b,strike){
   c.aim=(c.aim??aim)+turn*Math.min(1,dt*14);c.bank=turn*.35;
   const altitude=target?(c.phase==='retreat'?1.9:1.05):1.5;
   c.hover=(c.hover??1.5)+(altitude-(c.hover??1.5))*Math.min(1,dt*7);
-  if(dt<=0||!target||c.phase!=='approach'||c.cooldown>0||dist(c,target)>(target.radius||.5)+.65||!visibleBetween(s,c,target))continue;
   const source=tuning.drones.find(p=>p.id===c.sourcePartId);
+  const attackReach=source?droneStats(source).attackRadius:.65;
+  if(dt<=0||!target||c.phase!=='approach'||c.cooldown>0||dist(c,target)>(target.radius||.5)+attackReach||!visibleBetween(s,c,target))continue;
   c.cooldown=(source?droneStats(source).interval:1.2)/tuning.rate;c.attacks++;c.lastShotAt=now;
   c.aim=Math.atan2(target.x-c.x,target.z-c.z);
   strike(c,target);

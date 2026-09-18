@@ -101,7 +101,8 @@ html,body{width:100%;height:100%;margin:0}body{font-family:var(--ui-font);font-s
 .dock-controls #map-button,.dock-controls #assembly-button,.dock-controls #soul-button{min-height:44px;min-width:44px;padding:8px 12px;gap:6px;font-size:12px;background:#1824268c}
 .dock-controls #assembly-button{overflow:visible}
 @media(max-width:390px){.dock-controls #map-button{padding-inline:6px}}
-#revival-badge{position:absolute;z-index:4;left:50%;top:43%;transform:translate(-50%,-100%);min-width:28px;padding:4px 7px;text-align:center;color:var(--ui-mint);font:600 13px/18px Onest,sans-serif;pointer-events:none}
+#revival-badge{display:inline;color:var(--ui-mint);font-family:Onest,sans-serif;font-size:inherit;font-weight:600;line-height:inherit;pointer-events:none}
+#revival-badge[hidden]{display:none}
 .vitals .health.is-repairing-armor:after{content:'';position:absolute;left:2px;bottom:-4px;width:var(--armor-repair);height:2px;background:var(--ui-bronze);box-shadow:0 0 5px var(--ui-bronze)}
 .ui-new-items-badge{position:absolute;z-index:3;top:-8px;right:-8px;display:grid;place-items:center;min-width:24px;height:24px;padding:0 6px;border:2px solid #e6dfc9;border-radius:999px;background:#a93428;color:#fffaf0;font:700 12px/1 var(--ui-font);font-variant-numeric:tabular-nums;text-shadow:0 1px 1px #4b100e;box-shadow:0 2px 5px #10130dcc,0 0 0 1px #501710}
 
@@ -184,6 +185,7 @@ html,body{width:100%;height:100%;margin:0}body{font-family:var(--ui-font);font-s
 .ui-detail .ui-comparison td,.ui-detail .ui-comparison th{padding:4px;font-size:11px;line-height:16px}
 .ui-detail .ui-comparison{margin:6px 0}
 .ui-detail .ui-compatibility{display:none}
+.ui-hand-compatibility{display:grid;gap:4px;margin:10px 0}.ui-detail .ui-hand-compatibility>p,.ui-loot-detail .ui-hand-compatibility>p{margin:0;color:var(--ui-text);font-size:8px;line-height:12px}.ui-hand-compatibility>.ui-compatibility{display:none}
 
 /* Assembly workbench: fixed creature and mounts, independently scrolling inventory. */
 .ui-dialog[data-screen=assembly]{width:min(760px,calc(100vw - 16px))}
@@ -337,7 +339,8 @@ html,body{width:100%;height:100%;margin:0}body{font-family:var(--ui-font);font-s
 .ui-item-upgrade-values{display:flex;align-items:baseline;gap:8px;font-size:clamp(24px,7vw,28px);line-height:40px;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ui-item-upgrade-values>span:nth-child(2){font-size:24px;color:var(--ui-muted)}
 .ui-item-upgrade-values strong{font-weight:500;color:var(--ui-mint)}
-.ui-item-upgrade-preview .ui-item-upgrade-rank{border-top:1px solid var(--ui-bronze-dim);padding:8px 0;margin-top:8px;font-size:11px}
+.ui-item-tooltip-scroll>.ui-item-upgrade-rank{padding:8px 0;margin:8px 16px 0;font-size:11px;line-height:16px;color:var(--ui-muted)}
+.ui-item-tooltip-scroll>.ui-item-upgrade-rank:not(:first-child){border-top:1px solid var(--ui-bronze-dim)}
 .ui-item-upgrade-rank strong{color:var(--ui-mint);font-weight:500}
 .ui-item-stats{margin:0;padding:4px 16px;border-top:1px solid var(--ui-bronze-dim)}
 .ui-item-stats>div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid color-mix(in srgb,var(--ui-bronze-dim) 45%,transparent);font-size:12px;line-height:16px}
@@ -414,10 +417,12 @@ html,body{width:100%;height:100%;margin:0}body{font-family:var(--ui-font);font-s
 .ui-dialog[data-screen=assembly] .ui-organ-slots .ui-part-art{width:calc(var(--assembly-item-size) - 18px);height:calc(var(--assembly-item-size) - 18px);max-width:none;max-height:none}
 .ui-selection-actions{grid-column:1/-1;display:flex;gap:8px}
 .ui-selection-actions .ui-button{flex:1;min-height:44px;font-size:12px}
-.ui-soul-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 10px;margin:8px 0 12px}
-.ui-soul-stats>div{padding:6px 0;border-bottom:1px solid var(--ui-bronze-dim);min-width:0}
-.ui-soul-stats dt{font-size:11px;color:var(--ui-muted)}
-.ui-soul-stats dd{margin:2px 0 0;font-size:14px;line-height:20px;font-variant-numeric:tabular-nums}
+.ui-soul-stat-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0 18px;margin:8px 0 12px;align-items:start}
+.ui-soul-stats{display:block;margin:0}
+.ui-soul-stat-title{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ui-mint);padding:0 0 4px;border-bottom:1px solid var(--ui-bronze-dim)}
+.ui-soul-stats>div:not(.ui-soul-stat-title){display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:4px 0;border-bottom:1px solid var(--ui-bronze-dim);min-width:0}
+.ui-soul-stats dt{font-size:11px;color:var(--ui-muted);min-width:0}
+.ui-soul-stats dd{margin:0;font-size:13px;line-height:18px;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 @media(max-height:700px){.ui-dialog[data-screen=assembly] .ui-assembly{--assembly-item-size:52px}.ui-dialog[data-screen=assembly] .panel-head{padding:6px 10px;gap:2px}}
 @media(orientation:landscape) and (max-height:540px){.ui-dialog[data-screen=assembly] .ui-assembly{--assembly-item-size:44px}.ui-dialog[data-screen=assembly] .ui-loadout-side{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.ui-dialog[data-screen=assembly] .ui-loadout{grid-template-columns:100px minmax(0,1fr) 100px}.ui-organ-bank{padding-top:4px;margin-top:0}}
 .ui-dialog[data-screen=soul] .ui-screen-body{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
@@ -459,7 +464,7 @@ html,body{width:100%;height:100%;margin:0}body{font-family:var(--ui-font);font-s
 .ui-dialog[data-screen=assembly] .ui-organ-slots.has-many-organs{display:grid;grid-template-columns:repeat(auto-fit,var(--assembly-item-size));gap:8px;max-height:190px;overflow-x:hidden;overflow-y:auto;scrollbar-width:thin;align-content:start}
 
 /* Rarity stays readable by name as well as color. */
-.ui-rarity{font-weight:700;color:#d8ded9}
+.ui-rarity{font-weight:400;color:#d8ded9}
 .ui-rarity--uncommon{color:#8dd6a0}
 .ui-rarity--rare{color:#d0a0ff}
 .ui-rarity--relic{color:#ffdc70}
@@ -488,7 +493,7 @@ html,body{width:100%;height:100%;margin:0}body{font-family:var(--ui-font);font-s
 
 .ui-dialog[data-screen=assembly] .ui-inventory-title{flex:1;min-width:0;white-space:normal;overflow-wrap:anywhere}
 
-.ui-soul-panel>.ui-section-label:first-child{margin:0 0 8px}.ui-dialog[data-screen=soul] .ui-screen-body{padding-top:12px}.ui-soul-stats>.ui-soul-stat-wide{grid-column:span 2}
+.ui-soul-panel>.ui-section-label:first-child{margin:0 0 8px}.ui-dialog[data-screen=soul] .ui-screen-body{padding-top:12px}
 .mission-blackout{display:none}
 
 /* Desktop gameplay uses the available map width; portrait dialogs keep their

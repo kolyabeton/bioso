@@ -1,7 +1,7 @@
 import {prepareSetReview} from './sets-review.js';
 import {meta} from '../systems/meta-progression.js';
 import {isaacState} from '../systems/mutations.js';
-import {queueBossReward,rollAffixes} from '../systems/sets-loot.js';
+import {finalizeReceivedPart,magazineCapacity,queueBossReward,rollAffixes} from '../systems/sets-loot.js';
 // Development-only, isolated initial states for visual and interaction QA.
 // Loaded only by Vite DEV with ?review=...; never writes the player's profile.
 import {createPart,equip,swapBody,stats} from '../assembly.js';
@@ -26,6 +26,7 @@ export function prepareReview(run,name){
     run.arms=['seed','acid'].map(key=>createPart(run,key,1));
     run.legs=Array.from({length:3},()=>createPart(run,'swarmLeg',1));
     run.organs=[createPart(run,'broodNode',1),createPart(run,'broodNode',1),createPart(run,'regen',1)];
+    for(const part of [run.body,...run.arms,...run.legs,...run.organs])part.setId='broodmother';
     run.abilities.learned=['summons.0','summons.1','summons.2','summons.3'];
     run.abilities.levels={'summons.0':5,'summons.1':5,'summons.2':5,'summons.3':5};
     run.abilities.companions=Array.from({length:8},(_,i)=>({id:`symbiont-${i}`,cooldown:0,attacks:0,x:run.player.x,y:run.player.y??0,z:run.player.z}));
@@ -45,11 +46,14 @@ export function prepareReview(run,name){
   if(new URLSearchParams(location.search).get('variant')==='sets'){run.arms=[createPart(run,'seed'),createPart(run,'claws')];for(const p of [run.body,...run.arms,...run.legs]){p.setId='wanderer';p.rarity='rare';}run.arms[0].affix={stat:'reload',value:.08};}
   if(['assembly','part','body-swap','level','map','end'].includes(name)){
     run.biomass=128;
-    for(const key of ['drill','bastion','shield','regen','digestion','plated'])run.inventory.push(createPart(run,key));
+    for(const key of ['drill','bastion','shield','regen','digestion','plated']){const part=createPart(run,key);finalizeReceivedPart(run,part);run.inventory.push(part);}
     const digestion=run.inventory.find(p=>p.key==='digestion');equip(run,digestion.id,0);
     run.ground.push({id:++run.entityId,part:createPart(run,'arc'),x:run.player.x+1,z:run.player.z});
   }
   if(new URLSearchParams(location.search).get('variant')==='affixes'){const p=run.inventory[0];if(p){p.rarity='relic';p.affixes=rollAffixes(p,()=>0);}run.body.rarity='rare';run.body.affixes=rollAffixes(run.body,()=>0);}
+  if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='legendary-weapon'){
+    const p=createPart(run,'needle',3);p.rarity='relic';p.affixes=[{stat:'magazine',value:2},{stat:'reload',value:.25},{stat:'damage',value:.1}];p.ammo=magazineCapacity(p);run.inventory=[p];
+  }
   if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='leg-rank'){const key=new URLSearchParams(location.search).get('leg')||'root';run.legs[0]=createPart(run,CATALOG[key]?.kind==='leg'?key:'root',Number(new URLSearchParams(location.search).get('tier'))||2);run.inventory=[];run.hp=stats(run).hp;}
   if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='armor-affix'){
     const p=createPart(run,'stabilizer',2);p.rarity='uncommon';p.affixes=[{stat:'armor',value:1}];run.inventory=[p];
@@ -145,6 +149,7 @@ export function prepareReview(run,name){
   if(name==='part')return {id:run.inventory.find(p=>p.key==='drill').id};
   if(name==='ability-detail'){
     const query=new URLSearchParams(location.search),branch=query.get('branch')||'might',id=ABILITIES[branch]?branch:`${branch}.0`,rank=Math.max(0,Math.min(5,Number(query.get('rank'))||0));
+    run.arms=(['projectiles','ricochet','neuralweb'].includes(branch)?['pistol','seed']:branch==='ranged'?['pistol','arc']:branch==='melee'?['claws']:['claws','pistol']).map(key=>createPart(run,key));
     if(rank&&ABILITIES[id]){run.abilities.learned=id.startsWith('ricochet.')&&id!=='ricochet.0'?['ricochet.0',id]:[id];run.abilities.levels[id]=rank;if(run.abilities.learned.includes('ricochet.0'))run.abilities.levels['ricochet.0']=1;}
     return {browse:true,branch};
   }

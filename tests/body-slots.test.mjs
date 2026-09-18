@@ -9,7 +9,8 @@ test('organ slots grow with rank and rarity, with a strict tradeoff for armed bo
  const s=createRun();assert.equal(organCapacity(s.body),2);
  for(const [key,d] of Object.entries(BODIES))for(let tier=1;tier<=5;tier++)for(const [rarity,bonus] of Object.entries({common:0,uncommon:1,rare:2,relic:3})){
   const p=createPart(s,key,tier);p.rarity=rarity;
-  const expected=key==='broodmother'?3:key==='hecaton'?Math.min(2,d.organs+tier-1+bonus):Math.min(d.arms>=3?3:8,d.organs+tier-1+bonus);
+  const cap={broodmother:3,hecaton:2,bastion:5}[key]??(d.arms>=3?3:8);
+  const expected=key==='broodmother'?3:Math.min(cap,d.organs+tier-1+bonus);
   assert.equal(organCapacity(p),expected);
   assert.equal(slotCount({isaac:{deals:{organs:99}}},p,'organs'),8);
  }

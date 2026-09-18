@@ -14,3 +14,5 @@ export const frameWork=new FrameWorkQueue();
 const loads=[];let active=0;
 function drain(){while(active<2&&loads.length){const job=loads.shift();active++;Promise.resolve().then(job.work).then(job.resolve,job.reject).finally(()=>{active--;drain();});}}
 export function limitedLoad(work){return new Promise((resolve,reject)=>{loads.push({work,resolve,reject});drain();});}
+/** Asset requests in flight or waiting for a slot. Screens use it to hold a curtain until the scene stops streaming. */
+export const pendingLoads=()=>active+loads.length;

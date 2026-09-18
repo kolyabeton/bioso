@@ -2,11 +2,11 @@ import {createPart,stats} from './assembly.js';
 import {beginEncounter,exitDungeon,hurtEnemy} from './game.js';
 import {tickChallenge} from './systems/events/challenges.js';
 import {dungeonLayoutStats} from './dungeon-layout.js';
-import {SURVIVAL_BOSS_INTERVAL} from './systems/survival-bosses.js';
+import {SURVIVAL_BOSS_INTERVAL,SURVIVAL_BOSS_LIMIT,SURVIVAL_FIRST_BOSS_AT,survivalBossScheduledAt} from './systems/survival-bosses.js';
 
 export const DUNGEON_SCENARIOS={
- roots:{type:'dungeon_roots',name:'Корневые тоннели',label:'Корни',level:15,time:900,count:12},
- catacombs:{type:'dungeon_catacombs',name:'Техногенные катакомбы',label:'Катакомбы',level:25,time:1500,count:18},
+ roots:{type:'dungeon_roots',name:'Главный Отсек',label:'Главный Отсек',level:10,time:900,count:12},
+ catacombs:{type:'dungeon_catacombs',name:'Техногенные катакомбы',label:'Катакомбы',level:17,time:1500,count:18},
 };
 
 /** Prepare a fresh, isolated review run using the production dungeon entry path. */
@@ -17,8 +17,8 @@ export function stageDungeonReview(s,key='roots'){
  s.time=scenario.time;s.level=scenario.level;s.enemies=[];s.pending=0;s.dungeonReview=true;
  // The fixture jumps ahead in survival time. Do not replay missed invasions
  // immediately outside the entrance and block the intended return trip.
- const skippedBosses=Math.floor(s.time/SURVIVAL_BOSS_INTERVAL);
- s.survivalBosses={count:skippedBosses,nextAt:(skippedBosses+1)*SURVIVAL_BOSS_INTERVAL,rotation:[]};
+ const skippedBosses=Math.min(SURVIVAL_BOSS_LIMIT,s.time<SURVIVAL_FIRST_BOSS_AT?0:1+Math.floor((s.time-SURVIVAL_FIRST_BOSS_AT)/SURVIVAL_BOSS_INTERVAL));
+ s.survivalBosses={count:skippedBosses,nextAt:skippedBosses<SURVIVAL_BOSS_LIMIT?survivalBossScheduledAt(skippedBosses+1):Infinity,rotation:[]};
  s.body=createPart(s,'bastion',3);
  s.arms=['seed','claws'].map(k=>createPart(s,k,3));
  s.legs=Array.from({length:4},()=>createPart(s,'universal',3));

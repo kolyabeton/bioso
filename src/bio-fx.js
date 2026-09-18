@@ -1,3 +1,4 @@
+import {CONSUMABLE_BY_KIND} from './systems/consumable-drops.js';
 /** Fixed storage, no per-hit meshes or materials. Simulation state is never modified. */
 export const FX_CAPACITY = 192;
 export const WEAPON_COLORS = Object.freeze({pistol:0xf3d4a0,seed:0xb5dfba,shotgun:0xe8c786,needle:0xd0eeeb,rocket:0xe4b48b,acid:0x98bf75,arc:0x9ce6dd,claws:0xc6f5d5,hammer:0xf3c58c,drill:0xc4efff,whip:0x99ddb2,fangs:0xf1d5cd});
@@ -8,6 +9,7 @@ export function createBioParticles(capacity = FX_CAPACITY) {
   let quality='medium', reduced=false, cursor=0;
   const limit=()=>reduced?0:quality==='low'?Math.min(32,capacity):quality==='high'?capacity:Math.min(112,capacity);
   function emit(e) {
+    if(e.type==='arc'&&e.kind==='consumable-parasite'||e.type==='consumable-burst'||e.type==='pickup'&&CONSUMABLE_BY_KIND[e.kind])return;
     const max=limit(); if(e.type==='volatile-blast'||e.soul||!max || !Number.isFinite(e.x) || !Number.isFinite(e.z))return;
     // These weapons own their contact geometry in melee-trail. Do not layer the
     // former particle fan underneath it.

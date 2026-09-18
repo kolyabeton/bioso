@@ -1,11 +1,16 @@
 import {step,hurtEnemy} from './game.js';
 /** Development-only checkpoint of the real mission route; production saves are isolated by main.js. */
-export function prepareBossRuntimeReview(s){
+export function prepareBossRuntimeReview(s,params=new URLSearchParams()){
  const m=s.mission,index=m.floors-1;m.currentFloor=index;
  for(let i=0;i<index;i++){m.floorsState[i].state='cleared';s.exploration.groups[i].state='cleared';}
  m.floorsState[index].state='ready';s.exploration.groups[index].state='ready';
  s.player={x:0,y:0,z:-index*64+1,vy:0,vertical:'grounded'};s.arms=s.arms.map(()=>null);s.health.invulnerableUntil=Infinity;
  step(s,0);
+ // Optional facing checkpoint: keep the real controller active and allow a full turn before attacks.
+ if(params.get('turn')==='180'){
+  const boss=s.enemies.find(e=>e.bossCombat);
+  if(boss){boss.bossCombat.facing+=Math.PI;boss.bossCombat.readyAt=s.time+10;}
+ }
  let paused=true;
  const controls=document.createElement('aside');controls.id='boss-runtime-review';controls.style.cssText='position:fixed;bottom:74px;left:50%;transform:translateX(-50%);z-index:120;width:min(280px,calc(var(--game-stage-width) - 24px));padding:8px;background:#14211ee8;color:#dfebe4;font:11px system-ui;text-align:center';
  const text=document.createElement('div');text.textContent=`Тест боя · ${m.bossName} · комната ${m.floors}`;controls.append(text);
@@ -19,5 +24,5 @@ export function prepareBossRuntimeReview(s){
   recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};recorder.onstop=async()=>{paused=true;button.textContent='Продолжить';stream.getTracks().forEach(t=>t.stop());try{const response=await fetch('/__boss-animation-proof/'+m.id,{method:'POST',body:new Blob(chunks,{type})});if(!response.ok)throw Error('Proof server unavailable');controls.dataset.recording='saved';record.textContent='Saved';}catch(error){controls.dataset.recording='failed';record.textContent='Record failed';}record.disabled=false;};recorder.start();setTimeout(()=>recorder.stop(),8000);
  };controls.append(record);
  const report=document.createElement('output');report.id='boss-runtime-report';report.style.cssText='display:block;font:9px monospace;margin-top:4px';controls.append(report);document.body.append(controls);
- return {get paused(){return paused;},tick(){const info=window.bioso?.snapshot?.();if(info){controls.dataset.paused=String(paused);controls.dataset.cameraBlend=String(info.missionBossCamera?.blend??0);controls.dataset.ready=String(info.bossModels===1&&info.residentTiles>0&&info.loadingTiles===0&&info.assetErrors===0);controls.dataset.proof=JSON.stringify({model:info.bossModelIds,tiles:info.residentTiles,loading:info.loadingTiles,errors:info.assetErrors,boss:s.enemies.filter(e=>e.bossDesignId).map(e=>({id:e.bossDesignId,x:e.x,y:e.y,z:e.z,contact:e.contact,radius:e.radius,speed:e.speed,hp:e.hp,phase:e.bossCombat?.phase,actions:e.bossCombat?.counts,warning:e.enemyAttack?.warning,hover:e.bossHover})),parts:s.enemies.filter(e=>e.hp>0&&e.kind==='boss-part').length,bees:s.enemies.filter(e=>e.hp>0&&e.kind==='boss-drone').length,shots:s.hostileShots.length,animation:info.bossAnimations,camera:info.missionBossCamera,time:s.time,fps:info.fps});report.textContent=JSON.stringify({mode:s.mode,id:info.bossModelIds,errors:info.bossModelFailures,objects:info.bossModelObjects,time:+s.time.toFixed(2),fps:info.fps});}}};
+ return {get paused(){return paused;},tick(){const info=window.bioso?.snapshot?.();if(info){controls.dataset.paused=String(paused);controls.dataset.cameraBlend=String(info.missionBossCamera?.blend??0);controls.dataset.ready=String(info.bossModels===1&&info.residentTiles>0&&info.loadingTiles===0&&info.assetErrors===0);controls.dataset.proof=JSON.stringify({model:info.bossModelIds,tiles:info.residentTiles,loading:info.loadingTiles,errors:info.assetErrors,boss:s.enemies.filter(e=>e.bossDesignId).map(e=>({id:e.bossDesignId,x:e.x,y:e.y,z:e.z,contact:e.contact,radius:e.radius,speed:e.speed,hp:e.hp,facing:e.bossCombat?.facing,phase:e.bossCombat?.phase,actions:e.bossCombat?.counts,warning:e.enemyAttack?.warning,hover:e.bossHover})),parts:s.enemies.filter(e=>e.hp>0&&e.kind==='boss-part').length,bees:s.enemies.filter(e=>e.hp>0&&e.kind==='boss-drone').length,shots:s.hostileShots.length,animation:info.bossAnimations,camera:info.missionBossCamera,time:s.time,fps:info.fps});report.textContent=JSON.stringify({mode:s.mode,id:info.bossModelIds,errors:info.bossModelFailures,objects:info.bossModelObjects,time:+s.time.toFixed(2),fps:info.fps});}}};
 }

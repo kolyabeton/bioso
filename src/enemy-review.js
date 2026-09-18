@@ -3,7 +3,7 @@ import {tickEffects} from './systems/effects.js';
 import {createPart} from './assembly.js';
 import {prepareIsaacAttack,isaacHit,isaacDeath} from './systems/organs/combat.js';
 import {VOLATILE} from './living-combat.js';
-import {ENEMY_RECIPES,assembleEnemy} from './systems/enemy-assembly.js';
+import {ENEMY_RECIPES,assembleEnemy,assignEnemyAssembly} from './systems/enemy-assembly.js';
 /** Explicitly labelled development fixtures. Never grants anything to real runs. */
 export function prepareEnemyReview(s,params){
  const fixture=params.get('fixture')||'boss';s.enemies=[];const home={...s.player};let specialReview=null;
@@ -35,8 +35,16 @@ export function prepareEnemyReview(s,params){
   if(showClaws||showDrill||showWhip){const target=spawnEnemy(s,'normal',{x:home.x,z:home.z+(showWhip?4.5:3.45)},'mass',960);target.hp=target.maxHp=10000;target.radius=.48;target.speed=target.damage=0;target.assembly=null;target.shootAt=Infinity;target.vfxAnchor={x:target.x,z:target.z};}
   const place=(id,x,z)=>{const recipe=ENEMY_RECIPES.find(r=>r.id===id),e=spawnEnemy(s,'normal',{x:home.x+x,z:home.z+z},'ranged',960);e.recipeId=recipe.id;e.assemblyRole=recipe.role;e.assembly=assembleEnemy(recipe,3,'normal');e.enemyAttack={index:0,readyAt:s.time,warning:null};e.hp=e.maxHp=10000;e.speed=e.damage=0;return e;};
   if(showSeed)place('sower',0,-7);if(showNeedle)place('needler',0,-7);if(showBoss){const legacy=spawnEnemy(s,'boss',{x:home.x,z:home.z-10},'ranged',960);delete legacy.assembly;delete legacy.enemyAttack;delete legacy.recipeId;legacy.role='ranged';legacy.hp=legacy.maxHp=10000;legacy.speed=legacy.damage=0;legacy.shootAt=s.time;}
+ }else if(fixture==='boss-movement'){
+  s.time=1440;s.health.invulnerableUntil=Infinity;s.arms=[];s.waves.credit=-1e6;s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;s.survivalBosses={nextAt:Infinity,count:0};s.survivalElites={nextAt:Infinity,count:0};
+  const enemy=spawnEnemy(s,'boss',{x:home.x,z:home.z+8},'mass',s.time);enemy.hp=enemy.maxHp=10000;enemy.bossName='Орхидея';enemy.bossLevel=16;enemy.enemyAttack.readyAt=Infinity;s.mode='review';s.exploration.groups=[];
  }else if(fixture==='acid'){
   s.time=1440;const enemy=spawnEnemy(s,'boss',{x:home.x,z:home.z-8},'mass',1440);enemy.hp=enemy.maxHp=10000;enemy.speed=0;enemy.enemyAttack.readyAt=s.time;
+ }else if(fixture==='locomotion'){
+  s.time=960;s.health.invulnerableUntil=Infinity;s.arms=[];s.waves.credit=-1e6;s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;
+  const place=(id,x,z)=>{const recipe=ENEMY_RECIPES.find(r=>r.id===id),e=spawnEnemy(s,'normal',{x:home.x+x,z:home.z+z},recipe.role,960,{promote:false});assignEnemyAssembly(s,e,960,{missionRole:recipe.role,missionRecipeId:id});e.hp=e.maxHp=10000;e.enemyAttack.readyAt=Infinity;return e;};
+  place('worker',0,-11);place('small-hunter',-6,-7);place('gatherer',6,-7);place('digger',0,-8);place('runner',-8,-2);place('crusher',8,-2);
+  for(const [x,z]of [[-4,4],[-1.4,6],[1.4,6],[4,4]])place('biter',x,z);
  }else if(fixture==='crowd'){
   s.time=960;for(let i=0;i<3000&&s.enemies.length<100;i++){const a=i*2.39996323,r=7+(i%13);spawnEnemy(s,'normal',{x:home.x+Math.cos(a)*r,z:home.z+Math.sin(a)*r},['mass','fast','armored','ranged'][i%4],960);}
  }else if(fixture==='effects'){

@@ -7,6 +7,7 @@ import {loadModel,fittedModel,BODY_MODELS,ARM_MODELS,LEG_MODELS,ORGAN_MODELS} fr
 import {enemyWeaponPose,enemyAnimationState} from './enemy-attack-animation.js';
 import {assembleEnemy,ENEMY_RECIPES,eligibleRecipes,enemyTier} from './systems/enemy-assembly.js';
 import {specialPoseAmount,summonAssemblyProgress} from './systems/enemy-specialists.js';
+import {enemyLocomotionPose,enemyMovementOwned} from './systems/enemy-locomotion.js';
 
 const heads={wanderer:'head-worker',hunter:'head-optic',bastion:'head-sentinel',chimera:'head-mandible',rootwalker:'head-crown',hecaton:'head-knight'};
 // A species owns one deterministic body silhouette. Reusing a gameplay chassis
@@ -19,6 +20,9 @@ export const ENEMY_BODY_APPEARANCES=Object.freeze({
  gardener:{core:'body-seed',head:'head-crown',stretch:[.92,1.16,1.04],addons:[['veg-vine',.62,[0,1.25,-.2],[0,0,0]]]},
  'small-hunter':{core:'body-scout',head:'head-optic',size:1.08,stretch:[.8,1.04,1.2],addons:[['sensor-eye',.34,[0,1.38,.34],[0,Math.PI,0]]]},
  'robo-bee':{core:'body-guard',head:'head-optic',size:.96,stretch:[.76,.72,1.22],addons:[['tail-stinger',.48,[0,1.02,-.62],[0,0,0]]]},
+ dragonfly:{core:'body-scout',head:'head-optic',size:.92,stretch:[.7,.66,1.4],addons:[['sensor-antenna',.4,[0,1.3,.28],[0,Math.PI,0]]]},
+ hornet:{core:'body-pod',head:'head-mandible',size:1.02,stretch:[.86,.7,1.3],addons:[['tail-stinger',.52,[0,1.06,-.7],[0,0,0]]]},
+ moth:{core:'body-seed',head:'head-optic',size:1,stretch:[.94,.8,1.1],addons:[['veg-vine',.5,[0,1.22,-.24],[0,0,0]]]},
  runner:{core:'body-jade',head:'head-worker',size:1.08,stretch:[.72,.88,1.34],addons:[['tail-counterweight',.48,[0,.86,-.62],[0,0,0]]]},
  biter:{core:'body-pod',head:'head-mandible',size:1.08,stretch:[1.2,.7,1.18],addons:[['shell-dome',.5,[0,1.12,-.12],[0,Math.PI,0]]]},
  'quick-digger':{core:'body-scout',head:'head-driller',size:1.12,stretch:[.82,.86,1.34],addons:[['shell-spine',.48,[0,1.18,-.22],[0,Math.PI,0]]]},
@@ -51,6 +55,7 @@ const socketLayouts=new Map();
 function enemySocketLayout(a){const key=a.arms.length+':'+a.legs.length;let layout=socketLayouts.get(key);if(!layout){layout=equipmentLayout(a);socketLayouts.set(key,layout);}return layout;}
 /** Local socket layouts shared by gallery and runtime. No item mutation or player rendering. */
 export function enemyVisualParts(e,time=0,reducedMotion=false){
+ reducedMotion||=e.pickupSleepUntil>time;
  const a=visualAssembly(e),layout=enemySocketLayout(a),parts=[],strong=e.kind!=='normal',tierScale=1+(e.tier-1)*.025,shieldBearer=e.specialty==='shield-bearer',mirrorling=e.specialty==='mirrorling';
  const add=(asset,size,position,rotation=[0,Math.PI,0],anchor='center',motion=null)=>parts.push({asset,size,position,rotation,anchor,motion});
  const appearance=ENEMY_BODY_APPEARANCES[e.recipeId]||{core:BODY_MODELS[a.body.key][0],head:heads[a.body.key]},bodyY=shieldBearer?.55:mirrorling?1.08:.95,bodyZ=shieldBearer?-.44:0;
@@ -59,7 +64,7 @@ export function enemyVisualParts(e,time=0,reducedMotion=false){
  if(!shieldBearer&&!mirrorling)for(const [asset,size,position,rotation]of appearance.addons||[])add(asset,size*tierScale,position,rotation);
  const shieldThrust=shieldBearer?enemyWeaponPose(e,0,time,reducedMotion):null;
  if(!e.flying)a.legs.forEach((p,i)=>{if(!p)return;const {side,position}=layout.legs[i],row=Math.floor(i/2);
-  const stride=reducedMotion||e.enemyAttack?.warning||e.fuseRemaining!=null||e.frozenUntil>time||e.territory&&e.territory.state!=='engaged'?0:Math.sin(time*(e.role==='fast'?13:9)+i*Math.PI+row*1.4)*.3;
+  const stride=reducedMotion||enemyMovementOwned(e)||e.enemyAttack?.warning||e.fuseRemaining!=null||e.frozenUntil>time||e.territory&&e.territory.state!=='engaged'?0:Math.sin(time*(e.role==='fast'?13:9)+i*Math.PI+row*1.4)*.3;
   const small=shieldBearer?.58:mirrorling?1.04:1;add(LEG_MODELS[p.key][0],.95*small,[position[0]*.68*small,shieldBearer?.48:.7,position[2]*.68*small+(shieldBearer?-.3:0)],[stride,Math.PI,-side*.55],'top');parts.at(-1).floorDistance=shieldBearer?.4:.62;
  });
  if(e.flying)for(const side of [-1,1])add('shell-elytra',1,[side*.58,1.22,-.08],[0,Math.PI,side*(.65+(reducedMotion?0:Math.sin(time*42)*.3))],'center','wing');
@@ -163,11 +168,11 @@ export function createEnemyAssemblyView(scene,{load=loadModel,renderer=null,came
   count=partCount=fallbackCount=0;const visibleArchetypes=new Set();for(const batch of batches.values())batch.count=0;
   for(const e of enemies){if(!e.assembly||e.hp<=0)continue;count++;
    visibleArchetypes.add(enemyVisualArchetype(e));
-   world.position.set(e.x,(e.y??0)+(e.flying?1.1+(reducedMotion?0:Math.sin(time*6+e.id)*.12):0),e.z);const aim=enemyAnimationState(e,time)?.attack;
-   const facing=e.specialty==='shield-bearer'&&e.specialFacing!=null?e.specialFacing:aim?Math.atan2(aim.dx,aim.dz):Math.atan2(player.x-e.x,player.z-e.z),charge=e.specialty==='puppeteer'&&e.specialAttack?.kind==='puppeteer'?Math.max(0,Math.min(1,(time-e.specialAttack.started)/(e.specialAttack.at-e.specialAttack.started||1))):0,shake=(reducedMotion?.025:.11)*charge;
+   const sleeping=e.pickupSleepUntil>time,locomotion=enemyLocomotionPose(sleeping?{}:e,time,reducedMotion);world.position.set(e.x,(e.y??0)+locomotion.y+(e.flying?1.1+(reducedMotion||sleeping?0:Math.sin(time*6+e.id)*.12):0),e.z);const aim=enemyAnimationState(e,time)?.attack;
+   const facing=(e.kind==='boss'||e.kind==='final')&&e.facing!=null?e.facing:e.specialty==='shield-bearer'&&e.specialFacing!=null?e.specialFacing:aim?Math.atan2(aim.dx,aim.dz):Math.atan2(player.x-e.x,player.z-e.z),charge=e.specialty==='puppeteer'&&e.specialAttack?.kind==='puppeteer'?Math.max(0,Math.min(1,(time-e.specialAttack.started)/(e.specialAttack.at-e.specialAttack.started||1))):0,shake=(reducedMotion?.025:.11)*charge;
    if(shake){world.position.x+=Math.sin(time*73+e.id)*shake;world.position.z+=Math.cos(time*61+e.id)*shake;}
    const assemblyScale=e.summonAssembly?1+Math.sin(Math.PI*summonAssemblyProgress(e,time))*.22:1;
-   world.rotation.set(0,facing+(reducedMotion?0:Math.sin(time*67+e.id)*.08*charge),Math.sin(time*59+e.id)*shake*.8);world.scale.setScalar(enemyVisualRadius(e)*scale*(e.visualScale??1)*(1+Math.sin(time*42+e.id)*.025*charge)*assemblyScale);world.updateMatrix();
+   world.rotation.set(locomotion.pitch,facing+(reducedMotion?0:Math.sin(time*67+e.id)*.08*charge),Math.sin(time*59+e.id)*shake*.8+locomotion.roll);const locomotionScale=enemyVisualRadius(e)*scale*(e.visualScale??1)*(1+Math.sin(time*42+e.id)*.025*charge)*assemblyScale;world.scale.set(locomotionScale*locomotion.scaleX,locomotionScale*locomotion.scaleY,locomotionScale*locomotion.scaleZ);world.updateMatrix();
    const visualParts=enemyVisualParts(e,time,reducedMotion);structuralParts(e,visualParts,time);
    for(const part of visualParts){partCount++;local.position.set(...part.position);if(part.stretch)local.scale.set(...part.stretch);else local.scale.setScalar(part.visualScale??1);
     const meshes=meshParts(part),ready=sources.has(part.asset);if(ready)local.scale.multiplyScalar(part.fitScale);

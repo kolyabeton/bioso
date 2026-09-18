@@ -42,8 +42,8 @@ test('one rocket splash applies swarm boss damage once, only to elite and boss t
  for(const kind of ['elite','boss','final']){
   const s=run(),rocket=part(s,'rocket');s.arms=[rocket];s.abilities.learned=['summons.1','summons.3'];s.organs=[part(s,'broodNode')];
   const normal=spawnEnemy(s,'normal',{x:5,z:0},'mass',0,{promote:false});
-  const special=spawnEnemy(s,'normal',{x:5,z:.2},'mass',0,{promote:false});special.kind=kind;
-  for(const e of [normal,special]){e.hp=e.maxHp=100000;e.armor=0;e.speed=e.damage=0;e.enemyAttack.readyAt=Infinity;}
+  const special=spawnEnemy(s,'normal',{x:5,z:0},'mass',0,{promote:false});special.kind=kind;
+  for(const e of [normal,special]){e.hp=e.maxHp=100000;e.armor=0;e.speed=e.damage=0;e.enemyAttack.readyAt=Infinity;e.frozenUntil=Infinity;}
   const w=weaponStats(s,rocket);attack(s,.01);assert.equal(s.shots.length,4);
   s.shots=s.shots.slice(0,1);s.arms=[];
   // In-flight rockets keep their launch-time bonuses, even after equipment changes.

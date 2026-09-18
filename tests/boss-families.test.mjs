@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createWorldRun} from '../src/world-run.js';
+import {createWorldRun,stepWorldRun} from '../src/world-run.js';
 import {spawnEnemy} from '../src/game.js';
 import {BOSS_RECIPES} from '../src/systems/enemy-assembly.js';
-import {SURVIVAL_FINAL} from '../src/systems/balance.js';
-import {SURVIVAL_BOSS_INTERVAL,tickSurvivalBosses} from '../src/systems/survival-bosses.js';
+import {SURVIVAL_FINAL,SURVIVAL_MOTHER_GROWTH_AT} from '../src/systems/balance.js';
+import {survivalBossScheduledAt,tickSurvivalBosses} from '../src/systems/survival-bosses.js';
 import {MISSIONS} from '../src/catalog.js';
 import {bossModelId} from '../src/boss-model-view.js';
-import {BOSS_REGEN_PERIOD,tickHabitatBossRegeneration} from '../src/systems/territories.js';
+import {BOSS_REGEN_PERIOD,MOTHER_REGEN_REDUCTION,MOTHER_REGEN_REDUCTION_LEVEL,tickHabitatBossRegeneration} from '../src/systems/territories.js';
 
 test('map bosses retain five different generated bodies and weapons, including the Mother',()=>{
  for(const seed of [1,42,20317]){
@@ -22,7 +22,7 @@ test('map bosses retain five different generated bodies and weapons, including t
   }
   assert.equal(s.enemies.some(e=>e.bossOwner),false);
   const mother=bosses[4];assert.equal(mother.bossName,'Матка');assert.equal(mother.kind,'final');
-  assert.equal(mother.maxHp,40000);for(const key of ['armor','speed'])assert.equal(mother[key],SURVIVAL_FINAL[key]);
+  assert.equal(mother.maxHp,240000);for(const key of ['armor','speed'])assert.equal(mother[key],SURVIVAL_FINAL[key]);
   assert.equal(mother.recommended,30);
   assert.deepEqual(bosses.map(e=>e.bossLevel),[1,8,16,24,30]);
   assert.deepEqual(bosses.map(e=>e.bossRegenRate),[.01,.02,.03,.04,.05]);
@@ -44,29 +44,47 @@ test('Mother outheals sustained low-level chip damage',()=>{
  assert.equal(mother.hp,mother.maxHp);
 });
 
+test('Mother regeneration is three times lower from player level 25',()=>{
+ const s=createWorldRun(undefined,'survival',42),mother=s.enemies.find(e=>e.habitatRank===5),startingHp=mother.maxHp*.5;
+ mother.hp=startingHp;s.level=MOTHER_REGEN_REDUCTION_LEVEL-1;tickHabitatBossRegeneration(s,BOSS_REGEN_PERIOD);
+ assert.equal(mother.hp,startingHp+mother.maxHp*mother.bossRegenRate);
+ mother.hp=startingHp;s.level=MOTHER_REGEN_REDUCTION_LEVEL;tickHabitatBossRegeneration(s,BOSS_REGEN_PERIOD);
+ assert.ok(Math.abs(mother.hp-(startingHp+mother.maxHp*mother.bossRegenRate/MOTHER_REGEN_REDUCTION))<1e-9);
+});
+
+test('Orchid keeps closing between attacks instead of freezing at acid range',()=>{
+ const s=createWorldRun(undefined,'survival',20317),orchid=s.enemies.find(e=>e.recipeId==='orchid');
+ s.enemies=[orchid];s.waves.credit=-1e9;s.survivalBosses={nextAt:Infinity,count:0};s.health.invulnerableUntil=Infinity;s.arms=s.arms.map(()=>null);
+ orchid.territory.state='engaged';orchid.enemyAttack.readyAt=Infinity;
+ s.player={x:orchid.x+8,y:orchid.y,z:orchid.z};
+ const before={x:orchid.x,z:orchid.z};for(let i=0;i<60;i++)stepWorldRun(s,.05);
+ assert.ok(Math.hypot(orchid.x-before.x,orchid.z-before.z)>1);
+ assert.ok(Math.hypot(orchid.x-s.player.x,orchid.z-s.player.z)<7);
+});
+
 test('all five timed waves use mission bosses and leave generated habitats untouched',()=>{
  const s=createWorldRun(undefined,'survival',42),habitats=s.enemies.filter(e=>e.habitat);
  const original=habitats.map(e=>({hp:e.hp,armor:e.armor,speed:e.speed,recipe:e.recipeId}));
  for(let index=0;index<5;index++){
-  s.time=(index+1)*SURVIVAL_BOSS_INTERVAL;
-  // Freeze only the separate Mother's post-15-minute growth for this isolation check.
-  habitats[4].post15Stage=Math.max(0,Math.floor((s.time-900)/60));
+  s.time=survivalBossScheduledAt(index+1);
+  // Freeze only the separate Mother's post-30-minute growth for this isolation check.
+  habitats[4].post15Stage=Math.max(0,Math.floor((s.time-1800)/60));
   const e=tickSurvivalBosses(s,(...args)=>spawnEnemy(s,...args));
   assert.ok(e?.survivalInvader);assert.equal(e.bossDesignId,MISSIONS[index].bossId);
   assert.equal(e.bossName,MISSIONS[index].bossName);assert.equal(e.assembly,null);
   assert.ok(e.bossCombat);assert.equal(e.territory,null);assert.equal(e.habitat,undefined);
   assert.equal(e.bossRegenRate,undefined);
-  assert.equal(e.damage,2);assert.ok(e.maxHp>600);assert.notEqual(e.maxHp,habitats[index].maxHp);
+  assert.equal(e.damage,index===0?.5:2);assert.ok(e.maxHp>600);assert.notEqual(e.maxHp,habitats[index].maxHp);
   e.hp=0;
  }
  assert.deepEqual(habitats.map(e=>({hp:e.hp,armor:e.armor,speed:e.speed,recipe:e.recipeId})),original);
 });
 
-test('generated Mother retains her own post-15-minute growth without mission support nodes',()=>{
+test('generated Mother retains her own post-30-minute growth without mission support nodes',()=>{
  const s=createWorldRun(undefined,'survival',42),mother=s.enemies.find(e=>e.kind==='final');
- s.survivalBosses={nextAt:Infinity,count:0};s.time=960;
+ s.survivalBosses={nextAt:Infinity,count:0};s.time=SURVIVAL_MOTHER_GROWTH_AT+60;
  tickSurvivalBosses(s,()=>assert.fail('no wave is scheduled'));
- assert.equal(mother.maxHp,40000*1.1);assert.equal(mother.armor,SURVIVAL_FINAL.armor+2);
+ assert.equal(mother.maxHp,240000*1.1);assert.equal(mother.armor,SURVIVAL_FINAL.armor+2);
  assert.equal(mother.speed,SURVIVAL_FINAL.speed*1.03);assert.equal(mother.recipeId,'mother');
  assert.equal(mother.bossCombat,undefined);assert.ok(!s.enemies.some(e=>e.bossOwner===mother.id));
 });

@@ -21,7 +21,7 @@ body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191
   background:transparent;
   border-top:1px solid #788b7240;color:var(--ui-text);
 }
-.ui-screen-footer .ui-button{color:var(--ui-ivory)}
+.ui-screen-footer .ui-button:not(.ui-button--outline){color:var(--ui-ivory)}
 .ui-screen-footer .ui-button--primary{color:var(--ui-ivory)}
 .ui-screen-footer .ui-button--danger{color:#edbaa7}
 .ui-tier{background:var(--ui-surface-raised);color:var(--ui-text)}

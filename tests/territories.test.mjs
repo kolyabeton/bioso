@@ -6,6 +6,7 @@ import {MISSION_BOSSES,setupMissionBoss} from '../src/systems/mission-bosses.js'
 import {createRun,spawnEnemy,step} from '../src/game.js';
 import {biomeMapMarkers} from '../src/ui/map.js';
 import {ENCOUNTERS,availableEncounter,discoverEncounters,challengeAllowed} from '../src/systems/encounters.js';
+import {waveRun,openWave,tickWave,members,clearPack,nextWave} from './helpers/survival-wave.mjs';
 import {tickWaves} from '../src/systems/waves.js';
 
 test('five fixed reachable bosses are visible immediately and do not hunt from across map',()=>{
@@ -32,12 +33,14 @@ test('production boss AI stays home, fights locally and cancels attacks to retur
   s.bossHabitats=[];s.waves.credit=-Infinity;s.waves.nextElite=Infinity;s.arms=[];s.health.invulnerableUntil=Infinity;
   s.player={x:100,y:0,z:0};
   const e=spawnEnemy(s,'boss',{x:0,z:0},'mass',480,{introductory:false});setupMissionBoss(s,e,id);e.habitat=true;
-  const advance=seconds=>{for(let i=0;i<seconds*20;i++){step(s,.05);s.events=[];}};
+  let arrivals=0;const advance=seconds=>{for(let i=0;i<seconds*20;i++){step(s,.05);arrivals+=s.events.filter(event=>event.type==='boss-arrival'&&event.boss===e.id).length;s.events=[];}};
   advance(10);
   assert.equal(e.x,0,id);assert.equal(e.z,0,id);assert.equal(e.territory.state,'idle',id);
   assert.deepEqual(e.bossCombat.counts,{},id);assert.equal(s.hostileShots.length,0,id);
   s.player.x=10;advance(4);
   assert.equal(e.territory.state,'engaged',id);
+  assert.equal(e.arrivalSounded,true,id);
+  assert.equal(arrivals,1,id);
   assert.ok(Object.keys(e.bossCombat.counts).length>0,id);
   e.hp*=.9;const hp=e.hp;
   if(e.speed>0)e.x=20;
@@ -48,7 +51,7 @@ test('production boss AI stays home, fights locally and cancels attacks to retur
   assert.ok(Math.hypot(e.x,e.z)<=e.radius+.7,`${id} returned home`);
   assert.equal(e.territory.state,'idle',id);assert.equal(e.hp,hp,id);assert.deepEqual(e.bossCombat.counts,counts,id);
   assert.ok(!s.enemies.some(q=>q.kind==='boss-drone'&&q.hp>0),id);
-  s.player.x=10;advance(4);assert.equal(e.territory.state,'engaged',id);
+  s.player.x=10;advance(4);assert.equal(e.territory.state,'engaged',id);assert.equal(e.arrivalSounded,true,id);assert.equal(arrivals,1,id);
   assert.ok(Object.values(e.bossCombat.counts).reduce((a,b)=>a+b,0)>Object.values(counts).reduce((a,b)=>a+b,0),id);
  }
 });
@@ -93,28 +96,15 @@ test('public encounters are visible from level one but entry requires their leve
  }
  discoverEncounters(s);const count=s.events.length;discoverEncounters(s);assert.equal(s.events.length,count);
 });
-test('elite schedule follows the active wave clock and habitat bosses do not duplicate',()=>{
- const s=createWorldRun(undefined,'survival',12),calls=[];s.level=4;
- tickWaves(s,0,(...args)=>calls.push(args));assert.equal(calls.length,0);
- s.survivalFirstWaveAt=120;s.nextElite=s.waves.nextElite=180;
- s.time=180;tickWaves(s,0,(...args)=>calls.push(args));assert.equal(calls.filter(a=>a[0]==='elite').length,1);
- s.level=20;tickWaves(s,0,(...args)=>calls.push(args));assert.equal(calls.length,1);
- s.time=480;tickWaves(s,0,(...args)=>calls.push(args));assert.ok(!calls.some(a=>a[0]==='boss'));
+test('finite packs issue elites once and never duplicate habitat bosses',()=>{
+ const s=createWorldRun(undefined,'survival',12);s.survivalFirstWaveAt=120;s.time=180;tickWave(s);
+ const habitats=s.enemies.filter(e=>e.habitat).map(e=>e.id),elite=s.enemies.find(e=>e.waveElite);assert.ok(elite);
+ s.time=480;tickWave(s);assert.equal(s.enemies.filter(e=>e.waveElite).length,1);assert.deepEqual(s.enemies.filter(e=>e.habitat).map(e=>e.id),habitats);
 });
-test('half of live wave elites leave their map territory to hunt the player',()=>{
- const s=createRun(undefined,'survival',12);s.world={flat:true,walkable:()=>true,lineClear:()=>true};s.enemies=[];s.bossHabitats=[];
- let z=8;const spawn=(kind,position,role,threat,options)=>spawnEnemy(s,kind,position||{x:0,z:z++},role,threat,options);
- for(const time of [180,360,540,740]){s.time=time;tickWaves(s,0,spawn);}
- const elites=s.enemies.filter(e=>e.waveElite&&e.hp>0),pursuers=elites.filter(e=>e.territory.pursuit),residents=elites.filter(e=>!e.territory.pursuit);
- assert.equal(elites.length,4);assert.equal(pursuers.length,2);assert.equal(residents.length,2);
- s.player={x:280,y:0,z:280};
- assert.equal(territoryTarget(s,pursuers[0],s.player),s.player);assert.equal(pursuers[0].territory.state,'engaged');
- assert.equal(territoryTarget(s,residents[0],s.player),residents[0].territory.home);
- pursuers[0].hp=0;s.time=940;tickWaves(s,0,spawn);
- const replacement=s.enemies.at(-1);assert.equal(replacement.waveElite,true);assert.equal(replacement.territory.pursuit,true);
-});
-test('an allowed automatic elite joins the wave pursuit split',()=>{
- const s=createRun(undefined,'survival',12);s.world={flat:true,walkable:()=>true,lineClear:()=>true};s.enemies=[];s.bossHabitats=[];s.normalSpawnCount=29;s.time=120;s.nextElite=Infinity;s.waves.credit=1;
- tickWaves(s,0,(kind,position,role,threat,options)=>spawnEnemy(s,kind,position||{x:0,z:8},role,threat,options));
- const promoted=s.enemies.find(e=>e.waveElite);assert.equal(promoted.kind,'elite');assert.equal(promoted.territory.pursuit,true);
+
+test('every finite pack elite walks to the player instead of holding a home spot',()=>{
+ const s=openWave(waveRun());for(let i=0;i<5;i++)nextWave(s);
+ const elites=members(s).filter(e=>e.waveElite);assert.equal(elites.length,3);
+ assert.ok(elites.every(e=>e.territory.pursuit&&e.territory.state==='engaged'));
+ s.player={x:280,y:0,z:280};for(const e of elites)assert.equal(territoryTarget(s,e,s.player),s.player);
 });

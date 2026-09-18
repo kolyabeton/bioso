@@ -9,7 +9,7 @@ export const GAMEPLAY_MODULES=Object.freeze({
  infection:{domain:'events',shape:'well',color:0x859866,label:'Заражённый круг'},
  hunt:{domain:'events',shape:'beacon',color:0xb99c75,label:'Охота на носителя'},
  race:{domain:'events',shape:'beacon',color:0x68b69f,label:'Дальний рывок'},
- dungeon_roots:{domain:'events',shape:'gate',color:0x6f7c57,label:'Корневые тоннели'},
+ dungeon_roots:{domain:'events',shape:'gate',color:0x6f7c57,label:'Главный Отсек'},
  dungeon_catacombs:{domain:'events',shape:'gate',color:0x667a78,label:'Техногенные катакомбы'},
 });
 export function modulePresentation(node,available=true){

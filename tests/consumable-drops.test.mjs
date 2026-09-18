@@ -78,8 +78,8 @@ test('attraction gathers distant XP and consumables without collecting equipment
  placeConsumable(s,'attraction',s.player);placeConsumable(s,'biomass_5',{x:50,z:50});collect(s);
  assert.equal(s.biomass,5);assert.equal(s.xpDrops[0].x,s.player.x);assert.equal(s.ground[0].x,50);assert.equal(s.consumableDrops.length,0);
 });
-test('recharge refills installed weapons and clears reload/cooldown',()=>{
- const s=run();s.arms[0]=createPart(s,'seed');const p=s.arms[0];p.ammo=0;p.cooldown=5;p.reloadRemaining=2;apply(s,'recharge');assert(p.ammo>0);assert.equal(p.cooldown,0);assert.equal(p.reloadRemaining,0);
+test('recharge grants an eight-second speed buff without refilling or resetting weapons',()=>{
+ const s=run();s.arms[0]=createPart(s,'seed');const p=s.arms[0];p.ammo=0;p.cooldown=5;p.reloadRemaining=2;apply(s,'recharge');assert.equal(p.ammo,0);assert.equal(p.cooldown,5);assert.equal(p.reloadRemaining,2);assert.equal(s.consumables.rechargeUntil,8);assert(!s.events.some(e=>e.type==='reload-end'));
 });
 test('sleep stops ordinary enemies and ends on damage, never sleeping elites',()=>{
  const s=run(),e=spawnEnemy(s,'normal',{x:5,z:0}),elite=spawnEnemy(s,'elite',{x:10,z:0});apply(s,'sleep');assert(e.pickupSleepUntil>0);assert(!elite.pickupSleepUntil);
@@ -110,4 +110,52 @@ test('view shares fixed batches, renders every hue and resets/disposes resources
  const core=scene.getObjectByName('pickup-orbs:internal-energy');assert.equal(core.count,11);assert(core.geometry.attributes.position.count>1000);assert(core.instanceColor);
  const geometries=scene.children.map(o=>o.geometry);view.update(s,camera,1,true);assert.deepEqual(scene.children.map(o=>o.geometry),geometries);
  view.reset();assert.equal(core.count,0);view.dispose();assert.equal(scene.children.length,0);
+});
+
+test('mark selects maximum health within 15m, including wounded strong targets',()=>{
+ const s=run();s.world.lineClear=()=>true;s.world.heightAt=()=>0;
+ const weak=spawnEnemy(s,'normal',{x:2,z:0}),strong=spawnEnemy(s,'elite',{x:15,z:0}),outside=spawnEnemy(s,'elite',{x:15.01,z:0});
+ Object.assign(weak,{y:0,hp:100,maxHp:100});Object.assign(strong,{y:0,hp:10,maxHp:500});Object.assign(outside,{y:0,hp:900,maxHp:900});
+ assert(apply(s,'hunter'));assert(strong.pickupMarkUntil>0);assert(!weak.pickupMarkUntil);assert(!outside.pickupMarkUntil);
+ hurtEnemy(s,strong,1);assert(s.events.some(e=>e.type==='enemy-damage'&&e.target===strong.id&&e.marked));
+});
+test('mark excludes blocked, dead, dormant and invulnerable targets and uses closest tie',()=>{
+ const s=run();s.world.heightAt=()=>0;
+ const make=(x,extra={})=>{const e=spawnEnemy(s,'normal',{x,z:0});Object.assign(e,{hp:100,maxHp:100,y:0},extra);return e;};
+ const far=make(8),near=make(3),dead=make(1,{hp:0,maxHp:900}),dormant=make(2,{dungeonDormant:true,maxHp:800}),burrowed=make(4,{maxHp:700,locomotionState:{kind:'burrow',phase:'travel'}});
+ s.world.lineClear=()=>true;assert(apply(s,'hunter'));assert(near.pickupMarkUntil>0);for(const e of [far,dead,dormant,burrowed])assert(!e.pickupMarkUntil);
+ s.world.lineClear=()=>false;assert.equal(apply(s,'hunter'),false);
+});
+
+test('attraction keeps source positions for VFX while collecting instantly',()=>{
+ const s=run();s.xpDrops=[{id:1,x:10,y:2,z:4,value:1}];apply(s,'attraction');
+ const e=s.events.find(e=>e.type==='consumable-attract');assert.deepEqual(e.origins,[{x:10,y:2,z:4}]);assert.equal(s.xpDrops[0].x,s.player.x);
+});
+test('recharge emits one effect for each installed arm, preserving identifiers',()=>{
+ const s=run();s.arms=[createPart(s,'seed'),null,createPart(s,'claws')];apply(s,'recharge');
+ assert.deepEqual(s.events.filter(e=>e.type==='consumable-recharge').map(e=>e.source),s.arms.filter(Boolean).map(p=>p.id));
+});
+test('shield contact carries the incoming direction and only occurs for a real block',()=>{
+ const s=run();apply(s,'shield');s.events=[];receiveHit(s,stats(s),{source:{x:3,z:0}});
+ const block=s.events.find(e=>e.type==='shield'&&e.kind==='consumable');assert.equal(block.dx,1);assert.equal(Math.abs(block.dz),0);assert.equal(s.consumables.shieldCharges,0);
+ s.events=[];receiveHit(s,stats(s),{source:{x:3,z:0}});assert(!s.events.some(e=>e.kind==='consumable'));
+});
+test('beacon feedback reflects actual target switching, once per beacon',()=>{
+ const s=run(),e={id:12,hp:50,kind:'normal',x:4,z:0};apply(s,'beacon');s.events=[];
+ assert.equal(consumableTarget(s,e,s.player),s.consumables.beacon);consumableTarget(s,e,s.player);assert.equal(s.events.filter(e=>e.type==='consumable-lured').length,1);
+ consumableTarget(s,e,{x:9,z:2});assert.equal(e.pickupBeaconUntil,0);
+});
+test('parasite attacks originate at three distinct orbit positions',()=>{
+ const s=run(),e=spawnEnemy(s,'normal',{x:5,z:0});e.hp=200;apply(s,'parasite');s.time=.3;collect(s);
+ const events=s.events.filter(e=>e.type==='arc'&&e.kind==='consumable-parasite');assert.equal(events.length,3);
+ for(const e of events){assert(Math.abs(Math.hypot(e.x-s.player.x,e.z-s.player.z)-1.7)<1e-6);assert.equal(e.y,(s.player.y??0)+1.27);}
+ assert.equal(new Set(events.map(e=>e.x+','+e.z)).size,3);assert(s.events.filter(e=>e.type==='arc').every(e=>e.kind==='consumable-parasite'));
+});
+
+test('beacon, satellites and mark finish gradually without changing their deadlines',()=>{
+ const s=run(),scene=new T.Scene(),camera=new T.PerspectiveCamera(),view=createConsumableDropsView(scene),matrix=new T.Matrix4(),scale=new T.Vector3();
+ s.consumables={beacon:{x:3,y:0,z:0,until:10},parasitesUntil:10};s.enemies=[{id:99,hp:10,x:2,z:0,pickupMarkUntil:10}];
+ view.update(s,camera,9,false,()=>true,.1,.1);const core=scene.getObjectByName('pickup-orbs:internal-energy');core.getMatrixAt(0,matrix);scale.setFromMatrixScale(matrix);const full=scale.x;
+ view.update(s,camera,9.8,false,()=>true,.1,.1);core.getMatrixAt(0,matrix);scale.setFromMatrixScale(matrix);assert(scale.x<full*.3);assert(scene.getObjectByName('consumable-hunter-mark').material.opacity<.3);
+ view.update(s,camera,10.5,false,()=>true,.1,.5);assert.equal(core.count,0);assert.equal(scene.getObjectByName('consumable-hunter-mark').visible,false);assert.equal(s.consumables.parasitesUntil,10);view.dispose();
 });

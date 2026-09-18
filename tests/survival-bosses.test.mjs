@@ -3,32 +3,33 @@ import assert from 'node:assert/strict';
 import {createRun,spawnEnemy,step,beginEncounter,hurtEnemy} from '../src/game.js';
 import {createWorldRun} from '../src/world-run.js';
 import {MISSIONS} from '../src/catalog.js';
-import {SURVIVAL_BOSS_INTERVAL,SURVIVAL_BOSS_LIMIT,tickSurvivalBosses} from '../src/systems/survival-bosses.js';
+import {SURVIVAL_BOSS_INTERVAL,SURVIVAL_BOSS_LIMIT,SURVIVAL_FIRST_BOSS_AT,survivalBossScheduledAt,tickSurvivalBosses} from '../src/systems/survival-bosses.js';
 import {tickWaves} from '../src/systems/waves.js';
 import {tickMissionBoss} from '../src/systems/mission-bosses.js';
 
 const run=()=>{const s=createRun(undefined,'survival',42);s.world={walkable:()=>true};return s;};
 const tick=s=>tickSurvivalBosses(s,(...args)=>spawnEnemy(s,...args));
 
-test('roaming bosses start at minute seven and never overlap a living invader',()=>{
- const s=run();s.time=SURVIVAL_BOSS_INTERVAL-.01;assert.equal(tick(s),undefined);
- s.time=SURVIVAL_BOSS_INTERVAL;const e=tick(s);assert.ok(e?.bossCombat);assert.equal(e.bossDesignId,MISSIONS[0].bossId);assert.equal(e.territory,null);assert.equal(tick(s),undefined);
- s.time=SURVIVAL_BOSS_INTERVAL*2;assert.equal(tick(s),undefined);assert.equal(s.survivalBosses.nextAt,SURVIVAL_BOSS_INTERVAL*2);assert.equal(s.enemies.filter(e=>e.survivalInvader&&e.hp>0).length,1);
+test('roaming bosses start at minute nine and never overlap a living invader',()=>{
+ assert.equal(SURVIVAL_FIRST_BOSS_AT,9*60);assert.equal(survivalBossScheduledAt(2),16*60);
+ const s=run();s.time=SURVIVAL_FIRST_BOSS_AT-.01;assert.equal(tick(s),undefined);
+ s.time=SURVIVAL_FIRST_BOSS_AT;const e=tick(s);assert.ok(e?.bossCombat);assert.equal(e.bossDesignId,MISSIONS[0].bossId);assert.equal(e.territory,null);assert.equal(s.events.filter(event=>event.type==='boss-arrival'&&event.boss===e.id).length,1);assert.equal(tick(s),undefined);assert.equal(s.events.filter(event=>event.type==='boss-arrival'&&event.boss===e.id).length,1);
+ s.time=survivalBossScheduledAt(2);assert.equal(tick(s),undefined);assert.equal(s.survivalBosses.nextAt,survivalBossScheduledAt(2));assert.equal(s.enemies.filter(e=>e.survivalInvader&&e.hp>0).length,1);
  tickMissionBoss(s,e,0,()=>{});
  hurtEnemy(s,e,1e12);assert.equal(s.bossRewards.length,1);assert.equal(s.won,false);assert.equal(s.reliefUntil,0);
- const second=tick(s);assert.ok(second?.survivalSuperBoss);assert.equal(second.bossDesignId,MISSIONS[1].bossId);assert.equal(s.survivalBosses.nextAt,SURVIVAL_BOSS_INTERVAL*3);
+ const second=tick(s);assert.ok(second?.survivalSuperBoss);assert.equal(second.bossDesignId,MISSIONS[1].bossId);assert.equal(s.survivalBosses.nextAt,survivalBossScheduledAt(3));
  assert.equal(s.profile.achievements.some(id=>id.startsWith('mission:')),false);
 });
 
-test('roaming boss schedule ends after the fifth boss at minute thirty-five',()=>{
+test('roaming boss schedule ends after the fifth boss at minute thirty-seven',()=>{
  const s=run();
  for(let index=1;index<=SURVIVAL_BOSS_LIMIT;index++){
-  s.time=index*SURVIVAL_BOSS_INTERVAL;
+  s.time=survivalBossScheduledAt(index);
   const boss=tick(s);assert.ok(boss,`boss ${index}`);boss.hp=0;
  }
  assert.equal(s.survivalBosses.count,SURVIVAL_BOSS_LIMIT);
  assert.equal(s.survivalBosses.nextAt,Infinity);
- s.time=6*SURVIVAL_BOSS_INTERVAL;
+ s.time=survivalBossScheduledAt(SURVIVAL_BOSS_LIMIT)+SURVIVAL_BOSS_INTERVAL;
  assert.equal(tick(s),undefined);
  assert.equal(s.survivalBosses.count,SURVIVAL_BOSS_LIMIT);
 });
@@ -38,7 +39,7 @@ test('event, overrun and mission modes defer the boss; failed placement never co
  s.encounters={active:{}};assert.equal(tick(s),undefined);s.encounters.active=null;
  s.overrun={state:'active'};assert.equal(tick(s),undefined);s.overrun=null;
  s.mode='garden';assert.equal(tick(s),undefined);s.mode='survival';
- s.world.walkable=()=>false;assert.equal(tick(s),undefined);assert.equal(s.survivalBosses.nextAt,SURVIVAL_BOSS_INTERVAL);
+ s.world.walkable=()=>false;assert.equal(tick(s),undefined);assert.equal(s.survivalBosses.nextAt,SURVIVAL_FIRST_BOSS_AT);
  s.world.walkable=()=>true;assert.equal(tickSurvivalBosses(s,()=>null),undefined);assert.equal(s.survivalBosses.count,0);
  assert.ok(tick(s));
 });

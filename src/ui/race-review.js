@@ -19,6 +19,6 @@ export function prepareRaceReview(s,params,setMovement){
    while(cursor<path.length-1&&Math.hypot(path[cursor].x-s.player.x,path[cursor].z-s.player.z)<.6)cursor++;
    const p=path[cursor],dx=p.x-s.player.x,dz=p.z-s.player.z,d=Math.hypot(dx,dz)||1;setMovement({x:dx/d,z:dz/d});
   }else if(auto)setMovement({x:0,z:0});
-  const proof={build,state:n.state,time:s.time,elapsed:n.elapsed||0,limit:n.race?.limit,route:n.race?.length,speed:stats(s).speed,remaining:Math.hypot(n.x-s.player.x,n.z-s.player.z),kills:s.kills,hits:s.health.hits,dead:s.dead,hp:s.hp,packs:n.race?.packs.filter(p=>p.spawned).length};controls.dataset.proof=JSON.stringify(proof);report.textContent=`${proof.state} · ${proof.elapsed.toFixed(1)} / ${proof.limit} с · ${proof.kills} убийств`;
+  const proof={build,state:n.state,time:s.time,elapsed:n.elapsed||0,limit:n.race?.limit,route:n.race?.length,speed:stats(s).speed,remaining:Math.hypot(n.x-s.player.x,n.z-s.player.z),kills:s.kills,hits:s.health.hits,dead:s.dead,hp:s.hp,packs:n.race?.packs.filter(p=>p.spawned).length};controls.dataset.proof=JSON.stringify(proof);report.textContent=`${proof.state} · ${proof.elapsed.toFixed(1)} из ${proof.limit} с · ${proof.kills} убийств`;
  }};
 }

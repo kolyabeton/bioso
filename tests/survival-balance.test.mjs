@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createRun,spawnEnemy,addXP,chooseUpgrade,hurtEnemy} from '../src/game.js';
 import {enemyBalance,phaseAt,WAVES,WAVE_RULES,MINUTE_SIGNATURES,SURVIVAL_PRESSURE} from '../src/systems/balance.js';
 import {tickWaves,waveBudgetBetween,signatureRole,liveWaveElites} from '../src/systems/waves.js';
-import {survivalBudgetBetween} from '../src/systems/survival-cadence.js';
+import {waveRun,openWave,tickWave,members,clearPack,nextWave} from './helpers/survival-wave.mjs';
 import {rollChoices} from '../src/systems/progression.js';
 import {chooseBossReward} from '../src/systems/sets/loot.js';
 import {createPart,newProfile} from '../src/assembly.js';
@@ -12,6 +12,7 @@ const flat=seed=>{const s=createRun(undefined,'survival',seed);s.world={flat:tru
 
 test('five authored acts expose exact flow, caps, signatures and a hard cap of 88',()=>{
  assert.deepEqual(WAVES.map(w=>[w.minute,w.rate,w.softCap]),[[0,28,24],[8,40,34],[16,55,46],[24,72,60],[32,92,74],[40,118,74]]);
+ assert.deepEqual(WAVES.map(w=>enemyBalance(w.minute*60,'elite').hp),[126,315,585,945,1395,1980]);
  assert.equal(WAVE_RULES.cap,88);assert.deepEqual(Array.from({length:8},(_,i)=>phaseAt(i*60).minuteSignature),MINUTE_SIGNATURES);
 });
 
@@ -33,21 +34,12 @@ test('minute accents own 45 percent and unavailable early roles fall back to mas
  s.normalSpawnCount=0;const early=spawnEnemy(s,'normal',{x:0,z:8},'flying',0,{promote:false,wave:true});assert.equal(early.role,'mass');
 });
 
-test('scheduled and promoted wave elites share growing quotas and do not refill killed elites',()=>{
- const s=flat(3),spawn=(...args)=>spawnEnemy(s,...args);s.nextElite=0;
- for(let i=0;i<6;i++){s.time=i*100+121;s.nextElite=s.time;tickWaves(s,0,spawn);}assert.equal(liveWaveElites(s).length,6);assert.equal(liveWaveElites(s).filter(e=>e.territory.pursuit).length,3);
- s.normalSpawnCount=29;s.waves.credit=1;s.nextElite=1e9;tickWaves(s,0,spawn);assert.equal(s.normalSpawnCount,30);assert.equal(liveWaveElites(s).length,6);assert.equal(s.enemies.at(-1).kind,'normal');
- s.enemies.find(e=>e.waveElite).hp=0;s.normalSpawnCount=59;s.waves.credit=1;tickWaves(s,0,spawn);assert.equal(s.normalSpawnCount,60);assert.equal(liveWaveElites(s).length,5);assert.equal(s.enemies.at(-1).kind,'normal');
-});
-
-test('the first three wave elites retain reduced health and the first assault elite deals half damage',()=>{
- const s=flat(31),spawn=(...args)=>spawnEnemy(s,...args),elites=[];
- for(const time of [120,220,320,420]){s.time=time;s.nextElite=time;tickWaves(s,0,spawn);elites.push(s.enemies.at(-1));}
- for(let i=0;i<elites.length;i++){
-  const base=Math.round(enemyBalance([120,220,320,420][i],'elite').hp*SURVIVAL_PRESSURE.hp);
-  assert.equal(elites[i].waveEliteIndex,i+1);assert.equal(elites[i].maxHp,i<3?Math.round(base*.3):base);
+test('finite rosters own elite slots and keep them inside each pack size',()=>{
+ const s=openWave(waveRun());
+ for(let wave=0;wave<6;wave++){
+  // The live cap, not the roster, decides how many stand on the field; every fifth wave is an elite wall.
+  assert.equal(members(s).length,20+wave*6);assert.equal(liveWaveElites(s).length,[1,1,2,2,20,3][wave]);nextWave(s);
  }
- assert.equal(elites[0].damage,.5);assert.equal(elites[1].damage,1);
 });
 
 test('five offers contain build, defense and synergy progress and remain seeded',()=>{
@@ -65,10 +57,12 @@ test('last level choice grants protection and pushes only ordinary nearby enemie
  assert.ok(chooseUpgrade(s,0));assert.equal(s.pending,0);assert.equal(s.health.invulnerableUntil,1.5);assert.ok(normal.x>=3.99);assert.equal(elite.x,2);
 });
 
-test('superboss pressure and reward relief use quarter flow, half cap and bounded credit',()=>{
- const s=flat(11),boss=spawnEnemy(s,'boss',{x:20,z:0},'mass',1240,{introductory:false});boss.survivalSuperBoss=true;s.time=1240;s.nextElite=Infinity;s.waves.credit=0;
- let requests=0;tickWaves(s,1,()=>{requests++;return null;});assert.equal(s.waves.softCap,43);assert.equal(requests+s.waves.credit,survivalBudgetBetween(1239,1240)*.25);
- hurtEnemy(s,boss,1e12);assert.equal(s.reliefUntil,1252);const reward=s.bossRewards[0];assert.ok(reward);s.waves.credit=4;assert.ok(chooseBossReward(s,0));assert.equal(s.health.invulnerableUntil,1242);assert.equal(s.waves.credit,.5);
+test('superboss half cap retains finite members and reward protection preserves cadence',()=>{
+ const s=waveRun(),boss=spawnEnemy(s,'boss',{x:20,z:0},'mass',1240,{introductory:false});boss.survivalSuperBoss=true;openWave(s,1240);
+ assert.equal(s.waves.softCap,11);assert.equal(members(s).length,10);const cadence=structuredClone(s.waves.cadence);
+ hurtEnemy(s,boss,1e12);assert.equal(s.reliefUntil,1252);assert.ok(s.bossRewards[0]);s.waves.credit=4;
+ assert.ok(chooseBossReward(s,0));assert.equal(s.health.invulnerableUntil,1242);assert.equal(s.waves.credit,.5);assert.deepEqual(s.waves.cadence,cadence);
+ tickWave(s);assert.equal(members(s).length,23);assert.equal(s.waves.cadence.packSize,43);
 });
 
 test('old profiles need no migration for transient director and offer state',()=>{

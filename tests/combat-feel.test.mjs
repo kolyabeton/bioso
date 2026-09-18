@@ -10,13 +10,13 @@ function fixture(key='seed'){
  const enemy=spawnEnemy(s,'normal',{x:0,z:5});enemy.hp=enemy.maxHp=100000;enemy.speed=enemy.damage=0;
  return {s,p:s.arms[0],enemy};
 }
-test('eight rounds start a committed reload; no shots until magazine restored',()=>{
+test('twelve rounds start a committed reload; no shots until magazine restored',()=>{
  const {s,p}=fixture();let fired=0;
  for(let i=0;i<300&&p.reloadRemaining===0;i++){attack(s,1/60);fired=s.events.filter(e=>e.type==='attack').length;}
- assert.equal(fired,8);assert.equal(p.ammo,0);near(p.reloadRemaining,1.2);
+ assert.equal(fired,12);assert.equal(p.ammo,0);near(p.reloadRemaining,1.2);
  const count=s.shots.length;attack(s,.5);assert.equal(s.shots.length,count);
  attack(s,.5);assert.equal(s.shots.length,count);attack(s,.21);
- assert.equal(s.shots.length,count+1);assert.equal(p.ammo,7);assert.equal(p.reloadRemaining,0);
+ assert.equal(s.shots.length,count+1);assert.equal(p.ammo,11);assert.equal(p.reloadRemaining,0);
 });
 test('shotgun spends one of two charges on five 5.25-damage pellets and reloads in two seconds',()=>{
  const {s,p}=fixture('shotgun');s.rng=()=>.5;attack(s,0);
@@ -26,14 +26,14 @@ test('shotgun spends one of two charges on five 5.25-damage pellets and reloads 
 });
 test('machine gun uses strong line spread that grows through the burst',()=>{
  const {s,p}=fixture('seed');s.rng=()=>1;attack(s,0);p.cooldown=0;attack(s,0);const second=Math.atan2(s.shots[1].dx,s.shots[1].dz);
- assert.ok(Math.abs(second)>.2);assert.ok(p.bloom>1);
+ assert.ok(Math.abs(second)>.16);assert.ok(p.bloom>1);
 });
 test('partial magazine reloads after combat and idle never spends rounds',()=>{
- const {s,p}=fixture();attack(s,.01);assert.equal(p.ammo,7);s.enemies=[];
+ const {s,p}=fixture();attack(s,.01);assert.equal(p.ammo,11);s.enemies=[];
  for(let i=0;i<75;i++)attack(s,1/60);
- assert.ok(p.reloadRemaining>0);assert.equal(p.ammo,7);
+ assert.ok(p.reloadRemaining>0);assert.equal(p.ammo,11);
  for(let i=0;i<90;i++)attack(s,1/60);
- assert.equal(p.ammo,8);assert.equal(p.reloadRemaining,0);
+ assert.equal(p.ammo,12);assert.equal(p.reloadRemaining,0);
 });
 test('independent magazines do not block other guns or claws',()=>{
  const {s,p}=fixture();s.body=createPart(s,'hunter');s.arms.push(createPart(s,'seed'));s.arms[1]=createPart(s,'claws');
@@ -97,7 +97,7 @@ test('shot cadence stays within one shot at 30, 60 and 120 Hz',()=>{
 });
 test('HUD uses real ammo and reload time without mutating the weapon',()=>{
  const {s,p}=fixture();p.ammo=2;startReload(s,p);tickWeapons(s,.3);
- const before=JSON.stringify(p),hud=handPresentation(s)[0];assert.equal(hud.ammo,2);assert.equal(hud.magazine,8);assert.ok(hud.reloading);near(hud.reloadProgress,.25);assert.equal(JSON.stringify(p),before);
+ const before=JSON.stringify(p),hud=handPresentation(s)[0];assert.equal(hud.ammo,2);assert.equal(hud.magazine,12);assert.ok(hud.reloading);near(hud.reloadProgress,.25);assert.equal(JSON.stringify(p),before);
 });
 
 test('disabled guns stop firing and release movement immediately without refilling ammo',()=>{

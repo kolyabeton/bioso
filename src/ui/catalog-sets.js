@@ -5,7 +5,7 @@ import {e,frame} from './atoms.js';
 import {partArt} from './molecules.js';
 
 export function activeSetDescription(s,id,count){return count>=3?`${SETS[id].two} ${SETS[id].three}`:count>=2?SETS[id].two:'';}
-export function setProgress(count){return count>=3?`Комплект собран · ${count} типа`:`${count} / 3`;}
+export function setProgress(count){return count>=3?`Комплект собран · ${count} типа`:`${count} из 3`;}
 export function setStatus(s,id){
  if(!(setCounts(s)[id]>=3))return '';
  const a=s.setsV2||{},now=setClock(s),seconds=(at,fallback)=>Math.ceil(Number.isFinite(at)?Math.max(0,at-now):fallback);
@@ -15,7 +15,7 @@ export function setStatus(s,id){
   case'bastion':{const v=setBarrierView(s);return v.ready?'Панцирь · Готов':`Панцирь · ${Math.ceil(v.remaining)} с`;}
   case'chimera':return [(a.meleeUntil||0)>now?`Ближние атаки +30% · ${seconds(a.meleeUntil,0)} с`:'',(a.rangedUntil||0)>now?`Дальние атаки +30% · ${seconds(a.rangedUntil,0)} с`:''].filter(Boolean).join(' · ')||'Попадите ближней или дальней атакой';
   case'rootwalker':return `Живые ткани · ${seconds(a.tissueAt,SET_TIMING.tissue)} с`;
-  case'hecaton':return (a.hecatonAt||0)>now?`Общий затвор · ${seconds(a.hecatonAt,0)} с`:`Общий затвор · ${Object.entries(a.hands||{}).filter(([id,at])=>now-at<=SET_TIMING.handWindow&&s.arms.some(p=>p&&!p.disabled&&String(p.id)===id)).length} / 3 рук`;
+  case'hecaton':return (a.hecatonAt||0)>now?`Общий затвор · ${seconds(a.hecatonAt,0)} с`:`Общий затвор · ${Object.entries(a.hands||{}).filter(([id,at])=>now-at<=SET_TIMING.handWindow&&s.arms.some(p=>p&&!p.disabled&&String(p.id)===id)).length} из 3 рук`;
   case'reactor':return seconds(a.reactorAt,SET_TIMING.reactor)?`Разряд · ${seconds(a.reactorAt,SET_TIMING.reactor)} с`:'Разряд · Готов';
   case'broodmother':return (a.broodUntil||0)>now?`Рой ускорен · ${seconds(a.broodUntil,0)} с`:'Ожидает перехвата снаряда';
   default:return '';

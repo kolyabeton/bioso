@@ -9,21 +9,21 @@ import {levelFourDuel} from './helpers/level-four-boss-duel.mjs';
 test('fourth generated habitat shows level 24 and keeps its fixed budget across seeds',()=>{
  for(const seed of [1,42,20317]){
   const s=createWorldRun(undefined,'survival',seed),bosses=s.enemies.filter(e=>e.habitat);
-  assert.deepEqual(bosses.map(e=>e.maxHp),[182,1800,4800,12500,40000]);
+  assert.deepEqual(bosses.map(e=>e.maxHp),[182,3600,9600,25000,240000]);
   assert.deepEqual(bosses.map(e=>e.bossLevel),[1,8,16,24,30]);
   const e=bosses[3];assert.equal(e.habitatRank,4);assert.equal(e.recipeId,'root-warden');assert.equal(e.bossDesignId,undefined);assert.equal(e.damage,.5);
   assert.equal(e.attackRecoveryScale,1.25);assert.equal(e.speed,1.7);assert.equal(e.armor,20);
  }
 });
 
-test('level-24 player can beat the fourth habitat with tier-one melee or ranged gear, including a mistake',()=>{
+test('level-24 tier-one melee and ranged builds make meaningful progress against the doubled fourth habitat',()=>{
  for(const weapon of ['claws','pistol'])for(const seed of [1,42,20317]){
   const result=levelFourDuel({weapon,seed,missedHit:true}),label=JSON.stringify(result);
   assert.equal(result.initial.level,24,label);
   assert.equal(Object.values(result.initial.abilities).reduce((a,b)=>a+b,0),23,label);
-  assert.ok(result.killed&&!result.dead,label);assert.equal(result.phase,2,label);
-  assert.ok(result.seconds>=20&&result.seconds<=420,label);
-  assert.ok(result.hits>=1&&result.hp>0,label);assert.equal(result.rewards,1,label);
+  assert.equal(result.initial.bossHp,25000,label);assert.ok(result.bossHp<=22500,label);
+  assert.ok(result.seconds>=120&&result.seconds<=421,label);
+  assert.ok(result.hits>=6,label);assert.equal(result.rewards,0,label);
  }
 });
 

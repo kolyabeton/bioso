@@ -72,8 +72,8 @@ test('melee and projectile broad phase hit the surface of a giant boss, not only
  s.arms=[];s.shots=[{id:999,x:0,y:1,z:b.z+b.radius+.5,dx:0,dz:-1,dy:0,speed:6,life:2,travel:0,mode:'projectile',remaining:1,hit:new Set(),w:{key:'seed',mode:'projectile',damage:10,crit:0,critPower:1,range:20,knockback:0}}];const hp=b.hp;step(s,.1);assert.ok(b.hp<hp,'projectile hits at radius seven');
 });
 test('production hit path applies final-room attack scaling to root strikes and attacking bees',()=>{
- const {s,b}=fixture('core');s.health.invulnerableUntil=0;s.health.armorSpent=1e6;advance(s,3.3);assert.equal(s.health.hits,1);assert.equal(s.hp,0);assert.equal(s.dead,true);
- const m=fixture('mother');advance(m.s,3.15);const bee=m.s.enemies.find(e=>e.kind==='boss-drone');m.s.health.invulnerableUntil=0;m.s.health.armorSpent=1e6;bee.x=m.s.player.x;bee.z=m.s.player.z-.1;step(m.s,1/60);assert.equal(m.s.health.hits,1);assert.equal(m.s.hp,0);assert.equal(bee.hp,0);
+ const {s,b}=fixture('core');s.health.invulnerableUntil=0;s.health.armorSpent=1e6;advance(s,3.3);assert.equal(s.health.hits,1);assert.equal(s.hp,2);assert.equal(s.dead,false);
+ const m=fixture('mother');advance(m.s,3.15);const bee=m.s.enemies.find(e=>e.kind==='boss-drone');m.s.health.invulnerableUntil=0;m.s.health.armorSpent=1e6;bee.x=m.s.player.x;bee.z=m.s.player.z-.1;step(m.s,1/60);assert.equal(m.s.health.hits,1);assert.equal(m.s.hp,2);assert.equal(bee.hp,0);
 });
 
 test('destroying the last command node cancels an already prepared swarm before phase two',()=>{

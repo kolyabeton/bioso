@@ -1,23 +1,25 @@
+import {reloadSecondsLeft} from './systems/reload-bonus.js';
 import { CATALOG, ROMAN, MAX_ARMS } from './catalog.js';
-import { ranks, stats, weaponStats } from './assembly.js';
+import { ranks, stats, upgradeLimit, weaponStats } from './assembly.js';
 
 // Presentation only: read real slots, enabled state and independent cooldowns.
 export function handPresentation(run) {
   const st = stats(run);
-  return run.arms.slice(0,MAX_ARMS).map((part, index) => ({
+  return run.arms.slice(0,MAX_ARMS).map((part, index) => {const weapon=part?weaponStats(run,part,st):null;return ({
     identity: part ? `${part.id}:${part.key}:${part.tier}:${ranks(part)}` : `empty:${index}`,
     key: part?.key ?? 'empty',
     enabled: !!part && !part.disabled,
     name: part ? CATALOG[part.key].name : `Свободное крепление ${index + 1}`,
     tier: part ? ROMAN[part.tier] : '—',
     upgradeRank: part ? ranks(part) : 0,
-    charge: part ? Math.max(0, Math.min(1, 1 - part.cooldown / weaponStats(run, part, st).interval)) : 0,
-    magazine: part ? CATALOG[part.key].magazine ?? 0 : 0,
-    ammo: part ? part.ammo ?? CATALOG[part.key].magazine ?? 0 : 0,
+    maxUpgradeRank: part ? upgradeLimit(part) : 0,
+    charge: part ? Math.max(0, Math.min(1, 1 - part.cooldown / weapon.interval)) : 0,
+    magazine: weapon?.magazine ?? 0,
+    ammo: part ? part.ammo ?? weapon?.magazine ?? 0 : 0,
     reloading: (part?.reloadRemaining ?? 0)>0,
-    reloadLeft: part?.reloadRemaining ?? 0,
+    reloadLeft: reloadSecondsLeft(run,part?.reloadRemaining??0),
     reloadProgress: part?.reloadDuration ? 1-(part.reloadRemaining||0)/part.reloadDuration : 0,
-  }));
+  });});
 }
 
 const frame = '<svg class="slot-frame" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><use href="#module-frame"/></svg>';

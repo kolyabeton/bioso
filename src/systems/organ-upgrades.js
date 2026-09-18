@@ -1,6 +1,6 @@
 import {organEffect} from './body-traits.js';
 import {WEAPONS} from '../catalog.js';
-export const ORGAN_UPGRADE_STATS=Object.freeze({mirrorGland:'resonance',reflexNerve:'sensorDodge',regen:'regenRate',repairGland:'repairRate',armor:'plateCapacity'});
+export const ORGAN_UPGRADE_STATS=Object.freeze({mirrorGland:'resonance',reflexNerve:'sensorDodge',regen:'regenRate',repairGland:'traitBoost',armor:'plateCapacity'});
 export const upgradeLimit=p=>p.key==='armor'?2:(Object.hasOwn(WEAPONS,p.key)||ORGAN_UPGRADE_STATS[p.key]?20:10);
 export const organUpgradeLevel=(p,stat)=>Math.max(0,Math.min(upgradeLimit(p),p.upgrades?.[stat]||0));
 export const recoveryMultiplier=(p,stat)=>1+.03*organUpgradeLevel(p,stat);

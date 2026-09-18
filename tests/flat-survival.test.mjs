@@ -62,7 +62,7 @@ test('every map edge blocks both body sizes without terrain damage',()=>{
   for(const [x,z,dx,dz] of [[-29,0,-.3,0],[285,0,.3,0],[0,-29,0,-.3],[0,285,0,.3]]){
    s.player={x,z,y:0};
    for(let i=0;i<300;i++)movePlayer(s,1/60,dx,dz);
-   assert.equal(s.hp,2);assert.equal(s.dead,false);assert.ok(Math.abs(s.player.y-s.world.heightAt(s.player.x,s.player.z))<1e-6);
+   assert.equal(s.hp,4);assert.equal(s.dead,false);assert.ok(Math.abs(s.player.y-s.world.heightAt(s.player.x,s.player.z))<1e-6);
    assert.ok(s.world.walkable(s.player.x,s.player.z,bodyRadius(s)));
   }
  }
@@ -73,7 +73,7 @@ test('stale vertical state is grounded without applying damage or a jump',()=>{
  for(const vertical of ['falling','jumping']){
   Object.assign(s.player,{y:-20,vy:-100,vertical,fallFrom:50,jump:{}});
   movePlayer(s,1/60,0,0);
-  assert.equal(s.hp,2);assert.equal(s.dead,false);assert.equal(s.player.y,0);
+  assert.equal(s.hp,4);assert.equal(s.dead,false);assert.equal(s.player.y,0);
   assert.equal(s.player.vertical,'grounded');assert.equal(s.player.jump,undefined);
  }
 });

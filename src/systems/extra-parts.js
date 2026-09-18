@@ -1,10 +1,7 @@
-import {organEffect} from './body-traits.js';
 import {combatTime} from './mutations.js';
-import {weaponStats,tierFactor} from '../assembly.js';
 import {visibleBetween,spatialDistance,bodyRadius} from '../elevation.js';
-import {move} from '../terrain.js';
-import {eventObstacles,eventMovementClear} from '../gameplay-modules/event-collision.js';
-const state=s=>s.extraParts??={reactorCharge:0,reactorUntil:0,reactorReadyAt:0,springCharge:0,springReady:false,springReadyAt:0,springLeapUntil:0,springDodgeUntil:0,hits:0,mirrorAt:0};
+import {eventObstacles,eventMovementClear,moveCreature} from '../gameplay-modules/event-collision.js';
+const state=s=>s.extraParts??={springCharge:0,springReady:false,springReadyAt:0,springLeapUntil:0,springDodgeUntil:0};
 export const springCooldown=p=>10-(Math.max(1,Math.min(5,Math.floor(p?.tier??1)))-1)*1.25;
 export const SPRING_LEAP_DISTANCE=2.5;
 export const SPRING_LEAP_DURATION=.42;
@@ -23,17 +20,9 @@ export function springLanding(s,dx,dz,ignoredEnemy=null){
  const length=Math.hypot(dx,dz);if(length<.1)return null;
  return safeSpringLanding(s,s.player.x+dx/length*SPRING_LEAP_DISTANCE,s.player.z+dz/length*SPRING_LEAP_DISTANCE,ignoredEnemy);
 }
-export function reactorKill(s){const a=state(s),t=combatTime(s);if(s.body.key!=='reactor'||t<a.reactorReadyAt)return;if(++a.reactorCharge>=15){a.reactorCharge=0;a.reactorUntil=t+6;a.reactorReadyAt=t+21;s.events.push({type:'notice',text:'Электрик: перегрузка на 6 секунд'});s.events.push({type:'blast',x:s.player.x,z:s.player.z});}}
-export function pullHarpoon(s,e){if(e.kind!=='normal'||e.hp<=0)return;const d=spatialDistance(e,s.player)||1,amount=Math.min(3,Math.max(0,d-e.radius-1.5));if(!visibleBetween(s,e,s.player))return;move(s.world,e,(s.player.x-e.x)/d*amount,(s.player.z-e.z)/d*amount,e.radius);}
+export function pullHarpoon(s,e){if(e.kind!=='normal'||e.hp<=0)return;const d=spatialDistance(e,s.player)||1,amount=Math.min(3,Math.max(0,d-e.radius-1.5));if(!visibleBetween(s,e,s.player))return;moveCreature(s,e,(s.player.x-e.x)/d*amount,(s.player.z-e.z)/d*amount,e.radius);}
 export function tickExtraParts(s,dt,hurt){
- const a=state(s),t=combatTime(s),hits=(s.health?.hits||0)+(s.health?.blocked||0),newHit=hits>a.hits;a.hits=hits;
- if(s.body.key!=='reactor'){a.reactorCharge=0;a.reactorUntil=0;}
- const mirrors=s.organs.filter(p=>p?.key==='mirrorGland'),mirrorPower=mirrors.reduce((sum,p)=>sum+tierFactor(p),0);
- if(newHit&&s.hp>0&&mirrors.length&&t>=a.mirrorAt){
-  const e=s.enemies.filter(e=>e.hp>0&&spatialDistance(e,s.player)<=16&&visibleBetween(s,s.player,e)).sort((a,b)=>spatialDistance(a,s.player)-spatialDistance(b,s.player))[0];
-  const damage=Math.max(0,...s.arms.filter(Boolean).map(p=>weaponStats(s,p).damage));
-  if(e&&damage>0){a.mirrorAt=t+2;hurt(e,damage*mirrorPower*organEffect(s),'reflection');s.events.push({type:'arc',count:mirrors.length,x:s.player.x,y:s.player.y,z:s.player.z,tx:e.x,ty:e.y,tz:e.z});}
- }
+ const a=state(s),t=combatTime(s);
  const m=s.motion||{},length=Math.hypot(m.x||0,m.z||0),spring=s.legs.some(p=>p?.key==='spring');
  if(!spring||length<.1){a.springCharge=0;a.direction=null;if(!spring)a.springReady=false;return;}
  const dir={x:m.x/length,z:m.z/length};

@@ -9,7 +9,7 @@
  * @typedef {{id:string,name:string,tier:number,requires:string[],state:'learned'|'available'|'locked'}} AbilityNodeView
  * @typedef {{id:string,index:number,name:string,description:string,branchName:string,tier:number,nodes:AbilityNodeView[]}} AbilityCardView
  * @typedef {{current:number,max:number,segments:boolean[],shield:boolean,shieldCharges:number,shieldMax:number,armor:number,armorMax:number,shieldEquipped:boolean,invulnerable:boolean}} HealthView
- * @typedef {{type:'attack'|'arc'|'hit'|'blast'|'death'|'destroy'|'enemy-shot'|'reload-start'|'reload-end'|'fuse-start'|'volatile-blast',x:number,z:number,y?:number,tx?:number,tz?:number,ty?:number,source?:number|string,key?:string,radius?:number}} SpatialCombatEvent
+ * @typedef {{type:'attack'|'summon-attack'|'arc'|'hit'|'blast'|'death'|'destroy'|'enemy-shot'|'reload-start'|'reload-end'|'fuse-start'|'volatile-blast'|'player-step'|'shield'|'player-death'|'boss-arrival',x:number,z:number,y?:number,tx?:number,tz?:number,ty?:number,source?:number|string,sourcePartId?:number,key?:string,radius?:number}} SpatialCombatEvent
  * @typedef {{type:'player-hit',hp:number,cause:string,dx?:number,dz?:number}} PlayerHitEvent
  * @typedef {{type:'unlock'|'notice'|'victory',text:string}} NoticeEvent
  * @typedef {SpatialCombatEvent|PlayerHitEvent|NoticeEvent} CombatEvent

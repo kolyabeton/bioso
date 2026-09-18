@@ -21,7 +21,7 @@ test('ordinary and elite direct strikes release immediately while their large ar
 });
 test('every survival boss move has a readable wind-up pose',()=>{
  for(const [recipeId,deck]of Object.entries(SURVIVAL_BOSS_ATTACKS))for(const [index,move]of deck.entries()){
-  const s=createRun(undefined,'survival',42);s.world={walkable:()=>true};const e=spawnEnemy(s,recipeId==='mother'?'final':'boss',{x:0,z:1});e.recipeId=recipeId;e.hp=index===2?e.maxHp*.6:e.maxHp;e.enemyAttack={index,readyAt:0,warning:null};tickModularAttack(s,e,s.player,()=>{});const w=e.enemyAttack.warning;assert.equal(w.bossAction,move.bossAction);assert.ok(w.at>w.started);assert.ok(magnitude(enemyWeaponPose(e,w.slot,w.at-.01))>.05,`${recipeId}/${move.bossAction}`);
+  const s=createRun(undefined,'survival',42);s.world={walkable:()=>true};const e=spawnEnemy(s,recipeId==='mother'?'final':'boss',{x:0,z:1});e.recipeId=recipeId;e.hp=index===2?e.maxHp*.6:e.maxHp;e.enemyAttack={index,readyAt:0,warning:null};tickModularAttack(s,e,s.player,()=>{});const w=e.enemyAttack.warning;assert.equal(w.bossAction,move.bossAction);assert.ok(w.at>w.started);assert.ok(magnitude(enemyWeaponPose(e,w.slot,w.at-.01))>.05,`${recipeId}/${move.bossAction}`);s.time=w.at;tickModularAttack(s,e,s.player,()=>{});assert.equal(s.events.filter(event=>event.type==='enemy-strike').at(-1)?.bossAction,move.bossAction);
  }
 });
 test('warned area contact pose coincides with its resolution without an animation restart',()=>{
@@ -43,4 +43,10 @@ test('animated instances reuse the same geometry and pools throughout the full a
  view.update([e],s.player,0);await Promise.resolve();view.update([e],s.player,.1);const pools=view.info().enemyMeshPools;
  for(let i=0;i<180;i++)view.update([e],s.player,at+recovery*i/180);
  assert.equal(view.info().enemyMeshPools,pools);view.dispose();
+});
+
+test('sleeping enemies stop their leg cycle and resume after waking',()=>{
+ const {e}=fixture('claws','normal');e.pickupSleepUntil=5;
+ const legs=time=>enemyVisualParts(e,time).filter(p=>p.asset.startsWith('leg-')).map(p=>p.rotation);
+ assert.deepEqual(legs(1),legs(2));e.pickupSleepUntil=0;assert.notDeepEqual(legs(1),legs(2));
 });

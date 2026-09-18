@@ -27,3 +27,10 @@ test('failed GLB loads retain the regular renderer and late loads cannot resurre
  const scene=new T.Scene(),e=enemy();const v=createBossModelView(scene,{load:async()=>{throw Error('offline');}});v.update([e],{x:0,z:5},0);await flush();assert.deepEqual(v.update([e],{x:0,z:5},1),[e]);assert.deepEqual(v.info().bossModelFailures,[e.bossDesignId]);v.dispose();
  let release;const delayed=createBossModelView(scene,{load:()=>new Promise(r=>{release=r;})});delayed.update([e],{x:0,z:5},0);await Promise.resolve();delayed.dispose();release(source());await flush();assert.equal(scene.children.length,0);
 });
+test('boss models render simulation facing even when the player moves behind them',async()=>{
+ const scene=new T.Scene(),view=createBossModelView(scene,{load:async()=>source()}),e={...enemy(),bossCombat:{facing:.25}},player={x:0,z:-10};
+ view.update([e],player,0);await flush();view.update([e],player,0);
+ const model=scene.getObjectByName('boss-asset:'+e.bossDesignId);assert.equal(model.rotation.y,.25);
+ e.bossCombat.facing=.3;view.update([e],{x:-10,z:0},.1);assert.equal(model.rotation.y,.3);
+ delete e.bossCombat;e.facing=.4;view.update([e],player,.2);assert.equal(model.rotation.y,.4);view.dispose();
+});

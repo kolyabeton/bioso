@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {movePlayer,bodyRadius} from '../src/elevation.js';
-import {eventObstacles} from '../src/gameplay-modules/event-collision.js';
+import {eventObstacles,moveCreature} from '../src/gameplay-modules/event-collision.js';
 import {obstacleContains} from '../src/architecture-collision.js';
 import {EVENT_PRESENTATION} from '../src/gameplay-modules/event-presentation.js';
 import {nearEncounter} from '../src/systems/events/proximity.js';
@@ -41,4 +41,25 @@ test('inside a dungeon only its visible exit blocks movement',()=>{
  const s=state(),exit={...node('dungeon_catacombs'),x:20};s.encounters.nodes.push(exit);s.encounters.active=exit;
  movePlayer(s,.1,0,-16);assert.equal(s.player.z,-8);
  s.player={x:20,z:8};movePlayer(s,.1,0,-16);assert.ok(s.player.z>0);
+});
+test('normal, elite, and boss creatures cannot cross event buildings',()=>{
+ for(const type of Object.keys(EVENT_PRESENTATION))for(const kind of ['normal','elite','boss'])for(const [dx,dz] of [[1,0],[-1,0],[0,1],[0,-1]]){
+  const s=state(node(type)),creature={kind,x:-dx*10,z:-dz*10,radius:.8},label=`${type}:${kind}`;
+  moveCreature(s,creature,dx*20,dz*20,creature.radius);
+  assert.ok(creature.x*dx+creature.z*dz<0,label);
+  assert.equal(obstacleContains(eventObstacles(s)[0],creature.x,creature.z,creature.radius),false,label);
+ }
+});
+test('flying creatures may cross event buildings',()=>{
+ for(const type of Object.keys(EVENT_PRESENTATION)){
+  const s=state(node(type)),creature={kind:'flying',flying:true,x:0,z:10,radius:.4};
+  moveCreature(s,creature,0,-20,creature.radius);
+  assert.equal(creature.z,-10,type);
+ }
+});
+test('creatures already overlapping a newly available event may only move outward',()=>{
+ const s=state(),creature={kind:'elite',x:0,z:0,radius:.8};
+ moveCreature(s,creature,0,8,creature.radius);assert.equal(creature.z,8);
+ moveCreature(s,creature,0,-16,creature.radius);assert.ok(creature.z>0);
+ creature.z=1;moveCreature(s,creature,0,-2,creature.radius);assert.equal(creature.z,1);
 });

@@ -1,5 +1,4 @@
 import {visibleBetween} from '../elevation.js';
-import {WAVE_RULES} from './balance.js';
 import {SURVIVAL_CADENCE} from './survival-cadence.js';
 import {SURVIVAL_HABITAT_BALANCE,SURVIVAL_HABITAT_RADIUS} from './balance.js';
 import {BOSS_RECIPES} from './enemy-assembly.js';
@@ -7,12 +6,15 @@ const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 // Keep even two fully extended 30 m territories separated by a visible stretch of map.
 export const BOSS_HABITAT_DISTANCE=112;
 export const BOSS_REGEN_PERIOD=60;
+export const MOTHER_REGEN_REDUCTION_LEVEL=25;
+export const MOTHER_REGEN_REDUCTION=3;
 export const isBoss=e=>['boss','final'].includes(e.kind);
 export const bossEngaged=e=>e.hp>0&&isBoss(e)&&(!e.territory||e.territory.state==='engaged');
 export function tickHabitatBossRegeneration(s,dt){
  if(s.mode!=='survival'||!(dt>0))return;
  for(const e of s.enemies)if(e.habitat&&e.hp>0&&e.hp<e.maxHp){
-  const rate=Math.max(0,Number(e.bossRegenRate)||0);
+  const reduction=e.kind==='final'&&s.level>=MOTHER_REGEN_REDUCTION_LEVEL?MOTHER_REGEN_REDUCTION:1;
+  const rate=Math.max(0,Number(e.bossRegenRate)||0)/reduction;
   if(rate)e.hp=Math.min(e.maxHp,e.hp+e.maxHp*rate*dt/BOSS_REGEN_PERIOD);
  }
 }
@@ -23,14 +25,13 @@ export function assignTerritory(s,e){
 }
 export function assignWaveEliteDisposition(s,e){
  if(e?.kind!=='elite'||e.waveElite||!e.territory&&s.mode!=='survival')return e;
- const waveElites=s.enemies.filter(q=>q!==e&&q.hp>0&&q.waveElite&&q.territory);
- const pursuers=waveElites.filter(q=>q.territory.pursuit).length;
  e.waveElite=true;e.waveEliteIndex=(s.waves.waveEliteCount||0)+1;s.waves.waveEliteCount=e.waveEliteIndex;
- if(s.mode==='survival'&&(e.wavePressureIndex===0||e.waveEliteIndex<=WAVE_RULES.earlyWaveEliteCount))e.hp=e.maxHp=Math.max(1,Math.round(e.maxHp*WAVE_RULES.earlyWaveEliteHp));
  if(s.mode==='survival'&&e.wavePressureIndex===0)e.damage*=SURVIVAL_CADENCE.firstEliteDamage;
  if(!e.territory)return e;
- e.territory.pursuit=pursuers<Math.min(WAVE_RULES.pursuerCap,Math.ceil((waveElites.length+1)/2));
- if(e.territory.pursuit)e.territory.state='engaged';
+ // Every elite of a pack walks to the player. A wall that waits on its home spot never
+ // arrives, so the pack could not be fought, let alone cleared. Minute mini-bosses of
+ // the map keep their own territory; only pack members are pursuers.
+ e.territory.pursuit=true;e.territory.state='engaged';
  return e;
 }
 export function territoryTarget(s,e,fallback){
@@ -50,7 +51,7 @@ export function territoryTarget(s,e,fallback){
   if(!atHome)return t.home;
   t.state='idle';e.path=null;
  }
- if(t.state==='idle'&&distance(e,s.player)<=t.aggro&&playerHome<=t.leash&&visibleBetween(s,e,s.player))t.state='engaged';
+ if(t.state==='idle'&&distance(e,s.player)<=t.aggro&&playerHome<=t.leash&&visibleBetween(s,e,s.player)){t.state='engaged';if(isBoss(e)&&!e.arrivalSounded){e.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:e.id,kind:e.kind,x:e.x,y:e.y??0,z:e.z});}}
  return t.state==='engaged'?s.player:t.home;
 }
 /** Fixed boss habitats, separate from the seeded combat loot stream. */

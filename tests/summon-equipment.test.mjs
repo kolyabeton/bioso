@@ -51,6 +51,7 @@ test('drone arm attacks autonomously through the shared swarm, with no hero shot
 
 test('Colony and arm drones are additional to the five Broodmother companions',()=>{
  const s=run();s.body=createPart(s,'broodmother',5);s.arms=[createPart(s,'drone'),createPart(s,'drone')];
+ s.body.setId=s.arms[0].setId='broodmother';
  s.abilities.learned=['summons.0'];s.abilities.levels={'summons.0':5};
  tickEffects(s,0,()=>{});
  assert.equal(summonTuning(s,modifiers(s)).baseCount,8);
@@ -59,12 +60,30 @@ test('Colony and arm drones are additional to the five Broodmother companions',(
  assert.equal(new Set(s.abilities.companions.map(c=>c.id)).size,11);
 });
 
-test('broodmother maintains one drone source per chassis rank',()=>{
+test('broodmother maintains one drone source per chassis rank with a Pollinator equipped',()=>{
  for(let rank=1;rank<=5;rank++){
-  const s=run();s.body=createPart(s,'broodmother',rank);
-  const tuning=summonTuning(s);assert.equal(tuning.baseCount,rank);assert.equal(tuning.count,rank);
-  tickEffects(s,0,()=>{});assert.equal(s.abilities.companions.length,rank);
+  const s=run();s.body=createPart(s,'broodmother',rank);s.arms=[createPart(s,'drone')];
+  s.body.setId=s.arms[0].setId='broodmother';
+  const tuning=summonTuning(s);assert.equal(tuning.baseCount,rank);assert.equal(tuning.count,rank+2);
+  tickEffects(s,0,()=>{});assert.equal(s.abilities.companions.length,rank+2);
  }
+});
+
+test('beekeeper toggles chassis drones with the last Pollinator while Colony and set helpers remain',()=>{
+ const s=run();s.body=createPart(s,'broodmother',5);s.arms=[null,null];s.legs=[createPart(s,'swarmLeg')];
+ s.body.setId=s.legs[0].setId='broodmother';
+ s.abilities.learned=['summons.0'];s.abilities.levels={'summons.0':5};
+ const sync=()=>{tickEffects(s,0,()=>{});return s.abilities.companions.length;};
+ assert.equal(sync(),4);assert.equal(summonTuning(s,modifiers(s)).baseCount,3);
+ const arm=createPart(s,'drone');s.inventory.push(arm);assert.equal(sync(),4);
+ assert.ok(equip(s,arm.id,0));assert.equal(sync(),10);
+ arm.disabled=true;assert.equal(sync(),4);
+ arm.disabled=false;assert.equal(sync(),10);
+ const second=createPart(s,'drone');s.inventory.push(second);assert.ok(equip(s,second.id,1));assert.equal(sync(),11);
+ assert.ok(unequip(s,'arms',0));assert.equal(sync(),10);
+ assert.ok(unequip(s,'arms',1));assert.equal(sync(),4);
+ assert.equal(summonTuning(s,modifiers(s)).baseCount,3);
+ assert.ok(equip(s,arm.id,0));assert.equal(sync(),10);
 });
 
 test('an equipped drone recovers after a room jump and retains its damage and identity',()=>{
@@ -89,6 +108,15 @@ test('unmodified rank-I arm drone sustains fifteen DPS after reaching its target
  assert.ok(Math.abs(damage/60-15)<=.3,`Actual DPS: ${damage/60}`);
 });
 
+test('Pollinator strike damages enemies inside its half-metre radius only',()=>{
+ const s=run(),p=createPart(s,'drone');p.affixes=[];p.affix=null;s.arms=[p];
+ const primary={id:1,x:.49,y:0,z:0,hp:100,radius:0,kind:'normal'},inside={id:2,x:-.49,y:0,z:0,hp:100,radius:0,kind:'normal'},outside={id:3,x:-.51,y:0,z:0,hp:100,radius:0,kind:'normal'};s.enemies=[primary,inside,outside];
+ tickEffects(s,0,()=>{});Object.assign(s.abilities.companions[0],{x:0,y:0,z:0,target:primary.id,phase:'approach',cooldown:0});
+ const hits=[];tickEffects(s,.00001,(e,damage,source)=>{e.hp-=damage;hits.push([e.id,damage,source]);});
+ assert.deepEqual(hits,[[primary.id,18,'summon'],[inside.id,18,'summon']]);
+ assert.equal(outside.hp,100);assert.equal(weaponStats(s,p).attackRadius,.5);
+});
+
 test('drone arm acquires targets within ten metres without range bonuses from swarm legs',()=>{
  const s=run(),p=createPart(s,'drone');s.arms=[p];
  const e={id:1,x:10.01,y:0,z:0,hp:100,radius:.5,kind:'normal'};s.enemies=[e];
@@ -96,17 +124,22 @@ test('drone arm acquires targets within ten metres without range bonuses from sw
  tickEffects(s,0,()=>assert.fail('remote hit'));assert.equal(s.abilities.companions.find(c=>c.sourcePartId===p.id).target,null);
  e.x=10;tickEffects(s,0,()=>{});assert.equal(s.abilities.companions.find(c=>c.sourcePartId===p.id).target,1);
  e.x=10.01;tickEffects(s,0,()=>{});assert.equal(s.abilities.companions.find(c=>c.sourcePartId===p.id).target,null);
- s.legs=[createPart(s,'swarmLeg')];assert.equal(weaponStats(s,p).range,10);
+ s.legs=[createPart(s,'swarmLeg')];p.setId=s.legs[0].setId='broodmother';assert.equal(weaponStats(s,p).range,10);
  e.x=12;tickEffects(s,0,()=>{});assert.equal(s.abilities.companions.find(c=>c.sourcePartId===p.id).target,null);
  assert.ok(soulSummonStats(s,{}).some(([k,v])=>k==='Поиск дронов'&&v==='10 м'));
  assert.ok(soulSummonStats(s,{}).some(([k])=>k==='Поиск роя'),'the set adds a separate companion with its own search range');
  s.legs=Array.from({length:3},()=>createPart(s,'swarmLeg'));assert.equal(weaponStats(s,p).range,10);
 });
 
-test('womb produces two larvae every two seconds without attacks or deaths',()=>{
- const s=run();s.organs=[createPart(s,'parasite')];const tick=dt=>tickIsaacCombat(s,dt,()=>assert.fail('no enemies'));
- advance(s,1.95,tick);assert.equal(s.isaac.larvae.length,0);advance(s,.05,tick);assert.equal(s.isaac.larvae.length,2);
- assert.deepEqual(s.isaac.larvae.map(l=>l.damage),[6,6]);advance(s,2,tick);assert.equal(s.isaac.larvae.length,4);
+test('womb pauses production until a visible enemy enters the swarm search radius',()=>{
+ const s=run();s.organs=[createPart(s,'parasite')];const tick=dt=>tickIsaacCombat(s,dt,()=>{});
+ advance(s,3,tick);assert.equal(s.isaac.larvae.length,0);assert.equal(s.isaac.broodTimers[s.organs[0].id],undefined);
+ const enemy={id:1,x:12.01,y:0,z:0,hp:10000,radius:.5,kind:'normal'};s.enemies=[enemy];advance(s,2,tick);assert.equal(s.isaac.larvae.length,0);
+ enemy.x=12;s.world.lineClear=()=>false;advance(s,2,tick);assert.equal(s.isaac.larvae.length,0);
+ s.world.lineClear=()=>true;advance(s,1,tick);near(s.isaac.broodTimers[s.organs[0].id],1);
+ enemy.x=12.01;advance(s,3,tick);near(s.isaac.broodTimers[s.organs[0].id],1);
+ enemy.x=12;advance(s,.95,tick);assert.equal(s.isaac.larvae.length,0);advance(s,.05,tick);assert.equal(s.isaac.larvae.length,2);
+ assert.deepEqual(s.isaac.larvae.map(l=>l.damage),[6,6]);const firstBrood=s.isaac.larvae.map(l=>l.id);advance(s,2,tick);assert.equal(s.isaac.larvae.length,2);assert.notDeepEqual(s.isaac.larvae.map(l=>l.id),firstBrood);
  const before=JSON.stringify(s.isaac);tick(0);assert.equal(JSON.stringify(s.isaac),before);
  s.pending=1;step(s,1);assert.equal(JSON.stringify(s.isaac),before);
  s.organs=[];tick(.05);assert.deepEqual(s.isaac.broodTimers,{});
@@ -115,15 +148,17 @@ test('womb produces two larvae every two seconds without attacks or deaths',()=>
 test('summon rate accelerates womb production and swarm damage affects the larva hit',()=>{
  const s=run();s.organs=[createPart(s,'parasite'),createPart(s,'broodNode')];s.abilities.learned=['summons.2','summons.1','summons.3'];s.abilities.levels={'summons.2':4};
  const b=modifiers(s),t=summonTuning(s,b);near(t.rate,1.5);
+ s.enemies=[{id:1,x:5,y:0,z:0,hp:10000,radius:1,kind:'elite'}];
  advance(s,1.3,dt=>tickIsaacCombat(s,dt,()=>{}));assert.equal(s.isaac.larvae.length,0);
  advance(s,.05,dt=>tickIsaacCombat(s,dt,()=>{}));assert.equal(s.isaac.larvae.length,2);
- const rows=soulSummonStats(s,b);assert.ok(rows.some(([k,v])=>k==='Призыв личинок'&&v==='2 / 1.33 с'));
- s.enemies=[{id:1,x:0,y:0,z:0,hp:10000,radius:1,kind:'elite'}];const hits=[];
+ const rows=soulSummonStats(s,b);assert.ok(rows.some(([k,v])=>k==='Призыв личинок'&&v==='2 каждые 1.33 с'));
+ s.enemies[0].x=0;const hits=[];
  advance(s,.5,dt=>tickIsaacCombat(s,dt,(e,d)=>hits.push(d)));assert.equal(hits.length,2);near(hits[0],6*t.damage*t.bossDamage);
 });
 
 test('womb ranks, independent timers and old infection removal',()=>{
  const s=run();s.organs=[createPart(s,'parasite',1),createPart(s,'parasite',5)];
+ s.enemies=[{id:1,x:5,y:0,z:0,hp:10000,radius:1,kind:'normal'}];
  advance(s,2,dt=>tickIsaacCombat(s,dt,()=>{}));assert.deepEqual(s.isaac.larvae.map(l=>l.damage),[6,6,18,18]);
  const count=s.isaac.larvae.length;isaacDeath(s,{x:0,z:0,kind:'normal',clutch:{until:100,damage:100}},'direct');assert.equal(s.isaac.larvae.length,count);
  assert.ok(upgrade(s,s.organs[0].id,'larvaDamage'));near(parasiteLarvaDamage(s,s.organs[0]),8.4);
@@ -133,7 +168,8 @@ test('womb ranks, independent timers and old infection removal',()=>{
 test('Hive uses the same timed production and no longer responds to deaths',()=>{
  const s=run();s.arms=[createPart(s,'rocket'),createPart(s,'fangs')];s.organs=[createPart(s,'digestion')];
  for(let i=0;i<10;i++)isaacDeath(s,{kind:'normal',x:0,z:0},'direct');assert.equal(s.isaac.larvae.length,0);
+ s.enemies=[{id:1,x:5,y:0,z:0,hp:10000,radius:1,kind:'normal'}];
  advance(s,2,dt=>tickIsaacCombat(s,dt,()=>{}));assert.equal(s.isaac.larvae.length,3);
- assert.ok(soulSummonStats(s,{}).some(([k,v])=>k==='Призыв личинок'&&v==='3 / 2.00 с'));
+ assert.ok(soulSummonStats(s,{}).some(([k,v])=>k==='Призыв личинок'&&v==='3 каждые 2.00 с'));
  s.organs=[];tickIsaacCombat(s,.05,()=>{});assert.equal(s.isaac.broodTimers.hive,undefined);
 });

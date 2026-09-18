@@ -1,4 +1,6 @@
 import {combatTime} from './mutations.js';
+import {spatialDistance} from '../elevation.js';
+import {moveCreature} from '../gameplay-modules/event-collision.js';
 
 export const SHIELD_FRONT_REDUCTION=.8;
 export const SHIELD_FRONT_ARC=Math.PI*2/3;
@@ -7,19 +9,48 @@ export const MIRROR_COOLDOWN=5;
 export const PUPPETEER_INTERVAL=4;
 export const PUPPETEER_LIMIT=6;
 export const PUPPETEER_BUILD_SECONDS=1.4;
+export const DRONE_HUNTER_WARNING=.8;
+export const DRONE_HUNTER_COOLDOWN=4;
+export const DRONE_HUNTER_REPLACEMENT_DELAY=4;
+export const EVADE_CHANCE=.8;
 export const puppeteerSummonSpread=existing=>1.25+Math.floor(existing/2)*.9;
 
 const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
 const approach=(current,target,max)=>current+Math.max(-max,Math.min(max,wrap(target-current)));
 
-export function tickEnemySpecialist(s,e,dt,spawn){
+function tickDroneHunter(s,e,dt,hunt){
+ const now=combatTime(s),companions=s.abilities?.companions||[];
+ let target=e.specialAttack?companions.find(c=>c.id===e.specialAttack.target):null;
+ if(!target)target=[...companions].sort((a,b)=>spatialDistance(e,a)-spatialDistance(e,b)||a.id-b.id)[0];
+ if(!target){if(e.specialAttack)e.specialAttack=null;if(e.enemyAttack?.warning?.droneHunter)e.enemyAttack.warning=null;return false;}
+ const distance=spatialDistance(e,target),contact=e.radius+.8;
+ if(e.specialAttack){
+  if(now<e.specialAttack.at){
+   const dx=(target.x-e.x)/(distance||1),dz=(target.z-e.z)/(distance||1);
+   e.enemyAttack??={index:0,readyAt:Infinity,warning:null};
+   e.enemyAttack.warning={key:'fangs',mode:'shot',telegraphMode:'shot',droneHunter:true,x:e.x,y:e.y??0,z:e.z,dx,dz,range:distance,width:.16,started:e.specialAttack.started,at:e.specialAttack.at};
+   return true;
+  }
+  if(e.enemyAttack?.warning?.droneHunter)e.enemyAttack.warning=null;
+  if(distance<=contact+1){hunt?.(target,e);e.specialPose={kind:'drone-hunter',started:now,until:now+.7};e.attackPose={key:'fangs',slot:0,x:e.x,y:e.y??0,z:e.z,dx:(target.x-e.x)/(distance||1),dz:(target.z-e.z)/(distance||1),started:e.specialAttack.started,at:now};e.specialReadyAt=now+DRONE_HUNTER_COOLDOWN;}
+  else e.specialReadyAt=now+.4;
+  e.specialAttack=null;return true;
+ }
+ if(distance>contact){const travel=Math.min(distance-contact,e.speed*1.45*dt);moveCreature(s,e,(target.x-e.x)/(distance||1)*travel,(target.z-e.z)/(distance||1)*travel,e.radius);return true;}
+ e.specialReadyAt??=now;
+ if(now>=e.specialReadyAt){e.specialAttack={kind:'drone-hunter',target:target.id,started:now,at:now+DRONE_HUNTER_WARNING};e.specialPose={kind:'drone-hunter',started:now,until:now+DRONE_HUNTER_WARNING};s.events.push({type:'enemy-drone-hunt-warning',source:e.id,target:target.id,x:e.x,y:e.y??0,z:e.z,tx:target.x,ty:(target.y??0)+(target.hover??1.5),tz:target.z,duration:DRONE_HUNTER_WARNING});}
+ return true;
+}
+
+export function tickEnemySpecialist(s,e,dt,spawn,hunt){
  if(!e.specialty||e.hp<=0)return false;
  const now=combatTime(s);
- if(e.frozenUntil>now||e.territory&&e.territory.state!=='engaged'&&!e.challengeId){if(e.specialAttack){e.specialAttack=null;e.specialReadyAt=now+1;}return false;}
+ if(e.frozenUntil>now||e.territory&&e.territory.state!=='engaged'&&!e.challengeId){if(e.specialAttack){e.specialAttack=null;e.specialReadyAt=now+1;}if(e.enemyAttack?.warning?.droneHunter)e.enemyAttack.warning=null;return false;}
  if(e.specialty==='shield-bearer'){
   const target=Math.atan2(s.player.x-e.x,s.player.z-e.z);
   e.specialFacing=e.specialFacing==null?target:approach(e.specialFacing,target,.55*dt);
  }
+ if(e.specialty==='drone-hunter')return tickDroneHunter(s,e,dt,hunt);
  if(e.specialty!=='puppeteer')return false;
  const children=s.enemies.filter(q=>q.hp>0&&q.summonOwner===e.id).length;
  e.specialReadyAt??=now+2.5;
@@ -39,6 +70,9 @@ export function tickEnemySpecialist(s,e,dt,spawn){
  }
  return false;
 }
+
+/** An evader slips most direct hits; lingering acid and hazards cannot be dodged. */
+export const specialistEvades=(e,mode,roll)=>e.specialty==='evader'&&!['acid','environment'].includes(mode)&&roll<EVADE_CHANCE;
 
 export function specialistDamageScale(e,{now=0,origin=null,direction=null,mode=null}={}){
  if(e.specialty!=='shield-bearer'||['acid','environment'].includes(mode))return 1;

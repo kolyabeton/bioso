@@ -6,7 +6,8 @@ const PARTICLE_COUNT=28;
 
 function arrowGeometry(){
  const shape=new T.Shape();
- shape.moveTo(-.42,-1.75);shape.lineTo(.42,-1.75);shape.lineTo(.42,.35);shape.lineTo(1.18,.35);shape.lineTo(0,1.8);shape.lineTo(-1.18,.35);shape.lineTo(-.42,.35);shape.closePath();
+ shape.moveTo(0,2.15);shape.lineTo(.68,-.68);shape.lineTo(0,-1.55);shape.lineTo(-.68,-.68);shape.closePath();
+ const cutout=new T.Path();cutout.moveTo(0,1.48);cutout.lineTo(-.38,-.58);cutout.lineTo(0,-1.08);cutout.lineTo(.38,-.58);cutout.closePath();shape.holes.push(cutout);
  const geometry=new T.ExtrudeGeometry(shape,{depth:.16,bevelEnabled:true,bevelSegments:2,bevelSize:.07,bevelThickness:.06,curveSegments:1});
  geometry.center();geometry.rotateX(Math.PI/2);geometry.computeVertexNormals();return geometry;
 }

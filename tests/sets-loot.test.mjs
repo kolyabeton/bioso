@@ -3,16 +3,27 @@ import assert from 'node:assert/strict';
 import {createRun,step} from '../src/game.js';
 import {createPart,stats,weaponStats,weight,pickup} from '../src/assembly.js';
 import {seededRandom} from '../src/simulation.js';
-import {SETS,LOOT_RULES,normalDrop,rollRarity,recordReward,generateLoot,queueBossReward,chooseBossReward,setCounts,setBonuses,partMeta,hitSetMultiplier,reloadDuration} from '../src/systems/sets-loot.js';
+import {SETS,LOOT_RULES,normalDrop,rollRarity,recordReward,generateLoot,queueBossReward,chooseBossReward,setCounts,setBonuses,partMeta,partTraitLines,hitSetMultiplier,reloadDuration} from '../src/systems/sets-loot.js';
 import {CATALOG} from '../src/catalog.js';
 import {activeSetDescription} from '../src/ui/catalog-sets.js';
 const set=(s,id)=>{for(const p of [s.body,...s.arms,...s.legs,...s.organs].filter(Boolean))p.setId=id;};
 test('every base catalog part is common; rarity is an affixed loot variation',()=>{
  const s=createRun();
  for(const key of Object.keys(CATALOG)){
-  const p=createPart(s,key);assert.equal(p.rarity,'common',key);assert.deepEqual(p.affixes,[],key);
+  const p=createPart(s,key);assert.equal(p.rarity,'common',key);assert.equal(p.setId,null,key);assert.deepEqual(p.affixes,[],key);
  }
  const relic=generateLoot(s,createPart,1,'boss','relic',false);assert.equal(relic.rarity,'relic');assert.equal(relic.affixes.length,3);
+});
+test('only every third received item belongs to a set',()=>{
+ const s=createRun();s.rng=seededRandom(20260914);
+ const items=Array.from({length:10},()=>createPart(s,'seed'));
+ assert.ok(items.every(p=>!p.setId));
+ s.player={x:0,z:0};s.ground=items.map((part,index)=>({id:100+index,x:0,z:0,part}));
+ for(let index=0;index<items.length;index++)assert.equal(pickup(s,100+index),true);
+ assert.deepEqual(s.inventory.map(p=>!!p.setId),[false,false,true,false,false,true,false,false,true,false]);
+ assert.equal(s.lootState.receivedSequence,10);
+ for(const p of items.filter(p=>p.setId))assert.ok(SETS[p.setId]);
+ for(const p of items.filter(p=>!p.setId))assert.deepEqual(partTraitLines(p),['Обычная']);
 });
 test('80th normal kill and eighth received reward guarantees are independent',()=>{
  const s=createRun();s.rng=()=>.5;for(let i=0;i<79;i++)assert.equal(normalDrop(s),false);assert.equal(normalDrop(s),true);assert.equal(s.lootState.normalMisses,0);
@@ -34,6 +45,7 @@ test('active Broodmother set reports both set bonuses separately from equipment'
  const s=createRun();s.body=createPart(s,'broodmother',5);s.arms=[];
  s.legs=Array.from({length:3},()=>createPart(s,'swarmLeg',1));
  s.organs=Array.from({length:2},()=>createPart(s,'broodNode',1));
+ set(s,'broodmother');
  assert.equal(setCounts(s).broodmother,3);
  assert.equal(activeSetDescription(s,'broodmother',3),`${SETS.broodmother.two} ${SETS.broodmother.three}`);
 });

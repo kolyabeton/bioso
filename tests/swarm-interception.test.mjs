@@ -13,7 +13,7 @@ function quietWorld(s){
 }
 
 test('an interceptor is destroyed and its source summons a new drone at the attack interval',()=>{
- const s=createRun(undefined,'survival',410);quietWorld(s);s.body=createPart(s,'broodmother',1);s.arms=[];s.legs=Array.from({length:3},()=>createPart(s,'swarmLeg',5));s.abilities.learned=['summons.2'];s.abilities.levels={'summons.2':5};s.player={x:0,y:0,z:3};s.hp=stats(s).hp;
+ const s=createRun(undefined,'survival',410);quietWorld(s);s.body=createPart(s,'broodmother',1);s.arms=[createPart(s,'drone')];s.legs=Array.from({length:3},()=>createPart(s,'swarmLeg',5));s.abilities.learned=['summons.2'];s.abilities.levels={'summons.2':5};s.player={x:0,y:0,z:3};s.hp=stats(s).hp;
  tickEffects(s,0,()=>{});const drone=s.abilities.companions[0];Object.assign(drone,{x:0,y:0,z:0,hover:1});
  const hp=s.hp;s.hostileShots.push({x:0,y:1,z:-1,dx:0,dy:0,dz:1,speed:10,life:3,damage:1,key:'test-shell'});
  step(s,.2);

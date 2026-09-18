@@ -1,9 +1,10 @@
 import {setCounts} from './definitions.js';
 import {SHIELD_RECHARGE_SECONDS,REGEN_INTERVAL_SECONDS} from '../health-tuning.js';
+import {isMelee} from '../hand-compatibility.js';
 
 export const SET_TIMING=Object.freeze({collector:12,barrier:12,tissue:12,reactor:12,hecaton:8,handWindow:4,cross:3,brood:4});
 export const setClock=s=>(s.time||0)+(s.isaac?.extraTime||0);
-export const setMelee=w=>['sector','area','contact'].includes(w.mode);
+export const setMelee=isMelee;
 
 /** Pure stat lookup: inspecting an item or rendering a menu never starts a timer. */
 export function setBonuses(s){

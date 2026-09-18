@@ -1,4 +1,4 @@
-import {spatialDistance,surfaceReach} from '../elevation.js';
+import {groundDistance,surfaceReach} from '../elevation.js';
 import {armorRemaining,heal} from './health.js';
 import {combatTime} from './mutations.js';
 
@@ -17,7 +17,7 @@ export function spawnRecoveryDrop(s,enemy){
 export function tickRecoveryDrops(s,st){
  s.recoveryDrops=(s.recoveryDrops??[]).filter(q=>{
   if(combatTime(s)>=q.expiresAt)return false;
-  if(s.dead||s.hp<=0||spatialDistance(q,s.player)>RECOVERY_DROPS.radius||!surfaceReach(s,q,s.player))return true;
+  if(s.dead||s.hp<=0||groundDistance(s,q,s.player)>RECOVERY_DROPS.radius||!surfaceReach(s,q,s.player))return true;
   let amount=0;
   if(q.kind==='health'){
    const before=s.hp;if(before>=st.hp)return true;

@@ -9,7 +9,7 @@ export const EVENT_PRESENTATION=Object.freeze({
  infection:{model:'arch-planter',art:'feat-infection',size:3.2,height:2.4,category:'Испытание',summary:'30 секунд внутри круга'},
  hunt:{model:'arch-arch',art:'feat-hunt',size:3.8,height:4,category:'Испытание',summary:'60 секунд · отмеченная элита'},
  race:{model:'arch-arch',art:'meta-spring',size:3,height:4,category:'Испытание',summary:'Дальний финиш · гонка на время'},
- dungeon_roots:{model:'arch-gate',art:'feat-infection',size:10,height:8,category:'Логово',summary:'Корневые тоннели · 12 элит'},
+ dungeon_roots:{model:'arch-gate',art:'feat-infection',size:10,height:8,category:'Логово',summary:'Главный Отсек · 12 элит'},
  dungeon_catacombs:{model:'arch-gate',art:'feat-sealed',size:10,height:8,category:'Логово',summary:'Техногенные тоннели · 18 элит'},
 });
 export const eventState=n=>n.skipped?'Вы отказались':({ready:'Доступно',paused:'Прогресс сохранён',active:'Идёт испытание',reward:'Заберите награду',complete:'Завершено',failed:'Испытание провалено'})[n.state]||'';

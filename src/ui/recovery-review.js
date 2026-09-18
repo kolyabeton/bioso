@@ -13,7 +13,7 @@ export function prepareRecoveryReview(run){
  const controls=document.createElement('aside');controls.className='defense-review-controls';controls.style.cssText='background:#192820;color:#e6eee8';
  controls.innerHTML='<small>Расходники · тестовое выпадение</small><button data-kind="health">Лечение</button><button data-kind="armor">Броня</button><small data-status></small>';
  for(const button of controls.querySelectorAll('button'))button.style.color='#e6eee8';
- function status(){controls.querySelector('[data-status]').textContent=`HP ${run.hp}/${stats(run).hp} · Броня ${armorRemaining(run,stats(run).armor)} · На земле ${run.recoveryDrops.length} · Окно ${innerWidth}×${innerHeight}`;}
+ function status(){controls.querySelector('[data-status]').textContent=`HP ${run.hp} из ${stats(run).hp} · Броня ${armorRemaining(run,stats(run).armor)} · На земле ${run.recoveryDrops.length} · Окно ${innerWidth}×${innerHeight}`;}
  controls.addEventListener('click',e=>{const q=run.recoveryDrops.find(q=>q.kind===e.target.dataset.kind);if(q){Object.assign(run.player,{x:q.x,y:q.y,z:q.z});step(run,.01);status();}});
  document.querySelector('#game').append(controls);status();return{paused:true,tick:status};
 }

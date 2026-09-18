@@ -2575,5 +2575,11 @@
   "максимального здоровья в секунду. Ранг и каждое улучшение добавляют": "of maximum health per second. Rank and each upgrade add",
   "п.п. Несколько Корнеходов складываются": "points. Several Rootwalkers stack",
   "Восстановление корней": "Root recovery",
-  "здоровья/с": "health/s"
+  "здоровья/с": "health/s",
+  "Усиливает бонус способности корпуса на": "Amplifies the chassis trait bonus by",
+  "Ранг добавляет": "Rank adds",
+  "п.п., каждое улучшение": "points, and each upgrade",
+  "п.п. Несколько Ремкомплектов складываются": "points. Several Repair Kits stack",
+  "Усиление корпуса": "Chassis amplification",
+  "Несколько Ремкомплектов складываются": "Several Repair Kits stack"
 }

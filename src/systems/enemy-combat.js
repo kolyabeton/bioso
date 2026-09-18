@@ -111,7 +111,7 @@ export function tickModularAttack(s,e,target,hit,knownVisible=null){
   }
   else if(w.mode==='acid')leaveAcidPool(s,w);
   else if(warningHits(w,target)&&canSee())hit();
-  s.events.push({type:'enemy-strike',key:w.key,x:w.x,y:w.y,z:w.z,radius:w.radius,dx:w.dx,dz:w.dz,mode:w.mode,duration:w.mode==='acid'?ENEMY_ACID_PUDDLE_DURATION:undefined});
+  s.events.push({type:'enemy-strike',key:w.key,bossAction:w.bossAction,x:w.x,y:w.y,z:w.z,radius:w.radius,dx:w.dx,dz:w.dz,mode:w.mode,duration:w.mode==='acid'?ENEMY_ACID_PUDDLE_DURATION:undefined});
   return true;
  }
  if(now<a.readyAt)return false;

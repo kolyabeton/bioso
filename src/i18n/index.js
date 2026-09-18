@@ -1,7 +1,11 @@
 import baseEnglish from './en.json' with {type:'json'};
 import achievementEnglish from './achievements-en.json' with {type:'json'};
 import setEnglish from './sets-en.json' with {type:'json'};
-const english={...baseEnglish,...achievementEnglish,...setEnglish};
+import {SURVIVAL_ACHIEVEMENT_TRANSLATIONS} from '../systems/survival-achievements.js';
+const english={...baseEnglish,...achievementEnglish,...setEnglish,...SURVIVAL_ACHIEVEMENT_TRANSLATIONS,
+ 'За всё время в выживании':'Across survival runs','За забег':'Per run',
+ 'Только в выживании.':'Survival only.',
+ 'Прогресс миссий не учитывается.':'Mission progress does not count.'};
 // AST and DOM text fragments can omit a sentence's final punctuation. Derive
 // that safe boundary form once so dialogue does not need duplicate dictionary
 // entries for the spoken line and the same line inside a larger UI fragment.

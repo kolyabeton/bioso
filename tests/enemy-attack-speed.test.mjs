@@ -13,7 +13,7 @@ test('elite and boss modular attack recovery is three and two times faster',()=>
   const s=createRun(undefined,'survival',481);s.world={walkable:()=>true};s.arms=[];
   const e=spawnEnemy(s,kind,{x:0,z:6},'ranged',960);e.territory=null;e.assembly.arms=[{key:'seed'}];e.enemyAttack={index:0,readyAt:0,warning:null};
   tickModularAttack(s,e,s.player,()=>{});
-  near(e.enemyAttack.readyAt-s.time,ENEMY_WEAPONS.seed.recovery*SURVIVAL_PRESSURE.recovery/ENEMY_ATTACK_SPEED[kind]);
+  near(e.enemyAttack.readyAt-s.time,ENEMY_WEAPONS.seed.recovery*SURVIVAL_PRESSURE.recovery*(e.attackRecoveryScale??1)/ENEMY_ATTACK_SPEED[kind]);
  }
  const s=createRun(undefined,'survival',481);s.world={walkable:()=>true};s.arms=[];const e=spawnEnemy(s,'boss',{x:0,z:6},'ranged',960);e.territory=null;e.enemyAttack.readyAt=0;tickModularAttack(s,e,s.player,()=>{});const w=e.enemyAttack.warning;s.time=w.at;tickModularAttack(s,e,s.player,()=>{});near(e.enemyAttack.readyAt-s.time,w.recovery*SURVIVAL_PRESSURE.recovery/ENEMY_ATTACK_SPEED.boss);
 });

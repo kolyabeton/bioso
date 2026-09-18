@@ -2,9 +2,20 @@ import {bodySize} from './body-size.js';
 import {eventObstacles,eventMovementClear} from './gameplay-modules/event-collision.js';
 export const elevation=p=>p.y??0;
 export const spatialDistance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z,elevation(a)-elevation(b));
+export const planarDistance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
+/** Ground pickups keep their authored horizontal radius on relief. */
+export const groundDistance=(s,a,b)=>s.world.heightAt?planarDistance(a,b):spatialDistance(a,b);
 export const bodyRadius=s=>bodySize(s.body).radius;
 export function visibleBetween(s,a,b,offset=1){return !s.world.lineClear||s.world.lineClear({...a,y:elevation(a)+offset},{...b,y:elevation(b)+offset});}
-export function surfaceReach(s,a,b){return !s.world.heightAt||Math.abs(elevation(a)-elevation(b))<1&&visibleBetween(s,a,b,.2);}
+export function surfaceReach(s,a,b){
+ const w=s.world;if(!w.heightAt)return true;
+ const ah=w.heightAt(a.x,a.z),bh=w.heightAt(b.x,b.z);if(!Number.isFinite(ah)||!Number.isFinite(bh))return false;
+ // Reject airborne/other-floor objects, but allow the same grade that movement
+ // accepts instead of treating a traversable hill as a separate floor.
+ if((a.y!=null&&Math.abs(elevation(a)-ah)>=1)||(b.y!=null&&Math.abs(elevation(b)-bh)>=1))return false;
+ if(Math.abs(ah-bh)>planarDistance(a,b)*.6+.05)return false;
+ return visibleBetween(s,{...a,y:ah},{...b,y:bh},.2);
+}
 // Ground-only movement: boundaries and unloaded tiles block movement, never cause damage.
 export function movePlayer(s,dt,dx,dz){
  const w=s.world,p=s.player,r=bodyRadius(s),events=eventObstacles(s);

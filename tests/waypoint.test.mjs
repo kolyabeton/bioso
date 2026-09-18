@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from 'three';
 import {createWorldRun} from '../src/world-run.js';
-import {setWaypoint,waypointTarget,compassTarget,screenBearing} from '../src/systems/waypoint.js';
+import {ACTIVE_EVENT_GUIDE_DISTANCE,setWaypoint,waypointTarget,compassTarget,screenBearing} from '../src/systems/waypoint.js';
 import {atlasGeometry} from '../src/ui/map-terrain.js';
 import {atlasSelection} from '../src/ui/map-atlas.js';
 
@@ -60,4 +60,24 @@ test('one compass prioritizes the map selection and otherwise tracks only the fi
  s.encounters.active={dungeon:true,cleared:true};assert.equal(compassTarget(s),null);
  s.encounters.active=null;s.dead=true;assert.equal(compassTarget(s),null);
  s.dead=false;s.mode='garden';assert.equal(compassTarget(s),null);
+});
+
+test('a distant active survival event replaces the boss as the automatic guide target',()=>{
+ const event={id:'infection-1',type:'infection',state:'active',x:0,y:0,z:ACTIVE_EVENT_GUIDE_DISTANCE+1,radius:11};
+ const boss={id:1,kind:'boss',hp:10,x:40,z:0};
+ const s={mode:'survival',introBossId:1,player:{x:0,z:0},enemies:[boss],encounters:{nodes:[event],active:event},world:{}};
+ let target=compassTarget(s);assert.equal(target.id,event.id);assert.equal(target.source,'event');assert.equal(target.distance,ACTIVE_EVENT_GUIDE_DISTANCE+1);
+ s.player.z=2;target=compassTarget(s);assert.equal(target.id,boss.id);
+ s.player.z=0;event.state='reward';assert.equal(compassTarget(s).id,boss.id);
+ event.state='active';event.dungeon=true;assert.equal(compassTarget(s),null);
+ event.dungeon=false;setWaypoint(s,{x:4,z:5,label:'Выбранная точка'});assert.equal(compassTarget(s).source,'point');
+});
+
+test('a dungeon compass advances through the nearest idle elite zones and then disappears',()=>{
+ const zones=[{id:'aggro-1',state:'idle',x:24,y:0,z:0},{id:'aggro-2',state:'idle',x:8,y:0,z:0}],dungeon={dungeon:true,cleared:false,aggroZones:zones};
+ const s={mode:'survival',dead:false,player:{x:0,z:0},enemies:[],encounters:{active:dungeon},world:{}};
+ setWaypoint(s,{x:2,z:2,label:'Старая точка'});let target=compassTarget(s);
+ assert.equal(target.id,'aggro-2');assert.equal(target.source,'dungeon-zone');assert.equal(target.label,'Зона элиты');
+ zones[1].state='engaged';target=compassTarget(s);assert.equal(target.id,'aggro-1');
+ zones[0].state='cleared';assert.equal(compassTarget(s),null);
 });

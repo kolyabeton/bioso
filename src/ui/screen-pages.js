@@ -49,7 +49,7 @@ export function paginateScreen(content, state = {}) {
     let index = Math.min(state[key] || 0, pages.length - 1);
     const show = () => {
       nodes.forEach(n => n.hidden = !pages[index].includes(n));
-      state[key] = index; label.textContent = `${index + 1} / ${pages.length}`;
+      state[key] = index; label.textContent = `${index + 1} из ${pages.length}`;
       prev.disabled = index === 0; next.disabled = index === pages.length - 1;
     };
     prev.onclick = () => { index--; show(); next.focus({preventScroll:true}); };

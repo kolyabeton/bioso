@@ -5,6 +5,7 @@ import {createPart,stats,upgrade,upgradeOptions,upgradeLimit,regenerationDelay,a
 import {ORGAN_UPGRADE_STATS,RESONANCE_RANK_STEP,RESONANCE_UPGRADE_STEP} from '../src/systems/organ-upgrades.js';
 import {modifiers,RESONANCE_EXEMPT,learn} from '../src/systems/abilities.js';
 import {setBonuses} from '../src/systems/sets/bonuses.js';
+import {chassisTraitBoost} from '../src/systems/body-traits.js';
 import {mutationView} from '../src/systems/sets/mutations.js';
 import {affixBonus} from '../src/systems/sets/affixes.js';
 import {receiveHit,tickHealth,armorRemaining} from '../src/systems/health.js';
@@ -29,7 +30,11 @@ for(const [key,stat] of Object.entries(ORGAN_UPGRADE_STATS))for(const tier of [1
 });
 test('base and maximum effects, fixed plate increments after body boost',()=>{
  const s=fixture('reflexNerve'),p=s.organs[0];s.body=createPart(s,'reactor');near(stats(s).dodge,.1);p.upgrades.sensorDodge=20;near(stats(s).dodge,.2);
- for(const key of ['regen','repairGland']){const q=createPart(s,key);s.organs=[q,null];const measure=()=>key==='regen'?stats(s).regenDelay:stats(s).armorRepairDelay;const start=measure();q.upgrades[ORGAN_UPGRADE_STATS[key]]=20;near(start/measure(),1.6);}
+ {const q=createPart(s,'regen');s.organs=[q,null];const start=stats(s).regenDelay;q.upgrades[ORGAN_UPGRADE_STATS.regen]=20;near(start/stats(s).regenDelay,1.6);}
+ // The Repair Kit scales the chassis trait: 30% at rank I, +2 points per upgrade.
+ {const q=createPart(s,'repairGland');s.organs=[q,null];near(chassisTraitBoost(s),.3);
+  q.upgrades[ORGAN_UPGRADE_STATS.repairGland]=20;near(chassisTraitBoost(s),.7);
+  q.tier=5;near(chassisTraitBoost(s),1.1);}
  const plate=createPart(s,'armor');const base=armorPlateCapacity(plate,1.3);plate.upgrades.plateCapacity=2;near(armorPlateCapacity(plate,1.3),base+1);
 });
 test('70% dodge and capped stats reject ineffective purchases without spending',()=>{

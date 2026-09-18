@@ -6,7 +6,7 @@ import {survivalObjective} from '../src/systems/survival-objective.js';
 import {setWaypoint,waypointTarget} from '../src/systems/waypoint.js';
 import {translateText} from '../src/i18n/index.js';
 import {filteredMapMarkers} from '../src/ui/map.js';
-import {SURVIVAL_BOSS_INTERVAL,tickSurvivalBosses} from '../src/systems/survival-bosses.js';
+import {SURVIVAL_FIRST_BOSS_AT,tickSurvivalBosses} from '../src/systems/survival-bosses.js';
 import {spawnEnemy} from '../src/game.js';
 
 test('each survival starts with its introductory boss selected and localized objective',()=>{
@@ -27,7 +27,7 @@ test('each survival starts with its introductory boss selected and localized obj
 test('Hunter belongs to the timed special wave and never replaces the introductory boss',()=>{
  const s=createWorldRun(undefined,'survival',42),introId=s.introBossId;
  assert.equal(s.enemies.some(e=>e.bossDesignId==='boss-mercury-hunter'),false);
- s.time=SURVIVAL_BOSS_INTERVAL;
+ s.time=SURVIVAL_FIRST_BOSS_AT;
  const hunter=tickSurvivalBosses(s,(...args)=>spawnEnemy(s,...args));
  assert.equal(hunter.bossDesignId,'boss-mercury-hunter');assert.equal(hunter.survivalInvader,true);
  assert.equal(s.introBossId,introId);assert.equal(waypointTarget(s).id,introId);

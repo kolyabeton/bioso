@@ -2,13 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from 'three';
 import {createGroundItemsView} from '../src/ground-items-view.js';
+import {partModelId} from '../src/asset-models.js';
 test('unregistered loot cannot interrupt frames or hide other pickups',async()=>{
  const scene=new T.Scene(),requests=[];
  const view=createGroundItemsView(scene,async id=>{requests.push(id);return new T.Mesh(new T.BoxGeometry(),new T.MeshBasicMaterial());});
- const items=[{x:0,z:0,part:{key:'repairGland'}},{x:2,z:0,part:{key:'armor'}}];
+ const items=[{x:0,z:0,part:{key:'unknown-organ'}},{x:2,z:0,part:{key:'armor'}}];
  for(let i=0;i<100;i++)view.update(items,1,i/60);
  await Promise.resolve();view.update(items);
- assert.deepEqual(requests,['organ-armor']);assert.deepEqual(view.info().missingGroundItemModels,['repairGland']);
+ assert.deepEqual(requests,[partModelId({key:'armor'})]);assert.deepEqual(view.info().missingGroundItemModels,['unknown-organ']);
  assert.equal(view.info().visibleGroundItems,2);assert.equal(scene.getObjectByName('ground-item-halos').count,2);
  assert.equal(scene.getObjectByName('ground-item-pointers').count,2);assert.ok(view.info().groundItemDrawBatches>3);
  view.reset();assert.deepEqual(view.info().missingGroundItemModels,[]);assert.equal(scene.getObjectByName('ground-item-halos').count,0);

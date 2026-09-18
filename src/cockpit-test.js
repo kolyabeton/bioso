@@ -28,7 +28,7 @@ let mode='cockpit',yaw=Math.PI,pitch=-.12,targetYaw=yaw,targetPitch=pitch,last=p
 let movePointer=null,lookPointer=null;const movement={x:0,z:0},keys=new Set(),reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
 function stop(){keys.clear();movement.x=movement.z=0;const pointers=[movePointer,lookPointer];movePointer=lookPointer=null;$('stick').hidden=true;for(const p of pointers)if(p&&canvas.hasPointerCapture(p.id))canvas.releasePointerCapture(p.id);}
-function setMode(value){stop();mode=value;scene.fog=value==='cockpit'?cockpitFog:null;stage.dataset.mode=value;for(const id of ['cockpit','overhead'])$(id).setAttribute('aria-pressed',String(id===value));$('controls').textContent=value==='cockpit'?'WASD — ходьба · мышь с зажатием / Q E — обзор':'WASD или перетаскивание мышью — ходьба';canvas.focus({preventScroll:true});}
+function setMode(value){stop();mode=value;scene.fog=value==='cockpit'?cockpitFog:null;stage.dataset.mode=value;for(const id of ['cockpit','overhead'])$(id).setAttribute('aria-pressed',String(id===value));$('controls').textContent=value==='cockpit'?'WASD — ходьба · мышь с зажатием, Q E — обзор':'WASD или перетаскивание мышью — ходьба';canvas.focus({preventScroll:true});}
 for(const id of ['cockpit','overhead'])$(id).onclick=()=>setMode(id);
 $('reset').onclick=()=>{stop();Object.assign(run.player,spawn);yaw=targetYaw=Math.PI;pitch=targetPitch=-.12;walking=0;canvas.focus({preventScroll:true});};
 canvas.addEventListener('pointerdown',event=>{

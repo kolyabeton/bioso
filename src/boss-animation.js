@@ -32,7 +32,8 @@ export function createBossAnimationRig(model,parts){
  for(const p of parts.filter(p=>p.role.startsWith('leg-'))){
   const index=Number(p.role.slice(4)),k=byRole.get('knee-'+index),f=byRole.get('foot-'+index);if(!k||!f)continue;
   const hip=point(p.object),knee=point(k.object),ankle=point(f.object);
-  legs.push({index,upper:p.object,lower:k.object,foot:f.object,hip,knee,ankle,upperRest:k.object.position.clone(),lowerRest:f.object.position.clone(),side:Math.sign(hip.x)||1,phase:(Math.sign(hip.x)>0?.5:0)+(Math.abs(hip.z)>.2?index%2*.5:0)});
+  const footBox=new T.Box3().setFromObject(f.object),footSize=footBox.getSize(new T.Vector3());
+  legs.push({index,upper:p.object,lower:k.object,foot:f.object,hip,knee,ankle,soleRadius:Math.max(footSize.x,footSize.z)*.5,upperRest:k.object.position.clone(),lowerRest:f.object.position.clone(),side:Math.sign(hip.x)||1,phase:(Math.sign(hip.x)>0?.5:0)+(Math.abs(hip.z)>.2?index%2*.5:0)});
  }
  for(const side of [-1,1])legs.filter(l=>l.side===side).sort((a,b)=>b.hip.z-a.hip.z).forEach((leg,i)=>{leg.phase=(side>0?.5:0)+i*.5;});
  return{legs,byRole,parts};
@@ -73,6 +74,14 @@ export function animateBoss(model,rig,e,time,frame,reducedMotion=false){
   if(tree){const wave=.6+.4*Math.sin(leg.index*1.6);target.y+=(p*.22+r*.1)*wave*m;target.z+=r*.16*wave*m;}
   if(flying){const fold=clamp(frame.hover/1.1);target.lerp(leg.hip.clone().lerp(leg.ankle,.6),fold*.75*m);target.z+=Math.sin(clock*2+leg.index)*.08*fold*m;}
   if(hive&&state.action==='ground-claws'&&leg.ankle.z>0){target.y+=p*.26*m;target.z+=(r*.3-p*.08)*m;}
+  if(frame.groundHeightAt&&!flying){
+   const point=model.localToWorld(target.clone()),radius=leg.soleRadius*model.scale.x;
+   let ground=-Infinity;
+   for(const [dx,dz]of [[0,0],[radius,0],[-radius,0],[0,radius],[0,-radius]]){
+    const h=frame.groundHeightAt(point.x+dx,point.z+dz);if(Number.isFinite(h))ground=Math.max(ground,h);
+   }
+   if(Number.isFinite(ground))target.y+=(ground-(e.y??0))/model.scale.y;
+  }
   articulate(model,leg,target);
  }
  for(const part of rig.parts){

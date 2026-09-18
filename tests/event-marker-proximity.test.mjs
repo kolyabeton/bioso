@@ -16,3 +16,8 @@ test('active challenge progress keeps its wider visibility range',()=>{
  s.player.x=21;assert.deepEqual(visibleEventMarkers(s),[node]);
  s.player.x=22;assert.deepEqual(visibleEventMarkers(s),[]);
 });
+
+test('active dungeon uses the navigation arrow instead of a world progress label',()=>{
+ const node=marker({type:'dungeon_roots',state:'active',skipped:false,dungeon:true}),s=state(node);s.encounters.active=node;
+ assert.deepEqual(visibleEventMarkers(s),[]);
+});

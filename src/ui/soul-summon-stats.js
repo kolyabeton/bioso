@@ -6,8 +6,8 @@ export function soulSummonStats(s,buff){
   const broodSize=wombs*2+(s.arms&&s.legs&&s.organs&&activeMutation(s,'hive')?3:0);
   if(!swarm.count&&!count&&!s.isaac?.larvae?.length&&!broodSize)return [];
   return [
-    ...(swarm.count||count?[['Помощники',`${count} / ${swarm.count}`]]:[]),
-    ...(broodSize?[['Призыв личинок',`${broodSize} / ${(2/swarm.rate).toFixed(2)} с`]]:[]),
+    ...(swarm.count||count?[['Помощники',`${count} из ${swarm.count}`]]:[]),
+    ...(broodSize?[['Призыв личинок',`${broodSize} каждые ${(2/swarm.rate).toFixed(2)} с`]]:[]),
     ['Урон роя',`×${swarm.damage.toFixed(2)}`],
     ['Темп роя',`×${swarm.rate.toFixed(2)}`],
     ['Призыв нового',`${swarm.replacementInterval.toFixed(2)} с`],

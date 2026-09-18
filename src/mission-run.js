@@ -6,6 +6,7 @@ import {missionRosters} from './mission-rosters.js';
 import {assignEnemyAssembly} from './systems/enemy-assembly.js';
 import {combatTime} from './systems/mutations.js';
 import {EVENTS} from './systems/events/definitions.js';
+import {encounterRewardTier} from './systems/events/rewards.js';
 import {MISSION_HALF_WIDTH,MISSION_GATE,missionBarrierAt,missionDecorations,missionEnvironment} from './mission-environment.js';
 import {spawnMissionEvidence} from './story-evidence.js';
 export {MISSION_HALF_WIDTH} from './mission-environment.js';
@@ -118,7 +119,7 @@ export function tickMissionFloors(s,{spawn,loot}={}){
  if(m.event){
   const node=s.encounters?.nodes.find(n=>n.id===m.event.nodeId);
   if(node?.state==='reward'){
-   if(node.rewardPart)s.ground.push({id:++s.entityId,x:node.x-5,y:node.y,z:node.z,part:node.rewardPart,missionEventReward:true});
+   if(node.rewardPart){node.rewardPart.tier=encounterRewardTier(s,node);s.ground.push({id:++s.entityId,x:node.x-5,y:node.y,z:node.z,part:node.rewardPart,missionEventReward:true});}
    node.state='complete';node.claimed=true;resolveMissionEvent(s,'victory','Испытание пройдено · деталь лежит у события');
   }else if(node?.state==='complete')resolveMissionEvent(s,'sacrifice','Жертва принята · проход открыт');
   else if(node?.state==='failed')resolveMissionEvent(s,'failed','Испытание провалено · проход открыт без награды');
@@ -136,7 +137,7 @@ export function tickMissionFloors(s,{spawn,loot}={}){
   floor.entered=true;floor.state=group.state='active';
   	  const {eliteRole}=floor.roster,elitePosition=missionEntryPosition(s.world,floor,0);
   if(floor.index===m.floors-1){
-   const enemy=strengthenMissionEnemy(spawn?.('boss',{x:0,z:floor.z-8},'mass',missionRoomThreat(m,floor.index)+m.difficulty*360),floor.index),elite=defender('elite',elitePosition,eliteRole,floor.roster.eliteRecipeId);if(enemy){enemy.bossDesignId=m.bossId;enemy.bossName=m.bossName;setupMissionBoss(s,enemy,m.bossId);}addEnemy(enemy);addEnemy(elite,{guaranteedPartDrop:true,arriving:true});m.bossSpawned=true;
+   const enemy=strengthenMissionEnemy(spawn?.('boss',{x:0,z:floor.z-8},'mass',missionRoomThreat(m,floor.index)+m.difficulty*360),floor.index),elite=defender('elite',elitePosition,eliteRole,floor.roster.eliteRecipeId);if(enemy){enemy.bossDesignId=m.bossId;enemy.bossName=m.bossName;setupMissionBoss(s,enemy,m.bossId);enemy.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:enemy.id,kind:enemy.kind,x:enemy.x,y:enemy.y??0,z:enemy.z});}addEnemy(enemy);addEnemy(elite,{guaranteedPartDrop:true,arriving:true});m.bossSpawned=true;
    floor.bossWave={index:0,nextAt:combatTime(s)+MISSION_BOSS_WAVE_INTERVAL};
    s.events.push({type:'notice',text:`Босс: ${m.bossName}`});
   }else{
@@ -186,8 +187,8 @@ export function tickMissionFloors(s,{spawn,loot}={}){
 export function missionFloorStatus(s){
  const m=s.mission;if(!m)return'Свободный маршрут · враги усиливаются со временем';if(m.complete)return'Задание выполнено';
  if(m.event)return`Событие после комнаты ${m.event.room} · ${m.event.kind==='altar'?'решите, принимать ли жертву':'начните испытание или откажитесь'}`;
- const floor=m.floorsState?.[m.currentFloor];if(!floor)return`Комната 1 / ${m.floors}`;
+ const floor=m.floorsState?.[m.currentFloor];if(!floor)return`Комната 1 из ${m.floors}`;
  const boss=s.enemies.find(e=>e.hp>0&&e.bossCombat);if(boss)return missionBossStatus(s,boss);
- const label=floor.index===m.floors-1?m.bossName:`Комната ${floor.index+1} / ${m.floors}`;
+ const label=floor.index===m.floors-1?m.bossName:`Комната ${floor.index+1} из ${m.floors}`;
  return floor.state==='active'?`${label} · врагов ${floor.members.filter(id=>s.enemies.some(e=>e.id===id&&e.hp>0)).length}`:`${label} · войдите в зал`;
 }

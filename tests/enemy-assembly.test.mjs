@@ -6,28 +6,28 @@ import {ENEMY_RECIPES,BOSS_RECIPES,assembleEnemy,validateEnemyRecipe,eligibleRec
 import {ENEMY_WEAPONS,SURVIVAL_BOSS_ATTACKS,survivalBossAttackDeck,tickModularAttack,warningHits,enemyAttackRange,enemyContactRange,ordinaryContactOnly} from '../src/systems/enemy-combat.js';
 import {createRun,spawnEnemy,attack,step} from '../src/game.js';
 import {stats} from '../src/assembly.js';
-import {enemyBalance,SURVIVAL_PRESSURE,SURVIVAL_FINAL} from '../src/systems/balance.js';
+import {enemyBalance,SURVIVAL_PRESSURE,SURVIVAL_FINAL,survivalPressureProfile} from '../src/systems/balance.js';
 import {createEnemyAssemblyView,enemyVisualParts,enemyVisualArchetype,enemyVisualRadius,ENEMY_BODY_APPEARANCES} from '../src/enemy-assembly-view.js';
 import {fittedModel} from '../src/asset-models.js';
 import {tickHostileShots} from '../src/systems/waves.js';
 const run=()=>{const s=createRun(undefined,'survival',321);s.world={walkable:()=>true};return s;};
 function enemy(s,r=ENEMY_RECIPES[0],kind='normal'){const e=spawnEnemy(s,kind,{x:0,z:1.5},r.role||'mass',Math.max(s.time,r.from||0));e.assembly=assembleEnemy(r,e.tier,kind);e.recipeId=r.id;e.specialty=r.specialty??null;e.speed=0;return e;}
-test('20 unique recipes and five bosses fit shared catalog slots and capacity, including elite upgrades',()=>{
- assert.equal(ENEMY_RECIPES.length,20);assert.equal(new Set(ENEMY_RECIPES.map(r=>r.id)).size,20);
+test('23 unique recipes and five bosses fit shared catalog slots and capacity, including elite upgrades',()=>{
+ assert.equal(ENEMY_RECIPES.length,23);assert.equal(new Set(ENEMY_RECIPES.map(r=>r.id)).size,23);
  for(const r of [...ENEMY_RECIPES,...BOSS_RECIPES]){assert.ok(validateEnemyRecipe(r),r.id);assert.ok(validateEnemyRecipe(r,'elite'),r.id);for(const p of assembleEnemy(r,1,'elite').arms.filter(Boolean))assert.ok(ENEMY_WEAPONS[p.key]);}
  for(const r of ENEMY_RECIPES){const keys=assembleEnemy(r,1,'elite').arms.filter(Boolean).map(p=>p.key);assert.equal(keys.length,2,r.id);assert.equal(new Set(keys).size,2,r.id);}
 });
-test('all 20 recipes keep distinct visible assemblies while bosses stay distinct',()=>{
+test('all 23 recipes keep distinct visible assemblies while bosses stay distinct',()=>{
  const s=run(),ordinary=[],signatures=[];
  for(const r of ENEMY_RECIPES){const e=enemy(s,r),archetype=enemyVisualArchetype(e);ordinary.push(archetype);signatures.push(enemyVisualParts(e).map(p=>`${p.asset}:${p.motion||''}`).join('|'));e.kind='elite';assert.equal(enemyVisualArchetype(e),r.specialty?`special:${r.id}`:`recipe:${r.id}`);}
- assert.equal(new Set(ordinary).size,20);assert.equal(new Set(signatures).size,20);
+ assert.equal(new Set(ordinary).size,23);assert.equal(new Set(signatures).size,23);
  const bosses=BOSS_RECIPES.map(r=>enemyVisualArchetype(enemy(s,r,'boss')));
  assert.equal(new Set(bosses).size,5);assert.ok(bosses.every(id=>id.startsWith('boss:')));
 });
 test('each enemy type owns one fixed body silhouette',()=>{
  assert.deepEqual(Object.keys(ENEMY_BODY_APPEARANCES).sort(),ENEMY_RECIPES.map(r=>r.id).sort());
  const signature=appearance=>JSON.stringify([appearance.core,appearance.head,appearance.size??1.25,appearance.stretch??[1,1,1],appearance.addons??[]]);
- assert.equal(new Set(Object.values(ENEMY_BODY_APPEARANCES).map(signature)).size,20);
+ assert.equal(new Set(Object.values(ENEMY_BODY_APPEARANCES).map(signature)).size,23);
  for(const r of ENEMY_RECIPES){const normal=enemy(run(),r),elite=enemy(run(),r,'elite'),n=2+(ENEMY_BODY_APPEARANCES[r.id].addons?.length??0);elite.tier=5;elite.assembly=assembleEnemy(r,5,'elite');assert.deepEqual(enemyVisualParts(normal).slice(0,n).map(p=>p.asset),enemyVisualParts(elite).slice(0,n).map(p=>p.asset),r.id);}
 });
 test('enemy part recipes preserve equipment while the renderer supplies chassis connections',()=>{
@@ -38,7 +38,7 @@ test('every thirtieth survival spawn is promoted to an elite',()=>{
  assert.equal(kinds.filter(kind=>kind==='elite').length,2);assert.equal(kinds[28],'normal');assert.equal(kinds[29],'elite');assert.equal(kinds[59],'elite');
 });
 test('only time unlocks recipes and tiers, at exact boundaries',()=>{
- for(const [t,n]of [[0,5],[29.99,5],[30,8],[89.99,8],[90,12],[119.99,12],[120,13],[179.99,13],[180,16],[599.99,16],[600,17],[899.99,17],[900,18],[1199.99,18],[1200,19],[1499.99,19],[1500,20]])assert.equal(eligibleRecipes(t).length,n);
+ for(const [t,n]of [[0,5],[29.99,5],[30,8],[89.99,8],[90,12],[119.99,12],[120,13],[179.99,13],[180,16],[239.99,16],[240,17],[419.99,17],[420,18],[599.99,18],[600,20],[899.99,20],[900,21],[1199.99,21],[1200,22],[1499.99,22],[1500,23]])assert.equal(eligibleRecipes(t).length,n);
  assert.deepEqual([0,480,960,1440,1920,2400].map(enemyTier),[1,2,3,4,5,5]);
  const a=run(),b=run();b.level=99;for(let i=0;i<30;i++)assert.equal(spawnEnemy(a,'normal',{x:0,z:5}).recipeId,spawnEnemy(b,'normal',{x:0,z:5}).recipeId);
 });
@@ -56,7 +56,7 @@ test('actual early spawns keep whole HP and survive one noncritical hit',()=>{
 });
 test('phase budgets are applied once and explicit mission spawning stays legacy',()=>{
  for(const t of [0,480,960,1440,1920,2400])for(const kind of ['normal','elite','boss']){
-  const s=run();s.introBossId=-1;const e=spawnEnemy(s,kind,{x:0,z:8},'mass',t),b=enemyBalance(t,kind);b.hp=Math.round(b.hp*SURVIVAL_PRESSURE.hp);b.speed*=SURVIVAL_PRESSURE.speed;for(const k of ['hp','speed','armor','xp','radius'])assert.equal(e[k],b[k],`${t}/${kind}/${k}`);
+  const s=run();s.introBossId=-1;const e=spawnEnemy(s,kind,{x:0,z:8},'mass',t),b=enemyBalance(t,kind);b.hp=Math.round(b.hp*SURVIVAL_PRESSURE.hp);b.speed*=SURVIVAL_PRESSURE.speed;if(['normal','elite'].includes(kind)){const pressure=survivalPressureProfile(t);b.hp=Math.round(b.hp*pressure.health);b.speed*=pressure.speed;}for(const k of ['hp','speed','armor','xp','radius'])assert.equal(e[k],b[k],`${t}/${kind}/${k}`);
  }
  const finalRun=run();finalRun.introBossId=-1;const final=spawnEnemy(finalRun,'final',{x:0,z:8},'mass',0);for(const k of ['hp','speed','armor'])assert.equal(final[k],SURVIVAL_FINAL[k],`final/${k}`);assert.equal(final.recommended,SURVIVAL_FINAL.recommendedLevel,'final/recommended');
  const s=createRun(undefined,'garden',2);const legacy=spawnEnemy(s,'normal',{x:0,z:2});assert.equal(legacy.assembly,undefined);assert.equal(legacy.hp,12);assert.equal(legacy.speed,2.15);
@@ -65,12 +65,12 @@ test('phase budgets are applied once and explicit mission spawning stays legacy'
 test('ordinary direct melee has no separate attack and body contact deals half damage',()=>{
  const s=run(),e=enemy(s);s.arms=[];s.health.armorSpent=stats(s).armor;s.time=1;e.enemyAttack.readyAt=0;let hits=0;
  assert.ok(ordinaryContactOnly(e));assert.equal(tickModularAttack(s,e,s.player,()=>hits++),false);assert.equal(e.enemyAttack.warning,null);assert.equal(e.attackPose,undefined);assert.equal(hits,0);
- e.x=s.player.x;e.z=s.player.z;step(s,.01);assert.equal(s.health.hits,1);assert.equal(s.hp,1.5);assert.equal(e.attackPose,undefined);
+ e.x=s.player.x;e.z=s.player.z;step(s,.01);assert.equal(s.health.hits,1);assert.equal(s.hp,3.5);assert.equal(e.attackPose,undefined);
 });
 test('ordinary melee damage begins only when silhouettes touch',()=>{
  const s=run(),e=enemy(s);s.arms=[];s.health.armorSpent=stats(s).armor;e.speed=0;e.enemyAttack.readyAt=0;const contact=enemyContactRange(s,e);e.z=contact+.01;
  step(s,.01);assert.equal(s.health.hits,0);assert.equal(e.attackPose,undefined);
- e.z=contact;step(s,.01);assert.equal(s.health.hits,1);assert.equal(s.hp,1.5);assert.equal(e.attackPose,undefined);
+ e.z=contact;step(s,.01);assert.equal(s.health.hits,1);assert.equal(s.hp,3.5);assert.equal(e.attackPose,undefined);
 });
 test('ordinary enemies keep their direct attacks while survival bosses teach two moves, then unlock a third',()=>{
  for(const r of ENEMY_RECIPES){const s=run(),e=enemy(s,r),key=e.assembly.arms.find(Boolean).key,mode=ENEMY_WEAPONS[key].mode;if(mode==='sector')e.z=enemyAttackRange(e,s);e.enemyAttack.readyAt=0;let hits=0;tickModularAttack(s,e,s.player,()=>hits++);const w=e.enemyAttack.warning;if(['area','acid'].includes(mode)){assert.ok(w,r.id);s.time=w.at;tickModularAttack(s,e,s.player,()=>hits++);tickModularAttack(s,e,s.player,()=>hits++);assert.equal(hits,mode==='acid'?0:1,r.id);if(mode==='acid')assert.equal(s.enemyAcidPools.length,1,r.id);}else if(mode==='shot'){assert.equal(w,null,r.id);assert.equal(s.hostileShots.length,1,r.id);assert.equal(e.attackPose.key,key);tickModularAttack(s,e,s.player,()=>hits++);assert.equal(s.hostileShots.length,1,r.id);}else if(r.specialty){assert.equal(w,null,r.id);assert.equal(hits,1,r.id);assert.equal(e.attackPose.key,key,r.id);}else{assert.equal(w,null,r.id);assert.equal(hits,0,r.id);assert.equal(e.attackPose,undefined,r.id);}}
@@ -104,7 +104,7 @@ test('loaded detail geometry is shared by instances, not cloned per enemy',async
  const matrices=active.flatMap(p=>Array.from(p.instanceMatrix.array));assert.ok(matrices.every(Number.isFinite));v.dispose();geometry.dispose();material.dispose();
 });
 test('a warned strike and body contact share invulnerability',()=>{
- const s=run(),e=enemy(s);s.arms=[];s.health.armorSpent=stats(s).armor;e.assembly.arms=[{key:'hammer'}];e.enemyAttack.readyAt=0;tickModularAttack(s,e,s.player,()=>{});s.time=e.enemyAttack.warning.at;step(s,.01);assert.equal(s.health.hits,1);assert.equal(s.hp,1.5);
+ const s=run(),e=enemy(s);s.arms=[];s.health.armorSpent=stats(s).armor;e.assembly.arms=[{key:'hammer'}];e.enemyAttack.readyAt=0;tickModularAttack(s,e,s.player,()=>{});s.time=e.enemyAttack.warning.at;step(s,.01);assert.equal(s.health.hits,1);assert.equal(s.hp,3.5);
  for(let i=0;i<40;i++)step(s,.01);assert.equal(s.health.hits,1);
 });
 
@@ -135,11 +135,11 @@ test('loaded wing animation stays faithful with a bounded cache over twenty minu
 
 test('body contact deals half damage and sustained overlap respects the one-second cooldown',()=>{
  const s=run(),e=enemy(s);s.arms=[];s.health.armorSpent=stats(s).armor;e.x=s.player.x;e.z=s.player.z;e.damage=.5;e.enemyAttack.readyAt=100;
- step(s,.01);assert.equal(s.hp,1.5);assert.equal(s.health.hits,1);
+ step(s,.01);assert.equal(s.hp,3.5);assert.equal(s.health.hits,1);
  for(let i=0;i<50;i++)step(s,.01);
- assert.equal(s.hp,1.5);
+ assert.equal(s.hp,3.5);
  for(let i=0;i<51;i++)step(s,.01);
- assert.equal(s.hp,1);assert.equal(s.health.hits,2);
+ assert.equal(s.hp,3);assert.equal(s.health.hits,2);
 });
 
 test('animated puppet and repeated assembly scale reuse a finite set of fitted shapes',async()=>{

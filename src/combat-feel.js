@@ -1,7 +1,9 @@
+import {reloadWorkInStep} from './systems/reload-bonus.js';
+import {combatTime} from './systems/mutations.js';
 import {modifiers} from './systems/abilities.js';
-import {reloadDuration} from './systems/sets-loot.js';
+import {magazineCapacity,reloadDuration} from './systems/sets-loot.js';
 import {carried,def,stats,weaponStats} from './assembly.js';
-import {move} from './terrain.js';
+import {moveCreature} from './gameplay-modules/event-collision.js';
 import {armCanReach} from './body-facing.js';
 import {spatialDistance,visibleBetween} from './elevation.js';
 import {isMelee} from './systems/weapon-specialization.js';
@@ -11,22 +13,25 @@ export const IDLE_RELOAD_DELAY=.8;
 export const ELITE_KNOCKBACK_RESISTANCE=.15;
 
 export function startReload(s,p){
- const w=def(p);
- if(!w.magazine||p.reloadRemaining>0||p.ammo>=w.magazine)return false;
+ const w=def(p),magazine=magazineCapacity(p);
+ if(!magazine||p.reloadRemaining>0||p.ammo>=magazine)return false;
  p.reloadDuration=reloadDuration(s,p,w.reload)*Math.max(.2,1-(modifiers(s).weaponReload||0));p.reloadRemaining=p.reloadDuration;
- s.events.push({type:'reload-start',source:p.id,key:p.key,x:s.player.x,z:s.player.z});
+ s.events.push({type:'reload-start',source:p.id,key:p.key,boosted:s.consumables?.rechargeUntil>combatTime(s),x:s.player.x,y:s.player.y??0,z:s.player.z});
  return true;
 }
 export function tickWeapons(s,dt){
+ // Timers store base reload work. Integrate only the active part of this combat
+ // step so ongoing reloads accelerate immediately and expiry is frame-rate independent.
+ const reloadStep=reloadWorkInStep(s,dt);
  for(const p of carried(s)){
   p.recoil=(p.recoil||0)*Math.exp(-12*dt);
   if(Number.isFinite(p.attackAge)&&p.attackAge<.32)p.attackAge=Math.min(.32,p.attackAge+dt);
   p.bloom=Math.max(0,(p.bloom||0)-dt*.8);
-  if(!def(p).magazine)continue;
-  p.ammo??=def(p).magazine;
+  const magazine=magazineCapacity(p);if(!magazine)continue;
+  p.ammo??=magazine;
   if(p.reloadRemaining>0){
-   p.reloadRemaining=Math.max(0,p.reloadRemaining-dt);
-   if(p.reloadRemaining<1e-8){p.reloadRemaining=0;p.ammo=def(p).magazine;p.fullSalvoReady=!!modifiers(s).fullSalvo;s.events.push({type:'reload-end',source:p.id,key:p.key,x:s.player.x,z:s.player.z});}
+   p.reloadRemaining=Math.max(0,p.reloadRemaining-reloadStep);
+   if(p.reloadRemaining<1e-8){p.reloadRemaining=0;p.ammo=magazine;p.fullSalvoReady=!!modifiers(s).fullSalvo;s.events.push({type:'reload-end',source:p.id,key:p.key,x:s.player.x,z:s.player.z});}
   }
  }
 }
@@ -61,5 +66,5 @@ export function tickImpact(s,e,dt){
  e.hitFlash=Math.max(0,(e.hitFlash||0)-dt);
  e.hitStagger=Math.max(0,(e.hitStagger||0)-dt);
  const damping=Math.exp(-8*dt),integral=(1-damping)/8;
- if(e.kickX||e.kickZ){move(s.world,e,(e.kickX||0)*integral,(e.kickZ||0)*integral,e.radius);e.kickX*=damping;e.kickZ*=damping;}
+ if(e.kickX||e.kickZ){moveCreature(s,e,(e.kickX||0)*integral,(e.kickZ||0)*integral,e.radius);e.kickX*=damping;e.kickZ*=damping;}
 }

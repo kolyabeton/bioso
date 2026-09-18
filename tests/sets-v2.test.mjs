@@ -153,11 +153,11 @@ test('v1 save state is ignored, UI and item previews do not modify live set time
  syncSetState(s);assert.equal(s.setsV2.barrierAt,12);const state=JSON.stringify(s.setsV2);itemInspectorData(s,s.arms[0]);const copy=cloneForComparison(s);copy.setsV2.barrierAt=100;assert.equal(JSON.stringify(s.setsV2),state);
 });
 
-test('Soul cards retain both thresholds, label missing categories and never display 4 / 3',()=>{
+test('Soul cards retain both thresholds, label missing categories and never display slash-separated progress',()=>{
  for(const id of Object.keys(SETS)){
   const s=fixture(id,2),html=activeSetCard(s,id,2);assert(html.includes(SETS[id].two));assert(html.includes(SETS[id].three));assert(html.includes('Нужно ещё 1 тип'));
-  const full=activeSetCard(fixture(id,4),id,4);assert(full.includes('Комплект собран'));assert(!full.includes('4 / 3'));
+  const full=activeSetCard(fixture(id,4),id,4);assert(full.includes('Комплект собран'));assert.doesNotMatch(html+full,/\d\s*\/\s*\d/);
   for(const copy of [SETS[id].two,SETS[id].three,SETS[id].details,setStatus(fixture(id),id)])assert.doesNotMatch(translateText(copy),/[А-Яа-яЁё]/u,copy);
  }
- assert.equal(setProgress(4),'Комплект собран · 4 типа');
+ assert.equal(setProgress(1),'1 из 3');assert.equal(setProgress(4),'Комплект собран · 4 типа');
 });

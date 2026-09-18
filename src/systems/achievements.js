@@ -4,6 +4,10 @@ import {SECRETS} from './secrets/definitions.js';
 import {mutationView} from './sets/mutations.js';
 import {setCounts, equipped} from './sets/loot.js';
 import {ABILITIES} from './abilities.js';
+import {createPart,lootTier} from '../assembly.js';
+import {SURVIVAL_ACHIEVEMENTS} from './survival-achievements.js';
+import {trackSurvivalState} from './survival-achievement-progress.js';
+export {SURVIVAL_ACHIEVEMENTS} from './survival-achievements.js';
 
 export const ACHIEVEMENT_CATEGORIES={all:'Все',survival:'Выживание',missions:'Миссии',exploration:'Мир',assembly:'Сборка',mastery:'Развитие'};
 export const BIOME_NAMES={forest:'Корневой лес',gardens:'Верхние сады',city:'Заросший город',scrapyard:'Тихая свалка'};
@@ -36,6 +40,7 @@ export const ACHIEVEMENTS=[
  {id:'meta:reactor',name:'Повторный прорыв',category:'survival',scope:'lifetime',description:'Завершите два усиленных продолжения в разных забегах.',conditions:[condition('Усиленные победы',2,s=>s.profile.meta?.overruns||0)],reward:{keys:['reactor'],delivery:'inventory'},lore:'Сердце выдержит ещё один цикл.'},
  {id:'meta:spring',name:'Первопроходец',category:'exploration',scope:'run',mode:'survival',description:'За один забег посетите четыре разных биома и завершите два разных типа событий. Секреты не считаются событиями.',conditions:[condition('Биомы',4,s=>visitedBiomes(s).length),condition('Типы событий',2,s=>completedEventTypes(s).length)],reward:{keys:['spring'],delivery:'inventory'},lore:'У каждого биома — свой способ выжить.'},
  ...NEW_ACHIEVEMENTS,
+ ...SURVIVAL_ACHIEVEMENTS,
 ];
 const ids=new Set(ACHIEVEMENTS.map(a=>a.id));
 const safe=n=>Number.isSafeInteger(n)&&n>=0?Math.min(n,1000000):0;
@@ -43,20 +48,28 @@ export function normalizeJournal(j={}){return{best:Object.fromEntries(Object.ent
 export const journal=p=>(p.meta??={}).journal??=normalizeJournal();
 export const achievementById=id=>ACHIEVEMENTS.find(a=>a.id===id||a.aliases?.includes(id));
 export const achievementDone=(p,a)=>p.achievements.includes(a.id)||a.aliases?.some(id=>p.achievements.includes(id))||false;
-export const achievementArt=a=>'/assets/ui/achievements/'+a.id.replace(':','-')+'-v1.jpg';
-export function achievementProgress(s,p,a){const j=journal(p),active=!a.mode||s.mode===a.mode,state=s.profile===p?s:{...s,profile:p};return a.conditions.map(c=>Math.min(c.goal,Math.max(0,Math.floor(active?c.read(state,j):0))));}
+export const achievementArt=a=>a.art||'/assets/ui/achievements/'+a.id.replace(':','-')+'-v1.jpg';
+export function achievementProgress(s,p,a){const j=journal(p),active=!a.mode||s.mode===a.mode||a.isSurvivalExpansion&&a.scope==='lifetime',state=s.profile===p?s:{...s,profile:p};return a.conditions.map(c=>Math.min(c.goal,Math.max(0,Math.floor(active?c.read(state,j):0))));}
 export function trackAchievements(s){
  if(!s?.profile||!s.body)return false;
- const p=s.profile,j=journal(p);let changed=false;
+ const p=s.profile,j=journal(p);let changed=trackSurvivalState(s);
  s.achievementBaseline??=[...p.achievements];
  for(const n of nodes(s))if(SECRETS[n.type]&&completed(n)&&!j.secrets.includes(n.type)){j.secrets.push(n.type);changed=true;}
  for(const m of mutationView(s))if(m.active&&!j.mutations.includes(m.id)){j.mutations.push(m.id);changed=true;}
  for(const a of ACHIEVEMENTS){
   const values=achievementProgress(s,p,a),previous=j.best[a.id]||[],score=v=>v.reduce((sum,n,i)=>sum+n/a.conditions[i].goal,0);
   if(score(values)>score(previous)){j.best[a.id]=values;changed=true;}
-  if(a.isNew&&!achievementDone(p,a)&&values.every((n,i)=>n>=a.conditions[i].goal)){
-   p.achievements.push(a.id);p.meta.rerolls=(p.meta.rerolls||0)+a.reward.tokens;
-   s.events.push({type:'unlock',text:`Достижение: ${a.name} · +1 жетон`});changed=true;
+  if((a.isNew||a.isSurvivalExpansion&&s.mode==='survival')&&!achievementDone(p,a)&&values.every((n,i)=>n>=a.conditions[i].goal)){
+   p.achievements.push(a.id);
+   if(a.reward.tokens)p.meta.rerolls=(p.meta.rerolls||0)+a.reward.tokens;
+   for(const key of a.reward.keys||[])if(!p.unlocked.includes(key)){
+    // First discoveries use the level's base loot rank, without consuming combat RNG.
+    p.unlocked.push(key);const part=createPart(s,key,lootTier(s.level,()=>.5));
+    part.rarity=CATALOG[key].rare?'relic':'common';delete part.affix;part.affixes=[];
+    s.ground.push({id:++s.entityId,part,x:s.player.x+1,y:s.player.y??0,z:s.player.z});
+   }
+   const reward=a.reward.tokens?'+1 жетон':a.reward.keys.map(key=>CATALOG[key].name).join(', ');
+   s.events.push({type:'unlock',text:`Достижение: ${a.name} · ${reward}`});changed=true;
   }
   if(achievementDone(p,a)&&!s.achievementBaseline.some(id=>id===a.id||a.aliases?.includes(id))&&!j.dates[a.id]){j.dates[a.id]=new Date().toISOString().slice(0,10);changed=true;}
  }

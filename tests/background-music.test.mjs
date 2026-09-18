@@ -59,9 +59,9 @@ test('loading while hidden stays silent and failed loads can retry on the next g
   retry.music.unlock();await settle();assert.equal(retry.voices.length,1);
 });
 
-test('a new profile starts with enabled 30 percent audio and saved settings remain compatible',()=>{
+test('a new profile starts with enabled 50 percent audio and saved settings remain compatible',()=>{
   assert.equal(readSettings({getItem:()=>null}).soundEnabled,true);
-  assert.equal(readSettings({getItem:()=>null}).music,30);
+  assert.equal(readSettings({getItem:()=>null}).music,50);
   assert.equal(readSettings({getItem:key=>key===SETTINGS_KEY?' {"music":0}':null}).music,0);
   assert.equal(readSettings({getItem:()=>'{"music":30,"effects":60}'}).soundEnabled,true);
   assert.equal(readSettings({getItem:()=>'{"soundEnabled":true}'}).soundEnabled,true);
@@ -228,7 +228,7 @@ test('default music is a quiet background and boss boost is relative, smooth and
   const settings=readSettings({getItem:()=>null});
   f.music.setVolume(settings.music);f.music.unlock();await settle();
   const normal=f.gain.gain.value;
-  assert.ok(Math.abs(normal-0.06)<1e-12);
+  assert.ok(Math.abs(normal-0.1)<1e-12);
   const boss={kind:'boss',hp:100,territory:{state:'engaged'}};
   const run={enemies:[boss],dead:false,won:false};
   f.music.updateRun(run);assert.equal(f.gain.gain.value,normal);
@@ -265,5 +265,37 @@ test('story speech ducks either gameplay playlist and restores its previous inte
   f.music.setDucked(false);assert.ok(Math.abs(f.gain.gain.value-boss)<1e-12);
   run.enemies=[];f.music.updateRun(run);const normal=f.gain.gain.value;
   f.music.setDucked(true);assert.ok(Math.abs(f.gain.gain.value-normal*.48)<1e-12);
+  f.music.dispose();
+});
+
+test('boss music loops the 45-second intro until the fight ends',async()=>{
+  const f=fixture(url=>({duration:45,url}),'/game/',createGameMusic);
+  const run={time:100,enemies:[{id:1,kind:'boss',hp:100}]};
+  f.music.setScreen('');f.music.unlock();await settle();
+  f.music.updateRun(run);await settle();
+  assert.equal(f.voices.at(-1).buffer.url,'/game/assets/audio/touch-zavorin-intro.mp3');
+  assert.equal(f.voices.at(-1).offset,0);
+  assert.equal(f.voices.at(-1).loop,true);
+  run.time=160;f.music.updateRun(run);await settle();
+  assert.match(f.voices.at(-1).buffer.url,/touch-zavorin-intro/);
+  run.enemies[0].hp=0;f.music.updateRun(run);await settle();
+  assert.match(f.voices.at(-1).buffer.url,/technology-sub-clair/);
+  f.music.dispose();
+});
+
+test('each boss engagement starts at zero while a pause within the same encounter resumes',async()=>{
+  const f=fixture(url=>({duration:45,url}),'/game/',createGameMusic);
+  const boss={id:1,kind:'boss',hp:100,territory:{state:'engaged'}};
+  const run={time:0,enemies:[boss]};
+  f.music.setScreen('');f.music.updateRun(run);f.music.unlock();await settle();
+  f.advance(12);f.music.setActive(false);f.advance(20);f.music.setActive(true);
+  assert.equal(f.voices.at(-1).offset,12);
+  f.advance(25);boss.territory.state='returning';f.music.updateRun(run);await settle();
+  f.advance(30);boss.territory.state='engaged';run.time=20;f.music.updateRun(run);await settle();
+  assert.match(f.voices.at(-1).buffer.url,/touch-zavorin-intro/);
+  assert.equal(f.voices.at(-1).offset,0);
+  f.advance(40);run.enemies=[{id:2,kind:'final',hp:100}];run.time=30;
+  f.music.updateRun(run);await settle();
+  assert.equal(f.voices.at(-1).offset,0);
   f.music.dispose();
 });

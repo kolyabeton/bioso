@@ -38,7 +38,7 @@ export function prepareDungeonReview(params,{getRun,start,stopInput,ui}){
  function render(){
   const s=getRun(),inside=s.encounters.active===node,proof={...dungeonReviewProof(s,node),paused,scenario:key,inside};panel.dataset.proof=JSON.stringify(proof);
   panel.dataset.playing=String(!paused);panel.dataset.tools=String(!panel.querySelector('#dungeon-review-tools').hidden);
-  const text=`${proof.remaining} / ${proof.total} элит · зоны ${proof.zones.engaged}/${proof.zones.total} · группы ${proof.zones.groups.join(' · ')}`;
+  const text=`${proof.remaining} из ${proof.total} элит · зоны ${proof.zones.engaged} из ${proof.zones.total} · группы ${proof.zones.groups.join(' · ')}`;
   if(report.textContent!==text)report.textContent=text;
   const signature=JSON.stringify([paused,key,proof.state,s.dead,proof.invulnerable,inside]);
   if(signature===controlsSignature)return;controlsSignature=signature;

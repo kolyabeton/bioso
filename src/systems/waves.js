@@ -2,7 +2,8 @@ import {assignWaveEliteDisposition,bossEngaged} from './territories.js';
 import {combatTime} from './mutations.js';
 import {visibleBetween} from '../elevation.js';
 import {phaseAt,WAVE_RULES,MINUTE_BUDGET} from './balance.js';
-import {SURVIVAL_CADENCE,survivalSpawnLimit,survivalBudgetBetween,waveEliteAllowance} from './survival-cadence.js';
+import {SURVIVAL_CADENCE,survivalSpawnLimit,survivalFirstWaveAt,survivalBudgetBetween,waveEliteAllowance} from './survival-cadence.js';
+import {tickSurvivalHordes} from './survival-hordes.js';
 export function createWaves(){return{credit:0,nextElite:WAVE_RULES.eliteStart,nextBoss:WAVE_RULES.bossEvery,softCap:24,minuteSignature:'mass',budget:MINUTE_BUDGET};}
 export const liveWaveElites=s=>s.enemies.filter(e=>e.hp>0&&e.waveElite);
 export function minuteBudgetFactor(time){
@@ -34,29 +35,36 @@ export function signatureRole(s,p){
 /** Emits spawn requests; the coordinator owns placement and entity creation. */
 export function tickWaves(s,dt,spawn){
  if(s.encounters?.active||s.overrun?.state==='active')return;
+ // Legacy bare simulations retain their boss schedule; authored worlds own fixed habitats.
+ if(s.mode==='survival'&&!s.bossHabitats&&s.time>=s.nextBoss){
+  const enemy=spawn(s.nextBoss===2400?'final':'boss');
+  if(enemy){enemy.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:enemy.id,kind:enemy.kind,x:enemy.x,y:enemy.y??0,z:enemy.z});}
+  s.waves.nextBoss=s.nextBoss+=WAVE_RULES.bossEvery;
+ }
+ if(s.mode==='survival'){
+  tickSurvivalHordes(s,dt,spawn);
+  const pressure=survivalSpawnLimit(s),w=s.waves;
+  w.softCap=pressure.softCap;w.pressure={index:pressure.index,phase:pressure.phase??'waiting',pack:pressure.pack??null,rest:pressure.rest,until:pressure.until};
+  if(!pressure.intro){if(w.credit>=0)w.credit=s.spawnCredit=0;return;}
+ }
  const w=s.waves,p=phaseAt(s.time),pressure=survivalSpawnLimit(s);
- // Ordinary wave stragglers outside the battle area must not occupy the cap
- // forever while the player explores. No kills, loot, or XP for recycling.
- if(pressure)s.enemies=s.enemies.filter(e=>!(e.kind==='normal'&&e.waveSpawn&&!e.challengeId&&!e.summonOwner&&Math.hypot(e.x-s.player.x,e.z-s.player.z)>56));
  const resting=!!pressure?.rest,protectedRest=s.time<(s.reliefUntil||0),phaseKey=pressure?`${pressure.index}:${resting?'rest':'assault'}`:null;
  // Assault credit never spills into a lull (or the next assault). Each phase
  // starts from its own budget, so no blocked spawn debt can form a late clump.
  if(phaseKey!==null&&w.cadencePhase!==phaseKey){if(w.cadencePhase!==undefined)w.credit=0;w.cadencePhase=phaseKey;}
  // Compatibility aliases remain writable for focused simulation fixtures.
  w.nextElite=s.nextElite;w.nextBoss=s.nextBoss;
- if(pressure&&!pressure.intro&&!resting&&!protectedRest&&w.eliteCycle!==pressure.index){w.eliteCycle=pressure.index;if(Number.isFinite(w.nextElite))w.nextElite=Math.min(w.nextElite,pressure.at);}
- if(s.mode==='survival'&&!s.bossHabitats&&s.time>=w.nextBoss){spawn(w.nextBoss===2400?'final':'boss');w.nextBoss+=WAVE_RULES.bossEvery;}
  const bossAlive=s.enemies.some(bossEngaged),superBossAlive=s.enemies.some(e=>e.hp>0&&e.survivalSuperBoss);
  if(!resting&&!protectedRest&&s.time>=w.nextElite){if(!bossAlive&&waveEliteAllowance(s)&&(!pressure||s.enemies.filter(e=>e.hp>0).length<pressure.softCap))assignWaveEliteDisposition(s,spawn('elite',null,'mass',s.time,{wave:true}));w.nextElite=s.time+WAVE_RULES.eliteEvery;w.lastEliteAt=s.time;}
  const living=s.enemies.filter(e=>e.hp>0).length,softCap=pressure?.softCap??Math.max(1,Math.floor(p.softCap*(superBossAlive?WAVE_RULES.bossSoftCap:1)));
  w.softCap=softCap;w.minuteSignature=p.minuteSignature;w.budget=MINUTE_BUDGET;
  w.pressure=pressure?{index:pressure.index,rest:resting||protectedRest,until:pressure.until}:null;
  if(protectedRest||living>=softCap)w.credit=0;
- else if(pressure)w.credit+=survivalBudgetBetween(Math.max(s.time-dt,pressure.at,s.reliefUntil||0),s.time,pressure.startAt)*pressure.flow;
+ else if(pressure)w.credit+=survivalBudgetBetween(Math.max(s.time-dt,pressure.at,s.reliefUntil||0),s.time,survivalFirstWaveAt(s));
  else w.credit+=waveBudgetBetween(s.time-dt,s.time,superBossAlive?WAVE_RULES.bossFlow:1);
  while(w.credit>=1){
   w.credit--;const count=s.enemies.filter(e=>e.hp>0).length;if(count>=(pressure?SURVIVAL_CADENCE.cap:WAVE_RULES.cap)||count>=softCap){w.credit=0;break;}
-  const role=pressure?.intro||resting?'mass':pressure&&s.rng()<.7?'mass':signatureRole(s,p),allowPromotion=waveEliteAllowance(s);
+  const role=pressure?.intro||resting?'mass':pressure&&s.rng()<SURVIVAL_CADENCE.massShare?'mass':signatureRole(s,p),allowPromotion=waveEliteAllowance(s);
   assignWaveEliteDisposition(s,spawn('normal',null,role,s.time,{promote:allowPromotion,wave:true}));
  }
  s.nextElite=w.nextElite;s.nextBoss=w.nextBoss;s.spawnCredit=w.credit;

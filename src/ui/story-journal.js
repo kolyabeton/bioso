@@ -24,12 +24,12 @@ const recordRow=record=>`<article class="ui-frame ui-journal-record">${listenBut
 
 const chapterCard=(chapter,records)=>{
  const items=records.filter(record=>record.chapter===chapter.id),total=STORY_EVIDENCE.filter(item=>item.mission===chapter.id).length+SURVIVAL_EVIDENCE.filter(item=>item.mission===chapter.id).length+STORY_CUES.filter(item=>(item.mission==='survival'?'mother':item.mission==='global'?'garden':item.mission)===chapter.id).length;
- return frame(`<header><span class="ui-journal-chapter-index">${e(chapter.index)}</span><div><small>${e(chapter.subtitle)}</small><h3>${e(chapter.title)}</h3></div>${badge(`${items.length} / ${total}`,items.length?'mint':'neutral')}</header>${items.length?`<div class="ui-journal-records">${items.map(recordRow).join('')}</div>`:`<div class="ui-chronology-empty">${icon('lock')}<span>Хронология ещё не восстановлена</span></div>`}`,{tag:'section',className:`ui-chronology-chapter ${items.length?'is-open':'is-locked'}`});
+ return frame(`<header><span class="ui-journal-chapter-index">${e(chapter.index)}</span><div><small>${e(chapter.subtitle)}</small><h3>${e(chapter.title)}</h3></div>${badge(`${items.length} из ${total}`,items.length?'mint':'neutral')}</header>${items.length?`<div class="ui-journal-records">${items.map(recordRow).join('')}</div>`:`<div class="ui-chronology-empty">${icon('lock')}<span>Хронология ещё не восстановлена</span></div>`}`,{tag:'section',className:`ui-chronology-chapter ${items.length?'is-open':'is-locked'}`});
 };
 
 export function journalScreen(profile){
  const records=journalRecords(profile),foundEvidence=new Set(profile?.meta?.storyEvidence||[]),survivalFound=SURVIVAL_EVIDENCE.filter(item=>foundEvidence.has(item.id)).length;
- const progress=frame(`<div><span>Фрагменты выживания</span>${badge(`${survivalFound} / ${SURVIVAL_EVIDENCE.length}`,survivalFound?'mint':'neutral')}</div>${meter(survivalFound,SURVIVAL_EVIDENCE.length,{label:'Найденные фрагменты выживания'})}<p>В каждом новом забеге появляется первая ещё не найденная запись.</p>`,{className:'ui-journal-progress'});
+ const progress=frame(`<div><span>Фрагменты выживания</span>${badge(`${survivalFound} из ${SURVIVAL_EVIDENCE.length}`,survivalFound?'mint':'neutral')}</div>${meter(survivalFound,SURVIVAL_EVIDENCE.length,{label:'Найденные фрагменты выживания'})}<p>В каждом новом забеге появляется первая ещё не найденная запись.</p>`,{className:'ui-journal-progress'});
  return `<section class="ui-screen-body ui-journal"><div class="ui-chronology">${STORY_CHAPTERS.map(chapter=>chapterCard(chapter,records)).join('')}</div>${progress}</section>`;
 }
 

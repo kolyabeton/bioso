@@ -19,7 +19,7 @@ export function prepareMetaReview(s,stage='profile'){
  if(stage==='home')return 'home';
  if(stage==='level'){s.level=8;s.pending=1;rollChoices(s);return 'level';}
  if(stage==='assembly'||stage==='combat'){
-  s.body=createPart(s,'reactor');s.arms=[createPart(s,'harpoon'),createPart(s,'claws')];s.legs=[createPart(s,'spring'),createPart(s,'spring')];s.organs=[createPart(s,'mirrorGland'),createPart(s,'shield')];s.hp=stats(s).hp;s.inventory=[];
+  s.body=createPart(s,'reactor');s.arms=[createPart(s,'harpoon'),createPart(s,'claws'),null];s.legs=[createPart(s,'spring'),createPart(s,'spring')];s.organs=[createPart(s,'mirrorGland'),createPart(s,'shield')];s.hp=stats(s).hp;s.inventory=[];
   return stage==='combat'?null:'assembly';
  }
  return ['loadout','loadout-first-boss','loadout-unlocked'].includes(stage)?'loadout':'profile';

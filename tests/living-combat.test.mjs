@@ -5,6 +5,7 @@ import {learn} from '../src/systems/abilities.js';
 import {createPart} from '../src/assembly.js';
 import {decorateLivingEnemy,tickVolatile,separateEnemies,splinterShots,VOLATILE} from '../src/living-combat.js';
 import {paintedTerrain} from '../src/painterly-stage.js';
+import {assignEnemyAssembly} from '../src/systems/enemy-assembly.js';
 function fixture(){const s=createRun(undefined,'survival',123);s.world=paintedTerrain(123);s.player={x:0,z:0};return s;}
 test('volatile variants are limited to every seventh automatic mass spawn after twelve seconds',()=>{
  const s=fixture();s.time=20;const enemies=Array.from({length:14},()=>spawnEnemy(s,'normal',{x:0,z:8}));
@@ -25,6 +26,28 @@ test('walking out avoids blast; freeze pauses fuse and killing disarms it',()=>{
  tickVolatile(s,e,0,hurt,()=>hits++);e.frozenUntil=5;tickVolatile(s,e,1,hurt,()=>hits++);assert.equal(e.fuseRemaining,VOLATILE.fuse);
  s.time=6;s.player.z=-5;tickVolatile(s,e,2,hurt,()=>hits++);assert.equal(hits,0);
  const other=spawnEnemy(s,'normal',{x:0,z:-3});other.volatile=true;tickVolatile(s,other,0,hurt,()=>hits++);hurt(other,1e9);tickVolatile(s,other,2,hurt,()=>hits++);assert.equal(hits,0);
+});
+
+test('a volatile digger approaching underground arms, explodes once and dies',()=>{
+ const s=fixture();s.player.y=0;s.time=120;s.arms=[];s.health.invulnerableUntil=Infinity;
+ s.waves.credit=-1e6;s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;
+ const e=spawnEnemy(s,'normal',{x:0,z:5},'mass',120,{promote:false});
+ assignEnemyAssembly(s,e,120,{missionRole:'mass',missionRecipeId:'digger'});e.volatile=true;e.hp=e.maxHp=100;e.speed=3;
+ const events=[];
+ for(let i=0;i<360;i++){step(s,1/60);events.push(...s.events);s.events.length=0;}
+ assert.ok(events.some(event=>event.type==='enemy-burrow-start'),'reproduce the real underground approach');
+ const fuse=events.filter(event=>event.type==='fuse-start'),blasts=events.filter(event=>event.type==='volatile-blast');
+ assert.equal(fuse.length,1);assert.equal(blasts.length,1);assert.equal(e.hp,0);
+ assert.equal(events.filter(event=>event.type==='death'&&event.target===e.id).length,1);
+ assert.equal(blasts[0].x,fuse[0].x);assert.equal(blasts[0].z,fuse[0].z);
+});
+
+test('an already detonated buried enemy is retired without another blast or player hit',()=>{
+ const s=fixture(),e=spawnEnemy(s,'normal',{x:0,z:3});e.volatile=true;e.fuseRemaining=0;e.detonated=true;
+ e.locomotionState={kind:'burrow',phase:'travel'};s.events=[];let hits=0;
+ tickVolatile(s,e,1/60,()=>false,()=>hits++);
+ tickVolatile(s,e,1/60,(q,d)=>hurtEnemy(s,q,d,0,'environment'),()=>hits++);
+ assert.equal(hits,0);assert.equal(e.hp,0);assert.equal(s.events.filter(event=>event.type==='volatile-blast').length,0);
 });
 test('crowds separate deterministically without moving the player, armed enemies or objects',()=>{
  const s=fixture(),a=spawnEnemy(s,'normal',{x:0,z:5}),b=spawnEnemy(s,'normal',{x:0,z:5});

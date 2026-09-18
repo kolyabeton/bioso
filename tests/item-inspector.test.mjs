@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {createRun} from '../src/game.js';
 import {upgrade,createPart,stats} from '../src/assembly.js';
 import {itemInspectorData,catalogInspectorData} from '../src/ui/item-inspector-data.js';
-import {describePart,catalogDescription} from '../src/ui/adapters.js';
+import {describePart,catalogDescription,formatUiNumber} from '../src/ui/adapters.js';
 import {partArt} from '../src/ui/molecules.js';
 test('preview matches paid upgrade without mutating the live run',()=>{
  const s=createRun();s.biomass=1000;const p=s.arms[0];
@@ -17,7 +17,7 @@ test('preview matches paid upgrade without mutating the live run',()=>{
 });
 test('inspector disables unaffordable and exhausted upgrades; inventory cannot upgrade',()=>{
  const s=createRun(),p=s.arms[0];s.biomass=0;assert.equal(itemInspectorData(s,p).disabled,true);
- p.upgrades.damage=10;assert.equal(itemInspectorData(s,p).preview,null);assert.equal(itemInspectorData(s,p).disabled,true);
+ p.upgrades.damage=20;assert.equal(itemInspectorData(s,p).preview,null);assert.equal(itemInspectorData(s,p).disabled,true);
  const spare=createPart(s,'claws');s.inventory.push(spare);assert.equal(itemInspectorData(s,spare).preview,null);assert.equal(itemInspectorData(s,spare).actionLabel,undefined);
 });
 test('capacity preview does not heal or change wounds on the live run',()=>{
@@ -44,7 +44,7 @@ test('rare common nerve has no contradictory common label and exposes its real v
  const s=createRun(),p=createPart(s,'commonNerve');p.rarity='rare';s.organs[0]=p;
  const m=itemInspectorData(s,p);assert.ok(!m.subtitle.includes('Обычная'));assert.ok(m.lines.some(l=>l.includes('Эпическая')));
  assert.equal(m.rows.some(r=>r.label==='Совместимость'),false);assert.equal(m.preview.label,'Урон общего залпа');assert.equal(m.preview.before,'150%');assert.equal(m.preview.after,'160%');assert.match(m.actionLabel,/Улучшить/);
- s.arms[0]=createPart(s,'seed');assert.ok(itemInspectorData(s,p).rows.some(r=>r.label==='Совместимость'&&r.value.includes('Сеялка')));
+ s.arms[0]=createPart(s,'seed');const rows=itemInspectorData(s,p).rows;assert.ok(!rows.some(r=>['Категория','Совместимое оружие','Сейчас влияет на'].includes(r.label)));
 });
 
 test('common nerve paid upgrades add ten volley damage points and stop at ten',()=>{
@@ -62,7 +62,7 @@ test('reverse heart paid upgrades add twenty pulse damage points and stop at ten
  for(let i=0;i<10;i++){
   const model=itemInspectorData(s,p);assert.deepEqual(model.options,[{key:'heartDamage',label:'Урон импульса'}]);
   assert.deepEqual(model.preview,{label:'Урон импульса',before:`${200+20*i}%`,after:`${220+20*i}%`});
-  assert.ok(model.rows.some(r=>r.label==='Эффект'&&r.value.includes(`${200+20*i}% от сильнейшей руки`)));
+  assert.ok(model.rows.some(r=>r.label==='Эффект'&&r.value.includes(`${200+20*i}% от сильнейшего установленного оружия`)));
   assert(upgrade(s,p.id,'heartDamage',true));
  }
  assert.equal(upgrade(s,p.id,'heartDamage',true),false);assert.equal(itemInspectorData(s,p).notice,'Все доступные улучшения получены');
@@ -117,15 +117,15 @@ test('each item category leads with its useful property, before weight',()=>{
   assert.equal(m.rows.at(-1).label,'Вес',key);
   if(kind==='arm')assert.equal(m.rows[0].label,'Урон',key);
   if(kind==='body'){assert.equal(m.rows[0].label,'Здоровье корпуса');assert.equal(m.rows.some(r=>r.label==='Броня детали'),CATALOG[key].armor>0);}
-  if(kind==='leg')assert.equal(m.rows[0].label,'Скорость ноги');
+  if(kind==='leg')assert.equal(m.rows[0].label,'Скорость движения');
   if(kind==='organ')assert.ok(m.rows.some(r=>r.label==='Эффект'&&r.value),key);
   assert.ok(m.rows.every(r=>r.value!==undefined&&!String(r.value).includes('NaN')),key);
  }
- const p=createPart(s,'plated');assert.equal(itemInspectorData(s,p).rows.find(r=>r.label==='Броня детали').value,'0.5 пласт.');
+ const p=createPart(s,'plated');assert.equal(itemInspectorData(s,p).rows.find(r=>r.label==='Броня детали').value,'0,5 пласт.');
 });
 
 test('player health and armor item values use only whole or half units',()=>{
- const expectedBodyArmor={bastion:1,chimera:.5,rootwalker:1,hecaton:.5};
+ const expectedBodyArmor={bastion:1,rootwalker:1};
  for(const [key,d] of Object.entries(CATALOG))for(let tier=1;tier<=5;tier++){
   const s=createRun(),p=createPart(s,key,tier),model=itemInspectorData(s,p);
   for(const row of model.rows.filter(r=>['Здоровье корпуса','Здоровье детали','Броня детали'].includes(r.label))){
@@ -140,15 +140,16 @@ test('player health and armor item values use only whole or half units',()=>{
  }
  for(const [key,armor] of Object.entries(expectedBodyArmor)){
   const s=createRun(),p=createPart(s,key);s.body=p;
-  assert.equal(itemInspectorData(s,p).rows.find(r=>r.label==='Броня детали').value,`${armor} пласт.`);
+  assert.equal(itemInspectorData(s,p).rows.find(r=>r.label==='Броня детали').value,`${String(armor).replace('.',',')} пласт.`);
   assert.equal(stats(s).armor,armor+.5);
  }
+ for(const key of ['chimera','hecaton']){const s=createRun(),p=createPart(s,key);s.body=p;assert.equal(itemInspectorData(s,p).rows.some(r=>r.label==='Броня детали'),false);assert.equal(stats(s).armor,.5);}
 });
 
 test('ranked leg speed is reflected in the stat without a duplicate explanation',()=>{
  const s=createRun(),p=createPart(s,'universal',2),model=itemInspectorData(s,p);
- assert.equal(model.rows.find(r=>r.label==='Скорость ноги').value,'7.20 м/с');
- assert.ok(!model.lines.some(line=>line.includes('Ранг усиливает скорость ноги')));
+ assert.equal(model.rows.find(r=>r.label==='Скорость движения').value,'7,2 м/с');
+ assert.ok(!model.lines.some(line=>line.includes('Ранг усиливает скорость движения')));
 });
 
 test('leg inspectors show current stats without rank formulas',()=>{
@@ -172,17 +173,52 @@ test('spring inspector shows only the current rank cooldown',()=>{
  }
 });
 
+test('fangs inspector shows current-rank healing and charges without slash notation',()=>{
+ const s=createRun();
+ for(const [tier,attacks] of [[1,10],[2,9],[3,8],[4,7],[5,6]]){
+  const p=createPart(s,'fangs',tier),model=itemInspectorData(s,p);
+  assert.equal(model.rows.find(r=>r.label==='Эффект')?.value,`Восстанавливает 1 деление после ${attacks} атак.`);
+  assert.equal(model.rows.find(r=>r.label==='Заряды')?.value,'2 из 2');
+  assert.doesNotMatch([...model.rows.map(r=>r.value),...describePart(s,p).lines].join(' '),/\d\s*\/\s*\d/);
+ }
+});
+
+test('all item descriptions and inspector ranks avoid slash-separated values',()=>{
+ const slash=/\d\s*\/\s*\d/,decimalDot=/\d\.\d/;
+ for(const key of Object.keys(CATALOG))for(let tier=1;tier<=5;tier++){
+  const s=createRun(),p=createPart(s,key,tier),item=itemInspectorData(s,p),catalog=catalogInspectorData(s,key,tier);
+  const copy=[...item.rows.map(r=>`${r.label}: ${r.value}`),...item.lines,...catalog.rows.map(r=>`${r.label}: ${r.value}`),...catalog.lines,...describePart(s,p).lines,catalogDescription(CATALOG[key])].join(' ');
+  assert.doesNotMatch(copy,slash,`${key} rank ${tier}`);
+  assert.doesNotMatch(copy,decimalDot,`${key} rank ${tier}`);
+  assert.doesNotMatch(copy,/\.\./,`${key} rank ${tier}`);
+  assert.doesNotMatch(copy,/\+0 HP/,`${key} rank ${tier}`);
+  assert.match(catalogDescription(CATALOG[key]),/[.!?]$/,`${key} catalog`);
+  for(const effect of item.rows.filter(r=>r.label==='Эффект')){
+   assert.match(effect.value,/[.!?]$/,`${key} rank ${tier} effect`);
+   assert.doesNotMatch(effect.value,/^(Лечение|Призыв):/,`${key} rank ${tier} effect`);
+  }
+ }
+});
+
+test('repair kit effect stays concise',()=>{
+ const s=createRun(),effect=describePart(s,createPart(s,'repairGland')).lines[0];
+ assert.equal(effect,'Усиливает бонус способности корпуса на 30%. Несколько Ремкомплектов складываются.');
+ assert.doesNotMatch(effect,/ранг ускоряет|не даёт броню|попадания не сбрасывают/);
+ assert.equal(catalogDescription(CATALOG.repairGland),'Усиливает бонус способности корпуса на 30%. Ранг добавляет 10 п.п., каждое улучшение — 2 п.п. Несколько Ремкомплектов складываются.');
+});
+
 test('base item properties stay in stats while chassis rules join the ordinary description',()=>{
  const s=createRun();
  for(const key of Object.keys(CATALOG)){
   const part=createPart(s,key);part.rarity='common';part.affixes=[];
   const model=itemInspectorData(s,part);
   assert.equal(model.lines.length,CATALOG[key].kind==='body'?2:1,key);
-  assert.match(model.lines[0],/^Обычная · /,key);
+  assert.equal(model.lines[0],'Обычная',key);
+  assert.equal(model.setBonus,null,key);
  }
  const rare=createPart(s,'seed');rare.rarity='rare';rare.affixes=[{stat:'damage',value:.1}];
  const model=itemInspectorData(s,rare);
- assert.deepEqual(model.lines.slice(1),['Урон этой руки +10%']);
+ assert.deepEqual(model.lines.slice(1),['Урон этого оружия +10%']);
  assert.equal(model.rows.some(r=>r.label==='Эффект'),false);
  assert.equal(model.rows.filter(r=>r.label==='Магазин').length,1);
  assert.equal(model.rows.filter(r=>r.label==='Перезарядка').length,1);
@@ -205,7 +241,7 @@ test('every weapon omits prose that repeats common numeric characteristics',()=>
 
 test('starter pistol shows its critical profile and uses dedicated transparent art',()=>{
  const s=createRun(),critical=itemInspectorData(s,createPart(s,'pistol')).rows.find(row=>row.label==='Крит');
- assert.equal(critical.value,'30% · ×2.00');
+ assert.equal(critical.value,'30% · ×2');
  assert.match(partArt('pistol'),/items\/pistol-arm-v2\.png/);
 });
 
@@ -231,9 +267,9 @@ test('parasite inspector shows autonomous larva damage and summon interval',()=>
  for(const [tier,damage] of [[1,6],[2,9],[3,12],[4,15],[5,18]]){
   const p=createPart(s,'parasite',tier);s.body=createPart(s,'wanderer');s.organs=[p];
   let text=itemInspectorData(s,p).rows.find(r=>r.label==='Эффект').value;
-  assert.ok(text.includes(`Урон личинки: ${damage}.`));assert.ok(text.includes('каждые 2.00 с'));
+  assert.ok(text.includes(`Урон одной личинки — ${damage}.`));assert.ok(text.includes('каждые 2 с'));assert.ok(text.includes('видимый враг находится не дальше 12 м'));
   s.body=createPart(s,'bastion');s.organs=[p,createPart(s,'stabilizer'),createPart(s,'regen'),createPart(s,'digestion')];
-  text=itemInspectorData(s,p).rows.find(r=>r.label==='Эффект').value;assert.ok(text.includes(`Урон личинки: ${Number((damage*1.3).toFixed(2))}.`));
+  text=itemInspectorData(s,p).rows.find(r=>r.label==='Эффект').value;assert.ok(text.includes(`Урон одной личинки — ${formatUiNumber(damage*1.3)}.`));
  }
 });
 
@@ -259,12 +295,12 @@ test('parasite paid upgrades add 2.4 damage, preview exactly and stop at ten',()
  const s=createRun(),p=createPart(s,'parasite');s.organs[0]=p;s.biomass=10000;
  for(let i=0;i<10;i++){
   const model=itemInspectorData(s,p);assert.deepEqual(model.options,[{key:'larvaDamage',label:'Урон личинок'}]);
-  assert.deepEqual(model.preview,{label:'Урон личинок',before:String(Number((6+2.4*i).toFixed(2))),after:String(Number((8.4+2.4*i).toFixed(2)))});
+  assert.deepEqual(model.preview,{label:'Урон личинок',before:formatUiNumber(6+2.4*i),after:formatUiNumber(8.4+2.4*i)});
   assert(upgrade(s,p.id,'larvaDamage',true));
  }
  assert.equal(upgrade(s,p.id,'larvaDamage',true),false);
  const boosted=createPart(s,'parasite');s.body=createPart(s,'bastion');s.organs=[boosted,createPart(s,'stabilizer'),createPart(s,'regen'),createPart(s,'digestion')];s.biomass=1000;
- assert.deepEqual(itemInspectorData(s,boosted).preview,{label:'Урон личинок',before:'7.8',after:'10.92'});
+ assert.deepEqual(itemInspectorData(s,boosted).preview,{label:'Урон личинок',before:'7,8',after:'10,92'});
 });
 
 test('return nerve paid upgrades preview exact percentages, charge once and stop at ten',()=>{
@@ -279,5 +315,5 @@ test('return nerve paid upgrades preview exact percentages, charge once and stop
  const before=JSON.stringify(s);assert.equal(upgrade(s,p.id,'returnDamage',true),false);assert.equal(JSON.stringify(s),before);
  assert.equal(itemInspectorData(s,p).notice,'Все доступные улучшения получены');
  const other=createPart(s,'returnNerve');s.organs[0]=other;s.biomass=0;assert.equal(upgrade(s,other.id,'returnDamage',true),false);assert.deepEqual(other.upgrades,{});
- s.body=createPart(s,'bastion');s.isaac={deals:{organs:1}};s.organs=[other,createPart(s,'stabilizer'),createPart(s,'regen'),createPart(s,'digestion')];s.biomass=1000;assert.deepEqual(itemInspectorData(s,other).preview,{label:'Обратный урон',before:'13%',after:'16.9%'});
+ s.body=createPart(s,'bastion');s.isaac={deals:{organs:1}};s.organs=[other,createPart(s,'stabilizer'),createPart(s,'regen'),createPart(s,'digestion')];s.biomass=1000;assert.deepEqual(itemInspectorData(s,other).preview,{label:'Обратный урон',before:'13%',after:'16,9%'});
 });

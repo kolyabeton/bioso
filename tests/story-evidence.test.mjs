@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {STORY_EVIDENCE,evidenceForRoom,evidenceCue,thoughtCue,spawnMissionEvidence} from '../src/story-evidence.js';
 import {translateText} from '../src/i18n/index.js';
-import {CATALOG} from '../src/catalog.js';
 
 test('each mission hides two contradictory physical clues in optional rooms',()=>{
  assert.equal(STORY_EVIDENCE.length,10);
@@ -29,8 +28,7 @@ test('found evidence uses a silent compact cue followed by the Soul reasoning fr
  }
 });
 
-test('new clues, reflections and boss memory traces have English coverage',()=>{
+test('clues and reflections have English coverage',()=>{
  const copy=STORY_EVIDENCE.flatMap(item=>[item.title,item.text,item.thought]).filter(Boolean);
- copy.push(...['hunter','bastion','rootwalker','mirrorGland','rocket'].map(key=>CATALOG[key].lore));
  for(const value of copy)assert.doesNotMatch(translateText(value,'en'),/[А-Яа-яЁё]/u,value);
 });

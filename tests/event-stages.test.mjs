@@ -19,9 +19,9 @@ test('approaching a secret gives no map marker, prompt, discovery or signal; ope
  discoverEncounters(state);assert.equal(n.discovered,false);assert(!nearbyEncounters(state).includes(n));assert(!filteredMapMarkers(state).some(m=>m.id===n.id));assert.equal(modulePresentation(n).signal,'off');
  openSecret(state,n);assert(nearbyEncounters(state).includes(n));assert(!filteredMapMarkers(state).some(m=>m.id===n.id));
 });
-test('higher-tier trials scale enemy health, pursuer count and granted item tier',()=>{
+test('higher-tier trials scale enemy health and pursuer count; rewards follow player level',()=>{
  for(const tier of [1,2,3]){const original=s.encounters.nodes.find(n=>n.type==='infection'&&n.challengeTier===tier),n={...original},state={...s,level:25,time:300,player:{x:n.x,y:n.y,z:n.z},enemies:[],encounters:{nodes:[n],active:null},ground:[],events:[],profile:{unlocked:[]}};let id=0;
  assert(startChallenge(state,n.id,()=>{const e={id:++id,hp:100,maxHp:100,speed:5};state.enemies.push(e);return e;}));assert.equal(state.enemies.length,2+tier);assert.equal(state.enemies[0].hp,800*(1+(tier-1)*1.5));
- n.state='reward';assert(claimEncounter(state,n.id,0));assert.equal(state.ground[0].part.tier,tier);
+ n.state='reward';assert(claimEncounter(state,n.id,0));assert.equal(state.ground[0].part.tier,5);
  }
 });

@@ -5,6 +5,7 @@ import {createPart,equip,weaponStats} from '../src/assembly.js';
 import {cloneForComparison,comparisonRows} from '../src/ui/adapters.js';
 import {readSettings,createSettings,DEFAULT_SETTINGS} from '../src/ui/settings.js';
 import {linkButton} from '../src/ui/atoms.js';
+import {weightReadout} from '../src/ui/molecules.js';
 
 test('master sound switch is opt-in, persists, and preserves channel levels',()=>{
   let saved=null;
@@ -19,14 +20,14 @@ test('master sound switch is opt-in, persists, and preserves channel levels',()=
   settings.update('soundEnabled',false);
   assert.equal(readSettings(storage).soundEnabled,false);
   assert.equal(settings.get().music,45);
-  assert.equal(settings.get().effects,30);
+  assert.equal(settings.get().effects,50);
 });
 
 test('equipment preview compares actual weapon values without equipping in the live run',()=>{
   const run=createRun(),part=createPart(run,'drill');run.inventory.push(part);
   const before=JSON.stringify(run),preview=cloneForComparison(run);assert.equal(equip(preview,part.id,1),true);
   const rows=comparisonRows(run,preview,{group:'arms',slot:1});
-  assert.equal(rows.find(r=>r.label==='Урон руки').after,String(Number(weaponStats(preview,preview.arms[1]).damage.toFixed(1))));
+  assert.equal(rows.find(r=>r.label==='Урон оружия').after,String(Number(weaponStats(preview,preview.arms[1]).damage.toFixed(1))));
   assert.equal(JSON.stringify(run),before);
 });
 
@@ -42,9 +43,14 @@ test('comparison distinguishes lower damage from faster attacks',()=>{
   const run=createRun(),part=createPart(run,'drill');run.inventory.push(part);
   const preview=cloneForComparison(run);equip(preview,part.id,0);
   const rows=comparisonRows(run,preview,{group:'arms',slot:0});
-  assert.equal(rows.find(r=>r.label==='Урон руки').tone,'negative');
+  assert.equal(rows.find(r=>r.label==='Урон оружия').tone,'negative');
   assert.equal(rows.find(r=>r.label==='Скорость атаки').tone,'positive');
   assert.equal(rows.find(r=>r.label==='Вес').tone,'neutral');
+  assert.doesNotMatch(rows.map(r=>`${r.before} ${r.after}`).join(' '),/\d\s*\/\s*\d/);
+});
+
+test('assembly weight readout avoids slash-separated values',()=>{
+  assert.match(weightReadout(72,100,128),/72 из 100/);
 });
 
 test('external link button uses safe new-tab attributes',()=>{

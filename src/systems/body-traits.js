@@ -28,6 +28,20 @@ export const BODY_TRAITS=Object.freeze({
  broodmother:{condition:'Установлено и включено оружие «Опылитель»',effect:'создаёт постоянных неуязвимых дронов; они атакуют самостоятельно и получают усиления роя',required:1},
 });
 
+/** Item 12: the Repair Kit no longer patches plates. It amplifies whatever the
+ * chassis trait already grants: +30% at rank I, +10 points per further rank, and
+ * +2 points per installed upgrade. Several kits stack. Deliberately independent of
+ * organEffect, so the Mason's own organ bonus cannot feed back into itself. */
+export const TRAIT_BOOST_BASE=.3,TRAIT_BOOST_RANK=.1,TRAIT_BOOST_UPGRADE=.02;
+export const traitBoostShare=p=>p?.key!=='repairGland'?0:
+ TRAIT_BOOST_BASE+TRAIT_BOOST_RANK*(Math.max(1,Math.min(5,Math.floor(p.tier??1)))-1)+TRAIT_BOOST_UPGRADE*Math.max(0,Math.min(20,p.upgrades?.traitBoost||0));
+export const chassisTraitBoost=s=>(s?.organs||[]).reduce((sum,p)=>sum+traitBoostShare(p),0);
+const boosted=(bonuses,boost)=>{
+ if(!boost)return bonuses;
+ const out={...bonuses};
+ for(const [key,value] of Object.entries(out))if(typeof value==='number'&&value!==0)out[key]=value*(1+boost);
+ return out;
+};
 const countInstalled=(s,group)=>(s?.[group]||[]).filter(Boolean).length;
 const DEFENSIVE_ORGANS=new Set(['shield']);
 /** Chassis traits that read one specific part key rather than a filled slot count. */
@@ -68,15 +82,15 @@ export function bodyTraitState(s,p=s?.body){
 }
 
 export function bodyBonuses(s){
- const state=bodyTraitState(s);
- if(state.key==='reactor')return{...EMPTY_BONUSES,damage:killRampBonus(s)};
- if(state.key==='wanderer')return{...EMPTY_BONUSES,speed:state.speedActive?.2:0,speedDamage:state.speedActive?SPEED_RUSH_STEP:0,dodge:.2};
+ const state=bodyTraitState(s),boost=chassisTraitBoost(s);
+ if(state.key==='reactor')return boosted({...EMPTY_BONUSES,damage:killRampBonus(s)},boost);
+ if(state.key==='wanderer')return boosted({...EMPTY_BONUSES,speed:state.speedActive?.2:0,speedDamage:state.speedActive?SPEED_RUSH_STEP:0,dodge:.2},boost);
  if(!state.active)return{...EMPTY_BONUSES};
  switch(state.key){
-  case'bastion':return{...EMPTY_BONUSES,organ:.3};
-  case'chimera':return{...EMPTY_BONUSES,damage:.25};
-  case'rootwalker':return{...EMPTY_BONUSES,healthDamage:.05};
-  case'hecaton':return{...EMPTY_BONUSES,familyReload:.35};
+  case'bastion':return boosted({...EMPTY_BONUSES,organ:.3},boost);
+  case'chimera':return boosted({...EMPTY_BONUSES,damage:.25},boost);
+  case'rootwalker':return boosted({...EMPTY_BONUSES,healthDamage:.05},boost);
+  case'hecaton':return boosted({...EMPTY_BONUSES,familyReload:.35},boost);
   default:return{...EMPTY_BONUSES};
  }
 }

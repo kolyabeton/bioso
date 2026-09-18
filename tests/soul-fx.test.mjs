@@ -62,13 +62,13 @@ test('real extra shots and echo report actual direction without extra gameplay R
  const before=rolls,view=createSoulFxView(new T.Scene());view.event(echo);view.update(.1,false,s);assert.equal(rolls,before);view.dispose();
 });
 
-test('volatile uses shared flame and smoke buffers, respects elevation, pause and cleanup',()=>{
+test('volatile keeps only the ground warning while arming, respects elevation, pause and cleanup',()=>{
  const scene=new T.Scene(),view=createSoulFxView(scene),s=createRun(undefined,'survival',8);
  const e=spawnEnemy(s,'normal',{x:2,z:0});e.y=6;e.volatile=true;e.fuseRemaining=.7;
  view.update(.1,false,s);assert.ok(view.info().particles>0);
  const batches=scene.getObjectByName('soul-activation-effects').children.filter(o=>o.isMesh);
  const types=batches.flatMap(b=>Array.from({length:b.geometry.instanceCount},(_,i)=>b.geometry.attributes.data.getX(i)));
- assert.ok(types.includes(0));assert.ok(types.includes(7));
+ assert.ok(types.length>0);assert.ok(types.every(type=>type===7),'arming must not wrap the body in fire, glow or sparks');
  const n=view.info().particles;view.update(0,false,s);assert.equal(view.info().particles,n);
  e.hp=0;view.update(2,false,s);assert.equal(view.info().particles,0);
  view.event({type:'volatile-blast',x:2,y:6,z:0,radius:3.2});view.update(.1);

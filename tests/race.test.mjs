@@ -43,10 +43,11 @@ test('arrival requires live creature, reachability and deadline; reward is claim
  const {s,n}=raceScenario(42),start={...n.race.start};
  n.elapsed=n.race.limit-.05;Object.assign(s.player,n.race.finish);tickRace(s,n,.05);
  assert.equal(n.state,'reward');assert.equal(s.encounters.active,null);
+ assert.deepEqual(s.events.at(-1),{type:'challenge-result',result:'success',challenge:'race'});
  Object.assign(s.player,start);assert.equal(claimEncounter(s,n.id,0),false);
  Object.assign(s.player,n.race.finish);assert.equal(claimEncounter(s,n.id,0),true);assert.equal(claimEncounter(s,n.id,0),false);assert.equal(beginEncounter(s,n.id),false);
- const late=raceScenario(42);late.n.elapsed=late.n.race.limit;Object.assign(late.s.player,late.n.race.finish);tickRace(late.s,late.n,.01);assert.equal(late.n.state,'failed');
- const dead=raceScenario(42);dead.s.dead=true;Object.assign(dead.s.player,dead.n.race.finish);tickRace(dead.s,dead.n,0);assert.equal(dead.n.state,'failed');
+ const late=raceScenario(42);late.n.elapsed=late.n.race.limit;Object.assign(late.s.player,late.n.race.finish);tickRace(late.s,late.n,.01);assert.equal(late.n.state,'failed');assert.equal(late.s.events.at(-1).result,'failed');
+ const dead=raceScenario(42);dead.s.dead=true;Object.assign(dead.s.player,dead.n.race.finish);tickRace(dead.s,dead.n,0);assert.equal(dead.n.state,'failed');assert.equal(dead.s.events.at(-1).result,'failed');
 });
 
 test('incomplete routes are unavailable, and race auto-equips nearby gear into free slots',()=>{

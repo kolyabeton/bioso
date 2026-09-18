@@ -4,17 +4,21 @@ import {seededRandom} from '../simulation.js';
 const recipe=(id,name,role,body,weapon,leg,organ=null,extra={})=>Object.freeze({id,name,role,body,weapons:[weapon],leg,organs:organ?[organ]:[],from:({mass:0,ranged:30,fast:90,armored:180})[role]??480,...extra});
 export const ENEMY_RECIPES=Object.freeze([
  recipe('worker','Рабочий','mass','wanderer','claws','universal'),
- recipe('gatherer','Собиратель','mass','wanderer','fangs','universal'),
- recipe('digger','Землекоп','mass','wanderer','drill','universal'),
+ recipe('gatherer','Собиратель','mass','wanderer','fangs','universal',null,{locomotion:'spiral'}),
+ recipe('digger','Землекоп','mass','wanderer','drill','universal',null,{locomotion:'burrow'}),
  recipe('gardener','Садовник','mass','rootwalker','whip','universal'),
- recipe('small-hunter','Малый ловчий','mass','hunter','claws','universal'),
+ recipe('small-hunter','Малый ловчий','mass','hunter','claws','universal',null,{locomotion:'hop'}),
+ // Four fliers, four answers: a straight rusher, a strafing shooter, a dive bomber and a dodger.
  {...recipe('robo-bee','Робо-пчела','flying','hunter','fangs','runner'),from:120},
- recipe('runner','Бегун','fast','wanderer','claws','runner'),
- recipe('biter','Кусач','fast','hunter','fangs','runner'),
+ recipe('dragonfly','Стрекоза','flying','hunter','needle','runner',null,{from:240,locomotion:'spiral'}),
+ recipe('hornet','Шершень','flying','chimera','claws','runner',null,{from:420,locomotion:'charge'}),
+ recipe('moth','Мотылёк','flying','hunter','acid','runner',null,{from:600,specialty:'evader'}),
+ recipe('runner','Бегун','fast','wanderer','claws','runner',null,{locomotion:'sprint'}),
+ recipe('biter','Кусач','fast','hunter','fangs','runner',null,{locomotion:'pack'}),
  recipe('quick-digger','Быстрый землекоп','fast','hunter','drill','runner'),
  recipe('chaser','Загонщик','fast','chimera','whip','runner'),
  recipe('carapace','Панцирник','armored','bastion','claws','plated','armor'),
- recipe('crusher','Дробитель','armored','bastion','hammer','plated'),
+ recipe('crusher','Дробитель','armored','bastion','hammer','plated',null,{locomotion:'charge'}),
  recipe('heavy-digger','Тяжёлый землекоп','armored','rootwalker','drill','plated','armor'),
  recipe('sower','Сеятель','ranged','wanderer','seed','universal'),
  recipe('needler','Игольщик','ranged','hunter','needle','universal'),
@@ -70,6 +74,6 @@ export function assignEnemyAssembly(s,e,threat=s.time,{missionRole=null,missionR
   }
   s.enemyAssemblyRng??=seededRandom((s.seed^0x6e624d31)>>>0);r=available[Math.floor(s.enemyAssemblyRng()*available.length)];
  }
- e.flying=r.role==='flying';e.recipeId=r.id;e.specialty=r.specialty??null;e.enemyLevel=e.tier=enemyTier(threat);e.threat=threat;e.assemblyRole=r.role||'boss';e.assembly=assembleEnemy(r,e.tier,e.kind);
+ e.flying=r.role==='flying';e.recipeId=r.id;e.specialty=r.specialty??null;e.locomotion=r.locomotion??null;e.enemyLevel=e.tier=enemyTier(threat);e.threat=threat;e.assemblyRole=r.role||'boss';e.assembly=assembleEnemy(r,e.tier,e.kind);
  e.enemyAttack={index:0,readyAt:e.born+1,warning:null};return e;
 }

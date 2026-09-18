@@ -5,13 +5,14 @@ import {partMeta,SETS} from './systems/sets-loot.js';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
+import {mountOrgan} from './organ-mounts.js';
 
 // Visual variants never alter equipment IDs, combat stats or save data.
 export const BODY_MODELS=Object.fromEntries(Object.keys(CHASSIS_PROFILES).map(key=>[key,[chassisModelId(key)]]));
 export const ARM_MODELS={drone:['arm-drone-icon-v1'],harpoon:['arm-harpoon-icon-v1'],pistol:['arm-pistol-v1'],claws:['arm-claws-icon-v1'],fangs:['arm-fangs-icon-v1'],hammer:['arm-hammer-icon-v1'],drill:['arm-drill-icon-v1'],whip:['arm-whip-icon-v1'],seed:['arm-seed-icon-v1'],shotgun:['arm-shotgun-v2'],needle:['arm-needle-icon-v1'],rocket:['arm-rocket-icon-v1'],arc:['arm-arc-icon-v1'],acid:['arm-acid-icon-v1']};
 // Part type owns its silhouette. Set affiliation must never turn a normal leg into a root.
 export const LEG_MODELS={spring:['leg-spring-icon-v2'],runner:['leg-runner-icon-v2'],universal:['leg-universal-icon-v2'],plated:['leg-plated-icon-v2'],root:['leg-root'],swarmLeg:['leg-swarmLeg-icon-v2']};
-export const ORGAN_MODELS={...Object.fromEntries(['mirrorGland','returnNerve','slime','parasite','commonNerve','reverseHeart','regen','shield','armor','stabilizer','digestion','accelerator'].map(key=>[key,['organ-'+key]])),reflexNerve:['organ-capacitor'],broodNode:['organ-parasite']};
+export const ORGAN_MODELS=Object.fromEntries(['mirrorGland','reflexNerve','returnNerve','slime','parasite','commonNerve','reverseHeart','regen','shield','armor','repairGland','broodNode','stabilizer','digestion','accelerator'].map(key=>[key,['organ-'+key+'-icon-v1']]));
 export const legModelId=p=>LEG_MODELS[p.key]?.[0];
 export const legMountOptions=(side,height)=>({size:.83,anchor:'top',rotation:[0,Math.PI,-side*.55],floorDistance:height-.03});
 const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder),cache=new Map(),errors=new Set();let loaded=0;
@@ -59,8 +60,15 @@ export function dressCreature(root,s,{load=loadModel}={}){
  if(body!=='player-core'&&!body.endsWith('-v3'))attach(root,SETS[partMeta(s.body).setId].head,{size:.48,anchor:'bottom',rotation:[0,Math.PI,0]},[0,1.68,.16],[]);
  root.userData.legs.forEach(g=>{const p=s.legs[g.userData.slot],side=g.position.x>0?1:-1;attach(g,legModelId(p),legMountOptions(side,g.position.y),[0,0,0],g.children.filter(o=>!o.name.startsWith('mounting-')));});
  for(const p of s.arms.filter(Boolean)){const g=root.userData.arms.get(p.id);attach(g,variant(ARM_MODELS[p.key]||['arm-seed'],p),{size:p.key==='pistol'?1.05:1.1,anchor:p.key==='pistol'?'socket':'top',rotation:[-Math.PI/2,0,0],envelope:p.key==='pistol'?[.72,.54,1.05]:[.8,.52,1.1]},[0,0,0],g.children.filter(o=>o!==g.userData.meleeTrail&&!o.name.startsWith('mounting-')));}
- // Organs are internal: their gameplay effects and inventory art stay, no exterior meshes.
- return Promise.all([...pending,equipmentMaterialsReady]);
+ // Wait for the fitted chassis before locating each organ on its actual skin.
+ const organs=Promise.all(pending).then(()=>Promise.all(s.organs.map(async(p,slot)=>{
+  if(!p)return;const id=partModelId(p),template=await load(id);
+  if(!template||root.userData.retired)return;
+  const chassis=root.children.find(o=>o.userData.assetId===body);if(!chassis)return;
+  const model=fittedModel(template,{size:.43});model.name='asset:'+id;model.userData.assetId=id;
+  mountOrgan(root,chassis,model,{slot,count:s.organs.length,partId:p.id,key:p.key,assetId:id});
+ })));
+ return Promise.all([...pending,organs,equipmentMaterialsReady]);
 }
 export function createAssetEnemies(scene){
  const active=new Map(),templates=new Map();const ids=['anatomy-quadruped','anatomy-crawler','anatomy-biped','anatomy-flyer','boss-warden'];
@@ -70,7 +78,7 @@ export function createAssetEnemies(scene){
   for(const e of enemies){const id=e.kind==='boss'?'boss-warden':e.role==='armored'?'anatomy-crawler':e.role==='ranged'?'anatomy-biped':e.role==='fast'?'anatomy-flyer':'anatomy-quadruped',template=templates.get(id);
    if(!template||keep.size>=40){fallback.push(e);continue;}keep.add(e.id);let g=active.get(e.id);
    if(!g){g=fittedModel(template,{size:2,anchor:'bottom',rotation:[0,Math.PI,0]});const holder=new T.Group();holder.add(g);holder.name='enemy-asset:'+id;scene.add(holder);active.set(e.id,holder);g=holder;}
-   g.position.set(e.x,(e.y||0)+Math.abs(Math.sin(time*8+e.id))*.06,e.z);g.rotation.y=Math.atan2(player.x-e.x,player.z-e.z);const silhouette=e.volatile?[1.3,1.55,1.3]:e.role==='fast'?[.65,.65,1.35]:e.role==='armored'?[1.25,.85,1.1]:e.role==='ranged'?[.8,1.35,.8]:[1,1,1];g.scale.set(...silhouette).multiplyScalar(e.radius*scale);
+   g.position.set(e.x,(e.y||0)+(e.pickupSleepUntil>time?0:Math.abs(Math.sin(time*8+e.id))*.06),e.z);g.rotation.y=Math.atan2(player.x-e.x,player.z-e.z);const silhouette=e.volatile?[1.3,1.55,1.3]:e.role==='fast'?[.65,.65,1.35]:e.role==='armored'?[1.25,.85,1.1]:e.role==='ranged'?[.8,1.35,.8]:[1,1,1];g.scale.set(...silhouette).multiplyScalar(e.radius*scale);
   }
   for(const [id,g] of active)if(!keep.has(id)){scene.remove(g);active.delete(id);}return fallback;
  }

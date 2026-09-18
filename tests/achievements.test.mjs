@@ -4,13 +4,13 @@ import {createRun,step} from '../src/game.js';
 import {newProfile,createPart,digest,readProfile} from '../src/assembly.js';
 import {awardMeta} from '../src/systems/meta-progression.js';
 import {learn} from '../src/systems/abilities.js';
-import {ACHIEVEMENTS,NEW_ACHIEVEMENTS,achievementById,achievementDone,achievementProgress,trackAchievements,journal,normalizeJournal,earnedThisRun} from '../src/systems/achievements.js';
+import {ACHIEVEMENTS,NEW_ACHIEVEMENTS,SURVIVAL_ACHIEVEMENTS,achievementArt,achievementById,achievementDone,achievementProgress,trackAchievements,journal,normalizeJournal,earnedThisRun} from '../src/systems/achievements.js';
 import {translateText} from '../src/i18n/index.js';
 import {existsSync} from 'node:fs';
 const run=p=>createRun(p||newProfile(),'survival',42);
 const has=(s,id)=>s.profile.achievements.includes('feat:'+id);
-test('36 distinct cards include two weapon unlocks, 12 token goals and the legacy mirror alias',()=>{
- assert.equal(ACHIEVEMENTS.length,36);assert.equal(NEW_ACHIEVEMENTS.length,12);assert.equal(new Set(ACHIEVEMENTS.map(a=>a.id)).size,36);
+test('86 distinct cards retain the original 36 and add 50 survival goals',()=>{
+ assert.equal(ACHIEVEMENTS.length,86);assert.equal(NEW_ACHIEVEMENTS.length,12);assert.equal(SURVIVAL_ACHIEVEMENTS.length,50);assert.equal(new Set(ACHIEVEMENTS.map(a=>a.id)).size,86);
  assert.equal(achievementById('meta:mirror').id,'mission:nursery');const p=newProfile();p.achievements.push('meta:mirror');assert.ok(achievementDone(p,achievementById('mission:nursery')));
 });
 test('pioneer never combines separate runs or counts duplicate events and secrets',()=>{
@@ -58,6 +58,6 @@ test('malformed saved progress cannot overflow conditions or crash tracking',()=
 test('the game simulation awards a learned final branch without an explicit tracker call',()=>{
  const s=run();learn(s,'fire.3');step(s,.01,{x:0,z:0});assert.ok(has(s,'evolution'));assert.ok(s.events.some(e=>e.type==='unlock'&&e.text.includes('Завершённая эволюция')));
 });
-test('every achievement has its own authored art and translated copy',()=>{
- for(const a of ACHIEVEMENTS){assert.ok(existsSync(`public/assets/ui/achievements/${a.id.replace(':','-')}-v1.jpg`),a.id);for(const text of [a.name,a.description,a.lore,...a.conditions.map(c=>c.label)])assert.doesNotMatch(translateText(text,'en'),/[А-Яа-яЁё]/u,`${a.id}: ${text}`);}
+test('every achievement has authored art or an explicit reuse mapping and translated copy',()=>{
+ for(const a of ACHIEVEMENTS){assert.ok(existsSync('public'+achievementArt(a)),a.id);for(const text of [a.name,a.description,a.lore,...a.conditions.map(c=>c.label)])assert.doesNotMatch(translateText(text,'en'),/[А-Яа-яЁё]/u,`${a.id}: ${text}`);}
 });

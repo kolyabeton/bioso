@@ -46,11 +46,11 @@ export function startRace(s,n){
 }
 
 export function tickRace(s,n,dt,spawn){
- if(s.dead||s.hp<=0){n.state='failed';s.encounters.active=null;return;}
+ if(s.dead||s.hp<=0){n.state='failed';s.encounters.active=null;s.events.push({type:'challenge-result',result:'failed',challenge:n.type});return;}
  n.elapsed+=dt;
  const arrived=distance(s.player,n)<=RACE_RULES.finishRadius&&clearSegment(s.world,s.player,n,.5);
- if(arrived&&n.elapsed<=n.race.limit+1e-8){n.state='reward';s.encounters.active=null;s.events.push({type:'notice',text:'Финиш! Испытание пройдено · выберите награду'});return;}
- if(n.elapsed>=n.race.limit){n.state='failed';s.encounters.active=null;s.events.push({type:'notice',text:'Время вышло · финиш не достигнут'});return;}
+ if(arrived&&n.elapsed<=n.race.limit+1e-8){n.state='reward';s.encounters.active=null;s.events.push({type:'notice',text:'Финиш! Испытание пройдено · выберите награду'},{type:'challenge-result',result:'success',challenge:n.type});return;}
+ if(n.elapsed>=n.race.limit){n.state='failed';s.encounters.active=null;s.events.push({type:'notice',text:'Время вышло · финиш не достигнут'},{type:'challenge-result',result:'failed',challenge:n.type});return;}
  if(!spawn)return;
  for(const pack of n.race.packs){if(pack.spawned||distance(s.player,pack)>19)continue;pack.spawned=true;
   for(let i=0;i<3;i++){

@@ -1,12 +1,12 @@
 export const DEALS={
- fuse:{name:'Сращивание',description:'−1 максимальное здоровье до конца забега. Урон выбранной руки ×2. Рука навсегда закрепляется до конца забега.'},
+ fuse:{name:'Сращивание',description:'−1 максимальное здоровье до конца забега. Урон выбранного оружия ×2. Рука навсегда закрепляется до конца забега.'},
  organs:{name:'Вскрытая полость',description:'−1 максимальное здоровье до конца забега; +1 слот органа.'},
  speed:{name:'Ускоренный метаболизм',description:'−1 максимальное здоровье; +15% к скорости бега до конца забега.'},
  armor:{name:'Броневой имплант',description:'−1 максимальное здоровье; +0,5 пластины брони до конца забега.'},
  capacity:{name:'Усиленный каркас',description:'−1 максимальное здоровье; +20 к максимальной массе до конца забега.'},
 };
 export const EVENTS={
- altar:{name:'Алтарь сращивания',kind:'altar',deal:'fuse',hint:'Уровень 20 · один раз за забег · урон руки ×2',available:1200,recommended:20},
+ altar:{name:'Алтарь сращивания',kind:'altar',deal:'fuse',hint:'Уровень 20 · один раз за забег · урон оружия ×2',available:1200,recommended:20},
  altar_organs:{name:'Алтарь органов',kind:'altar',deal:'organs',hint:'−1 макс. здоровье · +1 слот органа',available:180,recommended:5},
  altar_speed:{name:'Алтарь метаболизма',kind:'altar',deal:'speed',hint:'−1 макс. здоровье · +15% скорость',available:180,recommended:5},
  altar_armor:{name:'Алтарь брони',kind:'altar',deal:'armor',hint:'−1 макс. здоровье · +0,5 брони',available:180,recommended:6},
@@ -15,6 +15,6 @@ export const EVENTS={
  infection:{name:'Заражённый круг',kind:'challenge',hint:'30 с внутри круга. Уклоняйтесь от живучих преследователей; убивать их не обязательно.',available:300,duration:30,radius:11,recommended:7},
  hunt:{name:'Охота на носителя',kind:'challenge',hint:'Убейте отмеченную элиту за 60 с. При провале награда исчезнет.',available:300,duration:60,radius:7,recommended:8},
  race:{name:'Дальний рывок',kind:'challenge',hint:'Доберитесь до дальней стороны карты до конца отсчёта. Испытание для быстрых сборок.',available:300,radius:3,recommended:8,survivalOnly:true},
- dungeon_roots:{name:'Корневые тоннели',kind:'challenge',dungeon:true,theme:'roots',hint:'Единый этаж петляющих коридоров · 12 усиленных элит · без комнат и ворот.',available:900,radius:3,recommended:15,survivalOnly:true},
- dungeon_catacombs:{name:'Техногенные катакомбы',kind:'challenge',dungeon:true,theme:'catacombs',hint:'Единый этаж разветвлённых тоннелей · 18 усиленных элит · без комнат и ворот.',available:1500,radius:3,recommended:25,survivalOnly:true},
+ dungeon_roots:{name:'Главный Отсек',kind:'challenge',dungeon:true,theme:'roots',hint:'С уровня 10 · 12 элит с ×3 HP и скоростью атаки · усиленная добыча.',available:900,radius:3,recommended:10,survivalOnly:true},
+ dungeon_catacombs:{name:'Техногенные катакомбы',kind:'challenge',dungeon:true,theme:'catacombs',hint:'С уровня 17 · 18 элит с ×3 HP и скоростью атаки · усиленная добыча.',available:1500,radius:3,recommended:17,survivalOnly:true},
 };

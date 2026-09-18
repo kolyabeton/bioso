@@ -7,9 +7,10 @@ import {createWrongWayFeedback} from './systems/waypoint.js';
 import './ui/game-ui.css';
 import './ui/biotech.css';
 import {effectiveReducedMotion} from './ui/motion.js';
+import {holdForAssets} from './ui/loading-gate.js';
 import {createCombatAudio} from './combat-audio.js';
 import {createGameMusic} from './game-music.js';
-import {createWorldRun,stepWorldRun as step} from './world-run.js';
+import {createWorldRun,stepWorldRun as step,spawnWorldEnemy} from './world-run.js';
 import {stats} from './assembly.js';
 import {createProfileStorage} from './profile-storage.js';
 import {createView} from './game-view.js';
@@ -75,7 +76,7 @@ storyRadio=createStoryRadio($('game'),{localize:localization.localize,play:cue=>
 const storyDirector=createStoryDirector(storyRadio,{enabled:!review,onRecord:cue=>{const records=meta(profile).storyCues,id=storyCueRecordId(cue);if(!records.includes(id)){records.push(id);save();}}});
 function updateHud(){renderHud(run);renderHands(run);eventHud.update(run);}
 function start(mode,seed,loadout){gameplayActive=true;wasOverloaded=false;overloadUntil=0;storyRadio.clear();$('game').inert=false;run=createWorldRun(profile,mode,seed);storyDirector.reset(run);if(mode==='survival'){applyStartingLoadout(run,loadout);meta(profile).runs++;save();}initialUnlocks=new Set(profile.unlocked);view.reset();wrongWayFeedback.reset();stopInput();$('world').focus();updateHud();toast.classList.remove('visible');toastUntil=0;}
-ui=createScreens({dialog:panel,content:$('panel-content'),previewHolder,getRun:()=>run,getProfile:()=>profile,startRun:start,canResume:()=>gameplayActive,resume:()=>{stopInput();updateHud();},stopInput,notify,updateHud,settings,localize:localization.localize,getSaveStatus:()=>profileStorage.saved,saveProfile:save,getNewUnlocks:()=>profile.unlocked.filter(key=>!initialUnlocks.has(key)),playStoryCue:cue=>{journalAudioActive=settings.get().storyEnabled&&storyAudio.play(cue);return journalAudioActive;},onRoute:name=>{if(name==='home')gameplayActive=false;document.body.dataset.screen=name;backgroundMusic.updateRun(run);backgroundMusic.setScreen(name);if(storyRadioShouldSuspend(name))storyRadio.suspend();else if(!name)storyRadio.resume();if(!['journal','journal-entry'].includes(name)&&journalAudioActive){storyAudio.stop();journalAudioActive=false;}}});
+ui=createScreens({dialog:panel,content:$('panel-content'),previewHolder,getRun:()=>run,getProfile:()=>profile,startRun:(...args)=>{start(...args);holdForAssets();},canResume:()=>gameplayActive,resume:()=>{stopInput();updateHud();},stopInput,notify,updateHud,settings,localize:localization.localize,getSaveStatus:()=>profileStorage.saved,saveProfile:save,getNewUnlocks:()=>profile.unlocked.filter(key=>!initialUnlocks.has(key)),playStoryCue:cue=>{journalAudioActive=settings.get().storyEnabled&&storyAudio.play(cue);return journalAudioActive;},onRoute:name=>{if(name==='home')gameplayActive=false;document.body.dataset.screen=name;backgroundMusic.updateRun(run);backgroundMusic.setScreen(name);if(storyRadioShouldSuspend(name))storyRadio.suspend();else if(!name)storyRadio.resume();if(!['journal','journal-entry'].includes(name)&&journalAudioActive){storyAudio.stop();journalAudioActive=false;}}});
 $('encounter-button').onclick=()=>{const n=eventHud.target();if(n)ui.open('encounter-detail',{id:n.id});};
 $('pause-button').onclick=()=>ui.open('pause');$('assembly-button').onclick=()=>ui.open('assembly');$('soul-button').onclick=()=>ui.open('soul');$('map-button').onclick=()=>ui.open('map');
 $('world').addEventListener('pointerdown',event=>{if(panel.open)return;pointer={id:event.pointerId,x:event.clientX,y:event.clientY};$('world').setPointerCapture(event.pointerId);const rect=$('game').getBoundingClientRect();Object.assign($('joystick').style,{left:(event.clientX-rect.left)+'px',top:(event.clientY-rect.top)+'px'});$('joystick').hidden=false;});
@@ -103,7 +104,7 @@ function frame(now){requestAnimationFrame(frame);const cadence=renderCadence({hi
   loading.hidden=!run.streaming?.errors?.length;loading.textContent='Не удалось загрузить участок · повторить';
   const paused=panel.open||enemyReview?.paused||isaacReview?.paused||run.dead&&(document.hidden||!document.hasFocus());
   const renderAt=performance.now();view.render(run,dt,ui.previewVisible,paused,cadence);recordSubsystem('render',performance.now()-renderAt);enemyReview?.afterRender?.();
-  const ambient=view.ambientInfo();combatAudio.updateAmbient({active:ambient.ambientActive,paused,combat:ambient.ambientCombat,strength:ambient.windStrength});
+  const ambient=view.ambientInfo();combatAudio.updateAmbient({active:gameplayActive,paused,combat:ambient.ambientCombat,strength:ambient.windStrength,weatherBlend:ambient.weatherBlend,weatherEnvironment:ambient.weatherEnvironment,world:run.world,player:run.player,mission:run.mission});
   const uiAt=performance.now();hudClock+=dt;if(hudClock>.1){updateHud();hudClock=0;}if(now>toastUntil)toast.classList.remove('visible');recordSubsystem('ui',performance.now()-uiAt);
   frames++;fpsClock+=elapsed;if(fpsClock>=1){fps=Math.round(frames/fpsClock);frames=fpsClock=0;if(diagnostic){const info=view.info(),rect=$('world').getBoundingClientRect(),pick=view.debugPick(rect.left+rect.width/2,44).map(hit=>`${hit.names.join('>')}@${hit.point.map(n=>n.toFixed(1)).join(',')}#${hit.map.split('/').at(-1)}`).join(' | '),near=(run.encounters?.nodes||[]).filter(n=>Math.hypot(n.x,n.z)<12).map(n=>`${n.type}:${n.state}@${n.x.toFixed(1)},${n.z.toFixed(1)}r${n.radius}`).join('|');$('diagnostics').textContent=`${fps} FPS · ${info.drawCalls} draws · ${info.loadedModels} GLB/${info.failedModels.length} errors · ${info.assetEnemies} mesh enemies\n${run.enemies.length} enemies · ${run.ground.length} parts\n${run.player.x.toFixed(1)}, ${run.player.z.toFixed(1)}\n${pick}\n${near}\n${view.debugBiomeChildren().join('|')}`;}}
   enemyReview?.afterFrame?.({cpuMs:performance.now()-frameStarted,intervalMs:elapsed*1000});
@@ -117,7 +118,8 @@ function stageStoryReview(mission,room=1){
 }
 if(review&&['ru','en'].includes(params.get('lang')))settings.update('language',params.get('lang'));
 if(review&&['low','medium','high'].includes(params.get('quality')))settings.update('quality',params.get('quality'));
-if(review&&params.get('sound')==='1'){settings.update('soundEnabled',true);settings.update('effects',65);}
+if(review&&params.get('sound')==='0')settings.update('soundEnabled',false);
+else if(review&&params.get('sound')==='1'){settings.update('soundEnabled',true);settings.update('effects',65);}
 if(review==='story-evidence'){const evidence=STORY_EVIDENCE.find(item=>item.id===(params.get('id')||'core-charred-nest'))||STORY_EVIDENCE[0],cue=params.get('thought')==='1'?thoughtCue(evidence):evidenceCue(evidence);stageStoryReview(evidence.mission,params.get('room')||evidence.room);toast.style.display='none';storyRadio.show(cue||evidenceCue(evidence),{duration:0});document.body.dataset.screen='';}
 else if(review==='story-radio'){
  const cue=params.get('cue')||'garden-01-child',entry=storyCue(cue),room=entry?.trigger==='mission-mid'?12:entry?.trigger?.startsWith('mission-boss')?999:1;
@@ -126,13 +128,16 @@ else if(review==='story-radio'){
 }
 else if(review==='dungeons'){const {prepareDungeonReview}=await import('./dungeon-review.js');enemyReview=prepareDungeonReview(params,{getRun:()=>run,start,stopInput,ui});document.body.dataset.screen='';}
 else if(review==='race'){const {prepareRaceReview}=await import('./ui/race-review.js');enemyReview=prepareRaceReview(run,params,value=>Object.assign(movement,value));ui.open('encounter-detail',{id:enemyReview.nodeId});}
+else if(review==='survival-waves'){const {prepareSurvivalWaveReview}=await import('./survival-wave-review.js');enemyReview=prepareSurvivalWaveReview(run,params);document.body.dataset.screen='';}
+else if(review==='survival-pressure'){const {prepareSurvivalPressureReview}=await import('./survival-pressure-review.js');enemyReview=prepareSurvivalPressureReview(params,{getRun:()=>run,start});document.body.dataset.screen='';}
 else if(review==='survival-boss'){const {prepareSurvivalBossReview}=await import('./ui/survival-boss-review.js');enemyReview=prepareSurvivalBossReview(run,params);document.body.dataset.screen='';}
 else if(review==='mission-environment'){if(params.get('lang')==='ru')settings.update('language','ru');start(params.get('mission')||'garden',20260908);const {prepareMissionEnvironmentReview}=await import('./mission-environment-review.js');enemyReview=prepareMissionEnvironmentReview(run,params,ui,{render:()=>view.render(run,0,false,true,settings.get().fps),snapshot:()=>window.bioso.snapshot()});if(!ui.screen)document.body.dataset.screen='';}
-else if(review==='mission-boss'){start(params.get('mission')||'garden',20260908);const {prepareBossRuntimeReview}=await import('./boss-runtime-review.js');enemyReview=prepareBossRuntimeReview(run);document.body.dataset.screen='';}
+else if(review==='mission-boss'){start(params.get('mission')||'garden',20260908);const {prepareBossRuntimeReview}=await import('./boss-runtime-review.js');enemyReview=prepareBossRuntimeReview(run,params);document.body.dataset.screen='';}
 else if(review==='stress'){const {installStressReview}=await import('./stress-review.js');enemyReview=installStressReview(run,value=>Object.assign(movement,value),()=>window.bioso.snapshot());document.body.dataset.screen='';}
 else if(review==='ability-vfx'){const {prepareAbilityVfxReview}=await import('./ability-vfx-review.js');enemyReview=prepareAbilityVfxReview(run,params,value=>Object.assign(movement,value));document.body.dataset.screen='';}
 else if(review==='summoner-combat'){const {prepareSummonerReview}=await import('./summoner-review.js');enemyReview=prepareSummonerReview(run,params);document.body.dataset.screen='';}
-else if(review==='event-collision'){start('survival',20260913);const {prepareEventCollisionReview}=await import('./event-collision-review.js');enemyReview=prepareEventCollisionReview(run,value=>Object.assign(movement,value));document.body.dataset.screen='';}
+else if(review==='event-collision'){start('survival',20260913);const {prepareEventCollisionReview}=await import('./event-collision-review.js');enemyReview=prepareEventCollisionReview(run,value=>Object.assign(movement,value),(...args)=>spawnWorldEnemy(run,...args));document.body.dataset.screen='';}
+else if(review==='organs'){const {prepareOrganModelReview}=await import('./organ-model-review.js');enemyReview=prepareOrganModelReview(run,params,ui,value=>Object.assign(movement,value));if(!ui.screen)document.body.dataset.screen='';}
 else if(review==='secret-glb'){start('survival',20260912);const {prepareSecretGlbReview}=await import('./secret-glb-review.js');enemyReview=prepareSecretGlbReview(run);document.body.dataset.screen='';}
 else if(review==='recovery'){const {prepareRecoveryReview}=await import('./ui/recovery-review.js');enemyReview=prepareRecoveryReview(run);document.body.dataset.screen='';}
 else if(review==='consumables'){const {prepareConsumableReview}=await import('./ui/consumable-review.js');enemyReview=prepareConsumableReview(run,event=>{view.event(event);if(event.type==='notice')notify(event.text);});document.body.dataset.screen='';}
@@ -149,6 +154,7 @@ else if(review==='death'){const {prepareDeathReview}=await import('./ui/death-re
 else if(review==='achievements'){const {prepareAchievementsReview}=await import('./ui/achievements-review.js');const route=prepareAchievementsReview(run,params);if(params.get('lang')==='ru')settings.update('language','ru');ui.open(route.name,route.params||{});}
 else if(review==='meta'){const {prepareMetaReview}=await import('./ui/meta-review.js');const screen=prepareMetaReview(run,params.get('stage')||'profile');if(screen)ui.open(screen);else document.body.dataset.screen='';}
 else if(review==='defense'){const {prepareDefenseReview}=await import('./ui/defense-review.js');enemyReview=prepareDefenseReview(run);document.body.dataset.screen='';}
+else if(review==='max-health'){const {prepareMaxHealthReview}=await import('./ui/max-health-review.js');enemyReview=prepareMaxHealthReview(run);document.body.dataset.screen='';}
 else if(review==='regeneration'){const {prepareRegenerationReview}=await import('./ui/regeneration-review.js');enemyReview=prepareRegenerationReview(run,params);document.body.dataset.screen='';}
 else if(review==='body-combat'){const {installBodyCombatReview}=await import('./body-combat-review.js');browserQA=installBodyCombatReview(run,value=>Object.assign(movement,value));document.body.dataset.screen='';}
 else if(review==='body-walk'){const {installBodyWalkReview}=await import('./body-walk-review.js');browserQA=installBodyWalkReview(run,value=>Object.assign(movement,value));document.body.dataset.screen='';}
@@ -159,4 +165,4 @@ else if(review&&['boss-reward','assembly','part','body-swap','level','map','cata
 if((import.meta.env.DEV||import.meta.env.MODE==='acceptance')&&params.get('review')==='playtest'){const {installBrowserQA}=await import('./qa-browser.js');browserQA=installBrowserQA({getRun:()=>run,start,ui,setInput:value=>Object.assign(movement,value),snapshot:()=>window.bioso.snapshot()});}
 if(review&&params.has('capture')){const {installBiotechRecorder}=await import('./biotech-record.js');installBiotechRecorder($('world'),{onStart:()=>{isaacReview?.startCapture?.();enemyReview?.startCapture?.();}});}
 if(unlockedProfile)profileStorage.save();
-updateHud();requestAnimationFrame(frame);
+updateHud();requestAnimationFrame(now=>{frame(now);window.__biosoBoot?.finish();window.__biosoBoot?.hide();});

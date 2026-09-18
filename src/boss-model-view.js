@@ -2,6 +2,7 @@ import * as T from 'three';
 import {loadModel} from './asset-models.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {createBossAnimationRig,animateBoss} from './boss-animation.js';
+import {groundBossModel} from './boss-grounding.js';
 
 export const BOSS_MODEL_IDS=Object.freeze(['boss-mercury-hunter','boss-scrap-leviathan','boss-root-cathedral','boss-mirror-collector','boss-swarm-shepherd']);
 const ids=new Set(BOSS_MODEL_IDS);
@@ -23,7 +24,7 @@ export function createBossModelView(scene,{load=loadModel,renderer}={}){
  const root=new T.Group();root.name='mission-boss-models';scene.add(root);
  const sources=new Map(),pending=new Set(),failures=new Set(),active=new Map(),bounds=new T.Box3();let disposed=false;
  const request=id=>{if(pending.has(id))return;pending.add(id);Promise.resolve().then(()=>load(id)).then(source=>{if(disposed)return;if(source){const prepared=source.clone(true),materials=new Map();prepared.traverse(o=>{if(!o.isMesh)return;const adapt=m=>{if(!materials.has(m)){const c=m.clone();if(c.isMeshStandardMaterial){c.envMap=environment?.texture??null;c.envMapIntensity=.85;c.normalScale?.multiplyScalar(.7);}materials.set(m,c);}return materials.get(m);};o.material=Array.isArray(o.material)?o.material.map(adapt):adapt(o.material);});sources.set(id,prepared);}else failures.add(id);}).catch(()=>{if(!disposed)failures.add(id);});};
- function update(enemies,player,time,scale=1,reducedMotion=false){
+ function update(enemies,player,time,scale=1,reducedMotion=false,world=null){
   const remaining=[],keep=new Set();
   for(const e of enemies){
    const id=bossModelId(e);if(!id||e.hp<=0){remaining.push(e);continue;}request(id);
@@ -32,16 +33,17 @@ export function createBossModelView(scene,{load=loadModel,renderer}={}){
    if(entry&&entry.id!==id){root.remove(entry.model);active.delete(e.id);entry=null;}
    if(!entry){const model=fittedBossModel(source,{height:e.visualHeight?e.visualHeight/e.radius:undefined});model.name='boss-asset:'+id;model.userData.assetId=id;root.add(model);bounds.setFromObject(model,true);entry={id,model,height:bounds.max.y-bounds.min.y,x:e.x,z:e.z,travel:0,clock:time,walkWeight:0,hover:e.bossHover??0,lastTime:time};active.set(e.id,entry);}
    const {model}=entry,dt=Math.max(0,time-entry.lastTime),distance=Math.hypot(e.x-entry.x,e.z-entry.z),frozen=e.frozenUntil>time||e.pickupSleepUntil>time;
-   const yaw=e.bossCombat?.facing??Math.atan2(player.x-e.x,player.z-e.z);
+   const yaw=e.bossCombat?.facing??e.facing??Math.atan2(player.x-e.x,player.z-e.z);
+   entry.groundHeightAt=world?.heightAt?(x,z)=>world.heightAt(x,z):null;
    model.position.set(e.x,(e.y??0)+entry.hover,e.z);model.rotation.y=yaw;model.scale.setScalar(e.radius*(e.bossCombat?1:scale));
    if(!frozen){
     if(dt>0){const turn=entry.yaw==null?0:Math.abs(Math.atan2(Math.sin(yaw-entry.yaw),Math.cos(yaw-entry.yaw)));const movement=Math.min(distance+turn*e.radius*.25,dt*14);entry.travel+=movement;entry.clock+=dt;const moving=movement/dt>.04?1:0;entry.walkWeight+=(moving-entry.walkWeight)*(1-Math.exp(-dt*15));entry.hover+=((e.bossHover??0)-entry.hover)*(1-Math.exp(-dt*5));}
     model.position.y=(e.y??0)+entry.hover;
     entry.pose=animateBoss(model,model.userData.rig,e,time,entry,reducedMotion);
-    if(!model.userData.rig.legs.length){bounds.setFromObject(model);model.position.y+=Math.max(0,(e.y??0)-bounds.min.y);}
    }
+   entry.groundLift=groundBossModel(model,entry.groundHeightAt,e.y??0);
    entry.lastTime=time;entry.yaw=yaw;
-   entry.x=e.x;entry.z=e.z;e.presentationHeight=entry.height*e.radius*(e.bossCombat?1:scale)+entry.hover;
+   entry.x=e.x;entry.z=e.z;e.presentationHeight=entry.height*e.radius*(e.bossCombat?1:scale)+entry.hover+entry.groundLift;
   }
   for(const [key,entry] of active)if(!keep.has(key)){root.remove(entry.model);active.delete(key);}
   return remaining;

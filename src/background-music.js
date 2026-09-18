@@ -139,10 +139,12 @@ export function createBackgroundMusic(url, {
   }
 
   function setActive(value) { active = value; sync(); }
-  function setPlaylist(value) {
+  function setPlaylist(value, {restart = false} = {}) {
     const next = normalize(value), key = JSON.stringify(next);
-    if (disposed || key === JSON.stringify(tracks)) return;
+    if (disposed || (!restart && key === JSON.stringify(tracks))) return;
+    if (restart && source?.key === key) { fadeOut(source); source = null; }
     if (!source || source.key !== playlistKey()) positions.set(playlistKey(), {trackIndex, offset});
+    if (restart) positions.delete(key);
     tracks = next;
     ({trackIndex = 0, offset = 0} = positions.get(key) || {});
     generation++;

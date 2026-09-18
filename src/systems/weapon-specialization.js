@@ -1,8 +1,20 @@
 import {modifiers} from './abilities.js';
 import {combatTime} from './mutations.js';
-export const isMelee=w=>['sector','area','contact'].includes(w?.mode);
+export {isMelee} from './hand-compatibility.js';
+import {isMelee,isRangedHand} from './hand-compatibility.js';
+
+export function weaponFamilyBonus(s,p){
+ const arms=s?.arms||[],installed=arms.some(q=>q===p||(p?.id!=null&&q?.id===p.id));
+ const additional=installed?Math.max(0,Math.min(3,arms.filter(q=>q?.key===p.key).length-1)):0;
+ return p?.key==='pistol'
+  ?{additional,crit:.05*additional,critPower:.2*additional,reload:0,spread:0}
+  :p?.key==='shotgun'
+   ?{additional,crit:0,critPower:0,reload:.1*additional,spread:.1*additional}
+   :{additional:0,crit:0,critPower:0,reload:0,spread:0};
+}
+
 export function prepareSpecializationAttack(s,p,w,repeat=false){
- const b=modifiers(s),ready=!repeat&&!isMelee(w)&&p.fullSalvoReady&&b.fullSalvo;
+ const b=modifiers(s),ready=!repeat&&isRangedHand(w)&&p.fullSalvoReady&&b.fullSalvo;
  if(!repeat)p.fullSalvoReady=false;
  return {...w,repeat,damage:w.damage*(ready?1+(b.fullSalvoDamage||.3):1)};
 }

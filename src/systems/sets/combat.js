@@ -1,7 +1,7 @@
-import {CATALOG} from '../../catalog.js';
 import {spatialDistance,visibleBetween,surfaceReach} from '../../elevation.js';
 import {soulProc} from '../soul-procs.js';
 import {modifiers} from '../abilities.js';
+import {magazineCapacity} from './affixes.js';
 import {SET_TIMING,setClock,setMelee,syncSetState} from './bonuses.js';
 
 /** Once per emitted primary arm attack, before making any projectiles. */
@@ -26,7 +26,7 @@ export function finishSetAttack(s,p,w,damage){
   if(Object.keys(a.hands).length>=3){
    a.hecatonAt=now+SET_TIMING.hecaton;a.hands={};
    for(const arm of s.arms.filter(Boolean)){
-    const size=CATALOG[arm.key]?.magazine;if(!size)continue;
+    const size=magazineCapacity(arm);if(!size)continue;
     arm.ammo=size;arm.reloadRemaining=0;arm.reloadDuration=0;arm.idleFor=0;
     arm.fullSalvoReady=!!modifiers(s).fullSalvo;
     s.events.push({type:'reload-end',source:arm.id,key:arm.key,x:s.player.x,z:s.player.z});

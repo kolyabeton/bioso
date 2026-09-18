@@ -7,7 +7,7 @@ import {clearSegment} from '../src/world-navigation.js';
 
 test('thickets block movement and fire, while narrow passages fit both body sizes',()=>{
  for(const body of ['wanderer','hecaton']){
-  const s=createWorldRun(undefined,'survival',12);s.body=createPart(s,body);
+  const s=createWorldRun(undefined,'survival',12);s.body=createPart(s,body);const startingHp=s.hp;
   for(const tile of s.world.tiles){
    const thicket=tile.decorations.find(d=>d.feature==='thicket'&&s.world.flyable(d.x,d.z,.4));
    assert.equal(s.world.walkable(thicket.x,thicket.z,1.5),false);
@@ -23,7 +23,7 @@ test('thickets block movement and fire, while narrow passages fit both body size
    s.player={x:tile.x,z:tile.z-17,y:0};
    for(let i=0;i<170;i++)movePlayer(s,.05,0,.2);
    assert.ok(Math.abs(s.player.z-(tile.z+17))<.01);
-   assert.equal(s.hp,2);assert.equal(s.dead,false);
+   assert.equal(s.hp,startingHp);assert.equal(s.dead,false);
   }
  }
 });

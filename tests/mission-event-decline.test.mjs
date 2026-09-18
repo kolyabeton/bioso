@@ -23,7 +23,7 @@ test('every mission event offers decline and opens a traversable gate without a 
   if(node.kind==='altar'){
    const [body,footer]=html.split('<footer class="ui-screen-footer event-footer">');
    assert.doesNotMatch(body,/data-action="deal-accept"/);
-   assert.match(footer,/data-action="mission-event-skip"[\s\S]*data-action="deal-accept"/);
+   assert.match(footer,/data-action="deal-accept"[\s\S]*data-action="mission-event-skip"/);
   }
   assert.equal(missionGateClosed(s.mission,index),true);
   assert.equal(s.world.canMove({x:0,z:gateZ+4},{x:0,z:gateZ-4},.8),false);

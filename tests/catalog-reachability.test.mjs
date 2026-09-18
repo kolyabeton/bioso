@@ -6,6 +6,7 @@ import {createRun,step} from '../src/game.js';
 import {META_ACHIEVEMENTS,OVERRUN_PART_UNLOCKS} from '../src/systems/meta-progression.js';
 import {encounterDiscoverableKeys} from '../src/systems/encounters.js';
 import {unlockCondition} from '../src/ui/adapters.js';
+import {SURVIVAL_ITEM_ACHIEVEMENTS} from '../src/systems/survival-unlock-rules.js';
 
 const previousMissionItems=['arc','regen','drill','armor','bastion','plated','rocket','shield','acid','digestion','rootwalker','fangs','chimera'];
 
@@ -16,6 +17,7 @@ test('every atlas item has a reachable in-game unlock source',()=>{
   ...SURVIVAL_UNLOCKS.flatMap(u=>u.rewards),
   ...META_ACHIEVEMENTS.map(a=>a.key),
   ...OVERRUN_PART_UNLOCKS.map(u=>u.key),
+  ...Object.keys(SURVIVAL_ITEM_ACHIEVEMENTS),
   ...encounterDiscoverableKeys(profile),
  ]);
  assert.deepEqual(Object.keys(CATALOG).filter(key=>!sources.has(key)),[]);
