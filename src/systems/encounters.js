@@ -1,7 +1,9 @@
 import {createPart} from '../assembly.js';
+import {rollRarity,rollAffixes,recordReward} from './sets-loot.js';
+import {encounterRewardTier} from './events/rewards.js';
 import {prepareRace} from './events/race.js';
 import {FAMILIES,NEW_ORGANS,RARE_ORGANS,mutationView} from './mutations.js';
-import {CATALOG,bossPartAvailable} from '../catalog.js';
+import {CATALOG,partAvailable} from '../catalog.js';
 import {seededRandom} from '../simulation.js';
 import {visibleBetween} from '../elevation.js';
 import {SECRETS} from './secrets/definitions.js';
@@ -11,13 +13,13 @@ export const ENCOUNTERS={...SECRETS,...EVENTS};
 import {nearEncounter as near,availableEncounter} from './events/proximity.js';
 export {availableEncounter};
 function shuffle(r,arr){return [...arr].map(v=>({v,r:r()})).sort((a,b)=>a.r-b.r).map(x=>x.v);}
-export function encounterDiscoverableKeys(profile){return Object.keys(CATALOG).filter(key=>CATALOG[key].kind!=='body'&&(!CATALOG[key].rare||RARE_ORGANS.includes(key))&&bossPartAvailable(profile,key));}
+export function encounterDiscoverableKeys(profile){return Object.keys(CATALOG).filter(key=>CATALOG[key].kind!=='body'&&(!CATALOG[key].rare||RARE_ORGANS.includes(key))&&partAvailable(profile,key));}
 function rewards(r,type,profile){
- const allowed=key=>bossPartAvailable(profile,key),discoverable=encounterDiscoverableKeys(profile),regular=discoverable.filter(k=>!CATALOG[k].rare);
+ const allowed=key=>partAvailable(profile,key),discoverable=encounterDiscoverableKeys(profile),regular=discoverable.filter(k=>!CATALOG[k].rare);
  if(type==='membrane')return shuffle(r,[...NEW_ORGANS,'regen','shield','stabilizer','digestion'].filter(allowed)).slice(0,2);
  if(type==='slab')return shuffle(r,regular).slice(0,1);
  if(type==='nursery'){const family=FAMILIES[shuffle(r,Object.keys(FAMILIES))[0]].keys.filter(allowed);return shuffle(r,family.length?family:regular).slice(0,3);}
- const rare=r()<.3;return shuffle(r,regular).slice(0,rare?2:3).concat(rare?[shuffle(r,RARE_ORGANS.filter(allowed))[0]]:[]);
+ const rare=r()<.3,rarePool=RARE_ORGANS.filter(allowed);return shuffle(r,regular).slice(0,rare&&rarePool.length?2:3).concat(rare&&rarePool.length?[shuffle(r,rarePool)[0]]:[]);
 }
 /** Separate RNG: UI reads and encounter placement never consume combat randomness. */
 export function prepareEncounters(s){
@@ -67,12 +69,20 @@ export function discoverEncounters(s){
  for(const n of revealed){n.announced=true;n.discovered=true;}
  if(revealed.length)s.events.push({type:'notice',text:revealed.length===1?'Событие: '+ENCOUNTERS[revealed[0].type].name+' · отмечено на карте':`Новые события: ${revealed.length} · откройте карту`});
  for(const n of s.encounters?.nodes||[])if(!SECRETS[n.type]&&availableEncounter(s,n)&&near(s,n,16)){n.discovered=true;if(!n.dungeon&&!n.adapted&&ENCOUNTERS[n.type].kind==='challenge'){
-  n.adapted=true;const f=mutationView(s).filter(f=>f.count>0&&!f.active).sort((a,b)=>b.count-a.count)[0];if(f){const installed=new Set([...s.arms,...s.legs,...s.organs].filter(Boolean).map(p=>p.key));const key=f.keys.find(k=>bossPartAvailable(s.profile,k)&&!installed.has(k)&&!n.rewards.includes(k));if(key)n.rewards[0]=key;}
+  n.adapted=true;const f=mutationView(s).filter(f=>f.count>0&&!f.active).sort((a,b)=>b.count-a.count)[0];if(f){const installed=new Set([...s.arms,...s.legs,...s.organs].filter(Boolean).map(p=>p.key));const key=f.keys.find(k=>partAvailable(s.profile,k)&&!installed.has(k)&&!n.rewards.includes(k));if(key)n.rewards[0]=key;}
  }}}
+/** Item 31: an event always yields an epic part, with affixes for that rarity. */
+export function eventReward(s,key,tier){
+ const part=createPart(s,key,tier);
+ part.rarity=rollRarity(s,'event');
+ part.affixes=rollAffixes(part,s.rng);
+ recordReward(s,part,'event');
+ return part;
+}
 export {openSecret,secretTarget} from './secrets/index.js';
 export function claimEncounter(s,id,index){const n=s.encounters?.nodes.find(n=>n.id===id);if(!n||n.state!=='reward'||n.claimed||!near(s,n,4)||!Number.isInteger(index)||!n.rewards[index])return false;
- const key=n.rewards[index];if(!bossPartAvailable(s.profile,key))return false;
- n.claimed=true;n.state='complete';s.ground.push({id:++s.entityId,x:n.x,y:n.y,z:n.z,part:createPart(s,key,n.rewardTier||1)});if(n.type==='slab')s.biomass+=30;
+ const key=n.rewards[index];if(!partAvailable(s.profile,key))return false;
+ n.claimed=true;n.state='complete';s.ground.push({id:++s.entityId,x:n.x,y:n.y,z:n.z,part:eventReward(s,key,encounterRewardTier(s,n))});if(n.type==='slab')s.biomass+=30;
  if(!s.profile.unlocked.includes(key)){s.profile.unlocked.push(key);s.events.push({type:'unlock',text:'Открыто: '+CATALOG[key].name});}return true;
 }
 export {dealAllowed,takeDeal} from './events/altar.js';

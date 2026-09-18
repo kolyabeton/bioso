@@ -7,6 +7,8 @@ import {createGroundItemsView} from '../src/ground-items-view.js';
 import {partModelId} from '../src/asset-models.js';
 import {STORY_EVIDENCE} from '../src/story-evidence.js';
 import {describePart} from '../src/ui/adapters.js';
+import {eventReward} from '../src/systems/encounters.js';
+import {partMeta} from '../src/systems/sets/definitions.js';
 test('discard installed or stored items once, preserve identity, and allow pickup',()=>{
  const s=createRun(),arm=s.arms[0],before=stats(s).weight;
  arm.upgrades.damage=2;assert(drop(s,arm.id));assert.equal(s.arms[0],null);
@@ -37,7 +39,21 @@ test('walking over a story clue records it without adding equipment',()=>{
  assert.deepEqual(autoPickup(s),[]);assert.equal(s.ground.length,0);assert.equal(s.inventory.length,inventory);
  assert.deepEqual(s.storyEvidence.map(item=>item.id),[evidence.id]);assert.equal(s.events.at(-1).type,'lore-found');
 });
-test('a guardian trophy exposes its memory trace in item details',()=>{
+test('equipment details do not expose removed memory traces',()=>{
  const s=createRun(),part=createPart(s,'hunter',3),details=describePart(s,part);
- assert.ok(details.lines.some(line=>line.startsWith('След памяти: ')));
+ assert.equal(details.lines.some(line=>line.startsWith('След памяти: ')),false);
+});
+
+/** Item 31: an event reward is always epic. It used to be built with createPart
+ * alone, which leaves rarity unset and therefore common, so the 'event' entry in
+ * LOOT_RULES.weights was never consulted. */
+test('event rewards are always epic with affixes for that rarity',()=>{
+ const seen=new Set();
+ for(let i=0;i<200;i++){
+  const s=createRun(undefined,'survival',9100+i);s.time=300;
+  const part=eventReward(s,'seed',3);
+  seen.add(partMeta(part).rarity);
+  assert.equal(part.affixes.length,2,'epic parts roll two affixes');
+ }
+ assert.deepEqual([...seen],['rare']);
 });
