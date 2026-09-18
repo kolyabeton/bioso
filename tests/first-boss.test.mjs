@@ -59,7 +59,7 @@ test('first boss guarantees digestion every run and unlocks real recycling/upgra
  const e=spawnEnemy(s,'boss',{x:1,z:0});hurtEnemy(s,e,10000);hurtEnemy(s,e,10000);
  const drops=s.ground.filter(q=>q.part.key==='digestion');assert.equal(drops.length,1);assert.ok(s.profile.unlocked.includes('digestion'));
  s.inventory.push(drops[0].part);assert.ok(equip(s,drops[0].part.id,0));
- for(const key of ['claws','universal']){const p=createPart(s,key);s.inventory.push(p);assert.ok(digest(s,p.id));}assert.equal(s.biomass,12);
+ for(const key of ['claws','universal','claws','universal']){const p=createPart(s,key);s.inventory.push(p);assert.ok(digest(s,p.id));}assert.equal(s.biomass,12);
  const option=upgradeOptions(s.arms[0])[0];assert.ok(option);assert.ok(upgrade(s,s.arms[0].id,option,true));assert.equal(s.biomass,0);
  const second=spawnEnemy(s,'boss',{x:1,z:0});hurtEnemy(s,second,10000);assert.equal(s.ground.filter(q=>q.part.key==='digestion').length,1);
  }

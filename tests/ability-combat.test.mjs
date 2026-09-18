@@ -48,8 +48,19 @@ test('neural web arcs once from an original volley and never recurses from secon
 test('ricochet branches scale damage, targets, and wounded-target critical chance',()=>{
  const s=run(),weapon={mode:'projectile',damage:10,crit:.1};learn(s,'ricochet.0');for(const id of ['ricochet.1','ricochet.2','ricochet.3'])for(let i=0;i<5;i++)assert.ok(learn(s,id));
  assert.deepEqual(ricochetProfile(s,weapon),{hops:6,damage:1,crit:.25,hunter:true,range:4});
+ assert.equal(ricochetProfile(s,{mode:'rocket',damage:10,crit:.1}),null);
  const origin={id:1,x:0,z:0,hp:100,maxHp:100},nearby={id:2,x:1,z:0,hp:90,maxHp:100},wounded={id:3,x:3,z:0,hp:10,maxHp:100};s.enemies=[origin,nearby,wounded];
  assert.equal(nextRicochetTarget(s,origin,new Set([origin.id]),true),wounded);assert.equal(nextRicochetTarget(s,origin,new Set([origin.id]),false),nearby);
+});
+
+test('native and ability ricochets form one chain without weakening the native multiplier',()=>{
+ const s=run(),weapon={mode:'projectile',damage:10,crit:.1,ricochetHops:1,ricochetDamage:.8};learn(s,'ricochet.0');learn(s,'ricochet.2');
+ assert.deepEqual(ricochetProfile(s,weapon),{hops:3,damage:.8,crit:0,hunter:false,range:4});
+ assert.equal(ricochetProfile(s,{...weapon,secondary:'ricochet'}),null);
+ const origin={id:1,x:0,z:0,hp:100,maxHp:100},visited={id:2,x:1,z:0,hp:100,maxHp:100},next={id:3,x:2,z:0,hp:100,maxHp:100};s.enemies=[origin,visited,next];
+ assert.equal(nextRicochetTarget(s,origin,new Set([origin.id,visited.id])),next);
+ assert.equal(nextRicochetTarget(s,origin,new Set([origin.id,visited.id,next.id])),null);
+ s.world.lineClear=()=>false;assert.equal(nextRicochetTarget(s,origin,new Set([origin.id])),null);
 });
 
 test('counter shell charges on shield, armor, and health outcomes and is consumed by one melee attack',()=>{
@@ -72,12 +83,12 @@ test('spore brood plants every fifth bite, caps at twelve, then explodes once wi
 });
 
 test('overgrowth counts earlier biomass spending and stops at twenty-five percent',()=>{
- const s=run();recordBiomassSpend(s,89);learn(s,'overgrowth');near(modifiers(s).damage,.1);recordBiomassSpend(s,61);near(modifiers(s).damage,.25);recordBiomassSpend(s,300);near(modifiers(s).damage,.25);
+ const s=run();recordBiomassSpend(s,2900);learn(s,'overgrowth');near(modifiers(s).damage,.1);recordBiomassSpend(s,2100);near(modifiers(s).damage,.25);recordBiomassSpend(s,10000);near(modifiers(s).damage,.25);
  assert.equal(s.events.filter(e=>e.type==='soul-proc'&&e.kind==='overgrowth').length,2);
 });
 
 test('overgrowth ranks cap the five biomass thresholds at seventy-five percent',()=>{
- const s=run();recordBiomassSpend(s,150);for(let i=0;i<5;i++)learn(s,'overgrowth');near(modifiers(s).damage,.75);recordBiomassSpend(s,300);near(modifiers(s).damage,.75);
+ const s=run();recordBiomassSpend(s,5000);for(let i=0;i<5;i++)learn(s,'overgrowth');near(modifiers(s).damage,.75);recordBiomassSpend(s,10000);near(modifiers(s).damage,.75);
 });
 
 test('cryo trail starts after two moving seconds, refreshes slow without freeze charges, and expires',()=>{
@@ -87,14 +98,21 @@ test('cryo trail starts after two moving seconds, refreshes slow without freeze 
  s.abilities.moving=0;s.time=4.1;tickCryoTrail(s);assert.equal(s.abilities.cryoTrails.length,0);
 });
 
+/** Item 30: these six stay at a single level, so ranking them up is refused. */
+test('single-level abilities refuse a second rank',()=>{
+ for(const id of ['metabolism.0','metabolism.2','cold.0','motion.0','motion.1','tempo.1']){
+  const s=run();assert.ok(learn(s,id),`${id} rank 1`);assert.equal(learn(s,id),false,`${id} must cap at one level`);
+ }
+});
+
 test('mechanical abilities gain real strength through all five levels',()=>{
  const max=(s,id)=>{for(let i=0;i<5;i++)assert.ok(learn(s,id),`${id} rank ${i+1}`);};
- const focus=run(),arm=focus.arms[0],target={id:1,x:10,y:0,z:0};max(focus,'tempo.1');near(prepareAbilityAttack(focus,arm,{mode:'sector',interval:1,damage:10,range:2},target).interval,1/1.15);
+ const target={id:1,x:10,y:0,z:0};
  const ballistic=run();max(ballistic,'ranged.2');const shot=prepareAbilityAttack(ballistic,ballistic.arms[0],{mode:'projectile',interval:1,damage:20,range:10},target);near(shot.ballisticBonus,.9);near(shot.damage,38);
  const counter=run();max(counter,'countershell');counter.abilities.retaliationUntil=5;near(prepareAbilityAttack(counter,counter.arms[0],{mode:'sector',interval:1,damage:10,range:2},target).damage,40);
  const web=run(),origin={id:1,x:1,y:0,z:0,hp:100},other={id:2,x:2,y:0,z:0,hp:100};web.enemies=[origin,other];max(web,'neuralweb');const hits=[];tryNeuralWeb(web,origin,{mode:'projectile',abilityVolley:{neuralWebUsed:false}},25,(...args)=>hits.push(args));near(hits[0][1],30);
  const summons=run();max(summons,'summons.1');near(modifiers(summons).summonDamage,.75);assert.equal(tickGuardian(summons),false);
  const spores=run();spores.enemies=[origin];max(spores,'sporebrood');assert.ok(symbiontAbilityHit(spores,origin,8));
- const growth=run();recordBiomassSpend(growth,150);max(growth,'overgrowth');near(modifiers(growth).damage,.75);
+ const growth=run();recordBiomassSpend(growth,5000);max(growth,'overgrowth');near(modifiers(growth).damage,.75);
  const trail=run();trail.enemies=[];max(trail,'cryotrail');trail.abilities.moving=2;tickCryoTrail(trail);near(trail.abilities.cryoTrails[0].radius,2.5);near(trail.abilities.cryoTrails[0].until,5);
 });

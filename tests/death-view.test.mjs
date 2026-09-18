@@ -30,7 +30,7 @@ test('pause preserves the death pose and reduced motion still reaches a readable
 });
 
 test('nonlethal hits, revival and mission failure do not disassemble a living creature',()=>{
- const s=createRun();receiveHit(s,stats(s));assert.equal(needsDeathAnimation(s),false);
+ const s=createRun();s.rng=()=>1;receiveHit(s,stats(s));assert.equal(needsDeathAnimation(s),false);
  s.hp=1;s.health.invulnerableUntil=0;assert.equal(receiveHit(s,{...stats(s),revive:true}),'revived');assert.equal(needsDeathAnimation(s),false);
  s.dead=true;assert.equal(needsDeathAnimation(s),false);
 });

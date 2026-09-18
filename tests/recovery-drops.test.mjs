@@ -15,7 +15,7 @@ test('elite recovery distribution uses the raised thirty-percent budget',()=>{
 });
 test('armor repairs spent plates once and never grants unequipped armor',()=>{
  const s=createRun();spawn(s,'armor');tickRecoveryDrops(s,stats(s));assert.equal(s.recoveryDrops.length,1);
- s.organs[0]=createPart(s,'armor');const st=stats(s);receiveHit(s,st);assert.equal(armorRemaining(s,st.armor),st.armor-.5);tickRecoveryDrops(s,st);assert.equal(armorRemaining(s,st.armor),st.armor);assert.equal(s.recoveryDrops.length,0);tickRecoveryDrops(s,st);assert.equal(s.health.armorSpent,0);
+ s.organs[0]=createPart(s,'armor');const st=stats(s);s.rng=()=>1;receiveHit(s,st);assert.equal(armorRemaining(s,st.armor),st.armor-.5);tickRecoveryDrops(s,st);assert.equal(armorRemaining(s,st.armor),st.armor);assert.equal(s.recoveryDrops.length,0);tickRecoveryDrops(s,st);assert.equal(s.health.armorSpent,0);
  s.health.armorSpent=20;spawn(s,'armor');tickRecoveryDrops(s,st);assert.equal(armorRemaining(s,st.armor),1);
 });
 test('red health pickup heals through the actual simulation and stays at full HP',()=>{

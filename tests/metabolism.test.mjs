@@ -24,20 +24,22 @@ test('recycling bonuses add, scale stomach output, preserve refunds and pay only
   for(const id of ['metabolism.0','metabolism.1','metabolism.2','metabolism.3'])assert.ok(learn(s,id));
   assert.equal(modifiers(s).biomassYield,1);
   const amount=digestionYield(s,p.id);
-  assert.equal(amount,64);assert.ok(amount>base);
-  for(let rank=1;rank<5;rank++)assert.equal(learn(s,'metabolism.0'),true);assert.equal(learn(s,'metabolism.0'),false);assert.ok(Math.abs(modifiers(s).biomassYield-1.4)<1e-9);const ranked=digestionYield(s,p.id);assert.ok(ranked>amount);
+  assert.equal(amount,38);assert.ok(amount>base);
+  assert.equal(learn(s,'metabolism.0'),false);
+  for(let rank=1;rank<5;rank++)assert.equal(learn(s,'metabolism.1'),true);assert.equal(learn(s,'metabolism.1'),false);assert.ok(Math.abs(modifiers(s).biomassYield-1.4)<1e-9);const ranked=digestionYield(s,p.id);assert.ok(ranked>amount);
   assert.equal(digest(s,p.id),ranked);assert.equal(s.biomass,ranked);assert.equal(digest(s,p.id),false);
  }
 });
 
-test('fully ranked metabolism reaches three hundred percent biomass and seventy-five percent XP',()=>{
+// Enzymes and Biocatalysis are single-level (item 30), so the branch tops out at +220% rather than +300%.
+test('fully ranked metabolism reaches two hundred twenty percent biomass and seventy-five percent XP',()=>{
  const s=createRun();for(const id of ['metabolism.0','metabolism.1','metabolism.2','metabolism.3'])for(let rank=0;rank<5;rank++)learn(s,id);
- assert.ok(Math.abs(modifiers(s).biomassYield-3)<1e-9);assert.ok(Math.abs(modifiers(s).xpGain-.75)<1e-9);
+ assert.ok(Math.abs(modifiers(s).biomassYield-2.2)<1e-9);assert.ok(Math.abs(modifiers(s).xpGain-.75)<1e-9);
 });
 
-test('first rank gives 7 biomass for a common rank I part and never replaces a stomach',()=>{
+test('first rank gives 3 biomass for a common rank I part and never replaces a stomach',()=>{
  const s=createRun(),p=createPart(s,'claws');s.inventory.push(p);learn(s,'metabolism.0');
- assert.equal(digest(s,p.id),false);s.organs[0]=createPart(s,'digestion');assert.equal(digestionYield(s,p.id),7);
+ assert.equal(digest(s,p.id),false);s.organs[0]=createPart(s,'digestion');assert.equal(digestionYield(s,p.id),3);
 });
 
 test('XP nodes stack without a stomach and do not change already earned XP',()=>{

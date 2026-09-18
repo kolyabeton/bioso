@@ -6,11 +6,15 @@ import {ABILITIES,FALLBACKS,abilityDescriptionAtLevel,learn} from '../src/system
 import {receiveHit} from '../src/systems/health.js';
 
 test('reflex organ and Mobility ranks share one bounded dodge stat',()=>{
- const s=createRun();s.organs=[createPart(s,'reflexNerve'),null];
+ // Measured on a chassis with no dodge trait, so the organ and Mobility ranks stand alone.
+ const s=createRun();s.body=createPart(s,'reactor');s.organs=[createPart(s,'reflexNerve'),null];
  assert.equal(stats(s).dodge,.1);
  for(let rank=0;rank<5;rank++)learn(s,'motion.2');
  assert.equal(stats(s).dodge,.35);
  s.organs=[createPart(s,'reflexNerve',5),createPart(s,'reflexNerve',5)];
+ assert.ok(Math.abs(stats(s).dodge-.61)<1e-9,`${stats(s).dodge} != 0.61`);
+ // The Gardener's unconditional 20% pushes the same build onto the shared cap.
+ s.body=createPart(s,'wanderer');
  assert.equal(stats(s).dodge,MAX_DODGE_CHANCE);
  assert.doesNotMatch(abilityDescriptionAtLevel(ABILITIES['motion.2'],5),/предел|максимум/i);
 });
@@ -23,6 +27,6 @@ test('a dodge consumes no health, armor, shield or hit invulnerability',()=>{
 
 test('repeatable health skill grants one maximum-health segment per rank',()=>{
  const s=createRun();for(let rank=0;rank<5;rank++)learn(s,'minor.hp');
- assert.equal(stats(s).hp,7);assert.equal(FALLBACKS['minor.hp'].bonus.hp,1);
+ assert.equal(stats(s).hp,9);assert.equal(FALLBACKS['minor.hp'].bonus.hp,1);
  assert.match(abilityDescriptionAtLevel(FALLBACKS['minor.hp'],5),/5 делений/);
 });

@@ -1,40 +1,46 @@
 import {syncSetState} from './systems/sets/bonuses.js';
 import {prepareSetAttack,finishSetAttack,tickSetCollector} from './systems/sets/combat.js';
 import {trackAchievements} from './systems/achievements.js';
+import {recordSurvivalKill} from './systems/survival-achievement-progress.js';
 import {tickMissionBoss,bossDamageMultiplier,cleanupBoss} from './systems/mission-bosses.js';
 import {tickSurvivalBosses} from './systems/survival-bosses.js';
+import {tickSurvivalElites} from './systems/survival-elites.js';
+import {tickSurvivalResponse} from './systems/survival-response.js';
 import {spawnRecoveryDrop,tickRecoveryDrops} from './systems/recovery-drops.js';
 import {spawnConsumableDrop,tickConsumableDrops,consumableTarget} from './systems/consumable-drops.js';
+import {recordCritRamp} from './systems/body-traits.js';
 import {SHIELD_IMPACT_DELAY} from './melee-animation.js';
 import {armCanReach,turnBody} from './body-facing.js';
+import {turnBossFacing} from './boss-facing.js';
 import {specializationHit,specializationKill,prepareSpecializationAttack} from './systems/weapon-specialization.js';
 import {awardMeta,recordVictory,tickOverrun,startOverrun,validLoadout,spendReroll,recordAbilityDiscovery} from './systems/meta-progression.js';
-import {reactorKill,pullHarpoon,tickExtraParts,springContact} from './systems/extra-parts.js';
+import {pullHarpoon,tickExtraParts,springContact} from './systems/extra-parts.js';
 import {soulProc} from './systems/soul-procs.js';
 import {assignEnemyAssembly,eligibleRecipes,ENEMY_RECIPES} from './systems/enemy-assembly.js';
 import {tickModularAttack,tickEnemyAcidPools,enemyAttackRange,enemyContactRange,enemyAcidPace,cancelEnemyAttack} from './systems/enemy-combat.js';
-import {PUPPETEER_BUILD_SECONDS,puppeteerSummonSpread,tickEnemySpecialist,specialistDamageScale,tryMirrorProjectile} from './systems/enemy-specialists.js';
+import {PUPPETEER_BUILD_SECONDS,DRONE_HUNTER_REPLACEMENT_DELAY,puppeteerSummonSpread,tickEnemySpecialist,specialistDamageScale,specialistEvades,tryMirrorProjectile} from './systems/enemy-specialists.js';
+import {enemyInvulnerable,enemyTargetable,tickEnemyLocomotion} from './systems/enemy-locomotion.js';
 import {assignTerritory,territoryTarget,tickHabitatBossRegeneration} from './systems/territories.js';
 import {generateLoot,normalDrop,queueBossReward,hitSetMultiplier,rollRarity} from './systems/sets-loot.js';
 import {combatTime,isaacState,activeMutation,syncMutations} from './systems/mutations.js';
 import {prepareIsaacAttack,isaacHit,isaacDeath,conductorAttack,slimePace,tickIsaacCombat} from './systems/isaac-combat.js';
 import {prepareEncounters,discoverEncounters,secretTarget,openSecret,startChallenge,leaveDungeon,containChallenge,tickChallenge,encounterStatus} from './systems/encounters.js';
-import {spatialDistance,visibleBetween,surfaceReach,movePlayer,settleObjects} from './elevation.js';
+import {spatialDistance,groundDistance,visibleBetween,surfaceReach,movePlayer,settleObjects} from './elevation.js';
 import {createHealth,preserveHealth,receiveHit,tickHealth,vampireHit} from './systems/health.js';
 import {createAbilities,modifiers,attackTriggers,updateMotion} from './systems/abilities.js';
 import {destroySymbiont} from './systems/symbionts.js';
 import {prepareAbilityAttack,abilityDamageMultiplier,applyCriticalTempo,markRupture,tryNeuralWeb,ricochetProfile,nextRicochetTarget,tickGuardian,tickCryoTrail} from './systems/ability-combat.js';
 import {gainXP,selectAbility,rollChoices} from './systems/progression.js';
 import {createWaves,tickWaves,tickEnemyRanged,tickHostileShots} from './systems/waves.js';
-import {tickSurvivalHordes} from './systems/survival-hordes.js';
-import {survivalCadenceForRun,scheduleFirstSurvivalWave,survivalWavePosition,waveEliteAllowance,recordWaveElite} from './systems/survival-cadence.js';
+import {survivalCadenceForRun,startNextSurvivalWave,advanceSurvivalWave,survivalWavePosition,waveEliteAllowance,recordWaveElite} from './systems/survival-cadence.js';
 import {tickTimedItems} from './systems/timed-items.js';
-import {enemyBalance,ECONOMY,SURVIVAL_PRESSURE,SURVIVAL_FINAL,XP_PICKUP_MULTIPLIER} from './systems/balance.js';
+import {enemyBalance,ECONOMY,SURVIVAL_PRESSURE,SURVIVAL_FINAL,XP_PICKUP_MULTIPLIER,survivalPressureProfile,ACID_PUDDLE_RADIUS,ACID_PUDDLE_SLOW,ACID_PUDDLE_SECONDS} from './systems/balance.js';
 import {onHit,onDeath,enemyPace,lightning,tickEffects} from './systems/effects.js';
 import {CATALOG,MISSIONS,SURVIVAL_UNLOCKS,WEAPON_UNLOCKS,INCREMENTS} from './catalog.js';
 import {createPart,newProfile,autoPickup,stats,weaponStats,installed,upgradeOptions,upgrade,lootTier,tierFactor,addBonus,stackedCommonNerveVolleyMultiplier} from './assembly.js';
 import {seededRandom} from './simulation.js';
-import {terrain,move,spawnPoint} from './terrain.js';
+import {terrain,spawnPoint} from './terrain.js';
+import {eventCollisionWorld,moveCreature} from './gameplay-modules/event-collision.js';
 import {tickWeapons,startReload,consumeRound,movementFactor,hitFeedback,tickImpact,IDLE_RELOAD_DELAY} from './combat-feel.js';
 import {decorateLivingEnemy,tickVolatile,separateEnemies,splinterShots} from './living-combat.js';
 import {createSpatialIndex} from './spatial-index.js';
@@ -45,6 +51,7 @@ import {survivalObjective,selectFirstBoss} from './systems/survival-objective.js
 const distance=spatialDistance;
 export const SWARM_INTERCEPT_RADIUS=.8;
 const combatEligible=(s,e)=>{const dungeon=s.encounters?.active?.dungeon?s.encounters.active.id:null;return e.hp>0&&!e.dungeonDormant&&(!dungeon||e.challengeId===dungeon);};
+const combatTargetable=(s,e)=>combatEligible(s,e)&&enemyTargetable(e);
 export function createRun(profile=newProfile(),mode='survival',seed=Date.now()>>>0){
  const s={health:createHealth(),abilities:createAbilities(),waves:createWaves(),reliefUntil:0,abilityOfferHistory:{rounds:[],misses:{}},hostileShots:[],enemyAcidPools:[],achievementBaseline:[...profile.achievements],metrics:{spawned:0,maxEnemies:0,killed:[]},seed,profile,mode,serial:0,entityId:0,normalSpawnCount:0,rng:seededRandom(seed),world:terrain(seed),time:0,level:1,xp:0,pending:0,choices:[],soul:{},biomass:0,player:{x:0,z:0,facing:0},enemies:[],shots:[],puddles:[],xpDrops:[],recoveryDrops:[],ground:[],events:[],inventory:[],unseenInventoryIds:new Set(),seenInventoryIds:new Set(),kills:0,elites:0,bosses:0,nextElite:180,nextBoss:480,spawnCredit:0,hitAgo:999,dead:false,won:false,finalDefeated:false,continued:false,visitedLairs:new Set()};
  s.body=createPart(s,'wanderer');s.arms=[createPart(s,'claws'),null];s.legs=[createPart(s,'universal'),createPart(s,'universal')];s.organs=[null,null];s.hp=stats(s).hp;
@@ -57,7 +64,7 @@ export function award(s,id,keys,tier){
  s.events.push({type:'unlock',text:'Открыто: '+keys.map(k=>CATALOG[k].name).join(', ')});return true;
 }
 function checkUnlocks(s){for(const u of WEAPON_UNLOCKS)if((s.profile.meta?.weaponKills?.[u.counter]||0)>=u.goal)award(s,u.id,[u.key],1);if(s.mode==='survival'){for(const u of SURVIVAL_UNLOCKS)if(u.test(s))award(s,u.id,u.rewards);awardMeta(s,createPart);}}
-export function addXP(s,amount){gainXP(s,amount);checkUnlocks(s);}
+export function addXP(s,amount){const levels=gainXP(s,amount);checkUnlocks(s);trackAchievements(s);return levels;}
 export function chooseUpgrade(s,index){const old=stats(s).hp,id=s.choices[index]?.id;if(!selectAbility(s,index))return false;recordAbilityDiscovery(s,id);preserveHealth(s,old,stats(s).hp);return true;}
 export function spawnEnemy(s,kind='normal',position=null,role='mass',threat=s.time,{introductory=true,promote=true,wave=false}={}){
  let promoted=false;
@@ -71,13 +78,17 @@ export function spawnEnemy(s,kind='normal',position=null,role='mass',threat=s.ti
  if(s.mode==='survival'){
   // Opening mobs now survive a normal claw hit; preserve readable whole health.
   base.hp=Math.round(base.hp*SURVIVAL_PRESSURE.hp);base.speed*=SURVIVAL_PRESSURE.speed;
+  if(['normal','elite'].includes(kind)){
+   const pressure=survivalPressureProfile(threat);base.hp=Math.round(base.hp*pressure.health);base.damage*=pressure.damage;base.speed*=pressure.speed;
+   base.attackRecoveryScale=1/pressure.attackRate;base.contactInterval=1/pressure.attackRate;
+  }
   // Keep the introductory boss bounded even when its habitat uses a later threat tier.
   if(kind==='boss'&&introductory&&!s.introBossId){base.hp=SURVIVAL_PRESSURE.introBossHp;base.damage=SURVIVAL_PRESSURE.introBossDamage;base.xp=SURVIVAL_PRESSURE.introBossXp;}
   if(kind==='final')Object.assign(base,{hp:SURVIVAL_FINAL.hp,armor:SURVIVAL_FINAL.armor,speed:SURVIVAL_FINAL.speed,recommended:SURVIVAL_FINAL.recommendedLevel});
  }
- const p=position||(s.mode==='survival'&&wave&&survivalCadenceForRun(s)?survivalWavePosition(s,base.radius):spawnPoint(s.world,s.player,s.rng,27,40,s.world.heightAt?base.radius:undefined));if(!p)return null;
- if(s.world.heightAt){if(!s.world.walkable(p.x,p.z,base.radius))return null;p.y=s.world.heightAt(p.x,p.z);}
- const e={...p,...base,id:++s.entityId,kind,contact:0,born:combatTime(s)};if(wave||promoted)e.waveSpawn=true;e.maxHp=e.hp;if(s.mode==='survival'&&kind==='boss'&&introductory&&!s.introBossId)s.introBossId=e.id;assignEnemyAssembly(s,e,threat);decorateLivingEnemy(s,e,!position);s.enemies.push(e);if(wave&&kind==='elite')recordWaveElite(s,e);s.metrics.spawned++;s.metrics.maxEnemies=Math.max(s.metrics.maxEnemies,s.enemies.length);return assignTerritory(s,e);
+ const collisionWorld=eventCollisionWorld(s),p=position||(s.mode==='survival'&&wave&&survivalCadenceForRun(s)?survivalWavePosition(s,base.radius):spawnPoint(collisionWorld,s.player,s.rng,27,40,s.world.heightAt?base.radius:undefined));if(!p||s.world.heightAt&&!s.world.walkable(p.x,p.z,base.radius)||(!position||wave)&&!collisionWorld.walkable(p.x,p.z,base.radius))return null;
+ if(s.world.heightAt)p.y=s.world.heightAt(p.x,p.z);
+ const e={...p,...base,id:++s.entityId,kind,contact:0,born:combatTime(s)};if(wave||promoted)e.waveSpawn=true;if(wave&&s.waves.cadence){e.survivalWaveIndex=s.waves.cadence.index;e.survivalWavePack=s.waves.cadence.pack;}e.maxHp=e.hp;if(s.mode==='survival'&&kind==='boss'&&introductory&&!s.introBossId)s.introBossId=e.id;assignEnemyAssembly(s,e,threat);decorateLivingEnemy(s,e,!position);s.enemies.push(e);if(wave&&kind==='elite')recordWaveElite(s,e);s.metrics.spawned++;s.metrics.maxEnemies=Math.max(s.metrics.maxEnemies,s.enemies.length);return assignTerritory(s,e);
 }
 function spawnSpecialChild(s,parent,recipeId,side='left'){
  const recipe=ENEMY_RECIPES.find(r=>r.id===recipeId);if(!recipe)return null;
@@ -88,6 +99,7 @@ function spawnSpecialChild(s,parent,recipeId,side='left'){
  if(parent.missionRoom)strengthenMissionEnemy(child,parent.missionRoom-1);
  child.hp=child.maxHp=Math.max(1,child.maxHp*(recipeId==='divider'?.34:.28));child.damage*=recipeId==='divider'?.55:.4;
  child.radius=Math.min(child.radius,recipeId==='divider'?.46:.42);child.speed*=recipeId==='divider'?1.18:.92;if(parent.specialReview&&recipeId==='worker')child.speed=0;child.visualScale=recipeId==='divider'?.72:.84;
+ if(parent.survivalWaveIndex!=null){child.survivalWaveIndex=parent.survivalWaveIndex;child.survivalWavePack=parent.survivalWavePack;child.waveSpawn=true;}
  child.summonOwner=parent.id;child.noRewards=true;if(recipeId==='divider')child.splitGeneration=1;
  if(recipeId==='worker'&&parent.specialty==='puppeteer')child.summonAssembly={started:combatTime(s),until:combatTime(s)+PUPPETEER_BUILD_SECONDS,speed:child.speed},child.speed=0;
  child.groupId=parent.groupId;child.anchor=parent.anchor;child.missionRoom=parent.missionRoom;
@@ -97,9 +109,10 @@ function spawnSpecialChild(s,parent,recipeId,side='left'){
 export function hurtEnemy(s,e,damage,ignore=0,source='direct',critical=false,weaponKey=null){
  if(e.dungeonDormant)return false;
  if(e.summonAssembly&&combatTime(s)<e.summonAssembly.until)return false;
+ if(enemyInvulnerable(e))return false;
  if(damage>0){if(e.pickupMarkUntil>combatTime(s)&&source!=='environment')damage*=1.5;e.pickupSleepUntil=0;}
  if(e.hp<=0)return false;damage*=bossDamageMultiplier(s,e,source);e.engagedAt??=combatTime(s);const applied=Math.min(e.hp,damage/(1+(e.armor||0)*(1-ignore)/100));s.metrics.damage??={direct:0,burn:0,electric:0,summon:0,acid:0,thermal:0,environment:0};s.metrics.damage[source]=(s.metrics.damage[source]||0)+applied;e.hp-=applied;
- if(applied>0&&source!=='environment')s.events.push({type:'enemy-damage',target:e.id,x:e.x,y:e.y??0,z:e.z,radius:e.radius??.6,amount:applied,critical,source});
+ if(applied>0&&source!=='environment')s.events.push({type:'enemy-damage',target:e.id,x:e.x,y:e.y??0,z:e.z,radius:e.radius??.6,amount:applied,critical,source,marked:e.pickupMarkUntil>combatTime(s)});
  if(e.hp>0)return true;e.hp=0;
  const deathEvent={type:'death',target:e.id,x:e.x,y:e.y,z:e.z,radius:e.radius??.6,role:e.assemblyRole||e.role||'mass',kind:e.kind||'normal',flying:!!e.flying,volatile:!!e.volatile,source};
  if(e.bossOwner){s.events.push(deathEvent);return true;}
@@ -107,24 +120,25 @@ export function hurtEnemy(s,e,damage,ignore=0,source='direct',critical=false,wea
  if(e.kind==='objective'){s.events.push({type:'destroy',x:e.x,z:e.z});return true;}
  if(e.specialty==='divider'&&!e.splitGeneration){spawnSpecialChild(s,e,'divider','left');spawnSpecialChild(s,e,'divider','right');s.events.push({type:'enemy-split',x:e.x,y:e.y??0,z:e.z,count:2});}
  if(e.specialty==='puppeteer')for(const child of s.enemies.filter(q=>q.hp>0&&q.summonOwner===e.id)){delete child.summonAssembly;hurtEnemy(s,child,Number.MAX_SAFE_INTEGER,0,'environment');}
- if(e.noRewards){s.events.push(deathEvent);return true;}
+ if(e.noRewards){s.events.push(deathEvent);advanceSurvivalWave(s);return true;}
+ recordSurvivalKill(s,e,source);
  if(source!=='environment'){
   const counters=(s.profile.meta??={}).weaponKills??={pistol:0,total:0};let changed=false;
   for(const u of WEAPON_UNLOCKS)if((u.counter==='total'||weaponKey===u.counter)&&(counters[u.counter]||0)<u.goal){counters[u.counter]=(counters[u.counter]||0)+1;changed=true;}
   if(changed)s.events.push({type:'profile-progress'});
  }
- onDeath(s,e);isaacDeath(s,e,source);s.metrics.killed.push({kind:e.kind,role:e.role,age:combatTime(s)-e.born,combatSeconds:e.engagedAt==null?0:combatTime(s)-e.engagedAt,minute:s.time/60});s.kills++;reactorKill(s);if(e.kind==='elite')s.elites++;if(['boss','final'].includes(e.kind))s.bosses++;
+ onDeath(s,e);isaacDeath(s,e,source);s.metrics.killed.push({kind:e.kind,role:e.role,age:combatTime(s)-e.born,combatSeconds:e.engagedAt==null?0:combatTime(s)-e.engagedAt,minute:s.time/60});s.kills++;if(e.kind==='elite')s.elites++;if(['boss','final'].includes(e.kind))s.bosses++;
  if(e.kind==='final'){s.finalDefeated=true;if(s.mode==='survival'){s.won=true;recordVictory(s);s.events.push({type:'victory',text:'Матка повержена. Завершить забег или продолжить?'});}}
  const groundY=s.world.heightAt?.(e.x,e.z)??e.y??0;s.xpDrops.push({id:++s.entityId,x:e.x,y:groundY,z:e.z,value:e.survivalSuperBoss||e.kind==='final'?90:e.xp??(e.kind==='normal'?1:e.kind==='elite'?16:60)});
  if(['boss','final'].includes(e.kind)){
   if(s.mode==='survival'&&e.survivalSuperBoss){s.reliefUntil=Math.max(s.reliefUntil||0,combatTime(s)+12);s.waves.credit=0;}
+  if(s.mode==='survival'&&e.id===s.introBossId)startNextSurvivalWave(s);
   if(s.mode==='survival'&&e.id===s.introBossId&&!s.introBossRewarded){
    s.introBossRewarded=true;
-   scheduleFirstSurvivalWave(s);
    const stomach=createPart(s,'digestion',1);
    s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part:stomach});
-   // Two ordinary spares teach digestion and fund one base-price upgrade.
-   for(const key of ['claws','universal'])s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part:createPart(s,key,1)});
+   // Four ordinary spares teach digestion and fund one base-price upgrade.
+   for(const key of ['claws','universal','claws','universal'])s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part:createPart(s,key,1)});
    if(!s.profile.unlocked.includes('digestion'))s.profile.unlocked.push('digestion');
    s.events.push({type:'unlock',text:'Компостер выпал! Установите его и переработайте лишние детали в биомассу.'});
   }
@@ -132,12 +146,14 @@ export function hurtEnemy(s,e,damage,ignore=0,source='direct',critical=false,wea
   else queueBossReward(s,createPart,lootTier(s.level,s.rng));
  }
  else if(e.kind==='elite'){
-  {const exclude=e.guaranteedPartKind==='arm'?s.arms.filter(Boolean).map(p=>p.key):[],rarityOrder=['common','uncommon','rare','relic'];let part;if(e.dungeonElite){const quality=[rollRarity(s,'elite'),rollRarity(s,'elite')].sort((a,b)=>rarityOrder.indexOf(b)-rarityOrder.indexOf(a))[0];part=generateLoot(s,createPart,lootTier(s.level,s.rng),'elite',quality,true,exclude,e.guaranteedPartKind);}else part=randomLoot(s,'elite',e.guaranteedPartKind,exclude);s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part,groupId:e.groupId,missionEliteDrop:!!e.guaranteedPartDrop,dungeonLoot:!!e.dungeonElite});}
+  {const exclude=e.guaranteedPartKind==='arm'?s.arms.filter(Boolean).map(p=>p.key):[],rarityOrder=['common','uncommon','rare','relic'];let part;if(e.dungeonElite){const quality=Array.from({length:3},()=>rollRarity(s,'elite')).sort((a,b)=>rarityOrder.indexOf(b)-rarityOrder.indexOf(a))[0];part=generateLoot(s,createPart,lootTier(s.level,s.rng),'elite',quality,true,exclude,e.guaranteedPartKind);}else part=randomLoot(s,'elite',e.guaranteedPartKind,exclude);s.ground.push({id:++s.entityId,x:e.x,y:e.y,z:e.z,part,groupId:e.groupId,missionEliteDrop:!!e.guaranteedPartDrop,dungeonLoot:!!e.dungeonElite});}
  }else normalDrop(s); // Preserve the established combat RNG stream; ordinary loot is suppressed.
- if(['elite','boss','final'].includes(e.kind))spawnRecoveryDrop(s,e);else if(e.kind==='normal')spawnConsumableDrop(s,e);checkUnlocks(s);s.events.push(deathEvent);if(s.mode==='survival'&&['boss','final'].includes(e.kind))selectFirstBoss(s);return true;
+ if(['elite','boss','final'].includes(e.kind))spawnRecoveryDrop(s,e);else if(e.kind==='normal')spawnConsumableDrop(s,e);checkUnlocks(s);s.events.push(deathEvent);if(s.mode==='survival'&&['boss','final'].includes(e.kind))selectFirstBoss(s);advanceSurvivalWave(s);return true;
 }
 function deal(s,e,w,scale=1,ignore=0,direction=null,sourceOverride=null){
- if(e.hp<=0)return false;const b=modifiers(s),base=w.damage*scale*(w.key==='rocket'&&['elite','boss','final'].includes(e.kind)?w.summonBossDamage??1:1)*specializationHit(s,e,w)*(w.key==='harpoon'&&['elite','boss','final'].includes(e.kind)?1.25:1)*hitSetMultiplier(s,e,w)*abilityDamageMultiplier(s,e,w),critical=s.rng()<w.crit,defense=specialistDamageScale(e,{now:combatTime(s),origin:s.player,direction,mode:sourceOverride||w.mode}),damage=base*(critical?w.critPower:1)*(e.chillUntil>combatTime(s)?1+(b.brittle||0):1)*defense;
+ if(e.hp<=0||enemyInvulnerable(e))return false;
+ if(specialistEvades(e,sourceOverride||w.mode,s.rng())){s.events.push({type:'enemy-evade',target:e.id,x:e.x,y:e.y??0,z:e.z});return false;}
+ const b=modifiers(s),base=w.damage*scale*(w.key==='rocket'&&['elite','boss','final'].includes(e.kind)?w.summonBossDamage??1:1)*specializationHit(s,e,w)*(w.key==='harpoon'&&['elite','boss','final'].includes(e.kind)?1.25:1)*hitSetMultiplier(s,e,w)*abilityDamageMultiplier(s,e,w),critical=s.rng()<w.crit,defense=specialistDamageScale(e,{now:combatTime(s),origin:s.player,direction,mode:sourceOverride||w.mode}),damage=base*(critical?w.critPower:1)*(e.chillUntil>combatTime(s)?1+(b.brittle||0):1)*defense;
  if(defense<1)s.events.push({type:'enemy-shield',target:e.id,x:e.x,y:e.y??0,z:e.z,reduction:1-defense});
  if(critical&&!w.secondary&&(b.crit||b.critPower||b.criticalTempo||(['sector','area','contact'].includes(w.mode)?b.meleeCrit:b.rangedCrit)))soulProc(s,'critical',e,{dx:direction?.dx??0,dz:direction?.dz??1});
  applyCriticalTempo(s,w,critical);
@@ -175,12 +191,12 @@ function explodeRocket(s,q){
 }
 // Resolve shield contact on the same combat clock as its thrust animation.
 function shieldAreaTargets(s,hit){
- const primary=s.enemies.find(e=>e.id===hit.target&&e.hp>0),aimTarget=primary??{x:hit.event.tx,y:hit.event.ty??s.player.y??0,z:hit.event.tz};
+ const primary=s.enemies.find(e=>e.id===hit.target&&combatTargetable(s,e)),aimTarget=primary??{x:hit.event.tx,y:hit.event.ty??s.player.y??0,z:hit.event.tz};
  const aimX=aimTarget.x-s.player.x,aimZ=aimTarget.z-s.player.z,aimLength=Math.hypot(aimX,aimZ)||1,dx=aimX/aimLength,dz=aimZ/aimLength;
  const centerDistance=Math.min(hit.w.range,aimLength),center={x:s.player.x+dx*centerDistance,y:s.player.y??0,z:s.player.z+dz*centerDistance},radius=hit.w.areaRadius??2;
  const reachMargin=Math.max(2,...s.enemies.filter(e=>e.hp>0).map(e=>e.radius||0));
  const candidates=s.enemySpatial?.queryCircle(center.x,center.z,radius+reachMargin)??s.enemies;
- return candidates.filter(e=>e.hp>0&&distance(s.player,e)<=hit.w.range+(e.radius||0)&&distance(center,e)<=radius+(e.radius||0)&&((e.x-s.player.x)*dx+(e.z-s.player.z)*dz)>=-(e.radius||0)*.25&&visibleBetween(s,s.player,e));
+ return candidates.filter(e=>combatTargetable(s,e)&&distance(s.player,e)<=hit.w.range+(e.radius||0)&&distance(center,e)<=radius+(e.radius||0)&&((e.x-s.player.x)*dx+(e.z-s.player.z)*dz)>=-(e.radius||0)*.25&&visibleBetween(s,s.player,e));
 }
 function shieldImpacts(s){
  const now=combatTime(s),pending=s.shieldStrikes??[];
@@ -201,8 +217,8 @@ function shieldImpacts(s){
 export function attack(s,dt,st=stats(s),repeatPart=null){
  syncSetState(s);if(!repeatPart)shieldImpacts(s);
  if(!repeatPart){tickWeapons(s,dt);for(const p of s.arms.filter(Boolean))p.cooldown-=dt;}
- const now=combatTime(s),query=s.enemySpatial?(s.attackQueryCache?.time===now?s.attackQueryCache:(s.attackQueryCache={time:now,alive:s.enemies.filter(e=>combatEligible(s,e)),distance:new Map(),visible:new Map()})):null;
- const alive=query?.alive??s.enemies.filter(e=>combatEligible(s,e)),reachMargin=Math.max(2,...alive.map(e=>e.radius||0)),distanceTo=e=>{if(!query)return distance(s.player,e);if(!query.distance.has(e))query.distance.set(e,distance(s.player,e));return query.distance.get(e);},canSee=e=>{if(!query)return visibleBetween(s,s.player,e);if(!query.visible.has(e))query.visible.set(e,visibleBetween(s,s.player,e));return query.visible.get(e);},candidatesNear=radius=>(s.enemySpatial?.queryCircle(s.player.x,s.player.z,radius)??alive).filter(e=>combatEligible(s,e));
+ const now=combatTime(s),query=s.enemySpatial?(s.attackQueryCache?.time===now?s.attackQueryCache:(s.attackQueryCache={time:now,alive:s.enemies.filter(e=>combatTargetable(s,e)),distance:new Map(),visible:new Map()})):null;
+ const alive=query?.alive??s.enemies.filter(e=>combatTargetable(s,e)),reachMargin=Math.max(2,...alive.map(e=>e.radius||0)),distanceTo=e=>{if(!query)return distance(s.player,e);if(!query.distance.has(e))query.distance.set(e,distance(s.player,e));return query.distance.get(e);},canSee=e=>{if(!query)return visibleBetween(s,s.player,e);if(!query.visible.has(e))query.visible.set(e,visibleBetween(s,s.player,e));return query.visible.get(e);},candidatesNear=radius=>(s.enemySpatial?.queryCircle(s.player.x,s.player.z,radius)??alive).filter(e=>combatTargetable(s,e));
  if(!repeatPart){
   let focus=null,focusSlot=0,nearest=Infinity;
   for(const [slot,p] of s.arms.entries())if(p&&!p.disabled&&p.key!=='drone'){
@@ -229,7 +245,7 @@ export function attack(s,dt,st=stats(s),repeatPart=null){
   if(p.key==='rocket'){const density=new Map(targets.map(e=>[e,(s.enemySpatial?.queryCircle(e.x,e.z,3)??alive).reduce((n,q)=>n+(q.hp>0&&distance(q,e)<3?1:0),0)]));targets.sort((a,b)=>density.get(b)-density.get(a));}
   const target=targets[0];w=prepareAbilityAttack(s,p,prepareSpecializationAttack(s,p,prepareIsaacAttack(s,p,w,!!repeatPart),!!repeatPart),target,!!repeatPart);if(common&&sync.includes(p))w.damage*=commonMultiplier;
   w=prepareSetAttack(s,p,w,!!repeatPart);
-  if(repeatPart)soulProc(s,'echo',s.player,{tx:target.x,ty:target.y??0,tz:target.z});if(!repeatPart)p.cooldown=Math.max(.001,w.interval+Math.min(0,p.cooldown));p.idleFor=0;p.aim=Math.atan2(target.x-s.player.x,target.z-s.player.z);
+  if(repeatPart)soulProc(s,'echo',s.player,{tx:target.x,ty:target.y??0,tz:target.z});if(!repeatPart){p.cooldown=Math.max(.001,w.interval+Math.min(0,p.cooldown));recordCritRamp(s,combatTime(s));}p.idleFor=0;p.aim=Math.atan2(target.x-s.player.x,target.z-s.player.z);
   const attackEvent={type:'attack',key:p.key,source:p.id,at:combatTime(s),x:s.player.x,y:s.player.y??0,z:s.player.z,tx:target.x,ty:target.y??0,tz:target.z,targetRadius:target.radius};
   s.events.push(p.key==='hammer'?{...attackEvent,type:'melee-windup'}:attackEvent);
   if(p.key==='hammer'){
@@ -272,8 +288,8 @@ function shotsStep(s,dt){
   if(q.returning){const d=Math.hypot(s.player.x-q.x,s.player.z-q.z);if(d<=q.speed*dt+.5){q.life=0;continue;}q.dx=(s.player.x-q.x)/d;q.dz=(s.player.z-q.z)/d;q.dy=((s.player.y??0)+1-(q.y??1))/d;}
 
   if(q.mode==='rocket'){
-   let target=s.enemies.find(e=>e.id===q.target&&e.hp>0);
-   if(!target){const living=s.enemies.filter(e=>e.hp>0),claimed=new Set(s.shots.filter(other=>other!==q&&other.mode==='rocket'&&living.some(e=>e.id===other.target)).map(other=>other.target)),available=living.filter(e=>!claimed.has(e.id)),candidates=available.length?available:living;let nearest=Infinity;for(const e of candidates){const d=distance(q,e);if(d<nearest){nearest=d;target=e;}}q.target=target?.id??null;}
+   let target=s.enemies.find(e=>e.id===q.target&&combatTargetable(s,e));
+   if(!target){const living=s.enemies.filter(e=>combatTargetable(s,e)),claimed=new Set(s.shots.filter(other=>other!==q&&other.mode==='rocket'&&living.some(e=>e.id===other.target)).map(other=>other.target)),available=living.filter(e=>!claimed.has(e.id)),candidates=available.length?available:living;let nearest=Infinity;for(const e of candidates){const d=distance(q,e);if(d<nearest){nearest=d;target=e;}}q.target=target?.id??null;}
    const searchAngle=combatTime(s)*.7+q.id*2.399963,searchRadius=4.5+(q.id%3)*.8,tx=target?.x??s.player.x+Math.cos(searchAngle)*searchRadius,tz=target?.z??s.player.z+Math.sin(searchAngle)*searchRadius,ty=(target?.y??s.player.y??0)+1,d=Math.hypot(tx-q.x,tz-q.z)||1;
    q.dx=(tx-q.x)/d;q.dz=(tz-q.z)/d;q.dy=(ty-(q.y??1))/d;
   }
@@ -284,12 +300,13 @@ function shotsStep(s,dt){
    if(hostile){hostile.life=0;explodeRocket(s,q);continue;}
   }
   const pad=Math.max(2.25,...s.enemies.filter(e=>e.hp>0&&e.bossCombat).map(e=>e.radius+.18)),candidates=s.enemySpatial?.rectangle(Math.min(old.x,q.x)-pad,Math.min(old.z,q.z)-pad,Math.max(old.x,q.x)+pad,Math.max(old.z,q.z)+pad)??s.enemies;
-  const collisions=candidates.filter(e=>e.hp>0&&(q.remaining>0||q.mode!=='projectile')&&!q.hit.has(e.id)&&segmentDistance({...e,y:(e.y??0)+1},old,q)<(e.radius||1)+.18).sort((a,b)=>distance(old,a)-distance(old,b));
+  const collisions=candidates.filter(e=>combatTargetable(s,e)&&(q.remaining>0||q.mode!=='projectile')&&!q.hit.has(e.id)&&segmentDistance({...e,y:(e.y??0)+1},old,q)<(e.radius||1)+.18).sort((a,b)=>distance(old,a)-distance(old,b));
   const secret=q.secret&&s.encounters?.nodes.find(n=>n.id===q.secret);if(secret&&q.mode==='acid'&&segmentDistance({...secret,y:(secret.y??0)+1},old,q)<1.6)openSecret(s,secret);
   if(q.mode==='acid'&&(collisions.length||q.travel>=q.distance||q.life<=0)){
-   if(collisions[0])deal(s,collisions[0],q.w);if(!s.world.heightAt||s.world.heightAt(q.x,q.z)!==null)s.puddles.push({id:++s.entityId,source:q.source,x:q.x,y:s.world.heightAt?.(q.x,q.z)??0,z:q.z,life:3,damage:q.w.damage/12*9});q.life=0;
+   // The washer never damages on impact: it lands under the target and only the puddle deals damage.
+   if(!s.world.heightAt||s.world.heightAt(q.x,q.z)!==null)s.puddles.push({id:++s.entityId,source:q.source,x:q.x,y:s.world.heightAt?.(q.x,q.z)??0,z:q.z,life:ACID_PUDDLE_SECONDS,radius:ACID_PUDDLE_RADIUS,slow:ACID_PUDDLE_SLOW,damage:q.w.damage});q.life=0;
   }else if(q.mode==='rocket'&&collisions.length)explodeRocket(s,q);
-  else if(q.mode==='projectile'){for(const e of collisions){if(e.hp<=0)continue;if(tryMirrorProjectile(s,e,q)){q.life=0;q.hit.add(e.id);break;}deal(s,e,q.isSplinter?{...q.w,isaac:null,secondary:'splinter'}:q.w,q.returning?(q.w.isaac?.returnDamage??.1):1,0,q);fragments.push(...splinterShots(s,q,e));if(q.remaining>1&&!q.isSplinter&&modifiers(s).pierce)soulProc(s,'pierce',e,{dx:q.dx,dz:q.dz});q.hit.add(e.id);const exhausted=--q.remaining<=0;if((e.id===q.target||exhausted)&&redirectRicochetShot(s,q,e))break;if(exhausted){if(!q.returnable)q.life=0;break;}}}
+  else if(q.mode==='projectile'){for(const e of collisions){if(e.hp<=0)continue;if(q.organReflection){hurtEnemy(s,e,q.w.damage,0,'reflection');q.hit.add(e.id);q.remaining=0;q.life=0;break;}if(tryMirrorProjectile(s,e,q)){q.life=0;q.hit.add(e.id);break;}deal(s,e,q.isSplinter?{...q.w,isaac:null,secondary:'splinter'}:q.w,q.returning?(q.w.isaac?.returnDamage??.1):1,0,q);fragments.push(...splinterShots(s,q,e));if(q.remaining>1&&!q.isSplinter&&modifiers(s).pierce)soulProc(s,'pierce',e,{dx:q.dx,dz:q.dz});q.hit.add(e.id);const exhausted=--q.remaining<=0;if((e.id===q.target||exhausted)&&redirectRicochetShot(s,q,e))break;if(exhausted){if(!q.returnable)q.life=0;break;}}}
   if(q.returnable&&!q.returning&&(q.travel>=q.w.range||q.life<=0)){q.returning=true;q.ricochetLeft=0;if(q.ricochetBaseWeapon)q.w=q.ricochetBaseWeapon;q.hit=new Set();q.remaining=q.w.pierce||1;q.life=8;}
   if(!s.world.lineClear&&!s.world.walkable(q.x,q.z,.05)){if(q.mode==='rocket')q.y=Math.max(q.y,(s.world.heightAt?.(q.x,q.z)??0)+2);else q.life=0;}
  }
@@ -297,9 +314,10 @@ function shotsStep(s,dt){
  s.shots=s.shots.filter(q=>q.life>0);
  s.hostileShots=s.hostileShots.filter(q=>q.life>0);
  s.shots.push(...fragments.slice(0,Math.max(0,300-s.shots.filter(q=>q.isSplinter).length)));
- const puddleDamage=new Map(),puddleRadius=2.5*(activeMutation(s,'mire')?1.5:1);
- for(const q of s.puddles)for(const e of s.enemySpatial?.queryCircle(q.x,q.z,puddleRadius+2)??s.enemies)if(e.hp>0&&distance(e,q)<=puddleRadius&&surfaceReach(s,q,e)){if(!puddleDamage.has(e))puddleDamage.set(e,new Map());const perArm=puddleDamage.get(e);perArm.set(q.source,Math.max(perArm.get(q.source)||0,q.damage));}
- for(const e of s.enemies){const perArm=puddleDamage.get(e);if(perArm)for(const d of perArm.values())hurtEnemy(s,e,d*dt,0,'acid');}
+ // Overlapping puddles stack, so soaking one spot is the Washer's damage curve.
+ const puddleDamage=new Map(),puddleRadius=ACID_PUDDLE_RADIUS*(activeMutation(s,'mire')?1.5:1);
+ for(const q of s.puddles)for(const e of s.enemySpatial?.queryCircle(q.x,q.z,puddleRadius+2)??s.enemies)if(e.hp>0&&distance(e,q)<=puddleRadius&&surfaceReach(s,q,e))puddleDamage.set(e,(puddleDamage.get(e)||0)+q.damage);
+ for(const [e,damage] of puddleDamage)hurtEnemy(s,e,damage*dt,0,'acid');
  for(const p of s.puddles)p.life-=dt;s.puddles=s.puddles.filter(p=>p.life>0);
 }
 export function receiveDamage(s,damage,st=stats(s),source=null){return receiveHit(s,st,{damage,source,fractional:!!source?.missionRoomStrength});}
@@ -319,13 +337,14 @@ export function step(s,dt,input={x:0,z:0}){
  syncSetState(s);if(!s.encounters)prepareEncounters(s);syncMutations(s);discoverEncounters(s);const challengeWasActive=!!s.encounters.active;
  if(challengeWasActive)isaacState(s).extraTime+=dt;else s.time+=dt;s.hitAgo+=dt;tickHabitatBossRegeneration(s,dt);const st=stats(s),length=Math.hypot(input.x,input.z)||1,pace=movementFactor(s,st)*enemyAcidPace(s),oldPlayer={...s.player};
  const springLeaping=combatTime(s)<(s.extraParts?.springLeapUntil||0);
- if(!springLeaping){if(s.world.heightAt)movePlayer(s,dt,input.x/Math.max(1,length)*st.speed*pace*dt,input.z/Math.max(1,length)*st.speed*pace*dt,st.overloaded);else move(s.world,s.player,input.x/Math.max(1,length)*st.speed*pace*dt,input.z/Math.max(1,length)*st.speed*pace*dt);}
+ if(!springLeaping){if(s.world.heightAt)movePlayer(s,dt,input.x/Math.max(1,length)*st.speed*pace*dt,input.z/Math.max(1,length)*st.speed*pace*dt,st.overloaded);else moveCreature(s,s.player,input.x/Math.max(1,length)*st.speed*pace*dt,input.z/Math.max(1,length)*st.speed*pace*dt);}
  containChallenge(s,oldPlayer);tickEnemyAcidPools(s,dt,(damage,source)=>receiveHit(s,st,{damage,cause:'acid-puddle',source,fractional:true}));if(s.dead)return;
- updateMotion(s,dt,distance(oldPlayer,s.player)>1e-6);tickCryoTrail(s);
+ const playerTravel=distance(oldPlayer,s.player);if(!springLeaping&&playerTravel>1e-6){s.playerStepDistance=(s.playerStepDistance||0)+playerTravel;const stride=1.4;if(s.playerStepDistance>=stride){const count=Math.floor(s.playerStepDistance/stride);s.playerStepDistance%=stride;s.playerStepIndex=(s.playerStepIndex||0)+count;s.events.push({type:'player-step',step:s.playerStepIndex,count,x:s.player.x,y:s.player.y??0,z:s.player.z});}}
+ updateMotion(s,dt,playerTravel>1e-6);tickCryoTrail(s);
  s.motion={x:dt?(s.player.x-oldPlayer.x)/dt:0,z:dt?(s.player.z-oldPlayer.z)/dt:0,pace};
  if(!challengeWasActive&&!s.exploration&&s.time>=180){const c=s.world.chunk(Math.floor(s.player.x/64),Math.floor(s.player.z/64)),key=c.cx+','+c.cz;if(distance(s.player,c.lair)<8&&!s.visitedLairs.has(key)){s.visitedLairs.add(key);spawnEnemy(s,'elite');s.events.push({type:'notice',text:'Вы потревожили логово'});}}
- if(!challengeWasActive){tickSurvivalBosses(s,(...args)=>spawnEnemy(s,...args));tickSurvivalHordes(s,dt,(...args)=>spawnEnemy(s,...args));if(s.overrun?.state!=='active'&&(!s.exploration||s.mode==='survival'))tickWaves(s,dt,(...args)=>spawnEnemy(s,...args));}
- if(!challengeWasActive){if(s.mission)missionStep(s);else tickExploration(s,dt,{spawn:(...args)=>spawnEnemy(s,...args),loot:()=>randomLoot(s,'elite')});}
+ if(!challengeWasActive){tickSurvivalElites(s,(...args)=>spawnEnemy(s,...args));tickSurvivalBosses(s,(...args)=>spawnEnemy(s,...args));tickSurvivalResponse(s,(...args)=>spawnEnemy(s,...args));if(s.overrun?.state!=='active'&&(!s.exploration||s.mode==='survival'))tickWaves(s,dt,(...args)=>spawnEnemy(s,...args));}
+ if(!challengeWasActive){if(s.mission)missionStep(s);else tickExploration(s,dt,{spawn:(...args)=>spawnEnemy(s,...args),loot:()=>randomLoot(s,'event')});}
  mark('prelude');
  const protectedNode=null,aiFrame=s.aiFrame=(s.aiFrame||0)+1;
  separateEnemies(s,dt);
@@ -335,30 +354,38 @@ export function step(s,dt,input={x:0,z:0}){
   if(tickMissionBoss(s,e,enemyDt,source=>receiveDamage(s,source?.damage??1,st,source),e.bossCombat?territoryTarget(s,e,s.player):s.player))continue;
   if(e.pickupSleepUntil>combatTime(s)){cancelEnemyAttack(e,combatTime(s));e.windup=null;continue;}
   if(tickVolatile(s,e,enemyDt,(q,d)=>hurtEnemy(s,q,d,0,'environment'),()=>receiveHit(s,st,{cause:'explosion',source:e})))continue;
-  const specialistHolding=tickEnemySpecialist(s,e,enemyDt,(parent,recipeId,side)=>spawnSpecialChild(s,parent,recipeId,side));
+  const specialistHolding=tickEnemySpecialist(s,e,enemyDt,(parent,recipeId,side)=>spawnSpecialChild(s,parent,recipeId,side),(companion,hunter)=>{
+   if(!(s.abilities.companions||[]).includes(companion))return false;
+   const replacement=destroySymbiont(s,companion,modifiers(s),DRONE_HUNTER_REPLACEMENT_DELAY);
+   s.events.push({type:'summon-death',id:companion.id,x:companion.x,y:(companion.y??0)+(companion.hover??1.5),z:companion.z,cause:'hunter',source:hunter.id,replacementAt:replacement.readyAt,replacementDelay:replacement.interval});return true;
+  });
   const fallback=protectedNode&&e.id%3===0?protectedNode:s.player;
   const target=consumableTarget(s,e,territoryTarget(s,e,s.exploration?missionEnemyTarget(s,e,fallback):fallback)),d=distance(e,target)||.001,enemySpeed=enemyPace(s,e)*(e.specialty==='shield-bearer'?.3:1);
+  const bossAim=e.enemyAttack?.warning;
+  turnBossFacing(e,bossAim?{x:e.x+bossAim.dx,z:e.z+bossAim.dz}:target,enemyDt,combatTime(s));
   const firingLane=e.assembly||e.role!=='ranged'||(s.world.lineClear?visibleBetween(s,e,target):clearSegment(s.world,e,target,.05));
-  let holding=false;
+  let holding=specialistHolding;
   let targetVisible;const canSeeTarget=()=>targetVisible??=visibleBetween(s,e,target);
-  if(e.assembly){if(specialistHolding){cancelEnemyAttack(e,combatTime(s));holding=true;}else if(target===s.player)holding=tickModularAttack(s,e,target,()=>receiveDamage(s,e.damage,st,e),canSeeTarget);else cancelEnemyAttack(e,combatTime(s));}
-  else if((target===s.player||target===protectedNode)&&(firingLane||e.windup))tickEnemyRanged(s,e,target);
-  const potentialRange=e.assembly&&target===s.player?enemyAttackRange(e,s):null,stopRange=potentialRange===null?null:(holding||d<=potentialRange+.75&&(s.world.lineClear?canSeeTarget():clearSegment(s.world,e,target,.05))?potentialRange:0);
-  if(s.exploration){if(!holding&&d>(stopRange??(e.role==='ranged'&&target===s.player&&firingLane?9:e.radius+.6)))navigateEnemy(s,e,target,e.speed*enemySpeed*slimePace(s,e)*(e.hitStagger>0?.1:1),enemyDt);}
-  else if(!holding&&d>(stopRange??(e.role==='ranged'?9:e.radius+.6))){const pace=enemySpeed*slimePace(s,e)*(e.hitStagger>0?.1:1),dx=(target.x-e.x)/d*e.speed*pace*enemyDt,dz=(target.z-e.z)/d*e.speed*pace*enemyDt,old={x:e.x,z:e.z};move(s.world,e,dx,dz,e.radius);if(distance(e,old)<.001)move(s.world,e,-dz,dx,e.radius);}
+  const potentialRange=e.assembly&&target===s.player?enemyAttackRange(e,s):null,bossPursuitRange=['boss','final'].includes(e.kind)?enemyContactRange(s,e):potentialRange,locomotionStop=bossPursuitRange??(e.role==='ranged'&&target===s.player&&firingLane?9:e.radius+.6),moveSpeed=e.speed*enemySpeed*slimePace(s,e)*(e.hitStagger>0?.1:1);
+  const locomotion=specialistHolding?{movementOwned:false,attackLocked:true,contactAllowed:false}:tickEnemyLocomotion(s,e,target,enemyDt,{speed:moveSpeed,stopDistance:locomotionStop});
+  if(e.assembly){if(locomotion.attackLocked){cancelEnemyAttack(e,combatTime(s));holding=true;}else if(target===s.player)holding=tickModularAttack(s,e,target,()=>receiveDamage(s,e.damage,st,e),canSeeTarget)||holding;else cancelEnemyAttack(e,combatTime(s));}
+  else if(!locomotion.attackLocked&&(target===s.player||target===protectedNode)&&(firingLane||e.windup))tickEnemyRanged(s,e,target);
+  const stopRange=potentialRange===null?null:(holding?potentialRange:d<=potentialRange+.75&&(s.world.lineClear?canSeeTarget():clearSegment(s.world,e,target,.05))?bossPursuitRange:0);
+  if(s.exploration){if(!locomotion.movementOwned&&!holding&&d>(stopRange??(e.role==='ranged'&&target===s.player&&firingLane?9:e.radius+.6)))navigateEnemy(s,e,target,moveSpeed,enemyDt);}
+  else if(!locomotion.movementOwned&&!holding&&d>(stopRange??(e.role==='ranged'?9:e.radius+.6))){const dx=(target.x-e.x)/d*moveSpeed*enemyDt,dz=(target.z-e.z)/d*moveSpeed*enemyDt,old={x:e.x,z:e.z};moveCreature(s,e,dx,dz,e.radius);if(distance(e,old)<.001)moveCreature(s,e,-dz,dx,e.radius);}
   const contactDistance=target===s.player?enemyContactRange(s,e):e.radius+1;
-  if(enemySpeed>0&&d<=contactDistance&&e.contact<=0&&(s.world.lineClear?canSeeTarget():visibleBetween(s,e,target))){if(target===s.player){if(!springContact(s,e))receiveDamage(s,e.damage??1,st,e);}else if(!e.assembly&&target===protectedNode)s.mission.targetHp-=e.damage;e.contact=1;}
+  if(locomotion.contactAllowed&&enemySpeed>0&&distance(e,target)<=contactDistance&&e.contact<=0&&visibleBetween(s,e,target)){if(target===s.player){if(!springContact(s,e))receiveDamage(s,e.damage??1,st,e);}else if(!e.assembly&&target===protectedNode)s.mission.targetHp-=e.damage;e.contact=e.contactInterval??1;}
  }
  mark('enemies');
- tickGuardian(s);tickHostileShots(s,dt,q=>receiveHit(s,st,{damage:q.damage??1,cause:'projectile',dx:q.dx,dz:q.dz,fractional:!!q.missionScaled||!!q.fractional}),(q,old,next)=>interceptHostileShot(s,q,old,next));
+ tickGuardian(s);tickHostileShots(s,dt,q=>receiveHit(s,st,{damage:q.damage??1,cause:'projectile',projectile:q,dx:q.dx,dz:q.dz,fractional:!!q.missionScaled||!!q.fractional}),(q,old,next)=>interceptHostileShot(s,q,old,next));
  const due=s.abilities.echoes.filter(q=>q.at<=combatTime(s));s.abilities.echoes=s.abilities.echoes.filter(q=>q.at>combatTime(s));for(const q of due){const p=s.arms.find(p=>p?.id===q.partId);if(p)attack(s,0,st,p);}
- s.enemySpatial=createSpatialIndex(s.enemies.filter(e=>combatEligible(s,e)));attack(s,dt,st);shotsStep(s,dt);tickEffects(s,dt,(e,d,source)=>hurtEnemy(s,e,d,0,source));s.enemies=s.enemies.filter(e=>e.hp>0);s.enemySpatial=null;
+ s.enemySpatial=createSpatialIndex(s.enemies.filter(e=>combatTargetable(s,e)));attack(s,dt,st);shotsStep(s,dt);tickEffects(s,dt,(e,d,source)=>hurtEnemy(s,e,d,0,source));s.enemies=s.enemies.filter(e=>e.hp>0);s.enemySpatial=null;
  mark('combat');
  tickConsumableDrops(s,st,(e,d,ignore,source)=>hurtEnemy(s,e,d,ignore,source));
  tickSetCollector(s);
- for(const q of s.xpDrops){const d=distance(q,s.player);if((d>=st.pickup&&!(q.setAttracted&&s.setsV2?.active.wanderer))||!surfaceReach(s,q,s.player))continue;q.x+=(s.player.x-q.x)*Math.min(1,dt*8);q.z+=(s.player.z-q.z)*Math.min(1,dt*8);if(s.world.heightAt)q.y=s.world.heightAt(q.x,q.z)??q.y??0;if(d<.8){addXP(s,q.value*XP_PICKUP_MULTIPLIER);s.events.push({type:'experience'});q.value=0;}}s.xpDrops=s.xpDrops.filter(q=>q.value);
+ for(const q of s.xpDrops){const d=groundDistance(s,q,s.player);if((d>=st.pickup&&!(q.setAttracted&&s.setsV2?.active.wanderer))||!surfaceReach(s,q,s.player))continue;q.x+=(s.player.x-q.x)*Math.min(1,dt*8);q.z+=(s.player.z-q.z)*Math.min(1,dt*8);if(s.world.heightAt)q.y=s.world.heightAt(q.x,q.z)??q.y??0;if(d<.8){const levels=addXP(s,q.value*XP_PICKUP_MULTIPLIER);if(!levels)s.events.push({type:'experience'});q.value=0;}}s.xpDrops=s.xpDrops.filter(q=>q.value);
  tickRecoveryDrops(s,st);tickExtraParts(s,dt,(e,d,source)=>hurtEnemy(s,e,d,0,source));tickHealth(s,st);tickIsaacCombat(s,dt,(e,d,source)=>hurtEnemy(s,e,d,0,source));containChallenge(s,s.player);if(!s.dead&&s.hp>0)tickChallenge(s,dt,(...args)=>spawnEnemy(s,...args));if(!challengeWasActive)tickTimedItems(s,()=>randomLoot(s,'normal'));
- if(s.hp<=0){s.dead=true;s.events.push({type:'notice',text:'Душа возвращается.'});}
+ if(s.hp<=0&&!s.dead){s.dead=true;s.events.push({type:'player-death',x:s.player.x,y:s.player.y??0,z:s.player.z},{type:'notice',text:'Душа возвращается.'});}
  tickOverrun(s,dt,(...args)=>spawnEnemy(s,...args),createPart);checkUnlocks(s);if(!s.dead&&!challengeWasActive&&s.mission)missionStep(s);trackAchievements(s);settleObjects(s,false);if(!s.dead){const items=autoPickup(s);if(items.length){s.events.push({type:'pickup',kind:'part',count:items.length,x:s.player.x,y:s.player.y??0,z:s.player.z});const equipped=items.filter(item=>installed(s).includes(item));s.events.push({type:'notice',text:items.length===1?`${CATALOG[items[0].key].name} · ${equipped.length?'установлено':'в инвентаре'}`:`Детали: ${equipped.length} установлено · ${items.length-equipped.length} в инвентаре`});}}
  mark('post');if(profile){const state=s.performanceTimings??={count:0};state.count++;for(const [name,ms]of Object.entries(profile.values)){const value=state[name]??={mean:0,max:0};value.mean+=(ms-value.mean)/state.count;value.max=Math.max(value.max,ms);}}
 }

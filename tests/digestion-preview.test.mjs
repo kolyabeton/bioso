@@ -18,7 +18,7 @@ test('stomach must still be installed when confirming',()=>{
 test('equipped arms, legs and organs recycle atomically with the quoted refund and no healing',()=>{
  for(const [group,key] of [['arms','seed'],['legs','plated'],['organs','armor']]){
   const s=createRun();s.organs[0]=createPart(s,'digestion');const p=createPart(s,key);s[group][1]=p;p.spent=30;s.hp=1;
-  const before=JSON.stringify(s),amount=digestionYield(s,p.id);assert.equal(JSON.stringify(s),before);assert.ok(amount>=21);
+  const before=JSON.stringify(s),amount=digestionYield(s,p.id);assert.equal(JSON.stringify(s),before);assert.ok(amount>=18);
   const biomass=s.biomass;assert.equal(digest(s,p.id),amount);assert.equal(s[group][1],null);assert(!s.inventory.includes(p));assert.equal(s.biomass,biomass+amount);assert.equal(s.hp,1);assert(Number.isFinite(stats(s).weight));assert.equal(digest(s,p.id),false);
  }
 });

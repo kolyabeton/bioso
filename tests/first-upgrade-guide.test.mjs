@@ -6,7 +6,7 @@ import {firstUpgradeGuide} from '../src/ui/first-upgrade-guide.js';
 test('first boss funds one real upgrade through pickup, equip and two digestions, only once',()=>{
  const s=createRun(undefined,'survival',12);s.enemies=[];
  const boss=spawnEnemy(s,'boss',{x:s.player.x,z:s.player.z});
- hurtEnemy(s,boss,1e9);const loot=s.ground.slice(0,3).map(q=>q.part);assert.equal(loot.filter(p=>p.key==='digestion').length,1);
+ hurtEnemy(s,boss,1e9);const loot=s.ground.slice(0,5).map(q=>q.part);assert.equal(loot.filter(p=>p.key==='digestion').length,1);
  for(const q of [...s.ground])assert.ok(pickup(s,q.id));
  assert.match(firstUpgradeGuide(s),/Установите желудок/);
  const organ=s.inventory.find(p=>p.key==='digestion');assert.ok(equip(s,organ.id,0));
