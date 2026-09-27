@@ -1,0 +1,32 @@
+vite v7.3.6 building client environment for production...
+transforming...
+
+/assets/ui/menu-art.png referenced in /assets/ui/menu-art.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/menu-art-desktop-v1.png referenced in /assets/ui/menu-art-desktop-v1.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/art/results-gardens-v1.png referenced in /assets/art/results-gardens-v1.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/materials/ceramic-worn-v1.jpg referenced in /assets/ui/materials/ceramic-worn-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/materials/metal-olive-v1.jpg referenced in /assets/ui/materials/metal-olive-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/materials/ceramic-green-v1.jpg referenced in /assets/ui/materials/ceramic-green-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/parts-atlas-transparent-v1.png referenced in /assets/ui/parts-atlas-transparent-v1.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/art/upper-gardens-v2.jpg referenced in /assets/art/upper-gardens-v2.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 346 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../tmp/bioso-mobile-perf-build-20260919/index.html                                           15.33 kB │ gzip:   5.59 kB
+../../../../../tmp/bioso-mobile-perf-build-20260919/assets/onest-cyrillic-wght-normal-DayYxulF.woff2     15.86 kB
+../../../../../tmp/bioso-mobile-perf-build-20260919/assets/onest-latin-wght-normal-Dun_Rd-l.woff2        33.76 kB
+../../../../../tmp/bioso-mobile-perf-build-20260919/assets/index-C6Zt7aFj.css                           177.03 kB │ gzip:  33.13 kB
+../../../../../tmp/bioso-mobile-perf-build-20260919/assets/index-BWXnqjgU.js                          1,963.87 kB │ gzip: 604.87 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.44s

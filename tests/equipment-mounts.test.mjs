@@ -7,16 +7,26 @@ import {CATALOG,BODIES,WEAPONS,LEGS} from '../src/catalog.js';
 import {createRun} from '../src/game.js';
 import {createPart} from '../src/assembly.js';
 import {creatureModel} from '../src/game-view.js';
+import {chassisModelId} from '../src/chassis-profiles.js';
 import {BODY_MODELS,partModelId,retireModel} from '../src/asset-models.js';
 import {CHASSIS_MATERIALS,CHASSIS_BODY_MATERIALS} from '../src/creature-materials.js';
 import {partArt} from '../src/ui/molecules.js';
 import {equipmentLayout} from '../src/equipment-mounts.js';
 const templates=new Map();
+test('three-legged chassis mount the third leg on the rear centerline',()=>{
+ for(const body of Object.keys(BODIES).filter(key=>BODIES[key].legs===3)){
+  const s=createRun();s.body=createPart(s,body);s.legs=Array.from({length:3},()=>createPart(s,'universal'));
+  const legs=equipmentLayout(s,{authoredChassis:true}).legs;
+  assert.equal(legs.length,3);assert(legs[0].position[0]>0&&legs[1].position[0]<0,body);
+  assert.equal(legs[0].position[2],.18);assert.equal(legs[1].position[2],.18);
+  assert.deepEqual(legs[2].position,[0,.65,-.78],body);assert.equal(legs[2].side,0);
+ }
+});
 test('body identity follows its inventory icon even with a saved legacy visual or another set',()=>{
  const ids=new Set();
  for(const key of Object.keys(BODIES)){
   const id=partModelId({key,setId:'chimera',visualId:'body-heavy'});
-  assert.equal(id,`body-${key}-v3`);assert(!ids.has(id));ids.add(id);
+  assert.equal(id,chassisModelId(key));assert(!ids.has(id),key+' must have a distinct chassis silhouette');ids.add(id);
  }
 });
 async function load(id){
@@ -30,11 +40,11 @@ async function load(id){
  })());
  return templates.get(id);
 }
-test('registered catalog items have nonempty real GLBs and only the authored brood fallback is shared',async()=>{
+test('registered catalog items have nonempty real GLBs and distinct equipment models',async()=>{
  const ids={};for(const [key,meta] of Object.entries(CATALOG)){
   let id;try{id=partModelId({key,setId:'wanderer'});}catch(error){assert.equal(key,'repairGland');assert.match(error.message,/No equipment model registered/);continue;}const model=await load(id),box=new T.Box3().setFromObject(model);
   assert(!box.isEmpty(),key);assert(box.getSize(new T.Vector3()).length()>0,key);
-  if(meta.kind!=='body'){ids[meta.kind]??=new Set();if(ids[meta.kind].has(id))assert.ok([['broodNode','organ-parasite'],['revivalCore','organ-reverseHeart-icon-v1']].some(pair=>pair[0]===key&&pair[1]===id),`${key} shares ${id}`);ids[meta.kind].add(id);}
+  if(meta.kind!=='body'){ids[meta.kind]??=new Set();assert.ok(!ids[meta.kind].has(id),`${key} shares ${id}`);ids[meta.kind].add(id);}
  }
 });
 test('real attachments fit every chassis, weapon, leg and additional six-leg configuration',async()=>{
@@ -45,7 +55,8 @@ test('real attachments fit every chassis, weapon, leg and additional six-leg con
   for(const g of model.userData.legs){
    const asset=g.children.find(o=>o.name.startsWith('asset:')),joint=g.getObjectByName('mounting-joint');assert(asset);assert(joint?.visible);const materials=new Set();asset.traverse(o=>{if(o.isMesh)for(const material of (Array.isArray(o.material)?o.material:[o.material]))if(material)materials.add(material);});assert.equal(joint.material.name,'Rusted inner mechanism');assert.equal(joint.material.userData.sourceModel,'leg-worker');assert.equal(joint.userData.materialSource,partModelId(s.legs[g.userData.slot]));
    const box=new T.Box3().setFromObject(asset);assert(Math.abs(box.min.y-.03)<1e-5,`${body}/${leg} floor ${box.min.y}`);
-   assert(box.getCenter(new T.Vector3()).x*g.position.x>g.position.x**2,`${body}/${leg} folds inwards`);
+   if(g.position.x)assert(box.getCenter(new T.Vector3()).x*g.position.x>g.position.x**2,`${body}/${leg} folds inwards`);
+   else assert(BODIES[body].legs===3&&g.userData.slot===2&&g.position.z<0&&box.getCenter(new T.Vector3()).z<0,`${body} rear leg must stay behind the chassis`);
   }
   const boxes=[...model.userData.arms.values()].map(g=>{const asset=g.children.find(o=>o.name.startsWith('asset:')),joint=g.getObjectByName('mounting-joint');assert.equal(asset?.name,'asset:'+partModelId(s.arms[g.userData.slot]));assert(joint?.visible);const materials=new Set();asset.traverse(o=>{if(o.isMesh)for(const material of (Array.isArray(o.material)?o.material:[o.material]))if(material)materials.add(material);});assert.equal(joint.material.name,'Rusted inner mechanism');assert.equal(joint.material.userData.sourceModel,'leg-worker');assert.equal(joint.userData.materialSource,partModelId(s.arms[g.userData.slot]));return new T.Box3().setFromObject(asset);});
   for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++)assert(!boxes[i].intersectsBox(boxes[j]),`${body}/${weapon} arms ${i},${j} overlap at rest ${JSON.stringify([boxes[i],boxes[j]])}`);
@@ -59,11 +70,21 @@ test('removing slots does not recenter remaining limbs, delayed loads cannot rev
  let assets=0;m.traverse(o=>{if(o.name.startsWith('asset:'))assets++;});assert.equal(assets,0);
 });
 
+test('shield plate keeps a textured forearm and cuff spanning the gap to its bearing',async()=>{
+ const s=createRun();s.body=createPart(s,'bastion');s.arms=[createPart(s,'shieldArm'),null,null];s.organs=[];
+ const model=creatureModel(s,{load});await model.userData.modelsReady;model.updateMatrixWorld(true);
+ const arm=model.userData.arms.get(s.arms[0].id),support=arm.getObjectByName('support'),cuff=arm.getObjectByName('cuff'),plate=arm.getObjectByName('asset:arm-shield');
+ assert(support.visible&&cuff.visible);assert.equal(support.material,CHASSIS_MATERIALS.steel);assert.equal(cuff.material,CHASSIS_MATERIALS.ceramic);
+ const supportBox=new T.Box3().setFromObject(support),cuffBox=new T.Box3().setFromObject(cuff),plateBox=new T.Box3().setFromObject(plate);
+ assert(supportBox.intersectsBox(cuffBox));assert(cuffBox.intersectsBox(plateBox));assert(supportBox.containsPoint(arm.getWorldPosition(new T.Vector3())));
+ retireModel(model);
+});
+
 test('every chassis visual variant remains connected through turns, recoil and melee extension',async()=>{
  for(const body of Object.keys(BODIES))for(const visualId of BODY_MODELS[body]){
   const s=createRun();s.body=createPart(s,body);s.body.visualId=visualId;s.arms=Array.from({length:BODIES[body].arms},()=>createPart(s,'seed'));s.legs=Array.from({length:6},()=>createPart(s,'universal'));s.organs=[];
   const model=creatureModel(s,{load});await model.userData.modelsReady;const rig=model.userData.structuralFrame;const bodyAsset=model.getObjectByName('asset:'+visualId);assert(bodyAsset);
-  let closedCore;bodyAsset.traverse(o=>{if(o.name===body+'-steel')closedCore=o;});assert(closedCore,'real closed inner chassis was not loaded');
+  const closedCore=bodyAsset.getObjectByName(body+'-steel');assert(closedCore,'real closed inner chassis was not loaded');
   const liner=model.getObjectByName('closed-body-liner');assert(liner);assert.equal(liner.visible,false,'closed authored chassis must hide the legacy filler');assert.equal(liner.material.transparent,false);assert(!model.children.some(o=>o.name.startsWith('asset:head-')),'icon chassis must not grow an unrelated head');
   for(const phase of [0,.5,1]){
    for(const arm of model.userData.arms.values()){arm.position.copy(arm.userData.rest);arm.position.z+=phase*.8;arm.rotation.set(phase*.7,phase*1.1,phase*.3);}

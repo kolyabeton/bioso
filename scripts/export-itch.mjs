@@ -2,10 +2,11 @@ import { build } from 'vite';
 import { mkdir, mkdtemp, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { resolve, relative, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { execFileSync } from 'node:child_process';
+import { packageGameZip } from './asset-build/archive.mjs';
 import { createHash } from 'node:crypto';
 import { prepareAssets, sizeReport, assertBudget } from './asset-build/assets.mjs';
 import { assetUrlPlugin, assetCssPlugin } from './asset-build/urls.mjs';
+import { compressBuild } from './compress-build.mjs';
 
 // An isolated export preserves the normal development build and frozen releases.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -28,6 +29,8 @@ try {
     css: { postcss: { plugins: [assetCssPlugin(manifest.urls)] } },
     build: { outDir, emptyOutDir: true },
   });
+  // Apply the approved delivery profile to every texture before packaging.
+  await compressBuild(outDir);
   const report = await sizeReport(outDir);
   assertBudget(report.bytes);
   // Same processed resources and relative URLs, with load-test routes enabled.
@@ -38,6 +41,7 @@ try {
     css: { postcss: { plugins: [assetCssPlugin(manifest.urls)] } },
     build: { outDir: join(destination, 'acceptance'), emptyOutDir: true },
   });
+  if (process.argv.includes('--with-acceptance')) await compressBuild(join(destination, 'acceptance'));
   for (const directory of [outDir, ...(process.argv.includes('--with-acceptance') ? [join(destination, 'acceptance')] : [])]) {
   for (const path of await listFiles(directory)) {
     if (!/\.(html|css|js)$/.test(path)) continue;
@@ -90,15 +94,14 @@ const extractedBytes = files.reduce((sum, file) => sum + file.bytes, 0);
 if (!files.some(file => file.name === 'index.html')) throw new Error('Missing root index.html');
 if (files.length > 1000 || extractedBytes > 500_000_000) throw new Error('itch.io archive limits exceeded');
 const archive = join(destination, `bioso-${playtest ? 'unlocked' : 'html5'}-${stamp}.zip`);
-execFileSync('/usr/bin/zip', ['-q', '-r', archive, '.', '-x', '*/.DS_Store', '.DS_Store'], { cwd: outDir });
-execFileSync('/usr/bin/unzip', ['-tq', archive]);
+const archiveEntryCount = packageGameZip(outDir, archive, files.map(file => file.name));
 const archiveBytes = (await stat(archive)).size;
 const sha256 = createHash('sha256').update(await readFile(archive)).digest('hex');
-const report = { archive, outDir, fileCount: files.length, extractedBytes, archiveBytes, sha256, files };
+const report = { archive, outDir, fileCount: files.length, archiveEntryCount, extractedBytes, archiveBytes, sha256, files };
 await writeFile(join(destination, 'manifest.json'), JSON.stringify(report, null, 2) + '\n');
 await writeFile(join(destination, 'UPLOAD.txt'),
   `BIOSO / itch.io HTML5\n\nUpload: ${archive}\n` +
   'Kind of project: HTML\nMark the ZIP: This file will be played in the browser\n' +
   'Embed in page: 390 x 844\nEnable: Mobile friendly, Fullscreen button, Click to play\n' +
   'The ZIP contains index.html at its root and document-relative runtime asset URLs.\n');
-console.log(JSON.stringify({ archive, outDir, fileCount: files.length, extractedBytes, archiveBytes, sha256 }, null, 2));
+console.log(JSON.stringify({ archive, outDir, fileCount: files.length, archiveEntryCount, extractedBytes, archiveBytes, sha256 }, null, 2));

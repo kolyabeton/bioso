@@ -1,0 +1,38 @@
+[
+  {
+    "key": "demolition",
+    "hullEdges": 2760,
+    "nonmanifoldEdges": 0,
+    "degenerateTriangles": 0,
+    "allPBRImagesMatchCanonical": true,
+    "finiteAttributes": true,
+    "headSuppressedById": true
+  },
+  {
+    "key": "regulator",
+    "hullEdges": 2760,
+    "nonmanifoldEdges": 0,
+    "degenerateTriangles": 0,
+    "allPBRImagesMatchCanonical": true,
+    "finiteAttributes": true,
+    "headSuppressedById": true
+  },
+  {
+    "key": "sentinel",
+    "hullEdges": 2760,
+    "nonmanifoldEdges": 0,
+    "degenerateTriangles": 0,
+    "allPBRImagesMatchCanonical": true,
+    "finiteAttributes": true,
+    "headSuppressedById": true
+  },
+  {
+    "key": "assembler",
+    "hullEdges": 2760,
+    "nonmanifoldEdges": 0,
+    "degenerateTriangles": 0,
+    "allPBRImagesMatchCanonical": true,
+    "finiteAttributes": true,
+    "headSuppressedById": true
+  }
+]

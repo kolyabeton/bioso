@@ -3,6 +3,7 @@ import {createPart,stats} from '../assembly.js';
 import {SETS} from '../systems/sets-loot.js';
 import {syncSetState} from '../systems/sets/bonuses.js';
 import {tickEffects} from '../systems/effects.js';
+import {HERO_HP_PER_SEGMENT} from '../systems/health-scale.js';
 
 export function prepareSetReview(s,params=new URLSearchParams(location.search)){
  const id=SETS[params.get('set')]?params.get('set'):'broodmother',count=Math.max(1,Math.min(4,Number(params.get('count'))||3));
@@ -18,5 +19,5 @@ export function prepareSetReview(s,params=new URLSearchParams(location.search)){
  if(params.get('phase')==='active'){
   s.setsV2.meleeUntil=3;s.setsV2.rangedUntil=3;s.setsV2.broodUntil=4;
  }
- if(params.get('phase')==='wounded'){s.hp=Math.max(.5,s.hp-1);s.health.missing=stats(s).hp-s.hp;}
+ if(params.get('phase')==='wounded'){s.hp=Math.max(HERO_HP_PER_SEGMENT,s.hp-HERO_HP_PER_SEGMENT);s.health.missing=stats(s).hp-s.hp;}
 }

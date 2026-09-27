@@ -50,9 +50,9 @@ test('ground quick equip accepts a second identical organ exactly once and body 
 
 test('duplicate passive organs add their full numeric effects except stomachs',()=>{
  const s=createRun();
- s.organs=parts(s,'stabilizer');near(stats(s).projectile,1.6);
+ s.organs=parts(s,'stabilizer');near(stats(s).projectile,1);near(stats(s).reloadReduction,.3);
  s.organs=parts(s,'accelerator');near(stats(s).rate,.3);
- s.organs=parts(s,'regen');near(stats(s).regenDelay,7.5);
+ s.organs=parts(s,'regen');near(stats(s).regenPerSecond,.02);
  s.organs=parts(s,'armor');assert.equal(stats(s).armor,2.5);
  const target=createPart(s,'seed');s.inventory.push(target);
  s.organs=parts(s,'digestion');const digestionYieldOnce=digestionYield(s,target.id);
@@ -62,7 +62,7 @@ test('duplicate passive organs add their full numeric effects except stomachs',(
 
 test('duplicate slime snapshots on attack while wombs produce independently',()=>{
  const s=createRun(),hand=s.arms[0];s.organs=parts(s,'slime');
- const slimed={kind:'normal'};isaacHit(s,slimed,10,prepareIsaacAttack(s,hand,{}));near(slimePace(s,slimed),.8);
+ const slimed={kind:'normal'};isaacHit(s,slimed,10,prepareIsaacAttack(s,hand,{}));near(slimePace(s,slimed),.98);
  s.organs=parts(s,'parasite');s.enemies=[{id:1,x:5,y:0,z:0,hp:10000,radius:1,kind:'normal'}];for(let i=0;i<40;i++)tickIsaacCombat(s,.05,()=>{});
  assert.equal(s.isaac.larvae.length,4);
 });
@@ -75,7 +75,7 @@ test('parasite organs preserve each rank damage in automatic broods',()=>{
 });
 
 test('duplicate attack organs retain their contributions; mirrors add up their resonance',()=>{
- const common=createRun();common.arms=[createPart(common,'seed')];common.organs=parts(common,'commonNerve');common.enemies=[{id:1,x:0,y:0,z:2,hp:1000,maxHp:1000,kind:'normal',armor:0,radius:.5,speed:0,contact:99,damage:1,born:0,xp:0}];
+ const common=createRun();common.arms=[createPart(common,'harpoon')];common.organs=parts(common,'commonNerve');common.enemies=[{id:1,x:0,y:0,z:2,hp:1000,maxHp:1000,kind:'normal',armor:0,radius:.5,speed:0,contact:99,damage:1,born:0,xp:0}];
  const base=weaponStats(common,common.arms[0]).damage;attack(common,0);near(common.shots[0].w.damage,base*1.5);
  const heart=createRun();heart.organs=parts(heart,'reverseHeart');heart.enemies=[{hp:1000,x:1,y:0,z:0,kind:'normal'}];heal(heart,stats(heart).hp);let pulse=0;tickIsaacCombat(heart,0,(e,d)=>pulse+=d);near(pulse,weaponStats(heart,heart.arms[0]).damage*4);
  const mirror=createRun();mirror.organs=parts(mirror,'mirrorGland');mirror.organs[0].tier=1;mirror.organs[1].tier=5;near(resonanceBonus(mirror),.06);mirror.organs=[mirror.organs[1]];near(resonanceBonus(mirror),.05);

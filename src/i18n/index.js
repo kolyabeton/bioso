@@ -3,6 +3,7 @@ import achievementEnglish from './achievements-en.json' with {type:'json'};
 import setEnglish from './sets-en.json' with {type:'json'};
 import {SURVIVAL_ACHIEVEMENT_TRANSLATIONS} from '../systems/survival-achievements.js';
 const english={...baseEnglish,...achievementEnglish,...setEnglish,...SURVIVAL_ACHIEVEMENT_TRANSLATIONS,
+ 'Сборщик':'Assembler',
  'За всё время в выживании':'Across survival runs','За забег':'Per run',
  'Только в выживании.':'Survival only.',
  'Прогресс миссий не учитывается.':'Mission progress does not count.'};

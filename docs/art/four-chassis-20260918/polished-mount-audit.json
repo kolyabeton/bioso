@@ -1,0 +1,38 @@
+[
+  {
+    "key": "demolition",
+    "arms": 3,
+    "legs": 4,
+    "organs": 3,
+    "finitePointsAndUnitNormals": true,
+    "uniquePorts": true,
+    "pass": true
+  },
+  {
+    "key": "regulator",
+    "arms": 2,
+    "legs": 3,
+    "organs": 4,
+    "finitePointsAndUnitNormals": true,
+    "uniquePorts": true,
+    "pass": true
+  },
+  {
+    "key": "sentinel",
+    "arms": 2,
+    "legs": 5,
+    "organs": 3,
+    "finitePointsAndUnitNormals": true,
+    "uniquePorts": true,
+    "pass": true
+  },
+  {
+    "key": "assembler",
+    "arms": 3,
+    "legs": 3,
+    "organs": 5,
+    "finitePointsAndUnitNormals": true,
+    "uniquePorts": true,
+    "pass": true
+  }
+]

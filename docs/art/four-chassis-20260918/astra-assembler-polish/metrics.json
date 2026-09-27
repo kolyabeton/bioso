@@ -1,0 +1,15 @@
+[
+  {
+    "key": "assembler",
+    "file": "body-assembler-astra5-v3.glb",
+    "bytes": 2386572,
+    "triangles": 27900,
+    "materials": 4,
+    "textures": 4,
+    "bounds": [
+      1.669999957084656,
+      0.677339643239975,
+      1.298367738723755
+    ]
+  }
+]

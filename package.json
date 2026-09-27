@@ -9,6 +9,7 @@
     "build:acceptance": "node scripts/build-game.mjs --acceptance",
     "export:itch": "node scripts/export-itch.mjs",
     "export:unlocked": "node scripts/export-itch.mjs --unlocked",
+    "compress:build": "node scripts/compress-build.mjs",
     "verify:assets": "node scripts/verify-assets.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "assets": "node scripts/export-assets.mjs",

@@ -22,7 +22,7 @@ export function createForestAmbientView(scene){
  const shadowMaterial=new T.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{},vertexShader:`varying vec2 p; void main(){p=uv*2.0-1.0;gl_Position=projectionMatrix*modelViewMatrix*instanceMatrix*vec4(position,1.0);}`,fragmentShader:`varying vec2 p;void main(){float a=pow(max(0.0,1.0-dot(p,p)),2.0)*.34;gl_FragColor=vec4(.09,.12,.13,a);}`});
  const shadows=new T.InstancedMesh(new T.PlaneGeometry(1,1),shadowMaterial,160);shadows.name='forest-contact-shadows';shadows.frustumCulled=false;shadows.instanceMatrix.setUsage(T.DynamicDrawUsage);root.add(shadows);
  function put(mesh,i,x,y,z,sx,sy,sz,rx=0,ry=0){pose.position.set(x,y,z);pose.rotation.set(rx,ry,0);pose.scale.set(sx,sy,sz);pose.updateMatrix();mesh.setMatrixAt(i,pose.matrix);}
- function update(s,dt,quality,motion){
+ function update(s,dt,quality,motion,particleScale=1){
   tier=quality;reduced=motion;frame=state.update(s,dt);root.visible=frame.active;
   uniforms.forestTime.value=frame.time;uniforms.forestWind.value=!reduced?frame.strength:0;uniforms.forestHero.value.set(s.player.x,s.player.z);uniforms.forestMotion.value=reduced?0:1;
   if(!frame.active){flock.count=dust.count=shadows.count=0;return frame;}
@@ -43,14 +43,19 @@ export function createForestAmbientView(scene){
    const flyby=!frame.combat&&Math.sin(t*.18+b.i*1.7)>.985;
    if(dt>0&&!reduced&&!b.flying&&b.cooldown===0&&(scatter||near&&!b.reacted||flyby)){
     b.flying=true;b.age=0;b.reacted=!!near;b.cooldown=18+b.i*2;
-    if(!near){b.x=p.x-16-b.i;b.z=p.z-9+b.i*2;}
+    if(s.guideHologram){b.x=p.x-5-b.i*.3;b.z=p.z-.7+b.i*.3;}
+    else if(!near){b.x=p.x-16-b.i;b.z=p.z-9+b.i*2;}
    }
    if(b.flying){b.age+=dt;if(b.age>8)b.flying=false;}
-   if(reduced||b.i>=limits.birds||!b.flying)continue;
-   put(flock,count++,b.x+b.age*(3.6+frame.strength),1.3+Math.min(5,b.age*2)+Math.sin(b.age*1.5)*.35,b.z+b.age*.8,.65,.65,.65,0,1.35);
+   // A zero decoration scale is the intentionally quiet mobile-low mode.
+   // Keep the ambient state and contact shadows alive, but skip tiny flying
+   // silhouettes that shimmer at phone resolution.
+   if(reduced||particleScale<=0||b.i>=limits.birds||!b.flying)continue;
+   if(s.guideHologram)put(flock,count++,b.x+b.age*2,(p.y??0)+1.1+Math.sin(b.age*1.5)*.2,b.z+b.age*.08,.35,.35,.35,0,1.35);
+   else put(flock,count++,b.x+b.age*(3.6+frame.strength),1.3+Math.min(5,b.age*2)+Math.sin(b.age*1.5)*.35,b.z+b.age*.8,.65,.65,.65,0,1.35);
   }
   previousCombat=frame.combat;flock.count=count;flock.instanceMatrix.needsUpdate=true;
-  dust.count=reduced?0:Math.floor(limits.particles*(frame.combat?.5:1));
+  dust.count=reduced?0:Math.floor(limits.particles*particleScale*(frame.combat?.5:1));
   for(let i=0;i<dust.count;i++){
    const age=(t*(.13+frame.strength*.07)+i*.618)%1,trail=i%5===0&&Math.hypot(s.motion?.x||0,s.motion?.z||0)>.1;
    const x=trail?p.x+(i%3-1)*.45:p.x+((i*7.13+t*frame.strength*.9)%26)-13;

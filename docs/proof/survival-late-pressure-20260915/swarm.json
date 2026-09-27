@@ -1,0 +1,54 @@
+{
+  "method": "Actual Survival response director, spawned enemies, player loadout and renderer.",
+  "build": "swarm",
+  "time": 900.06,
+  "response": {
+    "nextAt": 990,
+    "index": 1,
+    "pending": null,
+    "retryAt": 0
+  },
+  "squad": [
+    {
+      "id": 27,
+      "recipeId": "robo-bee",
+      "kind": "elite",
+      "specialty": "drone-hunter",
+      "leader": true
+    },
+    {
+      "id": 28,
+      "recipeId": "shield-bearer",
+      "kind": "normal",
+      "specialty": "shield-bearer",
+      "leader": false
+    },
+    {
+      "id": 29,
+      "recipeId": "acid-spitter",
+      "kind": "normal",
+      "specialty": null,
+      "leader": false
+    }
+  ],
+  "companions": [
+    {
+      "id": "drone-29-30",
+      "source": "drone-29"
+    },
+    {
+      "id": "drone-30-31",
+      "source": "drone-30"
+    }
+  ],
+  "pressureAt30": {
+    "lateMinutes": 15,
+    "damage": 1.9,
+    "attackRate": 1.525,
+    "speed": 1.225,
+    "health": 1,
+    "count": 1.45,
+    "live": 1.3,
+    "eliteCap": 11
+  }
+}

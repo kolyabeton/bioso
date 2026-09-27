@@ -1,0 +1,32 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createWorldRun} from '../src/world-run.js';
+import {beginEncounter} from '../src/game.js';
+import {stageDungeonReview,leaveDungeonReview} from '../src/dungeon-review-state.js';
+import {availableEncounter,layerEncounters} from '../src/systems/events/proximity.js';
+import {takeDeal} from '../src/systems/events/altar.js';
+import {filteredMapMarkers} from '../src/ui/map.js';
+import {eventObstacles} from '../src/gameplay-modules/event-collision.js';
+import {visibleEventMarkers} from '../src/ui/event-marker-visibility.js';
+import {insideDungeonLayout} from '../src/dungeon-layout.js';
+
+for(const [key,type,deal,level] of [['roots','altar_organs','organs',10],['catacombs','altar','fuse',17]])test(`${key}: altar is dungeon-only, usable at entry level and consumed across return trips`,()=>{
+ const s=createWorldRun(undefined,'survival',20317),altar=s.encounters.nodes.find(n=>n.type===type);
+ s.level=99;s.time=9999;
+ assert(!availableEncounter(s,altar));assert(!layerEncounters(s).includes(altar));
+ assert(!filteredMapMarkers(s).some(n=>n.type===type));
+ const dungeon=stageDungeonReview(s,key);
+ assert.equal(s.level,level);assert(availableEncounter(s,altar));
+ assert(insideDungeonLayout(dungeon.tunnelGraph,altar,2.4));
+ assert.equal(layerEncounters(s).length,2);
+ assert.equal(eventObstacles(s).length,2);
+ Object.assign(s.player,altar.approach);
+ assert(visibleEventMarkers(s).includes(altar));
+ const hand=s.arms[0];assert(takeDeal(s,altar.id,deal,hand.id));
+ if(deal==='fuse')assert(hand.fused&&hand.permanentBound);
+ assert.equal(altar.state,'complete');assert(!takeDeal(s,altar.id,deal,hand.id));
+ assert(leaveDungeonReview(s,dungeon));
+ assert(!availableEncounter(s,altar));assert(!filteredMapMarkers(s).some(n=>n.type===type));
+ assert(beginEncounter(s,dungeon.id));assert.equal(altar.state,'complete');
+ assert(!takeDeal(s,altar.id,deal,hand.id));
+});

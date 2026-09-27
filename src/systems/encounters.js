@@ -1,3 +1,4 @@
+import {collectBiomass} from './survival-endgame.js';
 import {createPart} from '../assembly.js';
 import {rollRarity,rollAffixes,recordReward} from './sets-loot.js';
 import {encounterRewardTier} from './events/rewards.js';
@@ -35,6 +36,11 @@ export function prepareEncounters(s){
  let eventLevelIndex=0;
  for(const [i,{type,copy}]of plan.entries()){
   const d=ENCOUNTERS[type];let position=null,placedTile=null;
+  if(s.mode==='survival'&&s.world.flat&&['altar_organs','altar'].includes(type)){
+   const dungeonType=type==='altar_organs'?'dungeon_roots':'dungeon_catacombs',level=EVENTS[dungeonType].recommended;
+   nodes.push({id:'encounter-'+type,type,dungeonId:'encounter-'+dungeonType,recommended:level,unlockLevel:level,x:0,y:0,z:0,radius:d.radius||1.4,state:'ready',discovered:false,rewards:[],deals:[d.deal],progress:0,claimed:false,adapted:false,dungeon:false});
+   continue;
+  }
   // Flat survival spreads encounters across tiles with at most two objects per tile; legacy maps retain their placement.
   // Larger sealed arenas need more placement candidates to retain all three tiers.
   for(let attempt=0;attempt<(type==='sealed'&&s.world.flat?20000:2000);attempt++){
@@ -80,9 +86,18 @@ export function eventReward(s,key,tier){
  return part;
 }
 export {openSecret,secretTarget} from './secrets/index.js';
+function rewardDropPoint(s,n){
+ const dx=s.player.x-n.x,dz=s.player.z-n.z,d=Math.hypot(dx,dz),base=d>.001?Math.atan2(dz,dx):s.rng()*Math.PI*2;
+ for(let i=0;i<72;i++){
+  const angle=base+(i?Math.ceil(i/2)*(i%2?1:-1)*Math.PI/36:0),x=n.x+Math.cos(angle)*4,z=n.z+Math.sin(angle)*4,y=s.world.heightAt?.(x,z)??n.y??0;
+  if(Number.isFinite(y)&&(!s.world.walkable||s.world.walkable(x,z,.45)))return{x,y,z};
+ }
+ // Keep the reward outside the event model even in a fully blocked fixture.
+ return{x:n.x+Math.cos(base)*4,y:n.y??0,z:n.z+Math.sin(base)*4};
+}
 export function claimEncounter(s,id,index){const n=s.encounters?.nodes.find(n=>n.id===id);if(!n||n.state!=='reward'||n.claimed||!near(s,n,4)||!Number.isInteger(index)||!n.rewards[index])return false;
  const key=n.rewards[index];if(!partAvailable(s.profile,key))return false;
- n.claimed=true;n.state='complete';s.ground.push({id:++s.entityId,x:n.x,y:n.y,z:n.z,part:eventReward(s,key,encounterRewardTier(s,n))});if(n.type==='slab')s.biomass+=30;
+ const point=rewardDropPoint(s,n);n.claimed=true;n.state='complete';s.ground.push({id:++s.entityId,...point,part:eventReward(s,key,encounterRewardTier(s,n))});if(n.type==='slab')collectBiomass(s,30);
  if(!s.profile.unlocked.includes(key)){s.profile.unlocked.push(key);s.events.push({type:'unlock',text:'Открыто: '+CATALOG[key].name});}return true;
 }
 export {dealAllowed,takeDeal} from './events/altar.js';

@@ -13,7 +13,7 @@ import {itemInspectorData} from '../src/ui/item-inspector-data.js';
 const run=()=>createRun(undefined,'survival',904);
 
 test('hand categories match the combat, ranged and projectile contracts',()=>{
- assert.deepEqual(compatibleHandKeys('melee'),['claws','hammer','drill','whip','fangs']);
+ assert.deepEqual(compatibleHandKeys('melee'),['claws','hammer','shieldArm','drill','whip','fangs']);
  assert.deepEqual(compatibleHandKeys('ranged'),['harpoon','pistol','seed','shotgun','needle','rocket','arc','acid']);
  assert.deepEqual(compatibleHandKeys('flyingProjectile'),['harpoon','pistol','seed','shotgun','needle','rocket','acid']);
  assert.deepEqual(compatibleHandKeys('directProjectile'),['harpoon','pistol','seed','shotgun','needle']);
@@ -67,7 +67,7 @@ test('built-in and learned ricochets travel as one chain through unique targets'
 test('short and detailed cards keep compatibility metadata out of player-facing copy',()=>{
  const s=run();s.arms=[createPart(s,'pistol'),createPart(s,'arc'),createPart(s,'drone')];s.choices=[{id:'projectiles.1'}];
  const card=abilityCards(s)[0],html=abilityTree(card,undefined,s);
- assert.equal(card.compatibilityCategory,'снаряды');assert.equal(abilityCompatibilitySummary('tempo.2'),'Скорость снарядов: снаряды · Сокращение ожидания после крита: оружие');
+ assert.equal(card.compatibilityCategory,'снаряды');assert.equal(abilityCompatibilitySummary('tempo.2'),'Скорость снарядов: снаряды · Дальность оружия: оружие');
  assert.doesNotMatch(html,/Категория:|Совместимое оружие:|Сейчас влияет на|Опылитель/);
 });
 
@@ -78,9 +78,13 @@ test('item compatibility excludes inventory and disabled hands from the current 
  const spare=createPart(s,'stabilizer');assert.equal(itemInspectorData(s,spare).rows.some(row=>row.label==='Сейчас влияет на'),false);
 });
 
-test('return nerve supports marker, seeder, spreader and injector without exposing the list in item rows',()=>{
- assert.deepEqual(itemCompatibleHandKeys('returnNerve'),['pistol','seed','shotgun','needle']);
+test('return nerve supports winch, marker, seeder, spreader and injector without exposing the list in item rows',()=>{
+ assert.deepEqual(itemCompatibleHandKeys('returnNerve'),['pistol','seed','shotgun','needle','harpoon']);
  const s=run(),reverser=createPart(s,'returnNerve');s.organs=[reverser];
  for(const key of itemCompatibleHandKeys('returnNerve')){s.arms=[createPart(s,key)];assert.deepEqual(itemAffectedHandNames(s,'returnNerve'),[CATALOG[key].name]);}
  assert.equal(itemInspectorData(s,reverser).rows.some(row=>['Категория','Совместимое оружие'].includes(row.label)),false);
+});
+
+test('synchronizer supports spreader, winch, injector and courier',()=>{
+ assert.deepEqual(itemCompatibleHandKeys('commonNerve'),['shotgun','harpoon','needle','rocket']);
 });

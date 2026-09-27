@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 
 test('nine generated GLBs have valid containers, geometry and expected socket',async()=>{
-  const base=new URL('../public/assets/models/',import.meta.url);
+  const base=new URL('../old_source/assets/models/',import.meta.url);
   const manifest=JSON.parse(await readFile(new URL('manifest.json',base),'utf8'));
   assert.equal(manifest.length,9);
   for(const item of manifest){

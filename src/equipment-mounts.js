@@ -7,6 +7,11 @@ export function equipmentLayout(s,{authoredChassis=false}={}){
  return {
   wide,
   legs:Array.from({length:legs},(_,slot)=>{
+   if(legs===3){
+    const side=slot===2?0:slot===0?1:-1;
+    const frontWidth=authoredChassis?Math.max(.54,(CHASSIS_PROFILES[s.body?.key]?.mountWidth??.39)+.15):.45;
+    return {slot,side,position:[side*frontWidth,.65,slot===2?-.78:.18]};
+   }
    const side=slot%2?-1:1,row=Math.floor(slot/2);
    const z=legRows<=1?0:(row/(legRows-1)-.5)*legDepth;
    let x=authoredChassis?(legs>2?.48:.45):.45*wide;

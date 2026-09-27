@@ -31,13 +31,13 @@ test('root Warden keeps its separate circular ground slam',()=>{
  assert.equal(w.mode,'area');assert.equal(w.radius,3.8*3);
 });
 
-test('opening habitat deals at most half a heart through contact, melee and phase-two shots',()=>{
+test('opening habitat uses unified hard boss damage through contact, melee and phase-two shots',()=>{
  const s=createWorldRun(undefined,'survival',42),e=s.enemies.find(q=>q.id===s.introBossId);
- assert.equal(e.damage,.5);e.territory.state='engaged';s.player={x:e.x,y:e.y,z:e.z+1};
- const hit=()=>{s.hp=2;s.health.invulnerableUntil=0;receiveDamage(s,e.damage,{hp:2,armor:0,dodge:0},e);assert.equal(s.hp,1.5);};
+ assert.equal(e.damage,2);e.territory.state='engaged';s.player={x:e.x,y:e.y,z:e.z+1};
+ const hit=()=>{s.hp=4;s.health.invulnerableUntil=0;receiveDamage(s,e.damage,{hp:4,armor:0,dodge:0},e);assert.equal(s.hp,2);};
  hit();
  for(const index of [0,1,2]){
-  e.hp=e.maxHp*.5;e.enemyAttack={index,phase:2,readyAt:0,warning:null};s.time+=10;
+  e.hp=e.maxHp*.5;e.enemyAttack={index,phase:2,readyAt:0,warning:null};s.player={x:e.x,y:e.y,z:e.z+1};s.time+=10;
   let hits=0;const strike=()=>{hits++;hit();};
   tickModularAttack(s,e,s.player,strike,true);
   assert.ok(e.enemyAttack.warning);s.time=e.enemyAttack.warning.at;
@@ -45,8 +45,8 @@ test('opening habitat deals at most half a heart through contact, melee and phas
   if(index<2)assert.equal(hits,1);
  }
  assert.equal(s.hostileShots.length,10);
- assert.ok(s.hostileShots.every(q=>q.damage>0&&q.damage<=.5));
- assert.ok(s.enemies.filter(q=>q.habitat&&q!==e&&q.habitatRank!==4).every(q=>q.damage>.5));
+ assert.ok(s.hostileShots.every(q=>q.damage>0&&q.damage<=.7));
+ assert.ok(s.enemies.filter(q=>q.habitat&&q!==e).every(q=>q.damage===2));
 });
 test('intro boss takes 8–11 seconds with one unupgraded starter claw',()=>{
  const s=createRun(undefined,'survival',20317),e=spawnEnemy(s,'boss',{x:1,z:0});

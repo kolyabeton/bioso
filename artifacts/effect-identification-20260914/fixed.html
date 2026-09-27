@@ -1,0 +1,26 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Землекоп — проверка исправления</title>
+<style>body{margin:0;background:#17201e;color:#eef4ee;font:16px system-ui}header{padding:20px}main{display:flex}section{width:33.333%;text-align:center}canvas{display:block;width:100%;height:430px}output{display:block;font:13px monospace;padding:12px}small{color:#afbeb6}</style>
+<header>Землекоп после исправления · штатная симуляция и игровые модели/VFX · подготовленная сцена без звука</header><main></main>
+<script type="module">
+import * as T from 'three';
+import {createSoulFxView} from '/src/systems/soul-fx-view.js';
+import {createEnemyAssemblyView} from '/src/enemy-assembly-view.js';
+import {createRun,spawnEnemy,step} from '/src/game.js';
+import {assignEnemyAssembly} from '/src/systems/enemy-assembly.js';
+import {paintedTerrain} from '/src/painterly-stage.js';
+const cases=[['Подготовка без пламени',1.2],['Один самоподрыв',2.4],['После взрыва',4]];
+const views=cases.map(([label,duration])=>{
+ const section=document.createElement('section');section.innerHTML=`<h3>${label}</h3><small>${duration.toFixed(1)} с после начала проверки</small><canvas></canvas><output></output>`;document.querySelector('main').append(section);
+ const r=new T.WebGLRenderer({canvas:section.querySelector('canvas'),antialias:true});r.setPixelRatio(1);r.setSize(section.clientWidth,430,false);r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=1.05;
+ const scene=new T.Scene();scene.background=new T.Color('#25312d');const w=section.clientWidth/430;const camera=new T.OrthographicCamera(-4*w,4*w,4,-4,.1,60);camera.position.set(0,14,13.1);camera.lookAt(0,0,3.1);
+ scene.add(new T.HemisphereLight('#d6e5ef','#65737b',1.5));const sun=new T.DirectionalLight('#ffe3b4',2.5);sun.position.set(-4,9,4);scene.add(sun);
+ scene.add(new T.Mesh(new T.PlaneGeometry(30,30).rotateX(-Math.PI/2),new T.MeshStandardMaterial({color:'#344139',roughness:1})));
+ const soul=createSoulFxView(scene),enemies=createEnemyAssemblyView(scene,{renderer:r,camera});
+ const s=createRun(undefined,'survival',123);s.world=paintedTerrain(123);s.player={...s.player,x:0,y:0,z:0};s.time=120;s.arms=[];s.health.invulnerableUntil=Infinity;s.waves.credit=-1e6;s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;
+ const e=spawnEnemy(s,'normal',{x:0,z:5},'mass',120,{promote:false});assignEnemyAssembly(s,e,120,{missionRole:'mass',missionRecipeId:'digger'});e.volatile=true;e.hp=e.maxHp=100;e.speed=3;
+ let blasts=0;for(let i=0;i<Math.round(duration*60);i++){step(s,1/60);for(const event of s.events){if(event.type==='volatile-blast')blasts++;soul.event(event);}s.events.length=0;soul.update(1/60,false,s);}
+ function render(){enemies.update(s.enemies.filter(e=>e.hp>0),s.player,s.time,1,false,camera);r.render(scene,camera);const info=enemies.info();section.querySelector('output').textContent=`Взрывов: ${blasts} · HP: ${e.hp} · частиц: ${soul.info().particles} · заглушек: ${info.enemyFallbackParts}`;}
+ return {render};
+});
+let frames=0;function frame(){for(const v of views)v.render();if(++frames<300)setTimeout(()=>requestAnimationFrame(frame),100);}frame();
+</script></html>

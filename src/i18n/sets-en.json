@@ -59,5 +59,8 @@
   "Точный залп: каждый третий залп снарядов наносит на": "Precision volley: every third projectile volley deals",
   "Общий затвор: атаки трёх разных видов оружия перезаряжают все магазины. Не чаще раза в": "Shared breech: attacks from three different weapons reload all magazines. At most once every",
   "Три вида оружия должны атаковать в течение": "Three weapons must attack within",
-  "с следующая атака оружием выпускает электрический импульс радиусом": "s, the next weapon attack releases an electric pulse with a radius of"
+  "с следующая атака оружием выпускает электрический импульс радиусом": "s, the next weapon attack releases an electric pulse with a radius of",
+  "Живые ткани: непрерывно восстанавливает 1% максимального здоровья в секунду.": "Living tissue: continuously restores 1% of maximum health per second.",
+  "Не требует Ремонтника. Полученный урон не прерывает восстановление. Складывается с остальными источниками регенерации и соблюдает запрет лечения.": "Does not require a Repairman. Hits do not interrupt recovery. Stacks with other regeneration sources and respects healing suppression.",
+  "+25 максимального HP.": "+25 maximum HP."
 }

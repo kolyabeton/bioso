@@ -1,3 +1,4 @@
+import {difficultyNormalCount} from '../difficulty.js';
 import {EVENTS} from './definitions.js';
 
 const roles=['mass','fast','mass','ranged','mass','armored'];
@@ -6,7 +7,7 @@ export function spawnSealedEnemies(s,n,count,spawn){
  const members=[],tier=n.challengeTier||1,radius=Math.min(3.2,n.radius-2);
  // Starting the challenge moves the player to the centre after spawning.
  const player=n.state==='ready'?n:s.player;
- for(let i=0;i<count;i++){
+ for(let i=0;i<difficultyNormalCount(s,count);i++){
   const serial=n.sealedSpawned||0;
   for(let attempt=0;attempt<72;attempt++){
    const angle=serial*2.399963229728653+Math.floor(attempt/3)*Math.PI/12;

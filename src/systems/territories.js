@@ -1,5 +1,6 @@
 import {visibleBetween} from '../elevation.js';
 import {SURVIVAL_CADENCE} from './survival-cadence.js';
+import {scaleEnemyStats} from './difficulty.js';
 import {SURVIVAL_HABITAT_BALANCE,SURVIVAL_HABITAT_RADIUS} from './balance.js';
 import {BOSS_RECIPES} from './enemy-assembly.js';
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
@@ -62,7 +63,7 @@ export function prepareTerritories(s,spawn){
   const e=spawn(i===4?'final':'boss',p,'mass',(i+1)*480);if(!e)continue;
   const habitatBalance=SURVIVAL_HABITAT_BALANCE[i];
   e.habitatRank=i+1;e.bossLevel=habitatBalance.level;e.radius=requiredRadius;
-  e.hp=e.maxHp=habitatBalance.hp;e.damage=habitatBalance.damage;e.armor=habitatBalance.armor;e.speed=habitatBalance.speed;e.attackRecoveryScale=habitatBalance.recovery;
+  e.hp=e.maxHp=habitatBalance.hp;e.damage=habitatBalance.damage;e.armor=habitatBalance.armor;e.speed=habitatBalance.speed;e.attackRecoveryScale=habitatBalance.recovery;delete e.difficultyBossSpeedApplied;scaleEnemyStats(s,e);
   // spawnEnemy already built five distinct assemblies and the Mother's own stats.
   // Never replace them with a mission model/controller or apply wave multipliers.
   e.bossName=BOSS_RECIPES.find(recipe=>recipe.id===e.recipeId).name;

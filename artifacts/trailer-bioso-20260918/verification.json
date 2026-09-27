@@ -1,0 +1,50 @@
+[
+  {
+    "file": "artifacts/trailer-bioso-20260918/clips/garden-storm.mp4",
+    "decode": true,
+    "decodeErrors": "",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 30,
+    "maxEnemies": 120,
+    "movementX": 7.866396857266478,
+    "movementZ": 5.8828095485221334,
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=garden-storm&environment=upper-gardens&count=120&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,projectiles.2,projectiles.3,electric.0,electric.1,electric.2,electric.3,neuralweb,tempo.0,tempo.3&sound=0&lang=en"
+  },
+  {
+    "file": "artifacts/trailer-bioso-20260918/clips/city-fire.mp4",
+    "decode": true,
+    "decodeErrors": "",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 28,
+    "maxEnemies": 100,
+    "movementX": 7.8943685080124055,
+    "movementZ": 5.916466513592638,
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=city-fire&environment=overgrown-city&count=100&body=chimera&weapons=shotgun,seed,arc,whip&skills=projectiles.0,projectiles.1,projectiles.2,projectiles.3,fire.0,fire.1,fire.2,fire.3,cold.0,cold.1,cold.2,cold.3,tempo.0,tempo.3&sound=0&lang=en"
+  },
+  {
+    "file": "artifacts/trailer-bioso-20260918/clips/boss-leviathan.mp4",
+    "decode": true,
+    "decodeErrors": "",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 29,
+    "maxEnemies": 33,
+    "movementX": 7.937040575490312,
+    "movementZ": 5.91991228555662,
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=boss-leviathan&mission=quarantine&scene=boss&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,electric.0,electric.1,electric.2,electric.3,tempo.0,tempo.3&sound=0&lang=en"
+  },
+  {
+    "file": "artifacts/trailer-bioso-20260918/clips/hero-explosion.mp4",
+    "decode": true,
+    "decodeErrors": "",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 30,
+    "maxEnemies": 0,
+    "movementX": 0,
+    "movementZ": 0,
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=hero-explosion&scene=ending&environment=upper-gardens&body=wanderer&weapons=seed,arc&sound=0&lang=en"
+  }
+]

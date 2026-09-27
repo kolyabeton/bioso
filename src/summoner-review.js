@@ -10,12 +10,13 @@ export function prepareSummonerReview(s,params=new URLSearchParams()){
  s.world.lineClear=()=>true;
  s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;s.waves.credit=-Infinity;s.survivalBosses={nextAt:Infinity,count:0};s.survivalHordes={nextAt:Infinity,count:0,queue:null};s.bossHabitats=[];s.health.invulnerableUntil=Infinity;
  s.body=createPart(s,'broodmother',5);
+ s.body.upgrades.capacity=40;s.inventory=[];
  s.arms=rockets?[createPart(s,'rocket',5),createPart(s,'rocket',5)]:[createPart(s,'seed',1),createPart(s,'acid',1)];
  if(!rockets)for(const arm of s.arms){arm.disabled=true;arm.cooldown=Infinity;}
  s.legs=Array.from({length:3},()=>createPart(s,'swarmLeg',1));
  s.organs=[createPart(s,'broodNode',1),createPart(s,'broodNode',1),createPart(s,'regen',1)];
- s.abilities.learned=['summons.0','summons.1','summons.2','summons.3'];
- s.abilities.levels={'summons.0':5,'summons.1':5,'summons.2':5,'summons.3':5};
+ s.abilities.learned=['summons.0','summons.1','summons.2','summons.3','detonation.0','detonation.1','detonation.2','detonation.3'];
+ s.abilities.levels={'summons.0':5,'summons.1':5,'summons.2':5,'summons.3':5,'detonation.0':5,'detonation.1':5,'detonation.2':5,'detonation.3':5};
  s.abilities.companions=[];s.metrics.damage={direct:0,burn:0,electric:0,summon:0,acid:0,thermal:0,environment:0};s.hp=stats(s).hp;
  const boss=spawnEnemy(s,'boss',{x:s.player.x,z:s.player.z+6.5},'mass',900,{introductory:false,promote:false});
  const elite=spawnEnemy(s,'elite',{x:s.player.x-2.5,z:s.player.z+3.4},'mass',900,{promote:false});

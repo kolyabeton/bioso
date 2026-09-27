@@ -1,0 +1,790 @@
+[
+  {
+    "label": "sentinel tooltip 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      },
+      {
+        "left": 12,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "sentinel tooltip 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      },
+      {
+        "left": 42,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "sentinel tooltip desktop",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "demolition assembly 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "demolition tooltip 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      },
+      {
+        "left": 12,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "regulator assembly 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "regulator tooltip 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      },
+      {
+        "left": 12,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "assembler assembly 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "assembler tooltip 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      },
+      {
+        "left": 12,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "demolition assembly 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "demolition tooltip 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      },
+      {
+        "left": 42,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "regulator assembly 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "regulator tooltip 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      },
+      {
+        "left": 42,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "sentinel assembly 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "assembler assembly 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "assembler tooltip 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      },
+      {
+        "left": 42,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "demolition assembly 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "demolition tooltip 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      },
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "regulator assembly 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "regulator tooltip 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      },
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "sentinel assembly 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "sentinel tooltip 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      },
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "assembler assembly 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "assembler tooltip 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      },
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 340
+      }
+    ],
+    "pageOverflow": 0,
+    "stage": "min(100vw,56.25dvh)",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "sentinel achievement 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "demolition achievement 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "regulator achievement 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "assembler achievement 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "demolition achievement 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "regulator achievement 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "sentinel achievement 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "assembler achievement 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "assembler catalog 1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "demolition achievement 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "regulator achievement 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "sentinel achievement 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "assembler achievement 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "assembler catalog 360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "sentinel earned catalog 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "chassis starting loadout 390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "locked-loadout-360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "earned-loadout-360",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 344
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "earned-loadout-390",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 8,
+        "overflow": 0,
+        "width": 374
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "earned-loadout-1280",
+    "buttons": [],
+    "dialogs": [
+      {
+        "left": 445.5,
+        "overflow": 0,
+        "width": 389
+      }
+    ],
+    "pageOverflow": 0,
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

@@ -173,7 +173,7 @@ export function createEnemyAssemblyView(scene,{load=loadModel,renderer=null,came
    if(shake){world.position.x+=Math.sin(time*73+e.id)*shake;world.position.z+=Math.cos(time*61+e.id)*shake;}
    const assemblyScale=e.summonAssembly?1+Math.sin(Math.PI*summonAssemblyProgress(e,time))*.22:1;
    world.rotation.set(locomotion.pitch,facing+(reducedMotion?0:Math.sin(time*67+e.id)*.08*charge),Math.sin(time*59+e.id)*shake*.8+locomotion.roll);const locomotionScale=enemyVisualRadius(e)*scale*(e.visualScale??1)*(1+Math.sin(time*42+e.id)*.025*charge)*assemblyScale;world.scale.set(locomotionScale*locomotion.scaleX,locomotionScale*locomotion.scaleY,locomotionScale*locomotion.scaleZ);world.updateMatrix();
-   const visualParts=enemyVisualParts(e,time,reducedMotion);structuralParts(e,visualParts,time);
+   const visualParts=e.previewParts||enemyVisualParts(e,time,reducedMotion);if(!e.previewParts)structuralParts(e,visualParts,time);
    for(const part of visualParts){partCount++;local.position.set(...part.position);if(part.stretch)local.scale.set(...part.stretch);else local.scale.setScalar(part.visualScale??1);
     const meshes=meshParts(part),ready=sources.has(part.asset);if(ready)local.scale.multiplyScalar(part.fitScale);
     if(ready&&(part.asset.startsWith('arm-')||part.motion)){local.rotation.set(...part.rotation,part.rotationOrder||'XYZ');if(part.spin)local.rotateY(part.spin);}

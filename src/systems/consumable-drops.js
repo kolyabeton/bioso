@@ -1,3 +1,4 @@
+import {collectBiomass} from './survival-endgame.js';
 import {RELOAD_BONUS} from './reload-bonus.js';
 import {seededRandom} from '../simulation.js';
 import {spatialDistance,groundDistance,surfaceReach,visibleBetween} from '../elevation.js';
@@ -10,19 +11,19 @@ export const CONSUMABLES=Object.freeze([
  {kind:'shield',name:'Щит',color:'#18caff',weight:7,description:'Блокирует один удар · 12 с'},
  {kind:'phase',name:'Линька',color:'#c37bff',weight:6,description:'Неуязвимость · 2 с'},
  {kind:'attraction',name:'Притяжение',color:'#00f1d1',weight:5,description:'Собирает весь опыт и расходники на карте'},
- {kind:'recharge',name:'Перезарядка',color:'#ff8308',weight:6,description:'Скорость перезарядки оружия +50% · 8 с'},
+ {kind:'recharge',name:'Перезарядка',color:'#ff8308',weight:6,description:'Время перезарядки оружия −33% · 8 с'},
  {kind:'sleep',name:'Сон',color:'#6540ff',weight:5,description:'Усыпляет обычных врагов в радиусе 16 м · 5 с, до урона'},
  {kind:'impulse',name:'Импульс',color:'#1260ff',weight:5,description:'30 урона всем видимым врагам в радиусе 12 м; обычных отбрасывает'},
  {kind:'parasite',name:'Паразиты',color:'#ff1973',weight:4,description:'Три спутника атакуют по 8 урона · 8 с'},
  {kind:'hunter',name:'Метка',color:'#ff2410',weight:3,description:'Сильнейшая цель в радиусе 15 м получает +50% урона · 8 с'},
  {kind:'beacon',name:'Маяк',color:'#95ff06',weight:3,description:'Отвлекает обычных преследователей · 6 с'},
- {kind:'revival',name:'Возрождение',color:'#ffc324',weight:1,description:'Один запасной шанс · возвращает 1 HP'}
+ {kind:'revival',name:'Возрождение',color:'#ffc324',weight:1,description:'Один запасной шанс · возвращает 25 HP'}
 ].map(Object.freeze));
 export const CONSUMABLE_BY_KIND=Object.freeze(Object.fromEntries(CONSUMABLES.map(q=>[q.kind,q])));
 // Full descriptions belong to item details, not the transient pickup toast.
 export const CONSUMABLE_NOTICES=Object.freeze({
- biomass_5:'+5 биомассы',shield:'Щит · 1 удар каждые 12 с',phase:'Неуязвимость · 2 с',
- attraction:'Притяжение · сбор бонусов',recharge:'Перезарядка +50% · 8 с',
+ biomass_5:'+5 биомассы',shield:'Щит · 1 удар · 12 с',phase:'Неуязвимость · 2 с',
+ attraction:'Притяжение · сбор бонусов',recharge:'Время перезарядки −33% · 8 с',
  sleep:'Сон · до 5 с',impulse:'Импульс · 30 урона',parasite:'Паразиты · 8 с',
  hunter:'Метка · +50% урона на 8 с',beacon:'Маяк · 6 с',revival:'Возрождение · +1 шанс'
 });
@@ -62,7 +63,7 @@ export function applyConsumable(s,kind,st,damage){
  if(s.dead||s.hp<=0||!CONSUMABLE_BY_KIND[kind])return false;
  const a=consumableState(s),now=combatTime(s);
  switch(kind){
-  case'biomass_5':s.biomass+=5;break;
+  case'biomass_5':collectBiomass(s,5);break;
   case'shield':if(a.shieldCharges&&a.shieldUntil>now)return false;a.shieldCharges=1;a.shieldUntil=now+12;break;
   case'phase':a.phaseUntil=Math.max(a.phaseUntil,now+2);s.health.invulnerableUntil=Math.max(s.health.invulnerableUntil,now+2);break;
   case'attraction':{
@@ -96,7 +97,7 @@ export function tickConsumableDrops(s,st,damage){
  // Snapshot iteration plus consumed flags retains drops spawned by an impulse.
  for(const q of [...(s.consumableDrops??[])]){
   if(q.expiresAt<=now||q.consumed)continue;
-  if(groundDistance(s,q,s.player)>CONSUMABLE_RULES.radius||!surfaceReach(s,q,s.player))continue;
+  if(groundDistance(s,q,s.player)>(st.pickup??CONSUMABLE_RULES.radius)||!surfaceReach(s,q,s.player))continue;
   if(applyConsumable(s,q.kind,st,damage))q.consumed=true;
  }
  s.consumableDrops=(s.consumableDrops??[]).filter(q=>!q.consumed&&q.expiresAt>now);

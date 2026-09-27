@@ -1,0 +1,87 @@
+[
+  {
+    "recipe": "worker",
+    "hp": 0,
+    "detonated": true,
+    "fuse": 7.7021722333370235e-16,
+    "blasts": 1,
+    "firstEvents": [
+      {
+        "time": 120.667,
+        "type": "fuse-start",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      },
+      {
+        "time": 122.267,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      }
+    ],
+    "lastEvents": [
+      {
+        "time": 120.667,
+        "type": "fuse-start",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      },
+      {
+        "time": 122.267,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      }
+    ]
+  },
+  {
+    "recipe": "digger",
+    "hp": 0,
+    "detonated": true,
+    "fuse": 7.7021722333370235e-16,
+    "blasts": 1,
+    "firstEvents": [
+      {
+        "time": 120.017,
+        "type": "enemy-burrow-start",
+        "x": 0,
+        "y": 0,
+        "z": 5
+      },
+      {
+        "time": 120.683,
+        "type": "fuse-start",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      },
+      {
+        "time": 122.283,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      }
+    ],
+    "lastEvents": [
+      {
+        "time": 120.683,
+        "type": "fuse-start",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      },
+      {
+        "time": 122.283,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      }
+    ]
+  }
+]

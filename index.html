@@ -5,8 +5,103 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/bioso-v1/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/bioso-v1/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/icons/bioso-v1/apple-touch-icon.png">
+<link rel="stylesheet" href="/src/fonts.css">
+<style>
+/* Critical DS styles stay inline so the curtain paints before the application bundle. */
+#boot-loader{position:fixed;inset:0;z-index:99;isolation:isolate;display:grid;align-content:center;justify-items:center;gap:16px;overflow:hidden;background:#182b23;transition:opacity .4s ease}
+#boot-loader[popover]{margin:0;padding:0;border:0;width:100%;height:100%;max-width:none;max-height:none}
+#boot-loader.done{opacity:0;pointer-events:none}
+.boot-intro{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% center;background:#101819}
+#boot-loader.is-intro .boot-intro{display:block}
+#boot-loader.is-intro>.boot-atmosphere,#boot-loader.is-intro>.boot-logo,#boot-loader.is-intro>.boot-progress,#boot-loader.is-intro>.boot-line{visibility:hidden}
+.boot-atmosphere{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.boot-atmosphere:after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,#10231c38,#10231c88)}
+.boot-landscape{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease}
+.boot-landscape.is-ready{opacity:.48}
+#boot-loader .boot-logo{display:block;width:min(300px,62vw);height:auto;aspect-ratio:1853/849;mix-blend-mode:screen}
+/* Same dark track, geometry and mint fill as the canonical .ui-meter. */
+#boot-loader .boot-meter{box-sizing:border-box;width:min(300px,62vw);height:8px;padding:1px;border:1px solid #658b8266;border-radius:4px;overflow:hidden;background:#101c1d}
+#boot-loader .boot-meter i{display:block;width:0;height:100%;border-radius:2px;background:linear-gradient(90deg,#659f90,#b9e4cd);transition:width 180ms linear}
+#boot-loader .boot-line{min-height:18px;max-width:calc(100vw - 32px);text-align:center;font:11px/18px Onest,system-ui,sans-serif;text-transform:uppercase;letter-spacing:.14em;color:#bdc9bd;text-shadow:0 1px 4px #10211e;transition:opacity .28s ease}
+#boot-loader .boot-line.fade{opacity:0}
+#boot-loader.done .boot-runner,#boot-loader.done .boot-runner img{animation-play-state:paused}
+.boot-progress{position:relative;width:min(300px,62vw)}
+#boot-loader .boot-progress .boot-meter{display:block;width:100%}
+.boot-runner{position:absolute;bottom:6px;left:0;width:var(--runner-size);pointer-events:none;animation:boot-run var(--run-duration) linear infinite;animation-delay:var(--run-delay)}
+.boot-runner img{display:block;width:100%;height:auto;transform-origin:center;animation:boot-run-facing var(--run-duration) steps(1,end) infinite,boot-scuttle .18s ease-in-out infinite alternate;animation-delay:var(--run-delay),0s}
+@keyframes boot-run{0%,100%{transform:translateX(0)}50%{transform:translateX(calc(min(300px,62vw) - var(--runner-size)))}}
+@keyframes boot-run-facing{0%{transform:scaleX(1)}50%{transform:scaleX(-1)}100%{transform:scaleX(1)}}
+@keyframes boot-scuttle{from{translate:0 0}to{translate:0 -1px}}
+@media(prefers-reduced-motion:reduce){#boot-loader,#boot-loader .boot-line,#boot-loader .boot-meter i{transition:none}.boot-landscape{transition:none}.boot-runner,.boot-runner img{animation:none;transform:none;translate:none}.boot-runner:nth-child(2){left:20%}.boot-runner:nth-child(3){left:50%}.boot-runner:nth-child(4){left:80%}}
+[data-reduced-motion=true] .boot-runner:nth-child(2){left:20%}[data-reduced-motion=true] .boot-runner:nth-child(3){left:50%}[data-reduced-motion=true] .boot-runner:nth-child(4){left:80%}
+</style>
 </head>
 <body>
+<div id="boot-loader" popover="manual" class="is-intro"><video class="boot-intro" id="boot-intro" src="/assets/ui/bioso-intro-v2.mp4" poster="/assets/ui/bioso-intro-poster-v2.webp" width="1280" height="988" autoplay muted playsinline preload="auto" aria-hidden="true" disablepictureinpicture></video><div class="boot-atmosphere" aria-hidden="true"><canvas class="boot-landscape" id="boot-landscape"></canvas></div><img class="boot-logo" src="/assets/ui/bioso-wordmark-v1.png" alt="bioso" width="1853" height="849" fetchpriority="high" draggable="false"><div class="boot-progress"><span class="boot-meter" id="boot-meter" role="progressbar" aria-label="Загрузка" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="boot-fill"></i></span><span class="boot-runner" aria-hidden="true" style="--runner-size:16px;--run-duration:7s;--run-delay:-1s"><img src="/assets/ui/loading-beetle-v1.webp" alt="" width="192" height="127"></span><span class="boot-runner" aria-hidden="true" style="--runner-size:22px;--run-duration:10s;--run-delay:-7s"><img src="/assets/ui/loading-caterpillar-v1.webp" alt="" width="192" height="89"></span><span class="boot-runner" aria-hidden="true" style="--runner-size:16px;--run-duration:8.4s;--run-delay:-3.8s"><img src="/assets/ui/loading-beetle-v1.webp" alt="" width="192" height="127"></span></div><span class="boot-line" id="boot-line" aria-hidden="true"></span></div>
+<script>
+// Real byte progress: the previous visit calibrates the total, the first one falls back to a time curve.
+// The curtain stays in the document after boot so later screens can raise it again while assets stream in.
+(function(){
+  var curtain=document.getElementById('boot-loader'),fill=document.getElementById('boot-fill'),meter=document.getElementById('boot-meter'),line=document.getElementById('boot-line');
+  var landscape=document.getElementById('boot-landscape'),landscapeContext=null,lastLandscapeAt=-Infinity;
+  function resetLandscape(){landscape.classList.remove('is-ready');landscape.width=landscape.height=1;lastLandscapeAt=-Infinity;}
+  var started=performance.now(),shown=0,timer,total=0;
+  var video=document.getElementById('boot-intro'),firstBoot=true,appReady=false,introDone=false,introDeadline;
+  function raiseCurtain(){if(curtain.showPopover){if(curtain.matches(':popover-open'))curtain.hidePopover();curtain.showPopover();}}
+  raiseCurtain();
+  function blockIntroKeys(event){if(firstBoot&&!curtain.classList.contains('done')){event.preventDefault();event.stopImmediatePropagation();}}
+  document.addEventListener('keydown',blockIntroKeys,true);
+  video.muted=true;
+  function hideCurtain(){
+    document.removeEventListener('keydown',blockIntroKeys,true);
+    chatter(false);curtain.classList.add('done');video.pause();
+    // Free the decoder after the fade; subsequent asset waits use the regular DS curtain.
+    setTimeout(function(){video.removeAttribute('src');video.load();if(curtain.classList.contains('done'))resetLandscape();if(curtain.showPopover&&curtain.classList.contains('done')&&curtain.matches(':popover-open'))curtain.hidePopover();},450);
+  }
+  function endIntro(){introDone=true;clearTimeout(introDeadline);if(appReady)hideCurtain();else curtain.classList.remove('is-intro');}
+  function introFallback(){
+    endIntro();video.pause();curtain.classList.remove('is-intro');
+  }
+  video.addEventListener('ended',endIntro,{once:true});
+  video.addEventListener('error',introFallback,{once:true});
+  // A denied autoplay or stalled download must never lock an otherwise ready game.
+  introDeadline=setTimeout(endIntro,9000);
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){video.autoplay=false;introDone=true;video.pause();clearTimeout(introDeadline);}
+  else {var playing=video.play();if(playing&&playing.catch)playing.catch(introFallback);}
+
+  try{performance.setResourceTimingBufferSize(3000);total=+localStorage.getItem('bioso:boot-bytes')||0;}catch(err){}
+  function loaded(){var list=performance.getEntriesByType('resource'),sum=0;for(var i=0;i<list.length;i++)sum+=list[i].encodedBodySize||list[i].transferSize||0;return sum;}
+  function draw(value){shown=value;var percent=Math.round(value*100);fill.style.width=percent+'%';meter.setAttribute('aria-valuenow',percent);}
+  function tick(){
+    var age=performance.now()-started,bytes=total?Math.min(1,loaded()/total):1-Math.exp(-age/7000);
+    // Bytes are only the first part of the wait: the scene is still being assembled after the
+    // last request settles, so the tail keeps creeping on its own clock instead of sitting full.
+    draw(Math.max(shown,Math.min(.99,bytes*.75+.25*(1-Math.exp(-age/16000)))));
+  }
+  var lines=['Ищем запчасти','Собираем ноги','Очищаем поле боя','Прогреваем реактор','Кормим личинок','Затягиваем болты','Проветриваем оранжереи','Считаем биомассу','Смазываем суставы','Будим садовников'];
+  var at=Math.floor(Math.random()*lines.length),lineTimer=0;
+  function swap(){line.classList.add('fade');setTimeout(function(){at=(at+1)%lines.length;line.textContent=lines[at];line.classList.remove('fade');},280);}
+  function chatter(on){clearInterval(lineTimer);lineTimer=0;if(on){line.textContent=lines[at];lineTimer=setInterval(swap,2600);}}
+  timer=setInterval(tick,120);tick();chatter(true);
+  window.__biosoBoot={
+    set:draw,
+    // Copy only freshly rendered frames; no extra scene render, assets, or persistent WebGL buffer.
+    landscape:function(source){
+      if(curtain.classList.contains('done')||curtain.classList.contains('is-intro'))return;
+      var now=performance.now();if(now-lastLandscapeAt<200||!source.width||!source.height)return;
+      lastLandscapeAt=now;
+      var scale=Math.min(1,1600/Math.max(source.width,source.height)),width=Math.round(source.width*scale),height=Math.round(source.height*scale);
+      if(landscape.width!==width||landscape.height!==height){landscape.width=width;landscape.height=height;}
+      landscapeContext=landscapeContext||landscape.getContext('2d',{alpha:false});
+      if(!landscapeContext)return;
+      landscapeContext.drawImage(source,0,0,width,height);landscape.classList.add('is-ready');
+    },
+    show:function(){resetLandscape();firstBoot=false;introDone=true;clearTimeout(introDeadline);video.pause();curtain.classList.remove('is-intro');draw(0);started=performance.now();chatter(true);curtain.style.transition='none';curtain.classList.remove('done');raiseCurtain();void curtain.offsetWidth;curtain.style.transition='';},
+    hide:function(){if(firstBoot&&!introDone)return;hideCurtain();},
+    finish:function(){appReady=true;if(firstBoot&&!introDone)raiseCurtain();clearInterval(timer);try{localStorage.setItem('bioso:boot-bytes',String(loaded()));}catch(err){}draw(1);}
+  };
+})();
+</script>
 <main id="game">
   <div class="landscape" aria-hidden="true"></div>
   <canvas id="world" tabindex="0" aria-label="Игровой мир. WASD, стрелки или перетаскивание для движения."></canvas>
@@ -19,21 +114,21 @@
     </div>
   </header>
   <section class="vitals" aria-label="Состояние существа">
-    <div class="health" role="progressbar" aria-label="Здоровье" aria-valuemin="0" aria-valuemax="3" aria-valuenow="3"><i id="health-fill"></i></div>
-    <div class="vital-line"><b id="health-text">3 / 3</b><span id="shield-text"></span></div>
+    <div class="health" role="progressbar" aria-label="Здоровье" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i id="health-fill"></i></div>
+    <div class="vital-line"><b id="health-text">100 из 100</b><span id="shield-text"></span></div>
     <div class="hud-defense"><span id="armor-text"></span></div>
-    <div class="vital-line progression"><span id="level-text">УРОВЕНЬ 1</span><span id="kills-text">УБИТО 0</span><span id="xp-text">0 / 18</span></div>
+    <div class="vital-line progression"><span id="level-text">УРОВЕНЬ 1</span><span id="kills-text">УБИТО 0</span><output id="revival-badge" aria-label="Заряды возрождения" hidden></output><span id="xp-text">0 из 18</span></div>
     <div class="ui-meter xp" role="progressbar" aria-label="Опыт" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0"><i id="xp-fill"></i></div>
     <div id="weight-text" class="hud-weight"></div>
   </section>
-  <div id="objective"></div><output id="revival-badge" class="ui-frame" aria-label="Заряды возрождения" hidden></output><button type="button" id="encounter-button" class="ui-frame ui-button" hidden>Встречи рядом</button>
+  <div id="objective"></div><button type="button" id="encounter-button" class="ui-frame ui-button" hidden>Встречи рядом</button>
   <footer class="dock"><div class="dock-controls"><div class="dock-map-controls"><button type="button" id="map-button" class="ui-frame ui-button" aria-label="Открыть карту" title="Карта · M">Карта</button></div><button type="button" id="assembly-button" class="ui-frame ui-button" aria-label="Открыть сборку" title="Сборка · I">Сборка</button><button type="button" id="soul-button" class="ui-frame ui-button" aria-label="Открыть Душу" title="Душа · U">Душа</button><button type="button" id="nearby" class="ui-frame ui-button" hidden>Детали рядом</button></div><div id="hands" class="ui-frame module-dock" role="group" aria-label="Оружие — нажмите, чтобы включить или выключить"></div><p class="gesture-hint">ДВИЖЕНИЕ ОДНИМ ПАЛЬЦЕМ<span class="visually-hidden">НАЖМИТЕ НА ОРУЖИЕ, ЧТОБЫ ВКЛЮЧИТЬ ИЛИ ВЫКЛЮЧИТЬ</span></p></footer>
   <div id="joystick" hidden><i></i></div><output id="diagnostics" hidden></output>
 </main>
 <dialog id="panel" class="ui-frame ui-dialog" aria-labelledby="panel-title"><div class="panel-head ui-screen-header"><div><span class="ui-eyebrow" id="panel-kicker">Верхние сады</span><h2 id="panel-title" tabindex="-1">BIOSO</h2></div><button id="close-panel" aria-label="Закрыть">×</button></div><div id="panel-content"></div></dialog>
 <div id="preview-holder" hidden><canvas id="preview" aria-label="Текущая сборка существа в 3D"></canvas></div>
 <div id="notifications">
-  <div id="overload" class="ui-notification visible" role="status" hidden>Перегруз<small>Откройте сборку и удалите лишние детали</small></div>
+  <aside id="overload" class="ui-frame story-radio is-visible overload-alert" role="status" aria-live="polite" hidden><div class="story-radio-copy"><small>Перегруз</small><p>Слишком большой вес — нельзя двигаться.</p><p>Выбросьте или переработайте лишние детали.</p><button id="overload-inventory" class="ui-frame ui-button ui-button--primary" type="button"><span>Инвентарь</span></button></div></aside>
   <div id="toast" class="ui-notification" role="status" aria-live="polite"></div>
 </div>
 <script type="module" src="/src/main.js"></script>

@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {createCombatAudio} from '../src/combat-audio.js';
+import {WEAPONS} from '../src/catalog.js';
+import {createCombatAudio,WEAPON_ATTACK_SOUNDS} from '../src/combat-audio.js';
 
 function fixture(){
  let level=60,loads=0,contexts=0;
@@ -27,6 +28,27 @@ test('approved insect, movement, ability and world WAVs match their manifest and
   assert.equal(bytes.toString('ascii',0,4),'RIFF');assert.equal(bytes.readUInt16LE(22),1);assert.equal(bytes.readUInt16LE(34),16);assert.equal(bytes.readUInt32LE(24),row.sampleRate);
   assert.equal((bytes.length-44)/2,Math.round(row.duration*row.sampleRate));assert.equal(createHash('sha256').update(bytes).digest('hex'),row.sha256);
   const pcm=Array.from({length:(bytes.length-44)/2},(_,i)=>bytes.readInt16LE(44+i*2));assert.ok(pcm.some(value=>Math.abs(value)>1000));
+ }
+});
+
+test('every audible weapon has a unique attack sound id, asset and file content',()=>{
+ const entries=Object.entries(WEAPON_ATTACK_SOUNDS),dir=new URL('../public/assets/audio/',import.meta.url);
+ assert.deepEqual(entries.map(([key])=>key).sort(),Object.keys(WEAPONS).sort());
+ assert.deepEqual(entries.filter(([,sound])=>sound.silent).map(([key])=>key),['drone','shieldArm']);
+ const audible=entries.filter(([,sound])=>!sound.silent);
+ assert.equal(new Set(audible.map(([,sound])=>sound.effect)).size,audible.length);
+ assert.equal(new Set(audible.map(([,sound])=>sound.asset)).size,audible.length);
+ const hashes=audible.map(([key,sound])=>[key,createHash('sha256').update(readFileSync(new URL(sound.asset,dir))).digest('hex')]);
+ assert.equal(new Set(hashes.map(([,hash])=>hash)).size,hashes.length);
+});
+
+test('approved Pixabay weapon files match their source manifest',()=>{
+ const dir=new URL('../public/assets/audio/',import.meta.url),rows=JSON.parse(readFileSync(new URL('weapon-sources.json',dir)));
+ assert.deepEqual(rows.map(row=>row.key),['seed','shotgun','needle','whip','fangs','shieldArm']);
+ for(const row of rows){
+  const bytes=readFileSync(new URL(row.file,dir));
+  assert.ok(bytes.length>1000);assert.equal(createHash('sha256').update(bytes).digest('hex'),row.sha256);
+  assert.match(row.pageUrl,/^https:\/\/pixabay\.com\/sound-effects\//);assert.match(row.downloadUrl,/^https:\/\/cdn\.pixabay\.com\/audio\//);
  }
 });
 
@@ -139,10 +161,10 @@ test('approved progression cues coalesce and the heavy crunch excludes ordinary 
  assert.deepEqual(f.voices.map(v=>v.buffer.name),['unlock','group-cleared','lore-found','important-death','important-death','important-death','important-death']);
 });
 
-test('approved gunshot covers pistol, seed, shotgun and needle; selected weapons keep their own recordings',async()=>{
+test('every direct weapon attack routes to its own recording while rocket waits for impact',async()=>{
  const f=fixture();f.audio.unlock();await settle();
- for(const key of ['pistol','seed','shotgun','needle','claws','drill','hammer','harpoon','whip','fangs','rocket','arc','acid'])f.audio.event({type:'attack',key});
- assert.deepEqual(f.voices.map(v=>v.buffer.name),['pistol','pistol','pistol','pistol','claws','drill','hammer','harpoon','arc','acid']);
+ for(const key of ['pistol','seed','shotgun','needle','claws','drill','hammer','shieldArm','harpoon','whip','fangs','rocket','arc','acid'])f.audio.event({type:'attack',key});
+ assert.deepEqual(f.voices.map(v=>v.buffer.name),['pistol','seed','shotgun','needle','claws','drill','hammer','harpoon','whip','fangs','arc','acid']);
  assert.ok(f.voices.every(v=>v.started));
 });
 
@@ -151,9 +173,15 @@ test('one symbiont bite cue represents a strike and dense simultaneous helpers s
  for(let i=0;i<8;i++)f.audio.event({type:'summon-attack',source:`symbiont-${i}`});
  assert.deepEqual(f.voices.map(v=>v.buffer.name),['symbiont-bite']);
  f.context.currentTime=.07;
- for(let i=0;i<8;i++)f.audio.event({type:'summon-attack',source:`drone-${i}`});
- assert.deepEqual(f.voices.map(v=>v.buffer.name),['symbiont-bite','symbiont-bite']);
+ for(let i=0;i<8;i++)f.audio.event({type:'summon-attack',source:`drone-${i}`,sourcePartId:i+1});
+ assert.deepEqual(f.voices.map(v=>v.buffer.name),['symbiont-bite']);
  assert.ok(f.voices.filter(v=>!v.stopped).length<=4);
+});
+
+test('Pollinator attack is silent and does not borrow the generic symbiont bite',async()=>{
+ const f=fixture();f.audio.unlock();await settle();
+ f.audio.event({type:'summon-attack',source:'drone-7',sourcePartId:7});
+ assert.deepEqual(f.voices,[]);
 });
 
 test('shield waits for contact, rocket waits for explosion, and arc links do not stack a full sound per target',async()=>{
@@ -171,7 +199,7 @@ test('shield waits for contact, rocket waits for explosion, and arc links do not
 
 test('repeated unlocks load every chosen file once; mute blocks all selected effects',async()=>{
  const f=fixture();f.audio.unlock();f.audio.unlock();await settle();f.audio.unlock();await settle();
- assert.equal(f.effectLoads.length,41);assert.equal(new Set(f.effectLoads).size,41);
+ assert.equal(f.effectLoads.length,46);assert.equal(new Set(f.effectLoads).size,46);
  f.setLevel(0);
  for(const key of ['hammer','claws','drill','harpoon'])f.audio.event({type:'attack',key});
  f.audio.event({type:'arc'});f.audio.event({type:'blast',key:'rocket'});
@@ -197,8 +225,8 @@ test('master mute blocks loading and playback, and mutes already playing shots',
  f.audio.event({type:'attack',key:'needle'});assert.equal(f.voices.length,1);
 });
 
-test('simultaneous guns are audible independently, with a bounded voice count',async()=>{
+test('simultaneous seed shots are audible independently, with a bounded voice count',async()=>{
  const f=fixture();f.audio.unlock();f.audio.unlock();await settle();
  for(let i=0;i<12;i++)f.audio.event({type:'attack',key:'seed',source:i});
- assert.equal(f.counts().loads,1);assert.equal(f.voices.filter(v=>!v.stopped).length,8);
+ assert.equal(f.counts().loads,1);assert.equal(f.voices.filter(v=>!v.stopped).length,6);
 });

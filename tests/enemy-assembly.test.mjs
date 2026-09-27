@@ -7,6 +7,7 @@ import {ENEMY_WEAPONS,SURVIVAL_BOSS_ATTACKS,survivalBossAttackDeck,tickModularAt
 import {createRun,spawnEnemy,attack,step} from '../src/game.js';
 import {stats} from '../src/assembly.js';
 import {enemyBalance,SURVIVAL_PRESSURE,SURVIVAL_FINAL,survivalPressureProfile} from '../src/systems/balance.js';
+import {scaleEnemyStats} from '../src/systems/difficulty.js';
 import {createEnemyAssemblyView,enemyVisualParts,enemyVisualArchetype,enemyVisualRadius,ENEMY_BODY_APPEARANCES} from '../src/enemy-assembly-view.js';
 import {fittedModel} from '../src/asset-models.js';
 import {tickHostileShots} from '../src/systems/waves.js';
@@ -56,9 +57,9 @@ test('actual early spawns keep whole HP and survive one noncritical hit',()=>{
 });
 test('phase budgets are applied once and explicit mission spawning stays legacy',()=>{
  for(const t of [0,480,960,1440,1920,2400])for(const kind of ['normal','elite','boss']){
-  const s=run();s.introBossId=-1;const e=spawnEnemy(s,kind,{x:0,z:8},'mass',t),b=enemyBalance(t,kind);b.hp=Math.round(b.hp*SURVIVAL_PRESSURE.hp);b.speed*=SURVIVAL_PRESSURE.speed;if(['normal','elite'].includes(kind)){const pressure=survivalPressureProfile(t);b.hp=Math.round(b.hp*pressure.health);b.speed*=pressure.speed;}for(const k of ['hp','speed','armor','xp','radius'])assert.equal(e[k],b[k],`${t}/${kind}/${k}`);
+  const s=run();s.introBossId=-1;const e=spawnEnemy(s,kind,{x:0,z:8},'mass',t),b=enemyBalance(t,kind);b.hp=Math.round(b.hp*SURVIVAL_PRESSURE.hp);b.maxHp=b.hp;b.speed*=SURVIVAL_PRESSURE.speed;if(['normal','elite'].includes(kind)){const pressure=survivalPressureProfile(t);b.hp=b.maxHp=Math.round(b.hp*pressure.health);b.damage*=pressure.damage;b.speed*=pressure.speed;}b.kind=kind;scaleEnemyStats(s,b);for(const k of ['hp','speed','armor','xp','radius'])assert.equal(e[k],b[k],`${t}/${kind}/${k}`);
  }
- const finalRun=run();finalRun.introBossId=-1;const final=spawnEnemy(finalRun,'final',{x:0,z:8},'mass',0);for(const k of ['hp','speed','armor'])assert.equal(final[k],SURVIVAL_FINAL[k],`final/${k}`);assert.equal(final.recommended,SURVIVAL_FINAL.recommendedLevel,'final/recommended');
+ const finalRun=run();finalRun.introBossId=-1;const final=spawnEnemy(finalRun,'final',{x:0,z:8},'mass',0),expected=scaleEnemyStats(finalRun,{...SURVIVAL_FINAL,kind:'final',maxHp:SURVIVAL_FINAL.hp});for(const k of ['hp','speed','armor'])assert.equal(final[k],expected[k],`final/${k}`);assert.equal(final.recommended,SURVIVAL_FINAL.recommendedLevel,'final/recommended');
  const s=createRun(undefined,'garden',2);const legacy=spawnEnemy(s,'normal',{x:0,z:2});assert.equal(legacy.assembly,undefined);assert.equal(legacy.hp,12);assert.equal(legacy.speed,2.15);
  const s2=run();assert.deepEqual([480,960,1440,1920].map(t=>spawnEnemy(s2,'boss',{x:0,z:5},'mass',t).recipeId),BOSS_RECIPES.slice(0,4).map(r=>r.id));assert.equal(spawnEnemy(s2,'final',{x:0,z:5}).recipeId,'mother');
 });

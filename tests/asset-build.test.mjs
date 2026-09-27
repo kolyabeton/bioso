@@ -102,3 +102,38 @@ test('unindexed triangles share only identical complete vertices, preserving UV 
  assert.deepEqual(decoded.getRoot().listMeshes().map(m=>m.listPrimitives()[0].getAttribute('POSITION').getCount()),[4,5]);
  await verifyModel(doc,decoded,'indexed exact geometry');
 });
+
+test('relative export resolves the real interpolated SVG atlas href', async()=>{
+ const {readFile}=await import('node:fs/promises');
+ const module=await readFile(new URL('../src/ui/molecules.js',import.meta.url),'utf8');
+ const atlas='/assets/ui/parts-atlas-transparent-v1.png';
+ const transformed=rewriteAssetModule(module,parseAst(module),{[atlas]:'.'+atlas+'.webp'}).code;
+ assert.match(transformed,/__biosoAssetUrls\(/);
+ assert.equal(rewriteAssetUrls(`<image href="${atlas}" clip-path="url(#part-1)"/>`,{[atlas]:'.'+atlas+'.webp'}),`<image href=".${atlas}.webp" clip-path="url(#part-1)"/>`);
+});
+
+test('release compression includes atlas and material textures, retaining dimensions and valid manifest', async()=>{
+ const {compressBuild}=await import('../scripts/compress-build.mjs');
+ const {readFile}=await import('node:fs/promises');
+ const {createHash}=await import('node:crypto');
+ const root=await mkdtemp(join(tmpdir(),'bioso-compression-'));
+ try{
+  await writeFile(join(root,'index.html'),'<main>build</main>');
+  const pixels=Buffer.alloc(256*256*4);
+  let seed=123456;
+  for(let y=0;y<256;y++)for(let x=0;x<256;x++){const i=(y*256+x)*4;for(let c=0;c<3;c++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;pixels[i+c]=80+(seed>>>24)%64;}pixels[i+3]=x;}
+  const input=await sharp(pixels,{raw:{width:256,height:256,channels:4}}).webp({lossless:true}).toBuffer();
+  await mkdir(join(root,'assets/model-textures'),{recursive:true});
+  const urls=['/parts-atlas-transparent-v1.png.webp','/assets/model-textures/normal.webp'];
+  for(const url of urls)await writeFile(join(root,url),input);
+  await writeFile(join(root,'asset-manifest.json'),JSON.stringify({entries:[{url:urls[0]}],generated:[{url:urls[1]}]}));
+  await compressBuild(root);
+  const manifest=JSON.parse(await readFile(join(root,'asset-manifest.json'),'utf8'));
+  for(const entry of [...manifest.entries,...manifest.generated]){
+   const bytes=await readFile(join(root,entry.url)),meta=await sharp(bytes).metadata();
+   assert.ok(bytes.length<input.length*.95,'texture must actually be compressed');
+   assert.equal(meta.width,256);assert.equal(meta.height,256);assert.equal(meta.hasAlpha,true);
+   assert.equal(entry.bytes,bytes.length);assert.equal(entry.hash,createHash('sha256').update(bytes).digest('hex'));
+  }
+ }finally{await rm(root,{recursive:true,force:true});}
+});

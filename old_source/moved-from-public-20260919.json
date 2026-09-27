@@ -1,0 +1,182 @@
+[
+  {
+    "path": "assets/ui/bioso-intro-v1.mp4",
+    "bytes": 1008843,
+    "sha256": "bb1a639363914c82188b0fef82c983a9f3d25b088722b6cc030daef3c578e4c8"
+  },
+  {
+    "path": "assets/ui/bioso-intro-v2.mp4",
+    "bytes": 1618375,
+    "sha256": "6c2755d76134434e1b3db9b957345dfba8423daf9c6aabe1a4ef7036537f4b15"
+  },
+  {
+    "path": "assets/ui/bioso-intro-poster-v1.webp",
+    "bytes": 39256,
+    "sha256": "4f2f9e5cdaa0761f7275e28a9e240c0619da86fcf50355ffe8aeaa9ae2190da3"
+  },
+  {
+    "path": "assets/ui/loading-cloud-v1.webp",
+    "bytes": 24276,
+    "sha256": "d9b730d746bb0279883969b13fe20a4828099314dcd06be00ecfc8586ec6c83f"
+  },
+  {
+    "path": "assets/models/arm-arc.glb",
+    "bytes": 34288,
+    "sha256": "913fb15b5038dabd7f68b2adaaf5c8b5ace3b7dba7e5a2f406ea88b18433fa78"
+  },
+  {
+    "path": "assets/models/arm-pulse.glb",
+    "bytes": 33684,
+    "sha256": "634c582278195cc93a0df515e374485cc916f2fc96954b7424871780c2c5a851"
+  },
+  {
+    "path": "assets/models/arm-seed.glb",
+    "bytes": 53040,
+    "sha256": "37110b6ac2e8c09a341267dce17b0f254e5d4a00f6ef6c53be28d9203129a60f"
+  },
+  {
+    "path": "assets/models/beetle.glb",
+    "bytes": 519792,
+    "sha256": "9d0a2cc97b558590495a0c70b6f74a108219e26122d661527a12f4510613db93"
+  },
+  {
+    "path": "assets/models/hero.glb",
+    "bytes": 622124,
+    "sha256": "b68ffdd4b2cde7fd9da34189357bac608a3d2bf799a2e6162db3ed95194bf010"
+  },
+  {
+    "path": "assets/models/manifest.json",
+    "bytes": 1921,
+    "sha256": "4619344787a83e65f7acf56d156a26b9a1749a46a0a2d51208c6774bf7c16f8b"
+  },
+  {
+    "path": "assets/models/planter.glb",
+    "bytes": 19904,
+    "sha256": "71e46ab482f74aa043ff8c91f2aad555b05cdb45d2d3dc90d40727b5b334f7ee"
+  },
+  {
+    "path": "assets/models/pylon.glb",
+    "bytes": 44564,
+    "sha256": "17b6c7eb703a93b8b4237a15cf5b9527d8bbca5e088bc644edb41a0e5f954d28"
+  },
+  {
+    "path": "assets/models/sentinel.glb",
+    "bytes": 468972,
+    "sha256": "a0da52bad8b8deff8c4363e0867111fd1c20f8c284f1c6bef6fb212be2c562ba"
+  },
+  {
+    "path": "assets/models/wall.glb",
+    "bytes": 30588,
+    "sha256": "ba5c89ad482171db4478e113465b32bb67a191a542a33a06caba7e73b690e889"
+  },
+  {
+    "path": "assets/kit/arm-drone-v1.glb",
+    "bytes": 1606904,
+    "sha256": "a75794ef8ec6fbda13548ac8a3681b8cd1ec9775c185160c118f42a3f5b67768"
+  },
+  {
+    "path": "assets/kit/arm-shotgun-v1.glb",
+    "bytes": 151336,
+    "sha256": "ff38ceb1f14eb799142caf23f1060d5455a31aa0515f42c273d139f56613bfb3"
+  },
+  {
+    "path": "assets/kit/organ-broodNode-icon-v1.glb",
+    "bytes": 1703964,
+    "sha256": "9b2de40935f706ed7391a3365e50f2009c25ad881fc7060192857c35c220e564"
+  },
+  {
+    "path": "assets/kit/organ-broodNode-icon-v2.glb",
+    "bytes": 1822612,
+    "sha256": "0e6061b0d6e4d605d42d4b80e98d59b113e67b4e38dcd962c1855edb84691bc4"
+  },
+  {
+    "path": "assets/kit/organ-revivalCore-icon-v1.glb",
+    "bytes": 1744136,
+    "sha256": "7ee4f7c0ae096e9f67c1e43549a1a690501c0b949eeedbd831dcf48a1446afba"
+  },
+  {
+    "path": "assets/kit/organ-reverseStomach-icon-v1.glb",
+    "bytes": 1674304,
+    "sha256": "704a0fdbca7af93b11662d64b6fb5b061a7f4c5f8550d9ed983bffb8add9bac1"
+  },
+  {
+    "path": "assets/kit/leg-runner-icon-v1.glb",
+    "bytes": 1691092,
+    "sha256": "34e327e9708ee3b81b8e65a436a332bf89a8b8aa31979d7cdff872f7f2099e14"
+  },
+  {
+    "path": "assets/kit/leg-spring-icon-v1.glb",
+    "bytes": 1779100,
+    "sha256": "89d04011f7e884eda0d845ff63151a43edf5b59671e8de02d3d2572e8737f000"
+  },
+  {
+    "path": "assets/kit/leg-universal-icon-v1.glb",
+    "bytes": 1703512,
+    "sha256": "ea6d7f3aa34e7369c8f0c9303b9248f5ec92bc2b05c67c901434c4bf84d7c869"
+  },
+  {
+    "path": "assets/kit/leg-plated-icon-v1.glb",
+    "bytes": 1698652,
+    "sha256": "6342e19155275a3b84cdb9107866e36f192e3e885b594313975c1dc2796d5832"
+  },
+  {
+    "path": "assets/kit/leg-swarmLeg-icon-v1.glb",
+    "bytes": 1724360,
+    "sha256": "376541d13a5afb5fc96f1a0762fcfa582dda6cd776c9737280d548ece29cf5cc"
+  },
+  {
+    "path": "assets/kit/secret-membrane-v1.glb",
+    "bytes": 32708,
+    "sha256": "fe3912d09afb3b9029f1531459b1494dabb16d89c7614d297e63075f1eb8ec3b"
+  },
+  {
+    "path": "assets/kit/secret-slab-v1.glb",
+    "bytes": 9492,
+    "sha256": "baf2683420ea484e910fe823850a94c2f0464768e718f3af672e42cd1758957c"
+  },
+  {
+    "path": "assets/kit/secret-nursery-v1.glb",
+    "bytes": 33668,
+    "sha256": "6a3f8129b5318459dc4f72ddca83d49871992ac72d5b4875d1ecca4a0428368b"
+  },
+  {
+    "path": "assets/audio/story/survival-02-mother.m4a",
+    "bytes": 100000,
+    "sha256": "5bcb033a6db0dc59280c730ebb699d7b81b31ba057e2d3b680f8213f6b329a4c"
+  },
+  {
+    "path": "assets/audio/story/survival-02-gardener.m4a",
+    "bytes": 152692,
+    "sha256": "1d1f6cbd70c83074755144b8769779eafdd00d3555afa60a184baaf29a7996db"
+  },
+  {
+    "path": "assets/audio/story/survival-03-child.m4a",
+    "bytes": 97643,
+    "sha256": "453bef77eef9c594c16b8ece656241b49cae176ddbdff1d056cf274b1eb80df0"
+  },
+  {
+    "path": "assets/audio/story/survival-03-gardener.m4a",
+    "bytes": 49662,
+    "sha256": "a33097419d156bc5ec1e93c4e754bc10692283a009801df07204fccaaaa2d8f7"
+  },
+  {
+    "path": "assets/audio/story/en/survival-02-mother.m4a",
+    "bytes": 96459,
+    "sha256": "5531629afe5600a25925f5735ea8bacba226d681bf7658a1deeb0d1903a6d26f"
+  },
+  {
+    "path": "assets/audio/story/en/survival-02-gardener.m4a",
+    "bytes": 121066,
+    "sha256": "db72049924a6c8c2210bda5b7cf2c0ce90fc70016c138c07185da3f09281d45a"
+  },
+  {
+    "path": "assets/audio/story/en/survival-03-child.m4a",
+    "bytes": 118263,
+    "sha256": "9e537eb63a7f3b740d43fa306f3f6dc2cbc34fee03ea041e66a66e60de2f1073"
+  },
+  {
+    "path": "assets/audio/story/en/survival-03-gardener.m4a",
+    "bytes": 76462,
+    "sha256": "0333cbdc7df14b5d421e2da676b9a55c2702b50696e1307fee6c88000bf024bd"
+  }
+]

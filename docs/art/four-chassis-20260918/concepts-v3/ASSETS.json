@@ -1,0 +1,54 @@
+[
+  {
+    "file": "assembler-concept-v3.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha": true,
+    "status": "approved-source-design",
+    "approvedDate": "2026-09-18",
+    "decision": "../APPROVED_DESIGN.md",
+    "livePath": "public/assets/ui/items/chassis-assembler-concept-v3.png",
+    "sha256": "ddffd2078c2efff067a55006ecdbb0b7a366af82319124dd8166ba7733eac39f"
+  },
+  {
+    "file": "demolition-concept-v3.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha": true,
+    "status": "approved-source-design",
+    "approvedDate": "2026-09-18",
+    "decision": "../APPROVED_DESIGN.md",
+    "livePath": "public/assets/ui/items/chassis-demolition-concept-v3.png",
+    "sha256": "9a6fa2b765938d37ac50722fde5f174608669b77a6766a252e4b20f8c5181dfa"
+  },
+  {
+    "file": "regulator-concept-v3.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha": true,
+    "status": "approved-source-design",
+    "approvedDate": "2026-09-18",
+    "decision": "../APPROVED_DESIGN.md",
+    "livePath": "public/assets/ui/items/chassis-regulator-concept-v3.png",
+    "sha256": "93b1cc3b38a19bf7ef027c8bd2b517613925ea0da5f95e2330b3ff2f222d470e"
+  },
+  {
+    "file": "sentinel-concept-v3.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "alpha": true,
+    "status": "approved-source-design",
+    "approvedDate": "2026-09-18",
+    "decision": "../APPROVED_DESIGN.md",
+    "livePath": "public/assets/ui/items/chassis-sentinel-concept-v3.png",
+    "sha256": "4e9ddfbad7dbe11e2f8486353beed28a4399dc625959cc1d4aaff1ade22350c3"
+  }
+]

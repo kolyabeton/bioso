@@ -22,8 +22,8 @@ test('red health pickup heals through the actual simulation and stays at full HP
  const s=createRun(),st=stats(s);spawn(s,'health');step(s,.01);assert.equal(s.recoveryDrops.length,1);s.health.armorSpent=st.armor;receiveHit(s,st);step(s,.01);assert.equal(s.hp,st.hp);assert.equal(s.health.missing,0);assert.equal(s.recoveryDrops.length,0);
 });
 test('range, floors, occlusion, healing suppression and death prevent collection',()=>{
- const s=createRun();s.hp=1;const q=spawn(s,'health',{x:4,z:0});tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);
- q.x=0;q.y=3;tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);
+ const s=createRun();s.hp=1;const q=spawn(s,'health',{x:stats(s).pickup+1,z:0});tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);
+ q.x=0;q.y=3;s.world.heightAt=()=>0;tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);
  q.y=0;s.world.heightAt=()=>0;s.world.lineClear=()=>false;tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);
  s.world.lineClear=()=>true;s.encounters={active:{type:'infection',x:0,z:0,radius:5}};tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);assert.equal(s.recoveryDrops.length,1);
  s.encounters.active=null;s.dead=true;tickRecoveryDrops(s,stats(s));assert.equal(s.hp,1);assert.equal(s.recoveryDrops.length,1);
@@ -34,4 +34,35 @@ test('consumables expire on combat time and land on the world surface',()=>{
 });
 test('view shows distinct shapes and removes picked up objects and resets',()=>{
  const scene=new T.Scene(),view=createRecoveryDropsView(scene),camera=new T.PerspectiveCamera();const items=[{id:1,kind:'armor',x:0,z:0},{id:2,kind:'health',x:1,z:0}];view.update(items,camera);assert.equal(scene.children.length,2);assert.equal(scene.children[0].children[0].geometry.type,'CylinderGeometry');assert.equal(scene.children[1].children[0].geometry.type,'CircleGeometry');view.update(items.slice(1),camera);assert.equal(scene.children.length,1);view.reset();assert.equal(scene.children.length,0);view.dispose();
+});
+
+test('health and armor use the shared pickup radius including increases',()=>{
+ for(const kind of ['health','armor']){
+  const s=createRun();s.organs[0]=createPart(s,'armor');const st=stats(s);
+  s.hp=st.hp-25;s.health.missing=25;s.health.armorSpent=st.armor;
+  spawn(s,kind,{x:st.pickup+1,z:0});tickRecoveryDrops(s,st);assert.equal(s.recoveryDrops.length,1);
+  tickRecoveryDrops(s,{...st,pickup:st.pickup*1.5});assert.equal(s.recoveryDrops.length,0);
+  assert.equal(s.events.filter(e=>e.type==='pickup'&&e.kind===kind).length,1);
+ }
+});
+
+test('pickup notices show whole-point recovery',()=>{
+ for(const [missing,expected] of [[18,'18'],[7,'7'],[25,'25']]){
+  const s=createRun(),st=stats(s);s.hp=st.hp-missing;s.health.missing=missing;
+  spawn(s,'health');tickRecoveryDrops(s,st);
+  assert.equal(s.hp,st.hp);assert.equal(s.health.missing,0);
+  assert.equal(s.events.find(e=>e.type==='notice').text,`Здоровье +${expected}`);
+ }
+});
+
+test('health pickups wait for seven HP missing and heal up to 25 HP',()=>{
+ const s=createRun(),st=stats(s);s.hp=st.hp-6;s.health.missing=6;
+ spawn(s,'health');tickRecoveryDrops(s,st);
+ assert.equal(s.recoveryDrops.length,1);assert.equal(s.hp,st.hp-6);
+ assert.equal(s.events.filter(e=>e.type==='notice').length,0);
+ s.hp=st.hp-7;s.health.missing=7;tickRecoveryDrops(s,st);
+ assert.equal(s.recoveryDrops.length,0);assert.equal(s.hp,st.hp);
+ assert.equal(s.events.find(e=>e.type==='notice').text,'Здоровье +7');
+ s.hp=st.hp-50;s.health.missing=50;spawn(s,'health');tickRecoveryDrops(s,st);
+ assert.equal(s.hp,st.hp-25);assert.equal(s.events.at(-1).text,'Здоровье +25');
 });

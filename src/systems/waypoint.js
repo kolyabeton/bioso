@@ -7,6 +7,8 @@ export function setWaypoint(s,target){
  s.waypoint={x:target.x,y:target.y??0,z:target.z,label:target.label||'Точка на карте',id:target.id,source:target.pickupKind?'recovery':target.groundItem?'ground':target.kind?'enemy':target.type?'encounter':'point'};return true;
 }
 export function waypointTarget(s){
+ const race=s.encounters?.active?.type==='race'&&s.encounters.active.state==='active'?s.encounters.active:null;
+ if(race?.race?.finish){const target=race.race.finish;return{x:target.x,y:target.y??0,z:target.z,label:'Финиш забега',id:race.id,source:'race',distance:Math.hypot(target.x-s.player.x,target.z-s.player.z)};}
  const w=s.waypoint;if(!w)return null;
  let target=w;
  if(w.source==='enemy')target=s.enemies.find(e=>e.id===w.id&&e.hp>0);

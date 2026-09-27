@@ -1,0 +1,106 @@
+[
+  {
+    "clip": "fast-overhead-dense",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 29,
+    "travelMeters": 138.1,
+    "speed": 15.12,
+    "learned": [
+      "might.0",
+      "tempo.0",
+      "projectiles.0",
+      "vitality.0",
+      "projectiles.1",
+      "electric.0",
+      "electric.1",
+      "electric.2",
+      "electric.3",
+      "motion.0"
+    ],
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=fast-overhead-dense&travel=1&environment=upper-gardens&count=110&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,electric.0,electric.1,electric.2,electric.3,tempo.0&sound=0&lang=en",
+    "decode": "passed"
+  },
+  {
+    "clip": "fast-orbit-dense",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 29,
+    "travelMeters": 137.8,
+    "speed": 15.12,
+    "learned": [
+      "might.0",
+      "tempo.0",
+      "projectiles.0",
+      "vitality.0",
+      "projectiles.1",
+      "electric.0",
+      "electric.1",
+      "electric.2",
+      "electric.3",
+      "motion.0"
+    ],
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=fast-orbit-dense&camera=orbit&travel=1&environment=upper-gardens&count=100&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,electric.0,electric.1,electric.2,electric.3,tempo.0&sound=0&lang=en",
+    "decode": "passed"
+  },
+  {
+    "clip": "fast-cockpit",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 29,
+    "travelMeters": 136.9,
+    "speed": 15.12,
+    "learned": [
+      "might.0",
+      "tempo.0",
+      "projectiles.0",
+      "vitality.0",
+      "projectiles.1",
+      "electric.0",
+      "electric.1",
+      "electric.2",
+      "electric.3",
+      "motion.0"
+    ],
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=fast-cockpit&camera=cockpit&travel=1&environment=upper-gardens&count=100&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,electric.0,electric.1,electric.2,electric.3,tempo.0&sound=0&lang=en",
+    "decode": "passed"
+  },
+  {
+    "clip": "boss-leviathan",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 29,
+    "travelMeters": 28.9,
+    "speed": 10.8,
+    "learned": [
+      "might.0",
+      "tempo.0",
+      "projectiles.0",
+      "vitality.0",
+      "projectiles.1",
+      "electric.0",
+      "electric.1",
+      "electric.2",
+      "electric.3",
+      "tempo.3"
+    ],
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=boss-leviathan&mission=quarantine&scene=boss&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,electric.0,electric.1,electric.2,electric.3,tempo.0,tempo.3&sound=0&lang=en",
+    "decode": "passed"
+  },
+  {
+    "clip": "hero-explosion",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 30,
+    "travelMeters": 0.0,
+    "speed": 10.8,
+    "learned": [
+      "might.0",
+      "tempo.0",
+      "projectiles.0",
+      "vitality.0"
+    ],
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=hero-explosion&scene=ending&environment=upper-gardens&body=wanderer&weapons=seed,arc&sound=0&lang=en",
+    "decode": "passed"
+  }
+]

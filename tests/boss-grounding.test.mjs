@@ -8,6 +8,7 @@ import {navigateEnemy} from '../src/world-navigation.js';
 import {ignoresBossObstacles} from '../src/boss-traversal.js';
 import {createRun,spawnEnemy} from '../src/game.js';
 import {setupMissionBoss,tickMissionBoss} from '../src/systems/mission-bosses.js';
+import {createWorldRun} from '../src/world-run.js';
 
 const giant=()=>({kind:'boss',id:1,hp:100,radius:14,x:-12,y:0,z:0});
 const state=()=>({time:0,mode:'survival',level:30,world:{heightAt:(x,z)=>Math.abs(x)<=30&&Math.abs(z)<=30?Math.max(0,x*.2):null,walkable:()=>false,canMove:()=>false,findPath:()=>assert.fail('giants must not search around obstacles')},encounters:{nodes:[{id:'gate',type:'dungeon_roots',x:0,z:0,state:'ready',unlockLevel:1}],active:null}});
@@ -21,6 +22,24 @@ test('giants take the direct route without A* and cannot leave terrain or cross 
  const s=state(),e=giant();e.path=[{x:-20,z:20}];navigateEnemy(s,e,{x:12,z:0},24,1);assert.equal(e.x,12);assert.equal(e.z,0);assert.equal(e.path,null);
  moveCreature(s,e,50,0);assert.equal(e.x,30);assert.equal(e.y,6);
  const gap=state();gap.world.heightAt=x=>Math.abs(x)<1?null:0;const other=giant();moveCreature(gap,other,24,0);assert.ok(other.x<=-1);
+});
+test('small Survival bosses can leave thickets while solid scenery still blocks them',()=>{
+ const s=createWorldRun(undefined,'survival',12),b=s.enemies.find(e=>e.habitat&&e.kind==='boss');
+ const bush=s.world.tiles.flatMap(t=>t.decorations).find(o=>o.feature==='thicket'&&!s.world.walkable(o.x,o.z,b.radius)&&s.world.walkableWithoutThickets(o.x,o.z,b.radius)&&s.world.walkableWithoutThickets(o.x+2,o.z,b.radius));
+ assert.ok(bush);
+ b.x=bush.x;b.z=bush.z;b.y=s.world.heightAt(b.x,b.z);
+ assert.equal(s.world.walkable(b.x,b.z,b.radius),false);
+ moveCreature(s,b,2,0);
+ assert.ok(b.x>bush.x+1.9,'boss leaves the thicket');
+ b.x=bush.x;b.z=bush.z;
+ navigateEnemy(s,b,{x:bush.x+2,z:bush.z},4,1);
+ assert.ok(b.x>bush.x+1.9,'navigation also leaves the thicket');
+ const rock=s.world.tiles.flatMap(t=>t.decorations).find(o=>o.feature==='rock'&&s.world.walkableWithoutThickets(o.x-9,o.z,b.radius));
+ assert.ok(rock);
+ b.x=rock.x-9;b.z=rock.z;b.y=s.world.heightAt(b.x,b.z);
+ const before=b.x;moveCreature(s,b,18,0);
+ assert.ok(b.x<rock.x,'rock still stops the boss');
+ assert.ok(b.x>before,'boss approaches the rock');
 });
 test('production boss meshes stay above relief during movement, turning, impact and freeze',async()=>{
  const radii=[3.6,14,9,4.4,6],point=new T.Vector3();

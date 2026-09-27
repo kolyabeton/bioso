@@ -585,32 +585,9 @@
     "bytes": 1050332
   },
   {
-    "id": "arm-shotgun-v1",
-    "file": "arm-shotgun-v1.glb",
-    "bytes": 151336
-  },
-  {
     "id": "arm-shotgun-v2",
     "file": "arm-shotgun-v2.glb",
     "bytes": 900204
-  },
-  {
-    "id": "secret-membrane-v1",
-    "file": "secret-membrane-v1.glb",
-    "bytes": 32708,
-    "source": "scripts/asset-kit/secret-modules.mjs"
-  },
-  {
-    "id": "secret-slab-v1",
-    "file": "secret-slab-v1.glb",
-    "bytes": 9492,
-    "source": "scripts/asset-kit/secret-modules.mjs"
-  },
-  {
-    "id": "secret-nursery-v1",
-    "file": "secret-nursery-v1.glb",
-    "bytes": 33668,
-    "source": "scripts/asset-kit/secret-modules.mjs"
   },
   {
     "id": "secret-membrane-v2",
@@ -682,11 +659,6 @@
     "id": "leg-swarm-v1",
     "file": "leg-swarm-v1.glb",
     "bytes": 1733540
-  },
-  {
-    "id": "arm-drone-v1",
-    "file": "arm-drone-v1.glb",
-    "bytes": 1606904
   },
   {
     "id": "arm-claws-icon-v1",
@@ -761,36 +733,6 @@
     "source": "scripts/asset-kit/limb-icon-parity.mjs"
   },
   {
-    "id": "leg-runner-icon-v1",
-    "file": "leg-runner-icon-v1.glb",
-    "bytes": 1691092,
-    "source": "scripts/asset-kit/limb-icon-parity.mjs"
-  },
-  {
-    "id": "leg-universal-icon-v1",
-    "file": "leg-universal-icon-v1.glb",
-    "bytes": 1703512,
-    "source": "scripts/asset-kit/limb-icon-parity.mjs"
-  },
-  {
-    "id": "leg-plated-icon-v1",
-    "file": "leg-plated-icon-v1.glb",
-    "bytes": 1698652,
-    "source": "scripts/asset-kit/limb-icon-parity.mjs"
-  },
-  {
-    "id": "leg-spring-icon-v1",
-    "file": "leg-spring-icon-v1.glb",
-    "bytes": 1779100,
-    "source": "scripts/asset-kit/limb-icon-parity.mjs"
-  },
-  {
-    "id": "leg-swarmLeg-icon-v1",
-    "file": "leg-swarmLeg-icon-v1.glb",
-    "bytes": 1724360,
-    "source": "scripts/asset-kit/limb-icon-parity.mjs"
-  },
-  {
     "id": "leg-runner-icon-v2",
     "file": "leg-runner-icon-v2.glb",
     "bytes": 1755000,
@@ -819,5 +761,131 @@
     "file": "leg-swarmLeg-icon-v2.glb",
     "bytes": 1787296,
     "source": "scripts/asset-kit/limb-icon-parity.mjs"
+  },
+  {
+    "id": "organ-mirrorGland-icon-v1",
+    "file": "organ-mirrorGland-icon-v1.glb",
+    "bytes": 1618016,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-reflexNerve-icon-v1",
+    "file": "organ-reflexNerve-icon-v1.glb",
+    "bytes": 1656472,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-returnNerve-icon-v1",
+    "file": "organ-returnNerve-icon-v1.glb",
+    "bytes": 1622216,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-slime-icon-v1",
+    "file": "organ-slime-icon-v1.glb",
+    "bytes": 1603720,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-parasite-icon-v1",
+    "file": "organ-parasite-icon-v1.glb",
+    "bytes": 1703956,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-commonNerve-icon-v1",
+    "file": "organ-commonNerve-icon-v1.glb",
+    "bytes": 1811928,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-reverseHeart-icon-v1",
+    "file": "organ-reverseHeart-icon-v1.glb",
+    "bytes": 1690728,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-regen-icon-v1",
+    "file": "organ-regen-icon-v1.glb",
+    "bytes": 1647612,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-shield-icon-v1",
+    "file": "organ-shield-icon-v1.glb",
+    "bytes": 1603260,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-armor-icon-v1",
+    "file": "organ-armor-icon-v1.glb",
+    "bytes": 1485484,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-repairGland-icon-v1",
+    "file": "organ-repairGland-icon-v1.glb",
+    "bytes": 1732684,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-stabilizer-icon-v1",
+    "file": "organ-stabilizer-icon-v1.glb",
+    "bytes": 1566432,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-digestion-icon-v1",
+    "file": "organ-digestion-icon-v1.glb",
+    "bytes": 1657868,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-accelerator-icon-v1",
+    "file": "organ-accelerator-icon-v1.glb",
+    "bytes": 1635900,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "body-demolition-astra5-v3",
+    "file": "body-demolition-astra5-v3.glb",
+    "bytes": 2531060,
+    "source": "scripts/asset-kit/four-chassis-astra-v5.mjs"
+  },
+  {
+    "id": "body-regulator-astra-polish-v3",
+    "file": "body-regulator-astra-polish-v3.glb",
+    "bytes": 5158712,
+    "source": "scripts/asset-kit/regulator-astra-polish.mjs"
+  },
+  {
+    "id": "body-sentinel-astra-polish-v3",
+    "file": "body-sentinel-astra-polish-v3.glb",
+    "bytes": 3553828,
+    "source": "scripts/asset-kit/sentinel-astra-polish.mjs"
+  },
+  {
+    "id": "body-assembler-astra5-v3",
+    "file": "body-assembler-astra5-v3.glb",
+    "bytes": 2386572,
+    "source": "scripts/asset-kit/assembler-astra-polish.mjs"
+  },
+  {
+    "id": "organ-reverseStomach-icon-v2",
+    "file": "organ-reverseStomach-icon-v2.glb",
+    "bytes": 1709716,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-revivalCore-icon-v2",
+    "file": "organ-revivalCore-icon-v2.glb",
+    "bytes": 1772268,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-broodNode-icon-v3",
+    "file": "organ-broodNode-icon-v3.glb",
+    "bytes": 1808004,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
   }
 ]

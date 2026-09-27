@@ -21,7 +21,8 @@ test('tile queue prioritizes current requests, limits active builds and releases
  const starts=[],finish=new Map(),released=[];
  const stream=new BiomeStream((id,{valid})=>new Promise(resolve=>{starts.push(id);finish.set(id,()=>resolve({id,valid:valid()}));}),v=>released.push(v.id));
  stream.update(['current','ahead','behind']);await tick();assert.deepEqual(starts,['current','ahead']);
- stream.update(['new','current']);finish.get('ahead')();await tick();assert.deepEqual(starts,['current','ahead','new']);assert.deepEqual(released,['ahead']);
+ stream.update(['new','current']);finish.get('ahead')();await tick();assert.deepEqual(starts,['current','ahead','new']);assert.deepEqual(released,[]);
  finish.get('current')();await tick();assert.ok(stream.ready.has('current'));
+ finish.get('new')();await tick();assert.deepEqual(released,['ahead']);
  stream.reset();finish.get('new')();await tick();assert.deepEqual(released,['ahead','current','new']);assert.equal(stream.ready.size,0);
 });

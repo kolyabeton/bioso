@@ -1,13 +1,13 @@
 import {CONSUMABLE_BY_KIND} from './systems/consumable-drops.js';
 /** Fixed storage, no per-hit meshes or materials. Simulation state is never modified. */
 export const FX_CAPACITY = 192;
-export const WEAPON_COLORS = Object.freeze({pistol:0xf3d4a0,seed:0xb5dfba,shotgun:0xe8c786,needle:0xd0eeeb,rocket:0xe4b48b,acid:0x98bf75,arc:0x9ce6dd,claws:0xc6f5d5,hammer:0xf3c58c,drill:0xc4efff,whip:0x99ddb2,fangs:0xf1d5cd});
+export const WEAPON_COLORS = Object.freeze({pistol:0xf3d4a0,seed:0xb5dfba,shotgun:0xe8c786,needle:0xd0eeeb,rocket:0xe4b48b,acid:0x98bf75,arc:0x9ce6dd,claws:0xc6f5d5,hammer:0xf3c58c,shieldArm:0xf3c58c,drill:0xc4efff,whip:0x99ddb2,fangs:0xf1d5cd});
 export const BIO_BLOOD_COLORS = Object.freeze([0x1d4629,0x326232,0x557a39,0x7f9149]);
 export const ENEMY_BLOOD_COLORS = Object.freeze([0x755306,0x9b7108,0xc79710,0xe0bd32]);
 export function createBioParticles(capacity = FX_CAPACITY) {
   const particles = Array.from({length:capacity},()=>({life:0}));
-  let quality='medium', reduced=false, cursor=0;
-  const limit=()=>reduced?0:quality==='low'?Math.min(32,capacity):quality==='high'?capacity:Math.min(112,capacity);
+  let quality='medium', reduced=false, cursor=0,density=1;
+  const limit=()=>reduced?0:Math.floor((quality==='low'?Math.min(32,capacity):quality==='high'?capacity:Math.min(112,capacity))*density);
   function emit(e) {
     if(e.type==='arc'&&e.kind==='consumable-parasite'||e.type==='consumable-burst'||e.type==='pickup'&&CONSUMABLE_BY_KIND[e.kind])return;
     const max=limit(); if(e.type==='volatile-blast'||e.soul||!max || !Number.isFinite(e.x) || !Number.isFinite(e.z))return;
@@ -16,11 +16,12 @@ export function createBioParticles(capacity = FX_CAPACITY) {
     if(e.type==='attack'&&['claws','drill','whip'].includes(e.key))return;
     if(e.key==='shotgun'&&['attack','hit'].includes(e.type))return;
     const burst=['blast','volatile-blast'].includes(e.type),abilityRing=['consumable-burst','heart-pulse','boss-phase'].includes(e.type),ring=['level','pickup','shield','assembly'].includes(e.type)||abilityRing,enemyBlood=e.type==='death',blood=e.type==='player-hit'||enemyBlood;
-    if(!burst&&!ring&&!['hit','attack','arc','player-hit','death','projectile-end','summon-create','summon-death'].includes(e.type))return;
+    if(!burst&&!ring&&!['hit','attack','arc','player-hit','death','projectile-end','summon-create','summon-death','affix-knockback'].includes(e.type))return;
     const arc=e.type==='arc'&&Number.isFinite(e.tx)&&Number.isFinite(e.tz);
     const melee=e.type==='attack'&&['claws','hammer','drill','whip','fangs'].includes(e.key);
-    const count=Math.min(max,blood?(enemyBlood?(quality==='low'?6:quality==='high'?18:12):(quality==='low'?3:quality==='high'?5:4)):arc?8:melee?(quality==='low'?6:e.key==='claws'?24:16):quality==='low'?3:ring?16:burst?24:e.killed?14:e.type==='hit'?7:4);
-    const burstTint=e.type==='consumable-burst'?(e.kind==='sleep'?0xa969df:0x58aee8):e.type==='heart-pulse'?0xc94f72:null,tint=(typeof e.color==='string'?parseInt(e.color.replace('#',''),16):e.color) ?? burstTint ?? WEAPON_COLORS[e.key] ?? (e.killed?0xb0beb0:0xa4e5d1);
+    const requestedCount=Math.min(max,e.type==='affix-knockback'?(quality==='low'?8:18):blood?(enemyBlood?(quality==='low'?6:quality==='high'?18:12):(quality==='low'?3:quality==='high'?5:4)):arc?8:melee?(quality==='low'?6:e.key==='claws'?24:16):quality==='low'?3:ring?16:burst?24:e.killed?14:e.type==='hit'?7:4);
+    const count=Math.max(1,Math.ceil(requestedCount*density));
+    const burstTint=e.type==='consumable-burst'?(e.kind==='sleep'?0xa969df:0x58aee8):e.type==='heart-pulse'?0xc94f72:e.type==='affix-knockback'?0x9c9077:null,tint=(typeof e.color==='string'?parseInt(e.color.replace('#',''),16):e.color) ?? burstTint ?? WEAPON_COLORS[e.key] ?? (e.killed?0xb0beb0:0xa4e5d1);
     for(let i=0;i<count;i++) {
       const a=i/count*Math.PI*2+(e.dx?Math.atan2(e.dx,e.dz||0):0),p=particles[cursor++%max];
       if(blood){
@@ -29,6 +30,7 @@ export function createBioParticles(capacity = FX_CAPACITY) {
         continue;
       }
       const ringLife=abilityRing?.65:.55,ringSpeed=abilityRing?(e.radius||5)/ringLife:3;Object.assign(p,{kind:'energy',x:e.x,y:(e.y??0)+(ring?.18:.85),z:e.z,vx:Math.sin(a)*(ring?ringSpeed:burst?7:3.5),vz:Math.cos(a)*(ring?ringSpeed:burst?7:3.5),vy:ring?.2:1.5+(i%3),life:ring?ringLife:burst?.48:.28,duration:ring?ringLife:burst?.48:.28,size:ring?.1:e.killed?.17:.085,color:tint,length:0,angle:0,pitch:0,gravity:5,grounded:false});
+      if(e.type==='affix-knockback'){const dir=Math.atan2(e.dx||0,e.dz||1),spread=(i-(count-1)/2)*.11;p.x=e.x+Math.cos(dir)*spread;p.z=e.z-Math.sin(dir)*spread;p.y=(e.y??0)+.12+(i%3)*.035;p.vx=(e.dx||0)*(2+i%3*.45);p.vz=(e.dz||0)*(2+i%3*.45);p.vy=.08;p.gravity=0;p.life=p.duration=.38+(i%3)*.05;p.size=.11+(i%3)*.035;p.length=i%3===0?.7:.24;p.angle=dir;continue;}
       if(arc){const dx=e.tx-e.x,dz=e.tz-e.z,dy=(e.ty??e.y??0)-(e.y??0),horizontal=Math.hypot(dx,dz),length=Math.hypot(horizontal,dy);p.x=e.x+dx*(i+.5)/count;p.z=e.z+dz*(i+.5)/count;p.y=(e.y??0)+.8+dy*(i+.5)/count;p.vx=p.vy=p.vz=0;p.length=length/count*1.05;p.angle=Math.atan2(dx,dz);p.pitch=-Math.atan2(dy,horizontal);const zig=(i%2?1:-1)*.12;p.x+=Math.cos(p.angle)*zig;p.z-=Math.sin(p.angle)*zig;p.life=p.duration=.16;p.gravity=0;}
       if(melee){
         const aim=Math.atan2((e.tx??e.x)-e.x,(e.tz??e.z+1)-e.z),u=i/Math.max(1,count-1);
@@ -56,6 +58,6 @@ export function createBioParticles(capacity = FX_CAPACITY) {
     }
   }
   return {particles,emit,step(dt){for(const p of particles)if(p.life>0){p.life=Math.max(0,p.life-dt);if(!p.life||p.grounded)continue;p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt;p.vy-=dt*p.gravity;if(p.kind==='blood'){const drag=Math.exp(-1.8*dt);p.vx*=drag;p.vz*=drag;if(p.y<=p.floor){p.y=p.floor;p.vx=p.vy=p.vz=0;p.grounded=true;p.life=Math.min(p.life,.55);}}}},
-    configure(nextQuality=quality,nextReduced=reduced){quality=nextQuality;reduced=nextReduced;for(let i=limit();i<particles.length;i++)particles[i].life=0;},
+    configure(nextQuality=quality,nextReduced=reduced,nextDensity=density){quality=nextQuality;reduced=nextReduced;density=Math.max(.5,Math.min(1,nextDensity));for(let i=limit();i<particles.length;i++)particles[i].life=0;},
     reset(){cursor=0;for(const p of particles)p.life=0;}, count:()=>particles.filter(p=>p.life>0).length};
 }

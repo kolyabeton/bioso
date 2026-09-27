@@ -1,0 +1,30 @@
+[
+  {
+    "body": "demolition",
+    "model": "body-demolition-astra5-v3",
+    "sourceSha256": "7723a3420a0fa9d58cfde61943c558ac62b63c40dd1b679cb4823e1efcd1f195",
+    "liveSha256": "7723a3420a0fa9d58cfde61943c558ac62b63c40dd1b679cb4823e1efcd1f195",
+    "bytes": 2531060
+  },
+  {
+    "body": "regulator",
+    "model": "body-regulator-astra-polish-v3",
+    "sourceSha256": "4eb55e2bbde767147dc420a79057e0abd8c54dc5a0faacd6b003ec89ca381a31",
+    "liveSha256": "4eb55e2bbde767147dc420a79057e0abd8c54dc5a0faacd6b003ec89ca381a31",
+    "bytes": 5158712
+  },
+  {
+    "body": "sentinel",
+    "model": "body-sentinel-astra-polish-v3",
+    "sourceSha256": "b1fb2d32430fd85dca931f365496d905cebede5e4882fadaa40142e1e9332b57",
+    "liveSha256": "b1fb2d32430fd85dca931f365496d905cebede5e4882fadaa40142e1e9332b57",
+    "bytes": 3553828
+  },
+  {
+    "body": "assembler",
+    "model": "body-assembler-astra5-v3",
+    "sourceSha256": "a785981828c71347596005e06a8eac812101549e2635830de9c6f14e195d9c5e",
+    "liveSha256": "a785981828c71347596005e06a8eac812101549e2635830de9c6f14e195d9c5e",
+    "bytes": 2386572
+  }
+]

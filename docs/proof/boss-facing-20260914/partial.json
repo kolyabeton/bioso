@@ -1,0 +1,50 @@
+{
+  "model": [
+    "boss-scrap-leviathan"
+  ],
+  "tiles": 2,
+  "loading": 0,
+  "errors": 0,
+  "boss": [
+    {
+      "id": "boss-scrap-leviathan",
+      "x": 0,
+      "y": 0,
+      "z": -1544,
+      "contact": -0.4333000000000012,
+      "radius": 14,
+      "speed": 0.65,
+      "hp": 117678.91331855254,
+      "facing": 2.8939926535897915,
+      "phase": 1,
+      "actions": {},
+      "warning": null,
+      "hover": 0
+    }
+  ],
+  "parts": 4,
+  "bees": 0,
+  "shots": 0,
+  "animation": [
+    {
+      "id": "boss-scrap-leviathan",
+      "state": "idle",
+      "action": "idle",
+      "walkWeight": 0.9984958088994647,
+      "legs": 6,
+      "phase": 1.2154036578575589,
+      "clock": 0.4333000000000012,
+      "travel": 0.8666000000000056
+    }
+  ],
+  "camera": {
+    "active": true,
+    "blend": 0.29698658329051053,
+    "height": 29.10904025012847,
+    "depth": 40.890959749871534,
+    "lookAhead": 1.8454798749357657,
+    "lookHeight": 0.17819194997430632
+  },
+  "time": 0.4333000000000012,
+  "fps": 55
+}

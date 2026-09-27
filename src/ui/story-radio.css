@@ -8,6 +8,7 @@
   box-shadow:0 14px 34px #07110d78;
   transition:opacity 220ms ease-out,transform 220ms ease-out
 }
+#story-radio{width:min(680px,calc(var(--game-stage-width) - 72px))}
 .story-radio:before{
   inset:0;z-index:-2;border:1px solid #d8d1bb;border-radius:inherit;
   background:linear-gradient(145deg,#fffdf2cc 0%,#ddd3b9b8 52%,#968d7580 100%),var(--ui-texture-ceramic) center/512px repeat;
@@ -34,6 +35,7 @@
 .story-radio-close:hover{background:#788b721c}.story-radio-close:active{background:#788b7238}
 .story-radio-close:focus-visible{outline:2px solid var(--ui-mint);outline-offset:3px}
 @media(max-width:430px),(max-height:850px){
+  #story-radio{width:calc(var(--game-stage-width) - 64px)}
   .story-radio{width:calc(var(--game-stage-width) - 24px);padding:24px 58px 24px 42px;border-radius:28px}
   .story-radio:after{inset:7px;border-radius:21px}
   .story-radio-copy{gap:9px}
@@ -51,3 +53,17 @@
 }
 @media(prefers-reduced-motion:reduce){.story-radio{transition:none}}
 [data-reduced-motion=true] .story-radio{transition:none}
+
+/* Overload uses the same ceramic conversation surface and signal indicator. */
+#overload.story-radio{top:auto;max-width:calc(var(--game-stage-width) - 24px);border:0;border-radius:28px;text-align:left;font-weight:400;z-index:9}
+#overload.story-radio .ui-button{width:100%;min-height:44px;white-space:nowrap;margin:0}
+#overload .story-radio-copy{gap:6px}
+#overload .story-radio-copy p{line-height:1.25}
+.story-radio.ui-overload-guide{position:relative;inset:auto;transform:none;width:100%;min-height:0;max-height:none;overflow:visible;padding:14px 14px 14px 38px;border-radius:22px;box-shadow:none;flex:none}
+.story-radio.ui-overload-guide:after{border-radius:15px;inset:6px}
+.ui-overload-guide .story-radio-copy{gap:3px}
+.ui-overload-guide .story-radio-copy:before{left:-24px;height:28px}
+.ui-overload-guide .story-radio-copy:before,#overload .story-radio-copy:before{border-color:#f3e5b7;background:linear-gradient(#fff0be,#d5ad59 55%,#865e28);box-shadow:inset 0 0 0 1px #fff8,0 0 0 1px #76562e,0 0 0 3px #d8d0b8,0 0 8px #eeb65070}
+.ui-overload-guide .story-radio-copy small{font-size:11px;line-height:16px}
+.ui-overload-guide .story-radio-copy p{font-size:11px;line-height:14px}
+.ui-overload-guide .ui-button{min-height:44px;white-space:nowrap}

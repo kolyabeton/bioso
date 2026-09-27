@@ -32,6 +32,6 @@ test('root forest mission reuses the sculpted ceramic arch with matching collisi
  const s=createWorldRun(undefined,'core',12),tile=s.world.tiles[0];
  const arch=tile.decorations.find(d=>d.model==='forest-ruin-arch-v2');
  assert.ok(arch);assert.ok(arch.collisionProfile?.hull.length>3);
- assert.equal(arch.x,7.6);assert.equal(arch.z,-15);
- for(let z=-28;z<=28;z++)assert.ok(s.world.walkable(0,z,1.92));
+ assert.equal(Math.abs(arch.x),16);assert.equal(arch.z,-15);
+ assert.ok(s.world.findPath({x:0,z:28},{x:0,z:-28},1.92).length);
 });

@@ -1,0 +1,222 @@
+[
+  {
+    "file": "/Users/serg/Documents/ChatGPT/Biomecha/docs/art/four-chassis-20260918/astra-models-v5/body-demolition-astra5-v3.glb",
+    "bytes": 2531060,
+    "triangles": 32208,
+    "hullNodes": 1,
+    "boundaryEdges": 0,
+    "nonmanifoldEdges": 0,
+    "degenerateHullTriangles": 0,
+    "finiteAttributes": true,
+    "allImagesCanonical": true,
+    "pbrMaps": [
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Aged ivory ceramic",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Oxidised brass",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      }
+    ],
+    "automaticHeadSuppressed": true,
+    "pass": true
+  },
+  {
+    "file": "/Users/serg/Documents/ChatGPT/Biomecha/docs/art/four-chassis-20260918/astra-regulator-polish/body-regulator-astra-polish-v3.glb",
+    "bytes": 5158712,
+    "triangles": 29882,
+    "hullNodes": 1,
+    "boundaryEdges": 0,
+    "nonmanifoldEdges": 0,
+    "degenerateHullTriangles": 0,
+    "finiteAttributes": true,
+    "allImagesCanonical": true,
+    "pbrMaps": [
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Aged ivory ceramic",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Oxidised brass",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      }
+    ],
+    "automaticHeadSuppressed": true,
+    "pass": true
+  },
+  {
+    "file": "/Users/serg/Documents/ChatGPT/Biomecha/docs/art/four-chassis-20260918/astra-sentinel-polish/body-sentinel-astra-polish-v3.glb",
+    "bytes": 3553828,
+    "triangles": 17740,
+    "hullNodes": 1,
+    "boundaryEdges": 0,
+    "nonmanifoldEdges": 0,
+    "degenerateHullTriangles": 0,
+    "finiteAttributes": true,
+    "allImagesCanonical": true,
+    "pbrMaps": [
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Aged ivory ceramic",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Oxidised brass",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      }
+    ],
+    "automaticHeadSuppressed": true,
+    "pass": true
+  },
+  {
+    "file": "/Users/serg/Documents/ChatGPT/Biomecha/docs/art/four-chassis-20260918/astra-assembler-polish/body-assembler-astra5-v3.glb",
+    "bytes": 2386572,
+    "triangles": 27900,
+    "hullNodes": 1,
+    "boundaryEdges": 0,
+    "nonmanifoldEdges": 0,
+    "degenerateHullTriangles": 0,
+    "finiteAttributes": true,
+    "allImagesCanonical": true,
+    "pbrMaps": [
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Aged ivory ceramic",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Rusted inner mechanism",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      },
+      {
+        "material": "Oxidised brass",
+        "maps": [
+          "BaseColor",
+          "MetallicRoughness",
+          "Normal",
+          "Emissive"
+        ],
+        "matchCanonicalSlots": true
+      }
+    ],
+    "automaticHeadSuppressed": true,
+    "pass": true
+  }
+]

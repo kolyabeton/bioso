@@ -36,6 +36,14 @@ function startChallengeNow(s,id,spawn){const n=s.encounters?.nodes.find(n=>n.id=
   n.entrance={x:n.x,y:n.y,z:n.z};n.overworldLayer=captureDungeonLayer(s);const world=dungeonWorld(s,n.type);restoreDungeonLayer(s,{world,enemies:[],ground:[],xpDrops:[],shots:[],puddles:[],recoveryDrops:[],hostileShots:[],enemyAcidPools:[]});
   const dungeonEntrance={x:0,z:26,y:world.heightAt(0,26)??0};n.exit={...dungeonEntrance};n.tunnelGraph=createDungeonLayout(s,dungeonEntrance,n.type);
   const walkable=world.walkable.bind(world);world.walkable=(x,z,r=2.4)=>insideDungeonLayout(n.tunnelGraph,{x,z},r)&&walkable(x,z,r);
+  for(const altar of s.encounters.nodes.filter(node=>node.dungeonId===n.id)){
+   const anchor=n.tunnelGraph.nodes[n.type==='dungeon_roots'?14:16];
+   const edge=n.tunnelGraph.edges.find(edge=>edge.from===anchor.id||edge.to===anchor.id),previous=n.tunnelGraph.nodes[edge.from===anchor.id?edge.to:edge.from];
+   const length=Math.hypot(anchor.x-previous.x,anchor.z-previous.z),dx=(anchor.x-previous.x)/length,dz=(anchor.z-previous.z)/length;
+   Object.assign(altar,{x:anchor.x+dx*6.5,y:anchor.y,z:anchor.z+dz*6.5,discovered:true,announced:true});
+   altar.approach={x:anchor.x+dx*3.2,y:anchor.y,z:anchor.z+dz*3.2};
+   n.tunnelGraph.platforms.push({x:altar.x,z:altar.z,radius:4.2,anchor:{x:anchor.x,z:anchor.z}});
+  }
   n.aggroZones=dungeonAggroZones(n.tunnelGraph,n.type==='dungeon_roots'?12:18,world);n.tunnels=n.aggroZones.flatMap(zone=>zone.points);n.members=[];
   for(const zone of n.aggroZones)for(const p of zone.points){const e=spawn('elite',{...p},'mass',s.time,{introductory:false,promote:false});if(!e)continue;e.challengeId=n.id;e.dungeonElite=true;e.dungeonDormant=true;e.dungeonAggroZoneId=zone.id;e.hp*=DUNGEON_ELITE_HP_MULTIPLIER;e.maxHp=e.hp;e.speed*=1.1;e.attackRecoveryScale=(e.attackRecoveryScale||1)/3;e.contactInterval=(e.contactInterval||1)/3;e.damage=1;if(e.territory){e.territory.home={x:e.x,y:e.y,z:e.z};e.territory.state='idle';e.territory.pursuit=false;}zone.members.push(e.id);n.members.push(e.id);}
   // Item 35: one elite per pack is the guaranteed legendary carrier.

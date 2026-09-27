@@ -38,9 +38,9 @@ test('mass kills cannot bypass the twelve-second combat-time interval',()=>{
 });
 test('six natural drops block more until a pickup or expiry frees room',()=>{
  const s=run();s.consumableRng=()=>0;const enemy={kind:'normal',x:3,z:0};
- for(let i=0;i<6;i++){s.time=i*12;assert(spawnConsumableDrop(s,enemy));}
+ for(let i=0;i<6;i++){s.time=i*12;assert(spawnConsumableDrop(s,{...enemy,x:20}));}
  s.time=72;const ids=s.consumableDrops.map(q=>q.id);assert.equal(spawnConsumableDrop(s,enemy),null);assert.deepEqual(s.consumableDrops.map(q=>q.id),ids);
- s.time=91;assert(spawnConsumableDrop(s,enemy));collect(s);assert.equal(s.consumableDrops.length,6);
+ s.time=91;assert(spawnConsumableDrop(s,{...enemy,x:20}));collect(s);assert.equal(s.consumableDrops.length,6);
  Object.assign(s.consumableDrops[0],s.player);collect(s);assert.equal(s.consumableDrops.length,5);
  s.time=103;assert(spawnConsumableDrop(s,enemy));assert.equal(s.consumableDrops.length,6);
 });
@@ -53,8 +53,8 @@ test('biomass is collected exactly once through the game step',()=>{
  const s=run();placeConsumable(s,'biomass_5',s.player);step(s,.01);assert.equal(s.biomass,5);step(s,.01);assert.equal(s.biomass,5);assert.equal(s.consumableDrops.length,0);
 });
 test('collection respects distance, floors, walls, expiry, cap and death',()=>{
- const s=run(),q=placeConsumable(s,'biomass_5',{x:4,z:0});collect(s);assert.equal(s.biomass,0);
- q.x=0;q.y=4;collect(s);assert.equal(s.biomass,0);q.y=0;s.world.heightAt=()=>0;s.world.lineClear=()=>false;collect(s);assert.equal(s.biomass,0);
+ const s=run(),q=placeConsumable(s,'biomass_5',{x:stats(s).pickup+1,z:0});collect(s);assert.equal(s.biomass,0);
+ q.x=0;q.y=4;s.world.heightAt=()=>0;collect(s);assert.equal(s.biomass,0);q.y=0;s.world.heightAt=()=>0;s.world.lineClear=()=>false;collect(s);assert.equal(s.biomass,0);
  s.world.lineClear=()=>true;s.dead=true;collect(s);assert.equal(s.biomass,0);s.dead=false;s.time=91;collect(s);assert.equal(s.consumableDrops.length,0);
  for(let i=0;i<100;i++)placeConsumable(s,'shield',{x:5,z:0});assert.equal(s.consumableDrops.length,CONSUMABLE_RULES.capacity);
  s.world.heightAt=()=>null;assert.equal(placeConsumable(s,'shield',{x:5,z:0}),null);
@@ -62,7 +62,7 @@ test('collection respects distance, floors, walls, expiry, cap and death',()=>{
 test('one-use shield blocks before organ armor and expires without stacking',()=>{
  const s=run();apply(s,'shield');assert.equal(apply(s,'shield'),false);const hp=s.hp;
  assert.equal(healthView(s,stats(s).hp).shield,true);
- assert.equal(receiveHit(s,stats(s)),'shield');assert.equal(s.hp,hp);s.time=2;assert.equal(receiveHit(s,stats(s)),'armor');assert.equal(s.hp,hp);s.time=3;assert.equal(receiveHit(s,stats(s)),'hurt');assert.equal(s.hp,hp-1);
+ assert.equal(receiveHit(s,stats(s)),'shield');assert.equal(s.hp,hp);s.time=2;assert.equal(receiveHit(s,stats(s)),'armor');assert.equal(s.hp,hp);s.time=3;assert.equal(receiveHit(s,stats(s)),'hurt');assert.equal(s.hp,hp-25);
  apply(s,'shield');s.time=15;assert.equal(receiveHit(s,stats(s)),'hurt');
 });
 test('map and compass follow consumables and remove collected targets',()=>{
@@ -100,8 +100,8 @@ test('beacon distracts reachable normal pursuers and expires',()=>{
  const s=run(),e={kind:'normal',x:5,z:0};apply(s,'beacon');assert.equal(consumableTarget(s,e,s.player),s.consumables.beacon);assert.equal(consumableTarget(s,{...e,kind:'elite'},s.player),s.player);s.time=7;assert.equal(consumableTarget(s,e,s.player),s.player);
 });
 test('revival charges stack, are spent before the equipped revive and never revive a dead run',()=>{
- const s=run();assert.equal(apply(s,'revival'),true);assert.equal(apply(s,'revival'),true);s.hp=1;
- assert.equal(receiveHit(s,{...stats(s),revive:true}),'armor');assert.equal(receiveHit(s,{...stats(s),revive:true}),'revived');assert.equal(s.hp,1);assert.equal(s.health.revived,false);assert.equal(s.consumables.revivalCharges,1);
+ const s=run();assert.equal(apply(s,'revival'),true);assert.equal(apply(s,'revival'),true);s.hp=25;
+ assert.equal(receiveHit(s,{...stats(s),revive:true}),'armor');assert.equal(receiveHit(s,{...stats(s),revive:true}),'revived');assert.equal(s.hp,25);assert.equal(s.health.revived,false);assert.equal(s.consumables.revivalCharges,1);
  s.time=3;assert.equal(receiveHit(s,{...stats(s),revive:true}),'revived');assert.equal(s.health.revived,false);s.time=6;assert.equal(receiveHit(s,{...stats(s),revive:true}),'revived');assert.equal(s.health.revived,true);s.time=9;receiveHit(s,stats(s));s.dead=true;assert.equal(apply(s,'revival'),false);
 });
 test('view shares fixed batches, renders every hue and resets/disposes resources',()=>{
@@ -158,4 +158,13 @@ test('beacon, satellites and mark finish gradually without changing their deadli
  view.update(s,camera,9,false,()=>true,.1,.1);const core=scene.getObjectByName('pickup-orbs:internal-energy');core.getMatrixAt(0,matrix);scale.setFromMatrixScale(matrix);const full=scale.x;
  view.update(s,camera,9.8,false,()=>true,.1,.1);core.getMatrixAt(0,matrix);scale.setFromMatrixScale(matrix);assert(scale.x<full*.3);assert(scene.getObjectByName('consumable-hunter-mark').material.opacity<.3);
  view.update(s,camera,10.5,false,()=>true,.1,.5);assert.equal(core.count,0);assert.equal(scene.getObjectByName('consumable-hunter-mark').visible,false);assert.equal(s.consumables.parasitesUntil,10);view.dispose();
+});
+
+test('bonus collection uses the shared pickup radius including increases',()=>{
+ const s=run(),st=stats(s);s.world.heightAt=()=>0;s.world.lineClear=()=>true;
+ placeConsumable(s,'biomass_5',{x:st.pickup-.1,z:0});
+ placeConsumable(s,'biomass_5',{x:st.pickup+1,z:0});
+ tickConsumableDrops(s,st);assert.equal(s.biomass,5);assert.equal(s.consumableDrops.length,1);
+ tickConsumableDrops(s,{...st,pickup:st.pickup*1.5});assert.equal(s.biomass,10);assert.equal(s.consumableDrops.length,0);
+ tickConsumableDrops(s,st);assert.equal(s.biomass,10);
 });

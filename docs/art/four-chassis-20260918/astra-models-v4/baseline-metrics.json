@@ -1,0 +1,26 @@
+[
+  {
+    "key": "bastion",
+    "bytes": 3356996,
+    "triangles": 14732,
+    "materials": 5
+  },
+  {
+    "key": "reactor",
+    "bytes": 4008420,
+    "triangles": 18956,
+    "materials": 6
+  },
+  {
+    "key": "rootwalker",
+    "bytes": 5007288,
+    "triangles": 26523,
+    "materials": 6
+  },
+  {
+    "key": "broodmother",
+    "bytes": 5196580,
+    "triangles": 28668,
+    "materials": 5
+  }
+]

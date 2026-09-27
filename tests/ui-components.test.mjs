@@ -44,7 +44,7 @@ test('comparison distinguishes lower damage from faster attacks',()=>{
   const preview=cloneForComparison(run);equip(preview,part.id,0);
   const rows=comparisonRows(run,preview,{group:'arms',slot:0});
   assert.equal(rows.find(r=>r.label==='Урон оружия').tone,'negative');
-  assert.equal(rows.find(r=>r.label==='Скорость атаки').tone,'positive');
+  assert.equal(rows.find(r=>r.label==='Интервал атак').tone,'positive');
   assert.equal(rows.find(r=>r.label==='Вес').tone,'neutral');
   assert.doesNotMatch(rows.map(r=>`${r.before} ${r.after}`).join(' '),/\d\s*\/\s*\d/);
 });

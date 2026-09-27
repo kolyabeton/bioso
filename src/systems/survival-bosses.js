@@ -1,3 +1,4 @@
+import {difficultyTime,difficultyProfile} from './difficulty.js';
 import {MISSIONS} from '../catalog.js';
 import {spawnPoint} from '../terrain.js';
 import {enemyBalance,SURVIVAL_PRESSURE,SURVIVAL_WAVE_BOSS_LEVELS,SURVIVAL_MOTHER_GROWTH_AT} from './balance.js';
@@ -14,8 +15,8 @@ export function tickSurvivalBosses(s,spawn){
  for(const enemy of s.enemies.filter(e=>e.hp>0&&e.kind==='final')){
   const stage=Math.max(0,Math.floor((s.time-SURVIVAL_MOTHER_GROWTH_AT)/60));
   if(stage>(enemy.post15Stage||0)){
-   const steps=stage-(enemy.post15Stage||0),oldMax=enemy.maxHp;
-   enemy.maxHp*=Math.pow(1.1,steps);enemy.hp+=enemy.maxHp-oldMax;enemy.armor=(enemy.armor||0)+2*steps;enemy.speed*=Math.pow(1.03,steps);enemy.attackRecoveryScale=(enemy.attackRecoveryScale||1)*Math.pow(.97,steps);enemy.post15Stage=stage;
+   const steps=(stage-(enemy.post15Stage||0))*difficultyProfile(s.difficulty).growth,oldMax=enemy.maxHp;
+   enemy.maxHp*=Math.pow(1.1,steps);enemy.hp+=enemy.maxHp-oldMax;enemy.armor=(enemy.armor||0)+2*steps*difficultyProfile(s.difficulty).armor;enemy.speed*=Math.pow(1.03,steps);enemy.attackRecoveryScale=(enemy.attackRecoveryScale||1)*Math.pow(.97,steps);enemy.post15Stage=stage;
    s.events.push({type:'notice',text:`Матка усиливается · ступень ${stage}`});
   }
  }
@@ -30,13 +31,15 @@ export function tickSurvivalBosses(s,spawn){
  if(!position)return;
  const enemy=spawn('boss',position,'mass',s.time,{introductory:false});
  if(!enemy)return;
- const overtime=Math.max(0,s.time-2400)/SURVIVAL_BOSS_INTERVAL;
- enemy.hp=enemy.maxHp=Math.round(enemyBalance(s.time,'boss').hp*SURVIVAL_PRESSURE.hp*level.hp*(superBoss?2:1)*(1+overtime*.5));
+ const difficulty=difficultyProfile(s.difficulty),overtime=Math.max(0,s.time-2400)/SURVIVAL_BOSS_INTERVAL;
+ enemy.hp=enemy.maxHp=Math.round(enemyBalance(difficultyTime(s,s.time),'boss').hp*difficultyProfile(s.difficulty).stats*SURVIVAL_PRESSURE.hp*(1+(level.hp-1)*difficulty.growth)*(superBoss?2:1)*(1+overtime*.5*difficultyProfile(s.difficulty).growth));
+ if(s.recordMode){enemy.hp*=3;enemy.maxHp=enemy.hp;}
  enemy.bossName=mission.bossName;enemy.bossLevel=levelIndex+1;enemy.survivalInvader=true;enemy.survivalSuperBoss=superBoss;enemy.territory=null;
  setupMissionBoss(s,enemy,mission.bossId);
- enemy.bossSpeedScale=level.attack*(superBoss?1.15:1);
+ enemy.bossSpeedScale=(1+(level.attack*(superBoss?1.15:1)-1)*difficulty.growth)*(mission.bossId==='boss-mercury-hunter'?.7:1);
+ if(mission.bossId==='boss-mercury-hunter')enemy.bossDashSpeedScale=.7;
  enemy.speed*=enemy.bossSpeedScale;
- enemy.bossArmorBonus=level.armor+(superBoss?5:0);
+ enemy.bossArmorBonus=(level.armor+(superBoss?5:0))*difficulty.armor;
  enemy.armor+=enemy.bossArmorBonus;
  schedule.rotation.push(mission.id);schedule.count++;schedule.nextAt=schedule.count<SURVIVAL_BOSS_LIMIT?survivalBossScheduledAt(schedule.count+1):Infinity;
  enemy.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:enemy.id,kind:enemy.kind,x:enemy.x,y:enemy.y??0,z:enemy.z},{type:'notice',text:`${superBoss?'Супербосс':'Вторжение'} · УР. ${enemy.bossLevel}: ${mission.bossName}`});

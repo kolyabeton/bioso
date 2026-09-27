@@ -4,11 +4,13 @@ import {readFile} from 'node:fs/promises';
 import * as T from 'three';
 import {createWorldRun,stepWorldRun} from '../src/world-run.js';
 import {hurtEnemy} from '../src/game.js';
-import {movePlayer} from '../src/elevation.js';
+import {bodyRadius,movePlayer} from '../src/elevation.js';
+import {createPart} from '../src/assembly.js';
 import {MISSION_ENVIRONMENTS,missionGateClosed,missionGateZ} from '../src/mission-environment.js';
 import {skipMissionEvent} from '../src/mission-run.js';
 import {createMissionEnvironmentView} from '../src/mission-environment-view.js';
 import {architectureGLB} from './helpers/architecture-glb.mjs';
+import {obstacleHeight} from '../src/architecture-collision.js';
 
 function clearRoom(s){
  for(const e of s.enemies.filter(e=>e.hp>0&&s.mission.floorsState[s.mission.currentFloor].members.includes(e.id)))hurtEnemy(s,e,1e12);
@@ -41,18 +43,43 @@ test('third-room event keeps its gate closed until resolved, then only the next 
  assert.equal(missionGateClosed(s.mission,2),true);
  assert.equal(s.world.canMove({x:0,z:missionGateZ(2)-4},{x:0,z:missionGateZ(2)+4},.8),false);
 });
-test('all mission environments keep a large-body central route, accessible spawns and themed visible scenery',()=>{
+test('all mission floors interrupt the centre with sparse cover and keep both large-body bypasses and spawns accessible',()=>{
  for(const mode of ['garden','quarantine','core','nursery','mother'])for(const seed of [1,42,20317]){
   const s=createWorldRun(undefined,mode,seed),environment=MISSION_ENVIRONMENTS[mode];
   assert.equal(s.world.environmentId,environment.id);assert.equal(s.world.environmentName,environment.name);
+  const originalBody=s.body,originalPlayer=s.player;s.body=createPart(s,'rootwalker',5);
+  assert.equal(bodyRadius(s),1.92);
   for(const floor of s.mission.floorsState)floor.state='cleared';
   for(const tile of s.world.tiles){
    assert.equal(tile.environmentId,environment.id);assert.equal(tile.environmentName,environment.name);assert.equal(tile.biome,environment.biome);
    assert.ok(tile.decorations.some(d=>['landmark','structure','vegetation'].includes(d.decorationKind)));
    assert.ok(tile.decorations.some(d=>d.decorationKind==='cover'&&Number.isFinite(d.rotation)));
-   for(let dz=-30;dz<=30;dz++)assert.ok(s.world.walkable(0,tile.z+dz,1.92),`${mode}/${seed}/${tile.index}/${dz}`);
+   const radius=1.92,bossRoom=tile.index===s.world.tiles.length-1,covers=tile.decorations.filter(d=>d.tacticalCover);
+   assert.equal(covers.length,2);
+   for(const cover of covers){
+    assert.ok(Math.abs(cover.x)<=(bossRoom?5:1));
+    assert.equal(s.world.walkable(cover.x,cover.z,.8),false);
+    const coverY=Math.min(1,obstacleHeight(cover)*.5);
+    assert.equal(s.world.solidAt(cover.x,coverY,cover.z),true);
+    assert.equal(s.world.lineClear({x:cover.x,y:coverY,z:cover.z+5},{x:cover.x,y:coverY,z:cover.z-5}),false);
+    // Actual maximum-size movement around all four sides, including corners.
+    const loop=[{x:cover.x-4.5,z:cover.z+4.5},{x:cover.x+4.5,z:cover.z+4.5},{x:cover.x+4.5,z:cover.z-4.5},{x:cover.x-4.5,z:cover.z-4.5}];
+    s.player={...loop[0]};
+    for(let i=0;i<loop.length;i++){
+     const next=loop[(i+1)%loop.length];
+     assert.ok(s.world.canMove(loop[i],next,radius),`${mode}/${seed}/${tile.index}/cover loop ${i}`);
+     movePlayer(s,0,next.x-s.player.x,next.z-s.player.z);
+     assert.ok(Math.hypot(s.player.x-next.x,s.player.z-next.z)<1e-8,`${mode}/${seed}/${tile.index}/actual movement ${i}`);
+    }
+   }
+   for(let dz=-28;dz<=28;dz++)for(const x of bossRoom?[-12,12]:[-6,6])assert.ok(s.world.walkable(x,tile.z+dz,radius),`${mode}/${seed}/${tile.index}/${x}/${dz}`);
+   const start={x:0,z:tile.z+28},goal={x:0,z:tile.z-28},path=s.world.findPath(start,goal,radius);
+   assert.deepEqual(path.at(-1),goal,`${mode}/${seed}/${tile.index}/through route`);
+   let previous=start;for(const next of path){assert.ok(s.world.canMove(previous,next,radius));previous=next;}
+   if(tile.index!==s.world.tiles.length-1)assert.equal(s.world.canMove(start,goal,radius),false);
+   for(const [x,dz] of [[0,22],[0,-26],[-6,3],[0,-19],[0,0]])assert.ok(s.world.walkable(x,tile.z+dz,radius),`${mode}/${seed}/${tile.index}/safe ${x}/${dz}`);
   }
-  s.mission.floorsState[0].state='ready';stepWorldRun(s,0);
+  s.body=originalBody;s.player=originalPlayer;s.mission.floorsState[0].state='ready';stepWorldRun(s,0);
   assert.ok(s.mission.floorsState[0].members.length>0);
   assert.equal(s.mission.floorsState[0].members.length,s.enemies.length);
   for(const e of s.enemies)assert.ok(s.world.walkable(e.x,e.z,e.radius),`${mode}/${seed}/${e.id}`);
@@ -105,16 +132,16 @@ test('every mission environment model exists in the shipped asset library',async
   for(const id of referenced)assert.ok(ids.has(id),`${mode}/${id}`);
  }
 });
-test('scrap landmarks use real model collision footprints and keep the centre clear',()=>{
+test('scrap landmarks use real model collision footprints outside the playable bypass',()=>{
  const s=createWorldRun(undefined,'quarantine',42),tile=s.world.tiles[1];
  const scrap=tile.decorations.find(d=>d.decorationKind==='landmark');
  assert.equal(scrap.biome,'scrapyard');
  assert.equal(scrap.model,'environment-scrap-bank-v1');
  const z=scrap.z;
  assert.equal(s.world.walkable(scrap.x,z,.8),false);
- assert.equal(s.world.walkable(0,z,.8),true);
- assert.equal(s.world.lineClear({x:0,y:1,z},{x:scrap.x,y:1,z}),false);
- s.player={x:0,z};for(let i=0;i<80;i++)movePlayer(s,0,.1,0);
+ assert.equal(s.world.walkable(6,z,1.92),true);
+ assert.equal(s.world.solidAt(scrap.x,1,z),true);
+ s.player={x:6,z};for(let i=0;i<80;i++)movePlayer(s,0,.1,0);
  assert.ok(s.player.x<scrap.x);
 });
 test('authored gate halves follow simulation state, including reload and survival reset',async()=>{

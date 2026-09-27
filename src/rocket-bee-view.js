@@ -14,7 +14,7 @@ export function rocketFlightOffset(shot,time=0,reducedMotion=false){
 
 /** Reuses the articulated mechanical-bee model as a batched weapon projectile. */
 export function createRocketBeeView(parent,capacity=96,{scale=1.24,formation=true}={}){
- const sourceRoot=new T.Group(),sourceView=createSymbiontView(sourceRoot),template=sourceRoot.getObjectByName('mechanical-bee-0');
+ const sourceRoot=new T.Group(),sourceView=createSymbiontView(sourceRoot,{initialCount:1}),template=sourceRoot.getObjectByName('mechanical-bee-0');
  template.updateMatrixWorld(true);
  const groups=new Map();
  const body=template.children.find(child=>child.isGroup);

@@ -1,0 +1,15 @@
+[
+  {
+    "key": "regulator",
+    "file": "body-regulator-astra-polish-v3.glb",
+    "bytes": 5158712,
+    "triangles": 29882,
+    "materials": 6,
+    "textures": 4,
+    "bounds": [
+      1.4031201601028442,
+      1.7673055529594421,
+      0.8423988521099093
+    ]
+  }
+]

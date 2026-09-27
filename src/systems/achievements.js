@@ -1,12 +1,16 @@
-import {CATALOG, MISSIONS, SURVIVAL_UNLOCKS, WEAPON_UNLOCKS} from '../catalog.js';
+import {CATALOG, MISSIONS, SURVIVAL_UNLOCKS, WEAPON_UNLOCKS, weaponUnlockProgress} from '../catalog.js';
 import {EVENTS} from './events/definitions.js';
 import {SECRETS} from './secrets/definitions.js';
 import {mutationView} from './sets/mutations.js';
-import {setCounts, equipped} from './sets/loot.js';
+import {setCounts, equipped, rollAffixes} from './sets/loot.js';
 import {ABILITIES} from './abilities.js';
 import {createPart,lootTier} from '../assembly.js';
-import {SURVIVAL_ACHIEVEMENTS} from './survival-achievements.js';
+import {SURVIVAL_ACHIEVEMENTS,SURVIVAL_COMPLETION_ACHIEVEMENTS} from './survival-achievements.js';
 import {trackSurvivalState} from './survival-achievement-progress.js';
+import {CHASSIS_UNLOCKS} from './chassis-unlocks.js';
+import {chassisProgress,trackChassisCapacity} from './chassis-progress.js';
+import {stats} from '../assembly.js';
+import {seededRandom} from '../simulation.js';
 export {SURVIVAL_ACHIEVEMENTS} from './survival-achievements.js';
 
 export const ACHIEVEMENT_CATEGORIES={all:'Все',survival:'Выживание',missions:'Миссии',exploration:'Мир',assembly:'Сборка',mastery:'Развитие'};
@@ -33,7 +37,8 @@ export const NEW_ACHIEVEMENTS=[
  feat('synergy','На стыке стихий','mastery','Изучите любую синергию после завершения двух нужных веток.',[condition('Изученная синергия',1,s=>Number((s.abilities?.learned||[]).some(id=>ABILITIES[id]?.branch==='synergy')))],'run','Вместе они становятся чем-то большим.'),
 ];
 export const ACHIEVEMENTS=[
- ...WEAPON_UNLOCKS.map(a=>({...a,category:'mastery',scope:'lifetime',conditions:[condition(a.label,a.goal,s=>s.profile.meta?.weaponKills?.[a.counter]||0)],reward:{keys:[a.key],delivery:'ground'}})),
+ ...CHASSIS_UNLOCKS.map(a=>({...a,category:'assembly',scope:'lifetime',isNew:true,art:`/assets/ui/achievements/chassis-${a.key}-v1.png`,conditions:a.goals.map(([label,goal,key])=>condition(label,goal,s=>chassisProgress(s.profile)[key])),reward:{keys:[a.key],delivery:'ground'}})),
+ ...WEAPON_UNLOCKS.map(a=>({...a,...(a.key==='shieldArm'?{art:'/assets/ui/achievements/elite1-v1.jpg'}:{}),category:'mastery',scope:'lifetime',conditions:[condition(a.label,a.goal,s=>weaponUnlockProgress(s.profile,a))],reward:{keys:[a.key],delivery:'ground'}})),
  ...SURVIVAL_UNLOCKS.map(a=>{const [label,goal,key]=countCondition[a.id];return{id:a.id,name:a.name,category:'survival',scope:'run',mode:'survival',description:key==='time'?`Продержитесь ${goal/60} минут в выживании.`:key==='level'?`Достигните уровня ${goal} в выживании.`:key==='finalDefeated'?'Победите Матку в выживании.':`Победите ${goal} ${key==='elites'?(goal===1?'элитного врага':'элитных врагов'):(goal===1?'босса':'боссов')} за один забег в выживании.`,conditions:[condition(label,goal,s=>Number(s[key])||0)],lore:survivalLore[a.id],reward:{keys:a.rewards,delivery:'ground'}};}),
  ...MISSIONS.map(m=>({id:'mission:'+m.id,aliases:m.id==='nursery'?['meta:mirror']:[],name:m.name,category:'missions',scope:'lifetime',description:m.description,lore:'Из руин возвращаются с новым знанием.',conditions:[condition(m.bossName,1,s=>Number(s.profile.achievements.includes('mission:'+m.id)))],reward:{keys:m.rewards,delivery:'mission'},mission:m.id})),
  {id:'meta:harpoon',name:'За пределом',category:'survival',scope:'lifetime',description:'После победы над Маткой продержитесь ещё 30 секунд против усиленных элит.',conditions:[condition('Усиленные победы',1,s=>s.profile.meta?.overruns||0)],reward:{keys:['harpoon'],delivery:'inventory'},lore:'Когда всё закончилось, вы остались.'},
@@ -41,6 +46,7 @@ export const ACHIEVEMENTS=[
  {id:'meta:spring',name:'Первопроходец',category:'exploration',scope:'run',mode:'survival',description:'За один забег посетите четыре разных биома и завершите два разных типа событий. Секреты не считаются событиями.',conditions:[condition('Биомы',4,s=>visitedBiomes(s).length),condition('Типы событий',2,s=>completedEventTypes(s).length)],reward:{keys:['spring'],delivery:'inventory'},lore:'У каждого биома — свой способ выжить.'},
  ...NEW_ACHIEVEMENTS,
  ...SURVIVAL_ACHIEVEMENTS,
+ ...SURVIVAL_COMPLETION_ACHIEVEMENTS,
 ];
 const ids=new Set(ACHIEVEMENTS.map(a=>a.id));
 const safe=n=>Number.isSafeInteger(n)&&n>=0?Math.min(n,1000000):0;
@@ -52,7 +58,7 @@ export const achievementArt=a=>a.art||'/assets/ui/achievements/'+a.id.replace(':
 export function achievementProgress(s,p,a){const j=journal(p),active=!a.mode||s.mode===a.mode||a.isSurvivalExpansion&&a.scope==='lifetime',state=s.profile===p?s:{...s,profile:p};return a.conditions.map(c=>Math.min(c.goal,Math.max(0,Math.floor(active?c.read(state,j):0))));}
 export function trackAchievements(s){
  if(!s?.profile||!s.body)return false;
- const p=s.profile,j=journal(p);let changed=trackSurvivalState(s);
+ const p=s.profile,j=journal(p);let changed=trackSurvivalState(s);changed=trackChassisCapacity(s,stats(s).capacity)||changed;
  s.achievementBaseline??=[...p.achievements];
  for(const n of nodes(s))if(SECRETS[n.type]&&completed(n)&&!j.secrets.includes(n.type)){j.secrets.push(n.type);changed=true;}
  for(const m of mutationView(s))if(m.active&&!j.mutations.includes(m.id)){j.mutations.push(m.id);changed=true;}
@@ -65,7 +71,8 @@ export function trackAchievements(s){
    for(const key of a.reward.keys||[])if(!p.unlocked.includes(key)){
     // First discoveries use the level's base loot rank, without consuming combat RNG.
     p.unlocked.push(key);const part=createPart(s,key,lootTier(s.level,()=>.5));
-    part.rarity=CATALOG[key].rare?'relic':'common';delete part.affix;part.affixes=[];
+    part.rarity=CATALOG[key].rare?'relic':'common';delete part.affix;
+    part.affixes=rollAffixes(part,seededRandom((s.seed??0)^Math.imul(part.id,2654435761)));
     s.ground.push({id:++s.entityId,part,x:s.player.x+1,y:s.player.y??0,z:s.player.z});
    }
    const reward=a.reward.tokens?'+1 жетон':a.reward.keys.map(key=>CATALOG[key].name).join(', ');

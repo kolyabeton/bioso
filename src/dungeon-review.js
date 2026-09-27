@@ -16,6 +16,7 @@ export function prepareDungeonReview(params,{getRun,start,stopInput,ui}){
    <p>Небесный лабиринт с техническими дорожками. Элиты ждут группами по 3–5; «Дальше» переносит между зонами агро.</p>
    <div class="dungeon-review-actions">
     <button class="ui-button" data-command="next">Дальше</button><button class="ui-button" data-command="entrance">К выходу</button>
+    <button class="ui-button" data-command="altar">К алтарю</button>
     <button class="ui-button" data-command="clear">Зачистить</button><button class="ui-button" data-command="leave">Выйти</button>
     <button class="ui-button" data-command="god" aria-pressed="true">Бессмертие: да</button><button class="ui-button" data-command="reset">Сбросить</button>
    </div>
@@ -48,7 +49,7 @@ export function prepareDungeonReview(params,{getRun,start,stopInput,ui}){
   for(const button of themes.children){const selected=button.dataset.theme===key;button.setAttribute('aria-pressed',String(selected));button.classList.toggle('ui-button--selected',selected);button.querySelector('span').textContent=(selected?'✓ ':'')+DUNGEON_SCENARIOS[button.dataset.theme].label;}
   control('leave').querySelector('span').textContent=proof.state==='paused'?'Вернуться':'Выйти';
   control('leave').disabled=proof.state==='complete';
-  for(const command of ['next','entrance','clear'])control(command).disabled=proof.state!=='active';
+  for(const command of ['next','entrance','clear','altar'])control(command).disabled=proof.state!=='active';
   control('god').querySelector('span').textContent=`Бессмертие: ${proof.invulnerable?'да':'нет'}`;
   control('god').setAttribute('aria-pressed',String(proof.invulnerable));
  }
@@ -59,6 +60,7 @@ export function prepareDungeonReview(params,{getRun,start,stopInput,ui}){
   if(command==='tools'){const tools=panel.querySelector('#dungeon-review-tools');tools.hidden=!tools.hidden;control('tools').setAttribute('aria-expanded',String(!tools.hidden));}
   if(command==='next'){point=(point+1)%node.aggroZones.length;Object.assign(s.player,node.aggroZones[point]);}
   if(command==='entrance')Object.assign(s.player,node.exit);
+  if(command==='altar'){const altar=s.encounters.nodes.find(n=>n.dungeonId===node.id);if(altar?.approach)Object.assign(s.player,altar.approach);}
   if(command==='clear'){paused=true;clearDungeonReview(s,node);}
   if(command==='leave'){const changed=node.state==='paused'?beginEncounter(s,node.id):leaveDungeonReview(s,node);if(changed){paused=false;panel.querySelector('#dungeon-review-tools').hidden=true;control('tools').setAttribute('aria-expanded','false');document.getElementById('world').focus();}}
   if(command==='god')s.health.invulnerableUntil=s.health.invulnerableUntil===Infinity?0:Infinity;

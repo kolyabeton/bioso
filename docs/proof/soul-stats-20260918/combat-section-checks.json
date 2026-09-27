@@ -1,0 +1,266 @@
+[
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "overflow": 0,
+        "text": ""
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Назад"
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Ветки"
+      }
+    ],
+    "columns": [
+      {
+        "rows": 12,
+        "title": "Игра",
+        "width": 142
+      },
+      {
+        "rows": 72,
+        "title": "Бой",
+        "width": 142
+      }
+    ],
+    "dialogWidth": 344,
+    "notes": 0,
+    "overflow": 0,
+    "scroll": {
+      "max": 3135,
+      "top": 0
+    },
+    "size": [
+      360,
+      640
+    ],
+    "textOverflow": [],
+    "url": "http://127.0.0.1:5173/?review=soul&variant=chimera-two&sound=0&lang=ru"
+  },
+  {
+    "buttons": [
+      {
+        "height": 47.999996185302734,
+        "overflow": 0,
+        "text": ""
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Назад"
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Ветки"
+      }
+    ],
+    "columns": [
+      {
+        "rows": 12,
+        "title": "Игра",
+        "width": 157
+      },
+      {
+        "rows": 72,
+        "title": "Бой",
+        "width": 157
+      }
+    ],
+    "dialogWidth": 374,
+    "notes": 0,
+    "overflow": 0,
+    "scroll": {
+      "max": 2931,
+      "top": 0
+    },
+    "size": [
+      390,
+      844
+    ],
+    "textOverflow": [],
+    "url": "http://127.0.0.1:5173/?review=soul&variant=chimera-two&sound=0&lang=ru"
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "overflow": 0,
+        "text": ""
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Назад"
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Ветки"
+      }
+    ],
+    "columns": [
+      {
+        "rows": 12,
+        "title": "Игра",
+        "width": 160.5
+      },
+      {
+        "rows": 72,
+        "title": "Бой",
+        "width": 160.5
+      }
+    ],
+    "dialogWidth": 389,
+    "notes": 0,
+    "overflow": 0,
+    "scroll": {
+      "max": 3063,
+      "top": 0
+    },
+    "size": [
+      1280,
+      720
+    ],
+    "textOverflow": [],
+    "url": "http://127.0.0.1:5173/?review=soul&variant=chimera-two&sound=0&lang=ru"
+  },
+  {
+    "buttons": [
+      {
+        "height": 47.999996185302734,
+        "overflow": 0,
+        "text": ""
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Назад"
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Ветки"
+      }
+    ],
+    "columns": [
+      {
+        "rows": 12,
+        "title": "Игра",
+        "width": 142
+      },
+      {
+        "rows": 72,
+        "title": "Бой",
+        "width": 142
+      }
+    ],
+    "dialogWidth": 344,
+    "notes": 0,
+    "overflow": 0,
+    "scroll": {
+      "max": 10287,
+      "top": 0
+    },
+    "size": [
+      360,
+      640
+    ],
+    "textOverflow": [],
+    "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru"
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "overflow": 0,
+        "text": ""
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Назад"
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Ветки"
+      }
+    ],
+    "columns": [
+      {
+        "rows": 12,
+        "title": "Игра",
+        "width": 157
+      },
+      {
+        "rows": 72,
+        "title": "Бой",
+        "width": 157
+      }
+    ],
+    "dialogWidth": 374,
+    "notes": 0,
+    "overflow": 0,
+    "scroll": {
+      "max": 9726,
+      "top": 0
+    },
+    "size": [
+      390,
+      844
+    ],
+    "textOverflow": [],
+    "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru"
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "overflow": 0,
+        "text": ""
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Назад"
+      },
+      {
+        "height": 44,
+        "overflow": 0,
+        "text": "Ветки"
+      }
+    ],
+    "columns": [
+      {
+        "rows": 12,
+        "title": "Игра",
+        "width": 160.5
+      },
+      {
+        "rows": 72,
+        "title": "Бой",
+        "width": 160.5
+      }
+    ],
+    "dialogWidth": 389,
+    "notes": 0,
+    "overflow": 0,
+    "scroll": {
+      "max": 9758,
+      "top": 0
+    },
+    "size": [
+      1280,
+      720
+    ],
+    "textOverflow": [],
+    "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru"
+  }
+]

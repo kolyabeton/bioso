@@ -1,6 +1,6 @@
 import {combatTime} from './mutations.js';
-import {visibleBetween,spatialDistance,bodyRadius} from '../elevation.js';
-import {eventObstacles,eventMovementClear,moveCreature} from '../gameplay-modules/event-collision.js';
+import {bodyRadius} from '../elevation.js';
+import {eventObstacles,eventMovementClear} from '../gameplay-modules/event-collision.js';
 const state=s=>s.extraParts??={springCharge:0,springReady:false,springReadyAt:0,springLeapUntil:0,springDodgeUntil:0};
 export const springCooldown=p=>10-(Math.max(1,Math.min(5,Math.floor(p?.tier??1)))-1)*1.25;
 export const SPRING_LEAP_DISTANCE=2.5;
@@ -20,7 +20,6 @@ export function springLanding(s,dx,dz,ignoredEnemy=null){
  const length=Math.hypot(dx,dz);if(length<.1)return null;
  return safeSpringLanding(s,s.player.x+dx/length*SPRING_LEAP_DISTANCE,s.player.z+dz/length*SPRING_LEAP_DISTANCE,ignoredEnemy);
 }
-export function pullHarpoon(s,e){if(e.kind!=='normal'||e.hp<=0)return;const d=spatialDistance(e,s.player)||1,amount=Math.min(3,Math.max(0,d-e.radius-1.5));if(!visibleBetween(s,e,s.player))return;moveCreature(s,e,(s.player.x-e.x)/d*amount,(s.player.z-e.z)/d*amount,e.radius);}
 export function tickExtraParts(s,dt,hurt){
  const a=state(s),t=combatTime(s);
  const m=s.motion||{},length=Math.hypot(m.x||0,m.z||0),spring=s.legs.some(p=>p?.key==='spring');

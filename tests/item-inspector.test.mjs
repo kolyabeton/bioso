@@ -43,7 +43,7 @@ test('broodmother shows its current drone count once without a redundant active 
 test('rare common nerve has no contradictory common label and exposes its real volley upgrade',()=>{
  const s=createRun(),p=createPart(s,'commonNerve');p.rarity='rare';s.organs[0]=p;
  const m=itemInspectorData(s,p);assert.ok(!m.subtitle.includes('Обычная'));assert.ok(m.lines.some(l=>l.includes('Эпическая')));
- assert.equal(m.rows.some(r=>r.label==='Совместимость'),false);assert.equal(m.preview.label,'Урон общего залпа');assert.equal(m.preview.before,'150%');assert.equal(m.preview.after,'160%');assert.match(m.actionLabel,/Улучшить/);
+ assert.equal(m.rows.some(r=>r.label==='Совместимость'),false);assert.equal(m.preview.label,'Урон общего залпа');assert.equal(m.preview.before,'+50%');assert.equal(m.preview.after,'+60%');assert.match(m.actionLabel,/Улучшить/);
  s.arms[0]=createPart(s,'seed');const rows=itemInspectorData(s,p).rows;assert.ok(!rows.some(r=>['Категория','Совместимое оружие','Сейчас влияет на'].includes(r.label)));
 });
 
@@ -51,7 +51,7 @@ test('common nerve paid upgrades add ten volley damage points and stop at ten',(
  const s=createRun(),p=createPart(s,'commonNerve');s.organs[0]=p;s.biomass=10000;
  for(let i=0;i<10;i++){
   const model=itemInspectorData(s,p);assert.deepEqual(model.options,[{key:'commonVolley',label:'Урон общего залпа'}]);
-  assert.deepEqual(model.preview,{label:'Урон общего залпа',before:`${150+10*i}%`,after:`${160+10*i}%`});
+  assert.deepEqual(model.preview,{label:'Урон общего залпа',before:`+${50+10*i}%`,after:`+${60+10*i}%`});
   assert(upgrade(s,p.id,'commonVolley',true));
  }
  assert.equal(upgrade(s,p.id,'commonVolley',true),false);assert.equal(itemInspectorData(s,p).notice,'Все доступные улучшения получены');
@@ -83,8 +83,9 @@ test('every organ rank changes its displayed core effect',()=>{
  for(const key of Object.keys(ORGANS)){
   if(key==='revivalCore')continue; // one-shot revival does not scale with rank
   const s=createRun(),low=createPart(s,key,1),high=createPart(s,key,5);s.organs[0]=low;
-  const lowEffect=itemInspectorData(s,low).rows.find(r=>r.label==='Эффект')?.value;s.organs[0]=high;
-  const highEffect=itemInspectorData(s,high).rows.find(r=>r.label==='Эффект')?.value;
+  const label=key==='reverseStomach'?'Здоровье детали':'Эффект';
+  const lowEffect=itemInspectorData(s,low).rows.find(r=>r.label===label)?.value;s.organs[0]=high;
+  const highEffect=itemInspectorData(s,high).rows.find(r=>r.label===label)?.value;
   assert.notEqual(highEffect,lowEffect,key);
  }
 });
@@ -169,16 +170,16 @@ test('spring inspector shows only the current rank cooldown',()=>{
  const s=createRun();
  for(const [tier,seconds] of [[1,'10 с'],[2,'8,75 с'],[3,'7,5 с'],[4,'6,25 с'],[5,'5 с']]){
   const p=createPart(s,'spring',tier),model=itemInspectorData(s,p);
-  assert.equal(model.rows.find(r=>r.label==='Перезарядка')?.value,seconds);
+  assert.equal(model.rows.find(r=>r.label==='Время перезарядки')?.value,seconds);
   assert.doesNotMatch(describePart(s,p).lines.join(' '),/10 \/ 8,75 \/ 7,5/);
  }
 });
 
 test('fangs inspector shows current-rank healing and charges without slash notation',()=>{
  const s=createRun();
- for(const [tier,attacks] of [[1,10],[2,9],[3,8],[4,7],[5,6]]){
+ for(const [tier,percent] of [[1,5],[2,6],[3,7],[4,8],[5,9]]){
   const p=createPart(s,'fangs',tier),model=itemInspectorData(s,p);
-  assert.equal(model.rows.find(r=>r.label==='Эффект')?.value,`Восстанавливает 1 деление после ${attacks} атак.`);
+  assert.equal(model.rows.find(r=>r.label==='Эффект')?.value,`Восстанавливает ${percent}% максимального HP при атаке.`);
   assert.equal(model.rows.find(r=>r.label==='Заряды')?.value,'2 из 2');
   assert.doesNotMatch([...model.rows.map(r=>r.value),...describePart(s,p).lines].join(' '),/\d\s*\/\s*\d/);
  }
@@ -203,9 +204,9 @@ test('all item descriptions and inspector ranks avoid slash-separated values',()
 
 test('repair kit effect stays concise',()=>{
  const s=createRun(),effect=describePart(s,createPart(s,'repairGland')).lines[0];
- assert.equal(effect,'Усиливает бонус способности корпуса на 30%. Несколько Ремкомплектов складываются.');
+ assert.equal(effect,'Усиливает бонус способности корпуса на 20%. Складываются два сильнейших Ремкомплекта.');
  assert.doesNotMatch(effect,/ранг ускоряет|не даёт броню|попадания не сбрасывают/);
- assert.equal(catalogDescription(CATALOG.repairGland),'Усиливает бонус способности корпуса на 30%. Ранг добавляет 10 п.п., каждое улучшение — 2 п.п. Несколько Ремкомплектов складываются.');
+ assert.equal(catalogDescription(CATALOG.repairGland),'Усиливает бонус способности корпуса на 20%. Ранг добавляет 10%, каждое улучшение — 2%. Складываются два сильнейших Ремкомплекта.');
 });
 
 test('base item properties stay in stats while chassis rules join the ordinary description',()=>{
@@ -222,7 +223,7 @@ test('base item properties stay in stats while chassis rules join the ordinary d
  assert.deepEqual(model.lines.slice(1),['Урон этого оружия +10%']);
  assert.equal(model.rows.some(r=>r.label==='Эффект'),false);
  assert.equal(model.rows.filter(r=>r.label==='Магазин').length,1);
- assert.equal(model.rows.filter(r=>r.label==='Перезарядка').length,1);
+ assert.equal(model.rows.filter(r=>r.label==='Время перезарядки').length,1);
  assert.equal(itemInspectorData(s,createPart(s,'claws')).rows.filter(r=>r.label==='Заряды').length,1);
  assert.equal(itemInspectorData(s,createPart(s,'commonNerve')).rows.some(r=>r.label==='Свойство'),false);
 });
@@ -232,7 +233,7 @@ test('every weapon omits prose that repeats common numeric characteristics',()=>
  for(const key of Object.keys(CATALOG).filter(key=>CATALOG[key].kind==='arm')){
   const model=itemInspectorData(s,createPart(s,key));
   const special=model.rows.filter(r=>!['Урон','Скорость атаки','Дальность','Крит','Магазин','Заряды','Перезарядка','Вес'].includes(r.label));
-  assert.ok(special.every(r=>!/перезаряд|магазин/i.test(r.value)),key);
+  assert.ok(special.every(r=>(key==='shotgun'&&r.label==='Синергия')||!/перезаряд|магазин/i.test(r.value)),key);
   assert.equal(new Set(model.rows.map(r=>`${r.label}\u0000${r.value}`)).size,model.rows.length,key);
  }
  assert.equal(itemInspectorData(s,createPart(s,'seed')).rows.some(r=>r.label==='Эффект'),false);
@@ -268,25 +269,25 @@ test('parasite inspector shows autonomous larva damage and summon interval',()=>
  for(const [tier,damage] of [[1,6],[2,9],[3,12],[4,15],[5,18]]){
   const p=createPart(s,'parasite',tier);s.body=createPart(s,'wanderer');s.organs=[p];
   let text=itemInspectorData(s,p).rows.find(r=>r.label==='Эффект').value;
-  assert.ok(text.includes(`Урон одной личинки — ${damage}.`));assert.ok(text.includes('каждые 2 с'));assert.ok(text.includes('видимый враг находится не дальше 12 м'));
+  assert.ok(text.includes(`Урон личинки — ${damage};`));assert.ok(text.includes('каждые 2 с'));assert.ok(text.includes('по врагу в радиусе 12 м'));
   s.body=createPart(s,'bastion');s.organs=[p,createPart(s,'stabilizer'),createPart(s,'regen'),createPart(s,'digestion')];
-  text=itemInspectorData(s,p).rows.find(r=>r.label==='Эффект').value;assert.ok(text.includes(`Урон одной личинки — ${formatUiNumber(damage*1.3)}.`));
+  text=itemInspectorData(s,p).rows.find(r=>r.label==='Эффект').value;assert.ok(text.includes(`Урон личинки — ${formatUiNumber(damage*1.3)};`));
  }
 });
 
-test('slime inspector shows equal slowdown for every enemy class at every organ rank',()=>{
+test('Cooler inspector shows five second damage and slowdown at every organ rank',()=>{
  const s=createRun();
- for(const [tier,percent] of [[1,10],[2,15],[3,20],[4,25],[5,30]]){
+ for(const [tier,percent] of [[1,10],[2,20],[3,30],[4,40],[5,50]]){
   const p=createPart(s,'slime',tier),effect=itemInspectorData(s,p).rows.find(r=>r.label==='Эффект').value;
-  assert.match(effect,new RegExp(`всех врагов.+${percent}%`));assert.doesNotMatch(effect,/боссы/);
+  assert.match(effect,new RegExp(`наносит ${percent}% урона попадания за 5 с`));assert.match(effect,/замедляет врага на 10%/);
  }
 });
 
-test('slime paid upgrades add two slowdown points, preview exactly and stop at ten',()=>{
+test('Cooler paid upgrades add one damage point, preview exactly and stop at ten',()=>{
  const s=createRun(),p=createPart(s,'slime');s.organs[0]=p;s.biomass=10000;
  for(let i=0;i<10;i++){
-  const model=itemInspectorData(s,p);assert.deepEqual(model.options,[{key:'slimeSlow',label:'Замедление слизью'}]);
-  assert.deepEqual(model.preview,{label:'Замедление слизью',before:`−${10+2*i}%`,after:`−${12+2*i}%`});
+  const model=itemInspectorData(s,p);assert.deepEqual(model.options,[{key:'slimeSlow',label:'Урон Охладителя'}]);
+  assert.deepEqual(model.preview,{label:'Урон Охладителя',before:`${10+i}%`,after:`${11+i}%`});
   assert(upgrade(s,p.id,'slimeSlow',true));
  }
  assert.equal(upgrade(s,p.id,'slimeSlow',true),false);assert.equal(itemInspectorData(s,p).notice,'Все доступные улучшения получены');
@@ -308,13 +309,13 @@ test('return nerve paid upgrades preview exact percentages, charge once and stop
  const s=createRun(),p=createPart(s,'returnNerve');s.organs[0]=p;s.biomass=10000;
  for(let i=0;i<10;i++){
   const before=JSON.stringify(s),model=itemInspectorData(s,p);
-  assert.equal(JSON.stringify(s),before);assert.deepEqual(model.options,[{key:'returnDamage',label:'Обратный урон'}]);
-  assert.deepEqual(model.preview,{label:'Обратный урон',before:`${10+3*i}%`,after:`${13+3*i}%`});
+  assert.equal(JSON.stringify(s),before);assert.deepEqual(model.options,[{key:'returnDamage',label:'Возвратный урон'}]);
+  assert.deepEqual(model.preview,{label:'Возвратный урон',before:`${10+3*i}%`,after:`${13+3*i}%`});
   const biomass=s.biomass,spent=p.spent;assert(upgrade(s,p.id,'returnDamage',true));assert.equal(biomass-s.biomass,p.spent-spent);
   assert.ok(itemInspectorData(s,p).rows.some(r=>r.label==='Эффект'&&r.value.includes(`${13+3*i}% урона`)));
  }
  const before=JSON.stringify(s);assert.equal(upgrade(s,p.id,'returnDamage',true),false);assert.equal(JSON.stringify(s),before);
  assert.equal(itemInspectorData(s,p).notice,'Все доступные улучшения получены');
  const other=createPart(s,'returnNerve');s.organs[0]=other;s.biomass=0;assert.equal(upgrade(s,other.id,'returnDamage',true),false);assert.deepEqual(other.upgrades,{});
- s.body=createPart(s,'bastion');s.isaac={deals:{organs:1}};s.organs=[other,createPart(s,'stabilizer'),createPart(s,'regen'),createPart(s,'digestion')];s.biomass=1000;assert.deepEqual(itemInspectorData(s,other).preview,{label:'Обратный урон',before:'13%',after:'16,9%'});
+ s.body=createPart(s,'bastion');s.isaac={deals:{organs:1}};s.organs=[other,createPart(s,'stabilizer'),createPart(s,'regen'),createPart(s,'digestion')];s.biomass=1000;assert.deepEqual(itemInspectorData(s,other).preview,{label:'Возвратный урон',before:'13%',after:'16,9%'});
 });

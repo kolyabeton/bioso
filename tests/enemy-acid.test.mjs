@@ -17,7 +17,7 @@ test('enemy acid leaves a two-second pool that slows on entry and deals half HP 
  assert.equal(s.enemyAcidPools.length,1);near(s.enemyAcidPools[0].life,ENEMY_ACID_PUDDLE_DURATION);assert.equal(enemyAcidPace(s),ENEMY_ACID_SLOW_FACTOR);
  const base=stats(s).speed,before=s.player.x;step(s,.1,{x:1,z:0});near(s.player.x-before,base*.1*ENEMY_ACID_SLOW_FACTOR);
  const hp=s.hp;s.player.x=4;step(s,.2);assert.equal(enemyAcidPace(s),1);assert.equal(s.hp,hp);
- s.player.x=0;assert.equal(enemyAcidPace(s),ENEMY_ACID_SLOW_FACTOR);step(s,.99);assert.equal(s.hp,hp);step(s,.01);near(s.hp,hp-ENEMY_ACID_DAMAGE);
+ s.player.x=0;assert.equal(enemyAcidPace(s),ENEMY_ACID_SLOW_FACTOR);step(s,.99);assert.equal(s.hp,hp);step(s,.01);near(s.hp,hp-Math.round(ENEMY_ACID_DAMAGE*25));
  step(s,.7);assert.equal(s.enemyAcidPools.length,0);assert.equal(enemyAcidPace(s),1);
 });
 

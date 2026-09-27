@@ -1,0 +1,13 @@
+{
+  "regulator": {
+    "width": 0.52,
+    "height": 0.86,
+    "depth": 0.43,
+    "taper": 0,
+    "power": 0.65,
+    "cross": 0.82,
+    "mountWidth": 0.56,
+    "modelId": "body-regulator-astra-polish-v3",
+    "status": "awaiting approval"
+  }
+}

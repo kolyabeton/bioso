@@ -19,9 +19,9 @@
 .ui-dialog:is([data-screen=level],[data-screen=boss-reward]) .ui-screen-footer .ui-reroll-button:only-child{margin-inline:auto}
 .ui-reroll-button>.ui-icon{width:18px;height:18px;flex:none}
 
-.ui-reroll-balance{display:flex;align-items:center;gap:6px;flex:none;color:var(--ui-text);font-size:12px;line-height:18px;white-space:nowrap}
+.ui-reroll-balance{display:flex;align-items:center;gap:3px;flex:none;color:var(--ui-text);font-size:12px;line-height:18px;white-space:nowrap}
 .ui-reroll-balance>.ui-icon{width:18px;height:18px;flex:none}
-.ui-reroll-balance strong{font-size:14px;line-height:18px;font-variant-numeric:tabular-nums}
+.ui-reroll-balance strong{font-size:14px;line-height:18px;font-weight:400;font-variant-numeric:tabular-nums}
 .ui-overrun-art{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:8px;border:1px solid var(--ui-bronze-dim)}
 .ui-overrun-body{display:flex;flex-direction:column;gap:12px}
 .ui-overrun-body>h3,.ui-overrun-body>p{margin:0}

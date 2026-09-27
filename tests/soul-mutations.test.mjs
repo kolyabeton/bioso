@@ -8,7 +8,7 @@ test('Soul explains Hive larvae without an Incubator and removes the card when t
  const s=createRun();s.arms=['rocket','fangs'].map(k=>createPart(s,k));s.legs=[];s.organs=[createPart(s,'digestion')];
  const html=activeMutationSection(s);
  assert.match(html,/Активные мутации/);assert.match(html,/Улей · Активна/);assert.match(html,/3 личинки/);
- assert.match(html,/Доставщик · Захват · Компостер/);assert.doesNotMatch(html,/Инкубатор|Проводник|Топь/);
+ assert.doesNotMatch(html,/Доставщик · Захват · Компостер|<small|Инкубатор|Проводник|Топь/);
  s.inventory.push(s.organs.pop());assert.equal(activeMutationSection(s),'');
 });
 

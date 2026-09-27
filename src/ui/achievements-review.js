@@ -4,7 +4,10 @@ import {normalizeSurvivalProgress} from '../systems/survival-achievement-progres
 // Dev-only isolated state on the real game route. main.js owns in-memory storage.
 export function prepareAchievementsReview(s,params){
  const variant=params.get('case')||'progress';
+ if(variant==='chassis-progress')s.profile.meta.chassisProgress={recycledBiomass:64320,frozenEnemies:2456,preventedShots:5381,electricKills:27312,capacity:300};
+ if(variant==='chassis-earned')s.profile.meta.chassisProgress={recycledBiomass:100000,frozenEnemies:5000,preventedShots:10000,electricKills:50000,capacity:300};
  if(variant==='weapons')s.profile.meta.weaponKills={pistol:17,total:39};
+ if(variant==='shield')s.profile.meta.shieldBearerKills=29;
  if(variant!=='empty'){
   Object.assign(s.profile.meta,{runs:8,wins:1,rerolls:2});s.time=340;s.elites=3;s.bosses=1;s.level=6;
   s.exploration.visited=new Set();

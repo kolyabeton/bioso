@@ -1,0 +1,11 @@
+/* Shared text styles load after material themes, which never own typography. */
+.ui-heading-h2{margin:0;font:var(--ui-heading-h2);letter-spacing:normal;text-transform:none;color:var(--ui-text)}
+/* Text roles share their typography across cards and screens. */
+.ui-text.ui-text--body{font:var(--ui-type-body);color:var(--ui-text);letter-spacing:normal;text-transform:none}
+.ui-text.ui-text--description{font:var(--ui-type-body);color:var(--ui-muted);letter-spacing:normal;text-transform:none}
+.ui-text.ui-text--caption{font:var(--ui-type-caption);color:var(--ui-muted);letter-spacing:normal;text-transform:none}
+p.ui-text{margin:4px 0 0}
+small.ui-text{display:block;margin-top:4px}
+
+.ui-button .ui-text.ui-text--description,.ui-button .ui-text.ui-text--caption{color:var(--ui-on-metal-muted)}
+.ui-soul-panel .ui-section-label{font:var(--ui-heading-h2);letter-spacing:normal;text-transform:none}

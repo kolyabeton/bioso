@@ -7,4 +7,4 @@ export function selectFirstBoss(s){
  return s;
 }
 
-export const survivalObjective=s=>objectiveBoss(s)?'Убейте первого босса':'';
+export const survivalObjective=s=>s.recordMode?`Рекорд · биомасса ${Math.floor(s.biomassCollected||0).toLocaleString('ru-RU')} · ×3`:s.escapeQuest&&!s.won?`Соберите биомассу: ${Math.min(s.escapeQuest.goal,Math.floor((s.biomassCollected||0)-s.escapeQuest.startMass)).toLocaleString('ru-RU')} / ${s.escapeQuest.goal.toLocaleString('ru-RU')}`:objectiveBoss(s)?'Убейте первого босса':'';

@@ -1,0 +1,1410 @@
+[
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 39
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Что перерабатываем",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 152.9140625,
+            "y": 234
+          },
+          {
+            "height": 18,
+            "width": 152.9140625,
+            "y": 235
+          }
+        ],
+        "width": 192.9140625
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Снять",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 36.2578125,
+            "y": 583
+          },
+          {
+            "height": 15,
+            "width": 36.2578125,
+            "y": 585.5
+          }
+        ],
+        "width": 94
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Переработать",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 88.15625,
+            "y": 583
+          },
+          {
+            "height": 15,
+            "width": 88.15625,
+            "y": 585.5
+          }
+        ],
+        "width": 94
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Усилить · 12",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 75.6015625,
+            "y": 583
+          },
+          {
+            "height": 15,
+            "width": 75.6015625,
+            "y": 585.5
+          }
+        ],
+        "width": 94
+      }
+    ],
+    "dialog": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "overflow": false,
+    "screen": "part",
+    "switchRows": [],
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 37
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Назад",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 38.03125,
+            "y": 449
+          },
+          {
+            "height": 15,
+            "width": 38.03125,
+            "y": 451.5
+          }
+        ],
+        "width": 302
+      }
+    ],
+    "dialog": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "overflow": false,
+    "screen": "recycle-settings",
+    "switchRows": [
+      {
+        "height": 44,
+        "width": 302
+      },
+      {
+        "height": 44,
+        "width": 302
+      },
+      {
+        "height": 44,
+        "width": 302
+      },
+      {
+        "height": 44,
+        "width": 302
+      }
+    ],
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 35
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Назад",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 38.03125,
+            "y": 425
+          },
+          {
+            "height": 15,
+            "width": 38.03125,
+            "y": 427.5
+          }
+        ],
+        "width": 332
+      }
+    ],
+    "dialog": {
+      "height": 828,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    },
+    "overflow": false,
+    "screen": "recycle-settings",
+    "switchRows": [
+      {
+        "height": 44,
+        "width": 332
+      },
+      {
+        "height": 44,
+        "width": 332
+      },
+      {
+        "height": 44,
+        "width": 332
+      },
+      {
+        "height": 44,
+        "width": 332
+      }
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48.000003814697266,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24.000003814697266,
+            "width": 24,
+            "y": 43.89779281616211
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Что перерабатываем",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 152.9140625,
+            "y": 238.89779663085935
+          },
+          {
+            "height": 18,
+            "width": 152.9140625,
+            "y": 239.89779663085935
+          }
+        ],
+        "width": 192.9140625
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Снять",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 36.2578125,
+            "y": 791.8977661132812
+          },
+          {
+            "height": 15,
+            "width": 36.2578125,
+            "y": 794.3977661132812
+          }
+        ],
+        "width": 101.328125
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Переработать",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 88.15625,
+            "y": 791.8977661132812
+          },
+          {
+            "height": 15,
+            "width": 88.15625,
+            "y": 794.3977661132812
+          }
+        ],
+        "width": 101.3359375
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Усилить · 12",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 75.6015625,
+            "y": 791.8977661132812
+          },
+          {
+            "height": 15,
+            "width": 75.6015625,
+            "y": 794.3977661132812
+          }
+        ],
+        "width": 101.3359375
+      }
+    ],
+    "dialog": {
+      "height": 828,
+      "width": 366,
+      "x": 12,
+      "y": 12.897793769836426
+    },
+    "overflow": false,
+    "screen": "part",
+    "switchRows": [],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 39
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Что перерабатываем",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 152.9140625,
+            "y": 234
+          },
+          {
+            "height": 18,
+            "width": 152.9140625,
+            "y": 235
+          }
+        ],
+        "width": 192.9140625
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Снять",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 36.2578125,
+            "y": 663
+          },
+          {
+            "height": 15,
+            "width": 36.2578125,
+            "y": 665.5
+          }
+        ],
+        "width": 109
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Переработать",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 88.15625,
+            "y": 663
+          },
+          {
+            "height": 15,
+            "width": 88.15625,
+            "y": 665.5
+          }
+        ],
+        "width": 109
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Усилить · 18",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 76.359375,
+            "y": 663
+          },
+          {
+            "height": 15,
+            "width": 76.359375,
+            "y": 665.5
+          }
+        ],
+        "width": 109
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 8
+    },
+    "overflow": false,
+    "screen": "part",
+    "switchRows": [],
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 45.026588439941406
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Назад",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 38.03125,
+            "y": 435.0265808105469
+          },
+          {
+            "height": 15,
+            "width": 38.03125,
+            "y": 437.5265808105469
+          }
+        ],
+        "width": 339
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 14.02658748626709
+    },
+    "overflow": false,
+    "screen": "recycle-settings",
+    "switchRows": [
+      {
+        "height": 44,
+        "width": 339
+      },
+      {
+        "height": 44,
+        "width": 339
+      },
+      {
+        "height": 44,
+        "width": 339
+      },
+      {
+        "height": 44,
+        "width": 339
+      }
+    ],
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 31.002105712890625
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 332.0021057128906
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 131.00210571289062
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 233.00210571289065
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 307.0021057128906
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 395.0021057128906
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64.00003051757812,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 452.0021057128906
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64.00003051757812,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 452.0021057128906
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64.00003051757812,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 466.0021057128906
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 555.0021362304688
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 555.0021362304688
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 137.00210571289062
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 209.00210571289065
+          }
+        ],
+        "width": 64
+      }
+    ],
+    "dialog": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8.002106666564941
+    },
+    "overflow": false,
+    "screen": "assembly",
+    "switchRows": [],
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 39.51375579833984
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Назад",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 38.03125,
+            "y": 429.5137634277344
+          },
+          {
+            "height": 15,
+            "width": 38.03125,
+            "y": 432.0137634277344
+          }
+        ],
+        "width": 339
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 8.513753890991211
+    },
+    "overflow": false,
+    "screen": "recycle-settings",
+    "switchRows": [
+      {
+        "height": 44,
+        "width": 339
+      },
+      {
+        "height": 44.00001525878906,
+        "width": 339
+      },
+      {
+        "height": 44,
+        "width": 339
+      },
+      {
+        "height": 44,
+        "width": 339
+      }
+    ],
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 45.13849639892578
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 414.1384887695313
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 153.1385040283203
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 63.99998474121094,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 23.999984741210938,
+            "width": 24,
+            "y": 255.1385040283203
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 329.13848876953125
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 417.1384887695313
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 534.1384887695312
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 534.1384887695312
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 548.1384887695312
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 637.1384887695312
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 637.1384887695312
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 64,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 56,
+            "width": 56,
+            "y": 159.1385040283203
+          }
+        ],
+        "width": 64
+      },
+      {
+        "height": 63.99998474121094,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 55.99998474121094,
+            "width": 56,
+            "y": 231.1385040283203
+          }
+        ],
+        "width": 64
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 14.138498306274414
+    },
+    "overflow": false,
+    "screen": "assembly",
+    "switchRows": [],
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 48.000003814697266,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24.000003814697266,
+            "width": 24,
+            "y": 54.93857192993164
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 43.99999237060547,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Все",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 31.375,
+            "y": 133.93856811523438
+          },
+          {
+            "height": 15,
+            "width": 21.375,
+            "y": 136.43856811523438
+          }
+        ],
+        "width": 66.3671875
+      },
+      {
+        "height": 43.99999237060547,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Угрозы",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 51.4765625,
+            "y": 133.93856811523438
+          },
+          {
+            "height": 15,
+            "width": 41.4765625,
+            "y": 136.43856811523438
+          }
+        ],
+        "width": 66.375
+      },
+      {
+        "height": 43.99999237060547,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "События",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 59.984375,
+            "y": 133.93856811523438
+          },
+          {
+            "height": 15,
+            "width": 49.984375,
+            "y": 136.43856811523438
+          }
+        ],
+        "width": 66.3671875
+      },
+      {
+        "height": 43.99999237060547,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Добыча",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 53.84375,
+            "y": 133.93856811523438
+          },
+          {
+            "height": 15,
+            "width": 43.84375,
+            "y": 136.43856811523438
+          }
+        ],
+        "width": 66.375
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44.000030517578125,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "normal",
+        "overflow": false,
+        "text": "",
+        "textRects": [],
+        "width": 44
+      },
+      {
+        "height": 44,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Рядом",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 35.875,
+            "y": 559.9385986328125
+          },
+          {
+            "height": 14,
+            "width": 35.875,
+            "y": 562.9385986328125
+          }
+        ],
+        "width": 61.875
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 19,
+            "width": 19,
+            "y": 560.4385986328125
+          }
+        ],
+        "width": 48
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 11.938572883605955
+    },
+    "overflow": false,
+    "screen": "map",
+    "switchRows": [],
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "buttons": [
+      {
+        "height": 68,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Выживание",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 117.2265625,
+            "y": 458
+          },
+          {
+            "height": 19,
+            "width": 117.2265625,
+            "y": 458.5
+          }
+        ],
+        "width": 520
+      },
+      {
+        "height": 58,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Миссии",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 63.6640625,
+            "y": 533
+          },
+          {
+            "height": 15,
+            "width": 63.6640625,
+            "y": 535.5
+          }
+        ],
+        "width": 520
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Журнал",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 20,
+            "y": 598
+          },
+          {
+            "height": 20,
+            "width": 55.1953125,
+            "y": 598
+          },
+          {
+            "height": 18,
+            "width": 55.1953125,
+            "y": 599
+          }
+        ],
+        "width": 256
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "Настройки",
+        "textRects": [
+          {
+            "height": 20,
+            "width": 20,
+            "y": 598
+          },
+          {
+            "height": 20,
+            "width": 78.5546875,
+            "y": 598
+          },
+          {
+            "height": 18,
+            "width": 78.5546875,
+            "y": 599
+          }
+        ],
+        "width": 256
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 664
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 664
+          }
+        ],
+        "width": 48
+      },
+      {
+        "height": 48,
+        "nowrap": "nowrap",
+        "overflow": false,
+        "text": "",
+        "textRects": [
+          {
+            "height": 24,
+            "width": 24,
+            "y": 664
+          }
+        ],
+        "width": 48
+      }
+    ],
+    "dialog": {
+      "height": 720,
+      "width": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": false,
+    "screen": "home",
+    "switchRows": [],
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

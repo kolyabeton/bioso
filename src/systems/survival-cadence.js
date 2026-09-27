@@ -1,17 +1,19 @@
+import {difficultyProfile,difficultyNormalCount} from './difficulty.js';
 import {WAVE_RULES,survivalPressureProfile} from './balance.js';
 import {spawnPoint} from '../terrain.js';
 import {eventCollisionWorld} from '../gameplay-modules/event-collision.js';
 
 export const SURVIVAL_CADENCE=Object.freeze({
+ density:1.5,
  start:120,introRate:3,introSoftCap:6,reinforcement:15,rest:20,cap:120,
  startSoftCap:20,softCapStep:6,firstEliteDamage:.5,
  // A pack is far larger than the crowd allowed on screen, so members keep streaming in
  // while the player fights; the last stragglers are not worth chasing, so the pack
  // hands over as soon as this few are left.
  packScale:1.8,packCap:200,restThreshold:10,
- // Every fifth wave trades the mass filler for a wall of elites.
- elitePulseEvery:5,elitePulseShare:.5,
- // Share of the roster that is plain filler; the rest draws on the minute signature.
+ // Every fifth wave fields five elites, plus one per three full run minutes.
+ elitePulseEvery:5,elitePulseBase:5,elitePulseStep:180,
+ // Share of normal slots that is plain filler; the rest cycles unlocked roles.
  massShare:.4
 });
 export function survivalFirstWaveAt(s){
@@ -25,11 +27,12 @@ export function survivalWaveSpec(index,time=0){
  const liveCap=Math.min(SURVIVAL_CADENCE.cap,Math.ceil(base*pressure.live));
  const baseEliteCap=Math.min(WAVE_RULES.eliteCap,index+1),ordinary=time<18*60?baseEliteCap:Math.min(packSize,pressure.eliteCap);
  const elitePulse=(index+1)%SURVIVAL_CADENCE.elitePulseEvery===0;
- const eliteCap=elitePulse?Math.min(packSize,Math.max(ordinary,Math.ceil(packSize*SURVIVAL_CADENCE.elitePulseShare))):ordinary;
+ const pulseEliteCap=SURVIVAL_CADENCE.elitePulseBase+Math.floor(Math.max(0,time)/SURVIVAL_CADENCE.elitePulseStep);
+ const eliteCap=elitePulse?Math.min(packSize,pulseEliteCap):ordinary;
  return {index,packSize,liveCap,eliteCap,elitePulse};
 }
 function beginRest(s,q,at){
- q.phase='rest';q.restUntil=at+SURVIVAL_CADENCE.rest;s.waves.credit=s.spawnCredit=0;
+ q.phase='rest';q.restUntil=at+difficultyProfile(s.difficulty).rest;s.waves.credit=s.spawnCredit=0;
 }
 function beginWave(s,index){
  const q=s.waves.cadence={...survivalWaveSpec(index,s.time),at:s.time,phase:'main',pack:0,issued:0,packElitesIssued:0,rosters:null,reinforcementUntil:null,restUntil:null};
@@ -56,10 +59,11 @@ export function advanceSurvivalWave(s){
  }
  if(q.issued<q.packSize)return;
  const left=s.enemies.filter(e=>e.hp>0&&e.survivalWaveIndex===q.index&&e.survivalWavePack===q.pack);
- if(left.length>=Math.min(SURVIVAL_CADENCE.restThreshold,q.packSize))return;
+ const budgetUnits=new Set(left.map(e=>e.groupId?`group:${e.groupId}`:`enemy:${e.id}`)).size;
+ if(budgetUnits>=Math.min(SURVIVAL_CADENCE.restThreshold,q.packSize))return;
  // Nobody has to hunt the last few, and nobody takes them off the field either: the
  // cadence hands over while they keep fighting, so they still have to be killed.
- if(q.pack===0){q.phase='reinforcement';q.pack=1;q.issued=0;q.packElitesIssued=0;q.reinforcementUntil=s.time+SURVIVAL_CADENCE.reinforcement;}
+ if(q.pack===0){q.phase='reinforcement';q.pack=1;if(q.rosters)q.packSize=q.rosters[1].length;q.issued=0;q.packElitesIssued=0;q.reinforcementUntil=s.time+SURVIVAL_CADENCE.reinforcement;}
  else beginRest(s,q,s.time);
  s.waves.credit=s.spawnCredit=0;
 }
@@ -79,13 +83,13 @@ export function recordWaveElite(s,e){
 export function survivalSpawnLimit(s){
  if(s.mode!=='survival')return null;
  const p=survivalCadenceForRun(s);
- if(!p)return {index:-1,at:0,elapsed:s.time,rest:false,until:survivalFirstWaveAt(s),rate:SURVIVAL_CADENCE.introRate,softCap:SURVIVAL_CADENCE.introSoftCap,eliteCap:0,intro:true};
+ if(!p)return {index:-1,at:0,elapsed:s.time,rest:false,until:survivalFirstWaveAt(s),rate:SURVIVAL_CADENCE.introRate*SURVIVAL_CADENCE.density,softCap:difficultyNormalCount(s,SURVIVAL_CADENCE.introSoftCap*SURVIVAL_CADENCE.density),eliteCap:0,intro:true};
  const superBoss=s.enemies.some(e=>e.hp>0&&e.survivalSuperBoss);
- return {...p,softCap:Math.floor(p.softCap*(superBoss?WAVE_RULES.bossSoftCap:1))};
+ return {...p,softCap:Math.floor(Math.max(Math.ceil(p.eliteCap/2),p.softCap*difficultyProfile(s.difficulty).normalCount*SURVIVAL_CADENCE.density)*(superBoss?WAVE_RULES.bossSoftCap:1))};
 }
 // Warmup is the only continuous Survival budget. Finite waves own their roster.
 export function survivalBudgetBetween(start,end,firstWaveAt=SURVIVAL_CADENCE.start){
- return Math.max(0,Math.min(end,firstWaveAt)-Math.max(0,start))*SURVIVAL_CADENCE.introRate/60;
+ return Math.max(0,Math.min(end,firstWaveAt)-Math.max(0,start))*SURVIVAL_CADENCE.introRate*SURVIVAL_CADENCE.density/60;
 }
 export function survivalWavePosition(s,radius){
  const world=eventCollisionWorld(s),motion=s.motion||{},speed=Math.hypot(motion.x||0,motion.z||0);

@@ -18,9 +18,9 @@ test('random pickup property activates only when installed and attracts actual o
 });
 test('displayed reload and regeneration use applied affixes, sets and legs',()=>{
  const s=fixture(),p=createPart(s,'seed');p.affixes=[{stat:'reload',value:.1}];s.arms[0]=p;
- assert.equal(itemInspectorData(s,p).rows.find(r=>r.label==='Перезарядка').value,formatUiNumber(reloadDuration(s,p,1.2))+' с');
+ assert.equal(itemInspectorData(s,p).rows.find(r=>r.label==='Время перезарядки').value,formatUiNumber(reloadDuration(s,p,1.2))+' с');
  assert(describePart(s,p).lines.some(l=>l.includes(formatUiNumber(reloadDuration(s,p,1.2))+' с')));
- s.organs[0]=createPart(s,'regen');s.legs[0]=createPart(s,'root');assert(describePart(s,s.organs[0]).lines.some(l=>l.includes(formatUiNumber(stats(s).regenDelay)+' с')));
+ s.organs[0]=createPart(s,'regen');s.legs[0]=createPart(s,'root');assert(describePart(s,s.organs[0]).lines.some(l=>l.includes('1% максимального здоровья в секунду')));
 });
 
 test('installed body inspector includes event-granted organ mounts',()=>{const s=fixture();s.isaac={deals:{organs:2,arms:0,hpCost:0}};assert(itemInspectorData(s,s.body).rows.find(r=>r.label==='Крепления').value.endsWith('органов: 4'));});

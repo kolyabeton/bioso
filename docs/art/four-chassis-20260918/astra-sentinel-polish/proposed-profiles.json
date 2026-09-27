@@ -1,0 +1,14 @@
+{
+  "sentinel": {
+    "width": 0.74,
+    "height": 0.6,
+    "depth": 0.54,
+    "taper": 0,
+    "power": 0.53,
+    "cross": 0.76,
+    "horizontal": true,
+    "mountWidth": 0.78,
+    "modelId": "body-sentinel-astra-polish-v3",
+    "status": "awaiting approval"
+  }
+}

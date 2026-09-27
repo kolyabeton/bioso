@@ -39,7 +39,7 @@ test('new passive bonuses reach movement, damage, health, armor and reload witho
  const scout=fixture('wanderer',2),base=fixture('wanderer',0);near(stats(scout).speed/stats(base).speed,1.1);near(stats(scout).pickup/stats(base).pickup,1.5);
  const hunter=fixture('hunter',2),gun=hunter.arms[0],h0=fixture('hunter',0);near(weaponStats(hunter,gun).damage/weaponStats(h0,h0.arms[0]).damage,1.2);near(weaponStats(hunter,gun).range/weaponStats(h0,h0.arms[0]).range,1.2);
  const chimera=fixture('chimera',2),c0=fixture('chimera',0);near(weaponStats(chimera,chimera.arms[1]).damage/weaponStats(c0,c0.arms[1]).damage,1.2);assert(weaponStats(chimera,chimera.arms[1]).range>weaponStats(c0,c0.arms[1]).range);
- const root=fixture('rootwalker',2);near(stats(root).hp,stats(fixture('rootwalker',0)).hp+1);
+ const root=fixture('rootwalker',2);near(stats(root).hp,stats(fixture('rootwalker',0)).hp+25);
  const bastion=fixture('bastion',2);near(stats(bastion).armor,Math.min(stats(bastion).hp,stats(fixture('bastion',0)).armor+1));
  const hecaton=fixture('hecaton',2);near(reloadDuration(hecaton,hecaton.arms[0],5),4);
  const reactor=fixture('reactor',2);near(stats(reactor).rate,.15);
@@ -91,23 +91,23 @@ test('Bastion cooldown survives removal, re-equipping, and additional mission ti
 });
 
 test('Rootwalker heals independently in combat and does not speed up organ regeneration',()=>{
- const s=fixture('rootwalker'),st=stats(s);s.hp=1;s.health.missing=st.hp-1;s.time=11;
- s.health.armorSpent=100;receiveHit(s,st,{damage:.5});assert.equal(s.setsV2.tissueAt,12);
- s.time=12;const before=s.hp;tickHealth(s,st);near(s.hp,before+1);assert.equal(s.setsV2.tissueAt,24);assert.equal(st.regen,false);assert.equal(st.regenDelay,15);
- s.organs=[createPart(s,'regen')];assert.equal(stats(s).regenDelay,15);
+ const s=fixture('rootwalker'),st=stats(s);s.hp=25;s.health.missing=st.hp-25;s.time=11;
+ s.health.armorSpent=100;receiveHit(s,st,{damage:.5});assert.equal(s.setsV2.tissueAt,undefined);
+ s.time=12;const before=s.hp;tickHealth(s,st);assert.equal(s.hp,before+1);near(s.health.healRemainder,st.hp*.01-1);assert.equal(st.regen,true);near(st.regenPerSecond,.01);
+ s.organs=[createPart(s,'regen')];near(stats(s).regenPerSecond,.02);
 });
 
 test('Rootwalker does not bank heals or revive the dead and respects healing suppression',()=>{
- const s=fixture('rootwalker'),st=stats(s);s.time=12;tickHealth(s,st);assert.equal(s.setsV2.tissueAt,24);
- s.hp=st.hp-1;s.health.missing=1;s.time=13;tickHealth(s,st);assert.equal(s.hp,st.hp-1);
- s.encounters={active:{type:'infection',x:s.player.x,z:s.player.z,radius:5}};s.time=24;tickHealth(s,st);assert.equal(s.hp,st.hp-1);assert.equal(s.setsV2.tissueAt,36);
+ const s=fixture('rootwalker'),st=stats(s);s.time=12;tickHealth(s,st);near(st.regenPerSecond,.01);
+ s.hp=st.hp-25;s.health.missing=25;s.time=13;tickHealth(s,st);assert.equal(s.hp,st.hp-24);
+ const wounded=s.hp;s.encounters={active:{type:'infection',x:s.player.x,z:s.player.z,radius:5}};s.time=24;tickHealth(s,st);assert.equal(s.hp,wounded);
  s.hp=0;s.time=36;tickHealth(s,st);assert.equal(s.hp,0);
 });
 
 test('Rootwalker maximum health cannot be farmed by repeatedly equipping its second category',()=>{
  const s=fixture('rootwalker',1),p=s.arms[0];p.setId='rootwalker';s.inventory.push(p);s.arms[0]=null;
- const before=stats(s).hp;s.hp=before-1;s.health.missing=1;
- for(let i=0;i<4;i++){assert(equip(s,p.id,0));const hp=s.hp;assert(unequip(s,'arms',0));assert.equal(s.hp,before-1);assert.equal(hp,before);}
+ const before=stats(s).hp;s.hp=before-25;s.health.missing=25;
+ for(let i=0;i<4;i++){assert(equip(s,p.id,0));const hp=s.hp;assert(unequip(s,'arms',0));assert.equal(s.hp,before-25);assert.equal(hp,before);}
 });
 
 test('Hecaton refills all magazines after three different arm attacks without resetting attack cooldowns',()=>{
@@ -155,7 +155,8 @@ test('v1 save state is ignored, UI and item previews do not modify live set time
 
 test('Soul cards retain both thresholds, label missing categories and never display slash-separated progress',()=>{
  for(const id of Object.keys(SETS)){
-  const s=fixture(id,2),html=activeSetCard(s,id,2);assert(html.includes(SETS[id].two));assert(html.includes(SETS[id].three));assert(html.includes('Нужно ещё 1 тип'));
+ const s=fixture(id,2),html=activeSetCard(s,id,2);assert(html.includes(SETS[id].two));assert(html.includes(SETS[id].three));assert(html.includes('Нужно ещё 1 тип'));
+  assert.match(html,new RegExp(`/assets/ui/sets/set-${id}-v1\\.png`));
   const full=activeSetCard(fixture(id,4),id,4);assert(full.includes('Комплект собран'));assert.doesNotMatch(html+full,/\d\s*\/\s*\d/);
   for(const copy of [SETS[id].two,SETS[id].three,SETS[id].details,setStatus(fixture(id),id)])assert.doesNotMatch(translateText(copy),/[А-Яа-яЁё]/u,copy);
  }

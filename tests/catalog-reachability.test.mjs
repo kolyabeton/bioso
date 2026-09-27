@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {CHASSIS_UNLOCKS} from '../src/systems/chassis-unlocks.js';
 import {CATALOG,STARTERS,MISSIONS,SURVIVAL_UNLOCKS} from '../src/catalog.js';
 import {newProfile} from '../src/assembly.js';
 import {createRun,step} from '../src/game.js';
@@ -12,6 +13,7 @@ const previousMissionItems=['arc','regen','drill','armor','bastion','plated','ro
 
 test('every atlas item has a reachable in-game unlock source',()=>{
  const profile=newProfile(),sources=new Set([
+  ...CHASSIS_UNLOCKS.map(a=>a.key),
   ...STARTERS,
   ...MISSIONS.flatMap(m=>m.rewards),
   ...SURVIVAL_UNLOCKS.flatMap(u=>u.rewards),

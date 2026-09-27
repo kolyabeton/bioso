@@ -1,42 +1,25 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createRun,receiveDamage} from '../src/game.js';
-import {createPart,stats} from '../src/assembly.js';
-import {healthView} from '../src/systems/health.js';
-import {healthSegments} from '../src/ui/atoms.js';
-
-function woundedRun(seconds=15){
- const s=createRun();s.rng=()=>1;s.organs[0]=createPart(s,'regen');
- if(seconds<15){const root=createPart(s,'root');root.upgrades.regen=15-seconds;s.legs[0]=root;}
- const st=stats(s);s.health.armorSpent=st.armor;receiveDamage(s,1,st);return{s,st};
-}
-
-test('regeneration HUD follows the real 15 second health timer',()=>{
- const {s,st}=woundedRun();
- let view=healthView(s,st.hp,st.armor,st);assert.equal(view.regenActive,true);assert.equal(view.regenProgress,0);assert.equal(view.regenSecondsLeft,15);
- s.time=7.5;view=healthView(s,st.hp,st.armor,st);assert.equal(view.regenProgress,.5);assert.deepEqual(view.regenCells.map(cell=>cell.fill),[0,0,0,.5]);
- assert.match(healthSegments(view),/ui-health-regen/);
+import {createRun} from '../src/game.js';
+import {createPart,stats,upgrade} from '../src/assembly.js';
+import {healthView,tickHealth,receiveHit} from '../src/systems/health.js';
+import {learn} from '../src/systems/abilities.js';
+import {soulStatGroups} from '../src/ui/soul-stats.js';
+const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} != ${b}`);
+function fixture(){const s=createRun();s.organs=[createPart(s,'regen')];s.legs=s.legs.map(()=>null);s.hp=25;s.health.missing=stats(s).hp-s.hp;s.health.armorSpent=100;return s;}
+test('Repairman heals continuously at one percent of maximum per second, with no timer',()=>{
+ const s=fixture(),st=stats(s);near(st.regenPerSecond,.01);for(let i=1;i<=40;i++){s.time=i*.05;tickHealth(s,st);assert.equal(Number.isInteger(s.hp),true);}assert.equal(s.hp,26);near(s.health.healRemainder,.5);
+ const v=healthView(s,st.hp,st.armor,st);assert.equal(v.regenActive,true);assert.equal(v.regenProgress,0);assert.equal(v.regenSecondsLeft,0);
+ assert.deepEqual(soulStatGroups(s,st).flatMap(g=>g.rows).filter(([l])=>l==='Регенерация'),[['Регенерация','1%/с']]);
 });
-
-/** Item 2: root legs stopped shortening the organ timer and now heal continuously,
- * so the HUD keeps the Repairman's own 15 s while a root build still regenerates. */
-test('root legs leave the organ timer alone and expose a continuous rate instead',()=>{
- const {s,st}=woundedRun(10);s.time=5;
- assert.equal(st.regenDelay,15);
- assert.ok(st.regenPerSecond>0,'the installed root leg regenerates continuously');
- const view=healthView(s,st.hp,st.armor,st);
- assert.ok(Math.abs(view.regenProgress-5/15)<1e-9,`${view.regenProgress} != 1/3`);assert.equal(view.regenSecondsLeft,10);
- // Damage does not restart the organ timer while a root leg is installed.
- s.hp=st.hp;s.health.missing=0;s.health.armorSpent=st.armor;s.health.invulnerableUntil=0;s.time=6;receiveDamage(s,1,st);
- assert.equal(healthView(s,st.hp,st.armor,st).regenSecondsLeft,9);
+test('damage does not interrupt regeneration; sources and upgrades add their rates',()=>{
+ const s=fixture();s.organs.push(createPart(s,'regen',5));s.legs[0]=createPart(s,'root');learn(s,'vitality.2');let st=stats(s);near(st.regenPerSecond,.052);
+ s.hp=st.hp-25;s.health.missing=25;s.time=.5;tickHealth(s,st);receiveHit(s,st,{damage:.5});const hp=s.hp,progress=s.health.healRemainder;s.time=.6;tickHealth(s,st);assert.equal(Number.isInteger(s.hp),true);assert.ok(s.hp>=hp);assert.ok(s.health.healRemainder!==progress);
+ const before=s.hp;assert.ok(upgrade(s,s.organs[0].id,'regenRate'));assert.equal(s.hp,before);near(stats(s).regenPerSecond,.055);
 });
-
-test('regenerator organ still restarts its timer after damage',()=>{
- const {s,st}=woundedRun();s.time=7.5;s.hp=st.hp;s.health.missing=0;s.health.armorSpent=st.armor;s.health.invulnerableUntil=0;
- receiveDamage(s,1,st);const view=healthView(s,st.hp,st.armor,st);assert.equal(view.regenProgress,0);assert.equal(view.regenSecondsLeft,15);
-});
-
-test('regeneration HUD stays inactive at full or zero health',()=>{
- const {s,st}=woundedRun();s.hp=st.hp;s.health.missing=0;assert.equal(healthView(s,st.hp,st.armor,st).regenActive,false);
- s.hp=0;s.health.missing=st.hp;assert.equal(healthView(s,st.hp,st.armor,st).regenActive,false);
+test('healing suppression, full health and death stop recovery without banking it',()=>{
+ const s=fixture(),st=stats(s);s.encounters={active:{type:'infection',x:s.player.x,z:s.player.z,radius:5}};s.time=.5;tickHealth(s,st);assert.equal(s.hp,25);assert.equal(s.health.healRemainder,0);
+ s.encounters=null;s.time=.6;tickHealth(s,st);assert.equal(s.hp,25);near(s.health.healRemainder,st.hp*.001);
+ s.hp=st.hp;s.time=.7;tickHealth(s,st);assert.equal(s.hp,st.hp);assert.equal(healthView(s,st.hp,st.armor,st).regenActive,false);
+ s.hp=0;s.time=.8;tickHealth(s,st);assert.equal(s.hp,0);
 });

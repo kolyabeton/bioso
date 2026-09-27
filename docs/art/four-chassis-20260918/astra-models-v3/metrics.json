@@ -1,0 +1,54 @@
+[
+  {
+    "key": "demolition",
+    "file": "body-demolition-astra3-v3.glb",
+    "bytes": 4186148,
+    "triangles": 21168,
+    "materials": 6,
+    "textures": 4,
+    "bounds": [
+      1.48800003528595,
+      0.829517662525177,
+      1.1067999601364138
+    ]
+  },
+  {
+    "key": "regulator",
+    "file": "body-regulator-astra3-v3.glb",
+    "bytes": 3737852,
+    "triangles": 17772,
+    "materials": 6,
+    "textures": 4,
+    "bounds": [
+      1.059883952140808,
+      1.6503087282180786,
+      0.8095000088214874
+    ]
+  },
+  {
+    "key": "sentinel",
+    "file": "body-sentinel-astra3-v3.glb",
+    "bytes": 2521684,
+    "triangles": 8424,
+    "materials": 4,
+    "textures": 4,
+    "bounds": [
+      1.401387155056,
+      0.7854999899864197,
+      1.1691874861717226
+    ]
+  },
+  {
+    "key": "assembler",
+    "file": "body-assembler-astra3-v3.glb",
+    "bytes": 3184544,
+    "triangles": 13588,
+    "materials": 5,
+    "textures": 4,
+    "bounds": [
+      1.310262143611908,
+      0.8752144575119019,
+      1.1461873650550845
+    ]
+  }
+]

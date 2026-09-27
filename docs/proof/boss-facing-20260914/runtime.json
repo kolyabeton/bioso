@@ -1,0 +1,116 @@
+{
+  "before": {
+    "model": [
+      "boss-scrap-leviathan"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-scrap-leviathan",
+        "x": 0,
+        "y": 0,
+        "z": -1544,
+        "contact": 0,
+        "radius": 14,
+        "speed": 0.65,
+        "hp": 117678.91331855254,
+        "facing": 3.141592653589793,
+        "phase": 1,
+        "actions": {},
+        "warning": null,
+        "hover": 0
+      }
+    ],
+    "parts": 4,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-scrap-leviathan",
+        "state": "idle",
+        "action": "idle",
+        "walkWeight": 0,
+        "legs": 6,
+        "phase": 0,
+        "clock": 0,
+        "travel": 0
+      }
+    ],
+    "camera": {
+      "active": true,
+      "blend": 0,
+      "height": 30,
+      "depth": 40,
+      "lookAhead": 1.4,
+      "lookHeight": 0
+    },
+    "time": 0,
+    "fps": 59
+  },
+  "after": {
+    "model": [
+      "boss-scrap-leviathan"
+    ],
+    "tiles": 2,
+    "loading": 0,
+    "errors": 0,
+    "boss": [
+      {
+        "id": "boss-scrap-leviathan",
+        "x": 0,
+        "y": 0,
+        "z": -1544,
+        "contact": -10.462400000000017,
+        "radius": 14,
+        "speed": 0.65,
+        "hp": 117678.91331855254,
+        "facing": 0,
+        "phase": 1,
+        "actions": {},
+        "warning": {
+          "x": 0,
+          "y": 0,
+          "z": -1529,
+          "dx": 0,
+          "dz": 1,
+          "started": 10.012400000000019,
+          "at": 11.612400000000019,
+          "key": "hammer",
+          "mode": "area",
+          "radius": 4,
+          "angle": 6.283185307179586,
+          "bossAction": "crush",
+          "recovery": 4.2
+        },
+        "hover": 0
+      }
+    ],
+    "parts": 4,
+    "bees": 0,
+    "shots": 0,
+    "animation": [
+      {
+        "id": "boss-scrap-leviathan",
+        "state": "prepare",
+        "action": "crush",
+        "walkWeight": 5.662174857227794e-33,
+        "legs": 6,
+        "phase": 15.421256876702145,
+        "clock": 10.462400000000017,
+        "travel": 10.995574287564294
+      }
+    ],
+    "camera": {
+      "active": true,
+      "blend": 1,
+      "height": 27,
+      "depth": 43,
+      "lookAhead": 2.9,
+      "lookHeight": 0.6
+    },
+    "time": 10.462400000000017,
+    "fps": 55
+  }
+}

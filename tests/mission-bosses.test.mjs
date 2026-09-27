@@ -4,7 +4,7 @@ import {createRun,step,hurtEnemy,spawnEnemy} from '../src/game.js';
 import {createWorldRun} from '../src/world-run.js';
 import {newProfile,createPart} from '../src/assembly.js';
 import {MISSION_BOSSES,bossDamageMultiplier,tickMissionBoss,missionBossStatus} from '../src/systems/mission-bosses.js';
-import {MISSION_BOSS_REINFORCEMENT_CAP,MISSION_BOSS_WAVE_INTERVAL,MISSION_BOSS_WAVE_SIZE,MISSION_EIGHTH_FLOOR_ELITES} from '../src/mission-run.js';
+import {MISSION_BOSS_HP_SCALE,missionRoomStrength,MISSION_BOSS_REINFORCEMENT_CAP,MISSION_BOSS_WAVE_INTERVAL,MISSION_BOSS_WAVE_SIZE,MISSION_EIGHTH_FLOOR_ELITES} from '../src/mission-run.js';
 function fixture(id='garden'){
  const s=createWorldRun(newProfile(),id,917),m=s.mission,i=m.floors-1;m.currentFloor=i;
  for(let j=0;j<i;j++){m.floorsState[j].state='cleared';s.exploration.groups[j].state='cleared';}
@@ -15,25 +15,47 @@ function advance(s,seconds){for(let i=0;i<Math.round(seconds*60);i++){step(s,1/6
 /** Drone shots are short lived and are consumed on contact, so sampling a single
  * frame is a race. Report whether the predicate ever held during the window. */
 function advanceWatching(s,seconds,predicate){let seen=false;for(let i=0;i<Math.round(seconds*60);i++){step(s,1/60);seen||=predicate(s);s.events=[];}return seen;}
+test('all mission bosses use the first mission health reduction and unified hard attack damage',()=>{
+ assert.equal(MISSION_BOSS_HP_SCALE,.125);
+ for(const id of ['garden','quarantine','core','nursery','mother']){
+  const {s,b}=fixture(id),m=s.mission,index=m.floors-1;
+  const raw=spawnEnemy(s,'boss',{x:0,z:0},'mass',m.difficulty*60+index*50+m.difficulty*360);
+  assert.equal(b.maxHp,Math.max(1,Math.round(raw.maxHp*missionRoomStrength(index)*.125)),id);
+  assert.equal(b.hp,b.maxHp,id);assert.equal(b.damage,2,id);
+ }
+});
 test('real final-room spawns own distinct metre scales and speeds; survival stays generic',()=>{
  const entries=['garden','quarantine','core','nursery','mother'].map(id=>fixture(id));
  assert.equal(new Set(entries.map(({b})=>b.radius)).size,5);assert.ok(entries[1].b.radius>entries[0].b.radius*3);assert.equal(entries[2].b.speed,0);assert.ok(entries[0].b.speed>entries[1].b.speed*5);
  for(const {s,b}of entries){assert.equal(s.enemies.filter(e=>e.bossOwner).length,0);assert.equal(b.assembly,null);}
  const s=createRun();const b=spawnEnemy(s,'boss',{x:0,z:10});assert.equal(b.bossCombat,undefined);
 });
+test('authored boss dash uses half of the Shield slow',()=>{
+ const travel=slow=>{const {s,b}=fixture('quarantine');s.time=2;s.world.heightAt=()=>0;s.streaming=null;b.bossCombat.dash={dx:1,dz:0,left:100,hit:true};if(slow){b.shieldAuraUntil=10;b.shieldAuraSlow=.4;}const x=b.x;tickMissionBoss(s,b,.1,()=>{});return b.x-x;};
+ const normal=travel(false),slowed=travel(true);assert.ok(normal>0);assert.ok(Math.abs(slowed/normal-.8)<1e-8,`${slowed} / ${normal}`);
+});
 test('hunter locks a telegraphed direction, dashes with swept collision and opens a punish window',()=>{
- const {s,b}=fixture();s.time=2;tickMissionBoss(s,b,0,()=>{});const w={...b.enemyAttack.warning};assert.equal(w.bossAction,'dash');assert.ok(w.at-w.started>=.9);
+ const {s,b}=fixture();s.time=2;tickMissionBoss(s,b,0,()=>{});const w={...b.enemyAttack.warning};assert.equal(w.bossAction,'dash');assert.ok(w.at-w.started>=.45);
  s.time=w.at;tickMissionBoss(s,b,0,()=>{});assert.ok(b.bossCombat.dash);const x=b.x,z=b.z;s.player.x=6;let hits=0;
  for(let i=0;i<120&&b.bossCombat.dash;i++){s.time+=1/60;tickMissionBoss(s,b,1/60,()=>hits++);}
  assert.ok(Math.abs(b.x-x)<.01);assert.ok(b.z-z>8);assert.equal(hits,0);assert.ok(b.bossCombat.exposedUntil>s.time);assert.equal(bossDamageMultiplier(s,b,'direct'),1.65);
  const f=fixture();f.s.time=2;tickMissionBoss(f.s,f.b,0,()=>{});f.s.time=f.b.enemyAttack.warning.at;tickMissionBoss(f.s,f.b,0,()=>{});tickMissionBoss(f.s,f.b,1,()=>hits++);assert.equal(hits,1);
 });
 test('mission bosses have no targetable support parts or support-dependent mitigation',()=>{
- const {s,b}=fixture('quarantine');assert.equal(s.enemies.some(e=>e.kind==='boss-part'),false);assert.equal(bossDamageMultiplier(s,b,'direct'),1);assert.equal(b.speed,MISSION_BOSSES[b.bossDesignId].speed);
+ const {s,b}=fixture('quarantine');assert.equal(s.enemies.some(e=>e.kind==='boss-part'),false);assert.equal(bossDamageMultiplier(s,b,'direct'),1);assert.equal(b.speed,MISSION_BOSSES[b.bossDesignId].speed*2);
+});
+test('leviathan is smaller and holds a three-second low-armor melee punish window after crush',()=>{
+ const {s,b}=fixture('quarantine');assert.equal(b.radius,11);
+ s.time=2;tickMissionBoss(s,b,0,()=>{});assert.equal(b.enemyAttack.warning.bossAction,'crush');
+ s.time=b.enemyAttack.warning.at;tickMissionBoss(s,b,0,()=>{});
+ assert.equal(b.bossCombat.exposedUntil,s.time+3);assert.equal(b.armor,26);assert.equal(bossDamageMultiplier(s,b,'direct'),1.65);
+ const old={x:b.x,z:b.z};s.player.x=20;s.time+=1;tickMissionBoss(s,b,.5,()=>{});
+ assert.equal(b.x,old.x);assert.equal(b.z,old.z);
+ s.time=b.bossCombat.exposedUntil;tickMissionBoss(s,b,0,()=>{});assert.equal(b.armor,84.5);
 });
 test('cathedral stays anchored, aims avoidable ground attacks and fires seeds without roots',()=>{
  const {s,b}=fixture('core'),start={x:b.x,z:b.z};assert.equal(bossDamageMultiplier(s,b,'direct'),1);advance(s,12);assert.equal(b.x,start.x);assert.equal(b.z,start.z);assert.ok(b.bossCombat.counts.roots>=2);
- b.hp=b.maxHp*.45;step(s,1/60);assert.equal(b.bossCombat.phase,2);assert.equal(b.armor,MISSION_BOSSES[b.bossDesignId].armor);
+ b.hp=b.maxHp*.45;step(s,1/60);assert.equal(b.bossCombat.phase,2);assert.equal(b.armor,MISSION_BOSSES[b.bossDesignId].armor*1.3);
 });
 test('collector copies ranged and melee loadouts; reflection emits dodgeable capped projectiles',()=>{
  const {s,b}=fixture('nursery');s.arms=[createPart(s,'seed')];s.time=2;tickMissionBoss(s,b,0,()=>{});assert.equal(b.bossCombat.copiedWeapon,'seed');assert.equal(b.enemyAttack.warning.mode,'shot');
@@ -73,7 +95,7 @@ test('melee and projectile broad phase hit the surface of a giant boss, not only
  const {s,b}=fixture('quarantine');s.enemies=[b];b.bossCombat.readyAt=1e6;s.player={x:0,y:0,z:b.z+b.radius+1,facing:Math.PI};s.arms=[createPart(s,'claws')];const before=b.hp;step(s,1/60);assert.ok(b.hp<before,'claws reach the hull surface');
  s.arms=[];s.shots=[{id:999,x:0,y:1,z:b.z+b.radius+.5,dx:0,dz:-1,dy:0,speed:6,life:2,travel:0,mode:'projectile',remaining:1,hit:new Set(),w:{key:'seed',mode:'projectile',damage:10,crit:0,critPower:1,range:20,knockback:0}}];const hp=b.hp;step(s,.1);assert.ok(b.hp<hp,'projectile hits at radius seven');
 });
-test('production hit path applies final-room attack scaling to root strikes and attacking bees',()=>{
+test('production hit path applies unified hard boss damage to root strikes and attacking bees',()=>{
  const {s,b}=fixture('core');s.health.invulnerableUntil=0;s.health.armorSpent=1e6;advance(s,3.3);assert.equal(s.health.hits,1);assert.equal(s.hp,2);assert.equal(s.dead,false);
  const m=fixture('mother');
  // The eye laser now takes slot 0, so the swarm lands later than a fixed 3.15 s.

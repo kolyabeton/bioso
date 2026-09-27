@@ -18,8 +18,9 @@ test('survival places nine or ten reachable secrets with variety and determinist
   assert.equal(new Set(secrets.map(n=>n.id)).size,secrets.length);
   for(const type of Object.keys(SECRETS))assert.ok([3,4].includes(secrets.filter(n=>n.type===type).length));
   for(const n of secrets){assert.ok(s.world.walkable(n.x,n.z,2.4));assert.ok(Number.isFinite(n.y));assert.equal(n.state,'ready');assert.equal(n.discovered,false);}
-  for(let i=0;i<s.encounters.nodes.length;i++)for(let j=i+1;j<s.encounters.nodes.length;j++){
-   const a=s.encounters.nodes[i],b=s.encounters.nodes[j];assert.ok(Math.hypot(a.x-b.x,a.z-b.z)>=32);
+  const surfaceNodes=s.encounters.nodes.filter(n=>!n.dungeonId);
+  for(let i=0;i<surfaceNodes.length;i++)for(let j=i+1;j<surfaceNodes.length;j++){
+   const a=surfaceNodes[i],b=surfaceNodes[j];assert.ok(Math.hypot(a.x-b.x,a.z-b.z)>=32);
   }
   if(seed<=5)assert.deepEqual(createWorldRun(undefined,'survival',seed).encounters.nodes,s.encounters.nodes);
   assert.equal(s.encounters.nodes.filter(n=>!SECRETS[n.type]).length,17,'public event roster stays intact');

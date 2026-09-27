@@ -24,11 +24,11 @@ function kill(s,kind='normal',source='direct',opts={}){
  const e=spawnEnemy(s,'normal',{x:0,z:5},'mass',0,{promote:false});Object.assign(e,{kind},opts);hurtEnemy(s,e,1e8,0,source,false,'pistol');return e;
 }
 test('catalog adds exactly 50 goals with four unique item owners and 46 tokens; old thresholds stay intact',()=>{
- assert.equal(ACHIEVEMENTS.length,86);assert.equal(SURVIVAL_ACHIEVEMENTS.length,50);
- assert.equal(new Set(ACHIEVEMENTS.map(a=>a.id)).size,86);
+ assert.equal(ACHIEVEMENTS.length,94);assert.equal(SURVIVAL_ACHIEVEMENTS.length,50);
+ assert.equal(new Set(ACHIEVEMENTS.map(a=>a.id)).size,94);
  assert.equal(SURVIVAL_ACHIEVEMENTS.filter(a=>a.reward.tokens===1).length,46);
  assert.deepEqual(Object.fromEntries(SURVIVAL_ACHIEVEMENTS.flatMap(a=>(a.reward.keys||[]).map(k=>[k,a.id]))),{reverseHeart:'survival:level-30',returnNerve:'survival:set-kills-hunter',commonNerve:'survival:set-bosses-hecaton',reflexNerve:'survival:mature-build'});
- assert.deepEqual(WEAPON_UNLOCKS.map(a=>a.goal),[30,60]);assert.equal(SURVIVAL_UNLOCKS.length,14);
+ assert.deepEqual(WEAPON_UNLOCKS.filter(a=>a.key!=='shieldArm').map(a=>a.goal),[30,60]);assert.equal(SURVIVAL_UNLOCKS.length,14);
  for(const a of SURVIVAL_ACHIEVEMENTS)assert.equal(a.mode,'survival');
 });
 test('level 20 counts once per run, survives defeat and save/load, and never counts missions',()=>{
@@ -74,7 +74,8 @@ test('item thresholds issue one ground reward with existing rarity and survive s
  let s=run();set(s,'hunter');const p=survivalProgress(s.profile);p.setKills.hunter=499;trackAchievements(s);assert.ok(!s.profile.unlocked.includes('returnNerve'));
  kill(s);trackAchievements(s);assert.ok(has(s,'set-kills-hunter'));assert.equal(s.ground.filter(q=>q.part.key==='returnNerve').length,1);
  s.level=29;trackAchievements(s);assert.ok(!s.profile.unlocked.includes('reverseHeart'));s.level=30;trackAchievements(s);
- assert.equal(s.ground.find(q=>q.part.key==='reverseHeart').part.rarity,'relic');assert.equal(s.ground.find(q=>q.part.key==='reflexNerve').part.rarity,'common');
+ const heart=s.ground.find(q=>q.part.key==='reverseHeart').part,sensor=s.ground.find(q=>q.part.key==='reflexNerve').part;
+ assert.equal(heart.rarity,'relic');assert.equal(heart.affixes.length,3);assert.equal(sensor.rarity,'common');assert.equal(sensor.affixes.length,0);
  const tokens=s.profile.meta.rerolls;trackAchievements(s);assert.equal(s.profile.meta.rerolls,tokens);assert.equal(s.ground.filter(q=>q.part.key==='reverseHeart').length,1);
  const restored=saved(s.profile);restored.unlocked=restored.unlocked.filter(k=>k!=='reverseHeart');assert.ok(saved(restored).unlocked.includes('reverseHeart'));
  s=run(saved(s.profile));s.level=30;trackAchievements(s);assert.equal(s.ground.filter(q=>q.part.key==='reverseHeart').length,0);

@@ -1,0 +1,15 @@
+[
+  {
+    "key": "demolition",
+    "file": "body-demolition-astra5-v3.glb",
+    "bytes": 2531060,
+    "triangles": 32208,
+    "materials": 6,
+    "textures": 4,
+    "bounds": [
+      1.6327316761016848,
+      0.5356259644031525,
+      1.4449999928474428
+    ]
+  }
+]

@@ -9,9 +9,17 @@ const ids=new Set(BOSS_MODEL_IDS);
 export const bossModelId=e=>['boss','final'].includes(e.kind)&&ids.has(e.bossDesignId)?e.bossDesignId:null;
 
 /** Uniform fit preserves the approved shape, the existing collision radius and health-bar clearance. */
-export function fittedBossModel(template,{height}={}){
+export function fittedBossModel(template,{height,footprintRadius}={}){
  const copy=template.clone(true),box=new T.Box3().setFromObject(copy),dims=box.getSize(new T.Vector3()),center=box.getCenter(new T.Vector3());
- const factor=height?height/Math.max(dims.y,.001):Math.min(2.2/Math.max(dims.x,dims.z,.001),1.85/Math.max(dims.y,.001));
+ let factor=height?height/Math.max(dims.y,.001):Math.min(2.2/Math.max(dims.x,dims.z,.001),1.85/Math.max(dims.y,.001));
+ if(footprintRadius){
+  // Match the full shipped silhouette (including feet), not just its longest
+  // axis, to the combat circle. Otherwise melee requires entering the model.
+  copy.updateMatrixWorld(true);const point=new T.Vector3();let radius=0;
+  copy.traverse(o=>{if(!o.isMesh)return;const positions=o.geometry.attributes.position;if(!positions)return;for(let i=0;i<positions.count;i++){point.fromBufferAttribute(positions,i).applyMatrix4(o.matrixWorld);radius=Math.max(radius,Math.hypot(point.x-center.x,point.z-center.z));}});
+  const footprintFit=footprintRadius/Math.max(radius,.001);
+  factor=height?Math.min(factor,footprintFit):footprintFit;
+ }
  copy.position.sub(new T.Vector3(center.x,box.min.y,center.z)).multiplyScalar(factor);copy.scale.multiplyScalar(factor);
  const group=new T.Group(),motionRoot=new T.Group();motionRoot.name='boss-motion-root';motionRoot.add(copy);group.add(motionRoot);group.userData.motionRoot=motionRoot;const parts=[];
  copy.traverse(o=>{const role=o.userData.motionRole;if(role)parts.push({object:o,role,position:o.position.clone(),rotation:o.rotation.clone(),quaternion:o.quaternion.clone(),scale:o.scale.clone()});});
@@ -31,7 +39,7 @@ export function createBossModelView(scene,{load=loadModel,renderer}={}){
    const source=sources.get(id);if(!source){remaining.push(e);continue;}
    keep.add(e.id);let entry=active.get(e.id);
    if(entry&&entry.id!==id){root.remove(entry.model);active.delete(e.id);entry=null;}
-   if(!entry){const model=fittedBossModel(source,{height:e.visualHeight?e.visualHeight/e.radius:undefined});model.name='boss-asset:'+id;model.userData.assetId=id;root.add(model);bounds.setFromObject(model,true);entry={id,model,height:bounds.max.y-bounds.min.y,x:e.x,z:e.z,travel:0,clock:time,walkWeight:0,hover:e.bossHover??0,lastTime:time};active.set(e.id,entry);}
+   if(!entry){const model=fittedBossModel(source,{height:e.visualHeight?e.visualHeight/e.radius:undefined,footprintRadius:1});model.name='boss-asset:'+id;model.userData.assetId=id;root.add(model);bounds.setFromObject(model,true);entry={id,model,height:bounds.max.y-bounds.min.y,x:e.x,z:e.z,travel:0,clock:time,walkWeight:0,hover:e.bossHover??0,lastTime:time};active.set(e.id,entry);}
    const {model}=entry,dt=Math.max(0,time-entry.lastTime),distance=Math.hypot(e.x-entry.x,e.z-entry.z),frozen=e.frozenUntil>time||e.pickupSleepUntil>time;
    const yaw=e.bossCombat?.facing??e.facing??Math.atan2(player.x-e.x,player.z-e.z);
    entry.groundHeightAt=world?.heightAt?(x,z)=>world.heightAt(x,z):null;

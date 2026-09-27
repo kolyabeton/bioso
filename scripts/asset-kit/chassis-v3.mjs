@@ -106,6 +106,8 @@ function build(key){
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS),exporter=new GLTFExporter(),out=new URL('../../public/assets/kit/',import.meta.url),entries=[];
 const sourceDoc=await io.read(new URL('leg-worker.glb',out).pathname),sourceMaterial=sourceDoc.getRoot().listMaterials()[0];
 for(const key of Object.keys(CHASSIS_PROFILES)){
+ // Explicit model IDs are separately authored assets, not this generator's output.
+ if(CHASSIS_PROFILES[key].modelId)continue;
  const root=build(key),bytes=await exporter.parseAsync(root,{binary:true}),doc=await io.readBinary(new Uint8Array(bytes));
  for(const material of doc.getRoot().listMaterials()){
   const kind=Object.keys(CHASSIS_MATERIALS).find(k=>CHASSIS_MATERIALS[k].name===material.getName());

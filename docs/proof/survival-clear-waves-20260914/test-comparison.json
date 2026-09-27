@@ -1,0 +1,43 @@
+{
+  "baselineFailures": [
+    "all five timed waves use mission bosses and leave generated habitats untouched",
+    "displayed reload and regeneration use applied affixes, sets and legs",
+    "duplicate shields charge and block independently with a visible charge count",
+    "every mission event offers decline and opens a traversable gate without a reward",
+    "final boss is scheduled at forty minutes even when an earlier boss survives",
+    "health trades persist slots and missing health across body swaps and reject lethal trades",
+    "installed body inspector includes event-granted organ mounts",
+    "level-24 player can beat the fourth habitat with tier-one melee or ranged gear, including a mistake",
+    "new settings default to High/60 and enabled 30 percent audio while preserving old values",
+    "one rocket splash applies swarm boss damage once, only to elite and boss targets",
+    "only slow leg ranks add half HP while every leg rank adds 15 percent weight",
+    "paid plated upgrades add half a segment, retain speed and stop at ten",
+    "plated ranks I through V grant half a segment per rank without percent bonuses",
+    "player health and armor item values use only whole or half units",
+    "primary CTAs are green-filled and last in horizontal action rows",
+    "production copy has English coverage, including catalog data and template fragments",
+    "rocket bees fly slowly, show their damage and strongly scatter a small area"
+  ],
+  "finalFailures": [
+    "all five timed waves use mission bosses and leave generated habitats untouched",
+    "displayed reload and regeneration use applied affixes, sets and legs",
+    "duplicate shields charge and block independently with a visible charge count",
+    "every mission event offers decline and opens a traversable gate without a reward",
+    "health trades persist slots and missing health across body swaps and reject lethal trades",
+    "installed body inspector includes event-granted organ mounts",
+    "level-24 player can beat the fourth habitat with tier-one melee or ranged gear, including a mistake",
+    "new settings default to High/60 and enabled 30 percent audio while preserving old values",
+    "one rocket splash applies swarm boss damage once, only to elite and boss targets",
+    "only slow leg ranks add half HP while every leg rank adds 15 percent weight",
+    "paid plated upgrades add half a segment, retain speed and stop at ten",
+    "plated ranks I through V grant half a segment per rank without percent bonuses",
+    "player health and armor item values use only whole or half units",
+    "primary CTAs are green-filled and last in horizontal action rows"
+  ],
+  "newFailures": [],
+  "resolvedOrChangedByConcurrentWork": [
+    "final boss is scheduled at forty minutes even when an earlier boss survives",
+    "production copy has English coverage, including catalog data and template fragments",
+    "rocket bees fly slowly, show their damage and strongly scatter a small area"
+  ]
+}

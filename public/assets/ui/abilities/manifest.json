@@ -532,5 +532,53 @@
       1231
     ],
     "generation": "ability-icons-v2"
+  },
+  {
+    "id": "detonation.0",
+    "source": "detonation.0.png",
+    "alphaBounds": [67, 78, 1159, 1187],
+    "generation": "imagegen-detonation-20260924"
+  },
+  {
+    "id": "detonation.1",
+    "source": "detonation.1.png",
+    "alphaBounds": [67, 78, 1175, 1187],
+    "generation": "imagegen-detonation-20260924"
+  },
+  {
+    "id": "detonation.2",
+    "source": "detonation.2.png",
+    "alphaBounds": [67, 86, 1173, 1187],
+    "generation": "imagegen-detonation-20260924"
+  },
+  {
+    "id": "detonation.3",
+    "source": "detonation.3.png",
+    "alphaBounds": [67, 84, 1187, 1187],
+    "generation": "imagegen-detonation-20260924"
+  },
+  {
+    "id": "ammo.0",
+    "source": "ammo.0.png",
+    "alphaBounds": [0, 11, 1125, 1224],
+    "generation": "imagegen-ammo-20260925"
+  },
+  {
+    "id": "ammo.1",
+    "source": "ammo.1.png",
+    "alphaBounds": [0, 0, 1238, 1254],
+    "generation": "imagegen-ammo-20260925"
+  },
+  {
+    "id": "ammo.2",
+    "source": "ammo.2.png",
+    "alphaBounds": [0, 15, 1141, 1225],
+    "generation": "imagegen-ammo-20260925"
+  },
+  {
+    "id": "ammo.3",
+    "source": "ammo.3.png",
+    "alphaBounds": [0, 21, 1206, 1228],
+    "generation": "imagegen-ammo-20260925"
   }
 ]

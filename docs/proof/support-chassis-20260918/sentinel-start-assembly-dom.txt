@@ -1,0 +1,62 @@
+- img "bioso"
+- progressbar "Загрузка"
+- generic: Собираем ноги
+- main:
+  - generic "Игровой мир. WASD, стрелки или перетаскивание для движения."
+  - text: 01:00
+  - generic "Биомасса": "0"
+  - button "Пауза":
+  - region "Состояние существа":
+    - progressbar "Здоровье 7.5 из 7.5. Броня 1.5 из 1.5. Без щита"
+    - generic: УРОВЕНЬ 1
+    - generic: УБИТО 1
+    - progressbar "Опыт"
+  - generic: Убейте первого босса
+  - button "Открыть карту":
+    - generic: Карта
+  - button "Открыть сборку":
+    - generic: Сборка
+  - button "Открыть Душу":
+    - generic: Душа
+  - group "Оружие — нажмите, чтобы включить или выключить":
+    - button "Маркер · без усилений · 5 из 5 зарядов · выключить оружие" [pressed]:
+      - generic: 5 из 5
+    - button "Свободное крепление 2 · без усилений · открыть сборку":
+- dialog "Дозорный I":
+  - heading "Дозорный I" [active] [level=2]:
+    - text: Дозорный
+    - generic: I
+  - button "Вернуться в игру":
+  - generic: Вес
+  - strong: 48 из 190
+  - generic: Биомасса
+  - strong: "0"
+  - generic "Текущая сборка существа в 3D"
+  - generic: Корпус
+  - button "Дозорный"
+  - generic "Руки и ноги — прокрутка вниз":
+    - generic: Рука 1
+    - button "Маркер"
+    - generic: Рука 2
+    - button "Пусто · Рука 2":
+    - generic: Нога 1
+    - button "Универсал":
+    - generic: Нога 2
+    - button "Универсал":
+    - generic: Нога 3
+    - button "Универсал":
+    - generic: Нога 4
+    - button "Универсал":
+    - generic: Нога 5
+    - button "Универсал":
+  - region "Органы":
+    - generic: Орган 1
+    - button "Пусто · Орган 1":
+    - generic: Орган 2
+    - button "Пусто · Орган 2":
+    - generic: Орган 3
+    - button "Пусто · Орган 3":
+  - paragraph: "Первый босс оставит желудок: он превращает лишние детали в биомассу."
+  - generic: Инвентарь · 0
+  - paragraph: Пусто
+- paragraph: Тестовый профиль · подготовленное состояние

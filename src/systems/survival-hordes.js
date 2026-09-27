@@ -1,11 +1,39 @@
+import {difficultyNormalCount} from './difficulty.js';
 import {SURVIVAL_CADENCE,advanceSurvivalWave,survivalSpawnLimit,survivalWavePosition,survivalWaveSpec} from './survival-cadence.js';
 import {resetEnemyNavigation} from '../world-navigation.js';
 import {cancelEnemyAttack} from './enemy-combat.js';
 import {combatTime} from './mutations.js';
 import {phaseAt} from './balance.js';
-import {signatureRole} from './waves.js';
+import {eligibleRecipes} from './enemy-assembly.js';
 import {assignWaveEliteDisposition} from './territories.js';
 const PATTERNS=['ring','pincers','perimeter','spiral'];
+
+function packRoster(s,q,pack){
+ const eliteCount=pack===0?Math.ceil(q.eliteCap/2):Math.floor(q.eliteCap/2);
+ const roles=[...new Set(eligibleRecipes(q.at).map(r=>r.role))].filter(role=>role!=='mass');
+ const signature=phaseAt(q.at).minuteSignature;
+ const cycle=roles.includes(signature)?[...roles,signature]:roles;
+ let normal=0,bag=[];
+ const roster=Array.from({length:eliteCount+difficultyNormalCount(s,(q.packSize-eliteCount)*SURVIVAL_CADENCE.density)},(_,i)=>{
+  if(i<eliteCount)return{kind:'elite',role:'mass'};
+  // Spread filler through the pack; every other slot cycles all unlocked roles.
+  const mass=Math.ceil((normal+1)*SURVIVAL_CADENCE.massShare)>Math.ceil(normal*SURVIVAL_CADENCE.massShare);normal++;
+  if(mass||!cycle.length)return{kind:'normal',role:'mass'};
+  if(!bag.length){
+   bag=[...cycle];
+   for(let j=bag.length-1;j>0;j--){const k=Math.floor(s.rng()*(j+1));[bag[j],bag[k]]=[bag[k],bag[j]];}
+  }
+  return{kind:'normal',role:bag.pop()};
+ });
+ const ordinaryFast=eligibleRecipes(q.at,'fast').filter(recipe=>recipe.id!=='biter');
+ for(const member of roster)if(member.kind==='normal'&&member.role==='fast'&&ordinaryFast.length)member.recipeId=ordinaryFast[Math.floor(s.rng()*ordinaryFast.length)].id;
+ if(signature!=='fast'||!eligibleRecipes(q.at).some(recipe=>recipe.id==='biter'))return roster;
+ const index=roster.findLastIndex(member=>member.kind==='normal'&&member.role==='fast'),fallback=roster.findLastIndex(member=>member.kind==='normal');
+ if(index<0&&fallback<0)return roster;
+ roster.splice(index>=0?index:fallback,1);
+ roster.push({kind:'normal',role:'fast',recipeId:'biter',groupId:`biter:${q.index}:${pack}`,count:30});
+ return roster;
+}
 
 // Describes a finite pack; there is deliberately no scheduled opening time.
 export const survivalHordeSchedule=(index,time=0)=>({count:survivalWaveSpec(index,time).packSize,pattern:PATTERNS[index%PATTERNS.length]});
@@ -37,19 +65,22 @@ export function tickSurvivalHordes(s,dt,spawn){
  const pressure=survivalSpawnLimit(s);if(pressure.intro||pressure.rest)return;
  const q=s.waves.cadence;
  if(!q.rosters){
-  const phase=phaseAt(q.at);
-  q.rosters=[0,1].map(pack=>Array.from({length:q.packSize},(_,i)=>({
-   kind:i<(pack===0?Math.ceil(q.eliteCap/2):Math.floor(q.eliteCap/2))?'elite':'normal',
-   role:s.rng()<SURVIVAL_CADENCE.massShare?'mass':signatureRole(s,phase)
-  })));
+  q.rosters=[0,1].map(pack=>packRoster(s,q,pack));
+  q.packSize=q.rosters[q.pack].length;
  }
  let living=s.enemies.filter(e=>e.hp>0).length;
  const pattern=PATTERNS[q.index%PATTERNS.length];
- while(q.issued<q.packSize&&living<pressure.softCap){
-  const member=q.rosters[q.pack][q.issued],p=position(s,pattern,q.issued,q.packSize);
-  const enemy=spawn(member.kind,p,member.role,q.at,{promote:false,wave:true})||spawn(member.kind,null,member.role,q.at,{promote:false,wave:true});
-  if(!enemy)break; // Retry this exact slot; neither failures nor a full cap clear it.
-  enemy.survivalWaveIndex=q.index;enemy.survivalWavePack=q.pack;enemy.waveSpawn=true;
-  assignWaveEliteDisposition(s,enemy);enemy.hordePattern=pattern;enemy.hordeEvent=true;q.issued++;living++;
+ while(q.issued<q.packSize&&(living<pressure.softCap||q.rosters[q.pack][q.issued].groupId)){
+  const first=q.rosters[q.pack][q.issued],group=Array.from({length:first.count||1},()=>first);let spawned=0;
+  for(const [groupIndex,member]of group.entries()){
+   const index=first.count?groupIndex:q.issued,p=position(s,pattern,index,first.count||q.packSize);
+   const enemy=spawn(member.kind,p,member.role,q.at,{promote:false,wave:true,recipeId:member.recipeId})||spawn(member.kind,null,member.role,q.at,{promote:false,wave:true,recipeId:member.recipeId});
+   if(!enemy)break;
+   enemy.survivalWaveIndex=q.index;enemy.survivalWavePack=q.pack;enemy.waveSpawn=true;enemy.groupId=member.groupId??enemy.groupId;
+   assignWaveEliteDisposition(s,enemy);enemy.hordePattern=pattern;enemy.hordeEvent=true;spawned++;living++;
+  }
+  if(!spawned)break;
+  if(spawned<group.length)break;
+  q.issued++;
  }
 }

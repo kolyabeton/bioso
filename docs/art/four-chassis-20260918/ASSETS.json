@@ -1,0 +1,89 @@
+{
+  "status": "art-ready-models-await-approval",
+  "assets": [
+    {
+      "file": "generated/achievement-assembler-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "generated/achievement-demolition-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "generated/achievement-regulator-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "generated/achievement-sentinel-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "generated/icon-assembler-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_corners": true
+    },
+    {
+      "file": "generated/icon-demolition-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_corners": true
+    },
+    {
+      "file": "generated/icon-regulator-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_corners": true
+    },
+    {
+      "file": "generated/icon-sentinel-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "transparent_corners": true
+    }
+  ]
+}

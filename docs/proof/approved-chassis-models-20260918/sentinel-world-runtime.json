@@ -1,0 +1,79 @@
+{
+  "diagnostics": "60 FPS · 141 draws · 59 GLB/0 errors · 4 mesh enemies\n4 enemies · 0 parts\n0.0, 22.0\ntile-0>painted-biomes@0.0,0.0,-5.4#ground-atlas-v2.png | tile-0>painted-biomes@0.0,0.0,-5.4#ground-atlas-v2.png\n\n0:Mesh:ground-atlas-v2.png|1:Mesh:|2:stone-recesses:ground-atlas-v2.png|3:environment-ground-fragments:materials-v2.webp|4:environment-pocket-grass:|5:scrap-mineral-gravel:materials-v2.webp|6:scrap-broken-rubble:materials-v2.webp|7:scrap-reclaimed-shrubs:foliage-v1.webp|8:scrap-trailing-roots:materials-v2.webp|9:environment-contact-shadows:|10:environment-signature-environment-garden-bank-v1:materials-v2.webp|11:environment-signature-environment-garden-tree-v2:|12:environment-signature-environment-garden-tree-v2:materials-v2.webp|13:environment-signature-environment-garden-irrigator-v1:materials-v2.webp|14:environment-signature-environment-garden-irrigator-v1:|15:environment-signature-environment-garden-irrigator-v1:|16:environment-signature-environment-garden-basin-v1:|17:environment-signature-environment-garden-basin-v1:materials-v2.webp|18:forest-border-ground:ground-atlas-v2.png|19:forest-border-ground:ground-atlas-v2.png|20:environment-border-3d-environment-garden-bank-v1:materials-v2.webp|21:environment-border-3d-forest-boulder-v3:materials-v2.webp|22:environment-border-3d-environment-garden-tree-v2:|23:environment-border-3d-environment-garden-tree-v2:materials-v2.webp",
+  "report": {
+    "body": "sentinel",
+    "enemies": [
+      {
+        "hp": 99938,
+        "id": 27,
+        "kind": "normal",
+        "x": 0.007690037946909971,
+        "z": 30.499852791639945
+      },
+      {
+        "hp": 99972,
+        "id": 28,
+        "kind": "normal",
+        "x": 6.7499040731839175,
+        "z": 21.98228996095897
+      },
+      {
+        "hp": 99964,
+        "id": 29,
+        "kind": "normal",
+        "x": -0.006010305509946427,
+        "z": 20.84978124187753
+      },
+      {
+        "hp": 99972,
+        "id": 30,
+        "kind": "normal",
+        "x": -1.7095129289066842,
+        "z": 21.99598894339455
+      }
+    ],
+    "hostileShots": [],
+    "metrics": {
+      "acid": 0,
+      "burn": 0,
+      "direct": 136,
+      "electric": 0,
+      "environment": 0,
+      "reflection": 18,
+      "summon": 0,
+      "thermal": 0
+    },
+    "reflected": [
+      {
+        "damage": 18,
+        "id": 35
+      },
+      {
+        "damage": 18,
+        "id": 38
+      },
+      {
+        "damage": 18,
+        "id": 41
+      },
+      {
+        "damage": 18,
+        "id": 44
+      }
+    ],
+    "time": 3.0170000000000003,
+    "towers": [],
+    "tuning": {
+      "active": true,
+      "armorReduction": 0.5,
+      "boost": 1,
+      "freezeDuration": 1,
+      "key": "sentinel",
+      "radius": 8,
+      "reflectionScale": 0.9,
+      "towerHp": 2,
+      "towerLimit": 2
+    }
+  },
+  "url": "http://127.0.0.1:5267/?review=support-chassis&body=sentinel&sound=0&lang=ru&stop=3&debug=1"
+}

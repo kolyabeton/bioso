@@ -1,9 +1,11 @@
 import {createInteractionHighlight} from '../vfx/interaction-highlight.js';
+import {createEventZoneGlow} from '../vfx/event-zone-glow.js';
 import * as T from 'three';
 import {loadModel,fittedModel,retireModel} from '../asset-models.js';
 import {SECRETS} from '../systems/secrets/definitions.js';
 import {EVENT_PRESENTATION} from './event-presentation.js';
 import {availableEncounter} from '../systems/encounters.js';
+import {layerEncounters} from '../systems/events/proximity.js';
 import {GAMEPLAY_MODULES,modulePresentation} from './definitions.js';
 import {prepareFinishedGateModel,gateMaterialsReady} from '../finished-gate-model.js';
 
@@ -14,7 +16,7 @@ export const ENCOUNTER_SPRITES={};
 /** Grounded, reusable environmental modules; never mutate encounter state. */
 export function createGameplayModulesView(scene,{load=loadModel}={}){
  const root=new T.Group();root.name='gameplay-modules';scene.add(root);
- const box=new T.BoxGeometry(1,1,1),cylinder=new T.CylinderGeometry(1,1,1,12),sphere=new T.SphereGeometry(1,12,8),ring=new T.RingGeometry(.975,1,64);
+ const box=new T.BoxGeometry(1,1,1),cylinder=new T.CylinderGeometry(1,1,1,12),sphere=new T.SphereGeometry(1,12,8);
  const materials=[];const material=(color,extra={})=>{const m=new T.MeshStandardMaterial({color,roughness:.91,metalness:.18,...extra});materials.push(m);return m;};
  const ceramic=material(0xb0b0a1),metal=material(0x424b47),stone=material(0x747970),rust=material(0x7f5d48),foliage=material(0x667654);
  const instances=new Map(),textures=new Map();
@@ -24,7 +26,7 @@ export function createGameplayModulesView(scene,{load=loadModel}={}){
   const m=new T.SpriteMaterial({map:textures.get(type),transparent:true,alphaTest:.12,toneMapped:false});
   materials.push(m);return m;
  }
- function release(v){v.highlight?.dispose();v.disposeAsset?.();retireModel(v.group);root.remove(v.group);for(const m of [v.light,v.zone.material,v.sprite?.material].filter(Boolean)){m.dispose();materials.splice(materials.indexOf(m),1);}}
+ function release(v){v.zone.geometry.dispose();v.zoneGlow.dispose();v.highlight?.dispose();v.disposeAsset?.();retireModel(v.group);root.remove(v.group);for(const m of [v.light,v.zone.material,v.sprite?.material].filter(Boolean)){m.dispose();materials.splice(materials.indexOf(m),1);}}
 
  function part(parent,geometry,mat,x,y,z,sx,sy,sz){const mesh=new T.Mesh(geometry,mat);mesh.position.set(x,y,z);mesh.scale.set(sx,sy,sz);mesh.castShadow=true;mesh.receiveShadow=true;parent.add(mesh);return mesh;}
  function create(node){
@@ -87,22 +89,40 @@ export function createGameplayModulesView(scene,{load=loadModel}={}){
    }).catch(error=>{if(!group.userData.retired)group.userData.eventModelError=error.message;});
    signal.position.set(0,presentation.height,0);
   }
-  const zoneMaterial=new T.MeshBasicMaterial({color:d.color,transparent:true,opacity:.3,side:T.DoubleSide,depthWrite:false});materials.push(zoneMaterial);
-  const zone=part(group,ring,zoneMaterial,0,.04,0,node.radius||1.4,node.radius||1.4,1);zone.rotation.x=-Math.PI/2;zone.castShadow=false;
+  const zoneMaterial=new T.MeshBasicMaterial({color:d.color,transparent:true,opacity:.45,side:T.DoubleSide,depthWrite:false,toneMapped:false});materials.push(zoneMaterial);
+  // Keep the boundary readable over mottled terrain without changing its radius.
+  const zoneRadius=node.radius||1.4,zoneGeometry=new T.RingGeometry(Math.max(0,zoneRadius-.08),zoneRadius,192).rotateX(-Math.PI/2);
+  const zone=part(group,zoneGeometry,zoneMaterial,0,.04,0,1,1,1);zone.castShadow=false;
+  const zoneGlow=createEventZoneGlow({radius:zoneRadius,color:d.color});group.add(zoneGlow.mesh);
   const highlight=presentation&&!SECRETS[node.type]?createInteractionHighlight(group,{radius:presentation.size*.7,height:presentation.height+.8}):null;
-  const entry={group,cap,signal,light,zone,sprite,highlight};instances.set(node,entry);return entry;
+  const entry={group,cap,signal,light,zone,zoneGlow,sprite,highlight};instances.set(node,entry);return entry;
  }
  function update(s,{time=s.time||0,reducedMotion=false}={}){
-  const nodes=s.encounters?.active?.dungeon?[s.encounters.active]:s.encounters?.nodes||[];const present=new Set(nodes);
+  const nodes=layerEncounters(s);const present=new Set(nodes);
   for(const [node,v] of instances)if(!present.has(node)){release(v);instances.delete(node);}
   for(const node of nodes){const state=modulePresentation(node,availableEncounter(s,node));if(!state)continue;const v=instances.get(node)||create(node);v.group.visible=state.visible;v.group.position.set(node.x,node.y||0,node.z);
+   // Sample both edges of the ring at their own world positions, not the centre height.
+   const groundKey=[node.x,node.y||0,node.z].join(':');
+   if(v.groundWorld!==s.world||v.groundKey!==groundKey){
+    const positions=v.zone.geometry.attributes.position;
+    for(let i=0;i<positions.count;i++){
+     const h=s.world?.heightAt?.(node.x+positions.getX(i),node.z+positions.getZ(i));
+     positions.setY(i,Number.isFinite(h)?h-(node.y||0):0);
+    }
+    positions.needsUpdate=true;v.zone.geometry.computeBoundingSphere();
+    v.zoneGlow.ground(node,s.world);
+    v.groundWorld=s.world;v.groundKey=groundKey;
+   }
    const distance=s.player?Math.hypot(node.x-s.player.x,node.z-s.player.z):0;
    v.highlight?.update({visible:state.visible&&['ready','reward'].includes(node.state)&&!s.dead,time,reducedMotion,intensity:Math.max(0,Math.min(1,(28-distance)/12))*(node.state==='reward'?1.3:1)});
    v.cap.position.y=state.opened ? .32 : 0;v.cap.rotation.z=state.opened&&node.type==='slab' ? .13 : 0;
    v.signal.visible=!SECRETS[node.type]&&!v.sprite&&state.signal!=='off';if(v.sprite){v.sprite.material.opacity=node.state==='complete'?.65:1;v.sprite.material.color.set(state.signal==='reward'?0xc8ffdb:0xffffff);}v.light.emissiveIntensity=state.signal==='reward'?1:state.signal==='active' ? .65 : .18;
-   v.zone.visible=!SECRETS[node.type]&&(state.zone||!!EVENT_PRESENTATION[node.type]&&['ready','reward'].includes(node.state));v.zone.material.opacity=state.signal==='active' ? .52 : .3;v.zone.material.color.set(state.signal==='reward'?0xa2dfbd:GAMEPLAY_MODULES[node.type].color);
+   v.zone.visible=!SECRETS[node.type]&&(state.zone||!!EVENT_PRESENTATION[node.type]&&['ready','reward'].includes(node.state));v.zone.material.opacity=state.signal==='active' ? .7 : .45;v.zone.material.color.set(state.signal==='reward'?0xa2dfbd:GAMEPLAY_MODULES[node.type].color);
+   v.zoneGlow.mesh.visible=v.zone.visible;
+   v.zoneGlow.setColor(v.zone.material.color, state.signal==='active'?.95:.65);
+
   }
  }
  function reset(){for(const v of instances.values()){release(v);}instances.clear();}
- return {root,update,reset,dispose(){reset();scene.remove(root);for(const g of [box,cylinder,sphere,ring])g.dispose();for(const m of materials)m.dispose();for(const t of textures.values())t.dispose();textures.clear();}};
+ return {root,update,reset,dispose(){reset();scene.remove(root);for(const g of [box,cylinder,sphere])g.dispose();for(const m of materials)m.dispose();for(const t of textures.values())t.dispose();textures.clear();}};
 }

@@ -1,0 +1,115 @@
+[
+  {
+    "recipe": "worker",
+    "hp": 0,
+    "detonated": true,
+    "fuse": 7.7021722333370235e-16,
+    "blasts": 1,
+    "firstEvents": [
+      {
+        "time": 120.667,
+        "type": "fuse-start",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      },
+      {
+        "time": 122.267,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      }
+    ],
+    "lastEvents": [
+      {
+        "time": 120.667,
+        "type": "fuse-start",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      },
+      {
+        "time": 122.267,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.050000000000007
+      }
+    ]
+  },
+  {
+    "recipe": "digger",
+    "hp": 100,
+    "detonated": true,
+    "fuse": 0,
+    "locomotion": {
+      "kind": "burrow",
+      "phase": "travel",
+      "startedAt": 120.01666666666667,
+      "from": {
+        "x": 0,
+        "z": 5
+      },
+      "to": {
+        "x": 0,
+        "z": 1.5
+      },
+      "lastPhase": "travel"
+    },
+    "blasts": 224,
+    "firstEvents": [
+      {
+        "time": 120.017,
+        "type": "enemy-burrow-start",
+        "x": 0,
+        "y": 0,
+        "z": 5
+      },
+      {
+        "time": 120.683,
+        "type": "fuse-start",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      },
+      {
+        "time": 122.283,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      },
+      {
+        "time": 122.3,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      },
+      {
+        "time": 122.317,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      }
+    ],
+    "lastEvents": [
+      {
+        "time": 125.983,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      },
+      {
+        "time": 126,
+        "type": "volatile-blast",
+        "x": 0,
+        "y": 0,
+        "z": 3.090909090909326
+      }
+    ]
+  }
+]

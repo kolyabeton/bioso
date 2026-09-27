@@ -17,7 +17,7 @@
   {
     "title": "105 Касание (Bleep Techno)",
     "author": "Владислав Заворин",
-    "file": "touch-zavorin.mp3",
+    "file": "touch-zavorin-intro.mp3",
     "source": "https://pixabay.com/ru/music/электронный-105-касание-bleep-techno-владислав-заворин-527326/",
     "download": "https://cdn.pixabay.com/audio/2026/05/01/audio_4c4737a3f5.mp3",
     "license": "Pixabay Content License",
@@ -25,9 +25,14 @@
     "approvedOn": "2026-09-08",
     "aiGeneratedLabel": true,
     "contentId": false,
-    "sha256": "41a11f2b23364d18dc3c6f833a7191488d33b7071614620ebd7958b649178b7a",
-    "bytes": 7776768,
-    "usage": "active boss fight"
+    "sha256": "68dc808692ee3e3616b9c1486aff20fec8cbbbb5484c534b671519033f42c734",
+    "bytes": 1441580,
+    "usage": "first 45 seconds looped until each boss engagement ends, restarted from zero",
+    "edit": {
+      "startSeconds": 0,
+      "durationSeconds": 45,
+      "fadeOutSeconds": 0.8
+    }
   },
   {
     "title": "Technology",

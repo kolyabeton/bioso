@@ -1,0 +1,155 @@
+{
+  "duration": 41.233333333,
+  "size": [
+    1280,
+    720
+  ],
+  "fps": 30,
+  "audio": "silent draft",
+  "timeline": [
+    {
+      "kind": "intro",
+      "source": "artifacts/trailer-bioso-20260918/kling/kling-intro-6s.mp4",
+      "sourceStart": 0,
+      "start": 0,
+      "duration": 6,
+      "filter": "crop=1580:888:0:140,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 0,
+      "start": 6,
+      "duration": 1,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-overhead-dense.mp4",
+      "sourceStart": 1,
+      "start": 7,
+      "duration": 2.5,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 3.5,
+      "start": 9.5,
+      "duration": 2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-orbit-dense.mp4",
+      "sourceStart": 0.5,
+      "start": 11.5,
+      "duration": 2.5,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 5.5,
+      "start": 14.0,
+      "duration": 1.5,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-overhead-dense.mp4",
+      "sourceStart": 4,
+      "start": 15.5,
+      "duration": 2.5,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 9.5,
+      "start": 18.0,
+      "duration": 2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/boss-open-map.mp4",
+      "sourceStart": 1,
+      "start": 20.0,
+      "duration": 3,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 11.5,
+      "start": 23.0,
+      "duration": 2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-overhead-dense.mp4",
+      "sourceStart": 8,
+      "start": 25.0,
+      "duration": 2.5,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 16,
+      "start": 27.5,
+      "duration": 2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/boss-open-map.mp4",
+      "sourceStart": 7,
+      "start": 29.5,
+      "duration": 2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 18,
+      "start": 31.5,
+      "duration": 1.733333333,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "explosion",
+      "source": "artifacts/trailer-bioso-20260918/raw/hero-explosion.mp4",
+      "sourceStart": 9,
+      "start": 33.233333333,
+      "duration": 6,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ending",
+      "source": "artifacts/trailer-bioso-20260918/kling/kling-ending-first-2s.mp4",
+      "sourceStart": 0,
+      "start": 39.233333333,
+      "duration": 2,
+      "filter": "crop=1776:1000:72:0,scale=1280:720:flags=lanczos"
+    }
+  ],
+  "changes": [
+    "6s Kling intro after first-second trim",
+    "No cockpit shot",
+    "New boss capture on open survival map without mission fences",
+    "Battle/UI alternation",
+    "2s Kling ending",
+    "Kling watermark outside cropped 16:9 composition"
+  ],
+  "bossProof": {
+    "route": "http://127.0.0.1:5299/?review=trailer&shot=boss-open-map&scene=duel&environment=quiet-scrapyard&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,electric.0,electric.1,electric.2,electric.3,motion.0&sound=0&lang=en",
+    "errors": [],
+    "assetErrors": 0,
+    "minFps": 30
+  },
+  "fullDecode": "passed",
+  "sha256": "3f969bf4ac946438d36a2db44d65661f3aefbdea2053d6d3b8fc90aeeee810a9"
+}

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "organ-reverseStomach-icon-v1",
+    "equipmentKey": "reverseStomach",
+    "reference": "/assets/ui/organs/reverse-stomach-v1.png",
+    "styleReference": "docs/references/biomecha-style-master.png",
+    "features": [
+      "asymmetric kidney-shaped stomach chamber",
+      "large sideways inlet and narrow lower outlet",
+      "curved ceramic jacket with olive inspection window"
+    ],
+    "geometryReuse": [
+      "equipment_completion.py collar and organ fittings",
+      "limb-icon-parity.mjs shell, tube, bearing and optic construction"
+    ],
+    "materialSource": "leg-worker.glb PBR atlas; original organ-slime Olive tendon sheath",
+    "uvWindows": "src/equipment-surface.js",
+    "axes": "Y up, front +Z",
+    "rearSocket": [
+      0,
+      0,
+      -0.29
+    ],
+    "bytes": 1674304,
+    "dimensions": [
+      0.820448100566864,
+      1.1371166110038757,
+      0.5399999916553497
+    ],
+    "bounds": [
+      [
+        -0.445448100566864,
+        -0.5955442786216736,
+        -0.29499998688697815
+      ],
+      [
+        0.375,
+        0.5415723323822021,
+        0.24500000476837158
+      ]
+    ],
+    "triangles": 8321,
+    "primitives": 6,
+    "pbrTextures": [
+      {
+        "name": "Image_0",
+        "mime": "image/png",
+        "bytes": 544929
+      },
+      {
+        "name": "Image_1",
+        "mime": "image/png",
+        "bytes": 420446
+      },
+      {
+        "name": "Image_2",
+        "mime": "image/png",
+        "bytes": 421687
+      },
+      {
+        "name": "Image_3",
+        "mime": "image/png",
+        "bytes": 19254
+      },
+      {
+        "name": "Olive tendon sheath wear",
+        "mime": "image/png",
+        "bytes": 27970
+      }
+    ]
+  },
+  {
+    "id": "organ-revivalCore-icon-v1",
+    "equipmentKey": "revivalCore",
+    "reference": "/assets/ui/organs/reverse-heart-v2.png",
+    "styleReference": "docs/references/biomecha-style-master.png",
+    "features": [
+      "asymmetric heart with pointed lower shell",
+      "three curved upper arteries of different heights",
+      "recessed mint restart optic in dark protective ring"
+    ],
+    "geometryReuse": [
+      "equipment_completion.py collar and organ fittings",
+      "limb-icon-parity.mjs shell, tube, bearing and optic construction"
+    ],
+    "materialSource": "leg-worker.glb PBR atlas; original organ-slime Olive tendon sheath",
+    "uvWindows": "src/equipment-surface.js",
+    "axes": "Y up, front +Z",
+    "rearSocket": [
+      0,
+      0,
+      -0.29
+    ],
+    "bytes": 1744136,
+    "dimensions": [
+      0.6599999964237213,
+      1.0750000178813934,
+      0.5409999936819077
+    ],
+    "bounds": [
+      [
+        -0.33500000834465027,
+        -0.4699999988079071,
+        -0.29499998688697815
+      ],
+      [
+        0.32499998807907104,
+        0.6050000190734863,
+        0.2460000067949295
+      ]
+    ],
+    "triangles": 10444,
+    "primitives": 6,
+    "pbrTextures": [
+      {
+        "name": "Image_0",
+        "mime": "image/png",
+        "bytes": 544929
+      },
+      {
+        "name": "Image_1",
+        "mime": "image/png",
+        "bytes": 420446
+      },
+      {
+        "name": "Image_2",
+        "mime": "image/png",
+        "bytes": 421687
+      },
+      {
+        "name": "Image_3",
+        "mime": "image/png",
+        "bytes": 19254
+      },
+      {
+        "name": "Olive tendon sheath wear",
+        "mime": "image/png",
+        "bytes": 27970
+      }
+    ]
+  },
+  {
+    "id": "organ-broodNode-icon-v2",
+    "equipmentKey": "broodNode",
+    "reference": "/assets/ui/organs/parasite-womb-v2.png",
+    "styleReference": "docs/references/biomecha-style-master.png",
+    "features": [
+      "split ceramic cocoon with three stacked control nodes",
+      "twin upward antennae",
+      "paired lateral drone signal sockets"
+    ],
+    "geometryReuse": [
+      "equipment_completion.py collar and organ fittings",
+      "limb-icon-parity.mjs shell, tube, bearing and optic construction"
+    ],
+    "materialSource": "leg-worker.glb PBR atlas; original organ-slime Olive tendon sheath",
+    "uvWindows": "src/equipment-surface.js",
+    "axes": "Y up, front +Z",
+    "rearSocket": [
+      0,
+      0,
+      -0.29
+    ],
+    "bytes": 1822612,
+    "dimensions": [
+      0.6899999976158142,
+      1.0080000162124634,
+      0.6439999938011169
+    ],
+    "bounds": [
+      [
+        -0.3449999988079071,
+        -0.4449999928474426,
+        -0.29499998688697815
+      ],
+      [
+        0.3449999988079071,
+        0.5630000233650208,
+        0.3490000069141388
+      ]
+    ],
+    "triangles": 13331,
+    "primitives": 6,
+    "pbrTextures": [
+      {
+        "name": "Image_0",
+        "mime": "image/png",
+        "bytes": 544929
+      },
+      {
+        "name": "Image_1",
+        "mime": "image/png",
+        "bytes": 420446
+      },
+      {
+        "name": "Image_2",
+        "mime": "image/png",
+        "bytes": 421687
+      },
+      {
+        "name": "Image_3",
+        "mime": "image/png",
+        "bytes": 19254
+      },
+      {
+        "name": "Olive tendon sheath wear",
+        "mime": "image/png",
+        "bytes": 27970
+      }
+    ]
+  }
+]

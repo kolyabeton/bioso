@@ -40,7 +40,7 @@ export function createMeleeTrail(key){
 export function alignMeleeTrail(trail,arm,key,aim=0){
  if(trail&&arm&&trail.userData.contactKind)alignContactVfx(trail,arm,key,aim);
 }
-export function disposeMeleeTrail(trail){trail?.traverse(o=>{if(!o.isMesh&&!o.isSprite)return;o.dispose?.();o.geometry?.dispose();for(const material of Array.isArray(o.material)?o.material:[o.material])material?.dispose();});}
+export function disposeMeleeTrail(trail){trail?.traverse(o=>{if(!o.isMesh&&!o.isSprite&&!o.isLine)return;o.dispose?.();o.geometry?.dispose();for(const material of Array.isArray(o.material)?o.material:[o.material])material?.dispose();});}
 export function updateMeleeTrail(trail,strike,key,reducedMotion=false){
  if(!trail)return false;
  if(trail.userData.whip)return updateWhipVfx(trail,strike,reducedMotion);

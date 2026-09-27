@@ -2,20 +2,21 @@ import {setBonuses,syncSetState,SET_TIMING} from './sets/bonuses.js';
 import {soulProc} from './soul-procs.js';
 import {combatTime} from './mutations.js';
 import {CATALOG} from '../catalog.js';
-import {summonPartBonus,droneStats,MAX_COMPANIONS,MAX_BODY_COMPANIONS,MAX_COLONY_COMPANIONS} from './summon-equipment.js';
+import {summonPartBonus,droneStats,pollinatorDamage} from './summon-equipment.js';
 import {spatialDistance as dist,visibleBetween} from '../elevation.js';
 import {enemyTargetable} from './enemy-locomotion.js';
-import {bodyTraitState} from './body-traits.js';
+import {bodyTraitState,broodCompanionCount} from './body-traits.js';
 
 export function summonTuning(s,b={}){
  const strongest=(parts,key,stat,limit)=>(parts||[]).filter(p=>p?.key===key).sort((a,b)=>summonPartBonus(b,stat)-summonPartBonus(a,stat)).slice(0,limit);
- const legs=strongest(s.legs,'swarmLeg','summonRate',3),nodes=strongest(s.organs,'broodNode','summonDamage',2),brood=s.body?.key==='broodmother'&&bodyTraitState(s).active;
- const broodCount=brood?Math.max(1,Math.min(MAX_BODY_COMPANIONS,Math.floor(s.body.tier??1))):0;
- const colonyCount=Math.max(0,Math.min(MAX_COLONY_COMPANIONS,Math.floor(b.summons||0)));
+ const legs=strongest(s.legs,'swarmLeg','summonDamage',3),nodes=strongest(s.organs,'broodNode','summonDamage',2),brood=s.body?.key==='broodmother'&&bodyTraitState(s).active;
+ const broodCount=brood?broodCompanionCount(s):0;
+ const colonyCount=Math.max(0,Math.floor(b.summons||0));
  const sets=setBonuses(s),setCount=sets.summons;
- const baseCount=broodCount+colonyCount,drones=(s.arms||[]).filter(p=>p?.key==='drone'&&!p.disabled).slice(0,Math.max(0,MAX_COMPANIONS-baseCount-setCount));
- const rate=1+(b.summonRate||0)+sets.summonRate+legs.reduce((n,p)=>n+summonPartBonus(p,'summonRate'),0);
- return{count:baseCount+setCount+drones.length,baseCount,setCount,drones,damage:1+(b.summonDamage||0)+nodes.reduce((n,p)=>n+summonPartBonus(p,'summonDamage'),0),rate,replacementInterval:1.2/rate,speed:1,search:12,droneSearch:CATALOG.drone.range,returnDistance:18,contactInvulnerable:true,bossDamage:1+(b.summonBossDamage||0)};
+ const baseCount=broodCount+colonyCount,drones=(s.arms||[]).filter(p=>p?.key==='drone'&&!p.disabled);
+ const sharedPollinatorDamage=pollinatorDamage(s),biteDamage=6+sharedPollinatorDamage;
+ const rate=1+(b.summonRate||0)+sets.summonRate;
+ return{count:baseCount+setCount+drones.length,baseCount,colonyCount,setCount,drones,pollinatorDamage:sharedPollinatorDamage,biteDamage,damage:1+(b.summonDamage||0)+legs.reduce((n,p)=>n+summonPartBonus(p,'summonDamage'),0)+nodes.reduce((n,p)=>n+summonPartBonus(p,'summonDamage'),0),rate,replacementInterval:1.2/rate,speed:1,search:12,droneSearch:CATALOG.drone.range,returnDistance:18,contactInvulnerable:true,bossDamage:1+(b.summonBossDamage||0)};
 }
 
 /** Preserve progress when a temporary set boost changes attack and replacement rates. */
@@ -31,6 +32,7 @@ export function destroySymbiont(s,c,b={},minimumDelay=0){
  const tuning=summonTuning(s,b),source=tuning.drones.find(p=>p.id===c.sourcePartId),naturalInterval=(source?droneStats(source).interval:1.2)/tuning.rate,interval=Math.max(naturalInterval,minimumDelay);
  syncSwarmRate(s,tuning.rate);
  const sourceKey=c.sourceKey??c.id,readyAt=combatTime(s)+interval,a=s.abilities;
+ if(b.droneDeathBlast&&!c.deathBlastQueued){c.deathBlastQueued=true;(a.droneBlasts??=[]).push({x:c.x,y:c.y??0,z:c.z,radius:3,damage:tuning.biteDamage*tuning.damage*(b.droneDeathBlastDamage||1),kind:'death'});}
  a.companions=a.companions.filter(q=>q!==c);(a.companionSummonReadyAt??={})[sourceKey]=readyAt;a.swarmInterceptions=(a.swarmInterceptions||0)+1;
  return{interval,readyAt,sourceKey};
 }

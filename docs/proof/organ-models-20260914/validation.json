@@ -1,0 +1,244 @@
+{
+  "status": "PASS",
+  "models": 15,
+  "totalBytes": 24740240,
+  "maxTriangles": 13346,
+  "checks": [
+    "all catalog organs resolve",
+    "unique manifest entry and exact bytes",
+    "finite positions and unit normals",
+    "triangle indices within vertices",
+    "UVs inside canonical atlas windows",
+    "source PBR textures byte-identical",
+    "legacy olive texture byte-identical",
+    "portable bounds",
+    "embedded equipment metadata"
+  ],
+  "results": [
+    {
+      "key": "mirrorGland",
+      "id": "organ-mirrorGland-icon-v1",
+      "status": "PASS",
+      "triangles": 5925,
+      "vertices": 4546,
+      "dimensions": [
+        0.5980184376239777,
+        1.0600000023841858,
+        0.5329999923706055
+      ],
+      "materialChecks": 3,
+      "sha256": "38dfcd5c2efd3841894fa3b78e99d6d1a497185925e924a2be455faf2558cd3a",
+      "bytes": 1618016
+    },
+    {
+      "key": "reflexNerve",
+      "id": "organ-reflexNerve-icon-v1",
+      "status": "PASS",
+      "triangles": 7762,
+      "vertices": 5464,
+      "dimensions": [
+        0.7934153378009796,
+        1.1799051761627197,
+        0.5277309864759445
+      ],
+      "materialChecks": 3,
+      "sha256": "f476431edaaac9a2e5d16e4886f7624f5d9eba8f9a0c36ddd0a0838edd7ef50e",
+      "bytes": 1656472
+    },
+    {
+      "key": "returnNerve",
+      "id": "organ-returnNerve-icon-v1",
+      "status": "PASS",
+      "triangles": 6234,
+      "vertices": 4549,
+      "dimensions": [
+        0.8104263842105865,
+        0.8855557441711426,
+        0.4346551150083542
+      ],
+      "materialChecks": 3,
+      "sha256": "af62ceb90df9547aa145da6f88d0f3df8300b30ecc9962c23e7464bd0f17e66d",
+      "bytes": 1622216
+    },
+    {
+      "key": "slime",
+      "id": "organ-slime-icon-v1",
+      "status": "PASS",
+      "triangles": 5513,
+      "vertices": 4178,
+      "dimensions": [
+        0.5988303124904633,
+        1.1399999856948853,
+        0.4999999850988388
+      ],
+      "materialChecks": 3,
+      "sha256": "d43444e78319b4c5ac8e536f4a6e97d1fe78d90168767dc1bd933e43ade0c7c8",
+      "bytes": 1603720
+    },
+    {
+      "key": "parasite",
+      "id": "organ-parasite-icon-v1",
+      "status": "PASS",
+      "triangles": 9261,
+      "vertices": 6607,
+      "dimensions": [
+        0.5988303124904633,
+        1.2014034390449524,
+        0.5269980281591415
+      ],
+      "materialChecks": 3,
+      "sha256": "aaf0782d978c4057b5c170e76de0efe42f8b3210ea98a77c945a6fecc8c7e4a4",
+      "bytes": 1703956
+    },
+    {
+      "key": "commonNerve",
+      "id": "organ-commonNerve-icon-v1",
+      "status": "PASS",
+      "triangles": 13346,
+      "vertices": 9268,
+      "dimensions": [
+        1.1085809469223022,
+        1.1085809469223022,
+        0.542730987071991
+      ],
+      "materialChecks": 3,
+      "sha256": "5b6f8ed82dfc974fdab84c6b5acd0538065dc67a1bc5d6d32c3fb197e74f775b",
+      "bytes": 1811928
+    },
+    {
+      "key": "reverseHeart",
+      "id": "organ-reverseHeart-icon-v1",
+      "status": "PASS",
+      "triangles": 8764,
+      "vertices": 6335,
+      "dimensions": [
+        0.6499999761581421,
+        1.0533716678619385,
+        0.5567309856414795
+      ],
+      "materialChecks": 3,
+      "sha256": "f9ad400a911d15a4b32fd3d554a99f0cfe2c1629abfdb7bde01c51e63aa55caf",
+      "bytes": 1690728
+    },
+    {
+      "key": "regen",
+      "id": "organ-regen-icon-v1",
+      "status": "PASS",
+      "triangles": 7078,
+      "vertices": 5396,
+      "dimensions": [
+        0.4948999881744385,
+        0.8100000023841858,
+        0.5424499809741974
+      ],
+      "materialChecks": 3,
+      "sha256": "f8714c0e9acaef868d70441ed36c4b6c214bf91af270c9bfeaba7413980c187a",
+      "bytes": 1647612
+    },
+    {
+      "key": "shield",
+      "id": "organ-shield-icon-v1",
+      "status": "PASS",
+      "triangles": 6784,
+      "vertices": 4914,
+      "dimensions": [
+        0.6889942288398743,
+        0.8600000143051147,
+        0.5147309750318527
+      ],
+      "materialChecks": 3,
+      "sha256": "965de3a44e4dbb8b52fcead52f8d537e0be56a58ad8a0fc908809576ff9d27df",
+      "bytes": 1603260
+    },
+    {
+      "key": "armor",
+      "id": "organ-armor-icon-v1",
+      "status": "PASS",
+      "triangles": 2216,
+      "vertices": 1938,
+      "dimensions": [
+        0.551937997341156,
+        0.7831055223941803,
+        0.4659999907016754
+      ],
+      "materialChecks": 3,
+      "sha256": "0a882e98ff570fc9738832a9e3101965e78a0e77d3e8e2e6220a885269a474ec",
+      "bytes": 1485484
+    },
+    {
+      "key": "repairGland",
+      "id": "organ-repairGland-icon-v1",
+      "status": "PASS",
+      "triangles": 10341,
+      "vertices": 7445,
+      "dimensions": [
+        0.9231946468353271,
+        0.9997800588607788,
+        0.5522631108760834
+      ],
+      "materialChecks": 3,
+      "sha256": "510206404f3fbb2f42379ca952dcd432897c2e0948e532d262ada1648a69b131",
+      "bytes": 1732684
+    },
+    {
+      "key": "broodNode",
+      "id": "organ-broodNode-icon-v1",
+      "status": "PASS",
+      "triangles": 9261,
+      "vertices": 6607,
+      "dimensions": [
+        0.5988303124904633,
+        1.2014034390449524,
+        0.5269980281591415
+      ],
+      "materialChecks": 3,
+      "sha256": "9b2de40935f706ed7391a3365e50f2009c25ad881fc7060192857c35c220e564",
+      "bytes": 1703964
+    },
+    {
+      "key": "stabilizer",
+      "id": "organ-stabilizer-icon-v1",
+      "status": "PASS",
+      "triangles": 5825,
+      "vertices": 3976,
+      "dimensions": [
+        0.7400000095367432,
+        0.6679999828338623,
+        0.6006242036819458
+      ],
+      "materialChecks": 3,
+      "sha256": "13276d772b63089e8d68cb00cfc31d01ca90707d1b91ac88e6fcd696b673b81b",
+      "bytes": 1566432
+    },
+    {
+      "key": "digestion",
+      "id": "organ-digestion-icon-v1",
+      "status": "PASS",
+      "triangles": 7454,
+      "vertices": 5529,
+      "dimensions": [
+        0.4948999881744385,
+        0.8100000023841858,
+        0.5424499809741974
+      ],
+      "materialChecks": 3,
+      "sha256": "49cb82fd8ec50f3aee74f7a8906563f801aefeebe6ac1e452e7beda6d2c70247",
+      "bytes": 1657868
+    },
+    {
+      "key": "accelerator",
+      "id": "organ-accelerator-icon-v1",
+      "status": "PASS",
+      "triangles": 7682,
+      "vertices": 5724,
+      "dimensions": [
+        0.779719740152359,
+        0.9210000038146973,
+        0.50273098051548
+      ],
+      "materialChecks": 3,
+      "sha256": "c8b99ba35c4e7d069fd716984143dd65b853dfdecdca2cc1c9ccf64a0e900612",
+      "bytes": 1635900
+    }
+  ]
+}

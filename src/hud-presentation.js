@@ -24,6 +24,7 @@ export function handPresentation(run) {
 
 const frame = '<svg class="slot-frame" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><use href="#module-frame"/></svg>';
 const silhouettes = {
+  shieldArm: '<path d="m50 12 28 12-4 34c-2 16-24 30-24 30S28 74 26 58l-4-34Z"/><path d="M50 24v48" stroke="#91ddbb" stroke-width="5"/>',
   hammer: '<path d="m30 19 30-5 13 26-32 8Z M49 45l9 35-12 4-8-35Z"/>',
   whip: '<path d="M30 77c-3-24 51-13 39-38C62 25 25 42 37 16" fill="none" stroke-width="9"/><path d="m24 70 16 5-5 15-16-5Z"/>',
   fangs: '<path d="M22 20c33 0 30 29 19 44-2-20-7-25-19-25Z M78 20C45 20 48 49 59 64c2-20 7-25 19-25Z M36 71h28v15H36Z"/>',

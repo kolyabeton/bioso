@@ -41,7 +41,7 @@ function requestPath(s,e,target){
  if(!scheduler){scheduler={time:-1,jobs:new Map(),queue:[],edges:new Map(),world:null,snapshots:[]};navigationJobs.set(s,scheduler);}
  // Shared only by immutable biome collision snapshots. A rebuilt/removed
  // decoration list or replaced collision API invalidates every cached edge.
- const w=eventCollisionWorld(s),cacheable=w.presentation==='biomes'&&w.flat,eventKey=w.eventCollisionKey();
+ const w=eventCollisionWorld(s,e),cacheable=w===eventCollisionWorld(s)&&w.presentation==='biomes'&&w.flat,eventKey=w.eventCollisionKey();
  if(!cacheable)scheduler.edges.clear();
  if(cacheable&&scheduler.checkedAt!==now){
   scheduler.checkedAt=now;const methods=[w.canMove,w.canFly,w.walkable,w.flyable,w.heightAt,w.solidAt,w.obstacles,w.tileAt,w.neighbors],heightKey=tile=>[tile.x,tile.z,tile.index,tile.biome,tile.environmentId,tile.visualEnvironmentId].join(':');
@@ -72,7 +72,7 @@ export function navigateEnemy(s,e,target,speed,dt){
   if(d>.01)moveCreature(s,e,(target.x-e.x)/d*travel,(target.z-e.z)/d*travel,e.radius);
   return;
  }
- const world=eventCollisionWorld(s);
+ const world=eventCollisionWorld(s,e);
  let next=target;
  if(s.world.tiles&&!s.world.flat){const a=s.world.tileAt(e.x,e.z),b=s.world.tileAt(target.x,target.z);if(a&&b&&a!==b){const forward=(b.index-a.index+16)%16,idx=(a.index+(forward<=8?1:15))%16,n=s.world.tiles[idx];target={x:(a.x+n.x)/2+(n.x-a.x)/64*6,z:(a.z+n.z)/2+(n.z-a.z)/64*6};next=target;}}
  const cached=e.navigationLine,age=now-(cached?.at??-Infinity),sameStart=cached&&Math.hypot(e.x-cached.ex,e.z-cached.ez)<.75,sameTarget=cached&&Math.hypot(target.x-cached.tx,target.z-cached.tz)<.75;

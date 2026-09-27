@@ -11,6 +11,11 @@ const primary=w=>!w?.secondary&&!w?.repeat;
 export function prepareAbilityAttack(s,p,w,target,repeat=false){
  const b=modifiers(s),a=s.abilities,now=combatTime(s),out={...w};
  if(repeat||!primary(out))return out;
+ if(out.magazine&&p.ammo>=3){
+  if(b.ammoLoadedDamage)out.damage*=1+b.ammoLoadedDamage;
+  if(b.ammoRefundChance)out.ammoRefundChance=Math.min(1,b.ammoRefundChance);
+  if(b.tripleChamber){out.ammoCost=2;out.damage*=1.5;}
+ }
  if(b.focusRate&&target){
   const previous=a.focus[p.id],same=previous?.target===target.id&&now-previous.at<2,stacks=same?Math.min(5,previous.stacks+1):1;
   a.focus[p.id]={target:target.id,stacks,at:now};out.interval/=1+stacks*(b.focusRatePerStack||.05);
@@ -57,8 +62,13 @@ export function ricochetProfile(s,w){
  const b=modifiers(s);if(!primary(w)||!isRicochetProjectileHand(w))return null;
  const nativeHops=Math.max(0,Math.floor(w.ricochetHops||0)),abilityHops=b.ricochet?1+(b.ricochetTargets||0):0,hops=nativeHops+abilityHops;
  if(!hops)return null;
- const nativeDamage=Math.max(0,w.ricochetDamage||0),abilityDamage=b.ricochet?.5+(b.ricochetDamage||0):0;
+ const nativeDamage=Math.max(0,w.ricochetDamage||0),abilityDamage=b.ricochet?(b.ricochetDamage ? .7+b.ricochetDamage : .5):0;
  return{hops,damage:Math.max(nativeDamage,abilityDamage),crit:b.ricochetCrit||0,hunter:!!b.ricochetHunter,range:w.ricochetRange||4};
+}
+
+export function ricochetFinisherMultiplier(s,e,w){
+ if(w?.secondary!=='ricochet'||!e?.maxHp||e.hp/e.maxHp>.5)return 1;
+ return 1+(modifiers(s).ricochetFinisher||0);
 }
 
 export function nextRicochetTarget(s,origin,visited,hunter=false,range=4){

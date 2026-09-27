@@ -60,7 +60,7 @@ test('terrain footprint data retains collision geometry and its world position',
 test('map filters retain locked and available public events and never mark secrets',()=>{
  const s=createWorldRun(undefined,'survival',20317);s.time=300;
  const threats=filteredMapMarkers(s,'threats'),events=filteredMapMarkers(s,'events');
- assert.equal(threats.length,5);assert.ok(threats.every(m=>m.kind));assert.equal(events.length,17);assert.ok(events.every(m=>m.locked));assert.ok(events.every(m=>m.type));
+ assert.equal(threats.length,5);assert.ok(threats.every(m=>m.kind));assert.equal(events.length,15);assert.ok(events.every(m=>m.locked));assert.ok(events.every(m=>m.type));
  const selected=atlasSelection(s,events[0].id);assert.equal(selected.state,'Закрыто');assert.match(selected.access,/Вход с .*уровня/);
  const secret=s.encounters.nodes.find(n=>n.type==='membrane');secret.discovered=true;secret.state='reward';
  assert.ok(!filteredMapMarkers(s,'events').some(m=>m.id===secret.id));

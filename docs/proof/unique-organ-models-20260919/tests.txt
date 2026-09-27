@@ -1,0 +1,22 @@
+✔ unregistered loot cannot interrupt frames or hide other pickups (5.667625ms)
+✔ ground item and affordance share the live terrain height without terrain clipping (0.846292ms)
+✔ all icon organs mount on every real chassis with sealed rear sockets (1459.458334ms)
+✔ sparse organ slots stay fixed and retired async models cannot reappear (2.797958ms)
+✔ every organ retains the same visual through pickup, equipment and discard (2.750542ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1703.086041
+✔ registered catalog items have nonempty real GLBs and distinct equipment models (1820.821042ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2062.513334

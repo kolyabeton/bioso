@@ -29,7 +29,7 @@ export function createEnvironmentWeatherView(scene,sun,sky){
  mesh.name='environment-weather';mesh.frustumCulled=false;mesh.visible=false;
  for(let i=0;i<96;i++){pose.position.set((i*13.73)%36-18,(i*.61803)%1,(i*19.31)%52-26);pose.updateMatrix();mesh.setMatrixAt(i,pose.matrix);}
  scene.add(mesh);let frame=null;
- function update(s,dt,{quality='medium',reducedMotion=false,paused=false,windUniforms=null}={}){
+ function update(s,dt,{quality='medium',particleScale=1,reducedMotion=false,paused=false,windUniforms=null}={}){
   if(s.world.presentation!=='biomes'){mesh.visible=false;return;}
   const previousTime=frame?.time??0;
   frame=state.update(s,paused||globalThis.document?.hidden?0:dt);
@@ -45,7 +45,7 @@ export function createEnvironmentWeatherView(scene,sun,sky){
   // Integrate velocity: changing the weather must not reposition all old particles.
   u.weatherDrift.value+=delta*values.wind;u.weatherFall.value+=delta*(.045+.805*values.rain);
   if(windUniforms){windUniforms.forestTime.value=frame.time;windUniforms.forestWind.value=reducedMotion?0:values.wind*(.8+.2*Math.sin(frame.time*.9));}
-  u.weatherCount.value=reducedMotion?0:({low:32,medium:72,high:96}[quality]||72)*values.density;
+  u.weatherCount.value=reducedMotion?0:({low:32,medium:72,high:96}[quality]||72)*values.density*particleScale;
   mesh.count=Math.ceil(u.weatherCount.value);mesh.visible=mesh.count>0;
  }
  return{update,info:()=>({weather:frame?.name,weatherEnvironment:frame?.id,weatherBlend:frame?.weights,weatherParticles:mesh.visible?mesh.count:0}),reset(){state.reset();frame=null;mesh.visible=false;u.weatherDrift.value=u.weatherFall.value=0;},dispose(){scene.remove(mesh);mesh.dispose();mesh.geometry.dispose();material.dispose();}};

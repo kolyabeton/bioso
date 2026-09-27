@@ -1,8 +1,9 @@
 import {groundDistance,surfaceReach} from '../elevation.js';
 import {armorRemaining,heal} from './health.js';
 import {combatTime} from './mutations.js';
+import {HERO_HP_PER_SEGMENT} from './health-scale.js';
 
-export const RECOVERY_DROPS=Object.freeze({armorChance:.12,healthChance:.18,amount:1,radius:1.25,lifetime:120});
+export const RECOVERY_DROPS=Object.freeze({armorChance:.12,healthChance:.18,healthAmount:25,armorAmount:1,minHealthAmount:7,radius:1.25,lifetime:120});
 export function spawnRecoveryDrop(s,enemy){
  const roll=s.rng(),kind=roll<RECOVERY_DROPS.armorChance?'armor':roll<RECOVERY_DROPS.armorChance+RECOVERY_DROPS.healthChance?'health':null;
  if(!kind)return null;
@@ -17,21 +18,22 @@ export function spawnRecoveryDrop(s,enemy){
 export function tickRecoveryDrops(s,st){
  s.recoveryDrops=(s.recoveryDrops??[]).filter(q=>{
   if(combatTime(s)>=q.expiresAt)return false;
-  if(s.dead||s.hp<=0||groundDistance(s,q,s.player)>RECOVERY_DROPS.radius||!surfaceReach(s,q,s.player))return true;
+  if(s.dead||s.hp<=0||groundDistance(s,q,s.player)>(st.pickup??RECOVERY_DROPS.radius)||!surfaceReach(s,q,s.player))return true;
   let amount=0;
   if(q.kind==='health'){
-   const before=s.hp;if(before>=st.hp)return true;
-   heal(s,st.hp,RECOVERY_DROPS.amount);amount=s.hp-before;
+   const before=s.hp;if(st.hp-before<RECOVERY_DROPS.minHealthAmount-1e-9)return true;
+   heal(s,st.hp,RECOVERY_DROPS.healthAmount);amount=s.hp-before;
   }else if(q.kind==='armor'){
-   const before=armorRemaining(s,st.armor),max=Math.min(s.hp,st.armor);
+   const before=armorRemaining(s,st.armor),max=Math.min(s.hp/HERO_HP_PER_SEGMENT,st.armor);
    if(before>=max)return true;
-   amount=Math.min(RECOVERY_DROPS.amount,max-before);
+   amount=Math.min(RECOVERY_DROPS.armorAmount,max-before);
    // Discard hidden spent-armor overflow from a previous, larger loadout.
    s.health.armorSpent=Math.max(0,st.armor-before-amount);
   }
   if(amount<=0)return true;
   s.events.push({type:'pickup',kind:q.kind,x:q.x,y:q.y,z:q.z});
-  s.events.push({type:'notice',text:q.kind==='armor'?`Броня +${amount}`:`Здоровье +${amount}`});
+  const shownAmount=Number(amount.toFixed(2));
+  s.events.push({type:'notice',text:q.kind==='armor'?`Броня +${shownAmount}`:`Здоровье +${shownAmount}`});
   return false;
  });
 }

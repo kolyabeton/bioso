@@ -1,0 +1,1 @@
+{"method":"Real Survival step at accelerated minute boundaries; invulnerable player, weapons removed.","checkpoints":[{"time":60,"count":1,"nextAt":120},{"time":120,"count":2,"nextAt":180},{"time":180,"count":3,"nextAt":240}],"elite":{"id":30,"hp":853,"home":{"x":-15.700926008658662,"y":1.6179975363247,"z":46.11185764531374},"waveElite":false,"walkable":true}}

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {createRun,step} from '../src/game.js';
 import {createPart,stats,weaponStats,weight,pickup} from '../src/assembly.js';
 import {seededRandom} from '../src/simulation.js';
-import {SETS,LOOT_RULES,normalDrop,rollRarity,recordReward,generateLoot,queueBossReward,chooseBossReward,setCounts,setBonuses,partMeta,partTraitLines,hitSetMultiplier,reloadDuration} from '../src/systems/sets-loot.js';
+import {SETS,LOOT_RULES,normalDrop,rollRarity,recordReward,generateLoot,queueBossReward,chooseBossReward,setCounts,setBonuses,partMeta,partTraitLines,hitSetMultiplier,reloadDuration,initializePart,finalizeReceivedPart,partAffixes,rollAffixes} from '../src/systems/sets-loot.js';
 import {CATALOG} from '../src/catalog.js';
 import {activeSetDescription} from '../src/ui/catalog-sets.js';
 const set=(s,id)=>{for(const p of [s.body,...s.arms,...s.legs,...s.organs].filter(Boolean))p.setId=id;};
@@ -13,6 +13,15 @@ test('every base catalog part is common; rarity is an affixed loot variation',()
   const p=createPart(s,key);assert.equal(p.rarity,'common',key);assert.equal(p.setId,null,key);assert.deepEqual(p.affixes,[],key);
  }
  const relic=generateLoot(s,createPart,1,'boss','relic',false);assert.equal(relic.rarity,'relic');assert.equal(relic.affixes.length,3);
+});
+test('new legendary items have three affixes while legacy affixes survive unchanged',()=>{
+ const s=createRun();s.rng=seededRandom(77);const fresh=generateLoot(s,createPart,5,'boss','relic',false);
+ finalizeReceivedPart(s,fresh);assert.ok(SETS[fresh.setId]);assert.equal(partAffixes(fresh).length,3);
+ const legacy={...createPart(s,'seed'),id:918,key:'seed',rarity:'relic',setId:null,setAssignmentComplete:true,affixes:[{stat:'damage',value:.1}]};
+ initializePart(legacy,seededRandom(918));const first=legacy.setId;assert.ok(SETS[first]);assert.deepEqual(partAffixes(legacy),[{stat:'damage',value:.1}]);
+ const copy={...legacy,setId:null,affixes:[{stat:'damage',value:.1}]};initializePart(copy,seededRandom(918));assert.equal(copy.setId,first);assert.deepEqual(partAffixes(copy),[{stat:'damage',value:.1}]);
+ const values=new Map();for(let i=0;i<500;i++)for(const key of ['pistol','wanderer'])for(const affix of rollAffixes({...createPart(s,key),rarity:'relic'},seededRandom(i*17+key.length)))values.set(affix.stat,affix.value);
+ for(const [stat,value]of Object.entries({rate:.15,globalDamage:.15,damage:.3,localRate:.3,weight:.45,armor:1.5,reload:.375,magazine:3,capacity:.45,maxHp:.15,armorPct:.15,xpGain:.15,biomassYield:.15,rarityWeight:.15}))assert.equal(values.get(stat),value,stat);
 });
 test('only every third received item belongs to a set',()=>{
  const s=createRun();s.rng=seededRandom(20260914);
@@ -55,7 +64,7 @@ test('legacy parts keep rank and modifier; generated affixes have one stat; weig
 });
 test('active set and affix effects reach weight, range, reload and healing settings',()=>{
  const s=createRun();s.arms=[createPart(s,'seed')];s.organs=[createPart(s,'shield')];set(s,'bastion');assert.equal(setBonuses(s).shieldDelay,15);
- set(s,'hunter');assert.equal(weaponStats(s,s.arms[0]).range,9*1.2);set(s,'rootwalker');assert.equal(setBonuses(s).regenDelay,15);
+ set(s,'hunter');assert.equal(weaponStats(s,s.arms[0]).range,9*1.2);set(s,'rootwalker');assert.equal(setBonuses(s).tissue,true);
  set(s,'wanderer');s.abilities.moving=3;s.arms[0].affix={stat:'reload',value:.08};assert.ok(Math.abs(reloadDuration(s,s.arms[0],1.2)-1.2/1.08)<1e-12);assert.equal(stats(s).pickup,7*1.5);
 });
 test('direct hit bonuses obey cooldown, range and secondary exclusion',()=>{

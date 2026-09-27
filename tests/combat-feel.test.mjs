@@ -10,6 +10,28 @@ function fixture(key='seed'){
  const enemy=spawnEnemy(s,'normal',{x:0,z:5});enemy.hp=enemy.maxHp=100000;enemy.speed=enemy.damage=0;
  return {s,p:s.arms[0],enemy};
 }
+test('Winch projectile never pulls and retains 25% bonus against elites and bosses',()=>{
+ for(const kind of ['normal','elite','boss','final']){
+  const {s,p,enemy}=fixture('harpoon');
+  Object.assign(enemy,{kind,armor:0,assembly:null,specialty:null});
+  s.rng=()=>.99;s.arms=[null,null];s.waves.credit=-1e6;s.waves.nextElite=s.waves.nextBoss=Infinity;
+  const w={...weaponStats(s,p),crit:0};
+  const before={x:enemy.x,z:enemy.z,hp:enemy.hp};
+  s.shots.push({id:++s.entityId,source:p.id,x:enemy.x,y:(enemy.y??0)+1,z:enemy.z-.1,dx:0,dz:1,dy:0,speed:26,life:1,travel:0,w,hit:new Set(),remaining:w.pierce,mode:'projectile',target:enemy.id});
+  step(s,.01);
+  near(enemy.x,before.x);near(enemy.z,before.z);
+  near(before.hp-enemy.hp,w.damage*(kind==='normal'?1:1.25));
+ }
+});
+test('Winch hits one target without innate piercing',()=>{
+ const {s,p,enemy:first}=fixture('harpoon');
+ const second=spawnEnemy(s,'normal',{x:0,z:7});second.hp=second.maxHp=100000;second.speed=second.damage=0;
+ s.rng=()=>.99;s.waves.credit=-1e6;s.waves.nextElite=s.waves.nextBoss=Infinity;
+ assert.equal(weaponStats(s,p).pierce,1);
+ attack(s,0);assert.equal(s.shots.length,1);
+ s.arms=[null,null];step(s,.3);
+ assert.ok(first.hp<first.maxHp);assert.equal(second.hp,second.maxHp);
+});
 test('twelve rounds start a committed reload; no shots until magazine restored',()=>{
  const {s,p}=fixture();let fired=0;
  for(let i=0;i<300&&p.reloadRemaining===0;i++){attack(s,1/60);fired=s.events.filter(e=>e.type==='attack').length;}
@@ -18,7 +40,7 @@ test('twelve rounds start a committed reload; no shots until magazine restored',
  attack(s,.5);assert.equal(s.shots.length,count);attack(s,.21);
  assert.equal(s.shots.length,count+1);assert.equal(p.ammo,11);assert.equal(p.reloadRemaining,0);
 });
-test('shotgun spends one of two charges on five 5.25-damage pellets and reloads in two seconds',()=>{
+test('one shotgun spends one of two charges on five pellets without a duplicate-family bonus',()=>{
  const {s,p}=fixture('shotgun');s.rng=()=>.5;attack(s,0);
  assert.equal(s.shots.length,5);assert.equal(p.ammo,1);assert.ok(s.shots.every(q=>q.w.damage===5.25));
  assert.deepEqual(s.shots.map(q=>Number((Math.atan2(q.dz,q.dx)-Math.PI/2).toFixed(2))),[-.2,-.1,0,.1,.2]);
@@ -110,7 +132,7 @@ test('disabled guns stop firing and release movement immediately without refilli
  assert.equal(toggleWeapon(s,1),false);
 });
 test('disabled synchronized weapon cannot block the enabled gun or fire an echo',()=>{
- const {s,p}=fixture();s.body=createPart(s,'hunter');s.arms[1]=createPart(s,'needle');s.organs[0]=createPart(s,'commonNerve');
+ const {s,p}=fixture('harpoon');s.body=createPart(s,'hunter');s.arms[1]=createPart(s,'needle');s.organs[0]=createPart(s,'commonNerve');
  s.arms[1].cooldown=100;toggleWeapon(s,1);attack(s,.01);
  assert.ok(s.events.some(e=>e.type==='attack'&&e.source===p.id));
  const shots=s.shots.length;attack(s,0,stats(s),s.arms[1]);assert.equal(s.shots.length,shots);

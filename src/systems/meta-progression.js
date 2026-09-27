@@ -1,23 +1,26 @@
+import {difficultyNormalCount} from './difficulty.js';
 import {normalizeJournal,visitedBiomes,completedEventTypes} from './achievements.js';
 import {normalizeSurvivalProgress} from './survival-achievement-progress.js';
+import {normalizeChassisProgress} from './chassis-progress.js';
+import {CHASSIS_UNLOCKS,chassisItemAvailable} from './chassis-unlocks.js';
 import {CATALOG,STARTERS,MISSIONS,WEAPON_UNLOCKS,bossRewardMission,bossPartAvailable} from '../catalog.js';
 import {markInventoryUnseen} from '../inventory-notifications.js';
 import {ABILITIES} from './abilities.js';
 const count=x=>Number.isSafeInteger(x)&&x>=0?Math.min(x,1000000):0;
 const stringList=value=>[...new Set((Array.isArray(value)?value:[]).filter(item=>typeof item==='string'))].slice(0,256);
 export const BASE_ABILITY_BRANCHES=Object.freeze(['might','melee','ranged','tempo','projectiles']);
-export function normalizeMeta(m={}){const loadout=m?.loadout&&typeof m.loadout==='object'?Object.fromEntries(['body','arm','organ'].filter(k=>typeof m.loadout[k]==='string'||m.loadout[k]===null).map(k=>[k,m.loadout[k]])):{};return{survivalAchievements:normalizeSurvivalProgress(m?.survivalAchievements),journal:normalizeJournal(m?.journal),storyEvidence:stringList(m?.storyEvidence),storyCues:stringList(m?.storyCues),abilityBranches:stringList(m?.abilityBranches),weaponKills:{pistol:Math.min(30,count(m?.weaponKills?.pistol)),total:Math.min(60,count(m?.weaponKills?.total))},runs:count(m?.runs),wins:count(m?.wins),overruns:count(m?.overruns),rerolls:count(m?.rerolls),loadout,best:Object.fromEntries(Object.entries(m?.best&&typeof m.best==='object'?m.best:{}).filter(([k])=>['meta:harpoon','meta:mirror','meta:reactor','meta:spring'].includes(k)).map(([k,v])=>[k,count(v)]))};}
+export function normalizeMeta(m={}){const loadout=m?.loadout&&typeof m.loadout==='object'?Object.fromEntries(['body','arm','organ'].filter(k=>typeof m.loadout[k]==='string'||m.loadout[k]===null).map(k=>[k,m.loadout[k]])):{};return{chassisProgress:normalizeChassisProgress(m?.chassisProgress),biomassRecord:Math.max(0,Math.floor(Number(m?.biomassRecord)||0)),survivalAchievements:normalizeSurvivalProgress(m?.survivalAchievements),journal:normalizeJournal(m?.journal),storyEvidence:stringList(m?.storyEvidence),storyCues:stringList(m?.storyCues),abilityBranches:stringList(m?.abilityBranches),shieldBearerKills:Math.min(30,count(m?.shieldBearerKills)),weaponKills:{pistol:Math.min(30,count(m?.weaponKills?.pistol)),total:Math.min(60,count(m?.weaponKills?.total))},runs:count(m?.runs),wins:count(m?.wins),overruns:count(m?.overruns),rerolls:count(m?.rerolls),loadout,best:Object.fromEntries(Object.entries(m?.best&&typeof m.best==='object'?m.best:{}).filter(([k])=>['meta:harpoon','meta:mirror','meta:reactor','meta:spring'].includes(k)).map(([k,v])=>[k,count(v)]))};}
 export const meta=p=>p.meta??=normalizeMeta();
 export function knownAbilityBranches(p,learned=[]){const current=learned.map(id=>ABILITIES[id]?.branch==='synergy'?id:ABILITIES[id]?.branch).filter(Boolean);return[...new Set([...BASE_ABILITY_BRANCHES,...meta(p).abilityBranches,...current])];}
 export function recordAbilityDiscovery(s,id){const branch=ABILITIES[id]?.branch;if(!branch)return false;const key=branch==='synergy'?id:branch,list=meta(s.profile).abilityBranches;if(BASE_ABILITY_BRANCHES.includes(key)||list.includes(key))return false;list.push(key);s.events.push({type:'profile-progress'});return true;}
-export const START_BODIES=['wanderer','hunter','bastion'];
+export const START_BODIES=['wanderer','hunter','bastion',...CHASSIS_UNLOCKS.map(a=>a.key)];
 export const START_WEAPONS=['pistol','claws','shotgun'];
 export const START_ORGANS=['stabilizer','regen','shield'];
 export const OVERRUN_PART_UNLOCKS=[{count:3,key:'regen'},{count:3,key:'shield'}];
 export const missionBossVictories=p=>MISSIONS.filter(m=>p?.achievements?.includes('mission:'+m.id)).length;
-/** Item 43: survival opens once the first mission is cleared. */
+// Legacy mission requirement exports are retained for compatibility; entry is open.
 export const SURVIVAL_UNLOCK_MISSION=MISSIONS[0].id;
-export const survivalUnlocked=p=>Array.isArray(p?.achievements)&&p.achievements.includes('mission:'+SURVIVAL_UNLOCK_MISSION);
+export const survivalUnlocked=()=>true;
 export const survivalRequirement=()=>`Пройдите миссию: ${MISSIONS[0].name}`;
 export function missionAvailable(p,id){
  const index=MISSIONS.findIndex(m=>m.id===id);if(index<0)return false;
@@ -27,8 +30,8 @@ export function missionAvailable(p,id){
 export function missionRequirement(id){const index=MISSIONS.findIndex(m=>m.id===id);return index>0?`Пройдите миссию: ${MISSIONS[index-1].name}`:'';}
 export function starterSlotAllowed(p,slot){return slot==='body'||slot==='arm'||slot==='organ'&&missionBossVictories(p)>=3;}
 export function starterSlotRequirement(slot){return slot==='organ'?'Победите трёх боссов в миссиях':'Недоступно';}
-export function starterAllowed(p,key){if(STARTERS.includes(key))return true;if(bossRewardMission(key))return bossPartAvailable(p,key);const n=meta(p).overruns;return key==='harpoon'&&n>=1||['regen','shield'].includes(key)&&n>=3||!!p?.unlocked?.includes(key);}
-export function starterRequirement(key){const weapon=WEAPON_UNLOCKS.find(a=>a.key===key);if(weapon)return weapon.description;const mission=bossRewardMission(key);if(mission)return 'Победите босса: '+mission.bossName;return ({harpoon:'1 усиленная победа',regen:'3 усиленные победы',shield:'3 усиленные победы'})[key]||'Доступно с начала';}
+export function starterAllowed(p,key){if(!chassisItemAvailable(p,key))return false;if(STARTERS.includes(key))return true;if(bossRewardMission(key))return bossPartAvailable(p,key);const n=meta(p).overruns;return key==='harpoon'&&n>=1||['regen','shield'].includes(key)&&n>=3||!!p?.unlocked?.includes(key);}
+export function starterRequirement(key){const chassis=CHASSIS_UNLOCKS.find(a=>a.key===key);if(chassis)return chassis.description;const weapon=WEAPON_UNLOCKS.find(a=>a.key===key);if(weapon)return weapon.description;const mission=bossRewardMission(key);if(mission)return 'Победите босса: '+mission.bossName;return ({harpoon:'1 усиленная победа',regen:'3 усиленные победы',shield:'3 усиленные победы'})[key]||'Доступно с начала';}
 export function validLoadout(p,choice={}){
  const saved=meta(p).loadout||{},requested={...saved,...choice};
  const selected=(slot,keys,key,fallback)=>starterSlotAllowed(p,slot)&&keys.includes(key)&&starterAllowed(p,key)?key:fallback;
@@ -55,7 +58,7 @@ export function tickOverrun(s,dt,spawn,createPart){
  const o=s.overrun;if(o?.state!=='active')return;
  if(s.dead||s.hp<=0){o.state='failed';s.continued=false;s.events.push({type:'notice',text:'Испытание проиграно · награда за забег: 0 кубиков'});return;}
  o.elapsed+=dt;
- if(o.elapsed>=o.nextWave){o.nextWave=o.elapsed+4;for(let i=0;i<6&&s.enemies.filter(e=>e.hp>0).length<100;i++)spawn('normal',null,i%3===0?'ranged':i%3===1?'fast':'armored',Math.max(960,s.time));}
+ if(o.elapsed>=o.nextWave){o.nextWave=o.elapsed+4;for(let i=0;i<difficultyNormalCount(s,6)&&s.enemies.filter(e=>e.hp>0).length<100;i++)spawn('normal',null,i%3===0?'ranged':i%3===1?'fast':'armored',Math.max(960,s.time));}
  if(o.elapsed<30)return;
  o.state='complete';meta(s.profile).overruns++;meta(s.profile).rerolls+=6;s.victoryRerolls=6;s.continued=false;
  for(const {count:n,key}of OVERRUN_PART_UNLOCKS)if(meta(s.profile).overruns>=n&&!s.profile.unlocked.includes(key))s.profile.unlocked.push(key);

@@ -1,3 +1,4 @@
+import {difficultyProfile} from './difficulty.js';
 import {assignWaveEliteDisposition,bossEngaged} from './territories.js';
 import {combatTime} from './mutations.js';
 import {visibleBetween} from '../elevation.js';
@@ -60,7 +61,7 @@ export function tickWaves(s,dt,spawn){
  w.softCap=softCap;w.minuteSignature=p.minuteSignature;w.budget=MINUTE_BUDGET;
  w.pressure=pressure?{index:pressure.index,rest:resting||protectedRest,until:pressure.until}:null;
  if(protectedRest||living>=softCap)w.credit=0;
- else if(pressure)w.credit+=survivalBudgetBetween(Math.max(s.time-dt,pressure.at,s.reliefUntil||0),s.time,survivalFirstWaveAt(s));
+ else if(pressure)w.credit+=survivalBudgetBetween(Math.max(s.time-dt,pressure.at,s.reliefUntil||0),s.time,survivalFirstWaveAt(s))*difficultyProfile(s.difficulty).normalCount;
  else w.credit+=waveBudgetBetween(s.time-dt,s.time,superBossAlive?WAVE_RULES.bossFlow:1);
  while(w.credit>=1){
   w.credit--;const count=s.enemies.filter(e=>e.hp>0).length;if(count>=(pressure?SURVIVAL_CADENCE.cap:WAVE_RULES.cap)||count>=softCap){w.credit=0;break;}
@@ -77,11 +78,12 @@ export function tickEnemyRanged(s,e,target){
  if(!visibleBetween(s,e,target)||Math.hypot(e.x-target.x,e.z-target.z)>13||combatTime(s)<(e.shootAt??e.born+2))return;
  const dx=target.x-e.x,dz=target.z-e.z,d=Math.hypot(dx,dz)||1;
  const aim={dx:dx/d,dz:dz/d,dy:((target.y??0)-(e.y??0))/d,targetNode:target===s.player?null:target.id};e.shootAt=combatTime(s)+3.5;
- s.hostileShots.push({x:e.x,y:(e.y??0)+1,z:e.z,dy:aim.dy,dx:aim.dx,dz:aim.dz,life:WAVE_RULES.projectileLife,travel:0,key:'legacy',kind:e.kind,targetNode:aim.targetNode,damage:e.damage??1,missionScaled:!!e.missionRoomStrength});
+ s.hostileShots.push({id:++s.entityId,owner:e.id,x:e.x,y:(e.y??0)+1,z:e.z,dy:aim.dy,dx:aim.dx,dz:aim.dz,life:WAVE_RULES.projectileLife,travel:0,key:'legacy',kind:e.kind,targetNode:aim.targetNode,damage:e.damage??1,missionScaled:!!e.missionRoomStrength});
  s.events.push({type:'enemy-shot',x:e.x,z:e.z,tx:e.x+aim.dx*13,tz:e.z+aim.dz*13});
 }
 export function tickHostileShots(s,dt,hit,intercept=null){
- for(const q of s.hostileShots){q.life-=dt;const old={x:q.x,y:q.y??1,z:q.z};const speed=q.speed??WAVE_RULES.projectileSpeed;q.x+=q.dx*speed*dt;q.z+=q.dz*speed*dt;q.y=(q.y??1)+(q.dy??0)*speed*dt;q.travel=(q.travel??0)+speed*dt;if(s.world.lineClear&&!s.world.lineClear(old,q)){q.life=0;continue;}
+ const now=combatTime(s);
+ for(const q of s.hostileShots){if(q.life<=0)continue;const old={x:q.x,y:q.y??1,z:q.z},moveDt=Math.max(0,dt-(q.frozenUntil>0?Math.max(0,Math.min(dt,q.frozenUntil-(now-dt))):0));if(moveDt<=0){if(intercept?.(q,old,old))q.life=0;continue;}q.life-=moveDt;const speed=q.speed??WAVE_RULES.projectileSpeed;q.x+=q.dx*speed*moveDt;q.z+=q.dz*speed*moveDt;q.y=(q.y??1)+(q.dy??0)*speed*moveDt;q.travel=(q.travel??0)+speed*moveDt;if(s.world.lineClear&&!s.world.lineClear(old,q)){q.life=0;continue;}
  if(intercept?.(q,old,q)){q.life=0;continue;}
  const target=q.targetNode?s.mission?.nodes.find(n=>n.id===q.targetNode):s.player;if(!target)continue;
  const dx=q.x-old.x,dz=q.z-old.z,t=Math.max(0,Math.min(1,((target.x-old.x)*dx+(target.z-old.z)*dz)/(dx*dx+dz*dz||1)));

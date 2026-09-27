@@ -22,7 +22,7 @@ test('Mother remains identifiable from spawn, focuses a live waypoint, and clear
  assert.match(atlasSelection(s,final.id).access,/Тяжёлый бой.*30/);
  assert.equal(focusFinalBoss(s),final.id);assert.equal(waypointTarget(s).id,final.id);
  final.x+=2;assert.equal(waypointTarget(s).x,final.x);
- hurtEnemy(s,final,1e9);assert.equal(s.won,true);assert.equal(s.finalDefeated,true);
+ hurtEnemy(s,final,1e9);assert.equal(s.won,false);assert.equal(s.finalDefeated,true);assert.equal(s.escapeQuest.goal,6000);
  assert.ok(!filteredMapMarkers(s).some(m=>m.kind==='final'));assert.equal(focusFinalBoss(s),null);assert.equal(waypointTarget(s),null);
 });
 

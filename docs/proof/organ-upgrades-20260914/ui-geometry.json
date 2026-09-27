@@ -1,0 +1,692 @@
+[
+  {
+    "key": "mirrorGland",
+    "allowed": 344,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 624,
+      "width": 340,
+      "x": 12,
+      "y": 8
+    },
+    "viewport": [
+      360,
+      640
+    ],
+    "worldWidth": 360
+  },
+  {
+    "key": "reflexNerve",
+    "allowed": 344,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 477.5,
+      "width": 340,
+      "x": 12,
+      "y": 154.5
+    },
+    "viewport": [
+      360,
+      640
+    ],
+    "worldWidth": 360
+  },
+  {
+    "key": "regen",
+    "allowed": 344,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 495.5,
+      "width": 340,
+      "x": 12,
+      "y": 136.5
+    },
+    "viewport": [
+      360,
+      640
+    ],
+    "worldWidth": 360
+  },
+  {
+    "key": "repairGland",
+    "allowed": 344,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 477.5,
+      "width": 340,
+      "x": 12,
+      "y": 154.5
+    },
+    "viewport": [
+      360,
+      640
+    ],
+    "worldWidth": 360
+  },
+  {
+    "key": "armor",
+    "allowed": 344,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 524.5,
+      "width": 340,
+      "x": 12,
+      "y": 107.5
+    },
+    "viewport": [
+      360,
+      640
+    ],
+    "worldWidth": 360
+  },
+  {
+    "key": "mirrorGland",
+    "allowed": 374,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 628,
+      "width": 340,
+      "x": 42,
+      "y": 208
+    },
+    "viewport": [
+      390,
+      844
+    ],
+    "worldWidth": 390
+  },
+  {
+    "key": "reflexNerve",
+    "allowed": 374,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 478,
+      "width": 340,
+      "x": 42,
+      "y": 358
+    },
+    "viewport": [
+      390,
+      844
+    ],
+    "worldWidth": 390
+  },
+  {
+    "key": "regen",
+    "allowed": 374,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 496,
+      "width": 340,
+      "x": 42,
+      "y": 340
+    },
+    "viewport": [
+      390,
+      844
+    ],
+    "worldWidth": 390
+  },
+  {
+    "key": "repairGland",
+    "allowed": 374,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 478,
+      "width": 340,
+      "x": 42,
+      "y": 358
+    },
+    "viewport": [
+      390,
+      844
+    ],
+    "worldWidth": 390
+  },
+  {
+    "key": "armor",
+    "allowed": 374,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 525,
+      "width": 340,
+      "x": 42,
+      "y": 311
+    },
+    "viewport": [
+      390,
+      844
+    ],
+    "worldWidth": 390
+  },
+  {
+    "key": "mirrorGland",
+    "allowed": 389,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 628,
+      "width": 340,
+      "x": 445.5,
+      "y": 84
+    },
+    "viewport": [
+      1280,
+      720
+    ],
+    "worldWidth": 1280
+  },
+  {
+    "key": "reflexNerve",
+    "allowed": 389,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 478,
+      "width": 340,
+      "x": 445.5,
+      "y": 234
+    },
+    "viewport": [
+      1280,
+      720
+    ],
+    "worldWidth": 1280
+  },
+  {
+    "key": "regen",
+    "allowed": 389,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 496,
+      "width": 340,
+      "x": 445.5,
+      "y": 216
+    },
+    "viewport": [
+      1280,
+      720
+    ],
+    "worldWidth": 1280
+  },
+  {
+    "key": "repairGland",
+    "allowed": 389,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 478,
+      "width": 340,
+      "x": 445.5,
+      "y": 234
+    },
+    "viewport": [
+      1280,
+      720
+    ],
+    "worldWidth": 1280
+  },
+  {
+    "key": "armor",
+    "allowed": 389,
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Улучшить · 12",
+        "textFits": true
+      },
+      {
+        "height": 48,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Переработать · +6",
+        "textFits": true
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "overflow": false,
+        "text": "Выбросить",
+        "textFits": true
+      }
+    ],
+    "overflow": false,
+    "rect": {
+      "height": 525,
+      "width": 340,
+      "x": 445.5,
+      "y": 187
+    },
+    "viewport": [
+      1280,
+      720
+    ],
+    "worldWidth": 1280
+  }
+]

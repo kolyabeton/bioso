@@ -23,9 +23,9 @@ test('continuous health bar preserves health, regeneration, armor and shield lay
  assert.match(html,/ui-shield-ring/);assert.match(html,/>2</);
 });
 
-test('max-health review reaches the legitimate 34 HP cap',()=>{
+test('max-health review shows the current high-health build in points',()=>{
  const run=createRun();
  prepareMaxHealthReview(run);
- assert.equal(stats(run).hp,34);
- assert.equal(run.hp,34);
+ assert.equal(stats(run).hp,800);
+ assert.equal(run.hp,800);
 });

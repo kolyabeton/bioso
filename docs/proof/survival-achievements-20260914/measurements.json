@@ -1,0 +1,638 @@
+[
+  {
+    "label": "360-atlas-locked",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 149,
+        "text": "Предметы",
+        "width": 149
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 149,
+        "text": "Комплекты",
+        "width": 149
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 45,
+        "text": "Все",
+        "width": 45
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 72,
+        "text": "Корпуса",
+        "width": 72
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 51,
+        "text": "Руки",
+        "width": 51
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 52,
+        "text": "Ноги",
+        "width": 52
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 67,
+        "text": "Органы",
+        "width": 67
+      }
+    ],
+    "dialog": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 360,
+    "overflow": false,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "360-achievement-progress",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 147,
+        "text": "Назад",
+        "width": 147
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 147,
+        "text": "Деталь",
+        "width": 147
+      }
+    ],
+    "dialog": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 360,
+    "overflow": false,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "390-achievement-progress",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Назад",
+        "width": 162
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Деталь",
+        "width": 162
+      }
+    ],
+    "dialog": {
+      "height": 828,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 390,
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "390-earned",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Назад",
+        "width": 162
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Деталь",
+        "width": 162
+      }
+    ],
+    "dialog": {
+      "height": 828,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 390,
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "390-atlas-unlocked",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 164,
+        "text": "Предметы",
+        "width": 164
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 164,
+        "text": "Комплекты",
+        "width": 164
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 59,
+        "text": "Все",
+        "width": 59
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 72,
+        "text": "Корпуса",
+        "width": 72
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 59,
+        "text": "Руки",
+        "width": 59
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 59,
+        "text": "Ноги",
+        "width": 59
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 67,
+        "text": "Органы",
+        "width": 67
+      }
+    ],
+    "dialog": {
+      "height": 828,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 390,
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "1280-atlas-unlocked",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 168,
+        "text": "Предметы",
+        "width": 168
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 168,
+        "text": "Комплекты",
+        "width": 168
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 61,
+        "text": "Все",
+        "width": 61
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 72,
+        "text": "Корпуса",
+        "width": 72
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 61,
+        "text": "Руки",
+        "width": 61
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 61,
+        "text": "Ноги",
+        "width": 61
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 67,
+        "text": "Органы",
+        "width": 67
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 8
+    },
+    "documentWidth": 1280,
+    "overflow": false,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "1280-profile",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44.00001525878906,
+        "nowrap": true,
+        "scrollWidth": 112,
+        "text": "Все",
+        "width": 112
+      },
+      {
+        "height": 44.00001525878906,
+        "nowrap": true,
+        "scrollWidth": 112,
+        "text": "В процессе",
+        "width": 112
+      },
+      {
+        "height": 44.00001525878906,
+        "nowrap": true,
+        "scrollWidth": 112,
+        "text": "Получено",
+        "width": 112
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 166,
+        "text": "Атлас",
+        "width": 166
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 166,
+        "text": "Подготовка",
+        "width": 166
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 9.183793067932127
+    },
+    "documentWidth": 1280,
+    "overflow": false,
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  {
+    "label": "360-profile",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 99,
+        "text": "Все",
+        "width": 99
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 99,
+        "text": "В процессе",
+        "width": 99
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 99,
+        "text": "Получено",
+        "width": 99
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 147,
+        "text": "Атлас",
+        "width": 147
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 147,
+        "text": "Подготовка",
+        "width": 147
+      }
+    ],
+    "dialog": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 360,
+    "overflow": false,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "360-master",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 147,
+        "text": "Назад",
+        "width": 147
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 147,
+        "text": "Подготовка",
+        "width": 147
+      }
+    ],
+    "dialog": {
+      "height": 624,
+      "width": 344,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 360,
+    "overflow": false,
+    "viewport": [
+      360,
+      640
+    ]
+  },
+  {
+    "label": "390-profile",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 109,
+        "text": "Все",
+        "width": 109
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 109,
+        "text": "В процессе",
+        "width": 109
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 109,
+        "text": "Получено",
+        "width": 109
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Атлас",
+        "width": 162
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Подготовка",
+        "width": 162
+      }
+    ],
+    "dialog": {
+      "height": 828,
+      "width": 374,
+      "x": 8,
+      "y": 8
+    },
+    "documentWidth": 390,
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "390-english",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Back",
+        "width": 162
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 162,
+        "text": "Part",
+        "width": 162
+      }
+    ],
+    "dialog": {
+      "height": 828,
+      "width": 374,
+      "x": 8,
+      "y": 15
+    },
+    "documentWidth": 390,
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "label": "1280-achievement",
+    "brokenImages": [],
+    "buttons": [
+      {
+        "height": 48,
+        "nowrap": true,
+        "scrollWidth": 48,
+        "text": "",
+        "width": 48
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 166,
+        "text": "Back",
+        "width": 166
+      },
+      {
+        "height": 44,
+        "nowrap": true,
+        "scrollWidth": 166,
+        "text": "Part",
+        "width": 166
+      }
+    ],
+    "dialog": {
+      "height": 704,
+      "width": 389,
+      "x": 445.5,
+      "y": 8.084114074707031
+    },
+    "documentWidth": 1280,
+    "overflow": false,
+    "viewport": [
+      1280,
+      720
+    ]
+  }
+]

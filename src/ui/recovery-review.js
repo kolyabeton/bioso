@@ -1,9 +1,10 @@
 import {createPart,stats} from '../assembly.js';
 import {spawnEnemy,hurtEnemy,step} from '../game.js';
 import {armorRemaining} from '../systems/health.js';
+import {HERO_HP_PER_SEGMENT} from '../systems/health-scale.js';
 // DEV-only deterministic fixture: real enemy death, drops, renderer and simulation pickup.
 export function prepareRecoveryReview(run){
- run.organs[0]=createPart(run,'armor');run.hp=1;run.health.missing=stats(run).hp-1;run.health.armorSpent=stats(run).armor;
+ run.organs[0]=createPart(run,'armor');run.hp=HERO_HP_PER_SEGMENT;run.health.missing=stats(run).hp-run.hp;run.health.armorSpent=stats(run).armor;
  const random=run.rng;
  for(const [x,roll] of [[-2.5,.01],[2.5,.04]]){
   const e=spawnEnemy(run,'normal',{x:run.player.x+x,z:run.player.z-2});

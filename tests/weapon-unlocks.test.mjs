@@ -10,6 +10,7 @@ function kill(s,key='pistol',source='direct',options={}){const e=spawnEnemy(s,'n
 const saved=p=>readProfile({getItem:()=>JSON.stringify(p)});
 test('preparation includes gated candidates but only unlocked weapons are selectable',()=>{
  const s=run();assert.deepEqual(START_WEAPONS,['pistol','claws','shotgun']);
+ const legacy=newProfile();legacy.unlocked.push('shieldArm');legacy.meta.loadout={arm:'shieldArm'};assert.equal(validLoadout(legacy).arm,'pistol');assert.equal(validLoadout(legacy,{arm:'shieldArm'}).arm,'pistol');
  for(const key of ['pistol','claws']){assert.equal(s.profile.unlocked.includes(key),true);assert.equal(starterAllowed(s.profile,key),true);assert.equal(validLoadout(s.profile,{arm:key}).arm,key);}
  for(const key of ['shotgun','seed']){assert.equal(s.profile.unlocked.includes(key),false);assert.equal(starterAllowed(s.profile,key),false);assert.equal(validLoadout(s.profile,{arm:key}).arm,'pistol');assert.match(unlockCondition(key),/между забегами/);}
  for(let i=0;i<300;i++)assert.ok(!['shotgun','seed'].includes(randomLoot(s,i%2?'boss':'elite').key));

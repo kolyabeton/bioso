@@ -23,14 +23,14 @@ test('natural and plated half segments each absorb one hit',()=>{
   const s=run('plated',count),st=stats(s);
   for(let i=0;i<hits;i++){s.time=i;assert.equal(receiveHit(s,st),'armor');assert.equal(s.hp,st.hp);}
   assert.equal(healthView(s,st.hp,st.armor).armor,0);
-  s.time=hits;assert.equal(receiveHit(s,st),'hurt');assert.equal(s.hp,st.hp-1);
+  s.time=hits;assert.equal(receiveHit(s,st),'hurt');assert.equal(s.hp,st.hp-25);
  }
 });
 test('a half segment is visible in HUD and removing a leg does not refill spent armor',()=>{
  const s=run('plated',2),st=stats(s);receiveHit(s,st);
- assert.match(healthSegments(healthView(s,st.hp,st.armor)),/is-half-armored/);
+ assert.match(healthSegments(healthView(s,st.hp,st.armor)),/ui-health-progress-armor/);
  unequip(s,'legs',1);assert.equal(healthView(s,st.hp,stats(s).armor).armor,.5);
- const half=run('plated');assert.match(healthSegments(healthView(half,stats(half).hp,.5)),/is-half-armored/);
+ const half=run('plated');assert.match(healthSegments(healthView(half,stats(half).hp,.5)),/ui-health-progress-armor/);
 });
 test('paid plated upgrades add half a segment, retain speed and stop at ten',()=>{
  const s=run('plated'),p=s.legs[0],speed=stats(s).speed;
@@ -42,19 +42,19 @@ test('paid plated upgrades add half a segment, retain speed and stop at ten',()=
  * cell timer. 1% of maximum health per second, +0.3 points per rank above I and
  * per upgrade, and every installed leg adds its own share. */
 test('roots regenerate continuously, retain HP bonus and offer regeneration upgrades',()=>{
- const s=run('root',2,2),p=s.legs[0],st=stats(s);assert.equal(st.hp,4);assert.equal(st.regenPersistsThroughDamage,true);
+ const s=run('root',2,2),p=s.legs[0],st=stats(s);assert.equal(st.hp,100);assert.equal(st.regenPersistsThroughDamage,true);
  // Two rank II legs: (1 + 0.3) each.
  near(st.regenPerSecond,.026);
  // The shared cell timer is the Repairman organ's mechanic and stays off here.
- assert.equal(st.regen,false);
+ assert.equal(st.regen,true);
  assert.deepEqual(upgradeOptions(p),['regen']);assert.equal(upgrade(s,p.id,'speed'),false);
- assert.deepEqual(itemInspectorData(s,p).preview,{label:'Регенерация',before:'1,3% здоровья/с',after:'1,6% здоровья/с'});
- assert.equal(itemInspectorData(s,p).rows.find(row=>row.label==='Регенерация').value,'1,3% здоровья/с');
- assert.equal(itemInspectorData(s,p).rows.find(row=>row.label==='Урон').value,'Не сбрасывает таймер');
- s.health.armorSpent=st.armor;receiveHit(s,st);assert.equal(s.hp,3);
- // 2.6% of 4 HP per second closes the missing cell in well under a minute.
+ assert.deepEqual(itemInspectorData(s,p).preview,{label:'Регенерация',before:'1,3%/с',after:'1,6%/с'});
+ assert.equal(itemInspectorData(s,p).rows.find(row=>row.label==='Регенерация').value,'1,3%/с');
+ assert.equal(itemInspectorData(s,p).rows.find(row=>row.label==='Урон').value,'Не прерывает регенерацию');
+ s.health.armorSpent=st.armor;receiveHit(s,st);assert.equal(s.hp,75);
+ // 2.6% of maximum HP per second closes the wound in well under a minute.
  for(let i=1;i<=100;i++){s.time=i*.2;tickHealth(s,st);}
- assert.equal(s.hp,4);
+ assert.equal(s.hp,100);
  unequip(s,'legs',0);unequip(s,'legs',1);near(stats(s).regenPerSecond,0);
 });
 test('every installed root leg stacks its own share and upgrades add three tenths each',()=>{
@@ -74,6 +74,6 @@ test('root regeneration never overheals and stops while healing is suppressed',(
  s.hp=st.hp;s.health.missing=0;
  for(let i=1;i<=20;i++){s.time=i;tickHealth(s,st);}
  assert.equal(s.hp,st.hp,'a full hero gains nothing');
- s.hp=1;s.health.missing=st.hp-1;s.time=100;tickHealth(s,st);
+ s.hp=25;s.health.missing=st.hp-25;s.time=100;tickHealth(s,st);
  const before=s.hp;s.time=101;tickHealth(s,st);assert.ok(s.hp>before,'a wounded hero keeps healing');
 });

@@ -1,3 +1,4 @@
+import {difficultyNormalCount} from './systems/difficulty.js';
 import {setupMissionBoss,missionBossStatus} from './systems/mission-bosses.js';
 import {obstacleContains,obstacleHeight} from './architecture-collision.js';
 import {BIOMES,MODULES,TILE,localHeight} from './biome-world.js';
@@ -7,27 +8,27 @@ import {assignEnemyAssembly} from './systems/enemy-assembly.js';
 import {combatTime} from './systems/mutations.js';
 import {EVENTS} from './systems/events/definitions.js';
 import {encounterRewardTier} from './systems/events/rewards.js';
-import {MISSION_HALF_WIDTH,MISSION_GATE,missionBarrierAt,missionDecorations,missionEnvironment} from './mission-environment.js';
+import {MISSION_HALF_WIDTH,MISSION_GATE,missionGateZ,missionBarrierAt,missionDecorations,missionEnvironment} from './mission-environment.js';
 import {spawnMissionEvidence} from './story-evidence.js';
 export {MISSION_HALF_WIDTH} from './mission-environment.js';
 
-export const missionRoomThreat=(mission,index)=>mission.difficulty*60+index*50;
+export const missionRoomThreat=(mission,index)=>mission.difficulty*60+(mission.id==='garden'?0:index*50);
 export const MISSION_EVENT_INTERVAL=3;
 export const MISSION_ENEMY_MULTIPLIER=2;
 export const MISSION_BOSS_WAVE_SIZE=3;
 export const MISSION_BOSS_WAVE_INTERVAL=10;
 export const MISSION_BOSS_REINFORCEMENT_CAP=12;
 export const MISSION_EIGHTH_FLOOR_ELITES=5;
-/** Item 18: the final-room boss also carries the per-room strength curve, which
- * reaches about 5x by room 25. Halve its health so the fight is finishable. */
-export const MISSION_BOSS_HP_SCALE=.5;
+/** All final-room bosses use the health reduction approved for the first mission;
+ * their individual budgets and per-room strength curve still apply. */
+export const MISSION_BOSS_HP_SCALE=.125;
 export const MISSION_ENTRY_MIN_Z_OFFSET=-24;
 export const MISSION_ENTRY_MAX_Z_OFFSET=-16;
 export const MISSION_ROOM_STRENGTH_STEP=.07;
 export const missionRoomStrength=index=>Math.pow(1+MISSION_ROOM_STRENGTH_STEP,Math.max(0,index));
-export function strengthenMissionEnemy(enemy,index){
+export function strengthenMissionEnemy(enemy,index,mission=null){
  if(!enemy||enemy.missionRoomStrength!=null)return enemy;
- const strength=missionRoomStrength(index);
+ const strength=mission?.id==='garden'?1:missionRoomStrength(index);
  enemy.hp*=strength;enemy.maxHp=enemy.hp;enemy.missionRoomStrength=strength;
  return enemy;
 }
@@ -52,21 +53,23 @@ export function createMissionWorld(seed,mission,{halfWidth=MISSION_HALF_WIDTH,ga
   const floorDecorations=decorations?missionDecorations(seed,environment,index,z,index===count-1):[];
   return{...module,...(environment.groundBlend?{nextBiome:environment.groundBlend,groundBlendDirection:[...environment.groundBlendDirection]}:{}),flat:true,environmentId:environment.id,environmentName:environment.name,groundStyle:environment.groundStyle,perimeterStyle:environment.perimeterStyle,ambientVegetation:decorations?[...environment.ambientVegetation]:[],ambientDensity:decorations?environment.ambientDensity:0,edgeVegetation:decorations?[...environment.edgeVegetation]:[],id:`mission-floor-${index+1}`,moduleId:`${environment.id}-${index+1}`,index,x:0,z,cx:0,cz:-index,ports,decorations:floorDecorations,safe:[{x:-14,z},{x:14,z},{x:0,z:z+22},{x:0,z:z-22}],loot:{x:0,z},jumps:[]};
  });
- const byCell=new Map(tiles.map(t=>[`${t.cx},${t.cz}`,t])),at=(x,z)=>byCell.get(`${Math.floor((x+32)/TILE)},${Math.floor((z+32)/TILE)}`);
+ const byCell=new Map(tiles.map(t=>[`${t.cx},${t.cz}`,t])),at=(x,z)=>Math.abs(x)<=32?byCell.get(`0,${Math.floor((z+32)/TILE)}`):undefined;
+ const halfWidthAt=z=>at(0,z)?.index===count-1?halfWidth*2:halfWidth;
  const blockedByGate=(x,z,r=0)=>gates&&missionBarrierAt(mission,x,z,r);
 	 const world={seed,flat:true,presentation:'biomes',missionLine:true,environmentId:environment.id,environmentName:environment.name,playBounds:{minX:-halfWidth,maxX:halfWidth},tiles,bounds:{minX:-32,minZ:-(count-1)*TILE-32,maxX:32,maxZ:32},landmarks:tiles.map((t,index)=>({id:t.id,x:0,z:t.z+20,name:index===count-1?mission.bossName:`Комната ${index+1}`})),roads:[tiles.map(t=>[0,t.z])],
   tileAt:at,neighbors(t){return tiles.filter(q=>Math.abs(q.index-t.index)===1);},
   heightAt(x,z){const t=at(x,z);return t?localHeight(t,x-t.x,z-t.z):null;},
   obstacles(x,z){const t=at(x,z);return t?(t.collisionDecorations??=[t,...this.neighbors(t)].flatMap(q=>q.decorations)):[];},
   solidAt(x,y,z,r=0){return y<MISSION_GATE.height&&blockedByGate(x,z,r)||this.obstacles(x,z).some(o=>obstacleContains(o,x,z,r)&&y<(this.heightAt(o.x,o.z)??0)+obstacleHeight(o));},
-	  flyable(x,z,r=.4){const h=this.heightAt(x,z);if(Math.abs(x)+r>halfWidth||h===null||blockedByGate(x,z,r)||this.obstacles(x,z).some(o=>o.feature!=='thicket'&&obstacleContains(o,x,z,r)))return false;for(let i=0;i<8;i++){const a=i*Math.PI/4;if(this.heightAt(x+Math.cos(a)*r,z+Math.sin(a)*r)===null)return false;}return true;},
-	  walkable(x,z,r=2.4){const h=this.heightAt(x,z);if(Math.abs(x)+r>halfWidth||h===null||blockedByGate(x,z,r)||this.solidAt(x,h+.1,z,r))return false;for(let i=0;i<8;i++){const a=i*Math.PI/4,q=this.heightAt(x+Math.cos(a)*r,z+Math.sin(a)*r);if(q===null||Math.abs(q-h)>r*.6+.2)return false;}return true;},
+	  flyable(x,z,r=.4){const h=this.heightAt(x,z);if(Math.abs(x)+r>halfWidthAt(z)||h===null||blockedByGate(x,z,r)||this.obstacles(x,z).some(o=>o.feature!=='thicket'&&obstacleContains(o,x,z,r)))return false;for(let i=0;i<8;i++){const a=i*Math.PI/4;if(this.heightAt(x+Math.cos(a)*r,z+Math.sin(a)*r)===null)return false;}return true;},
+	  walkable(x,z,r=2.4){const h=this.heightAt(x,z);if(Math.abs(x)+r>halfWidthAt(z)||h===null||blockedByGate(x,z,r)||this.solidAt(x,h+.1,z,r))return false;for(let i=0;i<8;i++){const a=i*Math.PI/4,q=this.heightAt(x+Math.cos(a)*r,z+Math.sin(a)*r);if(q===null||Math.abs(q-h)>r*.6+.2)return false;}return true;},
   canFly(a,b,r=.4){return this.heightAt(a.x,a.z)!==null&&this.flyable(b.x,b.z,r);},
   canMove(a,b,r=2.4){const h=this.heightAt(a.x,a.z),k=this.heightAt(b.x,b.z),d=Math.hypot(b.x-a.x,b.z-a.z);if(h===null||k===null||Math.abs(h-k)>d*.6+.05)return false;const n=Math.max(1,Math.ceil(d/.4));for(let i=1;i<=n;i++)if(!this.walkable(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,r))return false;return true;},
   lineClear(a,b){const d=Math.hypot(b.x-a.x,b.z-a.z,(b.y??0)-(a.y??0)),n=Math.max(1,Math.ceil(d/.4));for(let i=1;i<=n;i++){const t=i/n,x=a.x+(b.x-a.x)*t,z=a.z+(b.z-a.z)*t,y=(a.y??1)+((b.y??1)-(a.y??1))*t;if(!this.walkable(x,z,.05)||this.solidAt(x,y,z))return false;}return true;},
   findPath(a,b,r=2.4){return findPath(this,a,b,r,{cell:2,budget:12000});},
   chunk(cx,cz){const t=at(cx*TILE,cz*TILE);return{cx,cz,obstacles:t?.decorations||[],lair:t?.safe[0]||{x:0,z:0}};},
  };
+ world.halfWidthAt=halfWidthAt;
  return world;
 }
 
@@ -135,18 +138,18 @@ export function tickMissionFloors(s,{spawn,loot}={}){
  const defender=(kind,p,role,recipeId)=>{
   if(!p)return null;
   const enemy=spawn?.(kind,p,role,missionRoomThreat(m,floor.index));
-  if(!enemy)return null;assignEnemyAssembly(s,strengthenMissionEnemy(enemy,floor.index),missionRoomThreat(m,floor.index),{missionRole:role,missionRecipeId:recipeId});if(kind==='elite'&&floor.index===0){enemy.hp=enemy.maxHp=Math.max(1,enemy.maxHp*.3);}return enemy;
+  if(!enemy)return null;assignEnemyAssembly(s,strengthenMissionEnemy(enemy,floor.index,m),missionRoomThreat(m,floor.index),{missionRole:role,missionRecipeId:recipeId});if(kind==='elite'&&floor.index===0){enemy.hp=enemy.maxHp=Math.max(1,enemy.maxHp*.3);}return enemy;
  };
  if(floor.state==='ready'&&Math.abs(s.player.z-floor.z)<=24){
   floor.entered=true;floor.state=group.state='active';
   	  const {eliteRole}=floor.roster,elitePosition=missionEntryPosition(s.world,floor,0);
   if(floor.index===m.floors-1){
-   const enemy=strengthenMissionEnemy(spawn?.('boss',{x:0,z:floor.z-8},'mass',missionRoomThreat(m,floor.index)+m.difficulty*360),floor.index),elite=defender('elite',elitePosition,eliteRole,floor.roster.eliteRecipeId);if(enemy){enemy.hp=enemy.maxHp=Math.max(1,Math.round(enemy.maxHp*MISSION_BOSS_HP_SCALE));enemy.bossDesignId=m.bossId;enemy.bossName=m.bossName;setupMissionBoss(s,enemy,m.bossId);enemy.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:enemy.id,kind:enemy.kind,x:enemy.x,y:enemy.y??0,z:enemy.z});}addEnemy(enemy);addEnemy(elite,{guaranteedPartDrop:true,arriving:true});m.bossSpawned=true;
+   const enemy=strengthenMissionEnemy(spawn?.('boss',{x:0,z:floor.z-8},'mass',m.difficulty*60+floor.index*50+m.difficulty*360),floor.index),elite=defender('elite',elitePosition,eliteRole,floor.roster.eliteRecipeId);if(enemy){enemy.hp=enemy.maxHp=Math.max(1,Math.round(enemy.maxHp*MISSION_BOSS_HP_SCALE));enemy.bossDesignId=m.bossId;enemy.bossName=m.bossName;setupMissionBoss(s,enemy,m.bossId);enemy.arrivalSounded=true;s.events.push({type:'boss-arrival',boss:enemy.id,kind:enemy.kind,x:enemy.x,y:enemy.y??0,z:enemy.z});}addEnemy(enemy);addEnemy(elite,{guaranteedPartDrop:true,arriving:true});m.bossSpawned=true;
    floor.bossWave={index:0,nextAt:combatTime(s)+MISSION_BOSS_WAVE_INTERVAL};
    s.events.push({type:'notice',text:`Босс: ${m.bossName}`});
   }else{
    const roles=floor.roster.roles,recipes=floor.roster.recipeIds;
-   const normalCount=(roles.length+1)*MISSION_ENEMY_MULTIPLIER-1;
+   const normalCount=difficultyNormalCount(s,(roles.length+1)*MISSION_ENEMY_MULTIPLIER-1);
    for(let index=0;index<normalCount;index++){
     const slot=index%roles.length,role=roles[slot],p=missionEntryPosition(s.world,floor,index+1);
     addEnemy(defender('normal',p,role,recipes[slot]),{arriving:true});
@@ -161,7 +164,7 @@ export function tickMissionFloors(s,{spawn,loot}={}){
   const liveReinforcements=s.enemies.filter(e=>e.hp>0&&e.bossReinforcement&&e.missionRoom===floor.index+1).length;
   if(boss&&now>=wave.nextAt){
    if(liveReinforcements<MISSION_BOSS_REINFORCEMENT_CAP){
-    const count=Math.min(MISSION_BOSS_WAVE_SIZE,MISSION_BOSS_REINFORCEMENT_CAP-liveReinforcements),roles=floor.roster.roles,recipes=floor.roster.recipeIds;
+    const count=Math.min(difficultyNormalCount(s,MISSION_BOSS_WAVE_SIZE),difficultyNormalCount(s,MISSION_BOSS_REINFORCEMENT_CAP)-liveReinforcements),roles=floor.roster.roles,recipes=floor.roster.recipeIds;
     for(let slot=0;slot<count;slot++){
      const role=roles[(wave.index*MISSION_BOSS_WAVE_SIZE+slot)%roles.length];
      const p=missionEntryPosition(s.world,floor,wave.index*MISSION_BOSS_WAVE_SIZE+slot);
@@ -176,7 +179,7 @@ export function tickMissionFloors(s,{spawn,loot}={}){
  if(floor.state==='active'&&floor.members.length&&floor.members.every(id=>!s.enemies.some(e=>e.id===id&&e.hp>0))){
   floor.state=group.state='cleared';s.exploration.cleared.add(group.id);
   if(!floor.roomLootId){
-	   const part=loot?.('normal',floor.index===0?'digestion':null),x=-6,z=floor.z+3;
+	   const part=loot?.('normal',floor.index===0?'digestion':null),hasNextFloor=floor.index<m.floors-1,x=hasNextFloor?0:-6,z=hasNextFloor?missionGateZ(floor.index)+6:floor.z+3;
    if(part){const id=++s.entityId,y=s.world.heightAt?.(x,z)??0;s.ground.push({id,x,y,z,part,groupId:group.id,missionRoomLoot:true});floor.roomLootId=id;}
   }
   spawnMissionEvidence(s,floor);

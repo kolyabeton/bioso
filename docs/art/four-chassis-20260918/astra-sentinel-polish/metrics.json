@@ -1,0 +1,15 @@
+[
+  {
+    "key": "sentinel",
+    "file": "body-sentinel-astra-polish-v3.glb",
+    "bytes": 3553828,
+    "triangles": 17740,
+    "materials": 4,
+    "textures": 4,
+    "bounds": [
+      1.7273128032684328,
+      0.7660000085830688,
+      1.5107397437095644
+    ]
+  }
+]

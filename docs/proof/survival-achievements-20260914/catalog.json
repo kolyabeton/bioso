@@ -1,0 +1,822 @@
+[
+  {
+    "id": "survival:level-25",
+    "name": "Уровень 25",
+    "description": "Достигните уровня 25 за один забег в выживании.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/level20-v1.jpg",
+    "conditions": [
+      {
+        "label": "Уровень",
+        "goal": 25
+      }
+    ]
+  },
+  {
+    "id": "survival:level-30",
+    "name": "Уровень 30",
+    "description": "Достигните уровня 30 за один забег в выживании.",
+    "scope": "run",
+    "reward": {
+      "keys": [
+        "reverseHeart"
+      ],
+      "delivery": "ground"
+    },
+    "art": "/assets/ui/achievements/level20-v1.jpg",
+    "conditions": [
+      {
+        "label": "Уровень",
+        "goal": 30
+      }
+    ]
+  },
+  {
+    "id": "survival:level20-runs-3",
+    "name": "Опыт выживания: 3",
+    "description": "Достигните уровня 20 в 3 разных забегах выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/level20-v1.jpg",
+    "conditions": [
+      {
+        "label": "Забеги с уровнем 20",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:level20-runs-5",
+    "name": "Опыт выживания: 5",
+    "description": "Достигните уровня 20 в 5 разных забегах выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/level20-v1.jpg",
+    "conditions": [
+      {
+        "label": "Забеги с уровнем 20",
+        "goal": 5
+      }
+    ]
+  },
+  {
+    "id": "survival:level20-runs-10",
+    "name": "Опыт выживания: 10",
+    "description": "Достигните уровня 20 в 10 разных забегах выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/level20-v1.jpg",
+    "conditions": [
+      {
+        "label": "Забеги с уровнем 20",
+        "goal": 10
+      }
+    ]
+  },
+  {
+    "id": "survival:level20-runs-15",
+    "name": "Опыт выживания: 15",
+    "description": "Достигните уровня 20 в 15 разных забегах выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/level20-v1.jpg",
+    "conditions": [
+      {
+        "label": "Забеги с уровнем 20",
+        "goal": 15
+      }
+    ]
+  },
+  {
+    "id": "survival:level20-runs-20",
+    "name": "Опыт выживания: 20",
+    "description": "Достигните уровня 20 в 20 разных забегах выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/level20-v1.jpg",
+    "conditions": [
+      {
+        "label": "Забеги с уровнем 20",
+        "goal": 20
+      }
+    ]
+  },
+  {
+    "id": "survival:set-wanderer",
+    "name": "Комплект: Садовник",
+    "description": "В выживании активируйте полный сет «Садовник»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-wanderer",
+    "name": "Зачистка: Садовник",
+    "description": "Убейте 500 существ с активным полным сетом «Садовник». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-wanderer",
+    "name": "Охота: Садовник",
+    "description": "Победите 3 боссов с активным полным сетом «Садовник» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:set-hunter",
+    "name": "Комплект: Высотник",
+    "description": "В выживании активируйте полный сет «Высотник»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-garden-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-hunter",
+    "name": "Зачистка: Высотник",
+    "description": "Убейте 500 существ с активным полным сетом «Высотник». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "keys": [
+        "returnNerve"
+      ],
+      "delivery": "ground"
+    },
+    "art": "/assets/ui/achievements/mission-garden-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-hunter",
+    "name": "Охота: Высотник",
+    "description": "Победите 3 боссов с активным полным сетом «Высотник» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-garden-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bastion",
+    "name": "Комплект: Каменщик",
+    "description": "В выживании активируйте полный сет «Каменщик»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-quarantine-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-bastion",
+    "name": "Зачистка: Каменщик",
+    "description": "Убейте 500 существ с активным полным сетом «Каменщик». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-quarantine-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-bastion",
+    "name": "Охота: Каменщик",
+    "description": "Победите 3 боссов с активным полным сетом «Каменщик» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-quarantine-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:set-chimera",
+    "name": "Комплект: Мойщик",
+    "description": "В выживании активируйте полный сет «Мойщик»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/elite10-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-chimera",
+    "name": "Зачистка: Мойщик",
+    "description": "Убейте 500 существ с активным полным сетом «Мойщик». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/elite10-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-chimera",
+    "name": "Охота: Мойщик",
+    "description": "Победите 3 боссов с активным полным сетом «Мойщик» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/elite10-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:set-rootwalker",
+    "name": "Комплект: Лесник",
+    "description": "В выживании активируйте полный сет «Лесник»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-core-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-rootwalker",
+    "name": "Зачистка: Лесник",
+    "description": "Убейте 500 существ с активным полным сетом «Лесник». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-core-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-rootwalker",
+    "name": "Охота: Лесник",
+    "description": "Победите 3 боссов с активным полным сетом «Лесник» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/mission-core-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:set-hecaton",
+    "name": "Комплект: Механик",
+    "description": "В выживании активируйте полный сет «Механик»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/final-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-hecaton",
+    "name": "Зачистка: Механик",
+    "description": "Убейте 500 существ с активным полным сетом «Механик». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/final-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-hecaton",
+    "name": "Охота: Механик",
+    "description": "Победите 3 боссов с активным полным сетом «Механик» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "keys": [
+        "commonNerve"
+      ],
+      "delivery": "ground"
+    },
+    "art": "/assets/ui/achievements/final-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:set-reactor",
+    "name": "Комплект: Электрик",
+    "description": "В выживании активируйте полный сет «Электрик»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/meta-reactor-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-reactor",
+    "name": "Зачистка: Электрик",
+    "description": "Убейте 500 существ с активным полным сетом «Электрик». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/meta-reactor-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-reactor",
+    "name": "Охота: Электрик",
+    "description": "Победите 3 боссов с активным полным сетом «Электрик» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/meta-reactor-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:set-broodmother",
+    "name": "Комплект: Пасечник",
+    "description": "В выживании активируйте полный сет «Пасечник»: установите три разные категории деталей.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:set-kills-broodmother",
+    "name": "Зачистка: Пасечник",
+    "description": "Убейте 500 существ с активным полным сетом «Пасечник». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:set-bosses-broodmother",
+    "name": "Охота: Пасечник",
+    "description": "Победите 3 боссов с активным полным сетом «Пасечник» за один забег выживания.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:sets-2",
+    "name": "Коллекция сетов: 2",
+    "description": "Активируйте 2 разных полных сетов в выживании. Можно в разных забегах.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Разные полные сеты",
+        "goal": 2
+      }
+    ]
+  },
+  {
+    "id": "survival:sets-3",
+    "name": "Коллекция сетов: 3",
+    "description": "Активируйте 3 разных полных сетов в выживании. Можно в разных забегах.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Разные полные сеты",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:sets-5",
+    "name": "Коллекция сетов: 5",
+    "description": "Активируйте 5 разных полных сетов в выживании. Можно в разных забегах.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Разные полные сеты",
+        "goal": 5
+      }
+    ]
+  },
+  {
+    "id": "survival:sets-8",
+    "name": "Коллекция сетов: 8",
+    "description": "Активируйте 8 разных полных сетов в выживании. Можно в разных забегах.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Разные полные сеты",
+        "goal": 8
+      }
+    ]
+  },
+  {
+    "id": "survival:mutation-kills-hive",
+    "name": "Сила мутации: Улей",
+    "description": "Убейте 500 существ с активной мутацией «Улей». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:mutation-bosses-hive",
+    "name": "Охота мутации: Улей",
+    "description": "Победите 3 боссов с активной мутацией «Улей». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-natures-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:mutation-kills-conductor",
+    "name": "Сила мутации: Проводник",
+    "description": "Убейте 500 существ с активной мутацией «Проводник». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:mutation-bosses-conductor",
+    "name": "Охота мутации: Проводник",
+    "description": "Победите 3 боссов с активной мутацией «Проводник». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-natures-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:mutation-kills-mire",
+    "name": "Сила мутации: Топь",
+    "description": "Убейте 500 существ с активной мутацией «Топь». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:mutation-bosses-mire",
+    "name": "Охота мутации: Топь",
+    "description": "Победите 3 боссов с активной мутацией «Топь». Учитываются все забеги выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-natures-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 3
+      }
+    ]
+  },
+  {
+    "id": "survival:mature-build",
+    "name": "Зрелая сборка",
+    "description": "В выживании одновременно имейте уровень 20 или выше и активный полный сет.",
+    "scope": "run",
+    "reward": {
+      "keys": [
+        "reflexNerve"
+      ],
+      "delivery": "ground"
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Уровень",
+        "goal": 20
+      },
+      {
+        "label": "Полный сет",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:four-categories",
+    "name": "Полная принадлежность",
+    "description": "В выживании одновременно установите корпус, руку, ногу и орган одного сета.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-set-v1.jpg",
+    "conditions": [
+      {
+        "label": "Категории деталей",
+        "goal": 4
+      }
+    ]
+  },
+  {
+    "id": "survival:set-mutation",
+    "name": "Двойная адаптация",
+    "description": "В выживании одновременно активируйте полный сет и любую мутацию.",
+    "scope": "run",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-mutation-v1.jpg",
+    "conditions": [
+      {
+        "label": "Полный сет",
+        "goal": 1
+      },
+      {
+        "label": "Активная мутация",
+        "goal": 1
+      }
+    ]
+  },
+  {
+    "id": "survival:kills-10000",
+    "name": "Массовая зачистка: 10000",
+    "description": "Убейте 10000 существ за всё время в выживании.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/elite10-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 10000
+      }
+    ]
+  },
+  {
+    "id": "survival:kills-20000",
+    "name": "Массовая зачистка: 20000",
+    "description": "Убейте 20000 существ за всё время в выживании.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/elite10-v1.jpg",
+    "conditions": [
+      {
+        "label": "Убитые существа",
+        "goal": 20000
+      }
+    ]
+  },
+  {
+    "id": "survival:elites-500",
+    "name": "Охотник на элит",
+    "description": "Победите 500 элит за всё время в выживании.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/elite10-v1.jpg",
+    "conditions": [
+      {
+        "label": "Элиты",
+        "goal": 500
+      }
+    ]
+  },
+  {
+    "id": "survival:bosses-100",
+    "name": "Охотник на боссов",
+    "description": "Победите 100 боссов за всё время в выживании.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/boss2-v1.jpg",
+    "conditions": [
+      {
+        "label": "Боссы",
+        "goal": 100
+      }
+    ]
+  },
+  {
+    "id": "survival:recycle-250",
+    "name": "Безотходное производство",
+    "description": "Переработайте 250 деталей за всё время в выживании. Нужен Компостер.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/feat-recycle-v1.jpg",
+    "conditions": [
+      {
+        "label": "Переработано деталей",
+        "goal": 250
+      }
+    ]
+  },
+  {
+    "id": "survival:master",
+    "name": "Мастер выживания",
+    "description": "Получите остальные 49 новых достижений выживания.",
+    "scope": "lifetime",
+    "reward": {
+      "tokens": 1
+    },
+    "art": "/assets/ui/achievements/final-v1.jpg",
+    "conditions": [
+      {
+        "label": "Новые достижения выживания",
+        "goal": 49
+      }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+import {NodeIO} from '@gltf-transform/core';import {ALL_EXTENSIONS} from '@gltf-transform/extensions';import fs from 'node:fs';import crypto from 'node:crypto';
+const io=new NodeIO().registerExtensions(ALL_EXTENSIONS),out=new URL('./',import.meta.url),kit=new URL('../../../../public/assets/kit/',out);const source=await io.read(new URL('leg-worker.glb',kit).pathname),hash=t=>crypto.createHash('sha256').update(t.getImage()).digest('hex'),hashes=source.getRoot().listTextures().map(hash);const results=[];
+for(const key of ['assembler']){
+ const doc=await io.read(new URL(`body-${key}-astra5-v3.glb`,out).pathname),hulls=doc.getRoot().listNodes().filter(n=>n.getName()===key+'-steel');if(hulls.length!==1)throw Error('Ambiguous hull');
+ const hull=hulls[0].getMesh().listPrimitives()[0],p=hull.getAttribute('POSITION'),idx=hull.getIndices(),edges=new Map(),point=i=>Array.from(p.getArray().slice(i*3,i*3+3)).map(n=>Math.round(n*1e5)).join(',');const ids=idx?idx.getArray():Array.from({length:p.getCount()},(_,i)=>i);let degenerate=0;
+ for(let i=0;i<ids.length;i+=3){const t=[point(ids[i]),point(ids[i+1]),point(ids[i+2])];if(new Set(t).size<3){degenerate++;continue;}for(let j=0;j<3;j++){const e=[t[j],t[(j+1)%3]].sort().join('|');edges.set(e,(edges.get(e)||0)+1);}}
+ results.push({key,hullEdges:edges.size,nonmanifoldEdges:[...edges.values()].filter(v=>v!==2).length,degenerateTriangles:degenerate,allPBRImagesMatchCanonical:doc.getRoot().listTextures().every(t=>hashes.includes(hash(t))),finiteAttributes:doc.getRoot().listAccessors().every(a=>Array.from(a.getArray()).every(Number.isFinite)),headSuppressedById:true});
+}
+fs.writeFileSync(new URL('geometry-audit.json',out),JSON.stringify(results,null,2));let baseline=[];
+for(const key of ['bastion','reactor','rootwalker','broodmother']){const f=new URL('body-'+key+'-v3.glb',kit),doc=await io.read(f.pathname);baseline.push({key,bytes:fs.statSync(f).size,triangles:doc.getRoot().listMeshes().flatMap(m=>m.listPrimitives()).reduce((s,p)=>s+(p.getIndices()?.getCount()??p.getAttribute('POSITION').getCount())/3,0),materials:doc.getRoot().listMaterials().length});}
+fs.writeFileSync(new URL('baseline-metrics.json',out),JSON.stringify(baseline,null,2));console.log(results);

@@ -15,7 +15,7 @@ export function environmentBlendWeights(tile,world,x,z,halfWidth=ENVIRONMENT_BLE
  }return weights;
 }
 /** Structurally different surfaces in world units, with neighbour-aware seams. */
-export function environmentSurfaceCode(profile,tile,world){
+export function environmentSurfaceCode(profile,tile,world,{lite=false}={}){
  const kind=t=>SURFACE_KINDS[environmentProfile(t)?.relief??profile.relief];
  const sameNeighborhood=[-1,0,1].every(dx=>[-1,0,1].every(dz=>kind(neighbour(tile,world,dx,dz))===kind(tile)));
  const sample=(dx,dz)=>`envSurface(p,${kind(neighbour(tile,world,dx,dz)).toFixed(1)})`;
@@ -23,7 +23,7 @@ export function environmentSurfaceCode(profile,tile,world){
  ${SEAMLESS_GROUND_GLSL}
  float envHash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
  float envGrain(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(envHash(i),envHash(i+vec2(1,0)),f.x),mix(envHash(i+vec2(0,1)),envHash(i+vec2(1,1)),f.x),f.y);}
- float envFbm(vec2 p){return envGrain(p)*.57+envGrain(p*2.03)*.28+envGrain(p*4.07)*.15;}
+ float envFbm(vec2 p){return ${lite?'envGrain(p)':'envGrain(p)*.57+envGrain(p*2.03)*.28+envGrain(p*4.07)*.15'};}
  vec3 envAtlasSample(vec2 p,vec2 cell){
   return envSeamless(envAtlas,p,cell+.008,vec2(.484));
  }
@@ -46,8 +46,8 @@ export function environmentSurfaceCode(profile,tile,world){
   vec2 cell=kind<.5?vec2(0,0):kind<1.5?vec2(.5,0):kind<3.5?vec2(0,.5):vec2(.5,.5);
   float scale=kind<.5?.068:kind<1.5?.14:kind<3.5?.072:.10;
   vec2 q=p*scale;
-  vec3 a=envAtlasSample(q,cell),b=envAtlasSample(q*.79+vec2(5.37,9.13),cell);
-  vec3 color=mix(a,b,smoothstep(.3,.7,broad));
+  vec3 a=envAtlasSample(q,cell);
+  ${lite?'vec3 color=a;':'vec3 b=envAtlasSample(q*.79+vec2(5.37,9.13),cell);vec3 color=mix(a,b,smoothstep(.3,.7,broad));'}
   vec3 soil=envSeamless(envMaterials,p*.19,vec2(.52),vec2(.46));
   if(kind<.5){
    float gardenSoil=smoothstep(.46,.74,broad+wear*.19)*(1.0-route*.85);

@@ -1,0 +1,43 @@
+{
+  "route": "http://127.0.0.1:5173/?review=organs&organs=reflexNerve&screen=assembly&sound=0&lang=ru&quality=low",
+  "initialState": "Bastion with one installed Sensor, Soul opened through gameplay HUD",
+  "dodge": "10%",
+  "viewports": [
+    {
+      "width": 360,
+      "height": 640,
+      "dialogWidth": 344,
+      "horizontalOverflow": false,
+      "scrollEnd": [
+        491,
+        484,
+        975
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "dialogWidth": 374,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "dialogWidth": 389,
+      "horizontalOverflow": false
+    }
+  ],
+  "buttons": "44px minimum, no overflow; Back returns to gameplay",
+  "desktopCanvas": [
+    1280,
+    720
+  ],
+  "desktopMapWidth": 389,
+  "desktopHomeWidth": 1280,
+  "zeroBonusRoute": "?review=soul&sound=0&lang=ru&quality=low",
+  "zeroBonusDodge": "0%",
+  "tests": {
+    "passed": 21,
+    "failed": 0
+  }
+}

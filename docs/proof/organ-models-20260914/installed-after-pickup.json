@@ -1,0 +1,24 @@
+{
+  "failed": [],
+  "ground": [
+    {
+      "id": 34,
+      "key": "parasite"
+    },
+    {
+      "id": 36,
+      "key": "repairGland"
+    }
+  ],
+  "inventory": [
+    {
+      "id": 31,
+      "key": "parasite"
+    }
+  ],
+  "organs": [
+    "slime",
+    "slime",
+    "repairGland"
+  ]
+}

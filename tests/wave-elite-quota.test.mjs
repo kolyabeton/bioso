@@ -13,8 +13,8 @@ test('each finite wave splits its elites across two packs with the odd remainder
   const reinforcement=members(s).filter(e=>e.kind==='elite').length;assert.equal(reinforcement,Math.floor(total/2));
   counts.push(main+reinforcement);drainPack(s);s.time=s.waves.cadence.restUntil;tickWave(s);
  }
- // Every fifth wave replaces the usual handful with a wall of elites.
- assert.deepEqual(counts,[1,2,3,4,40,6,6,6]);
+ // At 3:20 the fifth wave gets the base five plus one completed three-minute step.
+ assert.deepEqual(counts,[1,2,3,4,6,6,6,6]);
 });
 
 test('a surviving wave elite stays on the field and cannot accumulate into the next pack quota',()=>{

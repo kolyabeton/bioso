@@ -14,7 +14,7 @@ test('wrong parameters are rejected without spending resources or modifying part
   for(const key of forbidden){const before=JSON.stringify(s);assert.equal(upgrade(s,p.id,key,true),false);assert.equal(JSON.stringify(s),before);}
  }
 });
-test('capacity grows through ten ranks without adding weight or health',()=>{
+test('capacity stops at ten ranks without adding weight or health',()=>{
  const s=createRun(),p=s.body,oldWeight=weight(p),oldHp=stats(s).hp;for(let i=0;i<10;i++)assert.ok(upgrade(s,p.id,'capacity'));
  assert.equal(capacity(p),180);assert.equal(weight(p),oldWeight);assert.equal(stats(s).hp,oldHp);assert.equal(upgrade(s,p.id,'capacity'),false);
 });

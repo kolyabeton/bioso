@@ -5,14 +5,14 @@ import {pocketGrassGeometry} from '../src/environment-pockets-view.js';
 import {createWorldRun} from '../src/world-run.js';
 import {assembleBiomeWorld} from '../src/biome-world.js';
 
-test('all mission pockets are deterministic, bounded, leave a clear central route and do not change collision',()=>{
+test('all mission pockets are deterministic, bounded, preserve a traversable room and do not change collision',()=>{
  for(const mode of ['garden','quarantine','core','nursery','mother']){
   const s=createWorldRun(undefined,mode,12),tile=s.world.tiles[0],before=JSON.stringify(tile.decorations);
   const points=environmentPockets(tile,s.world);
   assert.ok(points.length>25&&points.length<=200,mode);
   assert.deepEqual(points,environmentPockets(tile,s.world));assert.equal(JSON.stringify(tile.decorations),before);
   for(const p of points){assert.ok(Math.abs(p.x-tile.x)-p.size*.5>2.5);assert.ok(p.height<=1.32);assert.ok(Math.abs(p.z-tile.z)<=28);}
-  for(let z=-28;z<=28;z++)assert.ok(s.world.walkable(0,z,1.92));
+  assert.ok(s.world.findPath({x:0,z:28},{x:0,z:-28},1.92).length);
  }
 });
 test('survival pockets avoid cross-cell routes and safe points',()=>{

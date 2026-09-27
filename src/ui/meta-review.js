@@ -1,8 +1,10 @@
 import {meta,awardMeta,recordVictory} from '../systems/meta-progression.js';
 import {createPart,stats} from '../assembly.js';
 import {rollChoices} from '../systems/progression.js';
+import {CHASSIS_UNLOCKS} from '../systems/chassis-unlocks.js';
 /** Explicit in-memory fixture: never writes to the player's persisted profile. */
 export function prepareMetaReview(s,stage='profile'){
+ if(stage==='chassis-loadout'){s.profile.achievements.push('mission:garden',...CHASSIS_UNLOCKS.map(a=>a.id));s.profile.unlocked.push(...CHASSIS_UNLOCKS.map(a=>a.key));}
  Object.assign(meta(s.profile),{runs:12,wins:3,overruns:3,rerolls:6});s.elites=5;awardMeta(s,createPart);s.events=[];
  s.profile.unlocked=[...new Set([...s.profile.unlocked,'hunter','bastion','stabilizer','spring'])];
  if(['loadout','loadout-first-boss'].includes(stage)){
@@ -22,5 +24,5 @@ export function prepareMetaReview(s,stage='profile'){
   s.body=createPart(s,'reactor');s.arms=[createPart(s,'harpoon'),createPart(s,'claws'),null];s.legs=[createPart(s,'spring'),createPart(s,'spring')];s.organs=[createPart(s,'mirrorGland'),createPart(s,'shield')];s.hp=stats(s).hp;s.inventory=[];
   return stage==='combat'?null:'assembly';
  }
- return ['loadout','loadout-first-boss','loadout-unlocked'].includes(stage)?'loadout':'profile';
+ return ['loadout','loadout-first-boss','loadout-unlocked','chassis-loadout'].includes(stage)?'loadout':'profile';
 }

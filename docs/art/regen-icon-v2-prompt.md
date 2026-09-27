@@ -1,0 +1,13 @@
+# Ремонтник: иконка v2
+
+Runtime asset: `public/assets/ui/organs/regen-gland-v2.png`. Раньше иконка бралась из общего атласа `parts-atlas-transparent-v1.png` и не читалась как орган восстановления; координаты атласа менять нельзя, поэтому `regen` переведён в семейство отдельных иконок органов (`ORGAN_ART` в `src/ui/molecules.js`).
+
+Use case: stylized-concept. Asset: one isolated transparent inventory icon for BIOSO's regeneration organ (Ремонтник).
+Reference 1 is authoritative world material/light style; reference 2 is the EXISTING ORGAN ICON FAMILY (`public/assets/ui/organs/*-v2.png`) to closely match in perspective, scale, fine mechanical detail, weathering and restrained color.
+Generate ONE isolated biomechanical repair gland, no limbs, no head, no chassis. A compact rounded organ sac of dark aged metal ribs over translucent amber-warm biological membrane, wrapped by two fitted dirty warm-white ceramic half-shells that leave the membrane visible through a narrow vertical gap. Inside the gap, a slow warm amber glow suggesting stored healing fluid at about two thirds fill — a readable "reservoir" cue, not a progress bar and not a UI gauge. Three fine bronze capillary tubes leave the lower body and coil once before ending in machined connector collars. Subtle segmented service ribs at the rear. Same three-quarter elevated angle as the existing organ icons. Self-contained clean legible silhouette, realistic finely crafted assembly, avoid excessive noise. Subject fills about 82 percent of a square 1024x1024 canvas with equal breathing room, entire object visible.
+Style reference: attached `docs/references/biomecha-style-master.png` is authoritative for materials, palette, light and mood. Cinematic photorealistic grounded solarpunk, physically plausible weathered materials and natural proportions. Dirty warm-white ceramic panels, dark aged industrial metal, restrained rust. Low warm sunlight from upper left with cool ambient fill and deep detailed shadows. Realistic microtexture without exaggerated contrast. No cartoon, no painterly brush strokes, no storybook illustration, no toy diorama, no ornate gold, no glossy plastic, no heavy sepia wash, no medical cross symbol, no text.
+True transparent alpha background. No floor, scene, cast shadow, backing tile, frame, text, labels, watermark, grid or other objects. Only one icon.
+
+## Подключение
+
+В `src/ui/molecules.js` добавлен `regen:'regen-gland-v2'` в `ORGAN_ART`. `ATLAS_KEYS` не тронут — координаты листа неизменяемы, ветка `ORGAN_ART` срабатывает раньше поиска в атласе. Значения `ORGAN_ART` теперь хранят версию целиком, путь собирается как `${ORGAN_ART[key]}.png`.

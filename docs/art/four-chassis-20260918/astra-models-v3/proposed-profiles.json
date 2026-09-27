@@ -1,0 +1,49 @@
+{
+  "demolition": {
+    "width": 0.72,
+    "height": 0.57,
+    "depth": 0.54,
+    "taper": 0,
+    "power": 0.55,
+    "cross": 0.75,
+    "horizontal": true,
+    "mountWidth": 0.76,
+    "modelId": "body-demolition-astra3-v3",
+    "status": "awaiting approval"
+  },
+  "regulator": {
+    "width": 0.52,
+    "height": 0.86,
+    "depth": 0.43,
+    "taper": 0,
+    "power": 0.65,
+    "cross": 0.82,
+    "mountWidth": 0.56,
+    "modelId": "body-regulator-astra3-v3",
+    "status": "awaiting approval"
+  },
+  "sentinel": {
+    "width": 0.74,
+    "height": 0.6,
+    "depth": 0.54,
+    "taper": 0,
+    "power": 0.53,
+    "cross": 0.76,
+    "horizontal": true,
+    "mountWidth": 0.78,
+    "modelId": "body-sentinel-astra3-v3",
+    "status": "awaiting approval"
+  },
+  "assembler": {
+    "width": 0.66,
+    "height": 0.57,
+    "depth": 0.52,
+    "taper": 0,
+    "power": 0.65,
+    "cross": 0.82,
+    "horizontal": true,
+    "mountWidth": 0.7,
+    "modelId": "body-assembler-astra3-v3",
+    "status": "awaiting approval"
+  }
+}

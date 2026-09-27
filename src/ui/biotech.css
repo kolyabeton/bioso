@@ -33,13 +33,14 @@ body{background:radial-gradient(ellipse at 50% 20%,#213331,transparent 65%),#101
 /* Home owns placement and size; materials and states belong to the DS button. */
 .ui-home-actions{gap:12px}
 .ui-home-actions>.ui-button{width:100%;justify-content:center;min-height:58px;padding:14px 32px;font-size:12px;letter-spacing:.12em}
-.ui-home-actions>#home-start{min-height:68px;font-size:15px}
+.ui-home-actions>:is(#home-start,[data-action="missions"]){min-height:68px;font-size:15px}
 .ui-home-utilities{display:flex;justify-content:center;gap:16px;margin-top:8px;padding-bottom:max(4px,env(safe-area-inset-bottom))}
 .ui-home-utilities .ui-icon-button{flex:none}
 .ui-soul-button>.ui-icon,#resource-icon{animation:bio-breathe 3.8s ease-in-out infinite}
 .ui-notification{border-radius:14px 4px 14px 4px;background:#182c29f5;border-color:#83bca880;box-shadow:0 6px 22px #07171455}
 
 .ui-dialog::backdrop{background:#081413c7}
+.ui-dialog[data-background=menu]::backdrop{background:linear-gradient(#08141370,#08141370),url('/assets/ui/menu-art.png') center/cover no-repeat,#101819}
 @keyframes bio-breathe{0%,100%{opacity:.72}50%{opacity:1}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 [data-reduced-motion=true] *,[data-reduced-motion=true] *:before,[data-reduced-motion=true] *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -53,6 +54,7 @@ body{background:radial-gradient(ellipse at 50% 20%,#213331,transparent 65%),#101
 /* The portrait game stage, not the desktop browser, owns every modal's width. */
 :root{--game-stage-width:min(100vw,56.25dvh)}
 body .ui-dialog{width:calc(var(--game-stage-width) - 16px);max-width:calc(var(--game-stage-width) - 16px);margin:auto}
+body .ui-dialog[data-screen=pause]{width:min(320px,calc(var(--game-stage-width) - 16px))}
 body .ui-dialog[data-screen=home]{width:var(--game-stage-width);max-width:var(--game-stage-width)}
 body .ui-dialog .ui-screen-header{padding:16px;gap:10px}
 body .ui-dialog .ui-screen-header h2{font-size:20px;line-height:28px}
@@ -61,6 +63,7 @@ body .ui-dialog .ui-settings-block{gap:12px}
 body .ui-dialog .ui-settings .ui-segmented>.ui-button{min-width:0;padding:8px 6px;font-size:11px}
 .vitals .health{position:relative}
 body .event-nearby,body #objective{box-sizing:border-box;left:50%;right:auto;width:calc(var(--game-stage-width) - 32px);max-width:calc(var(--game-stage-width) - 32px);transform:translateX(-50%)}
+body .event-nearby{width:calc(var(--game-stage-width) - 72px);max-width:calc(var(--game-stage-width) - 72px)}
 .ui-notification{max-width:calc(var(--game-stage-width) - 32px);padding:10px 14px;font-size:11px;border-radius:4px;background:#192820eb;border:0;border-left:2px solid #9dbda4;box-shadow:0 4px 16px #07171455}
 
 /* Health and protection share the canonical cell geometry and mobile bounds. */
@@ -73,6 +76,7 @@ body .event-nearby,body #objective{box-sizing:border-box;left:50%;right:auto;wid
 .ui-health-segments>i.is-armored:after{content:'';position:absolute;inset:-1px -1px 2px;border:1px solid #bcc5c5;border-radius:inherit;background:linear-gradient(130deg,transparent 47%,#424f52 48%,#d1d8d5 51%,transparent 52%),linear-gradient(#aab4b3,#667476 48%,#879391);box-shadow:inset 0 1px #e0e5de66,0 1px 2px #071714aa}
 .ui-health-progress{position:relative;display:block;flex:1;min-width:0;height:100%;overflow:hidden;box-sizing:border-box;border:1px solid #789b8b;border-radius:5px 1px 5px 1px;background:#243a36}
 .ui-health-progress>i{position:absolute;top:0;bottom:0;display:block;pointer-events:none}
+.ui-health-progress-value{position:absolute;z-index:3;inset:0;display:flex;align-items:center;justify-content:center;color:#f5f4e8;font:700 9px/1 var(--ui-font);white-space:nowrap;text-shadow:0 1px 2px #071714,0 0 3px #071714;pointer-events:none}
 .ui-health-progress-fill{left:0;background:linear-gradient(100deg,#86baa5,#c8e2c9);box-shadow:0 0 5px #9adfcd20;transition:width 120ms linear}
 .ui-health-progress-regen{z-index:1;background:linear-gradient(100deg,#70a993,#c8e2c9);box-shadow:inset 0 0 0 1px #d8f1dd55,0 0 6px #9adfcd3d;transition:left 120ms linear,width 120ms linear}
 .ui-health-progress-armor{z-index:2;border-inline:1px solid #bcc5c5;background:linear-gradient(130deg,transparent 47%,#424f52 48%,#d1d8d5 51%,transparent 52%),linear-gradient(#aab4b3,#667476 48%,#879391);box-shadow:inset 0 1px #e0e5de66,0 1px 2px #071714aa}
@@ -101,6 +105,7 @@ body .event-nearby,body #objective{box-sizing:border-box;left:50%;right:auto;wid
 /* Desktop home and catalog fill the browser like gameplay. The map and the
    remaining dialogs continue to use the portrait stage token. */
 @media (min-width:600px) and (min-height:600px) and (hover:hover) and (pointer:fine){
+  .ui-dialog[data-background=menu]::backdrop{background-image:linear-gradient(#08141370,#08141370),url('/assets/ui/menu-art-desktop-v1.png')}
   body .ui-dialog[data-screen=home]{width:100vw;max-width:none}
   body .ui-dialog[data-screen=home] .ui-home{background-image:url('/assets/ui/menu-art-desktop-v1.png');background-position:center;background-size:cover}
   body .ui-dialog[data-screen=home] .ui-home-actions{width:min(520px,calc(100vw - 64px));margin-inline:auto}
@@ -110,3 +115,19 @@ body .event-nearby,body #objective{box-sizing:border-box;left:50%;right:auto;wid
 .ui-hand-slot.is-weapon-off .ui-part-art{opacity:.35;filter:grayscale(1)}
 .ui-hand-slot.is-weapon-off .ui-ammo{color:#e5eae3;background:#25302e;white-space:nowrap}
 .ui-hand-slot:focus-visible{outline:2px solid var(--ui-mint);outline-offset:2px}
+
+/* Compact home variation of the shared settings slider. */
+.ui-home-difficulty{--button-rim:5px;--button-radius:18px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:8px 20px;font-size:13px;color:var(--ui-text);letter-spacing:normal;text-align:left}
+.ui-home-difficulty .ui-slider-row{grid-column:2;grid-row:1;min-width:0;grid-template-columns:1fr;margin:0;gap:0}
+.ui-home-difficulty .ui-slider-row>span:first-child,.ui-home-difficulty .ui-slider-control>output{display:none}
+.ui-home-difficulty .ui-slider-control{display:contents}
+.ui-home-difficulty .ui-slider-control>input{grid-column:1;grid-row:1;margin:0}
+
+.ui-home-difficulty-ends{display:contents;font-size:13px;color:var(--ui-text)}
+.ui-home-difficulty-ends>span:first-child{grid-column:1;grid-row:1}
+.ui-home-difficulty-ends>span:last-child{grid-column:3;grid-row:1}
+
+/* Keyboard focus belongs to the grip, rather than a frame around the rail. */
+.ui-home-difficulty .ui-slider-control input:focus-visible{outline:none}
+.ui-home-difficulty input:focus-visible::-webkit-slider-thumb{outline:2px solid var(--ui-ivory);outline-offset:2px}
+.ui-home-difficulty input:focus-visible::-moz-range-thumb{outline:2px solid var(--ui-ivory);outline-offset:2px}

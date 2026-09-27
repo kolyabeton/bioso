@@ -6,8 +6,9 @@ alwaysApply: true
 # Browser game test hygiene
 
 - Run interactive game tests only in the Codex in-app browser, as required by `AGENTS.md`.
-- Disable the game's master sound before gameplay or any interaction that can unlock audio. Prefer a supported `sound=0` test-route parameter; otherwise turn sound off in the game settings first.
-- Never use `sound=1` for an agent test unless the user explicitly requests an audible check.
+- Keep every agent-controlled Codex in-app browser tab silent at all times.
+- Disable the page or game's master sound before gameplay or any interaction that can unlock audio. Prefer a supported `sound=0` test-route parameter; otherwise turn sound off in the page settings first.
+- Never enable sound or use `sound=1` in an agent-controlled browser, even for an audible check. If a page cannot be kept silent, stop browser work and report the limitation.
 - After the required checks and evidence are complete, close every in-app browser tab opened by the agent for that test.
 - Never close a tab opened by the user or another task, and do not keep a finished test tab alive as a deliverable or handoff.
 - Stop a local preview or development server that was started only for the finished browser test.

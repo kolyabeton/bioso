@@ -1,0 +1,140 @@
+{
+  "timeline": [
+    {
+      "kind": "intro",
+      "source": "artifacts/trailer-bioso-20260918/kling/kling-intro-6s.mp4",
+      "sourceStart": 0,
+      "start": 0,
+      "duration": 6,
+      "filter": "crop=1580:888:0:140,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 0,
+      "start": 6,
+      "duration": 0.5,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-overhead-dense.mp4",
+      "sourceStart": 1,
+      "start": 6.5,
+      "duration": 1.5,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 3.5,
+      "start": 8.0,
+      "duration": 1.2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-orbit-dense.mp4",
+      "sourceStart": 0.5,
+      "start": 9.2,
+      "duration": 1.3,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 5.5,
+      "start": 10.5,
+      "duration": 1,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-overhead-dense.mp4",
+      "sourceStart": 4,
+      "start": 11.5,
+      "duration": 1.5,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 9.5,
+      "start": 13.0,
+      "duration": 1.2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-orbit-dense.mp4",
+      "sourceStart": 8,
+      "start": 14.2,
+      "duration": 1.8,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 11.5,
+      "start": 16.0,
+      "duration": 1.3,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/fast-overhead-dense.mp4",
+      "sourceStart": 8,
+      "start": 17.3,
+      "duration": 1.5,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 16,
+      "start": 18.8,
+      "duration": 1.2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "battle",
+      "source": "artifacts/trailer-bioso-20260918/raw/boss-open-map.mp4",
+      "sourceStart": 7,
+      "start": 20.0,
+      "duration": 1.8,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ui",
+      "source": "/Users/serg/Downloads/BIOSO-trailer-EN-16x9.mp4",
+      "sourceStart": 18,
+      "start": 21.8,
+      "duration": 1.2,
+      "filter": "scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "explosion",
+      "source": "artifacts/trailer-bioso-20260918/raw/hero-explosion.mp4",
+      "sourceStart": 10,
+      "start": 23.0,
+      "duration": 3,
+      "filter": "crop=960:540,scale=1280:720:flags=lanczos"
+    },
+    {
+      "kind": "ending",
+      "source": "artifacts/trailer-bioso-20260918/kling/kling-ending-first-2s.mp4",
+      "sourceStart": 0,
+      "start": 26.0,
+      "duration": 2,
+      "filter": "crop=1776:1000:72:0,scale=1280:720:flags=lanczos"
+    }
+  ],
+  "changes": [
+    "First boss shot replaced by fast side-camera movement",
+    "Crossfade from explosion to running beetle: 0.3s"
+  ],
+  "audio": "silent draft",
+  "fullDecode": "passed",
+  "sha256": "c96d1b3b81ec2ebb91dd03450eae630c38b1b61bb128423f2ab8256e17bbfe75",
+  "verification": "Full sequential decode and contact sheet checked; replaced boss at 14-15 seconds and crossfade at ending"
+}

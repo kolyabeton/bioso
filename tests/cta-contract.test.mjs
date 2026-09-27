@@ -16,9 +16,8 @@ test('primary CTAs are green-filled and preserve each screen action order',async
   assert.match(events,/if\(directDeal\)primary=button\('Принять',\{action:'deal-accept','data-key':directDeal,variant:'primary'/);
   assert.doesNotMatch(screens,/deal-confirm|deal-review/);
   for(const contract of [
-    /footer\(secondary\+primary\)/,
+    /footer\(button\('Забрать',[\s\S]*?\)\+button\('Установить',[\s\S]*?variant:'primary'/,
     /footer\(button\('Назад',[^}]+\}\)\+button\('Установить корпус',[^}]+variant:'primary'/,
-    /footer\(button\('Отмена',[^}]+\}\)\+button\('Снять в инвентарь',[^}]+variant:'primary'/,
     /footer\(button\('В меню',[^}]+\}\)\+\(won.*variant:'primary'/,
   ])assert.match(screens,contract);
 });

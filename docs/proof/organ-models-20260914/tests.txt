@@ -1,0 +1,22 @@
+✔ runtime library contains valid GLBs and equipment references resolve (508.462083ms)
+✔ fitting leaves cached geometry unchanged and places a limb under its socket (5.799ms)
+✔ starter pistol resolves to a dedicated articulated arm model (2.924958ms)
+✔ mixed root and normal legs average speed, swapping and removing immediately recompute (8.057667ms)
+✔ every chassis supports independently typed legs and sparse slots preserve physical identity (34.346417ms)
+✔ organ mechanical effects do not depend on a loaded exterior mesh (3.110625ms)
+✔ new weapon models are distinct; legacy hammer remains a functional shield bash (1.697584ms)
+✔ root unlock remains available to profiles that already earned the old five minute reward (1.096792ms)
+✔ real GLB legs stay above ground and extend outwards on either side (638.74025ms)
+✔ unregistered loot cannot interrupt frames or hide other pickups (41.803042ms)
+✔ ground item and affordance share the live terrain height without terrain clipping (1.95125ms)
+✔ all icon organs mount on every real chassis with sealed rear sockets (2669.842042ms)
+✔ sparse organ slots stay fixed and retired async models cannot reappear (6.76225ms)
+✔ every organ retains the same visual through pickup, equipment and discard (6.646416ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3713.639375

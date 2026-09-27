@@ -1,7 +1,9 @@
 import {organEffect} from './body-traits.js';
-import {WEAPONS} from '../catalog.js';
+import {BODIES,WEAPONS,INCREMENTS} from '../catalog.js';
+export const stabilizerPartReduction=(s,p)=>.15*(1+.2*((p.tier??1)-1))*(1+(p.upgrades?.power||0)*INCREMENTS.power)*organEffect(s,'stabilizer');
+export const stabilizerReloadReduction=s=>Math.min(.8,(s.organs||[]).filter(p=>p?.key==='stabilizer').reduce((sum,p)=>sum+stabilizerPartReduction(s,p),0));
 export const ORGAN_UPGRADE_STATS=Object.freeze({mirrorGland:'resonance',reflexNerve:'sensorDodge',regen:'regenRate',repairGland:'traitBoost',armor:'plateCapacity'});
-export const upgradeLimit=p=>p.key==='armor'?2:(Object.hasOwn(WEAPONS,p.key)||ORGAN_UPGRADE_STATS[p.key]?20:10);
+export const upgradeLimit=p=>Object.hasOwn(BODIES,p.key)?10:p.key==='repairGland'?10:p.key==='slime'?10:p.key==='armor'?2:(Object.hasOwn(WEAPONS,p.key)||ORGAN_UPGRADE_STATS[p.key]?20:10);
 export const organUpgradeLevel=(p,stat)=>Math.max(0,Math.min(upgradeLimit(p),p.upgrades?.[stat]||0));
 export const recoveryMultiplier=(p,stat)=>1+.03*organUpgradeLevel(p,stat);
 export const sensorMultiplier=p=>1+.05*organUpgradeLevel(p,'sensorDodge');

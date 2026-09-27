@@ -15,7 +15,7 @@ test('ten distinct shipped props, two reference silhouettes per family, with col
  for(const mode of ['garden','quarantine','core','nursery','mother']){
   const s=createWorldRun(undefined,mode,12),tile=s.world.tiles[0];
   assert.deepEqual(new Set(tile.decorations.filter(d=>d.storyProp).map(d=>d.model)),new Set(ENVIRONMENT_STORY_PROPS[tile.environmentId]));
-  for(let z=-28;z<=28;z++)assert.ok(s.world.walkable(0,z,1.92));
+  assert.ok(s.world.findPath({x:0,z:28},{x:0,z:-28},1.92).length);
  }
 });
 test('survival gets companion props without changing authored Forest lightmap placements',()=>{

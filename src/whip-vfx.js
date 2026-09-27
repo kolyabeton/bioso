@@ -1,3 +1,4 @@
+import {WHIP_HIT_PHASE,WHIP_PULL_PHASE} from './whip-timing.js';
 import * as T from 'three';
 
 const SEGMENTS=56,SIDES=8;
@@ -18,7 +19,8 @@ export function createWhipVfx(){
  const flash=new T.Mesh(new T.PlaneGeometry(1,1),new T.ShaderMaterial({uniforms:{strength:{value:0}},transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false,
   vertexShader:'varying vec2 vUv;void main(){vUv=uv;vec4 center=modelViewMatrix*vec4(0.,0.,0.,1.);center.xy+=position.xy*.62;gl_Position=projectionMatrix*center;}',
   fragmentShader:'varying vec2 vUv;uniform float strength;void main(){vec2 p=(vUv-.5)*2.;float core=exp(-dot(p,p)*18.);float rays=exp(-abs(p.x)*32.)*exp(-abs(p.y)*4.)+exp(-abs(p.y)*32.)*exp(-abs(p.x)*4.);gl_FragColor=vec4(1.,.8,.43,(core+rays*.35)*strength);}'
- }));flash.name='whip-tip-crack';root.add(flash);root.userData.flash=flash;return root;
+ }));flash.name='whip-tip-crack';root.add(flash);root.userData.flash=flash;
+ const hooks=new T.LineSegments(new T.BufferGeometry(),new T.LineBasicMaterial({color:0x92734b,transparent:true,opacity:.8}));hooks.name='whip-grab-tethers';hooks.frustumCulled=false;root.add(hooks);root.userData.hooks=hooks;root.userData.hookTargets=[];return root;
 }
 
 /** The curve starts at the actual hand and terminates on the target surface,
@@ -27,21 +29,24 @@ export function alignWhipVfx(root,arm,strike,hero){
  if(!strike)return;
  hero.updateWorldMatrix(true,true);arm.localToWorld(origin.set(0,0,.55));
  point.set(strike.tx,(strike.ty??0)+Math.min(.7,(strike.targetRadius??.48)*.8),strike.tz);
+ if(strike.strikeRange)point.set((strike.originX??hero.position.x)+Math.sin(strike.aim)*strike.strikeRange,point.y,(strike.originZ??hero.position.z)+Math.cos(strike.aim)*strike.strikeRange);
  if(!Number.isFinite(point.x)||!Number.isFinite(point.z))return;
- direction.subVectors(point,origin);const distance=direction.length();direction.normalize();point.addScaledVector(direction,-Math.min(strike.targetRadius??.48,distance*.4));arm.worldToLocal(point);
+ direction.subVectors(point,origin);const distance=direction.length();direction.normalize();if(!strike.strikeRange)point.addScaledVector(direction,-Math.min(strike.targetRadius??.48,distance*.4));arm.worldToLocal(point);
  root.userData.target.copy(point).sub(root.position);root.userData.side=arm.userData.side??1;
+ root.userData.hookTargets=(strike.targets||[]).filter(e=>e.hp>0).map(e=>{const v=new T.Vector3(e.x,(e.y??0)+Math.min(.7,(e.radius??.48)*.8),e.z);arm.worldToLocal(v);return v.sub(root.position);});
 }
 
 export function updateWhipVfx(root,strike,reduced=false){
  const data=root.userData;
- if(!strike){root.visible=false;data.previousPhase=null;data.sparks.count=0;return false;}
+ if(!strike){root.visible=false;data.previousPhase=null;data.sparks.count=0;data.hooks.visible=false;return false;}
  const phase=clamp(strike.phase??0),previous=data.previousPhase;data.previousPhase=phase;root.visible=phase>.035&&phase<.97;
  const target=data.target,length=target.length(),horizontal=Math.hypot(target.x,target.z)||1,sideX=target.z/horizontal,sideZ=-target.x/horizontal;
- const throwOut=smooth((phase-.12)/.32),returning=smooth((phase-.58)/.4),reach=(.5+.5*throwOut)*(1-returning*.6);
+ const throwOut=smooth((phase-.12)/(WHIP_HIT_PHASE-.12)),returning=smooth((phase-WHIP_PULL_PHASE)/.43),reach=(.15+.85*throwOut)*(1-returning*.98);
  const curl=(1-throwOut)*1.15+returning*.9,travel=phase*2.2;
  for(let i=0;i<=SEGMENTS;i++){
   const u=i/SEGMENTS,wave=Math.sin(u*Math.PI*2.1-travel*5.3)*Math.sin(Math.PI*u),bend=(reduced?0:wave*curl*Math.min(length*.32,1.7)*data.side);
-  data.points[i].set(target.x*u*reach+sideX*bend,target.y*u*reach+(reduced?0:Math.sin(Math.PI*u)*curl*.55),target.z*u*reach+sideZ*bend);
+  const sweep=data.side*(smooth((phase-.16)/.32)-.5)*2.8*(1-returning),c=Math.cos(sweep),sn=Math.sin(sweep);
+  data.points[i].set((target.x*c+target.z*sn)*u*reach+sideX*bend,target.y*u*reach+(reduced?0:Math.sin(Math.PI*u)*curl*.55),(target.z*c-target.x*sn)*u*reach+sideZ*bend);
  }
  const positions=data.cable.geometry.attributes.position,normals=data.cable.geometry.attributes.normal;
  for(let i=0;i<=SEGMENTS;i++){
@@ -52,11 +57,14 @@ export function updateWhipVfx(root,strike,reduced=false){
   }
  }
  positions.needsUpdate=normals.needsUpdate=true;
- const crack=smooth((phase-.4)/.055)*(1-smooth((phase-.48)/.18));data.cable.material.emissiveIntensity=.025+crack*.16;
+ const crack=smooth((phase-(WHIP_HIT_PHASE-.035))/.035)*(1-smooth((phase-WHIP_HIT_PHASE)/.14));data.cable.material.emissiveIntensity=.025+crack*.16;
  data.flash.position.copy(data.points[SEGMENTS]);data.flash.material.uniforms.strength.value=crack*(reduced?.35:1);
- const sparks=data.sparks,age=(phase-.44)*.42;sparks.count=!reduced&&age>0&&age<.14?12:0;
+ const sparks=data.sparks,age=(phase-WHIP_HIT_PHASE)*(strike.duration??.42);sparks.count=!reduced&&age>0&&age<.14?12:0;
  for(let i=0;i<sparks.count;i++){
   const a=i*2.39996,speed=.8+(i%4)*.5,fade=1-age/.14;dummy.position.copy(target).add(point.set(Math.cos(a)*speed*age,age*(1+i%3)-age*age*5,Math.sin(a)*speed*age));dummy.rotation.set(a,phase*12+i,a*.5);dummy.scale.set(.025*fade,.025*fade,.1*fade);dummy.updateMatrix();sparks.setMatrixAt(i,dummy.matrix);
  }
- sparks.instanceMatrix.needsUpdate=true;return previous!=null&&previous<.44&&phase>=.44;
+ sparks.instanceMatrix.needsUpdate=true;
+ const hooks=data.hooks;hooks.visible=!!strike.whipGather&&phase>=WHIP_PULL_PHASE&&phase<.95&&data.hookTargets.length>0;
+ if(hooks.visible){const values=[];for(const target of data.hookTargets){for(let i=0;i<12;i++){for(const u of [i/12,(i+1)/12]){values.push(target.x*u,target.y*u+Math.sin(u*Math.PI)*.12*(1-returning),target.z*u);}}}const existing=hooks.geometry.attributes.position;if(existing?.array.length===values.length){existing.array.set(values);existing.needsUpdate=true;}else hooks.geometry.setAttribute('position',new T.Float32BufferAttribute(values,3));hooks.material.opacity=.8*(1-smooth((phase-.8)/.15));}
+ return previous!=null&&previous<WHIP_HIT_PHASE&&phase>=WHIP_HIT_PHASE;
 }

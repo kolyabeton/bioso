@@ -47,6 +47,7 @@ test('browser review routes support the mandatory silent mode',()=>{
 });
 
 test('dynamic stats, units and longest phrases translate without changing values',()=>{
+  assert.equal(translateText('УР. 1 · Страж'),'LVL. 1 · Guardian');
   assert.equal(translateText('УРОВЕНЬ 12 · Урон руки +25% · 1.5с'),'LEVEL 12 · Arm damage +25% · 1.5s');
   assert.equal(translateText('Здоровье 2 из 3. Броня 1 из 2. Щит готов'),'Health 2 of 3. Armor 1 of 2. Shield ready');
   assert.equal(translateText('Биомасса: 120 · Вес 8 из 20'),'Biomass: 120 · Weight 8 of 20');
@@ -56,6 +57,22 @@ test('dynamic stats, units and longest phrases translate without changing values
   assert.equal(translateText('Садовник · Урон руки +25%','ru'),'Садовник · Урон руки +25%');
   assert.equal(translateText('BIOSO · 60 FPS · unknown_identifier'),'BIOSO · 60 FPS · unknown_identifier');
   assert.equal(translateText('СборкаНеизвестная'),'СборкаНеизвестная');
+});
+
+test('complete catalog and gameplay descriptions have English coverage',async()=>{
+  const modules=['catalog.js','story-evidence.js','story-cues.js','systems/encounters.js','systems/abilities.js','systems/body-traits.js','systems/achievements.js','systems/survival-achievements.js','systems/events/definitions.js','gameplay-modules/event-presentation.js','systems/chassis-unlocks.js','systems/support-chassis.js','systems/organ-upgrades.js','systems/consumable-drops.js','systems/extra-parts.js','systems/weapon-specialization.js','systems/hand-compatibility.js','systems/sets/affixes.js','systems/sets/definitions.js','systems/sets/bonuses.js','systems/sets/mutations.js','systems/meta-progression.js','ui/soul-copy.js','ui/soul-effect-stats.js'];
+  const missed=[];
+  function walk(value,path,seen){
+    if(typeof value==='string'){
+      if(/[А-Яа-яЁё]/u.test(value)&&/[А-Яа-яЁё]/u.test(translateText(value,'en')))missed.push(`${path}: ${value}`);
+      return;
+    }
+    if(!value||typeof value!=='object'||seen.has(value))return;
+    seen.add(value);
+    for(const [key,next] of Object.entries(value))walk(next,`${path}.${key}`,seen);
+  }
+  for(const file of modules)walk(await import(`../src/${file}`),file,new WeakSet());
+  assert.deepEqual(missed,[]);
 });
 
 test('production copy has English coverage, including catalog data and template fragments',()=>{

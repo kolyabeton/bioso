@@ -16,7 +16,7 @@ for(const [key,scenario] of Object.entries(DUNGEON_SCENARIOS)){
   assert.equal(s.world.missionLine,true);assert.equal(s.world.environmentId,key==='roots'?'root-forest':'quiet-scrapyard');assert.equal(s.world.tiles[0].decorations.length,0);
   assert(n.aggroZones.length>=3);assert(n.aggroZones.every(zone=>zone.members.length>=3&&zone.members.length<=5));assert.equal(n.aggroZones.flatMap(zone=>zone.members).length,scenario.count);
   assert(n.aggroZones.every(zone=>zone.state==='idle'));
-  const dungeonMarkers=filteredMapMarkers(s);assert.equal(dungeonMarkers.length,n.aggroZones.length);assert(dungeonMarkers.every(marker=>marker.dungeonZone));
+  const dungeonMarkers=filteredMapMarkers(s);assert.equal(dungeonMarkers.length,n.aggroZones.length+1);assert.equal(dungeonMarkers.filter(marker=>marker.dungeonZone).length,n.aggroZones.length);assert.equal(dungeonMarkers.at(-1).type,key==='roots'?'altar_organs':'altar');
   assert.match(atlasSelection(s,dungeonMarkers[0].id).access,/Группа [3-5] · агро 8 м/);
   const layout=dungeonReviewProof(s,n).layout;
   assert.deepEqual(layout,{nodes:17,edges:20,branches:6,deadEnds:2,loops:4,extent:64*1.8});

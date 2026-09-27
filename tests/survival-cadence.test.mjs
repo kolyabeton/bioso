@@ -5,7 +5,7 @@ import {createWorldRun} from '../src/world-run.js';
 import {SURVIVAL_CADENCE,survivalSpawnLimit,survivalWavePosition,survivalWaveSpec} from '../src/systems/survival-cadence.js';
 import {tickSurvivalBosses} from '../src/systems/survival-bosses.js';
 import {tickSurvivalElites} from '../src/systems/survival-elites.js';
-import {assignEnemyAssembly} from '../src/systems/enemy-assembly.js';
+import {eligibleRecipes,assignEnemyAssembly} from '../src/systems/enemy-assembly.js';
 import {waveRun,tickWave,openWave,members,clearPack,drainPack,nextWave} from './helpers/survival-wave.mjs';
 
 test('only the introductory habitat starts the finite wave cycle, once',()=>{
@@ -18,33 +18,48 @@ test('only the introductory habitat starts the finite wave cycle, once',()=>{
 });
 
 for(const duration of [1,400])test(`clearing a pack after ${duration}s starts reinforcement, then exactly 20 active seconds of rest`,()=>{
- const s=openWave(waveRun());assert.equal(members(s).length,20);
- s.time+=duration;tickWave(s);assert.equal(s.waves.cadence.phase,'main');assert.equal(s.metrics.spawned,20);
+ const s=openWave(waveRun());assert.equal(members(s).length,30);
+ s.time+=duration;tickWave(s);assert.equal(s.waves.cadence.phase,'main');assert.equal(s.metrics.spawned,30);
  // The roster outlasts the live cap, so clearing the first wall only streams in the rest of it.
  for(const e of members(s))hurtEnemy(s,e,1e12);tickWave(s);
- assert.equal(s.waves.cadence.phase,'main');assert.equal(s.waves.cadence.issued,36);
- const stragglers=members(s);assert.equal(stragglers.length,16);
- for(const e of stragglers.slice(0,6))hurtEnemy(s,e,1e12);
+ assert.equal(s.waves.cadence.phase,'main');assert.equal(s.waves.cadence.issued,54);
+ const stragglers=members(s);assert.equal(stragglers.length,24);
+ for(const e of stragglers.slice(0,14))hurtEnemy(s,e,1e12);
  assert.equal(s.waves.cadence.phase,'main');assert.equal(members(s).length,10);
  // The handover does not wait for the last few, but nobody despawns either: the
  // stragglers stay on the field and keep taking room in the live cap.
- const kills=s.kills;hurtEnemy(s,stragglers[6],1e12);
+ const kills=s.kills;hurtEnemy(s,stragglers[14],1e12);
  assert.equal(s.waves.cadence.phase,'reinforcement');assert.equal(s.kills,kills+1);
- const held=stragglers.slice(7);assert.equal(held.length,9);assert.ok(held.every(e=>e.hp>0&&s.enemies.includes(e)));
- tickWave(s);assert.equal(members(s).length,11);assert.equal(s.enemies.filter(e=>e.hp>0).length,20);
+ const held=stragglers.slice(15);assert.equal(held.length,9);assert.ok(held.every(e=>e.hp>0&&s.enemies.includes(e)));
+ tickWave(s);assert.equal(members(s).length,21);assert.equal(s.enemies.filter(e=>e.hp>0).length,30);
  s.time+=1;drainPack(s);assert.equal(s.waves.cadence.phase,'rest');const clearedAt=s.time;
  assert.ok(held.every(e=>e.hp>0&&s.enemies.includes(e)));
  const spawned=s.metrics.spawned;for(const delta of [0,1,15,19.999]){s.time=clearedAt+delta;tickWave(s);assert.equal(s.metrics.spawned,spawned);assert.equal(s.waves.cadence.index,0);}
  s.time=clearedAt+20;tickWave(s);assert.equal(s.waves.cadence.phase,'main');assert.equal(s.waves.cadence.index,1);
- assert.equal(members(s).length,17);assert.equal(s.enemies.filter(e=>e.hp>0).length,26);
+ assert.equal(members(s).length,30);assert.equal(s.enemies.filter(e=>e.hp>0).length,39);
 });
 
 test('warmup has a capped mass trickle and no automatic elite promotions',()=>{
  const s=waveRun();spawnEnemy(s,'boss',{x:200,z:0});s.normalSpawnCount=29;
  for(let second=1;second<=200;second++){s.time=second;tickWave(s,1);}
- assert.equal(s.waves.cadence,undefined);assert.ok(s.enemies.filter(e=>e.kind==='normal').length<=5);assert.ok(!s.enemies.some(e=>e.waveElite));
+ assert.equal(s.waves.cadence,undefined);assert.ok(s.enemies.filter(e=>e.kind==='normal').length<=8);assert.ok(!s.enemies.some(e=>e.waveElite));
 });
 
+test('a Biter budget slot expands atomically into thirty enemies with one group id',()=>{
+ const s=openWave(waveRun(17),90);for(let i=0;i<10&&!members(s).some(e=>e.recipeId==='biter');i++){for(const e of members(s))hurtEnemy(s,e,1e12);tickWave(s);}
+ const biters=members(s).filter(e=>e.recipeId==='biter');
+ assert.equal(biters.length,30);assert.equal(new Set(biters.map(e=>e.groupId)).size,1);
+ assert.equal(s.waves.cadence.rosters[0].filter(member=>member.recipeId==='biter').length,1);
+ assert.equal(s.waves.cadence.rosters[0].find(member=>member.recipeId==='biter').count,30);
+});
+
+
+test('survival rest scales with difficulty: 50 seconds on easy, 20 on hard',()=>{
+ const easy=openWave(waveRun());easy.difficulty=0;drainPack(easy);tickWave(easy);drainPack(easy);
+ assert.equal(easy.waves.cadence.phase,'rest');assert.equal(easy.waves.cadence.restUntil,easy.time+50);
+ const hard=openWave(waveRun());hard.difficulty=100;drainPack(hard);tickWave(hard);drainPack(hard);
+ assert.equal(hard.waves.cadence.phase,'rest');assert.equal(hard.waves.cadence.restUntil,hard.time+20);
+});
 test('later habitat bosses never replace either pack or its rest timer',()=>{
  const s=openWave(waveRun());
  for(const phase of ['main','reinforcement','rest']){
@@ -70,11 +85,11 @@ for(const phase of ['main','reinforcement','rest'])test(`timed invasion and minu
 test('failed placement and full slots retain exact pending members and elite quota',()=>{
  const s=waveRun();s.world.walkable=()=>false;openWave(s);assert.equal(s.waves.cadence.issued,0);assert.equal(s.waves.eliteWave.issued,0);
  const roster=structuredClone(s.waves.cadence.rosters);s.world.walkable=()=>true;
- const foreign=Array.from({length:20},(_,i)=>({id:900+i,hp:1,x:0,z:0}));s.enemies.push(...foreign);s.time+=500;tickWave(s);
+ const foreign=Array.from({length:30},(_,i)=>({id:900+i,hp:1,x:0,z:0}));s.enemies.push(...foreign);s.time+=500;tickWave(s);
  assert.equal(s.waves.cadence.issued,0);assert.deepEqual(s.waves.cadence.rosters,roster);
  foreign[0].hp=0;tickWave(s);assert.equal(members(s).length,1);assert.equal(s.waves.cadence.issued,1);
  clearPack(s);assert.equal(s.waves.cadence.phase,'main','unissued roster is not a clear');
- for(const e of foreign)e.hp=0;tickWave(s);assert.equal(s.waves.cadence.issued,21);assert.equal(members(s).length,20);assert.equal(s.waves.eliteWave.issued,1);
+ for(const e of foreign)e.hp=0;tickWave(s);assert.equal(s.waves.cadence.issued,31);assert.equal(members(s).length,30);assert.equal(s.waves.eliteWave.issued,1);
 });
 
 test('pack strength and eligible roles remain frozen across a slow battle and blocked placement',()=>{
@@ -117,9 +132,9 @@ test('failed straggler relocation keeps a living member and prevents a false cle
 
 test('superboss half cap delays pending pack members without reducing the finite roster',()=>{
  const s=waveRun();s.enemies.push({id:900,hp:1,kind:'boss',survivalSuperBoss:true,x:50,z:50});openWave(s);
- assert.equal(s.waves.softCap,10);assert.equal(members(s).length,9);assert.equal(s.waves.cadence.packSize,36);
+ assert.equal(s.waves.softCap,15);assert.equal(members(s).length,14);assert.equal(s.waves.cadence.packSize,54);
  drainPack(s);tickWave(s);
- assert.equal(s.waves.cadence.phase,'reinforcement');assert.equal(s.metrics.spawned,45);
+ assert.equal(s.waves.cadence.phase,'reinforcement');assert.equal(s.metrics.spawned,68);
 });
 
 test('pause for rewards, level choices and an actual challenge preserves remaining rest',()=>{
@@ -134,14 +149,14 @@ test('pause for rewards, level choices and an actual challenge preserves remaini
 });
 
 test('jumping the clock does not skip waves or replace survivors',()=>{
- const s=openWave(waveRun());s.time=10000;tickWave(s);assert.equal(s.waves.cadence.index,0);assert.equal(s.metrics.spawned,20);
- drainPack(s);tickWave(s);drainPack(s);s.time+=10000;tickWave(s);assert.equal(s.waves.cadence.index,1);assert.equal(s.waves.cadence.packSize,82);assert.equal(s.waves.cadence.liveCap,39);assert.equal(members(s).length,39);
+ const s=openWave(waveRun());s.time=10000;tickWave(s);assert.equal(s.waves.cadence.index,0);assert.equal(s.metrics.spawned,30);
+ drainPack(s);tickWave(s);drainPack(s);s.time+=10000;tickWave(s);assert.equal(s.waves.cadence.index,1);assert.equal(s.waves.cadence.packSize,120);assert.equal(s.waves.cadence.liveCap,39);assert.equal(members(s).length,58);
 });
 
-test('late waves cap each roster at 200 and the field at 120',()=>{
+test('late wave budgets retain their base caps and apply fifty percent denser normal rosters and field',()=>{
  assert.deepEqual([0,1,14,50].map(i=>survivalWaveSpec(i).packSize),[36,47,188,200]);
  const s=openWave(waveRun());for(let i=0;i<18;i++)nextWave(s);
- assert.equal(s.waves.cadence.packSize,200);assert.equal(members(s).length,120);assert.equal(SURVIVAL_CADENCE.rest,20);
+ assert.equal(s.waves.cadence.packSize,299);assert.equal(members(s).length,180);assert.equal(SURVIVAL_CADENCE.rest,20);
 });
 
 test('reinforcement expires at 15 active seconds with survivors; rest lasts 20 seconds',()=>{
@@ -161,7 +176,7 @@ test('abandoned reinforcement survivors and descendants return to the front inst
  assert.equal(s.kills,kills);assert.equal(s.xpDrops.length,xp);
  // The next wave still opens; the survivors simply take their room in the live cap.
  s.time=s.waves.cadence.restUntil;tickWave(s);assert.equal(s.waves.cadence.index,1);
- assert.equal(members(s).length,5);assert.equal(s.enemies.filter(e=>e.hp>0).length,26);
+ assert.equal(members(s).length,8);assert.equal(s.enemies.filter(e=>e.hp>0).length,39);
 });
 
 test('reinforcement timeout cancels unissued slots and late deaths cannot extend rest',()=>{
@@ -191,4 +206,16 @@ test('moving fronts favor the route ahead with valid safe approach positions',()
  assert.ok(points.filter(p=>p.x>s.player.x).length>150);
  for(const p of points)assert.ok(Math.hypot(p.x,p.z)>=20-1e-8&&Math.hypot(p.x,p.z)<=28+1e-8);
  s.world.walkable=()=>false;assert.equal(survivalWavePosition(s,.55),null);
+});
+
+for(const time of [0,30,90,120,180,300,480,960,1500])test(`both packs mix every unlocked role at ${time}s`,()=>{
+ for(let seed=1;seed<=20;seed++){
+  const s=openWave(waveRun(seed),time),expected=[...new Set(eligibleRecipes(time).map(r=>r.role))].sort();
+  for(const roster of s.waves.cadence.rosters){
+   const normal=roster.filter(e=>e.kind==='normal');
+   assert.deepEqual([...new Set(normal.map(e=>e.role))].sort(),expected);
+   if(expected.length>1)assert.equal(normal.filter(e=>e.role==='mass').length,Math.ceil(normal.length*SURVIVAL_CADENCE.massShare));
+  }
+  assert.deepEqual([...new Set(members(s).filter(e=>e.kind==='normal').map(e=>e.assemblyRole))].sort(),expected);
+ }
 });

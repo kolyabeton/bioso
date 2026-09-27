@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import * as T from 'three';
 import {MISSIONS} from '../src/catalog.js';
 import {BOSS_MODEL_IDS,bossModelId,fittedBossModel,createBossModelView} from '../src/boss-model-view.js';
+import {readBossGeometry} from './helpers/boss-glb.mjs';
+import {MISSION_BOSSES} from '../src/systems/mission-bosses.js';
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
 function source(){const root=new T.Group();const mesh=new T.Mesh(new T.BoxGeometry(2,4,3),new T.MeshStandardMaterial());mesh.position.set(0,2,0);mesh.userData.motionRole='leg-0';root.add(mesh);return root;}
 const enemy=(id=1)=>({id,kind:'boss',bossDesignId:BOSS_MODEL_IDS[0],hp:100,radius:1.7,x:0,y:2,z:0});
@@ -14,6 +16,18 @@ test('all mission design IDs resolve to bounded, textured production GLBs',()=>{
 });
 test('fitting preserves proportions, facing and floor origin without changing the template',()=>{
  const template=source(),model=fittedBossModel(template),b=new T.Box3().setFromObject(model),d=b.getSize(new T.Vector3());assert.ok(Math.abs(b.min.y)<1e-8);assert.ok(d.y<=1.85+1e-8);assert.ok(Math.abs(d.x/d.z-2/3)<1e-8);assert.equal(template.children[0].position.y,2);assert.equal(model.rotation.y,0);
+});
+test('all production boss silhouettes match their melee circles, preserving cathedral height',async()=>{
+ for(const id of BOSS_MODEL_IDS){
+ // Compare authored rest silhouettes; animated appendages have a small sway.
+ const scene=new T.Scene(),view=createBossModelView(scene,{load:async()=>readBossGeometry(id)}),e={...enemy(),bossDesignId:id,radius:MISSION_BOSSES[id].radius*2,y:0,frozenUntil:Infinity,visualHeight:id==='boss-root-cathedral'?10:undefined,bossCombat:{facing:.7}};
+ view.update([e],{x:0,z:20},0);await flush();view.update([e],{x:0,z:20},0);
+ const model=scene.getObjectByName('boss-asset:'+e.bossDesignId),point=new T.Vector3();let furthest=0;model.updateMatrixWorld(true);
+ model.traverse(o=>{if(!o.isMesh)return;const positions=o.geometry.attributes.position;for(let i=0;i<positions.count;i++){point.fromBufferAttribute(positions,i).applyMatrix4(o.matrixWorld);furthest=Math.max(furthest,Math.hypot(point.x-e.x,point.z-e.z));}});
+ assert.ok(furthest<=e.radius+1e-5,`${id}: silhouette ${furthest} exceeds melee circle ${e.radius}`);assert.ok(Math.abs(furthest-e.radius)<.0001,`${id}: oversized melee circle`);
+ if(e.visualHeight)assert.ok(Math.abs(new T.Box3().setFromObject(model).getSize(new T.Vector3()).y-10)<.0001);
+ view.dispose();
+ }
 });
 test('loading uses fallback, swaps exactly once, animates only from movement, respects pause, and resets',async()=>{
  const scene=new T.Scene(),template=source(),view=createBossModelView(scene,{load:async()=>template}),e=enemy(),player={x:0,z:5};

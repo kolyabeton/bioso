@@ -80,7 +80,7 @@ test('simulation actually returns an elite across flat tile boundaries',()=>{
  assert.ok(Math.hypot(e.x,e.z)<2,`returned to ${e.x}, ${e.z}`);assert.equal(e.territory.state,'idle');
 });
 test('public encounters are visible from level one but entry requires their level',()=>{
- const s=createWorldRun(undefined,'survival',12),publicNodes=s.encounters.nodes.filter(n=>ENCOUNTERS[n.type].kind!=='secret');
+ const s=createWorldRun(undefined,'survival',12),publicNodes=s.encounters.nodes.filter(n=>ENCOUNTERS[n.type].kind!=='secret'&&!n.dungeonId);
  assert.deepEqual(biomeMapMarkers(s).filter(m=>m.type).map(m=>m.id).sort(),publicNodes.map(n=>n.id).sort());
  assert.ok(biomeMapMarkers(s).filter(m=>m.type).every(m=>m.locked));
  assert.ok(!biomeMapMarkers(s).some(m=>m.type==='membrane'));

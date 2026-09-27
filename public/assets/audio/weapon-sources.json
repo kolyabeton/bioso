@@ -1,0 +1,50 @@
+[
+  {
+    "key": "seed",
+    "file": "approved-weapon-seed-smg.mp3",
+    "duration": 2.808,
+    "pageUrl": "https://pixabay.com/sound-effects/film-special-effects-submachine-gun-79846/",
+    "downloadUrl": "https://cdn.pixabay.com/audio/2022/03/15/audio_3f11ba9106.mp3",
+    "sha256": "05be5a0b7becc38fa179dfac13975fe9e637b6893d51d8df6818b23be7b69c22"
+  },
+  {
+    "key": "shotgun",
+    "file": "approved-weapon-shotgun.mp3",
+    "duration": 2.976,
+    "pageUrl": "https://pixabay.com/sound-effects/film-special-effects-shotgun-blast-352038/",
+    "downloadUrl": "https://cdn.pixabay.com/audio/2025/05/30/audio_87b126642c.mp3",
+    "sha256": "7de52422a631c7cc5bf123bdab1c29cedb1af078f8293e9ab23fb67310380a5a"
+  },
+  {
+    "key": "needle",
+    "file": "approved-weapon-needle-rifle.mp3",
+    "duration": 1.872,
+    "pageUrl": "https://pixabay.com/sound-effects/film-special-effects-rifle-gunshot-99749/",
+    "downloadUrl": "https://cdn.pixabay.com/audio/2022/03/24/audio_1dcc7d1df8.mp3",
+    "sha256": "33b2411178f21bbe534daa08b956b61a86cf8ad469c8393cfb75b90a6256d760"
+  },
+  {
+    "key": "whip",
+    "file": "approved-weapon-whip-slash.mp3",
+    "duration": 1.584,
+    "pageUrl": "https://pixabay.com/sound-effects/film-special-effects-sword-slash-and-swing-185432/",
+    "downloadUrl": "https://cdn.pixabay.com/audio/2024/01/11/audio_f5a8065509.mp3",
+    "sha256": "2e4742e14585772e8f0c2ea0834150df95f0c973f97b540a88370e109b0135e5"
+  },
+  {
+    "key": "fangs",
+    "file": "approved-weapon-fangs-silenced-gunshot.mp3",
+    "duration": 0.72,
+    "pageUrl": "https://pixabay.com/sound-effects/film-special-effects-silenced-gunshot-81063/",
+    "downloadUrl": "https://cdn.pixabay.com/audio/2022/03/15/audio_afe30d26db.mp3",
+    "sha256": "f24507cd62b3772f1fc5c3f136cea9f326ba2f1e8fe7d0dd1a51e6beef5d8451"
+  },
+  {
+    "key": "shieldArm",
+    "file": "approved-weapon-shield-bash.mp3",
+    "duration": 1.632,
+    "pageUrl": "https://pixabay.com/sound-effects/film-special-effects-sword-slash-with-metallic-impact-185435/",
+    "downloadUrl": "https://cdn.pixabay.com/audio/2024/01/11/audio_5341835895.mp3",
+    "sha256": "ea2ed6bc3c19e37b6fdd2c2850fc630bcb173f3db94d878a87f481db13e47876"
+  }
+]

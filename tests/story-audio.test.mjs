@@ -1,4 +1,8 @@
 import test from 'node:test';
+test('autoplay rejection retains the queued voice until the next user gesture',async()=>{
+ let attempts=0;const media=[];const voice=createStoryAudio('/',()=>({soundEnabled:true,effects:50,language:'ru'}),{createAudio:src=>{const a=fakeAudio(src);if(!src.includes('interference'))a.play=()=>{attempts++;if(attempts===1){a.paused=true;return Promise.reject(Object.assign(new Error('gesture required'),{name:'NotAllowedError'}));}a.paused=false;return Promise.resolve();};media.push(a);return a;},createContext:()=>{throw Error('no context');}});
+ voice.play({audio:'assets/audio/story/test.m4a',voice:'child'});await Promise.resolve();assert.match(voice.cue,/test.m4a/);voice.unlock();await Promise.resolve();assert.equal(attempts,2);assert.equal(voice.playing,true);voice.stop();
+});
 import assert from 'node:assert/strict';
 import {readFileSync,statSync} from 'node:fs';
 import {createHash} from 'node:crypto';

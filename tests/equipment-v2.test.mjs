@@ -7,18 +7,26 @@ import {legModelId,ARM_MODELS} from '../src/asset-models.js';
 import {creatureModel} from '../src/game-view.js';
 import {createMeleeAnimation} from '../src/melee-animation.js';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
+test('chassis speed bonus adds to the installed legs before percentage boosts',()=>{
+ const expected={wanderer:9,reactor:8,chimera:8,hecaton:7,broodmother:7,hunter:7,regulator:7};
+ for(const [key,speed] of Object.entries(expected)){
+  const s=createRun();s.body=createPart(s,key);s.arms=Array(BODIES[key].arms).fill(null);s.legs=Array.from({length:BODIES[key].legs},()=>createPart(s,'universal'));s.organs=Array(BODIES[key].organs).fill(null);
+  near(stats(s).speed,speed);
+  s.legs.fill(null);near(stats(s).speed,0);
+ }
+});
 test('mixed root and normal legs average speed, swapping and removing immediately recompute',()=>{
  const s=createRun();s.inventory=[];s.arms=[null,null];const root=createPart(s,'root');s.inventory.push(root);
- near(stats(s).speed,6);assert(equip(s,root.id,0));near(stats(s).speed,4);
- const other=createPart(s,'root');s.inventory.push(other);assert(equip(s,other.id,1));near(stats(s).speed,2);
- assert(unequip(s,'legs',0));near(stats(s).speed,1);
- const normal=s.inventory.find(p=>p.key==='universal');assert(equip(s,normal.id,0));near(stats(s).speed,4);
+ near(stats(s).speed,9);assert(equip(s,root.id,0));near(stats(s).speed,7);
+ const other=createPart(s,'root');s.inventory.push(other);assert(equip(s,other.id,1));near(stats(s).speed,5);
+ assert(unequip(s,'legs',0));near(stats(s).speed,4);
+ const normal=s.inventory.find(p=>p.key==='universal');assert(equip(s,normal.id,0));near(stats(s).speed,7);
 });
 test('every chassis supports independently typed legs and sparse slots preserve physical identity',()=>{
  for(const body of Object.keys(BODIES)){
   const s=createRun();s.arms=[null,null];s.legs=[createPart(s,'root'),createPart(s,'universal')];const rootId=s.legs[0].id;
   const next=createPart(s,body);s.inventory.push(next);assert(swapBody(s,next.id));s.inventory=[];
-  assert.equal(s.legs[0].id,rootId);near(stats(s).speed,8/BODIES[body].legs);
+  assert.equal(s.legs[0].id,rootId);near(stats(s).speed,8/BODIES[body].legs+(BODIES[body].baseSpeedBonus||0));
   s.legs[0]=null;const m=creatureModel(s);assert.equal(m.userData.legs.length,1);assert.equal(m.userData.legs[0].userData.slot,1);assert.equal(m.userData.legs[0].userData.partId,s.legs[1].id);
  }
  for(const key of Object.keys(LEGS))for(const setId of Object.keys(BODIES))assert.equal(legModelId({key,setId}),legModelId({key}));

@@ -1,10 +1,13 @@
-import {WEAPONS} from '../catalog.js';
+import {WEAPONS,BODY_BASE_BONUSES} from '../catalog.js';
 import {isMelee} from './weapon-specialization.js';
 import {abilityCompatibilitySummary,handMatches} from './hand-compatibility.js';
-import {ABILITIES,FALLBACKS,BRANCHES,abilityById,abilityLevel,abilityDescriptionAtLevel,learn,modifiers} from './abilities.js';
+import {ABILITIES,FALLBACKS,BRANCHES,OVERGROWTH_STEP,abilityById,abilityLevel,abilityDescriptionAtLevel,learn,modifiers} from './abilities.js';
 import {xpRequired} from './balance.js';
 import {combatTime} from './mutations.js';
 import {moveCreature} from '../gameplay-modules/event-collision.js';
+import {summonTuning} from './symbionts.js';
+import {resonanceBonus} from './organ-upgrades.js';
+import {affixBonus} from './sets/affixes.js';
 export {xpRequired};
 export function eligible(s,d){
  if(!d||abilityLevel(s,d.id)>=d.maxLevel)return false;
@@ -12,11 +15,13 @@ export function eligible(s,d){
  const learned=s.abilities.learned;
  if(d.requires.length&&!(d.requireMode==='all'?d.requires.every(id=>learned.includes(id)):d.requires.some(id=>learned.includes(id))))return false;
  if(['melee','ranged'].includes(d.branch)&&!s.arms.some(p=>p&&!p.disabled&&handMatches(p,d.branch)))return false;
+ if(d.branch==='ammo'&&!s.arms.some(p=>p&&!p.disabled&&handMatches(p,'magazine')))return false;
  if(d.branch==='projectiles'){
   const group=['projectiles.1','projectiles.2'].includes(d.id)?'directProjectile':'flyingProjectile';
   if(!s.arms.some(p=>p&&!p.disabled&&handMatches(p,group)))return false;
  }
  if(d.branch==='ricochet'&&!s.arms.some(p=>p&&!p.disabled&&handMatches(p,'ricochetProjectile')))return false;
+ if(d.branch==='detonation'&&summonTuning(s,modifiers(s)).count<1)return false;
  return true;
 }
 export function rollChoices(s,exclude=[]){
@@ -50,7 +55,8 @@ export function gainXP(s,amount){
  // Acceptance fixtures can exercise normal pickups without opening upgrade UI.
  if(s.progressionLocked){s.metrics.suppressedXP=(s.metrics.suppressedXP||0)+amount;return 0;}
  // Keep fractional bonus XP across pickups; a one-XP drop must benefit too.
- const bonus=amount*(modifiers(s).xpGain||0)+(s.xpBonusRemainder||0),wholeBonus=Math.floor(bonus+1e-9);
+ const equipment=[s.body,...s.arms,...s.legs,...s.organs].filter(Boolean).reduce((sum,p)=>sum+affixBonus(p,'xpGain'),0);
+ const bonus=amount*((modifiers(s).xpGain||0)+(BODY_BASE_BONUSES[s.body?.key]?.xpGain||0)+equipment)+(s.xpBonusRemainder||0),wholeBonus=Math.floor(bonus+1e-9);
  s.xpBonusRemainder=Math.max(0,bonus-wholeBonus);s.xp+=amount+wholeBonus;const fromLevel=s.level;
  while(s.xp>=xpRequired(s.level)){s.xp-=xpRequired(s.level);s.level++;s.pending++;}const gained=s.level-fromLevel;if(gained)(s.events??=[]).push({type:'level-up',fromLevel,toLevel:s.level,count:gained});if(s.pending&&!s.choices.length)rollChoices(s);return gained;}
 export function selectAbility(s,index){
@@ -68,4 +74,10 @@ export function abilityUpgradeDescription(d,level,nextLevel){
  return next.replace(ABILITY_VALUE,value=>{const before=current[index++];return before&&before!==value?`${before} → ${value}`:value;});
 }
 export function abilityCards(s){return s.choices.map((c,index)=>{const d=abilityById(c.id),level=abilityLevel(s,d.id),nextLevel=Math.min(d.maxLevel,level+1);return{...d,description:abilityUpgradeDescription(d,level,nextLevel),compatibilityCategory:abilityCompatibilitySummary(d.id),index,level,nextLevel,branchName:BRANCHES[d.branch]||(d.branch==='synergy'?'Синергия':'Малое усиление'),nodes:Object.values(ABILITIES).filter(n=>d.branch==='synergy'?n.id===d.id||d.requires.includes(n.id):n.branch===d.branch).map(n=>{const nodeLevel=abilityLevel(s,n.id);return{...n,level:nodeLevel,nextLevel:Math.min(n.maxLevel,nodeLevel+1),maxed:nodeLevel>=n.maxLevel,offered:s.choices.some(c=>c.id===n.id),state:nodeLevel?'learned':eligible(s,n)?'available':'locked'};})};});}
-export function learnedAbilities(s){return[...new Set(s.abilities.learned)].map(id=>{const d=abilityById(id),level=abilityLevel(s,id);return{...d,description:abilityDescriptionAtLevel(d,level),compatibilityCategory:abilityCompatibilitySummary(id),level};});}
+export function soulAbilityDescription(s,d,level){
+ const resonance=resonanceBonus(s),description=abilityDescriptionAtLevel(d,level,resonance);
+ if(d?.id!=='overgrowth'||!resonance||Math.floor((s.abilities.biomassSpent||0)/OVERGROWTH_STEP)<1)return description;
+ const extra=Number((resonance*100).toFixed(2)).toString().replace('.',',');
+ return `${description} Отражатель: +${extra}% к общему бонусу урона Души.`;
+}
+export function learnedAbilities(s){return[...new Set(s.abilities.learned)].map(id=>{const d=abilityById(id),level=abilityLevel(s,id);return{...d,description:soulAbilityDescription(s,d,level),compatibilityCategory:abilityCompatibilitySummary(id),level};});}

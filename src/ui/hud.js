@@ -23,7 +23,7 @@ export function createHandsHud(element,onOpen){let signature='',currentRun;
       b.classList.toggle('is-reloading',h.reloading&&!off);b.classList.toggle('is-weapon-off',off);
       if(empty)b.removeAttribute('aria-pressed');else b.setAttribute('aria-pressed',String(h.enabled));
       b.querySelector('.ui-ammo').textContent=off?'Выкл':h.reloading?`↻ ${h.reloadLeft.toFixed(1)}с`:h.magazine?`${h.ammo} из ${h.magazine}`:'';
-      const action=empty?'открыть сборку':off?'включить оружие':'выключить оружие';
+      const action=empty?'открыть сборку':h.key==='shieldArm'?(off?'включить ауру':'выключить ауру'):off?'включить оружие':'выключить оружие';
       const upgrade=h.upgradeRank?`усиление ${h.upgradeRank} из ${h.maxUpgradeRank}`:'без усилений';
       b.setAttribute('aria-label',`${h.name} · ${upgrade}${h.reloading?` · перезарядка ${h.reloadLeft.toFixed(1)} с`:h.magazine?` · ${h.ammo} из ${h.magazine} зарядов`:''} · ${action}`);b.title=`${h.name} · ${upgrade} · ${action}`;
     });
@@ -40,7 +40,7 @@ export function createHud(root){const $=id=>root.querySelector('#'+id);let healt
     $('map-button').parentElement.hidden=$('map-button').hidden;
     const tile=run.world.tileAt?.(run.player.x,run.player.z);$('location').textContent=tile?.environmentName||run.world.environmentName||BIOMES.find(b=>b.id===tile?.biome)?.name||'Верхние сады';$('run-mode').textContent=run.mission?.name||'Выживание';$('timer').textContent=timeText(run.time);
     if(healthKey!==healthSignature){healthSignature=healthKey;$('health-fill').innerHTML=healthSegments(health);}
-    const hp=$('health-fill').parentElement,regenStatus=health.regenActive?` Восстановление через ${Math.ceil(health.regenSecondsLeft)} с.`:'',armorStatus=health.armorRepairActive?` Ремонт брони: ${Math.round(health.armorRepairProgress*100)}%, ${Math.ceil(health.armorRepairSecondsLeft)} с.`:'';hp.setAttribute('aria-label',`Здоровье ${run.hp} из ${st.hp}. Броня ${health.armor} из ${st.armor}.${armorStatus}${regenStatus} ${health.shieldEquipped?`${health.shieldCharges} из ${health.shieldMax} · ${health.shield?'Щит готов':'Щит заряжается'}`:'Без щита'}`);hp.setAttribute('aria-valuemax',st.hp);hp.setAttribute('aria-valuenow',run.hp);hp.classList.toggle('is-regenerating',health.regenActive);hp.classList.toggle('is-repairing-armor',health.armorRepairActive);hp.style.setProperty('--armor-repair',`${health.armorRepairProgress*100}%`);hp.dataset.regenProgress=health.regenProgress.toFixed(3);$('health-text').textContent=`${run.hp} из ${st.hp}`;$('shield-text').textContent='';$('armor-text').textContent='';
+    const hp=$('health-fill').parentElement,regenStatus=health.regenActive?` Восстановление ${Number((st.regenPerSecond*100).toFixed(1))}%/с.`:'',armorStatus=health.armorRepairActive?` Ремонт брони: ${Math.round(health.armorRepairProgress*100)}%, ${Math.ceil(health.armorRepairSecondsLeft)} с.`:'';hp.setAttribute('aria-label',`Здоровье ${run.hp} из ${st.hp}. Броня ${health.armor} из ${st.armor}.${armorStatus}${regenStatus} ${health.shieldEquipped?`${health.shieldCharges} из ${health.shieldMax} · ${health.shield?'Щит готов':'Щит заряжается'}`:'Без щита'}`);hp.setAttribute('aria-valuemax',st.hp);hp.setAttribute('aria-valuenow',run.hp);hp.classList.toggle('is-regenerating',health.regenActive);hp.classList.toggle('is-repairing-armor',health.armorRepairActive);hp.style.setProperty('--armor-repair',`${health.armorRepairProgress*100}%`);hp.dataset.regenProgress=health.regenProgress.toFixed(3);$('health-text').textContent=`${run.hp} из ${st.hp}`;$('shield-text').textContent='';$('armor-text').textContent='';
     const cells=$('health-fill').querySelector('.ui-health-segments')?.children;if(cells)for(const [i,cell]of [...cells].entries()){const layer=cell.querySelector('.ui-health-regen'),regenCell=health.regenCells[i];if(!layer||!regenCell)continue;layer.style.left=`${regenCell.start*100}%`;layer.style.width=`${regenCell.fill*100}%`;cell.classList.toggle('is-regenerating',regenCell.fill>0);}
     const ring=$('health-fill').querySelector('.ui-shield-charge');if(ring)ring.style.strokeDasharray=`${health.shieldProgress*100} 100`;
     $('biomass-text').textContent=run.biomass;$('level-text').textContent=`УРОВЕНЬ ${run.level}`;$('kills-text').textContent=`УБИТО ${run.kills}`;$('xp-text').textContent=`${run.xp} из ${xpMax}`;$('xp-fill').style.width=`${Math.min(100,run.xp/xpMax*100)}%`;
@@ -62,7 +62,7 @@ export function createHud(root){const $=id=>root.querySelector('#'+id);let healt
     if(changed.includes('level'))pulse($('level-text'));
     oldHp=run.hp;
     $('shield-text').hidden=true;$('armor-text').hidden=true;
-    root.dataset.health=run.hp<=1?'critical':'normal';
+    root.dataset.health=run.hp<=25?'critical':'normal';
     root.dataset.mode=run.mission?'mission':run.mode;
   };
 }

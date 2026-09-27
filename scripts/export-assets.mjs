@@ -7,7 +7,7 @@ globalThis.FileReader=class{
   readAsArrayBuffer(blob){blob.arrayBuffer().then(result=>{this.result=result;this.onloadend?.();});}
   readAsDataURL(blob){blob.arrayBuffer().then(result=>{this.result=`data:${blob.type};base64,${Buffer.from(result).toString('base64')}`;this.onloadend?.();});}
 };
-const out=new URL('../public/assets/models/',import.meta.url);await mkdir(out,{recursive:true});
+const out=new URL('../old_source/assets/models/',import.meta.url);await mkdir(out,{recursive:true});
 const exporter=new GLTFExporter(),manifest=[];
 for(const [name,factory] of Object.entries(assetFactories)){
   const root=factory();root.traverse(o=>{o.userData={};});root.updateMatrixWorld(true);

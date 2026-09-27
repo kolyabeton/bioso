@@ -15,7 +15,7 @@ export function createMissionEnvironmentView(scene,{load=loadModel}={}){
  function layoutCorridor(next){
   if(!next?.missionLine||next.dungeonVoid||!next.bounds){corridor.visible=false;return;}
   const length=Math.max(64,next.bounds.maxZ-next.bounds.minZ),center=(next.bounds.minZ+next.bounds.maxZ)/2,halfWidth=Math.max(Math.abs(next.playBounds?.minX??-9),Math.abs(next.playBounds?.maxX??9)),fogWidth=Math.max(1,next.bounds.maxX-halfWidth);
-  for(const {mesh,side} of verges){mesh.position.set(side*(halfWidth+fogWidth/2),.02,center);mesh.scale.set(fogWidth,length,1);}
+  for(const {mesh,side} of verges){mesh.position.set(side*(halfWidth+fogWidth/2),.02,center+32);mesh.scale.set(fogWidth,length-64,1);}
   corridor.visible=!!next.missionLine;
  }
  function layoutSideFence(playerZ){
@@ -24,7 +24,9 @@ export function createMissionEnvironmentView(scene,{load=loadModel}={}){
   sideFence.clear();fenceCenter=anchor;
   const halfWidth=Math.max(Math.abs(world.playBounds?.minX??-9),Math.abs(world.playBounds?.maxX??9));
   for(const side of [-1,1])for(let n=-24;n<=24;n++){
-   const wall=makeWall();wall.name='mission-side-wall';wall.userData.assetId='wall';wall.position.set(side*(halfWidth-.38),0,anchor+n*step);wall.rotation.y=Math.PI/2;sideFence.add(wall);
+   const z=anchor+n*step,width=world.halfWidthAt?.(z)??halfWidth;
+   if(width>halfWidth)continue;
+   const wall=makeWall();wall.name='mission-side-wall';wall.userData.assetId='wall';wall.position.set(side*(width-.38),0,z);wall.rotation.y=Math.PI/2;sideFence.add(wall);
   }
  }
  function preload(){

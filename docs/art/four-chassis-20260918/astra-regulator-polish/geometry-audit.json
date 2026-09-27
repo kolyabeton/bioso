@@ -1,0 +1,26 @@
+{
+  "textures": [
+    {
+      "name": "Image_0",
+      "sha256": "ad2d48ebdd109c57ac3468a9489516fa81cbaac7da5a6b08ec99a67b7dafa28f",
+      "matchesCanonical": true
+    },
+    {
+      "name": "Image_1",
+      "sha256": "5155b064cc7fed77ead1bc0975d449e73a0aecf4a6ae03821ed87e04bf481d29",
+      "matchesCanonical": true
+    },
+    {
+      "name": "Image_2",
+      "sha256": "89bdb58d35eb3bd55d1a7d6cf59acbcf264b71a3c382ea8fccb0ceaa9fb884b9",
+      "matchesCanonical": true
+    },
+    {
+      "name": "Image_3",
+      "sha256": "2c115a0e3a4156e5135b97a59d7da2a633ce563525fb4deff8a66f156a85829b",
+      "matchesCanonical": true
+    }
+  ],
+  "finitePositions": true,
+  "status": "approval-only; not integrated"
+}

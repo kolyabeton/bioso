@@ -1,0 +1,13 @@
+{
+  "src/game.js": "f60eff567ce29445078ea5e9e56e72f0a85cd3bfd60f795f95dd7787bed993e9",
+  "src/melee-animation.js": "7429a9a37c1fa99ddedd12bd1ab760df5f1c57412e4f9dbfd3a0b7f5eecdb70f",
+  "src/melee-trail.js": "abfdb2e8809f456e52cf15aca3ace0003e91e06e47c5f8a133399a04b4057a11",
+  "src/whip-vfx.js": "ad20f9f73e6d32b8613dc578c8368173b475e39795449e51796ce22c6b982106",
+  "src/whip-timing.js": "cf27cb714a957d582b93aa64a3f0c779b6500285362d8828b747129f0950ac55",
+  "src/systems/whip-pull.js": "c9309e1ce0c5feb6097767766235bfdebb4bf040c30c43fefa049fd19e7f438c",
+  "src/enemy-review.js": "9bc04b5119d89b8e7c81c2d17ef3b298525a9b75d8ca80f25d1342dcd95cbad4",
+  "src/catalog.js": "ed665138ac02daadf45ba14661e6d1650f8173be501b0bf58516675bb4aab0b4",
+  "src/ui/adapters.js": "2aceef170f0c1bcc66c94546f4c367ad8faddb6f57bc904c1f4047d5a74f8260",
+  "src/i18n/en.json": "b3ed1923fb46754b79e61926f9a8d7233a6efd7a4c9dddc1a6437781ebfda1da",
+  "docs/UI_ITEM_CONTRACT.md": "2243837a0d023822ca6f2414027c4d29e88b6a732ac588d76ce884505caec092"
+}

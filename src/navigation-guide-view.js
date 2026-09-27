@@ -38,13 +38,13 @@ export function createNavigationGuideView(scene){
  });
  const particles=new T.Points(geometry,particleMaterial);particles.name='mission-navigation-particles';particles.frustumCulled=false;particles.renderOrder=31;root.add(particles);
  const targetVector=new T.Vector3();let targetId=null;
- function update(s,camera,canvas,time=0,reducedMotion=false){
+ function update(s,camera,canvas,time=0,reducedMotion=false,showParticles=true){
   const target=compassTarget(s),anchor=target&&target.distance>3?groundAnchor(camera,canvas,s):null;
   root.visible=!!anchor;if(!anchor){targetId=null;geometry.setDrawRange(0,0);return false;}
   targetId=target.id??target.source;root.position.copy(anchor);targetVector.set(target.x-s.player.x,0,target.z-s.player.z);root.rotation.y=Math.atan2(targetVector.x,targetVector.z);
   const pulse=reducedMotion?1:1+Math.sin(time*2.4)*.045,bob=reducedMotion?0:Math.sin(time*2.1)*.09;arrow.position.y=.24+bob;arrow.scale.setScalar(pulse);uniforms.strength.value=reducedMotion?.78:.72+Math.sin(time*2.4)*.12;
-  particles.visible=!reducedMotion;geometry.setDrawRange(0,reducedMotion?0:PARTICLE_COUNT);
-  if(!reducedMotion)for(let i=0;i<PARTICLE_COUNT;i++){
+  particles.visible=!reducedMotion&&showParticles;geometry.setDrawRange(0,particles.visible?PARTICLE_COUNT:0);
+  if(particles.visible)for(let i=0;i<PARTICLE_COUNT;i++){
    const phase=(time*.22+i*.61803398875)%1,angle=i*2.39996-time*.18,r=.72+(i%5)*.13;
    positions[i*3]=Math.cos(angle)*r;positions[i*3+1]=.16+phase*1.5;positions[i*3+2]=Math.sin(angle)*r;alphas[i]=Math.sin(phase*Math.PI)*(.48+(i%3)*.16);
   }

@@ -1,6 +1,19 @@
 import * as T from 'three';
 
-const CAPACITY=400;
+const CAPACITY=96;
+const VISUAL_CELL=2.5;
+
+// Damage, slow and lifetime stay on every simulation puddle. Rendering only
+// needs one surface per occupied patch; drawing every overlapping transparent
+// layer makes rapid multi-Washer builds spend most of the frame on overdraw.
+function visiblePuddles(puddles){
+ const cells=new Map();
+ for(let i=puddles.length-1;i>=0&&cells.size<CAPACITY;i--){
+  const p=puddles[i],key=`${Math.floor(p.x/VISUAL_CELL)},${Math.round((p.y??0)*2)},${Math.floor(p.z/VISUAL_CELL)}`;
+  if(!cells.has(key))cells.set(key,p);
+ }
+ return [...cells.values()].reverse();
+}
 const vertexShader=`
  attribute vec3 center;
  attribute vec2 data;
@@ -50,12 +63,12 @@ export function createAcidPuddleView(scene){
  geometry.setAttribute('center',center);geometry.setAttribute('data',data);geometry.instanceCount=0;
  const material=new T.ShaderMaterial({vertexShader,fragmentShader,uniforms:{clock:{value:0}},transparent:true,depthWrite:false,depthTest:true,side:T.DoubleSide,toneMapped:false});
  const mesh=new T.Mesh(geometry,material);mesh.name='acid-puddles';mesh.renderOrder=3;mesh.frustumCulled=false;scene.add(mesh);
- let clock=0;
+ let clock=0,visibleCount=0;
  function update(puddles,dt=0,reducedMotion=false,enlarged=false){
   if(!reducedMotion)clock+=Math.max(0,dt);material.uniforms.clock.value=clock;
-  const visible=puddles.slice(0,CAPACITY);geometry.instanceCount=visible.length;
+  const visible=visiblePuddles(puddles);visibleCount=geometry.instanceCount=visible.length;
   visible.forEach((p,i)=>{center.setXYZ(i,p.x,(p.y??0)+.025,p.z);data.setXY(i,2.5*(enlarged?1.5:1),(p.id??i+1)*.731);});
   center.needsUpdate=data.needsUpdate=true;
  }
- return{update,reset(){geometry.instanceCount=0;clock=0;},dispose(){mesh.removeFromParent();geometry.dispose();material.dispose();}};
+ return{update,info:()=>({visiblePuddles:visibleCount}),reset(){visibleCount=geometry.instanceCount=0;clock=0;},dispose(){mesh.removeFromParent();geometry.dispose();material.dispose();}};
 }

@@ -1,0 +1,425 @@
+{
+  "method": "Synthetic regression: requested 60 fps, actual 30 fps, 5 ms CPU render, unavailable GPU timer. Not a device benchmark.",
+  "trace": [
+    {
+      "seconds": 1,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 0
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 1,
+        "renderScaleP95Ms": 0,
+        "frameIntervalP95Ms": 0,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 2,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 1,
+        "renderScaleP95Ms": 0,
+        "frameIntervalP95Ms": 0,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 3,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 1,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 4,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 1,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 5,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 6,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 7,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 8,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 9,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 10,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 11,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 1,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 12,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.8,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 13,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.8,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 14,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.8,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 15,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.8,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 16,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.8,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 17,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.8,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 18,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.8,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 19,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 20,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 21,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 22,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 23,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 24,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 25,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 26,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 27,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 28,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 29,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    },
+    {
+      "seconds": 30,
+      "before": {
+        "renderScale": 1,
+        "renderScaleP95Ms": 5
+      },
+      "after": {
+        "renderScale": 0.6,
+        "decorationScale": 0.5,
+        "renderScaleP95Ms": 5,
+        "frameIntervalP95Ms": 33.333333333333336,
+        "adaptationGpuMs": null
+      }
+    }
+  ]
+}

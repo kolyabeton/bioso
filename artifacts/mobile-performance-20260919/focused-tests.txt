@@ -1,0 +1,35 @@
+✔ all five cells have different weather; weights are continuous on boundaries (2.893125ms)
+✔ survival weather blends over time, holds on pause and resets for a new world (1.934875ms)
+✔ weather anticipates a boundary and stays continuous when crossing back and forth (2.30875ms)
+✔ each mission retains its own weather at the entrance, gates and final room (5.459417ms)
+✔ weather reuses lights, bounds particles and honours pause/reduced motion (1.71975ms)
+✔ late-session weather changes integrate particle velocity without trajectory jumps (31.07425ms)
+✔ ground repeat sampling uses continuous windows and unwrapped mip gradients (0.252458ms)
+✔ combat scatters life and requires five active quiet seconds; pause cannot advance recovery (1.252875ms)
+✔ high quality keeps the complete ambient tier under sustained load (0.369083ms)
+✔ ambient pools obey tiers, player proximity, combat density, reduced motion and reset (2.076375ms)
+✔ new installs default to 60, saved choices survive and menus throttle (0.142708ms)
+✔ sums every pass and upload once and waits for the complete frame (1.654791ms)
+✔ disjoint and query overflow frames cannot report partial GPU times (0.148333ms)
+✔ missing extension stays unavailable and dispose restores methods (0.103291ms)
+✔ counts preparation submitted between animation callbacks (0.080542ms)
+✔ phones and touch tablets are detected; desktops and touch laptops are not (0.937875ms)
+✔ an untouched profile starts low and 30 fps on mobile, high and 60 on desktop (0.137292ms)
+✔ a stored choice always outranks the device default (0.166959ms)
+✔ missed frames without GPU queries thin decoration before reducing resolution (0.754833ms)
+✔ full CPU frame and fresh GPU samples can each trigger adaptation (0.236208ms)
+✔ healthy 30 and 60 fps cadence never treats intentional frame pacing as overload (1.330708ms)
+✔ stale GPU measurements and isolated frame stalls cannot drive sustained degradation (0.789541ms)
+✔ pause, hidden-tab gaps and a changed target discard the preceding load window (0.274959ms)
+✔ sustained recovery restores resolution before decoration, with hysteresis (1.921833ms)
+✔ choosing a preset restores full resolution and decoration; suspend preserves quality (0.442875ms)
+✔ decoration density reduces emitted particles without changing their size or lifetime (28.735292ms)
+✔ weather and forest density affect decorative batches only (24.80475ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 242.069917

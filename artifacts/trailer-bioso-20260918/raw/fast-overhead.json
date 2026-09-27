@@ -1,0 +1,704 @@
+{
+  "method": "Current game renderer, staged equipment and replenished enemy population, invulnerability. Silent IAB recording; no production edits.",
+  "route": "http://127.0.0.1:5299/?review=trailer&shot=fast-overhead&travel=1&environment=upper-gardens&count=110&body=hecaton&weapons=seed,rocket,arc,harpoon&skills=projectiles.0,projectiles.1,electric.0,electric.1,electric.2,electric.3,tempo.0&sound=0&lang=en",
+  "elapsed": 11.981199999988101,
+  "samples": [
+    {
+      "elapsed": 0.021400000005960464,
+      "enemies": 90,
+      "shots": 9,
+      "fps": 30,
+      "player": {
+        "x": 14,
+        "z": 4,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.25617089224594436
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 0.5215,
+      "enemies": 86,
+      "shots": 14,
+      "fps": 30,
+      "player": {
+        "x": 17.313628569681626,
+        "z": 1.705949451758876,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.1616906273194685
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 1.05470000000298,
+      "enemies": 82,
+      "shots": 13,
+      "fps": 30,
+      "player": {
+        "x": 20.62850029395706,
+        "z": -0.5889617419702599,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.9549140406622354
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 1.5879999999999996,
+      "enemies": 73,
+      "shots": 6,
+      "fps": 30,
+      "player": {
+        "x": 24.558111964849466,
+        "z": -3.3094621295111617,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.3499058559961853
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 2.0880999999940393,
+      "enemies": 68,
+      "shots": 8,
+      "fps": 30,
+      "player": {
+        "x": 29.955889210978846,
+        "z": -7.046384838369963,
+        "y": 0.0036926474959703857,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.19741627573660844
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 2.5880999999940397,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": 36.172905334399594,
+        "z": -11.350472923815087,
+        "y": 0.20411997607124288,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.348443186819334
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 3.1114999999851,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": 34.941139669454984,
+        "z": -14.184555275409224,
+        "y": 0.15187942272137864,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.44046239574459467
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 3.644599999994041,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 29,
+      "player": {
+        "x": 28.74011625869526,
+        "z": -19.294034333307316,
+        "y": 0.4789134759119642,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.0945784504997724
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 4.144599999994041,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 29,
+      "player": {
+        "x": 23.386701824981195,
+        "z": -24.614888949107442,
+        "y": 2.159638088692827,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.9988302043479538
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 4.644599999994043,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": 16.088174812054422,
+        "z": -25.96809291743979,
+        "y": 1.6967299610310238,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.5860750283454301
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 5.177899999991064,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": 8.023317370486982,
+        "z": -25.99955922052684,
+        "y": 0.26882218224984034,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.5710141766846921
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 5.682199999988086,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": 0.9482683124496706,
+        "z": -23.99062759539232,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.3130000940269104
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 6.215299999997029,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": -3.7759259123620112,
+        "z": -17.984875656068674,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.4746226465300551
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 6.715399999991069,
+      "enemies": 62,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": -2.085226045920621,
+        "z": -10.770538978414368,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.2593597494141043
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 7.215399999991072,
+      "enemies": 55,
+      "shots": 21,
+      "fps": 30,
+      "player": {
+        "x": -2.003360495234479,
+        "z": -3.961373196784429,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.16560404518783
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 7.715399999991073,
+      "enemies": 54,
+      "shots": 21,
+      "fps": 30,
+      "player": {
+        "x": -2.000659676758235,
+        "z": -0.18213052075137467,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.5506319445506618
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 8.215399999991073,
+      "enemies": 54,
+      "shots": 9,
+      "fps": 30,
+      "player": {
+        "x": -2.0000723797410997,
+        "z": 4.607129425969063,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.8368719494786416
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 8.715399999991075,
+      "enemies": 53,
+      "shots": 11,
+      "fps": 30,
+      "player": {
+        "x": -2.000005270712578,
+        "z": 9.647381425427742,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 1.4796101126957748
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 9.248699999988096,
+      "enemies": 53,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": -3.7728484748351008,
+        "z": 15.286018593021096,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": 0.7554116928470133
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 9.782099999994061,
+      "enemies": 53,
+      "shots": 15,
+      "fps": 30,
+      "player": {
+        "x": -6.943805734785635,
+        "z": 20.797008641556975,
+        "y": 0.03878830577357645,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -0.20988429999292368
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 10.282099999994061,
+      "enemies": 53,
+      "shots": 9,
+      "fps": 30,
+      "player": {
+        "x": -5.001668547121551,
+        "z": 23.075130032147406,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.1164908761167502
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 10.782099999994061,
+      "enemies": 53,
+      "shots": 0,
+      "fps": 30,
+      "player": {
+        "x": 2.555150346091958,
+        "z": 23.233966618977067,
+        "y": 0,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -1.5390909045077292
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 11.315399999991081,
+      "enemies": 53,
+      "shots": 6,
+      "fps": 30,
+      "player": {
+        "x": 10.61988905289211,
+        "z": 23.403479159632443,
+        "y": 0.42402288440969127,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.5054737383979613
+      },
+      "ending": null
+    },
+    {
+      "elapsed": 11.815399999991081,
+      "enemies": 50,
+      "shots": 12,
+      "fps": 30,
+      "player": {
+        "x": 14.651502573236238,
+        "z": 23.488219543124096,
+        "y": 0.6844279531680824,
+        "vy": 0,
+        "vertical": "grounded",
+        "facing": -2.6039652324960003
+      },
+      "ending": null
+    }
+  ],
+  "errors": [],
+  "current": {
+    "mode": "survival",
+    "difficulty": 100,
+    "time": 754.2871000000094,
+    "level": 18,
+    "hp": 15,
+    "kills": 430,
+    "biomass": 246,
+    "biomassCollected": 0,
+    "recordMode": false,
+    "consumableDrops": [],
+    "consumables": {
+      "shieldUntil": 0,
+      "shieldCharges": 0,
+      "phaseUntil": 0,
+      "revivalCharges": 0,
+      "parasitesUntil": 0,
+      "parasiteAt": 0,
+      "beacon": null
+    },
+    "revivalCharges": 0,
+    "firstPaidUpgrade": false,
+    "organs": [
+      "regen"
+    ],
+    "lastHit": null,
+    "stats": {
+      "hp": 15,
+      "armor": 0.5,
+      "dodge": 0,
+      "turnSpeed": 1.8114017504971558,
+      "capacity": 403,
+      "weight": 182.4682,
+      "loadFactor": 1,
+      "overloaded": false,
+      "speed": 15.12,
+      "shieldMax": 0,
+      "setRegen": false,
+      "regen": true,
+      "regenPersistsThroughDamage": false,
+      "regenPerSecond": 0,
+      "regenAmount": 1,
+      "regenDelay": 12.5,
+      "armorRepairPerSecond": 0,
+      "armorRepairAmount": 0,
+      "armorRepairDelay": null,
+      "shieldRate": 0.06666666666666667,
+      "projectile": 1,
+      "organEffect": 1,
+      "rate": 0,
+      "bodyFactor": 1.6,
+      "revive": 0,
+      "pickup": 7
+    },
+    "player": {
+      "x": 16.407302762167514,
+      "z": 23.525124663268656,
+      "y": 0.6823651298150804,
+      "vy": 0,
+      "vertical": "grounded",
+      "facing": -2.6178395653646085
+    },
+    "mission": null,
+    "dungeon": null,
+    "companions": [],
+    "nextCompanionSummons": {},
+    "swarmInterceptions": 0,
+    "damage": {
+      "direct": 1019.7316738095244,
+      "burn": 0,
+      "electric": 933.268159523809,
+      "summon": 0,
+      "acid": 0,
+      "thermal": 0,
+      "environment": 0,
+      "rocket": 505.91200000000026
+    },
+    "paused": false,
+    "screen": "",
+    "storyRadio": {
+      "visible": false,
+      "cue": "",
+      "queued": [],
+      "voiced": false,
+      "seen": []
+    },
+    "storyEvidence": [],
+    "dead": false,
+    "won": false,
+    "body": "hecaton",
+    "arms": [
+      "seed",
+      "rocket",
+      "arc",
+      "harpoon"
+    ],
+    "legs": [
+      "universal",
+      "universal",
+      "universal",
+      "universal"
+    ],
+    "inventory": 0,
+    "ground": 0,
+    "xpDrops": 28,
+    "shots": 6,
+    "puddles": 0,
+    "hostileShots": 2,
+    "events": 0,
+    "unlocked": [
+      "drone",
+      "wanderer",
+      "universal",
+      "runner",
+      "pistol",
+      "claws",
+      "stabilizer",
+      "broodmother",
+      "swarmLeg",
+      "broodNode",
+      "plated",
+      "root",
+      "digestion",
+      "armor",
+      "acid",
+      "arc"
+    ],
+    "learned": [
+      "might.0",
+      "tempo.0",
+      "projectiles.0",
+      "vitality.0",
+      "projectiles.1",
+      "electric.0",
+      "electric.1",
+      "electric.2",
+      "electric.3",
+      "motion.0"
+    ],
+    "abilityLevels": {
+      "might.0": 2,
+      "tempo.0": 5,
+      "projectiles.0": 5,
+      "vitality.0": 2,
+      "projectiles.1": 1,
+      "electric.0": 3,
+      "electric.1": 3,
+      "electric.2": 3,
+      "electric.3": 1,
+      "motion.0": 1
+    },
+    "pending": 0,
+    "choices": [],
+    "settings": {
+      "difficulty": 100,
+      "language": "en",
+      "soundEnabled": false,
+      "effects": 50,
+      "music": 50,
+      "quality": "high",
+      "fps": 30,
+      "vibration": true,
+      "reducedMotion": false,
+      "storyEnabled": false
+    },
+    "enemies": 50,
+    "fps": 30,
+    "subsystemMs": {
+      "simulation": {
+        "mean": 5.6899999997682045,
+        "p95": 11.5,
+        "max": 12.299999997019768
+      },
+      "render": {
+        "mean": 3.709999999569522,
+        "p95": 4.299999997019768,
+        "max": 4.9000000059604645
+      },
+      "ui": {
+        "mean": 0.06944444419609176,
+        "p95": 0.29999999701976776,
+        "max": 0.4000000059604645
+      }
+    },
+    "renderCadence": 30,
+    "ambientTier": "high",
+    "ambientActive": false,
+    "ambientCombat": false,
+    "birds": 0,
+    "particles": 0,
+    "contactShadows": 0,
+    "windStrength": 0.24000262675602788,
+    "ambientTime": 11.987100000000003,
+    "weather": "sunny-pollen",
+    "weatherEnvironment": "upper-gardens",
+    "weatherBlend": {
+      "upper-gardens": 0.8927580086772051,
+      "root-forest": 0.0004202898380920201,
+      "quiet-scrapyard": 0.10682170148470302,
+      "overgrown-city": 0,
+      "brood-nursery": 0
+    },
+    "weatherParticles": 39,
+    "endingBiomassOrbs": 0,
+    "endingHeroScale": 1,
+    "ambientP95Ms": 0,
+    "ambientCeiling": "high",
+    "forestCameraDegrees": 35.92850242282283,
+    "missionGates": 0,
+    "missionGateModels": [],
+    "missionGateLoading": false,
+    "missionGateErrors": [],
+    "dungeonTheme": null,
+    "dungeonMeshes": 0,
+    "dungeonSky": false,
+    "dungeonDressing": 0,
+    "dungeonBranches": 0,
+    "dungeonLoops": 0,
+    "dungeonDeadEnds": 0,
+    "missionBossCamera": {
+      "active": false,
+      "blend": 0,
+      "height": 30,
+      "depth": 40,
+      "lookAhead": 1.4,
+      "lookHeight": 0
+    },
+    "consumableFxInstances": 0,
+    "sleepIndicators": 0,
+    "consumableOrbs": 0,
+    "consumableDrawBatches": 4,
+    "death": {
+      "active": false,
+      "elapsed": 0,
+      "complete": false,
+      "parts": 0
+    },
+    "enemyDeaths": 3,
+    "enemyDebris": 21,
+    "enemyContactShadows": 50,
+    "enemyShadowsEnabled": true,
+    "soulEffects": 16,
+    "dodgeAfterimages": 0,
+    "springLeapVfx": {
+      "active": false,
+      "airborne": false,
+      "progress": 1
+    },
+    "harpoons": 0,
+    "rocketBees": 0,
+    "ricochetBees": 0,
+    "rocketExhaust": {
+      "flames": 0,
+      "smoke": 0
+    },
+    "rocketExplosion": {
+      "active": 0,
+      "flash": 0,
+      "fireballs": 0,
+      "pressure": 0,
+      "rings": 0,
+      "sparks": 0,
+      "debris": 0,
+      "smoke": 1,
+      "dust": 0,
+      "reducedMotion": false,
+      "radius": 1.5
+    },
+    "drawCalls": 261,
+    "bioParticles": 95,
+    "shotgunParticles": 0,
+    "reducedMotion": false,
+    "mobile": false,
+    "appliedPixelRatio": 1,
+    "renderScale": 1,
+    "renderScaleP95Ms": 5.898,
+    "shadows": true,
+    "gpuMs": 3.9885,
+    "gpuSampleId": 855,
+    "gpuTimerAvailable": true,
+    "gpuDroppedFrames": 0,
+    "gpuTiming": "summed-main-context-passes",
+    "preparationQueued": 0,
+    "preparationMs": 0,
+    "preparationMaxJobMs": 120.20000000298023,
+    "preparationMaxJobName": "texture-upload:",
+    "visibleEnemies": 50,
+    "triangles": 3624699,
+    "textures": 212,
+    "geometries": 409,
+    "visibleGroundItems": 0,
+    "missingGroundItemModels": [],
+    "groundItemDrawBatches": 0,
+    "missionGuideVisible": false,
+    "missionGuideTarget": null,
+    "missionGuideParticles": 0,
+    "environmentShadowMode": "static-depth",
+    "staticShadowCells": 4,
+    "environmentId": "upper-gardens",
+    "environmentRelief": "terraces",
+    "visualModuleId": "upper-gardens-clearing",
+    "environmentFamilies": 5,
+    "environmentMaterialAtlas": true,
+    "residentTiles": 4,
+    "loadingTiles": 0,
+    "assetErrors": 0,
+    "forestBakedLightmaps": 3,
+    "assetEnemies": 50,
+    "modularEnemies": 49,
+    "enemyParts": 356,
+    "enemyFallbackParts": 0,
+    "enemyDrawBatches": 66,
+    "enemyVisualArchetypes": 16,
+    "enemyMeshPools": 110,
+    "enemyFittedShapes": 44,
+    "bossModels": 1,
+    "bossModelIds": [
+      "boss-mercury-hunter"
+    ],
+    "bossModelFailures": [],
+    "bossAnimations": [
+      {
+        "id": "boss-mercury-hunter",
+        "state": "idle",
+        "action": "idle",
+        "walkWeight": 0.9999999999999999,
+        "legs": 6,
+        "phase": 104.02117629066926,
+        "clock": 754.2871000000094,
+        "travel": 46.4878001752449
+      }
+    ],
+    "bossModelObjects": 22,
+    "loadedModels": 77,
+    "failedModels": []
+  }
+}

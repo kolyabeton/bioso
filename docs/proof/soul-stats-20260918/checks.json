@@ -1,0 +1,1019 @@
+{
+  "soul": [
+    {
+      "allowedWidth": 344,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 352,
+        "width": 344
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 119,
+      "scroll": {
+        "maximum": 9905,
+        "top": 0
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru",
+      "viewport": [
+        360,
+        640
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 344,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 352,
+        "width": 344
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 120,
+      "scroll": {
+        "maximum": 10925,
+        "top": 934.5
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru",
+      "viewport": [
+        360,
+        640
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 344,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 352,
+        "width": 344
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 120,
+      "scroll": {
+        "maximum": 9905,
+        "top": 9905
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru",
+      "viewport": [
+        360,
+        640
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 374,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 382,
+        "width": 374
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 107,
+      "scroll": {
+        "maximum": 2548,
+        "top": 0
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=chimera-two&sound=0&lang=ru",
+      "viewport": [
+        390,
+        844
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 374,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 382,
+        "width": 374
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 108,
+      "scroll": {
+        "maximum": 2602,
+        "top": 40.5
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=chimera-two&sound=0&lang=ru",
+      "viewport": [
+        390,
+        844
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 374,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 382,
+        "width": 374
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 108,
+      "scroll": {
+        "maximum": 2548,
+        "top": 2548
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=chimera-two&sound=0&lang=ru",
+      "viewport": [
+        390,
+        844
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 389,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 445.5,
+        "right": 834.5,
+        "width": 389
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 108,
+      "scroll": {
+        "maximum": 2680,
+        "top": 0
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=chimera-two&sound=0&lang=ru",
+      "viewport": [
+        1280,
+        720
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 374,
+      "buttons": [
+        {
+          "height": 47.999996185302734,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 382,
+        "width": 374
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 119,
+      "scroll": {
+        "maximum": 9344,
+        "top": 0
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru",
+      "viewport": [
+        390,
+        844
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 374,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 382,
+        "width": 374
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 120,
+      "scroll": {
+        "maximum": 10364,
+        "top": 832.5
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru",
+      "viewport": [
+        390,
+        844
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 389,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "По оружию"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Пояснения"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Назад"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Ветки"
+        }
+      ],
+      "dialog": {
+        "left": 445.5,
+        "right": 834.5,
+        "width": 389
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 120,
+      "scroll": {
+        "maximum": 9376,
+        "top": 0
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=ru",
+      "viewport": [
+        1280,
+        720
+      ],
+      "wrappedLabels": []
+    },
+    {
+      "allowedWidth": 344,
+      "buttons": [
+        {
+          "height": 48,
+          "lines": 1,
+          "overflow": 0,
+          "text": ""
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Notes"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "By weapon"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Notes"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Notes"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Notes"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Notes"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Notes"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Notes"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Back"
+        },
+        {
+          "height": 44,
+          "lines": 1,
+          "overflow": 0,
+          "text": "Branches"
+        }
+      ],
+      "dialog": {
+        "left": 8,
+        "right": 352,
+        "width": 344
+      },
+      "overflow": 0,
+      "overlap": [],
+      "rows": 119,
+      "scroll": {
+        "maximum": 9568,
+        "top": 0
+      },
+      "url": "http://127.0.0.1:5173/?review=soul&variant=stats-full&sound=0&lang=en",
+      "viewport": [
+        360,
+        640
+      ],
+      "wrappedLabels": []
+    }
+  ],
+  "baseline": [
+    {
+      "menuWidth": 360,
+      "screen": "home",
+      "viewport": [
+        360,
+        640
+      ],
+      "worldWidth": 360
+    },
+    {
+      "menuWidth": 390,
+      "screen": "home",
+      "viewport": [
+        390,
+        844
+      ],
+      "worldWidth": 390
+    },
+    {
+      "menuWidth": 1280,
+      "screen": "home",
+      "viewport": [
+        1280,
+        720
+      ],
+      "worldWidth": 1280
+    }
+  ],
+  "interactions": [
+    "weapons expand/collapse at 360 and 390",
+    "notes expand/collapse using keyboard",
+    "scroll to bottom at 360 and 390",
+    "Soul → branches → Thermal shock → Soul",
+    "Soul → gameplay → HUD Soul"
+  ]
+}

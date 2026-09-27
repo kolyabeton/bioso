@@ -42,8 +42,9 @@ const one=group=>Object.freeze([{group}]);
 export const ABILITY_HAND_EFFECTS=Object.freeze({
  'melee.0':one('melee'),'melee.1':one('melee'),'melee.2':one('melee'),'melee.3':one('melee'),
  'ranged.0':one('ranged'),'ranged.1':one('magazine'),'ranged.2':one('ranged'),'ranged.3':one('ranged'),
+ 'ammo.0':one('magazine'),'ammo.1':one('magazine'),'ammo.2':one('magazine'),'ammo.3':one('magazine'),
  'might.0':one('combat'),'might.1':one('combat'),'might.2':one('combat'),'might.3':one('combat'),
- 'tempo.0':one('combat'),'tempo.1':one('combat'),'tempo.2':Object.freeze([{group:'flyingProjectile',label:'Скорость снарядов'},{group:'combat',label:'Сокращение ожидания после крита'}]),'tempo.3':one('combat'),
+ 'tempo.0':one('combat'),'tempo.1':one('combat'),'tempo.2':Object.freeze([{group:'flyingProjectile',label:'Скорость снарядов'},{group:'combat',label:'Дальность оружия'}]),'tempo.3':one('combat'),
  'projectiles.0':one('flyingProjectile'),'projectiles.1':one('directProjectile'),'projectiles.2':one('directProjectile'),'projectiles.3':one('flyingProjectile'),
  'ricochet.0':one('ricochetProjectile'),'ricochet.1':one('ricochetProjectile'),'ricochet.2':one('ricochetProjectile'),'ricochet.3':one('ricochetProjectile'),
  'fire.0':one('combat'),'cold.0':one('combat'),'cold.2':one('combat'),
@@ -66,8 +67,8 @@ export function abilityCompatibilityDetails(id){
 }
 
 export const ITEM_HAND_GROUPS=Object.freeze({
- returnNerve:['pistol','seed','shotgun','needle'],commonNerve:['seed','needle','rocket'],
- slime:'combat',stabilizer:'flyingProjectile',accelerator:'combat',mirrorGland:'combat',reverseHeart:'combat',
+ returnNerve:['pistol','seed','shotgun','needle','harpoon'],commonNerve:['shotgun','harpoon','needle','rocket'],
+ slime:'combat',stabilizer:'magazine',accelerator:'combat',mirrorGland:'combat',reverseHeart:'combat',
 });
 export function itemCompatibleHandKeys(key){const rule=ITEM_HAND_GROUPS[key];return Array.isArray(rule)?rule:rule?compatibleHandKeys(rule):[];}
 export const itemCompatibleHandNames=key=>itemCompatibleHandKeys(key).map(hand=>CATALOG[hand]?.name).filter(Boolean);

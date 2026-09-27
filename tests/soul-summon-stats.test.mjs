@@ -9,7 +9,7 @@ test('Soul omits summon statistics when no helpers are available',()=>{
 test('Soul adds summon statistics to the common table for the full build',()=>{
   const s={body:{key:'broodmother',tier:5,setId:'broodmother'},arms:[{key:'drone',setId:'broodmother'}],legs:Array.from({length:3},()=>({key:'swarmLeg',setId:'broodmother'})),organs:Array.from({length:2},()=>({key:'broodNode',setId:'broodmother'})),abilities:{companions:Array(8).fill({})}};
   assert.deepEqual(soulSummonStats(s,{summons:3,summonDamage:.75,summonRate:.6}),[
-    ['Помощники','8 из 10'],['Урон роя','×2.15'],['Темп роя','×2.05'],['Призыв нового','0.59 с'],['Поиск роя','12 м'],['Поиск дронов','10 м'],
+    ['Помощники','8 из 10'],['Урон роя','×2.60'],['Темп роя','×1.60'],['Призыв нового','0.75 с'],['Поиск роя','12 м'],['Поиск дронов','10 м'],
   ]);
 });
 

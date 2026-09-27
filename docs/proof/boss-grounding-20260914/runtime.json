@@ -1,0 +1,36 @@
+{
+  "before": {
+    "time": 960,
+    "id": "boss-scrap-leviathan",
+    "x": 27.39528327529008,
+    "y": 0.19744766310607442,
+    "z": 28.577551231534365,
+    "ground": 0.19744766310607442,
+    "ignoresObstacles": true,
+    "blockedByScenery": true,
+    "hp": 24128,
+    "maxHp": 24128,
+    "speed": 0.7474999999999999,
+    "armor": 70,
+    "actions": {},
+    "nextAt": 1380,
+    "habitats": 5
+  },
+  "after": {
+    "time": 960.2083000000001,
+    "id": "boss-scrap-leviathan",
+    "x": 27.550987525290076,
+    "y": 0.19744766310607442,
+    "z": 28.577551231534365,
+    "ground": 0.19744766310607442,
+    "ignoresObstacles": true,
+    "blockedByScenery": false,
+    "hp": 24128,
+    "maxHp": 24128,
+    "speed": 0.7474999999999999,
+    "armor": 70,
+    "actions": {},
+    "nextAt": 1380,
+    "habitats": 5
+  }
+}

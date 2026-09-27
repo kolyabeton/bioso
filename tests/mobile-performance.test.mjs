@@ -21,7 +21,7 @@ test('an untouched profile starts low and 30 fps on mobile, high and 60 on deskt
  assert.equal(deviceDefaults(PHONE).fps,MOBILE_SETTINGS.fps);
  assert.equal(deviceDefaults(DESKTOP).quality,DEFAULT_SETTINGS.quality);
  assert.equal(deviceDefaults(DESKTOP).fps,DEFAULT_SETTINGS.fps);
- // Everything outside the two performance keys keeps its shared default.
+ // Everything outside the mobile overrides keeps its shared default.
  for(const key of Object.keys(DEFAULT_SETTINGS))if(!(key in MOBILE_SETTINGS))assert.equal(deviceDefaults(PHONE)[key],DEFAULT_SETTINGS[key]);
 });
 
@@ -34,37 +34,104 @@ test('a stored choice always outranks the device default',()=>{
  const storage={getItem:()=>JSON.stringify({quality:'medium'}),setItem(){}};
  assert.equal(readSettings(storage,mobile).quality,'medium');
  assert.equal(readSettings({getItem:()=>null,setItem(){}},mobile).quality,'low');
+ assert.equal(readSettings({getItem:()=>null,setItem(){}},mobile).renderMode,'sharp');
+ assert.equal(normalizeSettings({renderMode:'fast'},mobile).renderMode,'fast');
+ assert.equal(normalizeSettings({renderMode:'unknown'},mobile).renderMode,'sharp');
  assert.equal(SETTINGS_KEY,'biomecha.settings.v1');
 });
 
-const feed=(g,ms,seconds,fps=30)=>{for(let i=0;i<Math.round(seconds*fps);i++)g.sample(ms,1/fps,fps);};
+const feed=(g,{cpuMs=5,intervalMs=1000/60,gpuMs=null,fps=60,active=true,gpuSampleId}={},seconds=6)=>{
+ for(let i=0;i<Math.ceil(seconds*1000/intervalMs);i++)g.sampleFrame({cpuMs,intervalMs,gpuMs,fps,active,gpuSampleId});
+};
 
-test('render scale drops under a missed frame budget and recovers when the budget is met',()=>{
+test('missed frames without GPU queries thin decoration before reducing resolution',()=>{
  const g=createRenderScaleGovernor();
- assert.equal(g.scale(),1);
- // 60 ms frames against a 33 ms budget: one step down per overload window.
- feed(g,60,4);assert.equal(g.scale(),1-RENDER_SCALE_STEP);
- feed(g,60,4);assert.equal(g.scale(),1-2*RENDER_SCALE_STEP);
- feed(g,60,20);assert.equal(g.scale(),RENDER_SCALE_MIN,'never below the floor');
- // Comfortable frames climb back, one step per raise window, and stop at full.
- feed(g,10,10);assert.ok(g.scale()>RENDER_SCALE_MIN);
- feed(g,10,40);assert.equal(g.scale(),1,'never above full resolution');
- assert.equal(g.info().renderScale,1);
+ feed(g,{intervalMs:1000/30},6);
+ assert.equal(g.decorationScale(),.5);assert.equal(g.scale(),1);
+ assert.equal(g.info().adaptationGpuMs,null);
+ feed(g,{intervalMs:1000/30},9);assert.equal(g.scale(),1-RENDER_SCALE_STEP);
+ feed(g,{intervalMs:1000/30},30);assert.equal(g.scale(),RENDER_SCALE_MIN);
 });
 
-test('render scale holds steady inside the budget and ignores idle frames',()=>{
- const g=createRenderScaleGovernor();
- // 30 ms against a 33 ms budget is neither overloaded nor relaxed.
- feed(g,30,30);assert.equal(g.scale(),1);
- // A paused or zero-length frame must not shift anything.
- for(let i=0;i<500;i++)g.sample(999,0,30);
- assert.equal(g.scale(),1);
- for(let i=0;i<500;i++)g.sample(999,1/30,0);
- assert.equal(g.scale(),1);
+test('full CPU frame and fresh GPU samples can each trigger adaptation',()=>{
+ for(const pressure of [{cpuMs:25},{gpuMs:25}]){
+  const g=createRenderScaleGovernor();feed(g,pressure,6);
+  assert.equal(g.decorationScale(),.5);
+ }
 });
 
-test('picking a quality preset restores full resolution so the governor re-measures',()=>{
+test('healthy 30 and 60 fps cadence never treats intentional frame pacing as overload',()=>{
+ for(const fps of [30,60]){const g=createRenderScaleGovernor();feed(g,{fps,intervalMs:1000/fps},60);assert.equal(g.scale(),1);assert.equal(g.decorationScale(),1);}
+});
+
+test('stale GPU measurements and isolated frame stalls cannot drive sustained degradation',()=>{
+ const g=createRenderScaleGovernor();feed(g,{gpuMs:80,gpuSampleId:1},15);
+ assert.equal(g.scale(),1);assert.equal(g.decorationScale(),1);
+ assert.equal(g.info().adaptationGpuMs,null);
+ for(let i=0;i<10;i++){feed(g,{},2);g.sampleFrame({cpuMs:200,intervalMs:200,fps:60});}
+ assert.equal(g.decorationScale(),1);
+});
+
+test('pause, hidden-tab gaps and a changed target discard the preceding load window',()=>{
+ const g=createRenderScaleGovernor();feed(g,{cpuMs:50},2.5);
+ feed(g,{active:false,cpuMs:999},10);
+ g.sampleFrame({cpuMs:100,intervalMs:5000,fps:60});
+ feed(g,{},2);assert.equal(g.decorationScale(),1);
+ feed(g,{cpuMs:50},1);
+ feed(g,{fps:30,intervalMs:1000/30},3);assert.equal(g.decorationScale(),1);
+ g.suspend();g.sampleFrame({cpuMs:100,intervalMs:500,fps:30});
+ feed(g,{fps:30,intervalMs:1000/30},3);assert.equal(g.decorationScale(),1);
+});
+
+test('sustained recovery restores resolution before decoration, with hysteresis',()=>{
+ const g=createRenderScaleGovernor();feed(g,{cpuMs:50},35);
+ assert.equal(g.scale(),RENDER_SCALE_MIN);assert.equal(g.decorationScale(),.5);
+ feed(g,{},7);assert.equal(g.scale(),RENDER_SCALE_MIN);
+ feed(g,{},13);assert.ok(g.scale()>RENDER_SCALE_MIN);assert.equal(g.decorationScale(),.5);
+ feed(g,{},60);assert.equal(g.scale(),1);assert.equal(g.decorationScale(),1);
+});
+
+test('choosing a preset restores full resolution and decoration; suspend preserves quality',()=>{
+ const g=createRenderScaleGovernor();feed(g,{cpuMs:50},35);
+ g.suspend();assert.equal(g.scale(),RENDER_SCALE_MIN);assert.equal(g.decorationScale(),.5);
+ g.restore();assert.equal(g.scale(),1);assert.equal(g.decorationScale(),1);
+});
+
+test('mobile low keeps at least 1.2 canvas pixels per CSS pixel',()=>{
  const g=createRenderScaleGovernor();
- feed(g,60,8);assert.ok(g.scale()<1);
- g.restore();assert.equal(g.scale(),1);
+ g.setMinimum(1.2/1.4);
+ feed(g,{cpuMs:50},35);
+ assert.ok(g.scale()*1.4>=1.2-1e-9);
+ assert.ok(g.scale()<1);
+});
+
+test('decoration density reduces emitted particles without changing their size or lifetime',async()=>{
+ const {createBioParticles}=await import('../src/bio-fx.js');
+ const full=createBioParticles(),reduced=createBioParticles();
+ full.configure('low',false,1);reduced.configure('low',false,.5);
+ const event=Object.freeze({type:'hit',key:'pistol',x:0,z:0});
+ full.emit(event);reduced.emit(event);
+ assert.ok(reduced.count()<full.count());
+ assert.equal(reduced.particles[0].size,full.particles[0].size);
+ assert.equal(reduced.particles[0].duration,full.particles[0].duration);
+ reduced.configure('low',true,.5);assert.equal(reduced.count(),0);
+});
+
+test('weather and forest density affect decorative batches only',async()=>{
+ const T=await import('three');
+ const {createForestAmbientView}=await import('../src/forest-ambient-view.js');
+ const {createEnvironmentWeatherView}=await import('../src/environment-weather-view.js');
+ const tile={biome:'forest',decorations:[{feature:'thicket',x:0,z:0,size:3}]};
+ const s={world:{presentation:'biomes',tiles:[tile],tileAt:()=>tile},player:{x:1,z:0},motion:{x:1,z:0},enemies:[]};
+ const scene=new T.Scene(),forest=createForestAmbientView(scene);
+ forest.update(s,.1,'low',false,1);const before=forest.info();
+ forest.update(s,0,'low',false,.5);const after=forest.info();
+ assert.equal(after.particles,before.particles/2);assert.equal(after.contactShadows,before.contactShadows);assert.equal(after.birds,before.birds);
+ forest.update(s,0,'low',false,0);const quiet=forest.info();
+ assert.equal(quiet.particles,0);assert.equal(quiet.birds,0);assert.equal(quiet.contactShadows,after.contactShadows);
+ const weather=createEnvironmentWeatherView(scene,new T.DirectionalLight(),new T.HemisphereLight());
+ weather.update(s,.1,{quality:'low'});const initial=weather.info().weatherParticles;
+ weather.update(s,0,{quality:'low',particleScale:.5});assert.ok(weather.info().weatherParticles<=Math.ceil(initial/2));
+ weather.update(s,0,{quality:'low',particleScale:0});assert.equal(weather.info().weatherParticles,0);
+ forest.dispose();weather.dispose();assert.equal(scene.children.length,0);
 });

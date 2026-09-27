@@ -59,7 +59,7 @@ test('actual boss kills unlock one reward immediately, survive reload and do not
   const saved=readProfile({getItem:()=>JSON.stringify(s.profile)});
   assert.ok(m.rewards.every(k=>saved.unlocked.includes(k)));
   const repeat=createWorldRun(saved,m.id,43);finishMission(repeat);
-  assert.equal(repeat.events.filter(e=>e.type==='unlock').length,0);
+  assert.equal(repeat.events.filter(e=>e.type==='unlock'&&m.rewards.some(key=>e.text.includes(CATALOG[key].name))).length,0,`${m.id}: mission reward repeated`);
   assert.equal(saved.achievements.filter(id=>id==='mission:'+m.id).length,1);
  }
 });

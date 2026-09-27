@@ -1,0 +1,16 @@
+{
+  "src/systems/survival-achievements.js": "dad4fd5a0ec8755fcc0c8617f12abefeeba14e0d19873b52ff9055aa0961b219",
+  "src/systems/survival-achievement-progress.js": "e6e939dbfc86b67e4f5aed8e67fda41e28a8106f9c76fc20a4f09ccf833344a4",
+  "src/systems/survival-unlock-rules.js": "6df5feeb22972323a1fb33497f5948813ec4fef2143c3859d494c10cf9cc5ddd",
+  "src/systems/achievements.js": "a2e15bd597d8dbaeaa299f2db35ee66dbc717315d360accaba8ecb1e613e6855",
+  "src/systems/meta-progression.js": "3bc431d68454c977d5c9fa3b7588b39045eda48f9d43870db0fbbb3f8fbe6f7c",
+  "src/systems/sets/loot.js": "6cbf32c24d15250a14256c8b2c3b74cea4e4705e1abe4c183c1b9dd3408ca6f7",
+  "src/systems/encounters.js": "f45956ad5cd6126785761758f415aec2eb25212d7a50264abcabf3e116c228aa",
+  "src/game.js": "36b934a06e2078f837b184b0d01711c72f64ab09f9e17d4cb1aae86acaccbb33",
+  "src/assembly.js": "887af133a80496c2a9bdc3493de1fa3cadd9ed19bcb8fcf2b20e63363361c140",
+  "src/catalog.js": "94e5a2a0b0530f8b03e3f03b62e71b644c6dd6056492d8006e1c76252562286b",
+  "src/ui/achievement-screens.js": "a9b0add66e3f56d14722c8027bd7f29676ae350a5c70486cc34b372408854842",
+  "src/ui/adapters.js": "338b033528a7ab179db06bd7291e0963e63d14e9250a06eea98fba1da5925f78",
+  "src/i18n/index.js": "492a42d0e4301adca79bb9188505a0b64477632f6dd2aec83a3698d70a9156ac",
+  "tests/survival-achievements.test.mjs": "ef106db68dfad10a39e5020df36fc75f13c4f5da13fff459bb17203eebe08fba"
+}

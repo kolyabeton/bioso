@@ -1,12 +1,13 @@
 import {step,hurtEnemy} from './game.js';
 import {SURVIVAL_CADENCE} from './systems/survival-cadence.js';
+import {difficultyProfile} from './systems/difficulty.js';
 
 /** DEV/acceptance only: actual Survival state, spawners, death handlers and renderer.
  * Protected, unarmed player; scripted kills and accelerated simulation clocks.
  * This proves transitions, not difficulty or a normal player clear time.
  */
 export function prepareSurvivalWaveReview(s,params=new URLSearchParams()){
- const timeout=params.get('timeout')==='1';
+ const timeout=params.get('timeout')==='1',restDuration=()=>difficultyProfile(s.difficulty).rest;
  s.health.invulnerableUntil=Infinity;s.arms=s.arms.map(()=>null);s.progressionLocked=true;
  const panel=document.createElement('aside');panel.id='survival-wave-review';panel.translate=false;
  panel.style.cssText='position:fixed;left:12px;bottom:86px;z-index:120;background:#10251ff2;color:#e4f4ec;padding:12px;max-width:360px;font:13px/1.5 system-ui';
@@ -37,12 +38,12 @@ export function prepareSurvivalWaveReview(s,params=new URLSearchParams()){
     check('intro starts main pack',s.waves.cadence?.phase==='main');publish('Основная пачка');
    }else if(stage===1){advance(30);clearPack();advance(0);check('reinforcement follows full clear',s.waves.cadence.phase==='reinforcement');publish('Подкрепление');
    }else if(stage===2){
-    if(timeout){const deadline=s.waves.cadence.reinforcementUntil;advance(14.99);check('reinforcement still active before 15 seconds',s.waves.cadence.phase==='reinforcement');publish('Подкрепление · 14,99 секунды');advance(.02);check('timeout starts rest with living survivors',s.waves.cadence.phase==='rest'&&members().length>0);check('rest starts at reinforcement deadline',s.waves.cadence.restUntil===deadline+SURVIVAL_CADENCE.rest);publish('Подкрепление истекло · отдых');}
-    else{advance(5);clearPack();check('rest begins at last kill',s.waves.cadence.restUntil===s.time+SURVIVAL_CADENCE.rest);publish(`Передышка ${SURVIVAL_CADENCE.rest} секунд`);}
+    if(timeout){const deadline=s.waves.cadence.reinforcementUntil;advance(14.99);check('reinforcement still active before 15 seconds',s.waves.cadence.phase==='reinforcement');publish('Подкрепление · 14,99 секунды');advance(.02);check('timeout starts rest with living survivors',s.waves.cadence.phase==='rest'&&members().length>0);check('rest starts at reinforcement deadline',s.waves.cadence.restUntil===deadline+restDuration());publish('Подкрепление истекло · отдых');}
+    else{advance(5);clearPack();check('rest begins at last kill',s.waves.cadence.restUntil===s.time+restDuration());publish(`Передышка ${SURVIVAL_CADENCE.rest} секунд`);}
    }else if(stage===3){const until=s.waves.cadence.restUntil;advance(until-s.time-.01);check('no wave before rest expiry',s.waves.cadence.phase==='rest');check('timed invasion does not reset rest',s.enemies.some(e=>e.hp>0&&e.survivalInvader)&&s.waves.cadence.restUntil===until);publish('За 0,01 с до новой волны');
    }else if(stage===4){
     if(timeout){const p=s.world.tiles.flatMap(t=>t.safe).find(p=>Math.hypot(p.x-s.player.x,p.z-s.player.z)>100&&s.world.walkable(p.x,p.z,2.4));if(p)Object.assign(s.player,{x:p.x,z:p.z,y:s.world.heightAt(p.x,p.z)});}
-    advance(.02);check(`next main starts after ${SURVIVAL_CADENCE.rest} seconds`,s.waves.cadence.index===1&&s.waves.cadence.phase==='main');check('wave starts while invader lives',members().length>0&&s.enemies.some(e=>e.hp>0&&e.survivalInvader));publish('Вторая волна · PASS');button.disabled=true;}
+    advance(.02);check(`next main starts after ${restDuration()} seconds`,s.waves.cadence.index===1&&s.waves.cadence.phase==='main');check('wave starts while invader lives',members().length>0&&s.enemies.some(e=>e.hp>0&&e.survivalInvader));publish('Вторая волна · PASS');button.disabled=true;}
    stage++;
   }catch(error){status.textContent=`FAIL · ${error.message}`;publish('FAIL');button.disabled=true;}
  };

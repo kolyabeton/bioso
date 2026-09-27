@@ -1,3 +1,5 @@
+import {createSupportChassisView} from './support-chassis-view.js';
+import {createSurvivalEndingView,endingHeroScale,endingCameraShake} from './survival-ending-view.js';
 import {createProjectileAfterglow,enableProjectileFade,projectileOpacity,setProjectileOpacity} from './projectile-fade.js';
 import {createOrganicProjectileView,isOrganicProjectile} from './organic-projectile-view.js';
 import {frameWork} from './frame-work.js';
@@ -21,6 +23,8 @@ import {createEnemyHealthView} from './enemy-health-view.js';
 import {createGroundItemsView} from './ground-items-view.js';
 import {createNavigationGuideView} from './navigation-guide-view.js';
 import {createAcidPuddleView} from './acid-puddle-view.js';
+import {createFireTrailView} from './fire-trail-view.js';
+import {createShieldAuraView} from './shield-aura-view.js';
 import {projectedOnScreen} from './render-culling.js';
 import {screenBearing} from './systems/waypoint.js';
 import {createSoulFxView} from './systems/soul-fx-view.js';
@@ -33,6 +37,7 @@ import {createEnemyAssemblyView} from './enemy-assembly-view.js';
 import {createBossModelView} from './boss-model-view.js';
 import {createEnemyWarningView} from './enemy-warning-view.js';
 import {createBioFxView} from './bio-fx-view.js';
+import {createRarityVfxView} from './rarity-vfx-view.js';
 import {createShotgunFxView} from './shotgun-fx.js';
 import {createIsaacView} from './isaac-view.js';
 import {mutationView,combatTime,activeMutation} from './systems/mutations.js';
@@ -43,7 +48,7 @@ import {createEnemyContactShadows} from './enemy-contact-shadow.js';
 import {ENVIRONMENT_SUN} from './environment-static-light.js';
 import {createForestAmbientView} from './forest-ambient-view.js';
 import {createAmbientGovernor} from './forest-ambient-state.js';
-import {createRenderScaleGovernor} from './render-scale.js';
+import {createRenderScaleGovernor,RENDER_SCALE_MIN} from './render-scale.js';
 import {isMobileDevice,browserEnvironment} from './ui/settings.js';
 import {dressHiveDetails,dressCreature,retireModel,createAssetEnemies,modelInfo,decorateObstacle} from './asset-models.js';
 import * as T from 'three';
@@ -58,7 +63,7 @@ import {createEffectsView} from './systems/effects-view.js';
 import {createLivingView} from './living-view.js';
 import {createMeleeAnimation,isMelee} from './melee-animation.js';
 import {HERO_HIT_SHAKE,heroHitShakeOffset} from './camera-shake.js';
-import {createMissionBossCamera,GAMEPLAY_CAMERA,cameraPitchDegrees} from './mission-boss-camera.js';
+import {createMissionBossCamera,GAMEPLAY_CAMERA,ANGLED_CAMERA,cameraPitchDegrees} from './mission-boss-camera.js';
 import {createMissionEnvironmentView} from './mission-environment-view.js';
 import {createDodgeAfterimageView} from './dodge-afterimage-view.js';
 import {createSpringLeapView} from './spring-leap-view.js';
@@ -72,7 +77,7 @@ export function creatureModel(s,modelOptions){
  piece(root,'soul','shell','cyan',[0,1.42,0],[.24,.19,.24]);
  piece(root,'soul-ring','ring','amber',[0,1.4,0],[.29,.29,.29],[Math.PI/2,0,0]);
  root.userData.legs=[];root.userData.arms=new Map();
- s.legs.forEach((p,i)=>{if(!p)return;const {side,position}=layout.legs[i],g=new T.Group();g.name='leg-'+p.id;g.userData.slot=i;g.userData.partId=p.id;g.position.set(...position);root.add(g);
+ s.legs.forEach((p,i)=>{if(!p)return;const {side,position}=layout.legs[i],g=new T.Group();g.name='leg-'+p.id;g.userData.slot=i;g.userData.partId=p.id;g.userData.mountSide=side;g.position.set(...position);root.add(g);
   createLimbBearing(g,.15);
   const thickness=p.key==='plated'?.16:p.key==='runner'?.07:.11;
   if(p.key==='root'){
@@ -109,6 +114,7 @@ export function creatureModel(s,modelOptions){
 export function createView(canvas,preview,{painted=true}={}){
  let currentCadence=60;
  const mobile=isMobileDevice(browserEnvironment()),renderScale=createRenderScaleGovernor();
+ // Keep the mobile framebuffer single-sampled while profiling its GPU cost.
  const renderer=new T.WebGLRenderer({canvas,alpha:painted,antialias:!mobile,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.shadowMap.enabled=false;
  const gpuTiming=createGpuFrameTimer(renderer);
  const damageNumbers=createDamageNumbersView(canvas);const eventMarkers=createEventMarkers(canvas.parentElement);const scene=new T.Scene();if(painted)renderer.setClearColor(0,0);else{scene.background=new T.Color('#c6cfb1');scene.fog=new T.Fog('#c6cfb1',65,120);}
@@ -117,7 +123,7 @@ export function createView(canvas,preview,{painted=true}={}){
  const dungeonView=createDungeonView(scene);
  const heroContact=createHeroContactShadow(scene);
  const enemyContacts=createEnemyContactShadows(scene);
- const camera=new T.OrthographicCamera(-25,25,25,-25,.1,600),missionBossCamera=createMissionBossCamera();let bossCameraPose=null;const sky=new T.HemisphereLight('#fff4d2','#344330',1.5);scene.add(sky);const sun=new T.DirectionalLight('#ffdfad',2.5);sun.position.set(-45,90,45);scene.add(sun);
+ const camera=new T.OrthographicCamera(-25,25,25,-25,.1,600),missionBossCamera=createMissionBossCamera();let bossCameraPose=null,cameraMode='standard';const sky=new T.HemisphereLight('#fff4d2','#344330',1.5);scene.add(sky);const sun=new T.DirectionalLight('#ffdfad',2.5);sun.position.set(-45,90,45);scene.add(sun);
  if(painted){const stage=new T.Group();stage.scale.setScalar(STAGE_SCALE);buildPainterlyWorld(stage);scene.add(stage);}sun.castShadow=false;scene.add(sun.target);
  const groundMat=new T.MeshStandardMaterial({color:'#a8b388',roughness:1}),pathMat=new T.MeshStandardMaterial({color:'#d3ccb0',roughness:1});
  const land=new T.Mesh(new T.PlaneGeometry(2048,2048),groundMat);land.rotation.x=-Math.PI/2;land.position.y=-.06;if(!painted)scene.add(land);
@@ -125,14 +131,15 @@ export function createView(canvas,preview,{painted=true}={}){
  const worldView=painted?null:createWorldView(scene),forestAmbient=createForestAmbientView(scene),ambientGovernor=createAmbientGovernor();const biomeView=createBiomeView(scene,forestAmbient.uniforms,renderer);let biomeActive=false,quality='medium',reducedMotion=false,hitImpulse=0,hitShakeRemaining=0,previewImpulse=0,previousVitals=null;
  const recoveryDrops=createRecoveryDropsView(scene,renderer);
  const consumableDrops=createConsumableDropsView(scene);
- const groundItems=createGroundItemsView(scene),navigationGuide=createNavigationGuideView(scene),enemyHealth=createEnemyHealthView(scene),acidPuddles=createAcidPuddleView(scene);
+ const groundItems=createGroundItemsView(scene),navigationGuide=createNavigationGuideView(scene),enemyHealth=createEnemyHealthView(scene),acidPuddles=createAcidPuddleView(scene),fireTrails=createFireTrailView(scene),shieldAura=createShieldAuraView(scene);
  const chunks=new Map(),root=new T.Group();scene.add(root);let hero=null,signature='',previewSignature='',visibleEnemyCount=0;
  const dummy=new T.Object3D(),color=new T.Color(),hitColor=new T.Color('#fff4cd'),projected=new T.Vector3();
  function instance(geometry,material,capacity){const m=new T.InstancedMesh(geometry,material,capacity);m.instanceMatrix.setUsage(T.DynamicDrawUsage);m.frustumCulled=false;scene.add(m);return m;}
  const enemyBodies=instance(geo.shell,materials.amber,1200),enemyHeads=instance(geo.cone,materials.dark,1200),drops=instance(geo.joint,materials.cyan,2000),projectiles=enableProjectileFade(instance(geo.shell.clone(),new T.MeshBasicMaterial({color:'#ffffff',toneMapped:false}),1000));
  const trails=enableProjectileFade(instance(geo.shell.clone(),new T.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.6,depthWrite:false,toneMapped:false}),1000),{trail:true});
  const organicProjectiles=createOrganicProjectileView(scene);
- const markers=new T.Group();scene.add(markers);let markerSig='';const shotAfterglow=createProjectileAfterglow();const bioFx=createBioFxView(scene),shotgunFx=createShotgunFxView(scene),muzzlePoint=new T.Vector3();const soulFx=createSoulFxView(scene),dodgeAfterimage=createDodgeAfterimageView(scene),springLeap=createSpringLeapView(scene),abilityEffects=createEffectsView(scene),livingView=createLivingView(scene,canvas),isaacView=createIsaacView(scene),harpoons=createHarpoonView(scene),rocketBees=createRocketBeeView(scene),ricochetBees=createRocketBeeView(scene,96,{scale:RICOCHET_BEE_SCALE,formation:false}),rocketExhaust=createRocketExhaustView(scene),rocketExplosion=createRocketExplosionView(scene),assetEnemies=createAssetEnemies(scene),modularEnemies=createEnemyAssemblyView(scene,{renderer,camera}),bossModels=createBossModelView(scene,{renderer}),bossMechanics=createBossMechanicsView(scene),enemyWarnings=createEnemyWarningView(scene);let renderTime=0;const meleeAnimation=createMeleeAnimation();
+ const survivalEnding=createSurvivalEndingView(scene);
+ const markers=new T.Group();scene.add(markers);let markerSig='';const shotAfterglow=createProjectileAfterglow();const bioFx=createBioFxView(scene),rarityVfx=createRarityVfxView(scene),shotgunFx=createShotgunFxView(scene),muzzlePoint=new T.Vector3();const soulFx=createSoulFxView(scene),dodgeAfterimage=createDodgeAfterimageView(scene),springLeap=createSpringLeapView(scene),abilityEffects=createEffectsView(scene),livingView=createLivingView(scene,canvas),isaacView=createIsaacView(scene),supportView=createSupportChassisView(scene),harpoons=createHarpoonView(scene),rocketBees=createRocketBeeView(scene),ricochetBees=createRocketBeeView(scene,96,{scale:RICOCHET_BEE_SCALE,formation:false}),rocketExhaust=createRocketExhaustView(scene),rocketExplosion=createRocketExplosionView(scene),assetEnemies=createAssetEnemies(scene),modularEnemies=createEnemyAssemblyView(scene,{renderer,camera}),bossModels=createBossModelView(scene),bossMechanics=createBossMechanicsView(scene),enemyWarnings=createEnemyWarningView(scene);let renderTime=0;const meleeAnimation=createMeleeAnimation();
  const pr=new T.WebGLRenderer({canvas:preview,alpha:true,antialias:true});pr.setPixelRatio(Math.min(devicePixelRatio,1.5));pr.setClearColor(0,0);const ps=new T.Scene(),pc=new T.PerspectiveCamera(35,1,.1,100);pc.zoom=1.9;pc.position.set(4,4.5,5.5);pc.lookAt(0,.9,0);ps.add(new T.HemisphereLight('#ffefd0','#294b3e',1.6));const pl=new T.DirectionalLight('#ffffff',2);pl.position.set(2,5,3);ps.add(pl);let ph=null;
  function retireCreature(model,parent){model?.userData?.arms?.forEach(arm=>disposeMeleeTrail(arm.userData.meleeTrail));retireModel(model);parent.remove(model);}
  function syncHero(s){const sig=JSON.stringify([s.body.id,s.arms.map(p=>p?.id),s.legs.map(p=>p?.id),s.organs.map(p=>p?.id)]);if(sig!==signature){if(hero)retireCreature(hero,root);hero=creatureModel(s);root.add(hero);signature=sig;}if(sig!==previewSignature){if(ph)retireCreature(ph,ps);ph=creatureModel(s);ph.visible=false;const pendingPreview=ph;ph.userData.modelsReady.then(()=>{if(!pendingPreview.userData.retired)pendingPreview.visible=true;});ps.add(ph);if(previewSignature)previewImpulse=.4;previewSignature=sig;}}
@@ -150,7 +157,7 @@ export function createView(canvas,preview,{painted=true}={}){
   consumableDrops.event(e,hero);
   forestAmbient.event(e);
   damageNumbers.event(e);
-  rocketExplosion.event(e);
+  rocketExplosion.event(e.type==='ability-impact'&&['detonation-bite','detonation-death','detonation-chain'].includes(e.kind)?{...e,type:'blast',key:'rocket'}:e);
   enemyDeathView.event(e);
    enemyWarnings.event(e,renderTime);
    soulFx.event(e,hero);dodgeAfterimage.event(e,hero);springLeap.event(e);meleeAnimation.attack(e,renderTime);livingView.event(e,renderTime);
@@ -168,32 +175,40 @@ export function createView(canvas,preview,{painted=true}={}){
   else if(!(e.type==='blast'&&e.key==='rocket'))bioFx.event(e.type==='player-hit'&&hero?{...e,x:hero.position.x,y:hero.position.y,z:hero.position.z}:e);
  }
  function render(s,dt,assembly=false,paused=false,targetFps=60){
- const renderStarted=performance.now();gpuTiming.beginFrame();
+ const renderStarted=performance.now();syncPixelRatio();gpuTiming.beginFrame();
  frameWork.pump();if(s.mode==='survival')modularEnemies.preload(s.time);
   currentCadence=targetFps;
   bossModels.preload(s.mission?.bossId);
   const previewDt=reducedMotion?0:dt;dt=paused?0:dt;
   renderTime=combatTime(s);
   meleeAnimation.retain(s.arms.filter(Boolean).map(p=>p.id));
-  syncHero(s);biomeActive=s.world.presentation==='biomes';renderer.shadowMap.enabled=false;land.visible=!biomeActive;worldView?.setVisible?.(!biomeActive);if(!painted&&!biomeActive)updateChunks(s);const p=s.player,visualPlayer=springLeap.update(dt,p,reducedMotion);hero.scale.setScalar((painted?STAGE_SCALE:1)*bodySize(s.body).scale);hero.position.set(visualPlayer.x,visualPlayer.y,visualPlayer.z);
+  syncHero(s);hero.visible=!s.ending?.exploded;biomeActive=s.world.presentation==='biomes';renderer.shadowMap.enabled=false;land.visible=!biomeActive;worldView?.setVisible?.(!biomeActive);if(!painted&&!biomeActive)updateChunks(s);const p=s.player,visualPlayer=springLeap.update(dt,p,reducedMotion);hero.scale.setScalar((painted?STAGE_SCALE:1)*bodySize(s.body).scale*endingHeroScale(s.ending));hero.position.set(visualPlayer.x,visualPlayer.y,visualPlayer.z);
   dungeonView.update(s,reducedMotion);
   const vitals={level:s.level,biomass:s.biomass,xp:s.xp,blocked:s.health?.blocked||0,shield:s.organs.some(o=>o?.key==='shield'&&o.shieldCharge>=1)};
   if(previousVitals){for(const [key,type]of [['level','level'],['biomass','pickup'],['xp','pickup'],['blocked','shield'],['shield','shield']])if(vitals[key]>previousVitals[key])bioFx.event({type,x:p.x,y:p.y??0,z:p.z});}
   previousVitals=vitals;hitImpulse=Math.max(0,hitImpulse-dt);hitShakeRemaining=Math.max(0,hitShakeRemaining-dt);
   const speed=Math.hypot(s.motion?.x||0,s.motion?.z||0);
-  hero.rotation.y=s.player.facing??0;
+  hero.rotation.y=(s.player.facing??0)+(s.ending&&!reducedMotion?s.ending.elapsed*.7+s.ending.elapsed*s.ending.elapsed*.08:0);
   const stride=!visualPlayer.airborne&&speed>.05?Math.sin(combatTime(s)*(s.motion?.pace<1?9:16)):0;
   hero.position.y=visualPlayer.y+(reducedMotion?0:Math.abs(stride)*.18+Math.sin(renderTime*2.2)*.035);hero.rotation.z=reducedMotion?0:stride*.025+Math.sin(hitImpulse*35)*hitImpulse*.12;hero.rotation.x=reducedMotion?0:-hitImpulse*.2-Math.sin(Math.PI*visualPlayer.progress)*.11;
+  if(s.ending&&!reducedMotion){const t=s.ending.elapsed;hero.position.y+=Math.min(1,t/11)*.5;hero.rotation.x+=Math.sin(t*3.2)*.07;hero.rotation.z+=Math.cos(t*2.6)*.06;}
   const features=hero.getObjectByName('mutation-features');features?.children.filter(o=>o.name==='hive-insect').forEach((o,i)=>{const a=(reducedMotion?0:combatTime(s)*1.8)+i*Math.PI/2;o.position.set(Math.cos(a)*1.2,1.65+Math.sin(a*2)*.1,Math.sin(a)*1.2);});features?.children.filter(o=>o.name==='conductor-vein').forEach(o=>{o.scale.y=1+(reducedMotion?0:Math.sin(combatTime(s)*8)*.08);});
   hero.userData.legs.forEach(leg=>leg.rotation.x=stride*(leg.userData.slot%2?1:-1)*(s.legs[leg.userData.slot]?.key==='root'?.2:.48));
   let kickX=0,kickZ=0;
   for(const arm of s.arms.filter(Boolean)){const g=hero.userData.arms.get(arm.id);if(!g)continue;const slot=s.arms.indexOf(arm),aim=clampArmYaw((arm.aim??hero.rotation.y)-hero.rotation.y,slot),pose=weaponPose(arm);g.rotation.y=aim;g.position.copy(g.userData.rest);g.position.x-=Math.sin(aim)*pose.retract;g.position.z-=Math.cos(aim)*pose.retract;g.rotation.x=-pose.lift;g.rotation.z=g.userData.side*pose.roll;const slide=g.userData.pistolSlide,slideRest=g.userData.pistolSlideRest;if(slide&&slideRest){slide.position.copy(slideRest.position);slide.position.y+=pose.slide;}const breech=g.userData.pistolBreech,breechRest=g.userData.pistolBreechRest;if(breech&&breechRest){breech.rotation.copy(breechRest.rotation);breech.rotation.y+=pose.breech;}const strike=meleeAnimation.pose(arm.id,combatTime(s),g.userData.side);if(strike){g.rotation.y=clampArmYaw(strike.aim-hero.rotation.y+strike.yaw,slot);g.rotation.x=strike.pitch;g.rotation.z=strike.roll;g.position.x+=Math.sin(g.rotation.y)*strike.extension;g.position.z+=Math.cos(g.rotation.y)*strike.extension;const drill=g.userData.drillVisual||g.getObjectByName("drill");if(drill)drill.rotation.y=strike.spin;}if(arm.key==='drill')updateDrillExtension(g,strike,hero);if(arm.key==='whip')alignWhipVfx(g.userData.meleeTrail,g,strike,hero);alignMeleeTrail(g.userData.meleeTrail,g,arm.key,(strike?.aim??arm.aim??hero.rotation.y)-hero.rotation.y);const meleeImpact=updateMeleeTrail(g.userData.meleeTrail,strike,arm.key,reducedMotion);if(meleeImpact&&!reducedMotion){hitShakeRemaining=Math.max(hitShakeRemaining,.075);hitImpulse=Math.max(hitImpulse,.085);}kickX-=Math.sin(arm.aim??Math.PI)*(arm.recoil||0)*.55;kickZ-=Math.cos(arm.aim??Math.PI)*(arm.recoil||0)*.55;}
   hero.userData.structuralFrame?.update();
   const kickLength=Math.hypot(kickX,kickZ),kickScale=kickLength>.9?.9/kickLength:1;if(!reducedMotion){hero.position.x+=kickX*kickScale*.65;hero.position.z+=kickZ*kickScale*.65;}
-  deathView.update(s,hero,dt,{paused,reducedMotion});camera.zoom=reducedMotion?1:deathView.zoom();
+  deathView.update(s,hero,dt,{paused,reducedMotion});
+  // Keep the world readable on a phone independently of the selected quality.
+  // Orthographic zoom 1.25 makes the camera framing 25% closer than desktop.
+  const mobileCameraZoom=mobile?1.25:1;
+  camera.zoom=(reducedMotion?1:deathView.zoom())*mobileCameraZoom;
   const w=canvas.clientWidth,h=canvas.clientHeight;if(canvas.width!==Math.floor(w*renderer.getPixelRatio())||canvas.height!==Math.floor(h*renderer.getPixelRatio()))renderer.setSize(w,h,false);
-  bossCameraPose=missionBossCamera.update(s,dt,reducedMotion);
-  const forestFrame=forestAmbient.update(s,dt,ambientGovernor.tier(quality),reducedMotion);
+  bossCameraPose=missionBossCamera.update(s,dt,reducedMotion,cameraMode);
+  // The isolated guide freezes combat, but keeps the forest presentation alive.
+  const guideAmbientDt=s.guideHologram&&!document.hidden&&!document.querySelector('#panel[open]')?previewDt:dt;
+  const decorationScale=mobile&&quality==='low'?0:renderScale.decorationScale();
+  const forestFrame=forestAmbient.update(s,guideAmbientDt,ambientGovernor.tier(quality),reducedMotion,decorationScale);
   // Survival and missions use the same inclination; biome transitions do not tilt the camera.
   sky.color.set(biomeActive?'#d6e5ef':'#fff4d2');sky.groundColor.set(biomeActive?'#65737b':'#344330');
   // Shared warm key agrees with the Forest bake and environment side-volume shadows.
@@ -202,11 +217,11 @@ export function createView(canvas,preview,{painted=true}={}){
   sun.position.set(-45,scrapKey?52:forestKey?65:90,forestKey||scrapKey?-35:45);
   sun.intensity=forestKey?3.2:biomeActive?4.6:2.5;sky.intensity=forestKey?.9:biomeActive?.72:1.5;
   sun.color.set(biomeActive&&!forestFrame.active?'#ffe3b4':'#ffdfad');
-  heroContact.update(s,biomeActive,bodySize(s.body).scale,visualPlayer);
+  heroContact.update(s,biomeActive&&!s.ending?.exploded,bodySize(s.body).scale*endingHeroScale(s.ending),visualPlayer);
   missionEnvironment.update(s,dt,reducedMotion||paused);
-  const height=painted?PLATE_VIEW_HEIGHT*STAGE_SCALE*Math.min(1,(9/16)/(w/h)):GAMEPLAY_CAMERA.viewHeight,shake=heroHitShakeOffset(hitShakeRemaining,reducedMotion),cameraX=s.world.missionLine&&!s.world.dungeonVoid?0:visualPlayer.x,cameraGroundY=visualPlayer.groundY??visualPlayer.y;camera.left=-height*w/h/2;camera.right=height*w/h/2;camera.top=height/2;camera.bottom=-height/2;if(painted){camera.position.set(shake.x,42*STAGE_SCALE,32*STAGE_SCALE+shake.z);camera.lookAt(0,0,0);}else{camera.position.set(cameraX+shake.x,bossCameraPose.height+cameraGroundY,visualPlayer.z+bossCameraPose.depth+shake.z);camera.lookAt(cameraX+shake.x,cameraGroundY+bossCameraPose.lookHeight,visualPlayer.z-bossCameraPose.lookAhead+shake.z);}camera.updateProjectionMatrix();
-  const lane=s.world.playBounds;if(s.world.missionLine&&!s.world.dungeonVoid&&lane){const half=Math.max(Math.abs(lane.minX),Math.abs(lane.maxX)),screenHalf=Math.min(49,half/(height*w/h)*100);canvas.parentElement.style.setProperty('--mission-lane-half',screenHalf.toFixed(3)+'%');}else canvas.parentElement.style.removeProperty('--mission-lane-half');
-  camera.updateMatrixWorld();navigationGuide.update(s,camera,canvas,renderTime,reducedMotion||paused);const onScreen=e=>projectedOnScreen(camera,projected,e),visibleEnemies=s.enemies.filter(onScreen);visibleEnemyCount=visibleEnemies.length;
+  const baseHeight=painted?PLATE_VIEW_HEIGHT*STAGE_SCALE*Math.min(1,(9/16)/(w/h)):(cameraMode==='angled'?ANGLED_CAMERA:GAMEPLAY_CAMERA).viewHeight,height=baseHeight*(s.guideHologram?.28:1),shake=heroHitShakeOffset(hitShakeRemaining,reducedMotion),endingShake=endingCameraShake(s.ending,reducedMotion),cameraX=s.world.missionLine&&!s.world.dungeonVoid?0:visualPlayer.x,cameraGroundY=visualPlayer.groundY??visualPlayer.y;shake.x+=endingShake.x;shake.z+=endingShake.z;camera.left=-height*w/h/2;camera.right=height*w/h/2;camera.top=height/2;camera.bottom=-height/2;if(painted){camera.position.set(shake.x,42*STAGE_SCALE,32*STAGE_SCALE+shake.z);camera.lookAt(0,0,0);}else{const yaw=cameraMode==='angled'?ANGLED_CAMERA.yaw:0,sin=Math.sin(yaw),cos=Math.cos(yaw),lookAhead=s.guideHologram?-3.5:bossCameraPose.lookAhead;camera.position.set(cameraX+bossCameraPose.depth*sin+shake.x,bossCameraPose.height+cameraGroundY,visualPlayer.z+bossCameraPose.depth*cos+shake.z);camera.lookAt(cameraX-lookAhead*sin+shake.x,cameraGroundY+bossCameraPose.lookHeight,visualPlayer.z-lookAhead*cos+shake.z);}camera.rotateZ(endingShake.roll);camera.updateProjectionMatrix();if(s.ending)canvas.dataset.endingFrame=JSON.stringify({elapsed:s.ending.elapsed,hold:!!s.ending.previewHold,scale:endingHeroScale(s.ending),orbs:survivalEnding.info().endingBiomassOrbs,spin:hero.rotation.y,shake:endingShake});else delete canvas.dataset.endingFrame;
+  const lane=s.world.playBounds;if(s.world.missionLine&&!s.world.dungeonVoid&&lane){const half=s.world.halfWidthAt?.(s.player.z)??Math.max(Math.abs(lane.minX),Math.abs(lane.maxX)),screenHalf=Math.min(49,half/(height*w/h)*100);canvas.parentElement.style.setProperty('--mission-lane-half',screenHalf.toFixed(3)+'%');}else canvas.parentElement.style.removeProperty('--mission-lane-half');
+  camera.updateMatrixWorld();survivalEnding.update(s,camera,reducedMotion);navigationGuide.update(s,camera,canvas,renderTime,reducedMotion||paused,!(mobile&&quality==='low'));const onScreen=e=>projectedOnScreen(camera,projected,e),visibleEnemies=s.enemies.filter(onScreen);visibleEnemyCount=visibleEnemies.length;
   const enemyScale=painted?2:1;enemyContacts.update(visibleEnemies,s.world,quality==='high'&&biomeActive,enemyScale);const regularEnemies=bossModels.update(visibleEnemies.filter(e=>!e.bossOwner),p,combatTime(s),enemyScale,reducedMotion,s.world);bossMechanics.update(s,reducedMotion);modularEnemies.update(regularEnemies,p,combatTime(s),enemyScale,reducedMotion,camera);enemyWarnings.update(s);const enemies=assetEnemies.update(regularEnemies.filter(e=>!e.assembly),p,combatTime(s),enemyScale);enemyBodies.castShadow=false;enemyHeads.castShadow=false;batch(enemyBodies,enemies,(e,i)=>{const shape=e.volatile?[1.25,1.5,1.25]:e.role==='fast'?[.5,.45,1.55]:e.role==='armored'?[1.5,.65,1.1]:e.role==='ranged'?[.55,1.8,.65]:[1,.7,1.2];dummy.position.set(e.x,(e.y??0)+shape[1]*e.radius*enemyScale,e.z);dummy.rotation.y=Math.atan2(p.x-e.x,p.z-e.z);const impact=impactShape(e);dummy.scale.set(shape[0]*e.radius*impact.stretch,shape[1]*e.radius*impact.squash,shape[2]*e.radius).multiplyScalar(enemyScale);color.set(e.volatile?'#c28644':e.role==='ranged'?'#557c72':e.role==='armored'?'#797062':e.role==='fast'?'#97714d':e.kind==='normal'?'#a68a55':e.kind==='elite'?'#a55e42':e.kind==='objective'?'#796f80':'#763e45');color.lerp(hitColor,impact.flash);enemyBodies.setColorAt(i,color);});if(enemyBodies.instanceColor)enemyBodies.instanceColor.needsUpdate=true;
   batch(enemyHeads,enemies,e=>{const tall=e.role==='ranged';dummy.position.set(e.x,(e.y??0)+(tall?3.6:.9)*e.radius*enemyScale,e.z);dummy.rotation.set(tall?Math.PI/2:0,Math.atan2(p.x-e.x,p.z-e.z),0);dummy.scale.set(e.radius*(e.role==='armored'?1.1:.4),e.radius*(tall?1.5:.5),e.radius*.5).multiplyScalar(enemyScale);});
   recoveryDrops.update((s.recoveryDrops??[]).filter(onScreen),camera,renderTime,reducedMotion);
@@ -214,6 +229,7 @@ export function createView(canvas,preview,{painted=true}={}){
   groundItems.update(s.ground.filter(onScreen),painted?2:1,renderTime,reducedMotion,s.world.heightAt?.bind(s.world));
   batch(drops,s.xpDrops.filter(onScreen),d=>{dummy.position.set(d.x,(d.y??0)+.4+(reducedMotion?0:Math.sin(s.time*2)*.08),d.z);dummy.scale.setScalar(.12*(painted?2:1));dummy.rotation.y=reducedMotion?0:s.time;});
   const visibleShots=shotAfterglow.update([...s.shots,...s.hostileShots.filter(q=>q.reflectedByMirror)],renderTime,s.world).filter(onScreen),rocketShots=visibleShots.filter(q=>q.mode==='rocket'),meleeRicochetShots=visibleShots.filter(q=>q.meleeRicochet),harpoonShots=visibleShots.filter(q=>q.w?.key==='harpoon'&&!q.meleeRicochet),standardShots=visibleShots.filter(q=>q.mode!=='rocket'&&!q.meleeRicochet&&q.w?.key!=='harpoon'),shotHeight=q=>biomeActive?(q.y??.8):(painted?2.4:.8);
+  rarityVfx.update(s,hero,visibleShots,shotHeight,renderTime,reducedMotion);
   organicProjectiles.update(standardShots,shotHeight);
   batch(projectiles,standardShots.filter(q=>!isOrganicProjectile(q)),(q,i)=>{const v=projectileStyle(q);setProjectileOpacity(projectiles,i,projectileOpacity(q));dummy.position.set(q.x,shotHeight(q),q.z);dummy.scale.set(v.width,v.height,v.length);dummy.rotation.y=Math.atan2(q.dx,q.dz);projectiles.setColorAt(i,color.setHex(v.color));});
   harpoons.update(harpoonShots,shotHeight,(q,point)=>{const arm=hero?.userData.arms.get(q.source);if(!arm)return false;point.set(0,0,1.2);arm.localToWorld(point);return true;});
@@ -224,33 +240,46 @@ export function createView(canvas,preview,{painted=true}={}){
   batch(trails,[...standardShots,...visibleShots.filter(q=>q.presentationAge!=null&&(q.meleeRicochet||q.w?.key==='harpoon'))],(q,i)=>{const v=projectileStyle(q),length=Math.min(q.travel||v.trail,reducedMotion?0:v.trail);setProjectileOpacity(trails,i,projectileOpacity(q,true));dummy.position.set(q.x-q.dx*length*.5,shotHeight(q),q.z-q.dz*length*.5);dummy.scale.set(v.thickness,v.thickness,length*.5);dummy.rotation.y=Math.atan2(q.dx,q.dz);trails.setColorAt(i,color.setHex(v.color));});
   if(projectiles.instanceColor)projectiles.instanceColor.needsUpdate=true;if(trails.instanceColor)trails.instanceColor.needsUpdate=true;
   acidPuddles.update(s.puddles,dt,reducedMotion,activeMutation(s,'mire'));
+  fireTrails.update(s.fireTrails,dt,reducedMotion);
+  shieldAura.update(s,dt,reducedMotion);
+  if(new URLSearchParams(location.search).has('puddleMetrics'))canvas.dataset.visiblePuddles=String(acidPuddles.info().visiblePuddles);
   const ms=JSON.stringify(s.mission?.nodes?.map(n=>[n.id,n.active,n.hp>0]));if(ms!==markerSig){markers.clear();markerSig=ms;for(const n of s.mission?.nodes||[]){piece(markers,'objective','ring',n.active?'cyan':'amber',[n.x,.1,n.z],[3,3,3],[Math.PI/2,0,0]);piece(markers,'beacon','cylinder','cyan',[n.x,2,n.z],[.12,4,.12]);}}
   bioFx.update(dt);shotgunFx.update(dt);dodgeAfterimage.update(dt,reducedMotion);enemyDeathView.update(dt,{reducedMotion});
-  for(const g of chunks.values())g.traverse(o=>{if(o.userData.fade){const close=Math.hypot(o.position.x-p.x,o.position.z-p.z)<9&&o.position.z>p.z-3;o.material.opacity=close?.25:1;o.material.depthWrite=!close;}});if(!biomeActive){worldView?.update(s,camera);if(!painted){scene.background=new T.Color('#c6cfb1');scene.fog??=new T.Fog('#c6cfb1',65,120);}}else{biomeView.update(s,camera,dt);scene.background=new T.Color(s.world.dungeonVoid?'#b8cbd8':'#343a37');scene.fog=null;sun.position.set(p.x-45,90+(p.y??0),p.z+45);sun.target.position.set(p.x,p.y??0,p.z);sun.target.updateMatrixWorld();}soulFx.update(dt,reducedMotion,s);abilityEffects.update(s,reducedMotion);livingView.update(s,reducedMotion);if(s.isaac?.heartAt>0&&combatTime(s)-s.isaac.heartAt+5<.05)isaacView.event({type:'heart-pulse'},s);isaacView.update(s,reducedMotion);eventMarkers.update(s,camera);enemyHealth.update(visibleEnemies,camera,enemyScale);
+  for(const g of chunks.values())g.traverse(o=>{if(o.userData.fade){const close=Math.hypot(o.position.x-p.x,o.position.z-p.z)<9&&o.position.z>p.z-3;o.material.opacity=close?.25:1;o.material.depthWrite=!close;}});if(!biomeActive){worldView?.update(s,camera);if(!painted){scene.background=new T.Color('#c6cfb1');scene.fog??=new T.Fog('#c6cfb1',65,120);}}else{biomeView.update(s,camera,dt);scene.background=new T.Color(s.world.dungeonVoid?'#b8cbd8':'#343a37');scene.fog=null;sun.position.set(p.x-45,90+(p.y??0),p.z+45);sun.target.position.set(p.x,p.y??0,p.z);sun.target.updateMatrixWorld();}soulFx.update(dt,reducedMotion,s);abilityEffects.update(s,reducedMotion);livingView.update(s,reducedMotion);if(s.isaac?.heartAt>0&&combatTime(s)-s.isaac.heartAt+5<.05)isaacView.event({type:'heart-pulse'},s);isaacView.update(s,reducedMotion);supportView.update(s);eventMarkers.update(s,camera);enemyHealth.update(visibleEnemies,camera,enemyScale);
   if(new URLSearchParams(location.search).has('biomeOnly')){const query=new URLSearchParams(location.search),biomeRoot=scene.getObjectByName('painted-biomes'),hidden=new Set((query.get('hideChildren')||'').split(',').filter(Boolean).map(Number));for(const child of scene.children)if(child!==biomeRoot&&!child.isLight&&!child.isCamera)child.visible=false;if(query.has('groundOnly'))for(const tile of biomeRoot.children)for(let i=1;i<tile.children.length;i++)tile.children[i].visible=false;if(query.has('showChild'))for(const tile of biomeRoot.children)for(let i=1;i<tile.children.length;i++)tile.children[i].visible=i===Number(query.get('showChild'));for(const tile of biomeRoot.children)for(const i of hidden)if(tile.children[i])tile.children[i].visible=false;}
   if(biomeActive){sun.position.set(p.x+ENVIRONMENT_SUN.x,(forestKey?75:ENVIRONMENT_SUN.y)+(p.y??0),p.z+(forestKey?-45:ENVIRONMENT_SUN.z));sun.updateMatrixWorld();}
   else if(!biomeActive){sun.position.set(-45,90,45);sun.target.position.set(0,0,0);sun.target.updateMatrixWorld();}
-  weatherView.update(s,dt,{quality:ambientGovernor.tier(quality),reducedMotion,paused,windUniforms:forestAmbient.uniforms});
-  renderer.render(scene,camera);damageNumbers.update(dt,camera,reducedMotion,enemyScale);
+  weatherView.update(s,s.guideHologram?guideAmbientDt:dt,{quality:ambientGovernor.tier(quality),particleScale:decorationScale,reducedMotion,paused:s.guideHologram?guideAmbientDt===0:paused,windUniforms:forestAmbient.uniforms});
+  if(s.guideHologram){
+   // Match the shared forest mist to the guide's close-up camera range.
+   if(scene.fog){const distance=camera.position.distanceTo(hero.position);scene.fog.near=distance-3;scene.fog.far=distance+35;}
+  }
+  renderer.render(scene,camera);globalThis.__biosoBoot?.landscape?.(renderer.domElement);damageNumbers.update(dt,camera,reducedMotion,enemyScale);
   const frameMs=Math.max(performance.now()-renderStarted,gpuTiming.info().gpuMs||0);
   ambientGovernor.sample(frameMs,dt,targetFps,forestFrame.active&&!paused,quality);
-  if(!paused){renderScale.sample(frameMs,dt,targetFps);syncPixelRatio();}
   if(assembly&&preview.clientWidth){pr.setSize(preview.clientWidth,preview.clientHeight,false);previewImpulse=Math.max(0,previewImpulse-previewDt);ph.rotation.y+=previewDt*.25;ph.scale.setScalar(1+(reducedMotion?0:Math.sin(previewImpulse/.4*Math.PI)*.035));if(ph.visible)fitPreview(pc,ph,preview.clientWidth/Math.max(1,preview.clientHeight));pr.render(ps,pc);}
   gpuTiming.endFrame();
  }
- function reset(){weatherView.reset();forestAmbient.reset();missionEnvironment.reset();dungeonView.reset();missionBossCamera.reset();bossCameraPose=null;consumableDrops.reset();deathView.reset();enemyDeathView.reset();enemyContacts.reset();damageNumbers.reset();eventMarkers.reset();enemyHealth.reset();groundItems.reset();navigationGuide.reset();acidPuddles.reset();recoveryDrops.reset();soulFx.reset();dodgeAfterimage.reset();springLeap.reset();bioFx.reset();shotgunFx.reset();harpoons.reset();rocketBees.reset();ricochetBees.reset();rocketExhaust.reset();rocketExplosion.reset();shotAfterglow.reset();organicProjectiles.reset();previousVitals=null;hitImpulse=hitShakeRemaining=previewImpulse=0;biomeView.reset();assetEnemies.reset();modularEnemies.reset();bossModels.reset();bossMechanics.reset();enemyWarnings.reset();meleeAnimation.reset();livingView.reset();isaacView.reset();renderTime=0;abilityEffects.reset();for(const g of chunks.values()){retireModel(g);scene.remove(g);g.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.userData.fade)o.material.dispose();});}chunks.clear();markerSig='';}
+ function reset(){supportView.reset();survivalEnding.reset();weatherView.reset();forestAmbient.reset();missionEnvironment.reset();dungeonView.reset();missionBossCamera.reset();bossCameraPose=null;consumableDrops.reset();deathView.reset();enemyDeathView.reset();enemyContacts.reset();damageNumbers.reset();eventMarkers.reset();enemyHealth.reset();groundItems.reset();navigationGuide.reset();acidPuddles.reset();fireTrails.reset();shieldAura.reset();recoveryDrops.reset();soulFx.reset();dodgeAfterimage.reset();springLeap.reset();bioFx.reset();rarityVfx.reset();shotgunFx.reset();harpoons.reset();rocketBees.reset();ricochetBees.reset();rocketExhaust.reset();rocketExplosion.reset();shotAfterglow.reset();organicProjectiles.reset();previousVitals=null;hitImpulse=hitShakeRemaining=previewImpulse=0;biomeView.reset();assetEnemies.reset();modularEnemies.reset();bossModels.reset();bossMechanics.reset();enemyWarnings.reset();meleeAnimation.reset();livingView.reset();isaacView.reset();renderTime=0;abilityEffects.reset();for(const g of chunks.values()){retireModel(g);scene.remove(g);g.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.userData.fade)o.material.dispose();});}chunks.clear();markerSig='';}
 
- const QUALITY_CAPS={low:1,medium:1.5,high:2};
+ const QUALITY_CAPS={low:mobile?1.4:1,medium:1.5,high:2};
+ let renderMode='sharp';
+ const qualityCap=()=>renderMode==='fast'?Math.min(1,QUALITY_CAPS[quality]):QUALITY_CAPS[quality]??1.5;
  let appliedPixelRatio=0;
  function syncPixelRatio(){
-  const cap=QUALITY_CAPS[quality]??1.5,next=Math.min(devicePixelRatio,cap)*renderScale.scale();
+  const cap=qualityCap(),next=Math.min(devicePixelRatio,cap)*renderScale.scale();
   if(Math.abs(next-appliedPixelRatio)<1e-4)return;
   appliedPixelRatio=next;renderer.setPixelRatio(next);pr.setPixelRatio(Math.min(devicePixelRatio,cap));
  }
- function setQuality(level){if(!(level in QUALITY_CAPS))return false;quality=level;soulFx.configure(level);bioFx.configure(quality,reducedMotion);shotgunFx.configure(quality,reducedMotion);renderScale.restore();syncPixelRatio();renderer.shadowMap.enabled=false;return true;}
- function setReducedMotion(value){reducedMotion=Boolean(value);dodgeAfterimage.update(0,reducedMotion);bioFx.configure(quality,reducedMotion);shotgunFx.configure(quality,reducedMotion);}
+ function samplePerformance(frame){
+  const previousDecoration=renderScale.decorationScale();
+  renderScale.sampleFrame({...frame,...gpuTiming.info()});
+  if(previousDecoration!==renderScale.decorationScale())bioFx.configure(quality,reducedMotion,renderScale.decorationScale());
+ }
+ function setQuality(level,requestedRenderMode='sharp'){if(!(level in QUALITY_CAPS))return false;const mode=requestedRenderMode==='fast'?'fast':'sharp';if(level===quality&&renderMode===mode&&appliedPixelRatio>0)return true;quality=level;renderMode=mode;renderScale.setMinimum(mobile&&mode==='sharp'?Math.max(RENDER_SCALE_MIN,(level==='low'?1.2:1)/QUALITY_CAPS[level]):RENDER_SCALE_MIN);renderScale.restore();soulFx.configure(level);bioFx.configure(quality,reducedMotion,renderScale.decorationScale());shotgunFx.configure(quality,reducedMotion);syncPixelRatio();renderer.shadowMap.enabled=false;return true;}
+ function setReducedMotion(value){reducedMotion=Boolean(value);dodgeAfterimage.update(0,reducedMotion);bioFx.configure(quality,reducedMotion,renderScale.decorationScale());shotgunFx.configure(quality,reducedMotion);}
  function directionTo(from,to){const a=new T.Vector3(from.x,from.y??0,from.z).project(camera),b=new T.Vector3(to.x,to.y??0,to.z).project(camera);return screenBearing(a,b,canvas.clientWidth,canvas.clientHeight);}
  function debugPick(clientX,clientY){const rect=canvas.getBoundingClientRect(),pointer=new T.Vector2((clientX-rect.left)/rect.width*2-1,-(clientY-rect.top)/rect.height*2+1),raycaster=new T.Raycaster();raycaster.setFromCamera(pointer,camera);return raycaster.intersectObjects(scene.children,true).filter(hit=>{for(let o=hit.object;o;o=o.parent)if(!o.visible)return false;return true;}).slice(0,12).map(hit=>{const names=[];for(let o=hit.object;o;o=o.parent)if(o.name)names.push(o.name);return{distance:hit.distance,names,point:hit.point.toArray(),material:hit.object.material?.name||'',map:hit.object.material?.map?.source?.data?.src||''};});}
  function debugBiomeChildren(){const tile=scene.getObjectByName('tile-0');return tile?.children.map((o,i)=>{let mesh=null;o.traverse(q=>{if(!mesh&&q.isMesh)mesh=q;});return `${i}:${o.name||o.type}:${mesh?.material?.map?.source?.data?.src?.split('/').at(-1)||''}`;})||[];}
- return{render,event,reset,frameInfo:()=>({...gpuTiming.drain(),...frameWork.info()}),ambientInfo:()=>({...forestAmbient.info(),...weatherView.info()}),setQuality,setReducedMotion,directionTo,debugPick,debugBiomeChildren,deathPending:deathView.pending,retryAssets:()=>biomeView.retry(),info:()=>({renderCadence:document.hidden?0:currentCadence,...forestAmbient.info(),...weatherView.info(),...ambientGovernor.info(),forestCameraDegrees:cameraPitchDegrees(bossCameraPose??GAMEPLAY_CAMERA),...missionEnvironment.info(),...dungeonView.info(),missionBossCamera:bossCameraPose,...consumableDrops.info(),death:deathView.info(),...enemyDeathView.info(),...enemyContacts.info(),soulEffects:soulFx.count(),dodgeAfterimages:dodgeAfterimage.info().active,springLeapVfx:springLeap.info(),harpoons:harpoons.count(),rocketBees:rocketBees.count(),ricochetBees:ricochetBees.count(),rocketExhaust:rocketExhaust.count(),rocketExplosion:rocketExplosion.info(),drawCalls:renderer.info.render.calls,bioParticles:bioFx.count(),shotgunParticles:shotgunFx.count(),reducedMotion,mobile,appliedPixelRatio,...renderScale.info(),shadows:quality==='high'&&biomeActive,...gpuTiming.info(),...frameWork.info(),visibleEnemies:visibleEnemyCount,triangles:renderer.info.render.triangles,textures:renderer.info.memory.textures,geometries:renderer.info.memory.geometries,...groundItems.info(),...navigationGuide.info(),...(biomeActive?biomeView.info():{}),assetEnemies:assetEnemies.count()+modularEnemies.count()+bossModels.count(),...modularEnemies.info(),...bossModels.info(),...modelInfo()})};
+ return{render,event,reset,samplePerformance,suspendPerformance:()=>renderScale.suspend(),frameInfo:()=>({...gpuTiming.drain(),...frameWork.info()}),ambientInfo:()=>({...forestAmbient.info(),...weatherView.info()}),setQuality,setCameraMode:mode=>{cameraMode=mode==='angled'?'angled':'standard';},setReducedMotion,directionTo,debugPick,debugBiomeChildren,deathPending:deathView.pending,retryAssets:()=>biomeView.retry(),info:()=>({renderCadence:document.hidden?0:currentCadence,...forestAmbient.info(),...weatherView.info(),...survivalEnding.info(),...ambientGovernor.info(),cameraMode,forestCameraDegrees:cameraPitchDegrees(bossCameraPose??GAMEPLAY_CAMERA),...missionEnvironment.info(),...dungeonView.info(),missionBossCamera:bossCameraPose,...consumableDrops.info(),death:deathView.info(),...enemyDeathView.info(),...enemyContacts.info(),...acidPuddles.info(),...fireTrails.info(),...shieldAura.info(),soulEffects:soulFx.count(),dodgeAfterimages:dodgeAfterimage.info().active,springLeapVfx:springLeap.info(),harpoons:harpoons.count(),rocketBees:rocketBees.count(),ricochetBees:ricochetBees.count(),rocketExhaust:rocketExhaust.count(),rocketExplosion:rocketExplosion.info(),drawCalls:renderer.info.render.calls,bioParticles:bioFx.count(),shotgunParticles:shotgunFx.count(),reducedMotion,mobile,renderMode,appliedPixelRatio,...renderScale.info(),shadows:quality==='high'&&biomeActive,...gpuTiming.info(),...frameWork.info(),visibleEnemies:visibleEnemyCount,triangles:renderer.info.render.triangles,textures:renderer.info.memory.textures,geometries:renderer.info.memory.geometries,...groundItems.info(),...navigationGuide.info(),...(biomeActive?biomeView.info():{}),assetEnemies:assetEnemies.count()+modularEnemies.count()+bossModels.count(),...modularEnemies.info(),...bossModels.info(),...modelInfo()})};
 }

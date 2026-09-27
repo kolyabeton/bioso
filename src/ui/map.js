@@ -1,4 +1,4 @@
-import {encounterLevel} from '../systems/events/proximity.js';
+import {encounterLevel,layerEncounters} from '../systems/events/proximity.js';
 import {waypointTarget} from '../systems/waypoint.js';
 import {atlasGeometry,paintAtlasTerrain} from './map-terrain.js';
 import {eventGlyph} from '../gameplay-modules/event-presentation.js';
@@ -27,7 +27,7 @@ export function paintMap(canvas,run,zoom='world',options={}) {
   for(const q of run.ground)marker(q,'#a2dfbd','loot');
   for(const enemy of run.enemies.filter(e=>e.kind!=='normal'&&e.kind!=='objective'))marker(enemy,'#edaa85','enemy');
   for(const node of run.mission?.nodes||[])marker(node,node.active||node.hp<=0?'#a2dfbd':'#e4d6b8','target');
-  for(const n of run.encounters?.nodes||[])if(n.discovered&&ENCOUNTERS[n.type].kind!=='secret')marker(n,n.state==='complete'?'#8c897e':n.state==='reward'?'#a2dfbd':'#c7b1f0','target');
+  for(const n of layerEncounters(run))if(n.discovered&&ENCOUNTERS[n.type].kind!=='secret')marker(n,n.state==='complete'?'#8c897e':n.state==='reward'?'#a2dfbd':'#c7b1f0','target');
   marker(run.player,'#b2f1cc','player');
 }
 
@@ -35,7 +35,8 @@ export function dungeonMapMarkers(s){
  const dungeon=s.encounters?.active;if(!dungeon?.dungeon)return[];
  const zones=(dungeon.aggroZones||[]).map((zone,index)=>{const alive=zone.members.filter(id=>s.enemies.some(e=>e.id===id&&e.hp>0)).length;return{...zone,id:`dungeon-zone-${index+1}`,dungeonZone:true,alive,mapCategory:'threat',label:`Зона агро ${index+1} · элит: ${alive}`,glyph:String(alive),color:zone.state==='engaged'?'#c9604f':zone.state==='cleared'?'#66716a':'#b28c4f'};});
  const loot=(s.ground||[]).filter(q=>q.dungeonLoot).map(q=>({...q,groundItem:true,mapCategory:'loot',label:CATALOG[q.part?.key]?.name||'Добыча',glyph:'✦',color:'#bfa25d'}));
- return [...zones,...loot];
+ const altars=layerEncounters(s).filter(n=>n.dungeonId).map(n=>({...n,mapCategory:'event',requiredLevel:encounterLevel(n),label:ENCOUNTERS[n.type].name,glyph:eventGlyph(n),color:n.state==='complete'?'#818b76':'#79648b'}));
+ return [...zones,...loot,...altars];
 }
 
 function paintDungeonMap(canvas,s,{filter='all',selected}={}){
@@ -54,24 +55,25 @@ function paintDungeonMap(canvas,s,{filter='all',selected}={}){
 }
 
 function paintWorldMap(canvas,s,zoom){
+ const language=canvas.ownerDocument?.documentElement.lang;
  const c=canvas.getContext('2d'),w=canvas.width,h=canvas.height,span=zoom==='world'?2048:zoom==='near'?180:820,center=zoom==='near'?s.player:{x:20,z:0},scale=Math.min(w,h)/span,X=x=>w/2+(x-center.x)*scale,Z=z=>h/2+(z-center.z)*scale;
  c.fillStyle='#18221d';c.fillRect(0,0,w,h);c.strokeStyle='#6e695040';c.lineWidth=1;for(let i=-1024;i<=1024;i+=64){c.beginPath();c.moveTo(X(i),Z(-1024));c.lineTo(X(i),Z(1024));c.moveTo(X(-1024),Z(i));c.lineTo(X(1024),Z(i));c.stroke();}
  c.fillStyle='#62745870';for(const cell of s.exploration.cells){const [x,z]=cell.split(',').map(Number);c.fillRect(X(x*32),Z(z*32),32*scale+.5,32*scale+.5);}
  c.strokeStyle='#b3a57c80';c.lineWidth=Math.max(2,8*scale);for(const road of s.world.roads){c.beginPath();road.forEach(([x,z],i)=>c[i?'lineTo':'moveTo'](X(x),Z(z)));c.stroke();}
  const dot=(p,color,r=5)=>{c.fillStyle=color;c.beginPath();c.arc(X(p.x),Z(p.z),r,0,Math.PI*2);c.fill();};
  c.font='16px Onest, sans-serif';c.textAlign='center';
- for(const p of s.world.landmarks){const seen=s.exploration.visited.has(p.id);if(!seen&&!['depot','camp','near-exit'].includes(p.id))continue;dot(p,seen?'#b6e6c8':'#cbb98b',seen?6:10);c.fillStyle=seen?'#e4d6b8':'#b3a57c';c.fillText(!seen&&p.id==='depot'?'Хранилище · область поиска':p.name,X(p.x),Z(p.z)-16);}
+ for(const p of s.world.landmarks){const seen=s.exploration.visited.has(p.id);if(!seen&&!['depot','camp','near-exit'].includes(p.id))continue;dot(p,seen?'#b6e6c8':'#cbb98b',seen?6:10);c.fillStyle=seen?'#e4d6b8':'#b3a57c';c.fillText(translateText(!seen&&p.id==='depot'?'Хранилище · область поиска':p.name,language),X(p.x),Z(p.z)-16);}
  for(const g of s.exploration.groups){if(g.state==='cleared'){c.strokeStyle='#a2dfbd';c.lineWidth=2;c.strokeRect(X(g.x)-9,Z(g.z)-9,18,18);c.fillStyle='#a2dfbd';c.fillText('✓',X(g.x),Z(g.z)+6);}else if(g.state==='active')dot(g,'#da9a6c',4);}
  for(const q of s.ground){c.fillStyle='#a2dfbd';c.fillRect(X(q.x)-4,Z(q.z)-4,8,8);}
  for(const n of s.mission?.nodes||[]){const explored=s.exploration.cells.has(Math.floor(n.x/32)+','+Math.floor(n.z/32));if(explored||s.mode==='core'&&s.mission.carrying)dot(n,n.active||n.hp<=0?'#a2dfbd':'#ecdca7',4);}
- for(const n of s.encounters?.nodes||[])if(n.discovered&&ENCOUNTERS[n.type].kind!=='secret'){dot(n,n.state==='reward'?'#a2dfbd':n.state==='complete'?'#8c897e':'#c7b1f0',6);if(zoom==='near'){c.fillStyle='#e4d6b8';c.fillText(({membrane:'Мембрана',slab:'Плита',nursery:'Питомник',altar:'Алтарь',sealed:'Испытание',infection:'Круг',hunt:'Носитель'})[n.type],X(n.x),Z(n.z)-12);}}
+ for(const n of layerEncounters(s))if(n.discovered&&ENCOUNTERS[n.type].kind!=='secret'){dot(n,n.state==='reward'?'#a2dfbd':n.state==='complete'?'#8c897e':'#c7b1f0',6);if(zoom==='near'){c.fillStyle='#e4d6b8';c.fillText(translateText(({membrane:'Мембрана',slab:'Плита',nursery:'Питомник',altar:'Алтарь',sealed:'Испытание',infection:'Круг',hunt:'Носитель'})[n.type],language),X(n.x),Z(n.z)-12);}}
  dot(s.player,'#f4ffea',7);c.strokeStyle='#a2dfbd';c.lineWidth=2;c.beginPath();c.arc(X(s.player.x),Z(s.player.z),12,0,Math.PI*2);c.stroke();
- c.textAlign='left';c.fillStyle='#c5b794';c.font='14px Onest, sans-serif';c.fillText('2048 × 2048 м · тёмное: не исследовано',18,h-34);c.fillText(s.mode==='survival'?'Волны продолжаются на зачищенных участках':'✓ зачищено · ■ оставленная деталь',18,h-14);
+ c.textAlign='left';c.fillStyle='#c5b794';c.font='14px Onest, sans-serif';c.fillText(translateText('2048 × 2048 м · тёмное: не исследовано',language),18,h-34);c.fillText(translateText(s.mode==='survival'?'Волны продолжаются на зачищенных участках':'✓ зачищено · ■ оставленная деталь',language),18,h-14);
 }
 
 export function biomeMapMarkers(s){
  const markers=[];
- for(const n of s.encounters?.nodes||[])if(ENCOUNTERS[n.type].kind!=='secret')markers.push({...n,mapCategory:'event',locked:!availableEncounter(s,n),requiredLevel:encounterLevel(n),label:ENCOUNTERS[n.type].name,glyph:ENCOUNTERS[n.type].kind==='secret'&&n.state==='ready'?'?':eventGlyph(n),color:n.state==='complete'?'#818b76':n.state==='reward'?'#397964':'#79648b'});
+ for(const n of layerEncounters(s))if(ENCOUNTERS[n.type].kind!=='secret')markers.push({...n,mapCategory:'event',locked:!availableEncounter(s,n),requiredLevel:encounterLevel(n),label:ENCOUNTERS[n.type].name,glyph:ENCOUNTERS[n.type].kind==='secret'&&n.state==='ready'?'?':eventGlyph(n),color:n.state==='complete'?'#818b76':n.state==='reward'?'#397964':'#79648b'});
  for(const e of s.enemies)if(e.hp>0&&['boss','final','elite'].includes(e.kind))markers.push({...e,mapCategory:'threat',label:e.kind==='final'?'Матка · финальный босс':e.id===s.introBossId?'Первый босс':e.bossName||'Босс',glyph:e.kind==='final'?'♛':e.kind==='elite'?'◇':'Б',color:e.kind==='final'?'#982f36':e.kind==='elite'?'#aa7834':'#b35e4f'});
  for(const q of s.recoveryDrops||[])markers.push({id:q.id,x:q.x,y:q.y,z:q.z,pickupKind:q.kind,mapCategory:'recovery',label:q.kind==='armor'?'Броня':'Здоровье',glyph:q.kind==='armor'?'◆':'♥',color:q.kind==='armor'?'#566e78':'#a24d49'});
  for(const q of s.consumableDrops||[]){const info=CONSUMABLE_BY_KIND[q.kind];if(info)markers.push({id:q.id,x:q.x,y:q.y,z:q.z,pickupKind:q.kind,mapCategory:'recovery',label:info.name,itemDetail:info.description,glyph:'●',color:info.color});}

@@ -20,6 +20,7 @@ import {environmentGroundShader} from './environment-ground.js';
 import {forestSurfaceMaterial} from './forest-surface.js';
 import {bakeEnvironmentLightAsync} from './environment-static-light.js';
 import {isScrapVista} from './scrapyard-dressing.js';
+import {isMobileDevice,browserEnvironment} from './ui/settings.js';
 
 // Technical mesh and painted materials share the same authored height sampler.
 export function terrainBuffers(tile){const steps=terrainSteps(tile);let step;do{step=steps.next();}while(!step.done);return step.value;}
@@ -37,6 +38,7 @@ function* terrainSteps(tile){
 }
 function geometry(data){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(data.positions,3));g.setAttribute('uv',new T.Float32BufferAttribute(data.uvs,2));g.computeVertexNormals();return g;}
 export function createBiomeView(scene,forestUniforms=createForestUniforms(),renderer=null){
+ const mobileShader=isMobileDevice(browserEnvironment());
  const root=new T.Group();root.name='painted-biomes';scene.add(root);let world=null,textures=null,pending=null,epoch=0,currentTile=null;
  const loader=new T.TextureLoader(),groundAtlases=[],decorAtlases=[],sharedTextures=new Set(),forestLightmaps=new Map();
  async function bakedLight(tile){
@@ -84,8 +86,8 @@ export function createBiomeView(scene,forestUniforms=createForestUniforms(),rend
     vec4 soil=samplePaint(tileUV*3.0,vec2(.5,.5));
     diffuseColor *= mix(soil,painted,smoothstep(0.0,.075,edge));
    #endif`);
-   if(profile)environmentGroundShader(shader,profile,maps.at(-3),maps.at(-1),tile,buildWorld,lightmap,maps.at(-4),null,!authoredForest,lightmapNeighbors);
-  };gm.customProgramCacheKey=()=> `biome-ground-v8-${environmentSurfaceKey(profile,tile,buildWorld)}-${tile.groundStyle||'default'}${authoredForest?'-living-volume':''}`;
+   if(profile)environmentGroundShader(shader,profile,maps.at(-3),maps.at(-1),tile,buildWorld,lightmap,maps.at(-4),null,!authoredForest,lightmapNeighbors,mobileShader);
+  };gm.customProgramCacheKey=()=> `biome-ground-v8-${environmentSurfaceKey(profile,tile,buildWorld)}-${tile.groundStyle||'default'}${authoredForest?'-living-volume':''}${mobileShader?'-mobile-lite':''}`;
   const groundMesh=await work(()=>new T.Mesh(geometry(data.ground),gm));group.add(groundMesh);
   for(const d of tile.decorations){
    if(d.environmentSignature||d.model?.startsWith('environment-')||d.model?.startsWith('forest-'))continue;

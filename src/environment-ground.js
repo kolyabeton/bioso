@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {environmentSurfaceCode} from './environment-surfaces.js';
 import {obstacleHeight,obstacleProfile,obstacleScale} from './architecture-collision.js';
-export function environmentGroundShader(shader,profile,stone,materials,tile,world,baked=null,atlas=null,staticShadow=null,geometryShadows=false,bakedNeighbors={}){
+export function environmentGroundShader(shader,profile,stone,materials,tile,world,baked=null,atlas=null,staticShadow=null,geometryShadows=false,bakedNeighbors={},lite=false){
  shader.uniforms.envStone={value:stone};shader.uniforms.envMaterials={value:materials};
  shader.uniforms.envAtlas={value:atlas};
  shader.uniforms.envOrigin={value:new T.Vector2(tile.x,tile.z)};
@@ -20,7 +20,7 @@ export function environmentGroundShader(shader,profile,stone,materials,tile,worl
  varying vec3 envPosition;uniform sampler2D envStone;uniform sampler2D envMaterials;uniform sampler2D envAtlas;uniform vec2 envOrigin;uniform vec4 envCasters[8];
  ${baked?'uniform sampler2D envBakedLight;uniform sampler2D envBakedWest;uniform sampler2D envBakedEast;uniform sampler2D envBakedNorth;uniform sampler2D envBakedSouth;uniform vec4 envBakedNeighbors;uniform vec4 envBakedFadeEdges;':''}
  ${staticShadow?'uniform sampler2D envStaticShadow;':''}
- ${environmentSurfaceCode(profile,tile,world)}
+ ${environmentSurfaceCode(profile,tile,world,{lite})}
  `).replace('#include <color_fragment>',`#include <color_fragment>
  vec2 ep=envPosition.xz;
  vec4 surface=envBlendedSurface(ep);

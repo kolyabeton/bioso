@@ -2,6 +2,7 @@ import {SETS,setCounts} from './sets/definitions.js';
 import {FAMILIES,mutationView} from './sets/mutations.js';
 import {survivalProgress,fullSets} from './survival-achievement-progress.js';
 import {SURVIVAL_ITEM_ACHIEVEMENTS} from './survival-unlock-rules.js';
+import {normalizeDifficulty} from './difficulty.js';
 
 // Keep translated copy next to these generated families of goals.
 export const SURVIVAL_ACHIEVEMENT_TRANSLATIONS={};
@@ -43,3 +44,10 @@ export const SURVIVAL_ACHIEVEMENTS=[
 ];
 const prerequisiteIds=SURVIVAL_ACHIEVEMENTS.map(a=>a.id);
 SURVIVAL_ACHIEVEMENTS.push(goal('master',t('Мастер выживания','Survival master'),t('Получите остальные 49 новых достижений выживания.','Earn the other 49 new survival achievements.'),[condition(c.achievements,49,s=>prerequisiteIds.filter(id=>s.profile.achievements.includes(id)).length)],'lifetime','final','survival'));
+
+// Separate from the original 49-goal mastery requirement. Each tier needs its own victory.
+export const SURVIVAL_COMPLETION_ACHIEVEMENTS=[
+ ['easy','Лёгкий','Easy',0],['medium','Средний','Medium',1],['hard','Сложный','Hard',2],
+].map(([id,ru,en,tier])=>goal(`escape-${id}`,t(`Свободные души: ${ru}`,`Free souls: ${en}`),
+ t(`Завершите финальный сбор биомассы и освободите души. Сложность: ${tier===0?'0–49':tier===1?'50–99':'100'}.`,`Complete the final biomass quest and free the souls. Difficulty: ${tier===0?'0–49':tier===1?'50–99':'100'}.`),
+ [condition(t('Души освобождены','Souls freed'),1,s=>Number(!!s.won&&!!s.finalDefeated&&!!s.escapeQuest&&Math.floor(normalizeDifficulty(s.difficulty)/50)===tier))],'run','final','survival'));

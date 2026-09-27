@@ -1,3 +1,4 @@
+import {difficultyNormalCount} from '../difficulty.js';
 import {findPath,clearSegment} from '../../world-navigation.js';
 import {eventObstacles,eventMovementClear} from '../../gameplay-modules/event-collision.js';
 
@@ -53,7 +54,7 @@ export function tickRace(s,n,dt,spawn){
  if(n.elapsed>=n.race.limit){n.state='failed';s.encounters.active=null;s.events.push({type:'notice',text:'Время вышло · финиш не достигнут'},{type:'challenge-result',result:'failed',challenge:n.type});return;}
  if(!spawn)return;
  for(const pack of n.race.packs){if(pack.spawned||distance(s.player,pack)>19)continue;pack.spawned=true;
-  for(let i=0;i<3;i++){
+  for(let i=0;i<difficultyNormalCount(s,3);i++){
    const p={x:pack.x+(i-1)*2,z:pack.z+(i===1?2:0)};
    if(!s.world.walkable(p.x,p.z,1))continue;
    const e=spawn('normal',p,i===2?'ranged':'mass',s.time);

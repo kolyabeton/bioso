@@ -1,7 +1,9 @@
 import * as T from 'three';
+import {partMeta} from './systems/sets-loot.js';
 import {loadModel,fittedModel,partModelId} from './asset-models.js';
 
 const PARTICLES_PER_ITEM=24;
+export const LOOT_GLOW_COLORS={common:0xf1c66e,uncommon:0x65ed80,rare:0xc778ff,relic:0xff780f};
 function uploadRange(attribute,count){attribute.clearUpdateRanges();if(count){attribute.addUpdateRange(0,count);attribute.needsUpdate=true;}}
 
 /** Shared model and highlight pools keep large loot piles to a bounded draw count. */
@@ -13,22 +15,22 @@ export function createGroundItemsView(scene,load=loadModel){
  // This is an affordance, not a decal. Uneven terrain must not cut the flat
  // ring into a displaced-looking crescent.
  const haloMaterial=new T.ShaderMaterial({uniforms,transparent:true,depthTest:false,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending,toneMapped:false,
-  vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*instanceMatrix*vec4(position,1.0);}',
-  fragmentShader:'varying vec2 vUv;uniform vec3 tint;uniform float strength;void main(){float d=length(vUv-.5)*2.;float glow=pow(max(0.,1.-d),2.)*.32;float rim=exp(-pow((d-.70)*22.,2.))*.24;gl_FragColor=vec4(tint,(glow+rim)*strength);}'
+  vertexShader:'varying vec3 lootTint;varying vec2 vUv;void main(){lootTint=instanceColor;vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*instanceMatrix*vec4(position,1.0);}',
+  fragmentShader:'varying vec3 lootTint;varying vec2 vUv;uniform vec3 tint;uniform float strength;void main(){float d=length(vUv-.5)*2.;float glow=pow(max(0.,1.-d),2.)*.32;float rim=exp(-pow((d-.70)*22.,2.))*.24;float legendary=step(.9,lootTint.r)*(1.-step(.35,lootTint.g));gl_FragColor=vec4(lootTint,(glow+rim)*strength*(1.+legendary));}'
  });
- const halo=new T.InstancedMesh(new T.PlaneGeometry(3.36,3.36),haloMaterial,2048);halo.name='ground-item-halos';halo.instanceMatrix.setUsage(T.DynamicDrawUsage);halo.frustumCulled=false;root.add(halo);
+ const halo=new T.InstancedMesh(new T.PlaneGeometry(3.36,3.36),haloMaterial,2048);halo.name='ground-item-halos';halo.instanceMatrix.setUsage(T.DynamicDrawUsage);halo.frustumCulled=false;halo.setColorAt(0,new T.Color(0xf1c66e));root.add(halo);
  const pointerMaterial=new T.MeshStandardMaterial({color:0xf1c66e,emissive:0xf1c66e,emissiveIntensity:.6,roughness:.35,metalness:.25,transparent:true});
  const pointerGeometry=new T.ConeGeometry(.72,1.2,3);pointerGeometry.rotateX(Math.PI);
- const pointers=new T.InstancedMesh(pointerGeometry,pointerMaterial,2048);pointers.name='ground-item-pointers';pointers.instanceMatrix.setUsage(T.DynamicDrawUsage);pointers.frustumCulled=false;root.add(pointers);
+ const pointers=new T.InstancedMesh(pointerGeometry,pointerMaterial,2048);pointers.name='ground-item-pointers';pointers.instanceMatrix.setUsage(T.DynamicDrawUsage);pointers.frustumCulled=false;pointers.setColorAt(0,new T.Color(0xffffff));root.add(pointers);
  let particleCapacity=0,particleGeometry,particles;
  function ensureParticles(count){
   if(count<=particleCapacity)return;particleCapacity=Math.max(256,2**Math.ceil(Math.log2(count)));
   particleGeometry?.dispose();particles?.removeFromParent();
   particleGeometry=new T.BufferGeometry();particleGeometry.setAttribute('position',new T.BufferAttribute(new Float32Array(particleCapacity*3),3).setUsage(T.DynamicDrawUsage));particleGeometry.setAttribute('sparkSize',new T.BufferAttribute(new Float32Array(particleCapacity),1));particleGeometry.setAttribute('sparkAlpha',new T.BufferAttribute(new Float32Array(particleCapacity),1).setUsage(T.DynamicDrawUsage));
-  const sizes=particleGeometry.attributes.sparkSize.array;for(let i=0;i<particleCapacity;i++)sizes[i]=4+(i%4)*1.3;
+  particleGeometry.setAttribute('lootColor',new T.BufferAttribute(new Float32Array(particleCapacity*3),3).setUsage(T.DynamicDrawUsage));const sizes=particleGeometry.attributes.sparkSize.array;for(let i=0;i<particleCapacity;i++)sizes[i]=4+(i%4)*1.3;
   particles=new T.Points(particleGeometry,new T.ShaderMaterial({uniforms,transparent:true,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false,
-   vertexShader:'attribute float sparkSize;attribute float sparkAlpha;varying float alpha;void main(){alpha=sparkAlpha;gl_PointSize=sparkSize;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-   fragmentShader:'uniform vec3 tint;uniform float strength;varying float alpha;void main(){float d=length(gl_PointCoord-.5)*2.;if(d>1.)discard;float soft=pow(1.-d,1.5);gl_FragColor=vec4(mix(tint,vec3(1.),.25),soft*alpha*strength);}'
+   vertexShader:'attribute vec3 lootColor;varying vec3 lootTint;attribute float sparkSize;attribute float sparkAlpha;varying float alpha;void main(){lootTint=lootColor;alpha=sparkAlpha;gl_PointSize=sparkSize;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+   fragmentShader:'varying vec3 lootTint;uniform vec3 tint;uniform float strength;varying float alpha;void main(){float d=length(gl_PointCoord-.5)*2.;if(d>1.)discard;float soft=pow(1.-d,1.5);gl_FragColor=vec4(mix(lootTint,vec3(1.),.25),soft*alpha*strength);}'
   }));particles.name='ground-item-particles';particles.frustumCulled=false;root.add(particles);
  }
  function request(id){if(pending.has(id))return;pending.add(id);load(id).then(source=>{if(source)sources.set(id,source);});}
@@ -48,15 +50,15 @@ export function createGroundItemsView(scene,load=loadModel){
   ensureParticles(Math.max(1,items.length*PARTICLES_PER_ITEM));const positions=particleGeometry.attributes.position.array,alphas=particleGeometry.attributes.sparkAlpha.array;
   uniforms.strength.value=reducedMotion?1:.92+Math.sin(time*.9)*.08;pointerMaterial.opacity=Math.min(1,uniforms.strength.value);
   for(let index=0;index<items.length;index++){
-   const q=items[index],sampledY=heightAt?.(q.x,q.z),groundY=Number.isFinite(sampledY)?sampledY:(q.y??0),id=itemModel(q.part||{key:q.lore?.modelKey});if(id)request(id);world.position.set(q.x,groundY+.04,q.z);world.rotation.set(0,0,0);world.scale.setScalar(scale);world.updateMatrix();
+   const q=items[index],rarity=q.part?partMeta(q.part).rarity:'common',color=new T.Color(LOOT_GLOW_COLORS[rarity]),glowScale=rarity==='relic'?1.65:1,sampledY=heightAt?.(q.x,q.z),groundY=Number.isFinite(sampledY)?sampledY:(q.y??0),id=itemModel(q.part||{key:q.lore?.modelKey});if(id)request(id);world.position.set(q.x,groundY+.04,q.z);world.rotation.set(0,0,0);world.scale.setScalar(scale);world.updateMatrix();
    for(const m of id?meshes(id):[]){matrix.multiplyMatrices(world.matrix,m.matrix);if(!batches.has(m.key))batches.set(m.key,{...m,transforms:[],count:0});const batch=batches.get(m.key),target=batch.transforms[batch.count]??=new T.Matrix4();target.copy(matrix);batch.count++;}
-   if(index<halo.count){world.position.set(q.x,groundY+.04+.065*scale,q.z);world.rotation.set(-Math.PI/2,0,0);world.scale.setScalar(scale);world.updateMatrix();halo.setMatrixAt(index,world.matrix);}
-   if(index<pointers.count){world.position.set(q.x,groundY+.04+(2.5+(reducedMotion?0:Math.sin(time*1.4)*.12))*scale,q.z);world.rotation.set(0,reducedMotion?0:time*.9,0);world.scale.setScalar(scale);world.updateMatrix();pointers.setMatrixAt(index,world.matrix);}
-   for(let i=0;i<PARTICLES_PER_ITEM;i++){const at=index*PARTICLES_PER_ITEM+i,phase=(time*.12+i*.61803398875)%1,angle=i*2.39996+time*.12,r=1.2*(.55+(i%5)*.09)*scale;positions[at*3]=q.x+Math.cos(angle)*r;positions[at*3+1]=groundY+.04+(.15+phase*1.5)*scale;positions[at*3+2]=q.z+Math.sin(angle)*r;alphas[at]=Math.sin(phase*Math.PI)*(.6+(i%3)*.18);}
+   if(index<halo.count){world.position.set(q.x,groundY+.04+.065*scale,q.z);world.rotation.set(-Math.PI/2,0,0);world.scale.setScalar(scale*glowScale);world.updateMatrix();halo.setMatrixAt(index,world.matrix);halo.setColorAt(index,color);}
+   if(index<pointers.count){world.position.set(q.x,groundY+.04+(2.5+(reducedMotion?0:Math.sin(time*1.4)*.12))*scale,q.z);world.rotation.set(0,reducedMotion?0:time*.9,0);world.scale.setScalar(scale);world.updateMatrix();pointers.setMatrixAt(index,world.matrix);pointers.setColorAt(index,color);}
+   for(let i=0;i<PARTICLES_PER_ITEM;i++){const at=index*PARTICLES_PER_ITEM+i,phase=(time*.12+i*.61803398875)%1,angle=i*2.39996+time*.12,r=1.2*(.55+(i%5)*.09)*scale*glowScale;particleGeometry.attributes.lootColor.setXYZ(at,color.r,color.g,color.b);particleGeometry.attributes.sparkSize.array[at]=(4+(i%4)*1.3)*glowScale;positions[at*3]=q.x+Math.cos(angle)*r;positions[at*3+1]=groundY+.04+(.15+phase*1.5)*scale;positions[at*3+2]=q.z+Math.sin(angle)*r;alphas[at]=Math.sin(phase*Math.PI)*(.6+(i%3)*.18);}
   }
   for(const pool of pools.values())pool.count=0;
   for(const [key,batch]of batches){if(!batch.count)continue;let pool=pools.get(key);if(!pool||pool.instanceMatrix.count<batch.count){if(pool){root.remove(pool);pool.dispose();}pool=new T.InstancedMesh(batch.geometry,batch.material,Math.max(128,2**Math.ceil(Math.log2(batch.count))));pool.instanceMatrix.setUsage(T.DynamicDrawUsage);pool.frustumCulled=false;pool.castShadow=pool.receiveShadow=false;root.add(pool);pools.set(key,pool);}pool.count=batch.count;for(let i=0;i<batch.count;i++)pool.setMatrixAt(i,batch.transforms[i]);uploadRange(pool.instanceMatrix,batch.count*16);}
-  uploadRange(halo.instanceMatrix,halo.count*16);uploadRange(pointers.instanceMatrix,pointers.count*16);particles.visible=!reducedMotion;particleGeometry.setDrawRange(0,reducedMotion?0:items.length*PARTICLES_PER_ITEM);uploadRange(particleGeometry.attributes.position,items.length*PARTICLES_PER_ITEM*3);uploadRange(particleGeometry.attributes.sparkAlpha,items.length*PARTICLES_PER_ITEM);
+  if(halo.instanceColor)halo.instanceColor.needsUpdate=true;if(pointers.instanceColor)pointers.instanceColor.needsUpdate=true;uploadRange(halo.instanceMatrix,halo.count*16);uploadRange(pointers.instanceMatrix,pointers.count*16);uploadRange(particleGeometry.attributes.sparkSize,items.length*PARTICLES_PER_ITEM);uploadRange(particleGeometry.attributes.lootColor,items.length*PARTICLES_PER_ITEM*3);particles.visible=!reducedMotion;particleGeometry.setDrawRange(0,reducedMotion?0:items.length*PARTICLES_PER_ITEM);uploadRange(particleGeometry.attributes.position,items.length*PARTICLES_PER_ITEM*3);uploadRange(particleGeometry.attributes.sparkAlpha,items.length*PARTICLES_PER_ITEM);
  }
  function reset(){missing.clear();visibleCount=halo.count=pointers.count=0;for(const p of pools.values())p.count=0;if(particleGeometry)particleGeometry.setDrawRange(0,0);}
  return {update,reset,info:()=>({visibleGroundItems:visibleCount,missingGroundItemModels:[...missing],groundItemDrawBatches:[...pools.values()].filter(p=>p.count).length+(visibleCount?2+(particles?.visible?1:0):0)})};

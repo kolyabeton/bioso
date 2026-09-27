@@ -21,9 +21,9 @@ test('six recipes own locomotion identities while worker stays the baseline',()=
  assert.equal(ENEMY_RECIPES.find(r=>r.id==='worker').locomotion,undefined);
 });
 
-test('small hunter advances only through its 3.6 metre hop and contacts after landing',()=>{
+test('small hunter advances only through its 7.2 metre hop and contacts after landing',()=>{
  const {s,e}=setup('small-hunter');let state=tickAt(s,e,0,{stopDistance:1});assert.equal(state.contactAllowed,false);assert.equal(e.z,0);
- state=tickAt(s,e,.27,{stopDistance:1});assert.equal(e.locomotionState.phase,'travel');assert.ok(e.z>1.6&&e.z<2);assert.ok(enemyLocomotionPose(e,.27).y>1);
+ state=tickAt(s,e,.27,{stopDistance:1});assert.equal(e.locomotionState.phase,'travel');assert.ok(e.z>3.2&&e.z<4);assert.ok(enemyLocomotionPose(e,.27).y>1);
  state=tickAt(s,e,.5,{stopDistance:1});assert.ok(Math.abs(e.z-ENEMY_LOCOMOTION.hop.distance)<1e-9);assert.equal(e.locomotionState.phase,'land');assert.equal(state.contactAllowed,true);
 });
 

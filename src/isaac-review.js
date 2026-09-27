@@ -13,6 +13,12 @@ export function prepareIsaacReview(s,params){
  if(mode==='hive-no-incubator')s.organs=s.organs.filter(p=>p.key!=='parasite');
  if(mode==='crazy'){s.inventory=[];s.abilities.learned=['projectiles.0','projectiles.1','projectiles.2','projectiles.3','fire.0','cold.0','electric.0'];}
  const weapon=params.get('weapon');if(Object.hasOwn(WEAPONS,weapon)){s.arms=[createPart(s,weapon),null];s.organs=[];s.time=0;s.hp=stats(s).hp;}
+ if(weapon==='shieldArm'){
+  const count=Math.max(1,Math.min(3,Number(params.get('shields'))||1)),tier=Math.max(1,Math.min(5,Number(params.get('rank'))||1));
+  s.arms=Array.from({length:3},(_,i)=>i<count?createPart(s,weapon,tier):null);
+  s.inventory=[createPart(s,weapon),createPart(s,'pistol')];s.biomass=2000;
+  if(!s.profile.unlocked.includes(weapon))s.profile.unlocked.push(weapon);
+ }
  syncMutations(s);discoverEncounters(s);const route=params.get('screen')||'assembly';
  if(['altar_organs','altar_speed','altar_armor','altar_capacity','altar','sealed','infection','hunt','race','dungeon_roots','dungeon_catacombs','membrane','slab','nursery'].includes(route)){const n=s.encounters.nodes.find(n=>n.type===route&&(!params.get('tier')||n.challengeTier===Number(params.get('tier'))));s.level=Math.max(s.level,encounterLevel(n),1);s.inventory=[];s.arms=[createPart(s,'seed'),null];s.organs=[];s.legs=[createPart(s,'universal'),createPart(s,'universal'),null,null];if(route==='altar'&&mode==='fusion'){s.arms[1]=createPart(s,'needle');s.inventory=[createPart(s,'universal'),createPart(s,'seed')];}s.hp=stats(s).hp;const approach={x:n.x,y:n.y,z:n.z+3};Object.assign(s.player,s.world.walkable(approach.x,approach.z,.8)?approach:{x:n.x,y:n.y,z:n.z});if(mode==='challenge-overlap'){
   const previous=s.encounters.nodes.find(other=>other.type==='infection'&&other.id!==n.id);
@@ -30,13 +36,13 @@ export function prepareIsaacReview(s,params){
  if(route==='battle'){
   s.inventory=[];
   let captureTargets=[],paused=false,freezeAt=null;
-  const loop=weapon&&params.get('loop')==='1';let resetAt=4;
+  const loop=weapon&&params.get('loop')==='1',resetInterval=weapon==='shieldArm'?10:4;let resetAt=resetInterval;
   if(loop){s.waves.credit=-1e6;s.nextElite=s.waves.nextElite=1e9;s.nextBoss=s.waves.nextBoss=1e9;}
   function spawnTargets(){
    let positions=[];
    if(weapon){
     for(let attempt=0;attempt<24&&!positions.length;attempt++){
-     const a=(weapon==='harpoon'?0:-Math.PI/2)+attempt*Math.PI*2/24,tx=-Math.sin(a),tz=Math.cos(a),base={x:s.player.x+Math.cos(a)*6,z:s.player.z+Math.sin(a)*6};
+     const a=(weapon==='harpoon'?0:weapon==='shieldArm'?Math.PI/2:-Math.PI/2)+attempt*Math.PI*2/24,tx=-Math.sin(a),tz=Math.cos(a),reach=weapon==='shieldArm'?2.2:6,base={x:s.player.x+Math.cos(a)*reach,z:s.player.z+Math.sin(a)*reach};
      const cluster=[-.72,0,.72].map(offset=>({x:base.x+tx*offset,z:base.z+tz*offset}));
      const clear=cluster.every(p=>{const y=s.world.heightAt?.(p.x,p.z)??0;return s.world.walkable(p.x,p.z,.7)&&(!s.world.lineClear||s.world.lineClear({x:s.player.x,y:(s.player.y??0)+1,z:s.player.z},{x:p.x,y:y+1,z:p.z}));});
      if(clear)positions=cluster;
@@ -57,7 +63,7 @@ export function prepareIsaacReview(s,params){
    s.enemies=[];s.shieldStrikes=[];captureTargets=[];
    for(const arm of s.arms.filter(Boolean))arm.cooldown=.8;
    spawnTargets();
-  },get paused(){return paused;},tick(){if(loop){if(s.time>=resetAt&&!s.shots.length){s.enemies=[];captureTargets=[];spawnTargets();resetAt=s.time+4;}for(const target of s.enemies)target.damage=0;for(const shot of s.hostileShots)shot.damage=0;}if(params.get('freeze')==='flight'&&s.shots.some(q=>q.travel>=4.2))paused=true;if(params.get('freeze')==='blast'){if(freezeAt==null&&captureTargets.some(target=>target.hp<target.maxHp))freezeAt=s.time+.1;if(freezeAt!=null&&s.time>=freezeAt)paused=true;}badge.textContent=`Проверочная сборка${loop?' · повтор выстрелов · без урона герою':''}${weapon?' · манекены · '+WEAPONS[weapon]?.name:''} · ${Math.floor(s.time)}с · бой ${Math.floor(combatTime(s))}с · личинки ${s.isaac.larvae.length} · слизь ${s.isaac.slimePools.length} · возврат ${s.shots.filter(q=>q.returning).length} · ${mutationView(s).filter(f=>f.active).map(f=>f.name).join(', ')||'без мутации'}${weapon&&params.has('capture')?' · цели '+captureTargets.map(t=>Math.round(t.hp)).join(' · '):''}`;}};
+  },get paused(){return paused;},tick(){if(loop){if(s.time>=resetAt&&!s.shots.length){s.enemies=[];captureTargets=[];spawnTargets();resetAt=s.time+resetInterval;}for(const target of s.enemies)target.damage=0;for(const shot of s.hostileShots)shot.damage=0;}if(params.get('freeze')==='flight'&&s.shots.some(q=>q.travel>=4.2))paused=true;if(params.get('freeze')==='blast'){if(freezeAt==null&&captureTargets.some(target=>target.hp<target.maxHp))freezeAt=s.time+.1;if(freezeAt!=null&&s.time>=freezeAt)paused=true;}badge.textContent=`Проверочная сборка${loop?weapon==='shieldArm'?' · постоянная аура · без урона герою':' · повтор выстрелов · без урона герою':''}${weapon?' · манекены · '+WEAPONS[weapon]?.name:''} · ${Math.floor(s.time)}с · бой ${Math.floor(combatTime(s))}с · личинки ${s.isaac.larvae.length} · слизь ${s.isaac.slimePools.length} · возврат ${s.shots.filter(q=>q.returning).length} · ${mutationView(s).filter(f=>f.active).map(f=>f.name).join(', ')||'без мутации'}${weapon&&(params.has('capture')||weapon==='shieldArm')?' · цели '+captureTargets.map(t=>Math.round(t.hp)).join(' · '):''}`;}};
  }
  return{name:route==='soul'?'soul':'assembly',params:{}};
 }

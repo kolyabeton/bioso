@@ -1,6 +1,6 @@
 # Game languages
 
-English is the default. Settings stores `language: "en" | "ru"` under the existing `biomecha.settings.v1` key. Older settings migrate to English without changing audio or graphics preferences. A language change applies immediately and does not restart a run.
+On first launch, the game uses the browser's preferred language: Russian for `ru` locales and English for other locales. If the browser does not report a language, Russian is the fallback. Settings stores a manual `language: "en" | "ru"` choice under the existing `biomecha.settings.v1` key; saved choices take priority over the browser language. Older settings without a language use the current browser language without changing audio or graphics preferences. A language change applies immediately and does not restart a run.
 
 The existing Russian copy is the source language. `en.json` contains English phrases for screens, HUD, catalog data, abilities, events and notifications. `translateText` matches the longest whole phrases, preserves numbers, and handles composed text and units. Add full phrases for new copy; use explicit patterns in `translateText` when dynamic grammar requires reordered words.
 

@@ -5,11 +5,12 @@ import {isMelee,isRangedHand} from './hand-compatibility.js';
 
 export function weaponFamilyBonus(s,p){
  const arms=s?.arms||[],installed=arms.some(q=>q===p||(p?.id!=null&&q?.id===p.id));
- const additional=installed?Math.max(0,Math.min(3,arms.filter(q=>q?.key===p.key).length-1)):0;
+ const count=installed?Math.min(4,arms.filter(q=>q?.key===p.key).length):0;
+ const additional=Math.max(0,count-1);
  return p?.key==='pistol'
-  ?{additional,crit:.05*additional,critPower:.2*additional,reload:0,spread:0}
+  ?{additional,crit:.05*count,critPower:.2*count,reload:0,spread:0}
   :p?.key==='shotgun'
-   ?{additional,crit:0,critPower:0,reload:.1*additional,spread:.1*additional}
+   ?{additional,crit:0,critPower:0,reload:.1*count,spread:.1*count}
    :{additional:0,crit:0,critPower:0,reload:0,spread:0};
 }
 
@@ -23,8 +24,8 @@ export function specializationHit(s,e,w){
  const state=s.specialization??={};state.combos??={};
  const t=combatTime(s),previous=state.combos[w.partId];
  const count=previous?.target===e.id&&t-previous.at<3?previous.count+1:1;
- state.combos[w.partId]={target:e.id,at:t,count:count===4?0:count};
- return count===4?1+(modifiers(s).onslaughtDamage||.5):1;
+ state.combos[w.partId]={target:e.id,at:t,count:count===2?0:count};
+ return count===2?1+(modifiers(s).onslaughtDamage||.3):1;
 }
 export function specializationKill(s,w){
  if(isMelee(w)&&!w.secondary&&!w.repeat&&modifiers(s).meleeFrenzy)(s.specialization??={}).frenzyUntil=combatTime(s)+4;

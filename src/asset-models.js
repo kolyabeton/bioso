@@ -6,15 +6,17 @@ import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
 import {mountOrgan} from './organ-mounts.js';
+import {equipmentSurfaceUV} from './equipment-surface.js';
 
 // Visual variants never alter equipment IDs, combat stats or save data.
 export const BODY_MODELS=Object.fromEntries(Object.keys(CHASSIS_PROFILES).map(key=>[key,[chassisModelId(key)]]));
-export const ARM_MODELS={drone:['arm-drone-icon-v1'],harpoon:['arm-harpoon-icon-v1'],pistol:['arm-pistol-v1'],claws:['arm-claws-icon-v1'],fangs:['arm-fangs-icon-v1'],hammer:['arm-hammer-icon-v1'],drill:['arm-drill-icon-v1'],whip:['arm-whip-icon-v1'],seed:['arm-seed-icon-v1'],shotgun:['arm-shotgun-v2'],needle:['arm-needle-icon-v1'],rocket:['arm-rocket-icon-v1'],arc:['arm-arc-icon-v1'],acid:['arm-acid-icon-v1']};
+export const ARM_MODELS={shieldArm:['arm-shield'],drone:['arm-drone-icon-v1'],harpoon:['arm-harpoon-icon-v1'],pistol:['arm-pistol-v1'],claws:['arm-claws-icon-v1'],fangs:['arm-fangs-icon-v1'],hammer:['arm-hammer-icon-v1'],drill:['arm-drill-icon-v1'],whip:['arm-whip-icon-v1'],seed:['arm-seed-icon-v1'],shotgun:['arm-shotgun-v2'],needle:['arm-needle-icon-v1'],rocket:['arm-rocket-icon-v1'],arc:['arm-arc-icon-v1'],acid:['arm-acid-icon-v1']};
 // Part type owns its silhouette. Set affiliation must never turn a normal leg into a root.
 export const LEG_MODELS={spring:['leg-spring-icon-v2'],runner:['leg-runner-icon-v2'],universal:['leg-universal-icon-v2'],plated:['leg-plated-icon-v2'],root:['leg-root'],swarmLeg:['leg-swarmLeg-icon-v2']};
 export const ORGAN_MODELS={...Object.fromEntries(['mirrorGland','reflexNerve','returnNerve','slime','parasite','commonNerve','reverseHeart','regen','shield','armor','repairGland','broodNode','stabilizer','digestion','accelerator'].map(key=>[key,['organ-'+key+'-icon-v1']])),
- // Authored reuse: the Reanimator borrows the Pump's heart until it gets its own.
- revivalCore:['organ-reverseHeart-icon-v1']};
+ broodNode:['organ-broodNode-icon-v3'],
+ reverseStomach:['organ-reverseStomach-icon-v2'],
+ revivalCore:['organ-revivalCore-icon-v2']};
 export const legModelId=p=>LEG_MODELS[p.key]?.[0];
 export const legMountOptions=(side,height)=>({size:.83,anchor:'top',rotation:[0,Math.PI,-side*.55],floorDistance:height-.03});
 const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder),cache=new Map(),errors=new Set();let loaded=0;
@@ -35,6 +37,10 @@ export function fittedModel(template,{size=1,anchor='center',rotation=[0,0,0],fl
 function install(parent,id,options,position,hide,load=loadModel){
  return load(id).then(template=>{if(!template||parent.userData.retired)return;const model=fittedModel(template,options);model.name='asset:'+id;model.userData.assetId=id;model.position.set(...position);for(const o of hide)o.visible=false;
   const joint=parent.children.find(o=>o.name==='mounting-joint');if(joint){joint.visible=true;joint.userData.materialSource=id;}
+  // The shield is only the plate; keep its forearm and cuff connected to the bearing.
+  if(id==='arm-shield')for(const [name,surface] of [['support','steel'],['cuff','ceramic']]){
+   const connector=parent.getObjectByName(name);if(connector){connector.visible=true;connector.geometry=equipmentSurfaceUV(connector.geometry.clone(),surface);connector.material=CHASSIS_MATERIALS[surface];}
+  }
   if(ARM_MODELS.drill.includes(id)){parent.userData.drillTipZ=new T.Box3().setFromObject(model).max.z;parent.userData.drillAsset=model;parent.userData.drillVisual=model.children[0];}
   if(id==='arm-shotgun-v2')parent.userData.shotgunMuzzle=model.getObjectByName('shotgun-muzzle');
   if(id==='arm-pistol-v1'){
@@ -60,8 +66,8 @@ export function dressCreature(root,s,{load=loadModel}={}){
  attach(root,body,{size:1.65,rotation:[0,Math.PI,0]},[0,1.06,0],bodyMeshes);
  // A head is cosmetic because the current rules have no separate head equipment slot.
  if(body!=='player-core'&&!body.endsWith('-v3'))attach(root,SETS[partMeta(s.body).setId].head,{size:.48,anchor:'bottom',rotation:[0,Math.PI,0]},[0,1.68,.16],[]);
- root.userData.legs.forEach(g=>{const p=s.legs[g.userData.slot],side=g.position.x>0?1:-1;attach(g,legModelId(p),legMountOptions(side,g.position.y),[0,0,0],g.children.filter(o=>!o.name.startsWith('mounting-')));});
- for(const p of s.arms.filter(Boolean)){const g=root.userData.arms.get(p.id);attach(g,variant(ARM_MODELS[p.key]||['arm-seed'],p),{size:p.key==='pistol'?1.05:1.1,anchor:p.key==='pistol'?'socket':'top',rotation:[-Math.PI/2,0,0],envelope:p.key==='pistol'?[.72,.54,1.05]:[.8,.52,1.1]},[0,0,0],g.children.filter(o=>o!==g.userData.meleeTrail&&!o.name.startsWith('mounting-')));}
+ root.userData.legs.forEach(g=>{const p=s.legs[g.userData.slot],side=g.userData.mountSide??(g.position.x>0?1:-1);attach(g,legModelId(p),legMountOptions(side,g.position.y),[0,0,0],g.children.filter(o=>!o.name.startsWith('mounting-')));});
+ for(const p of s.arms.filter(Boolean)){const g=root.userData.arms.get(p.id);attach(g,variant(ARM_MODELS[p.key]||['arm-seed'],p),{size:p.key==='pistol'?1.05:1.1,anchor:p.key==='pistol'?'socket':p.key==='shieldArm'?'center':'top',rotation:p.key==='shieldArm'?[0,0,0]:[-Math.PI/2,0,0],envelope:p.key==='pistol'?[.72,.54,1.05]:p.key==='shieldArm'?[.95,1.05,.62]:[.8,.52,1.1]},p.key==='shieldArm'?[0,-.08,.65]:[0,0,0],g.children.filter(o=>o!==g.userData.meleeTrail&&!o.name.startsWith('mounting-')&&!(p.key==='shieldArm'&&['support','cuff'].includes(o.name))));}
  // Wait for the fitted chassis before locating each organ on its actual skin.
  const organs=Promise.all(pending).then(()=>Promise.all(s.organs.map(async(p,slot)=>{
   if(!p)return;const id=partModelId(p),template=await load(id);

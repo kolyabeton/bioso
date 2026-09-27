@@ -9,8 +9,8 @@ import {translateText} from '../src/i18n/index.js';
 import {existsSync} from 'node:fs';
 const run=p=>createRun(p||newProfile(),'survival',42);
 const has=(s,id)=>s.profile.achievements.includes('feat:'+id);
-test('86 distinct cards retain the original 36 and add 50 survival goals',()=>{
- assert.equal(ACHIEVEMENTS.length,86);assert.equal(NEW_ACHIEVEMENTS.length,12);assert.equal(SURVIVAL_ACHIEVEMENTS.length,50);assert.equal(new Set(ACHIEVEMENTS.map(a=>a.id)).size,86);
+test('94 distinct cards retain the original goals and add four all-mode chassis rewards',()=>{
+ assert.equal(ACHIEVEMENTS.length,94);assert.equal(NEW_ACHIEVEMENTS.length,12);assert.equal(SURVIVAL_ACHIEVEMENTS.length,50);assert.equal(new Set(ACHIEVEMENTS.map(a=>a.id)).size,94);
  assert.equal(achievementById('meta:mirror').id,'mission:nursery');const p=newProfile();p.achievements.push('meta:mirror');assert.ok(achievementDone(p,achievementById('mission:nursery')));
 });
 test('pioneer never combines separate runs or counts duplicate events and secrets',()=>{

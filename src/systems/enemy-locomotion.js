@@ -6,7 +6,7 @@ import {clearSegment,navigateEnemy} from '../world-navigation.js';
 export const ENEMY_LOCOMOTION=Object.freeze({
  // Hoppers and diggers cover twice the ground per cycle they used to: longer leaps and
  // dives on a tighter clock, so neither reads as a slow novelty next to a plain walker.
- hop:Object.freeze({compress:.14,travel:.26,land:.2,distance:3.6}),
+ hop:Object.freeze({compress:.14,travel:.26,land:.2,distance:7.2}),
  burrow:Object.freeze({dive:.35,travel:.55,emerge:.45,distance:6,interval:2.1}),
  sprint:Object.freeze({build:1,multiplier:2.2,turn:80*Math.PI/180}),
  pack:Object.freeze({stage:1.6,attack:.8,radius:3.4}),

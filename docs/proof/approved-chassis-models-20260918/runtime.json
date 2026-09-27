@@ -1,0 +1,206 @@
+[
+  {
+    "report": {
+      "body": "demolition",
+      "enemies": [
+        {
+          "hp": 100000,
+          "id": 27,
+          "kind": "normal",
+          "x": 0,
+          "z": 27
+        },
+        {
+          "hp": 100000,
+          "id": 28,
+          "kind": "normal",
+          "x": 5,
+          "z": 22
+        },
+        {
+          "hp": 100000,
+          "id": 29,
+          "kind": "normal",
+          "x": 6.123233995736766e-16,
+          "z": 17
+        },
+        {
+          "hp": 100000,
+          "id": 30,
+          "kind": "normal",
+          "x": -5,
+          "z": 22
+        }
+      ],
+      "hostileShots": [],
+      "reflected": [],
+      "time": 0,
+      "towers": [],
+      "tuning": {
+        "active": true,
+        "armorReduction": 0.5800000000000001,
+        "boost": 1,
+        "freezeDuration": 1,
+        "key": "demolition",
+        "radius": 8,
+        "reflectionScale": 0.55,
+        "towerHp": 2,
+        "towerLimit": 2
+      }
+    },
+    "url": "http://127.0.0.1:5267/?review=support-chassis&body=demolition&screen=assembly&sound=0&lang=ru"
+  },
+  {
+    "report": {
+      "body": "regulator",
+      "enemies": [
+        {
+          "hp": 100000,
+          "id": 27,
+          "kind": "boss",
+          "x": 0,
+          "z": 27
+        },
+        {
+          "hp": 100000,
+          "id": 28,
+          "kind": "normal",
+          "x": 5,
+          "z": 22
+        },
+        {
+          "hp": 100000,
+          "id": 29,
+          "kind": "normal",
+          "x": 6.123233995736766e-16,
+          "z": 17
+        },
+        {
+          "hp": 100000,
+          "id": 30,
+          "kind": "normal",
+          "x": -5,
+          "z": 22
+        }
+      ],
+      "hostileShots": [],
+      "reflected": [],
+      "time": 0,
+      "towers": [],
+      "tuning": {
+        "active": true,
+        "armorReduction": 0.5,
+        "boost": 1,
+        "freezeDuration": 2,
+        "key": "regulator",
+        "radius": 8,
+        "reflectionScale": 0.55,
+        "towerHp": 2,
+        "towerLimit": 2
+      }
+    },
+    "url": "http://127.0.0.1:5267/?review=support-chassis&body=regulator&screen=assembly&sound=0&lang=ru"
+  },
+  {
+    "report": {
+      "body": "sentinel",
+      "enemies": [
+        {
+          "hp": 100000,
+          "id": 27,
+          "kind": "normal",
+          "x": 0,
+          "z": 27
+        },
+        {
+          "hp": 100000,
+          "id": 28,
+          "kind": "normal",
+          "x": 5,
+          "z": 22
+        },
+        {
+          "hp": 100000,
+          "id": 29,
+          "kind": "normal",
+          "x": 6.123233995736766e-16,
+          "z": 17
+        },
+        {
+          "hp": 100000,
+          "id": 30,
+          "kind": "normal",
+          "x": -5,
+          "z": 22
+        }
+      ],
+      "hostileShots": [],
+      "reflected": [],
+      "time": 0,
+      "towers": [],
+      "tuning": {
+        "active": true,
+        "armorReduction": 0.5,
+        "boost": 1,
+        "freezeDuration": 1,
+        "key": "sentinel",
+        "radius": 8,
+        "reflectionScale": 0.9,
+        "towerHp": 2,
+        "towerLimit": 2
+      }
+    },
+    "url": "http://127.0.0.1:5267/?review=support-chassis&body=sentinel&screen=assembly&sound=0&lang=ru"
+  },
+  {
+    "report": {
+      "body": "assembler",
+      "enemies": [
+        {
+          "hp": 100000,
+          "id": 27,
+          "kind": "normal",
+          "x": 0,
+          "z": 27
+        },
+        {
+          "hp": 100000,
+          "id": 28,
+          "kind": "normal",
+          "x": 5,
+          "z": 22
+        },
+        {
+          "hp": 100000,
+          "id": 29,
+          "kind": "normal",
+          "x": 6.123233995736766e-16,
+          "z": 17
+        },
+        {
+          "hp": 100000,
+          "id": 30,
+          "kind": "normal",
+          "x": -5,
+          "z": 22
+        }
+      ],
+      "hostileShots": [],
+      "reflected": [],
+      "time": 0,
+      "towers": [],
+      "tuning": {
+        "active": true,
+        "armorReduction": 0.5,
+        "boost": 1,
+        "freezeDuration": 1,
+        "key": "assembler",
+        "radius": 8,
+        "reflectionScale": 0.55,
+        "towerHp": 6,
+        "towerLimit": 4
+      }
+    },
+    "url": "http://127.0.0.1:5267/?review=support-chassis&body=assembler&screen=assembly&sound=0&lang=ru"
+  }
+]

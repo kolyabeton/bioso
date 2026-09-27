@@ -6,7 +6,7 @@ export function createInteractionHighlight(parent,{radius=2.4,height=3,color=0xf
  const uniforms={tint:{value:tint},strength:{value:0}};
  const haloMaterial=new T.ShaderMaterial({uniforms,transparent:true,depthWrite:false,side:T.DoubleSide,blending:T.AdditiveBlending,toneMapped:false,
   vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
-  fragmentShader:'varying vec2 vUv;uniform vec3 tint;uniform float strength;void main(){float d=length(vUv-.5)*2.;float glow=pow(max(0.,1.-d),2.)*.32;float rim=exp(-pow((d-.70)*22.,2.))*.24;gl_FragColor=vec4(tint,(glow+rim)*strength);}'
+  fragmentShader:'varying vec2 vUv;uniform vec3 tint;uniform float strength;void main(){float d=length(vUv-.5)*2.;float glow=pow(max(0.,1.-d),2.)*.32;float rim=exp(-pow((d-.70)*22.,2.))*.52;gl_FragColor=vec4(tint,(glow+rim)*strength);}'
  });
  const haloGeometry=new T.PlaneGeometry(radius*2.8,radius*2.8),halo=new T.Mesh(haloGeometry,haloMaterial);halo.rotation.x=-Math.PI/2;halo.position.y=.065;root.add(halo);
  const count=Math.max(0,Math.min(48,Math.floor(particleCount))),positions=new Float32Array(count*3),sizes=new Float32Array(count),alphas=new Float32Array(count);

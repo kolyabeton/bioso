@@ -1,11 +1,15 @@
 const SOUNDS={hit:[210,125,.045,'triangle',.022],'player-hit':[95,42,.23,'sawtooth',.065],experience:[900,1350,.055,'sine',.018],danger:[440,180,.3,'square',.032],'fuse-start':[280,580,.25,'square',.032]};
 import {createAudioFeedback} from './ui/audio-feedback.js';
 import {createForestAudio} from './forest-audio.js';
-const GUN_KEYS=new Set(['pistol','seed','shotgun','needle']);
 const RELOAD_SOUND_KEYS=new Set(['needle','shotgun','rocket']);
 const UI_KEYS=new Set(['click','open','close','confirm','deny','organic','mechanical','pickup']);
 const MAX_SHOTS=8;
 const EFFECTS={
+  seed:{asset:'approved-weapon-seed-smg.mp3',gain:.22,voices:6},
+  shotgun:{asset:'approved-weapon-shotgun.mp3',gain:.28,voices:4,interval:.08},
+  needle:{asset:'approved-weapon-needle-rifle.mp3',gain:.26,voices:4,interval:.06},
+  whip:{asset:'approved-weapon-whip-slash.mp3',gain:.28,voices:4,interval:.07},
+  fangs:{asset:'approved-weapon-fangs-silenced-gunshot.mp3',gain:.28,voices:4,interval:.06},
   hammer:{file:'shield',gain:.32,voices:3},
   claws:{file:'claws',gain:.28,voices:4},
   drill:{file:'drill',gain:.22,voices:2},
@@ -43,6 +47,24 @@ const EFFECTS={
 };
 const MAX_EFFECTS=12;
 
+export const WEAPON_ATTACK_SOUNDS=Object.freeze({
+  drone:{event:'summon-attack',silent:true},
+  shieldArm:{event:'aura',silent:true},
+  harpoon:{event:'attack',effect:'harpoon',asset:'approved-harpoon.wav'},
+  pistol:{event:'attack',effect:'pistol',asset:'approved-pistol.mp3'},
+  claws:{event:'attack',effect:'claws',asset:'approved-claws.wav'},
+  hammer:{event:'attack',effect:'hammer',asset:'approved-shield.wav'},
+  drill:{event:'attack',effect:'drill',asset:'approved-drill.wav'},
+  whip:{event:'attack',effect:'whip',asset:'approved-weapon-whip-slash.mp3'},
+  fangs:{event:'attack',effect:'fangs',asset:'approved-weapon-fangs-silenced-gunshot.mp3'},
+  seed:{event:'attack',effect:'seed',asset:'approved-weapon-seed-smg.mp3'},
+  shotgun:{event:'attack',effect:'shotgun',asset:'approved-weapon-shotgun.mp3'},
+  needle:{event:'attack',effect:'needle',asset:'approved-weapon-needle-rifle.mp3'},
+  rocket:{event:'blast',effect:'rocket',asset:'approved-rocket.wav'},
+  arc:{event:'arc',effect:'arc',asset:'approved-electric.wav'},
+  acid:{event:'attack',effect:'acid',asset:'approved-acid-wash.wav'},
+});
+
 export function createCombatAudio(volume,{
   shotUrl='/assets/audio/approved-pistol.mp3',
   effectBaseUrl=shotUrl.slice(0,shotUrl.lastIndexOf('/')+1),
@@ -54,7 +76,7 @@ export function createCombatAudio(volume,{
   },
   loadEffect=async(context,key)=>{
     const effect=EFFECTS[key],prefix=effect.generated?'generated-':'approved-';
-    const response=await fetch(`${effectBaseUrl}${prefix}${effect.file}.wav`);
+    const response=await fetch(`${effectBaseUrl}${effect.asset??`${prefix}${effect.file}.wav`}`);
     if(!response.ok)throw new Error(`Sound ${key}: ${response.status}`);
     return context.decodeAudioData(await response.arrayBuffer());
   },
@@ -127,12 +149,12 @@ export function createCombatAudio(volume,{
       return;
     }
     if(e.type==='attack'){
-      if(GUN_KEYS.has(e.key))try{playShot();}catch{}
+      if(e.key==='pistol')try{playShot();}catch{}
       else if(EFFECTS[e.key]&&e.key!=='rocket')try{playEffect(e.key,e);}catch{}
       return;
     }
     if(e.type==='summon-attack'){
-      try{playEffect('symbiont-bite',e);}catch{}
+      if(e.sourcePartId==null)try{playEffect('symbiont-bite',e);}catch{}
       return;
     }
     if(e.type==='dodge'||e.type==='spring-leap'){
@@ -163,7 +185,7 @@ export function createCombatAudio(volume,{
       try{playEffect('weapon-reload',e);}catch{}
       return;
     }
-    if(e.type==='shield'&&e.kind!=='health-invulnerability'){
+    if(e.type==='shield-reduction'||e.type==='shield'&&e.kind!=='health-invulnerability'){
       try{playEffect('shield-block',e);}catch{}
       return;
     }

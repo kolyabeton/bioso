@@ -1,0 +1,14 @@
+{
+  "demolition": {
+    "width": 0.72,
+    "height": 0.57,
+    "depth": 0.54,
+    "taper": 0,
+    "power": 0.55,
+    "cross": 0.75,
+    "horizontal": true,
+    "mountWidth": 0.76,
+    "modelId": "body-demolition-astra5-v3",
+    "status": "awaiting approval"
+  }
+}

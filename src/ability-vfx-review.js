@@ -16,16 +16,17 @@ const SCENARIOS={
  sporebrood:{arms:[],learned:['fire.0','fire.1','fire.2','fire.3','summons.0','summons.1','summons.2','summons.3','sporebrood'],moving:false},
  overgrowth:{arms:['seed'],learned:['might.0','might.1','might.2','might.3','metabolism.0','metabolism.1','metabolism.2','metabolism.3','overgrowth'],spend:true,moving:false},
  cryotrail:{arms:['claws'],learned:['cold.0','cold.1','cold.2','cold.3','motion.0','motion.1','motion.2','motion.3','cryotrail'],moving:true},
+ runnerfire:{arms:['seed'],learned:[],moving:true},
 };
 
 export function prepareAbilityVfxReview(s,params,setInput){
  const id=Object.hasOwn(SCENARIOS,params.get('synergy'))?params.get('synergy'):'neuralweb',config=SCENARIOS[id],recording=params.get('record')==='1';
  s.progressionLocked=true;s.nextElite=s.nextBoss=Infinity;s.waves.credit=0;s.time=180;s.enemies=[];s.ground=[];s.shots=[];s.hostileShots=[];
  if(config.singleEdge){s.world.walkable=()=>true;s.world.lineClear=()=>true;}
- s.body=createPart(s,'rootwalker',4);s.arms=config.arms.map(key=>createPart(s,key,4));s.legs=Array.from({length:4},()=>createPart(s,'universal',4));s.organs=[];
+ s.body=createPart(s,'rootwalker',4);s.arms=config.arms.map(key=>createPart(s,key,4));s.legs=Array.from({length:4},()=>createPart(s,id==='runnerfire'?'runner':'universal',id==='runnerfire'?5:4));s.organs=[];
  for(const ability of config.learned)learn(s,ability);for(const ability of config.ranked?[config.ranked].flat():[])for(let rank=0;rank<5;rank++)learn(s,ability);s.level=Object.values(s.abilities.levels).reduce((sum,rank)=>sum+rank,0)+1;s.hp=stats(s).hp;
  const showcase=id==='neuralweb'&&params.get('showcase')==='1';
- const positions=showcase?[-1,0,1].map(side=>({x:s.player.x+side*4,y:s.player.y,z:s.player.z+10})):config.ricochet?[{x:s.player.x,y:s.player.y,z:s.player.z+2.4},{x:s.player.x+2.8,y:s.player.y,z:s.player.z+3.5},{x:s.player.x+.5,y:s.player.y,z:s.player.z+5.8},{x:s.player.x-2.4,y:s.player.y,z:s.player.z+7.5}]:config.singleEdge?[{x:s.player.x,y:s.player.y,z:s.player.z+3.7}]:[];for(let ring=0;!config.singleEdge&&!showcase&&ring<3;ring++)for(let i=0;i<10;i++){const a=i*Math.PI/5+ring*.17,r=3+ring*2,x=s.player.x+Math.cos(a)*r,z=s.player.z+Math.sin(a)*r;if(s.world.walkable(x,z,.65))positions.push({x,z});}
+ const positions=showcase?[-1,0,1].map(side=>({x:s.player.x+side*4,y:s.player.y,z:s.player.z+10})):config.ricochet?[{x:s.player.x,y:s.player.y,z:s.player.z+2.4},{x:s.player.x+2.8,y:s.player.y,z:s.player.z+3.5},{x:s.player.x+.5,y:s.player.y,z:s.player.z+5.8},{x:s.player.x-2.4,y:s.player.y,z:s.player.z+7.5}]:config.singleEdge?[{x:s.player.x,y:s.player.y,z:s.player.z+3.7}]:[];for(let ring=0;id!=='runnerfire'&&!config.singleEdge&&!showcase&&ring<3;ring++)for(let i=0;i<10;i++){const a=i*Math.PI/5+ring*.17,r=3+ring*2,x=s.player.x+Math.cos(a)*r,z=s.player.z+Math.sin(a)*r;if(s.world.walkable(x,z,.65))positions.push({x,z});}
  for(const [i,position] of positions.entries()){const enemy=spawnEnemy(s,'normal',position,i%4?'mass':'armored',180);if(enemy){if(config.singleEdge){enemy.y=s.player.y;if(id!=='impacttools'&&id!=='burn')enemy.kind='objective';else if(id==='impacttools')enemy.radius=.48;}enemy.hp=enemy.maxHp=config.ricochet||id==='burn'?50000:id==='sporebrood'?1400:500;enemy.speed=enemy.damage=0;if(id!=='burn')enemy.assembly=null;}}
  if(config.singleEdge)s.rng=()=>config.roll??.99;
  // Use the runtime creature renderer for fire acceptance, not an objective prop.
@@ -41,5 +42,5 @@ export function prepareAbilityVfxReview(s,params,setInput){
   if(burnTarget){burnTarget.x=s.player.x-3+Math.sin((s.time-180)*.7)*1.1;burnTarget.z=s.player.z+5+Math.cos((s.time-180)*.7)*.45;}
   if(config.spend&&s.time>=nextSpend&&Object.values(s.arms[0].upgrades).reduce((n,v)=>n+v,0)<10){upgrade(s,s.arms[0].id,'damage',true);nextSpend=s.time+1.4;}
   if(config.ricochet){ricochetFrames=s.shots.some(shot=>shot.ricochetLeft!=null)?ricochetFrames+1:0;if(!recording&&ricochetFrames>=9)paused=true;}
-  badge.textContent=`VFX · ${id}${config.ranked?' · ранг 5 из 5':''}${params.get('showcase')==='1'?' · ветвящаяся молния 10 м':''} · ${s.enemies.filter(e=>e.hp>0).length} целей · ${s.enemies.reduce((sum,e)=>sum+(e.burn?.count||0),0)} стаков огня · ${s.abilities.spores.length} спор · ${s.abilities.cryoTrails.length} следов${paused?' · стоп-кадр':''}`;}};
+  badge.textContent=`VFX · ${id}${config.ranked?' · ранг 5 из 5':''}${params.get('showcase')==='1'?' · ветвящаяся молния 10 м':''} · ${s.enemies.filter(e=>e.hp>0).length} целей · ${s.enemies.reduce((sum,e)=>sum+(e.burn?.count||0),0)} стаков огня · ${s.abilities.spores.length} спор · ${s.abilities.cryoTrails.length} холодных следов · ${s.fireTrails?.length||0} огненных следов${paused?' · стоп-кадр':''}`;}};
 }

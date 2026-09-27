@@ -7,11 +7,11 @@ import {createRun,step,spawnEnemy} from '../src/game.js';
 import {createPart,readProfile,newProfile,stats} from '../src/assembly.js';
 import {createProfileStorage} from '../src/profile-storage.js';
 
-test('a fatal instant strike cannot be undone by the thirtieth fang hit in the same frame',()=>{
+test('a fatal instant strike cannot be undone by a fang attack in the same frame',()=>{
   const s=createRun(undefined,'survival',77);
   s.world={walkable:()=>true};
   s.arms=[createPart(s,'fangs'),null];
-  s.hp=1;s.health.missing=2;s.health.vampireHits=29;
+  s.hp=1;s.health.missing=99;
   s.health.armorSpent=stats(s).armor;
   const enemy=spawnEnemy(s,'normal',{x:0,z:1});
   enemy.hp=100;enemy.speed=0;enemy.damage=1;

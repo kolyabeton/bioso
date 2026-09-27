@@ -1,7 +1,8 @@
-import {SHIELD_RECHARGE_SECONDS,REGEN_INTERVAL_SECONDS} from './health-tuning.js';
-import {LOOT_RULES} from './sets-loot.js';
+import {SHIELD_RECHARGE_SECONDS} from './health-tuning.js';
+import {survivalPost20Multiplier} from './survival-scaling.js';
+import {LOOT_RULES} from './sets/loot-rules.js';
 /** Shared simulation tuning. Times are seconds, health values are whole segments. */
-export const HEALTH = Object.freeze({base:1,invulnerability:1,regenDelay:REGEN_INTERVAL_SECONDS,vampireHits:10,vampireDelay:0,shieldDelay:SHIELD_RECHARGE_SECONDS});
+export const HEALTH = Object.freeze({base:1,invulnerability:.5,shieldDelay:SHIELD_RECHARGE_SECONDS});
 // Sell price is additive: 4 biomass at rank I common, then +2 per rank and +2 per rarity step.
 export const ECONOMY = Object.freeze({upgradeBase:12,upgradeStep:6,normalLoot:LOOT_RULES.normalChance,digest:[0,4,6,8,10,12],digestRarityBonus:{common:0,uncommon:2,rare:4,relic:6},digestRefund:.5,tierLevels:[1,7,13,20,27]});
 /** Item 21: survival elites dropped an item every time; the roll is now 30% rarer. */
@@ -36,14 +37,17 @@ export const WAVE_RULES=Object.freeze({cap:88,eliteCap:6,bossEvery:480,eliteStar
 export const SURVIVAL_PRESSURE=Object.freeze({hp:1.3,speed:1.15,rate:1,recovery:.75,introBossHp:182,introBossDamage:.5,introBossXp:6});
 export const SURVIVAL_LATE_PRESSURE_AT=15*60;
 /** Endless post-15 pressure for ordinary enemies. Boss families keep their own curves. */
-export function survivalPressureProfile(time){
+export function survivalPressureProfile(time,difficulty=50,kind='normal',runTime=time){
  const lateMinutes=Math.max(0,(Math.max(0,time)-SURVIVAL_LATE_PRESSURE_AT)/60);
+ const hard=Math.max(0,Math.min(1,(difficulty-50)/50));
+ const post20=survivalPost20Multiplier(runTime);
+ const health=(kind==='elite'?5.47:16.0256)**(lateMinutes/21)*post20;
  return{
   lateMinutes,
-  damage:1+.06*lateMinutes,
+  damage:(1+.06*(1+hard)*lateMinutes)*post20,
   attackRate:Math.min(1.8,1+.035*lateMinutes),
   speed:Math.min(1.3,1+.015*lateMinutes),
-  health:1+.1*Math.max(0,Math.max(0,time)/60-40),
+  health,
   count:Math.min(1.75,1+.03*lateMinutes),
   live:Math.min(1.5,1+.02*lateMinutes),
   eliteCap:time<18*60?WAVE_RULES.eliteCap:Math.min(12,7+Math.floor((time-18*60)/180)),
@@ -56,10 +60,10 @@ export const SURVIVAL_WAVE_BOSS_LEVELS=Object.freeze([
 // bosses. Keep the introductory encounter and the level-four starter-gear duel.
 export const SURVIVAL_HABITAT_RADIUS=3.4;
 export const SURVIVAL_HABITAT_BALANCE=Object.freeze([
- Object.freeze({level:1,hp:SURVIVAL_PRESSURE.introBossHp,damage:SURVIVAL_PRESSURE.introBossDamage,armor:20,speed:1.68,recovery:1}),
+ Object.freeze({level:1,hp:SURVIVAL_PRESSURE.introBossHp,damage:2,armor:20,speed:1.68,recovery:1}),
  Object.freeze({level:8,hp:3600,damage:2,armor:25,speed:1.76,recovery:1}),
  Object.freeze({level:16,hp:9600,damage:2,armor:30,speed:1.83,recovery:1}),
- Object.freeze({level:24,hp:25000,damage:.5,armor:20,speed:1.7,recovery:1.25}),
+ Object.freeze({level:24,hp:25000,damage:2,armor:20,speed:1.7,recovery:1.25}),
  Object.freeze({level:30,hp:240000,damage:2,armor:35,speed:5.3,recovery:1}),
 ]);
 // A fixed end-of-run challenge: approaching early never scales the Mother down.

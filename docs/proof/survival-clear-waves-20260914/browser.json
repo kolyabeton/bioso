@@ -1,0 +1,118 @@
+{
+  "route": "http://127.0.0.1:5174/?review=survival-waves&sound=0&lang=ru",
+  "method": "Actual rendered Survival. Scripted real death handling, unarmed invulnerable player, accelerated step() clocks. Not a balance playthrough.",
+  "seed": 20317,
+  "checkpoints": [
+    {
+      "label": "Ожидание первого босса",
+      "time": 0,
+      "index": null,
+      "phase": "waiting",
+      "pack": null,
+      "issued": 0,
+      "living": 0,
+      "restUntil": null,
+      "minuteElites": 0,
+      "invaders": 0
+    },
+    {
+      "label": "Основная пачка",
+      "time": 500,
+      "index": 0,
+      "phase": "main",
+      "pack": 0,
+      "issued": 15,
+      "living": 15,
+      "restUntil": null,
+      "minuteElites": 1,
+      "invaders": 0
+    },
+    {
+      "label": "Подкрепление",
+      "time": 529.9999999999861,
+      "index": 0,
+      "phase": "reinforcement",
+      "pack": 1,
+      "issued": 15,
+      "living": 15,
+      "restUntil": null,
+      "minuteElites": 1,
+      "invaders": 0
+    },
+    {
+      "label": "Передышка 40 секунд",
+      "time": 534.9999999999816,
+      "index": 0,
+      "phase": "rest",
+      "pack": 1,
+      "issued": 20,
+      "living": 0,
+      "restUntil": 574.9999999999816,
+      "minuteElites": 1,
+      "invaders": 0
+    },
+    {
+      "label": "За 0,01 с до новой волны",
+      "time": 574.9899999999453,
+      "index": 0,
+      "phase": "rest",
+      "pack": 1,
+      "issued": 20,
+      "living": 0,
+      "restUntil": 574.9999999999816,
+      "minuteElites": 2,
+      "invaders": 1
+    },
+    {
+      "label": "Вторая волна · PASS",
+      "time": 575.0099999999453,
+      "index": 1,
+      "phase": "main",
+      "pack": 0,
+      "issued": 19,
+      "living": 19,
+      "restUntil": null,
+      "minuteElites": 2,
+      "invaders": 1
+    }
+  ],
+  "checks": [
+    {
+      "name": "intro starts main pack",
+      "pass": true
+    },
+    {
+      "name": "cleared main",
+      "pass": true
+    },
+    {
+      "name": "reinforcement follows full clear",
+      "pass": true
+    },
+    {
+      "name": "cleared reinforcement",
+      "pass": true
+    },
+    {
+      "name": "rest begins at last kill",
+      "pass": true
+    },
+    {
+      "name": "no wave before rest expiry",
+      "pass": true
+    },
+    {
+      "name": "timed invasion interrupts rest without resetting it",
+      "pass": true
+    },
+    {
+      "name": "next main starts after 40 seconds",
+      "pass": true
+    },
+    {
+      "name": "wave starts while invader lives",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

@@ -64,10 +64,12 @@ test('ability descriptions show rank changes except deliberate plateau ranks',()
  }
 });
 test('binary mechanics stop at one rank while large discrete effects stop at three',()=>{
- for(const id of ['projectiles.1','projectiles.2','electric.3','vitality.3','plasma','ricochet.0'])assert.equal(ABILITIES[id].maxLevel,1,id);
- for(const id of ['tempo.3','electric.1','cold.3','swarm'])assert.equal(ABILITIES[id].maxLevel,3,id);
+ for(const id of ['projectiles.1','projectiles.2','electric.3','vitality.3','plasma','ricochet.0','ammo.3'])assert.equal(ABILITIES[id].maxLevel,1,id);
+ for(const id of ['tempo.3','electric.1','cold.3','swarm','ammo.1','ammo.2'])assert.equal(ABILITIES[id].maxLevel,3,id);
  const ricochetBase=abilityDescriptionAtLevel(ABILITIES['ricochet.0'],1);assert.match(ricochetBase,/снаряд рикошетит.*4 м/);assert.doesNotMatch(ricochetBase,/ближн/u);
- assert.match(abilityDescriptionAtLevel(ABILITIES['ricochet.3'],5),/шанс крита вторичного попадания \+25%/);
+ assert.match(abilityDescriptionAtLevel(ABILITIES['ricochet.1'],1),/80% урона основного попадания/);
+ assert.match(abilityDescriptionAtLevel(ABILITIES['ricochet.1'],5),/120% урона основного попадания/);
+ assert.match(abilityDescriptionAtLevel(ABILITIES['ricochet.3'],5),/половиной здоровья или меньше.*\+100%/);
  const s=state(['ricochet.0'],['ricochet.1']);s.abilities.levels={'ricochet.0':1};const html=abilityTree(abilityCards(s)[0]);
  assert.match(html,/Три независимых направления/);assert.doesNotMatch(html,/Для финала/);
  const migrated=state(['vitality.3'],[]);migrated.abilities.levels={'vitality.3':5};assert.equal(abilityLevel(migrated,'vitality.3'),1);assert.equal(learn(migrated,'vitality.3'),false);

@@ -1,0 +1,447 @@
+{
+  "duration": 27.6,
+  "music": "touch-zavorin-intro.mp3",
+  "musicSourceStart": 10,
+  "sound": "Edited Foley from existing game assets; original capture silent",
+  "cues": [
+    {
+      "file": "approved-ui-open.wav",
+      "time": 5.97,
+      "gain": 0.23
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 6.55,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 6.8,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 7.05,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 7.3,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 7.55,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 7.8,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 6.59,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 6.86,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 7.13,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 7.4,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 7.67,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-electric.wav",
+      "time": 6.67,
+      "gain": 0.25
+    },
+    {
+      "file": "approved-rocket.wav",
+      "time": 7.4,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-ui-open.wav",
+      "time": 7.97,
+      "gain": 0.23
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 9.25,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 9.5,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 9.75,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 10.0,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 10.25,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 9.29,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 9.56,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 9.83,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 10.1,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-electric.wav",
+      "time": 9.37,
+      "gain": 0.25
+    },
+    {
+      "file": "approved-rocket.wav",
+      "time": 9.83,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-ui-open.wav",
+      "time": 10.47,
+      "gain": 0.23
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 11.55,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 11.8,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 12.05,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 12.3,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 12.55,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 12.8,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-ui-open.wav",
+      "time": 12.97,
+      "gain": 0.23
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 14.25,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 14.5,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 14.75,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 15.0,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 15.25,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 15.5,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 15.75,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 14.29,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 14.56,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 15.37,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 15.64,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-electric.wav",
+      "time": 14.37,
+      "gain": 0.25
+    },
+    {
+      "file": "approved-rocket.wav",
+      "time": 15.37,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-ui-open.wav",
+      "time": 15.94,
+      "gain": 0.23
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 17.32,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 17.57,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 17.82,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 18.07,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 18.32,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 18.57,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 17.36,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 17.63,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 18.44,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-electric.wav",
+      "time": 17.44,
+      "gain": 0.25
+    },
+    {
+      "file": "approved-rocket.wav",
+      "time": 17.63,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-ui-open.wav",
+      "time": 18.71,
+      "gain": 0.23
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 19.99,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 20.24,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 20.49,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 20.74,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 20.99,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 21.24,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 21.49,
+      "gain": 0.18
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 20.03,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 20.3,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 20.57,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 20.84,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 21.11,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-pistol.mp3",
+      "time": 21.38,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-electric.wav",
+      "time": 20.11,
+      "gain": 0.25
+    },
+    {
+      "file": "approved-rocket.wav",
+      "time": 21.11,
+      "gain": 0.22
+    },
+    {
+      "file": "approved-ui-open.wav",
+      "time": 21.68,
+      "gain": 0.23
+    },
+    {
+      "file": "approved-rocket.wav",
+      "time": 25.58,
+      "gain": 0.48
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 23.9,
+      "gain": 0.1
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 24.12,
+      "gain": 0.1
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 24.34,
+      "gain": 0.1
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 24.56,
+      "gain": 0.1
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 24.78,
+      "gain": 0.1
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 25.0,
+      "gain": 0.1
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 25.22,
+      "gain": 0.1
+    },
+    {
+      "file": "approved-player-step.wav",
+      "time": 25.44,
+      "gain": 0.1
+    }
+  ],
+  "cameras": [
+    "overhead close",
+    "oblique wide",
+    "oblique close",
+    "overhead wide"
+  ],
+  "retained": [
+    "all boss shots excluded, including 20 seconds",
+    "beetle escapes before explosion",
+    "UI-battle alternation"
+  ],
+  "fullDecode": "passed",
+  "mixPeak": 0.7066894769668579,
+  "sha256": "9c43894ef1a778eddfa42070e6bbc3f400d367aca28b4c681d94eea0ebef9651"
+}

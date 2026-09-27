@@ -1,0 +1,35 @@
+{
+  "failed": [],
+  "ground": [
+    {
+      "id": 34,
+      "key": "parasite"
+    },
+    {
+      "id": 36,
+      "key": "repairGland"
+    }
+  ],
+  "inventory": [
+    {
+      "id": 35,
+      "key": "slime"
+    }
+  ],
+  "missing": [],
+  "organs": [
+    "parasite",
+    "slime",
+    "repairGland"
+  ],
+  "player": {
+    "facing": 0,
+    "vertical": "grounded",
+    "vy": 0,
+    "x": 0,
+    "y": 0,
+    "z": 27.00359199999999
+  },
+  "sound": false,
+  "time": 4.007800000000002
+}

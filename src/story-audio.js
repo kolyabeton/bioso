@@ -46,7 +46,7 @@ export function createStoryAudio(baseUrl,getSettings,{setDucked=()=>{},onEnded=(
       },radioMix.minDrop+random()*radioMix.dropRange);
     },delay);
   }
-  function unlock(){try{context??=createContext();if(context.state==='suspended')context.resume().catch(()=>{});}catch{context=null;}}
+  function unlock(){try{context??=createContext();if(context.state==='suspended')context.resume().catch(()=>{});}catch{context=null;}if(current?.blocked&&!current.suspended){const session=current;session.blocked=false;session.audio.play().catch(()=>{if(current===session)session.blocked=true;});}}
   function stop(){
     if(!current)return;
     clearRadioTimers(current);
@@ -103,7 +103,7 @@ export function createStoryAudio(baseUrl,getSettings,{setDucked=()=>{},onEnded=(
     const session=current={audio,interference,nodes,gain,cue,language,voiceMix:radioMix.voice,noiseMix:radioMix.noise,glitchTimer:null,restoreTimer:null};setDucked(true);
     const complete=()=>{if(current?.audio!==audio)return;stop();onEnded(cue);};
     audio.onended=complete;audio.onerror=complete;
-    interference.play().catch(()=>{});audio.play().catch(()=>{if(current?.audio===audio&&!current.suspended)complete();});scheduleDropout(session);
+    interference.play().catch(()=>{});audio.play().catch(error=>{if(current?.audio!==audio||current.suspended)return;if(error?.name==='NotAllowedError')session.blocked=true;else complete();});scheduleDropout(session);
     return true;
   }
   return{unlock,play,stop,pause,resume,syncVolume,syncLanguage,get playing(){return!!current&&!current.audio.paused;},get cue(){return current?.audio?.src||'';}};

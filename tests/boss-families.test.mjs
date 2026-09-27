@@ -21,7 +21,7 @@ test('map bosses retain five different generated bodies and weapons, including t
   }
   assert.equal(s.enemies.some(e=>e.bossOwner),false);
   const mother=bosses[4];assert.equal(mother.bossName,'Матка');assert.equal(mother.kind,'final');
-  assert.equal(mother.maxHp,240000);for(const key of ['armor','speed'])assert.equal(mother[key],SURVIVAL_FINAL[key]);
+  assert.equal(mother.maxHp,240000);assert.equal(mother.armor,SURVIVAL_FINAL.armor*1.3);assert.equal(mother.speed,SURVIVAL_FINAL.speed*2);
   assert.equal(mother.recommended,30);
   assert.deepEqual(bosses.map(e=>e.bossLevel),[1,8,16,24,30]);
   assert.ok(bosses.every(e=>e.bossRegenRate===undefined));
@@ -56,7 +56,7 @@ test('all five timed waves use mission bosses and leave generated habitats untou
   assert.equal(e.bossName,MISSIONS[index].bossName);assert.equal(e.assembly,null);
   assert.ok(e.bossCombat);assert.equal(e.territory,null);assert.equal(e.habitat,undefined);
   assert.equal(e.bossRegenRate,undefined);
-  assert.equal(e.damage,index===0?.5:2);assert.ok(e.maxHp>600);assert.notEqual(e.maxHp,habitats[index].maxHp);
+  assert.equal(e.damage,2);assert.ok(e.maxHp>600);assert.notEqual(e.maxHp,habitats[index].maxHp);
   e.hp=0;
  }
  assert.deepEqual(habitats.map(e=>({hp:e.hp,armor:e.armor,speed:e.speed,recipe:e.recipeId})),original);
@@ -66,7 +66,7 @@ test('generated Mother retains her own post-30-minute growth without mission sup
  const s=createWorldRun(undefined,'survival',42),mother=s.enemies.find(e=>e.kind==='final');
  s.survivalBosses={nextAt:Infinity,count:0};s.time=SURVIVAL_MOTHER_GROWTH_AT+60;
  tickSurvivalBosses(s,()=>assert.fail('no wave is scheduled'));
- assert.equal(mother.maxHp,240000*1.1);assert.equal(mother.armor,SURVIVAL_FINAL.armor+2);
- assert.equal(mother.speed,SURVIVAL_FINAL.speed*1.03);assert.equal(mother.recipeId,'mother');
+ assert.equal(mother.maxHp,240000*1.1);assert.equal(mother.armor,SURVIVAL_FINAL.armor*1.3+2*1.3);
+ assert.equal(mother.speed,SURVIVAL_FINAL.speed*2*1.03);assert.equal(mother.recipeId,'mother');
  assert.equal(mother.bossCombat,undefined);assert.ok(!s.enemies.some(e=>e.bossOwner===mother.id));
 });

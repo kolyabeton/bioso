@@ -9,7 +9,14 @@ import {CATALOG} from '../catalog.js';
 import {addXP} from '../game.js';
 import {ABILITIES} from '../systems/abilities.js';
 import {STORY_CUES} from '../story-cues.js';
+import {HERO_HP_PER_SEGMENT} from '../systems/health-scale.js';
 export function prepareReview(run,name){
+  if(new URLSearchParams(location.search).get('variant')==='reverse-stomach'){
+    run.body=createPart(run,'bastion');run.organs=[createPart(run,'reverseStomach'),createPart(run,'digestion'),null,null,null];
+    run.inventory=['reverseStomach','claws'].map(k=>createPart(run,k));run.biomass=200;run.hp=stats(run).hp;run.enemies=[];run.ground=[];
+    if(new URLSearchParams(location.search).get('ground')==='1'){const p=createPart(run,'claws');p.rarity='common';run.ground.push({id:++run.entityId,part:p,x:run.player.x,y:run.player.y??0,z:run.player.z});run.hp-=HERO_HP_PER_SEGMENT;}
+    return {};
+  }
   if(new URLSearchParams(location.search).get('variant')==='sets-v2'){prepareSetReview(run);return name==='catalog'?{view:'sets'}:{};}
   if(name==='journal'||name==='journal-entry'){
     run.profile.meta.storyEvidence=['garden-agronomist-log','survival-fire-census','survival-field-clinic','survival-launch-dissent','survival-air-ledger','survival-river-sample','survival-empathy-author'];
@@ -32,6 +39,40 @@ export function prepareReview(run,name){
     run.abilities.companions=Array.from({length:8},(_,i)=>({id:`symbiont-${i}`,cooldown:0,attacks:0,x:run.player.x,y:run.player.y??0,z:run.player.z}));
     run.inventory=[];run.ground=[];run.hp=stats(run).hp;
     const variant=new URLSearchParams(location.search).get('variant');
+    if(variant==='reflector'){
+      run.organs[0]=createPart(run,'mirrorGland',2);
+      run.abilities.learned=['ranged.0','fire.0','might.3','vitality.2'];
+      run.abilities.levels=Object.fromEntries(run.abilities.learned.map(id=>[id,1]));
+      run.abilities.minor={'minor.damage':2};
+      run.hp=stats(run).hp;
+    }
+    if(variant==='mutation-hive'){
+      run.arms=[createPart(run,'rocket'),null];
+      run.organs=[createPart(run,'parasite'),createPart(run,'digestion'),null];
+      run.abilities.learned=[];run.abilities.levels={};run.abilities.companions=[];
+      for(const part of [run.body,...run.arms,...run.legs,...run.organs])if(part)part.setId=null;
+      run.hp=stats(run).hp;
+    }
+    if(variant==='typography'){
+      run.arms=[createPart(run,'drone'),createPart(run,'seed')];
+      run.abilities.learned=['tempo.0'];run.abilities.levels={'tempo.0':1};
+      for(const part of [run.body,...run.arms,...run.legs,...run.organs])part.setId=null;
+    }
+    if(variant==='stats-full'){
+      run.body=createPart(run,'bastion',5);
+      run.arms=['shieldArm','needle','shotgun'].map(key=>createPart(run,key,5));
+      run.legs=['root','plated','swarmLeg','runner'].map(key=>createPart(run,key,5));
+      run.organs=['shield','regen','digestion','parasite','armor'].map(key=>createPart(run,key,5));
+      run.organs[0].upgrades.shieldRecharge=3;
+      run.abilities.learned=Object.keys(ABILITIES);
+      run.abilities.levels=Object.fromEntries(Object.values(ABILITIES).map(d=>[d.id,d.maxLevel]));
+      run.abilities.biomassSpent=5000;run.abilities.companions=[];
+      run.biomass=9999;run.level=99;run.kills=99999;(run.consumables??={}).revivalCharges=12;
+      run.hp=stats(run).hp;
+    }
+    if(variant==='equipment-bonuses'){
+      run.body=createPart(run,'hecaton');run.arms=['pistol','pistol','shotgun','shotgun'].map(k=>createPart(run,k));run.legs=['plated','plated'].map(k=>createPart(run,k));run.organs=[createPart(run,'digestion'),createPart(run,'repairGland')];run.organs[0].upgrades.power=3;run.abilities.learned=[];run.abilities.levels={};run.abilities.companions=[];run.hp=stats(run).hp;
+    }
     if(['chimera-two','chimera-ready','chimera-recovering'].includes(variant)){
       run.body=createPart(run,'chimera');
       run.arms=[createPart(run,'claws'),createPart(run,'acid')];
@@ -44,11 +85,14 @@ export function prepareReview(run,name){
   }
   if(name==='boss-reward'){run.time=480;queueBossReward(run,createPart,2);if(new URLSearchParams(location.search).get('variant')==='first-boss'){run.bosses=1;meta(run.profile).rerolls=1;}}
   if(new URLSearchParams(location.search).get('variant')==='sets'){run.arms=[createPart(run,'seed'),createPart(run,'claws')];for(const p of [run.body,...run.arms,...run.legs]){p.setId='wanderer';p.rarity='rare';}run.arms[0].affix={stat:'reload',value:.08};}
-  if(['assembly','part','body-swap','level','map','end'].includes(name)){
+  if(['assembly','body-swap','level','map','end'].includes(name)){
     run.biomass=128;
     for(const key of ['drill','bastion','shield','regen','digestion','plated']){const part=createPart(run,key);finalizeReceivedPart(run,part);run.inventory.push(part);}
     const digestion=run.inventory.find(p=>p.key==='digestion');equip(run,digestion.id,0);
     run.ground.push({id:++run.entityId,part:createPart(run,'arc'),x:run.player.x+1,z:run.player.z});
+    if(new URLSearchParams(location.search).get('variant')==='loot-rarity'){
+      run.inventory=[];run.health.invulnerableUntil=Infinity;run.ground=['common','uncommon','rare','relic'].map((rarity,i)=>{const part=createPart(run,'armor');part.rarity=rarity;return {id:++run.entityId,part,x:run.player.x+(i-1.5)*5,y:run.player.y??0,z:run.player.z-7};});
+    }
   }
   if(new URLSearchParams(location.search).get('variant')==='affixes'){const p=run.inventory[0];if(p){p.rarity='relic';p.affixes=rollAffixes(p,()=>0);}run.body.rarity='rare';run.body.affixes=rollAffixes(run.body,()=>0);}
   if(name==='assembly'&&new URLSearchParams(location.search).get('variant')==='legendary-weapon'){
@@ -94,7 +138,7 @@ export function prepareReview(run,name){
     run.arms=Array.from({length:d.arms},()=>createPart(run,'seed'));
     run.legs=Array.from({length:d.legs},(_,i)=>createPart(run,i?'universal':'plated'));
     run.organs=Array.from({length:d.organs},(_,i)=>i<2?createPart(run,i?'armor':'shield'):null);
-    run.inventory=[];run.hp=1;
+    run.inventory=[];run.hp=HERO_HP_PER_SEGMENT;
   }
   if(name==='assembly'&&['equipment','regeneration'].includes(new URLSearchParams(location.search).get('variant'))){
     const body=new URLSearchParams(location.search).get('body');
@@ -138,18 +182,10 @@ export function prepareReview(run,name){
     run.organs=Array.from({length:d.organs},(_,i)=>createPart(run,i?'shield':'regen'));
     run.inventory=[];run.ground=[];run.hp=stats(run).hp;
   }
-  if(name==='part'&&new URLSearchParams(location.search).get('variant')==='summon-equipment'){
-    const key=new URLSearchParams(location.search).get('key');
-    if(['drone','swarmLeg','broodNode','parasite'].includes(key)){
-      const p=createPart(run,key);run.body=createPart(run,'broodmother');run.biomass=1000;
-      run[{drone:'arms',swarmLeg:'legs',broodNode:'organs',parasite:'organs'}[key]][0]=p;
-      return {group:{drone:'arms',swarmLeg:'legs',broodNode:'organs',parasite:'organs'}[key],slot:0};
-    }
-  }
-  if(name==='part')return {id:run.inventory.find(p=>p.key==='drill').id};
   if(name==='ability-detail'){
     const query=new URLSearchParams(location.search),branch=query.get('branch')||'might',id=ABILITIES[branch]?branch:`${branch}.0`,rank=Math.max(0,Math.min(5,Number(query.get('rank'))||0));
-    run.arms=(['projectiles','ricochet','neuralweb'].includes(branch)?['pistol','seed']:branch==='ranged'?['pistol','arc']:branch==='melee'?['claws']:['claws','pistol']).map(key=>createPart(run,key));
+    run.arms=(branch==='detonation'?['drone','drone']:['projectiles','ricochet','neuralweb'].includes(branch)?['pistol','seed']:branch==='ranged'?['pistol','arc']:branch==='melee'?['claws']:['claws','pistol']).map(key=>createPart(run,key));
+    if(branch==='detonation')run.profile.meta.abilityBranches=[...new Set([...(run.profile.meta.abilityBranches||[]),'detonation'])];
     if(rank&&ABILITIES[id]){run.abilities.learned=id.startsWith('ricochet.')&&id!=='ricochet.0'?['ricochet.0',id]:[id];run.abilities.levels[id]=rank;if(run.abilities.learned.includes('ricochet.0'))run.abilities.levels['ricochet.0']=1;}
     return {browse:true,branch};
   }

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRun,receiveDamage} from '../src/game.js';
 import {learn,modifiers,recordBiomassSpend} from '../src/systems/abilities.js';
-import {prepareAbilityAttack,abilityDamageMultiplier,applyCriticalTempo,markRupture,tryNeuralWeb,ricochetProfile,nextRicochetTarget,tickGuardian,tickCryoTrail,symbiontAbilityHit,tickSporeBrood} from '../src/systems/ability-combat.js';
+import {prepareAbilityAttack,abilityDamageMultiplier,applyCriticalTempo,markRupture,tryNeuralWeb,ricochetProfile,ricochetFinisherMultiplier,nextRicochetTarget,tickGuardian,tickCryoTrail,symbiontAbilityHit,tickSporeBrood} from '../src/systems/ability-combat.js';
 
 const run=()=>{const s=createRun(undefined,'survival',2718);s.world={lineClear:()=>true};s.events=[];return s;};
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} != ${b}`);
@@ -31,11 +31,11 @@ test('rupture starts on a primary critical and buffs only subsequent primary hit
  near(abilityDamageMultiplier(s,enemy,{...weapon,secondary:'splinter'}),1);s.time=3;near(abilityDamageMultiplier(s,enemy,weapon),1);
 });
 
-test('impulse refunds one cooldown portion per original critical attack',()=>{
+test('impulse no longer refunds cooldown on critical attacks',()=>{
  const s=run(),arm=s.arms[0];learn(s,'tempo.2');arm.cooldown=10;const weapon={partId:arm.id,mode:'sector',damage:10};
- assert.equal(applyCriticalTempo(s,weapon,true),true);near(arm.cooldown,8.5);assert.equal(applyCriticalTempo(s,weapon,true),false);near(arm.cooldown,8.5);
+ assert.equal(applyCriticalTempo(s,weapon,true),false);near(arm.cooldown,10);assert.equal(applyCriticalTempo(s,weapon,true),false);near(arm.cooldown,10);
  const secondary={partId:arm.id,mode:'projectile',secondary:'ricochet'};assert.equal(applyCriticalTempo(s,secondary,true),false);
- const maxed=run(),maxArm=maxed.arms[0];for(let i=0;i<5;i++)learn(maxed,'tempo.2');maxArm.cooldown=10;assert.equal(applyCriticalTempo(maxed,{partId:maxArm.id,mode:'sector'},true),true);near(maxArm.cooldown,5.5);
+ const maxed=run(),maxArm=maxed.arms[0];for(let i=0;i<5;i++)learn(maxed,'tempo.2');maxArm.cooldown=10;assert.equal(applyCriticalTempo(maxed,{partId:maxArm.id,mode:'sector'},true),false);near(maxArm.cooldown,10);
 });
 
 test('neural web arcs once from an original volley and never recurses from secondary damage',()=>{
@@ -45,9 +45,13 @@ test('neural web arcs once from an original volley and never recurses from secon
  assert.equal(tryNeuralWeb(s,origin,weapon,25,()=>assert.fail()),false);assert.equal(tryNeuralWeb(s,origin,{...weapon,secondary:'splinter',abilityVolley:{neuralWebUsed:false}},25,()=>assert.fail()),false);
 });
 
-test('ricochet branches scale damage, targets, and wounded-target critical chance',()=>{
+test('ricochet branches scale damage, targets, and wounded-target finishing damage',()=>{
  const s=run(),weapon={mode:'projectile',damage:10,crit:.1};learn(s,'ricochet.0');for(const id of ['ricochet.1','ricochet.2','ricochet.3'])for(let i=0;i<5;i++)assert.ok(learn(s,id));
- assert.deepEqual(ricochetProfile(s,weapon),{hops:6,damage:1,crit:.25,hunter:true,range:4});
+ assert.deepEqual(ricochetProfile(s,weapon),{hops:6,damage:1.2,crit:0,hunter:true,range:4});
+ assert.equal(ricochetProfile(s,{...weapon,ricochetDamage:1.4}).damage,1.4);
+ assert.equal(ricochetFinisherMultiplier(s,{hp:50,maxHp:100},{secondary:'ricochet'}),2);
+ assert.equal(ricochetFinisherMultiplier(s,{hp:51,maxHp:100},{secondary:'ricochet'}),1);
+ assert.equal(ricochetFinisherMultiplier(s,{hp:50,maxHp:100},weapon),1);
  assert.equal(ricochetProfile(s,{mode:'rocket',damage:10,crit:.1}),null);
  const origin={id:1,x:0,z:0,hp:100,maxHp:100},nearby={id:2,x:1,z:0,hp:90,maxHp:100},wounded={id:3,x:3,z:0,hp:10,maxHp:100};s.enemies=[origin,nearby,wounded];
  assert.equal(nextRicochetTarget(s,origin,new Set([origin.id]),true),wounded);assert.equal(nextRicochetTarget(s,origin,new Set([origin.id]),false),nearby);
@@ -83,7 +87,7 @@ test('spore brood plants every fifth bite, caps at twelve, then explodes once wi
 });
 
 test('overgrowth counts earlier biomass spending and stops at twenty-five percent',()=>{
- const s=run();recordBiomassSpend(s,2900);learn(s,'overgrowth');near(modifiers(s).damage,.1);recordBiomassSpend(s,2100);near(modifiers(s).damage,.25);recordBiomassSpend(s,10000);near(modifiers(s).damage,.25);
+ const s=run();recordBiomassSpend(s,1499);learn(s,'overgrowth');near(modifiers(s).damage,.1);recordBiomassSpend(s,1001);near(modifiers(s).damage,.25);recordBiomassSpend(s,10000);near(modifiers(s).damage,.25);
  assert.equal(s.events.filter(e=>e.type==='soul-proc'&&e.kind==='overgrowth').length,2);
 });
 

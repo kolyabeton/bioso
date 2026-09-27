@@ -30,7 +30,7 @@ test('rank-I sustained weapon DPS matches the stabilization table',()=>{
   assert.equal(CATALOG.acid.damage,10);assert.equal(ACID_PUDDLE_SECONDS,3);
 });
 
-test('Broodmother full build combines five chassis helpers, three from Colony and one from the set',()=>{
+test('Broodmother full build combines five chassis helpers, five from Colony and one from the set',()=>{
   const s=createRun(undefined,'survival',13);s.body=createPart(s,'broodmother',5);
   s.arms=[createPart(s,'drone',5),createPart(s,'acid',5)];
   s.legs=Array.from({length:3},()=>createPart(s,'swarmLeg',5));
@@ -40,10 +40,10 @@ test('Broodmother full build combines five chassis helpers, three from Colony an
   s.abilities.levels={'summons.0':5,'summons.1':5,'summons.2':5,'summons.3':5};
   const b=modifiers(s),tuning=summonTuning(s,b);
   assert.deepEqual([CATALOG.broodmother.arms,CATALOG.broodmother.legs,CATALOG.broodmother.organs,CATALOG.broodmother.capacity],[3,4,3,150]);
-  assert.equal(tuning.count,10);assert.equal(tuning.search,12);assert.equal(Number(tuning.damage.toFixed(2)),2.47);assert.ok(tuning.rate>=1.9);assert.equal(tuning.contactInvulnerable,true);assert.equal(tuning.replacementInterval,1.2/tuning.rate);
-  const elite=spawnEnemy(s,'elite',{x:2,z:0},'mass',900,{promote:false});elite.hp=elite.maxHp=10000;
+  assert.equal(tuning.count,12);assert.equal(tuning.search,12);assert.equal(Number(tuning.damage.toFixed(2)),2.47);assert.ok(tuning.rate>=1.9);assert.equal(tuning.contactInvulnerable,true);assert.equal(tuning.replacementInterval,1.2/tuning.rate);
+  const elite=spawnEnemy(s,'elite',{x:2,z:0},'mass',900,{promote:false});elite.hp=elite.maxHp=1e9;
   for(let i=0;i<80;i++){s.time+=.1;tickEffects(s,.1,(target,damage)=>target.hp-=damage);}
-  assert.equal(s.abilities.companions.length,10);assert.ok(elite.hp<10000,'helpers attack without hero weapon hits');
+  assert.equal(s.abilities.companions.length,12);assert.ok(elite.hp<1e9,'helpers attack without hero weapon hits');
   assert.ok(s.abilities.companions.every(companion=>companion.target===elite.id),'the full swarm shares its priority target');
   s.world={walkable:()=>true,lineClear:()=>true,chunk:()=>({cx:0,cz:0,lair:{x:999,z:999}})};elite.hp=elite.maxHp=1e9;elite.speed=0;elite.damage=0;s.nextElite=s.nextBoss=Infinity;
   for(let i=0;i<240;i++)step(s,.05,{x:0,z:0});
@@ -68,7 +68,7 @@ test('active helpers ignore contact damage and consume only hostile projectiles'
 test('damage contract uses half armor and HP-only invulnerability',()=>{
   const s=createRun(undefined,'survival',14);assert.equal(stats(s).armor,.5);
   assert.equal(receiveDamage(s,.5),'armor');assert.equal(s.health.invulnerableUntil,0);
-  assert.equal(receiveDamage(s,.5),'hurt');assert.equal(s.health.invulnerableUntil,1);
+  assert.equal(receiveDamage(s,.5),'hurt');assert.equal(s.health.invulnerableUntil,.5);
   assert.equal(receiveDamage(s,.5),'ignored');
 });
 
@@ -91,7 +91,7 @@ test('both survival dungeons spawn wall-health and triple-attack elites, pause t
   for(const [type,level,count,time] of [['dungeon_roots',10,12,900],['dungeon_catacombs',17,18,1500]]){
     const s=createWorldRun(undefined,'survival',20317),node=s.encounters.nodes.find(n=>n.type===type);s.level=level;s.time=time;s.player={x:node.x,y:node.y,z:node.z};
     assert.ok(beginEncounter(s,node.id));assert.equal(node.members.length,count);
-    const baseHp=Math.round(enemyBalance(time,'elite').hp*SURVIVAL_PRESSURE.hp),baseRecovery=1/survivalPressureProfile(time).attackRate;
+    const pressure=survivalPressureProfile(time,s.difficulty,'elite'),baseHp=Math.round(enemyBalance(time,'elite').hp*SURVIVAL_PRESSURE.hp*pressure.health),baseRecovery=1/pressure.attackRate;
     const elites=node.members.map(id=>s.enemies.find(e=>e.id===id));assert.ok(elites.every(e=>e.dungeonElite&&e.damage===1&&e.hp===baseHp*DUNGEON_ELITE_HP_MULTIPLIER&&e.maxHp===baseHp*DUNGEON_ELITE_HP_MULTIPLIER&&e.contactInterval===baseRecovery/3&&e.attackRecoveryScale===baseRecovery/3));
     const pausedAt=s.time;step(s,.05);assert.equal(s.time,pausedAt);
     for(const zone of node.aggroZones){Object.assign(s.player,zone);step(s,.01);}
@@ -103,6 +103,6 @@ test('both survival dungeons spawn wall-health and triple-attack elites, pause t
 });
 
 test('new settings default to High/60 and enabled 50 percent audio while preserving old values',()=>{
-  assert.deepEqual(DEFAULT_SETTINGS,{language:'ru',soundEnabled:true,effects:50,music:50,quality:'high',fps:60,vibration:true,reducedMotion:false,storyEnabled:true});
-  assert.deepEqual(normalizeSettings({soundEnabled:false,effects:73,music:11,quality:'low',fps:30}),{language:'ru',soundEnabled:false,effects:73,music:11,quality:'low',fps:30,vibration:true,reducedMotion:false,storyEnabled:true});
+  assert.deepEqual(DEFAULT_SETTINGS,{difficulty:100,language:'ru',soundEnabled:true,effects:50,music:50,quality:'high',cameraMode:'standard',fps:60,vibration:true,reducedMotion:false,storyEnabled:true});
+  assert.deepEqual(normalizeSettings({soundEnabled:false,effects:73,music:11,quality:'low',fps:30}),{difficulty:100,language:'ru',soundEnabled:false,effects:73,music:11,quality:'low',cameraMode:'standard',fps:30,vibration:true,reducedMotion:false,storyEnabled:true});
 });

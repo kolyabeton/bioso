@@ -6,6 +6,8 @@ export const planarDistance=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);
 /** Ground pickups keep their authored horizontal radius on relief. */
 export const groundDistance=(s,a,b)=>s.world.heightAt?planarDistance(a,b):spatialDistance(a,b);
 export const bodyRadius=s=>bodySize(s.body).radius;
+/** Melee stats already include the hull through heroMeleeAttackRange. */
+export const playerAttackRange=(s,w)=>w.range+(['sector','area','contact'].includes(w.mode)?0:bodyRadius(s));
 export function visibleBetween(s,a,b,offset=1){return !s.world.lineClear||s.world.lineClear({...a,y:elevation(a)+offset},{...b,y:elevation(b)+offset});}
 export function surfaceReach(s,a,b){
  const w=s.world;if(!w.heightAt)return true;

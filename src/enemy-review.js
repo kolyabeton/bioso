@@ -29,6 +29,10 @@ export function prepareEnemyReview(s,params){
   s.time=960;s.health.invulnerableUntil=Infinity;const place=(id,x,z)=>{const recipe=ENEMY_RECIPES.find(r=>r.id===id),e=spawnEnemy(s,'normal',{x:home.x+x,z:home.z+z},'ranged',960);e.recipeId=recipe.id;e.assemblyRole=recipe.role;e.assembly=assembleEnemy(recipe,3,'normal');e.enemyAttack={index:0,readyAt:s.time,warning:null};e.hp=e.maxHp=10000;e.speed=0;return e;};
   place('sower',-3.2,-7);place('needler',3.2,-7);
   const legacy=spawnEnemy(s,'boss',{x:home.x,z:home.z-10},'ranged',960);delete legacy.assembly;delete legacy.enemyAttack;delete legacy.recipeId;legacy.role='ranged';legacy.hp=legacy.maxHp=10000;legacy.speed=0;legacy.shootAt=s.time;
+ }else if(fixture==='whip-pull'){
+  s.time=960;s.mode='review';s.health.invulnerableUntil=Infinity;s.waves.credit=-1e6;s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;s.survivalBosses={nextAt:Infinity,count:0};s.survivalElites={nextAt:Infinity,count:0};s.exploration.groups=[];
+  s.arms=[createPart(s,'whip'),null];s.arms[0].whipAttacks=2;
+  for(const [x,z,kind]of [[-2,5.4,'normal'],[0,4.5,'normal'],[2,5.4,'normal'],[-3,5.4,'elite'],[3,9,'boss']]){const e=spawnEnemy(s,kind,{x:home.x+x,z:home.z+z},'mass',960);if(!e)continue;e.hp=e.maxHp=10000;e.radius=.48;e.speed=e.damage=0;e.assembly=null;e.shootAt=Infinity;e.enemyAttack=null;}
  }else if(fixture==='combat-vfx'){
   const effect=params.get('effect')||'all',showWhip=effect==='whip',showClaws=['all','claws'].includes(effect),showDrill=['all','drill'].includes(effect),showSeed=['all','seed'].includes(effect),showNeedle=['all','needle'].includes(effect),showBoss=['all','boss'].includes(effect);
   s.time=960;s.health.invulnerableUntil=Infinity;s.waves.credit=-1e6;s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;s.arms=[showClaws?createPart(s,'claws',4):null,showDrill?createPart(s,'drill',4):null,showWhip?createPart(s,'whip',4):null].filter(Boolean);
@@ -52,7 +56,8 @@ export function prepareEnemyReview(s,params){
   const elite=spawnEnemy(s,'elite',{x:home.x-3,z:home.z+2.5},'mass',180),boss=spawnEnemy(s,'boss',{x:home.x+3,z:home.z+2.5},'mass',480);
   for(const enemy of [elite,boss])if(enemy){enemy.hp=enemy.maxHp*.64;enemy.speed=0;enemy.enemyAttack.readyAt=Infinity;}
   if(elite)elite.burn={dps:0,until:999};
-  s.puddles=[{id:900,source:0,x:home.x+3.2,y:home.y??0,z:home.z-3.5,life:999,damage:0}];
+  const puddleCount=Math.max(1,Math.min(400,Number(params.get('puddles'))||1));
+  s.puddles=Array.from({length:puddleCount},(_,i)=>({id:900+i,source:0,x:home.x+3.2+(i%5)*.08,y:home.y??0,z:home.z-3.5+(i%7)*.08,life:999,damage:0}));
  }else if(fixture==='death'){
   s.time=180;s.health.invulnerableUntil=Infinity;s.arms=[];s.waves.credit=-1e6;s.nextElite=s.nextBoss=s.waves.nextElite=s.waves.nextBoss=Infinity;
   for(const [i,[x,z,role]]of [[-2.6,-4.5,'fast'],[0,-6,'mass'],[2.6,-4.5,'armored']].entries()){const e=spawnEnemy(s,i===2?'elite':'normal',{x:home.x+x,z:home.z+z},role,180);if(e){e.speed=0;e.enemyAttack.readyAt=Infinity;e.hp=e.maxHp=1;}}
@@ -69,6 +74,7 @@ export function prepareEnemyReview(s,params){
  const label=document.createElement('aside');label.style.cssText='position:fixed;top:8px;left:8px;z-index:100;background:#152620e8;color:#efce9a;padding:8px;font:12px system-ui;max-width:240px';label.textContent='Тестовая сцена: '+fixture+' · время и размещение заданы для проверки'+(fixture==='effects'?` · кислотных луж: ${s.puddles.length}`:'')+'. WASD — движение.';if(params.get('record')==='1')label.hidden=true;document.body.append(label);
  const recordMode=params.get('record')==='1';let paused=fixture!=='effects',recordStartsAt=recordMode&&fixture!=='special'?performance.now()+1500:null,captureWarning=false,captureAt=null,captureHit=null,effectsFreezeAt=fixture==='effects'?.8:null,stillPending=null,stillSaving=false;const button=document.createElement('button');button.textContent=paused?'Запустить тестовый бой':'Заморозить кадр';button.style.cssText='display:block;margin-top:8px';button.onclick=()=>{if(fixture==='acid'&&paused)captureHit=s.health.hits;paused=!paused;effectsFreezeAt=null;button.textContent=paused?'Продолжить тестовый бой':'Заморозить кадр';};label.append(button);
  const warningButton=document.createElement('button');warningButton.textContent=fixture==='combat-vfx'?'Показать эффекты':['projectiles','elite-tactics'].includes(fixture)?'Показать залп':['volatile','tactics'].includes(fixture)?'Показать суицидника':'Показать большую AoE';warningButton.onclick=()=>{if(fixture==='volatile')captureAt=120+VOLATILE.fuse*.55;else if(fixture==='tactics')captureAt=s.time+.3;else if(fixture==='elite-tactics')captureAt=s.time+.65;else if(fixture==='projectiles')captureAt=s.time+.65;else if(fixture==='combat-vfx')captureAt=s.time+.2;else captureWarning=true;paused=false;};label.append(warningButton);
+ if(fixture==='whip-pull'){warningButton.textContent='Показать стяжку';warningButton.onclick=()=>{captureAt=s.time+.34;paused=false;};}
  if(fixture==='death'){warningButton.textContent='Показать смерти';warningButton.onclick=()=>{for(const enemy of [...s.enemies])hurtEnemy(s,enemy,1e9,0,'direct');captureAt=params.has('capture')?null:s.time+.42;paused=false;};}
  if(fixture==='volatile'){const blastButton=document.createElement('button');blastButton.textContent='Показать взрыв';blastButton.onclick=()=>{captureAt=120+VOLATILE.fuse+.16;paused=false;};label.append(blastButton);}
  if(recordMode&&specialReview)setTimeout(()=>{

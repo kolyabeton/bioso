@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-09-14T14:06:58.029262+00:00",
+  "sha256": {
+    "src/systems/survival-cadence.js": "02fdfcd9650761af6f0fd964bc3665992656f88d31f36d7a0e38657f9b68f024",
+    "src/systems/survival-hordes.js": "fad1e5e33da2feb449ca5ef15c06e4e5ac16baa241c6388ab010e301f2ae6bfe",
+    "src/systems/waves.js": "5b14fd703f4bd853630c75d21e9d5067f906ae815560900f3aa00a73e795bcec",
+    "src/game.js": "24d3cd024145d460c3dc848082410c138b931289514024b935a1adb7f30e22c1",
+    "src/living-combat.js": "6da893e3da00cf9a5e3cf3277b2d517353557532e395cbcae6cbd2a6e5010f91",
+    "src/world-navigation.js": "f4c0359405b55990bb08dfdf9750fc0b8d77db8dcee1ae2bece3e1fe64d7ffa5",
+    "src/survival-wave-review.js": "a897ab69db3c2f35644bc52506766d03c7a4c4d7eef75e90f07514dc9a1f23d4",
+    "src/main.js": "dc56e25637694104387364ef2c4b4f2920811b5fdca6fabceead81e9a7242c06"
+  }
+}

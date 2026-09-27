@@ -1,0 +1,45 @@
+{
+  "method": "Actual Survival response director, spawned enemies, player loadout and renderer.",
+  "build": "ranged",
+  "time": 900,
+  "response": {
+    "nextAt": 990,
+    "index": 1,
+    "pending": null,
+    "retryAt": 0
+  },
+  "squad": [
+    {
+      "id": 27,
+      "recipeId": "shield-bearer",
+      "kind": "elite",
+      "specialty": "shield-bearer",
+      "leader": true
+    },
+    {
+      "id": 28,
+      "recipeId": "runner",
+      "kind": "normal",
+      "specialty": null,
+      "leader": false
+    },
+    {
+      "id": 29,
+      "recipeId": "chaser",
+      "kind": "normal",
+      "specialty": null,
+      "leader": false
+    }
+  ],
+  "companions": [],
+  "pressureAt30": {
+    "lateMinutes": 15,
+    "damage": 1.9,
+    "attackRate": 1.525,
+    "speed": 1.225,
+    "health": 1,
+    "count": 1.45,
+    "live": 1.3,
+    "eliteCap": 11
+  }
+}

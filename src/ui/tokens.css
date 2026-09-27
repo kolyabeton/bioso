@@ -2,6 +2,10 @@
 
 :root {
   color-scheme: light;
+  --ui-on-metal-muted: #c1c6b4;
+  --ui-type-body: 400 12px/20px Onest, sans-serif;
+  --ui-type-caption: 400 11px/16px Onest, sans-serif;
+  --ui-heading-h2: 500 13px/20px Onest, sans-serif;
   --ui-bg: #252c25;
   --ui-surface: #e5dfcf;
   --ui-surface-raised: #d8d2bf;

@@ -1,0 +1,258 @@
+
+> bioso-visual-prototype@0.2.0 build
+> node scripts/build-game.mjs
+
+Assets 25/685
+Assets 50/685
+Assets 75/685
+Assets 100/685
+Assets 125/685
+Assets 150/685
+Assets 175/685
+Assets 200/685
+Assets 225/685
+Assets 250/685
+Assets 275/685
+Assets 300/685
+Assets 325/685
+Assets 350/685
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (15)
+prune: Removed types... Accessor (18)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+Assets 375/685
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (15)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (20)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (52)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (96)
+prune: Removed types... Accessor (40)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (25)
+prune: Removed types... Accessor (25)
+Assets 400/685
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (25)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (25)
+prune: Removed types... Accessor (25)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (30)
+prune: Removed types... Accessor (30)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (25)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (412)
+prune: Removed types... Accessor (288)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (468)
+prune: Removed types... Accessor (424)
+prune: Removed types... Accessor (368)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (5)
+Assets 425/685
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (14)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (14)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (14)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (10)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (5)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (9)
+Assets 450/685
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (9)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (15)
+prune: Removed types... Accessor (15)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+Assets 475/685
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (18)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (19)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (22)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (19)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (19)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (19)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (22)
+prune: Removed types... Accessor (22)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (22)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (16)
+Assets 500/685
+prune: Removed types... Accessor (22)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (18)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (19)
+prune: Removed types... Accessor (12)
+prune: Removed types... Accessor (18)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (20)
+prune: Removed types... Accessor (36)
+prune: Removed types... Accessor (24)
+prune: Removed types... Accessor (51)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (39)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+Assets 525/685
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (4)
+prune: Removed types... Accessor (24)
+prune: Removed types... Accessor (24)
+prune: Removed types... Accessor (28)
+prune: Removed types... Accessor (56)
+prune: Removed types... Accessor (76)
+prune: Removed types... Accessor (16)
+prune: Removed types... Accessor (24)
+prune: Removed types... Accessor (60)
+prune: Removed types... Accessor (12)
+Assets 550/685
+Assets 575/685
+Assets 600/685
+Assets 625/685
+Assets 650/685
+Assets 675/685
+Assets 685/685
+vite v7.3.6 building client environment for production...
+transforming...
+
+/assets/ui/materials/ceramic-worn-v1.jpg referenced in /assets/ui/materials/ceramic-worn-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/materials/metal-olive-v1.jpg referenced in /assets/ui/materials/metal-olive-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/materials/ceramic-green-v1.jpg referenced in /assets/ui/materials/ceramic-green-v1.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/ui/parts-atlas-transparent-v1.png referenced in /assets/ui/parts-atlas-transparent-v1.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+/assets/art/upper-gardens-v2.jpg referenced in /assets/art/upper-gardens-v2.jpg didn't resolve at build time, it will remain unchanged to be resolved at runtime
+✓ 309 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                            4.74 kB │ gzip:   1.82 kB
+dist/assets/onest-cyrillic-wght-normal-DayYxulF.woff2     15.86 kB
+dist/assets/onest-latin-wght-normal-Dun_Rd-l.woff2        33.76 kB
+dist/assets/index-5PfSvqfI.css                           168.49 kB │ gzip:  31.61 kB
+dist/assets/index-DUX3DMii.js                          1,854.83 kB │ gzip: 559.89 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 18.45s
+{
+  "mode": "production",
+  "bytes": 158548156,
+  "limitBytes": 500000000,
+  "remainingBytes": 341451844,
+  "files": 915,
+  "categories": {
+    "ui": 11340519,
+    "models": 81786800,
+    "environment": 8901260,
+    "audio": 51896160,
+    "application": 4623417
+  }
+}

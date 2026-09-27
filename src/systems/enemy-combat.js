@@ -60,7 +60,7 @@ export function tickEnemyAcidPools(s,dt,hit){
  while(s.enemyAcidExposure>=ENEMY_ACID_TICK){s.enemyAcidExposure-=ENEMY_ACID_TICK;hit(ENEMY_ACID_DAMAGE*(source?.damage??1),source);}
 }
 export const ENEMY_ATTACK_SPEED=Object.freeze({normal:1,elite:3,boss:2,final:2});
-export const enemyAttackSpeed=e=>(ENEMY_ATTACK_SPEED[e.kind]??1)/(e.attackRecoveryScale||1);
+export const enemyAttackSpeed=e=>(ENEMY_ATTACK_SPEED[e.kind]??1)*(e.difficultyAttackRate??1)/(e.attackRecoveryScale||1);
 export const ENEMY_CONTACT_GAP=.15;
 export const enemyContactRange=(s,e)=>e.radius+bodyRadius(s)+ENEMY_CONTACT_GAP;
 const bossPhase=e=>e.maxHp>0&&e.hp/e.maxHp<=.6?2:1;
@@ -104,7 +104,7 @@ export function tickModularAttack(s,e,target,hit,knownVisible=null){
  if(e.volatile){cancelEnemyAttack(e,now);return false;}
  if(a.warning){
   const w=a.warning;if(now<w.at)return true;
-  const recovery=e.specialty==='shield-bearer'?Math.max(0,SHIELD_ATTACK_INTERVAL-w.warning):w.recovery*(s.mode==='survival'?SURVIVAL_PRESSURE.recovery:1)*(s.mode==='survival'&&e.kind==='final'?SURVIVAL_FINAL.recovery:1)/enemyAttackSpeed(e);
+  const recovery=e.specialty==='shield-bearer'?Math.max(0,SHIELD_ATTACK_INTERVAL/(e.difficultyAttackRate??1)-w.warning/(e.difficultyAttackRate??1)):w.recovery*(s.mode==='survival'?SURVIVAL_PRESSURE.recovery:1)*(s.mode==='survival'&&e.kind==='final'?SURVIVAL_FINAL.recovery:1)/enemyAttackSpeed(e);
   a.warning=null;a.readyAt=now+recovery;a.index++;e.attackPose={...w,at:now};
   if(w.mode==='shot'){
    const count=w.count??(s.mode==='survival'&&e.kind==='final'?3:1),spread=w.spread??SURVIVAL_FINAL.shotSpread,base=Math.atan2(w.dx,w.dz),gap=w.pattern==='ring'?(w.gap??0):0,angles=w.pattern==='ring'?Array.from({length:count},(_,i)=>gap/2+(Math.PI*2-gap)*(count===1?.5:i/(gap>0?count-1:count))):Array.from({length:count},(_,i)=>(i-(count-1)/2)*spread);
@@ -112,7 +112,7 @@ export function tickModularAttack(s,e,target,hit,knownVisible=null){
   }
   else if(w.mode==='acid')leaveAcidPool(s,w);
   else if(warningHits(w,target)&&canSee())hit();
-  s.events.push({type:'enemy-strike',key:w.key,bossAction:w.bossAction,x:w.x,y:w.y,z:w.z,radius:w.radius,dx:w.dx,dz:w.dz,mode:w.mode,duration:w.mode==='acid'?ENEMY_ACID_PUDDLE_DURATION:undefined});
+  s.events.push({type:'enemy-strike',hitTarget:target.chassisTower?target.id:undefined,key:w.key,bossAction:w.bossAction,x:w.x,y:w.y,z:w.z,radius:w.radius,dx:w.dx,dz:w.dz,mode:w.mode,duration:w.mode==='acid'?ENEMY_ACID_PUDDLE_DURATION:undefined});
   return true;
  }
  if(now<a.readyAt)return false;
@@ -128,7 +128,7 @@ export function tickModularAttack(s,e,target,hit,knownVisible=null){
  if(distance>reach||!canSee())return false;
  const dx=target.x-e.x,dz=target.z-e.z,d=Math.hypot(dx,dz)||1;
  const targeted=w.mode==='acid'||w.targeted;
- a.warning={...w,key,slot:selected.slot,x:targeted?target.x:e.x,y:targeted?(target.y??0):(e.y??0),z:targeted?target.z:e.z,dx:dx/d,dz:dz/d,dy:((target.y??0)-(e.y??0))/d,radius:w.radius??(w.range+e.radius),telegraphMode:w.telegraphMode??w.mode,started:now,at:now+w.warning,damage:(e.damage??1)*(w.damageScale??1),missionScaled:!!e.missionRoomStrength};
+ a.warning={...w,key,slot:selected.slot,x:targeted?target.x:e.x,y:targeted?(target.y??0):(e.y??0),z:targeted?target.z:e.z,dx:dx/d,dz:dz/d,dy:((target.y??0)-(e.y??0))/d,radius:w.radius??(w.range+e.radius),telegraphMode:w.telegraphMode??w.mode,started:now,at:now+w.warning/(e.difficultyAttackRate??1),damage:(e.damage??1)*(w.damageScale??1),missionScaled:!!e.missionRoomStrength};
  // Direct strikes and shots release immediately. Hammer area and Orchid acid stay telegraphed.
  if(!w.telegraph&&!['area','acid'].includes(w.mode)){a.warning.at=now;return tickModularAttack(s,e,target,hit,knownVisible);}
  return true;

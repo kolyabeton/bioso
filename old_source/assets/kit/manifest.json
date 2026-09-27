@@ -1,0 +1,84 @@
+[
+  {
+    "id": "arm-shotgun-v1",
+    "file": "arm-shotgun-v1.glb",
+    "bytes": 151336
+  },
+  {
+    "id": "secret-membrane-v1",
+    "file": "secret-membrane-v1.glb",
+    "bytes": 32708,
+    "source": "scripts/asset-kit/secret-modules.mjs"
+  },
+  {
+    "id": "secret-slab-v1",
+    "file": "secret-slab-v1.glb",
+    "bytes": 9492,
+    "source": "scripts/asset-kit/secret-modules.mjs"
+  },
+  {
+    "id": "secret-nursery-v1",
+    "file": "secret-nursery-v1.glb",
+    "bytes": 33668,
+    "source": "scripts/asset-kit/secret-modules.mjs"
+  },
+  {
+    "id": "arm-drone-v1",
+    "file": "arm-drone-v1.glb",
+    "bytes": 1606904
+  },
+  {
+    "id": "leg-runner-icon-v1",
+    "file": "leg-runner-icon-v1.glb",
+    "bytes": 1691092,
+    "source": "scripts/asset-kit/limb-icon-parity.mjs"
+  },
+  {
+    "id": "leg-universal-icon-v1",
+    "file": "leg-universal-icon-v1.glb",
+    "bytes": 1703512,
+    "source": "scripts/asset-kit/limb-icon-parity.mjs"
+  },
+  {
+    "id": "leg-plated-icon-v1",
+    "file": "leg-plated-icon-v1.glb",
+    "bytes": 1698652,
+    "source": "scripts/asset-kit/limb-icon-parity.mjs"
+  },
+  {
+    "id": "leg-spring-icon-v1",
+    "file": "leg-spring-icon-v1.glb",
+    "bytes": 1779100,
+    "source": "scripts/asset-kit/limb-icon-parity.mjs"
+  },
+  {
+    "id": "leg-swarmLeg-icon-v1",
+    "file": "leg-swarmLeg-icon-v1.glb",
+    "bytes": 1724360,
+    "source": "scripts/asset-kit/limb-icon-parity.mjs"
+  },
+  {
+    "id": "organ-broodNode-icon-v1",
+    "file": "organ-broodNode-icon-v1.glb",
+    "bytes": 1703964,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-reverseStomach-icon-v1",
+    "file": "organ-reverseStomach-icon-v1.glb",
+    "bytes": 1674304,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-revivalCore-icon-v1",
+    "file": "organ-revivalCore-icon-v1.glb",
+    "bytes": 1744136,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  },
+  {
+    "id": "organ-broodNode-icon-v2",
+    "file": "organ-broodNode-icon-v2.glb",
+    "bytes": 1822612,
+    "source": "scripts/asset-kit/organ-icon-parity.mjs"
+  }
+]

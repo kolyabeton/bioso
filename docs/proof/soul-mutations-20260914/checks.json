@@ -1,0 +1,68 @@
+{
+  "routes": [
+    {
+      "height": 704,
+      "overflow": false,
+      "route": "assembly",
+      "viewport": [
+        1280,
+        720
+      ],
+      "width": 389
+    },
+    {
+      "height": 704,
+      "overflow": false,
+      "route": "map",
+      "viewport": [
+        1280,
+        720
+      ],
+      "width": 389
+    },
+    {
+      "height": 720,
+      "overflow": false,
+      "route": "home",
+      "viewport": [
+        1280,
+        720
+      ],
+      "width": 1280
+    }
+  ],
+  "soul": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "width": 374,
+      "overflow": false
+    },
+    {
+      "viewport": [
+        360,
+        640
+      ],
+      "width": 344,
+      "overflow": false
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "width": 389,
+      "overflow": false
+    }
+  ],
+  "tests": "26/26 focused tests pass; broader isaac suite: unrelated health trade assertion 1 !== 2",
+  "states": [
+    "hive without incubator",
+    "conductor",
+    "mire",
+    "inactive"
+  ],
+  "navigation": "Soul > Branches > Back verified"
+}

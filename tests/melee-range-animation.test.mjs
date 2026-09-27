@@ -7,7 +7,7 @@ import {HERO_MELEE_RANGE_MULTIPLIER} from '../src/melee-range.js';
 import {updateDrillExtension} from '../src/drill-extension.js';
 
 test('melee extension retains combat range and claws keep their reduced visual scale',()=>{
- const base={claws:.35,hammer:1.25,drill:.48,whip:.55,fangs:1.05},phase={claws:.44,hammer:.44,drill:0,whip:.5,fangs:.44};
+ const base={claws:.35,hammer:1.25,drill:.48,whip:.4,fangs:1.05},phase={claws:.44,hammer:.44,drill:0,whip:.48,fangs:.44};
  for(const key of Object.keys(base))assert.ok(Math.abs(meleePose(key,phase[key]).extension-base[key]*HERO_MELEE_RANGE_MULTIPLIER)<1e-8,key);
  const claws=createMeleeTrail('claws');assert.equal(claws.scale.x,1.35*HERO_MELEE_RANGE_MULTIPLIER);disposeMeleeTrail(claws);
 });

@@ -5,7 +5,7 @@ body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191
   --ui-bronze-light:#c4d0b7;--ui-warning:#e2c086;--ui-danger:#edbaa7;
   color:var(--ui-text);
 }
-.ui-dialog:not([data-screen=home]){
+.ui-dialog:not([data-screen=home]),.ui-dialog-surface{
   background:var(--ui-panel-face),var(--ui-surface);border:5px solid #394034;
   border-radius:16px;box-shadow:inset 0 0 0 1px #8f8d75,0 0 0 1px #aaa38c,0 0 0 3px #171e18,var(--ui-shadow);
 }
@@ -81,7 +81,7 @@ body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191
 
 /* Mission readout uses the same ceramic and inset indicator as HUD notices. */
 #objective:not(.meta-overrun-status){
-  box-sizing:border-box;width:fit-content;max-width:min(260px,calc(100% - 32px));
+  box-sizing:border-box;top:max(64px,calc(env(safe-area-inset-top) + 48px));width:fit-content;max-width:min(260px,calc(100% - 32px));
   padding:1px 6px 1px 17px;
   color:var(--ui-ceramic-ink);font-size:12px;font-weight:600;line-height:16px;
   font-variant-numeric:tabular-nums;text-shadow:0 1px #fff9;
@@ -126,9 +126,8 @@ body{background:radial-gradient(ellipse at 50% 15%,#42483a,transparent 70%),#191
   background:radial-gradient(circle at 35% 30%,#fff1b8 0 16%,#d1a252 34%,#805819 70%);
 }
 .ui-notification.visible:not([hidden]){animation:ceramic-notice-enter 260ms cubic-bezier(.2,.8,.2,1)}
-#panel[open]>#notifications{top:max(88px,calc(env(safe-area-inset-top) + 76px))}
 @keyframes ceramic-notice-enter{
-  from{opacity:0;transform:translateY(-10px) scale(.97)}
+  from{opacity:0;transform:translateY(10px) scale(.97)}
   to{opacity:1;transform:translateY(0) scale(1)}
 }
 
