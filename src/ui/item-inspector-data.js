@@ -3,7 +3,7 @@ import {reverseStomachHealth} from '../systems/reverse-stomach.js';
 import {heroHealthPoints} from '../systems/health-scale.js';
 import {resonanceBonus,stabilizerPartReduction} from '../systems/organ-upgrades.js';
 import {continuousRecoveryRate} from '../assembly.js';
-import {chassisTraitBoost} from '../systems/body-traits.js';
+import {bodyTraitDescription,chassisTraitBoost} from '../systems/body-traits.js';
 import {summonPartBonus} from '../systems/summon-equipment.js';
 import {organEffect} from '../systems/body-traits.js';
 import {organCapacity,slotCount} from '../systems/body-slots.js';
@@ -65,5 +65,6 @@ export function itemInspectorData(s,p,selected){
 export function catalogInspectorData(s,key,tier=1){
  const p={key,tier,modifier:null,upgrades:{},spent:0,affixes:[]};
  const {name,rows,lines,setBonus}=itemInspectorData(s,p);
- return {key,name,subtitle:`${ROMAN[tier]} · с бонусами сборки`,rows,lines,setBonus};
+ const catalogLines=key==='chimera'?lines.map(line=>line.startsWith('Мойка:')?bodyTraitDescription(p):line):lines;
+ return {key,name,subtitle:`${ROMAN[tier]} · с бонусами сборки`,rows,lines:catalogLines,setBonus};
 }
